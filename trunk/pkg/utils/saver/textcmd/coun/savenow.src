@@ -1,0 +1,16 @@
+/* $Id: savenow.src,v 1.1 2004/03/16 14:05:46 folko Exp $
+ *
+ * Purpose:
+ * Save the world state.
+ *
+ */
+include "include/log";
+include ":saver:include/saver";
+
+
+program command_SaveNow(who)
+	Log(LOG_COMMAND, GetLogInfo(who) + " saving world state.");
+	SaveWorld();
+
+	return;
+endprogram

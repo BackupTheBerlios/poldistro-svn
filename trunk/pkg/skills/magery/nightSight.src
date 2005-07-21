@@ -1,0 +1,19 @@
+use uo;
+use util;
+
+include "include/client";
+include "include/sound";
+include "include/attributes";
+
+
+program nightSight(parms, spellid)
+	var caster := parms.caster;
+	var castOn := parms.castOn;
+
+	PlaySoundEffect(castOn, SFX_SPELL_NIGHT_SIGHT );
+	var magery := GetEffectiveSkill(caster, SKILLID_MAGERY);
+	castOn.setlightlevel(0, magery * 60);
+	PlayObjectCenteredEffect(castOn, FX_BLESS_EFFECT, 10,10);
+
+	return;
+endprogram

@@ -1,0 +1,20 @@
+use cfgfile;
+use uo;
+
+include "include/log";
+
+
+program command_unloadCFG(who, filename)
+	var res := UnloadConfigFile(filename);
+
+	if (res == error)
+		SendSysMessage(who, "Error unloading config file: " + res.errortext);
+	elseif (res < 0)
+		SendSysMessage(who, "That config file is not loaded.");
+	else
+		Log(LOG_COMMAND, GetLogInfo(who) + " invoking 'onloadcfg' command for file " + filename);
+		SendSysMessage(who, "Config file unloaded.  " + res + " reference(s) to config file exist.");
+	endif
+
+	return;
+endprogram

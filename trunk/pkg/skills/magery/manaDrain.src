@@ -1,0 +1,36 @@
+use uo;
+use util;
+
+include "include/magic";
+include "include/sound";
+include "include/attributes";
+include ":magery:reflect";
+
+
+program spell_manaDrain(parms)
+	var caster := parms.caster;
+	var castOn := parms.castOn;
+	var spellid := parms.spellid;
+	var spellcfg := ReadConfigFile(":*:spells");
+	var circle := spellcfg[spellid].circle;
+
+	SetObjProperty(castOn, "LastHit", {caster.name,caster.serial, "mana drain" });
+	if (spell_reflect(castOn))
+		var tmp := castOn;
+		castOn := caster;
+		caster := tmp;
+	endif
+	var dmg := Cint(GetAttribute(caster, "magery") / 2);
+	var diff := Resisted(circle, caster, castOn, dmg);
+	if (diff)
+		PlaySoundEffect( caster, SFX_SPELL_MANA_DRAIN );
+		PlayObjectCenteredEffect( castOn, FX_HEAL_EFFECT, 7,0x10 );
+		if (diff > GetMana(castOn))
+			SetMana(castOn, 0);
+		else
+			SetMana(castOn, GetMana(castOn) - diff);
+		endif
+	endif
+
+	return;
+endprogram

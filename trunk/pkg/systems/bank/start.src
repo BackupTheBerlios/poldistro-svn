@@ -1,0 +1,9 @@
+use uo;
+use os;
+
+include ":bank:bank";
+
+
+print("Opening world bank");
+OpenWorldBank();
+

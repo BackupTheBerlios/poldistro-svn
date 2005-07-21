@@ -1,0 +1,15 @@
+Account
+{
+	Name	admin
+	Password	admin
+	PasswordHash	f6fdffe48c908deb0f4c3bd36c032e72
+	PasswordOnlyHash	21232f297a57a5a743894a0e4a801fc3
+	Enabled	1
+	Banned	0
+	DefaultCmdLevel	test
+	UOExpansion	T2A
+	CProp	LastIP a1:a2:S9:127.0.0.1S5:Admin
+	CProp	LastLogin i25175117
+	CProp	email stest@test.com
+}
+

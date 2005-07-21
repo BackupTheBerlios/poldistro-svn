@@ -1,0 +1,10 @@
+$Id: scripting.txt,v 1.1 2004/03/16 14:05:46 folko Exp $
+
+Notes:
+Never use GetObjProperty, SetObjProperty, EraseObjProperty and GetObjPropertyNames.
+Use GetProperty, SetProperty, EraseProperty and GetPropertyNames from properties.inc instead.
+This is for security reasons.
+
+Avoid using SendSysMessage and Broadcast. Use SendMessage and SendAll from
+messages.inc instead.
+This allows players to use custom colors for every kind of message.

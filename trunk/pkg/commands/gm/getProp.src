@@ -1,0 +1,15 @@
+/*
+ * GetProp Textcommand
+ * Author: Kinetix
+ * Purpose: An alternative to the old .getprop, this one allows getting ANY prop from the target.
+ */
+use uo;
+
+include "include/attributes";
+include "include/messages";
+include "include/localization";
+
+
+program command_getProp(who, prop)
+endprogram
+
