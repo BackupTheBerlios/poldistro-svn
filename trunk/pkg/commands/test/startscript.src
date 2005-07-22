@@ -1,8 +1,0 @@
-use os;
-
-program textcmd_start( who, scriptname )
-
-  who := who;
-  start_script( scriptname );
-
-endprogram
