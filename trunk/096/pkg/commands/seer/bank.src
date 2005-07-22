@@ -5,8 +5,10 @@ include ":bank:bank";
 
 
 program command_bank(who)
+	var mobile;
 	SendSysMessage(who, "Select mobile.");
-	var mobile := Target(who, TGTOPT_NOCHECK_LOS);
+
+	mobile := Target(who, TGTOPT_NOCHECK_LOS);
 	
 	if (!mobile.isA(POLCLASS_MOBILE))
 		SendSysMessage(who, "You can only view a mobile's bankbox.");

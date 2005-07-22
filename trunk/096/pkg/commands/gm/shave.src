@@ -1,30 +1,42 @@
 use uo;
 
 include "include/client";
+include "include/messages";
+include "include/log";
+include "include/localization";
 
-program Shave( who, text )
 
-        if ((text == "") or (!text))
-          SendSysMessage( who, "Please, define which part do you wish to shave (Head, Face)." );
-          return;
-        endif
+program command_shave(who, area)
+	var mobile, hair;
+	var areas := dictionary
+	{
+		"head" -> LAYER_HAIR,
+		"beard" -> LAYER_BEARD
+	};
 
-   if ( text == "face" )
-   SendSysMessage( who, "Whose face should I shave?" );
-   var guy := Target( who, "" );
+	if (!areas[area])
+		SendMessage(who, MSG_SHAVE_INVALID_AREA, {}, MSG_COMMAND);
+		foreach entry in areas
+			SendMessage(who, _entry_iter, {}, MSG_COMMAND);
+			entry := entry; // Compiler warning...
+		endforeach
+		return;
+	endif
+    
+	SendMessage(who, MSG_TARGET_OBJ, {}, MSG_COMMAND);
+	mobile := Target(who, TGTOPT_NOCHECK_LOS);
+	if (!mobile.isA(POLCLASS_MOBILE))
+		SendMessage(who, MSG_NO_MOB, {}, MSG_COMMAND);
+		return;
+	endif
 
-   var hair := GetEquipmentByLayer( guy, LAYER_BEARD );
+	Log(LOG_COMMAND, GetLogInfo(who) + " invoking shave " + area);
+	hair := GetEquipmentByLayer(mobile, areas[area]);
+	if (!hair)
+		SendMessage(who, MSG_NOTHING_DELETE, {}, MSG_COMMAND);
+		return;
+	endif
+	DestroyItem(hair);
 
-   DestroyItem( hair );
-
-   elseif ( text == "head" )
-   SendSysMessage( who, "Whose head should I shave?" );
-   var baldy := Target( who, "" );
-
-   var hair := GetEquipmentByLayer( baldy, LAYER_HAIR );
-
-   DestroyItem( hair );
-
-   endif
-
+	return;
 endprogram

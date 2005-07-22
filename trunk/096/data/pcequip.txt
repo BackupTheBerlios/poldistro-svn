@@ -1059,3 +1059,19 @@ Item
 	DecayAt	25143311
 }
 
+Item
+{
+	Serial	0x6ae0fe17
+	ObjType	0xf021
+	Graphic	0x3e9f
+	X	1
+	Y	1
+	Z	0
+	Revision	1
+	Realm	britannia
+	CProp	serial i1711925
+	Layer	25
+	Container	0x1a0edb
+	DecayAt	25175800
+}
+

@@ -1,7 +1,7 @@
 #
 #  Created by Version: POL096-2005-07-05
-#  Mobiles:         1034
-#  Top-level Items: 16015
+#  Mobiles:         1035
+#  Top-level Items: 15965
 #
 
 System
@@ -10,18 +10,18 @@ System
 	CoreVersionString	POL096-2005-07-05
 	CompileDate	Jul  5 2005
 	CompileTime	10:57:38
-	LastItemSerialNumber	1793129306
-	LastCharSerialNumber	1711924
+	LastItemSerialNumber	1793130668
+	LastCharSerialNumber	1711925
 }
 
 GlobalProperties
 {
 	CProp	SystemTeleportersCreated i1
 	CProp	TimeStamp t3:S5:monthi7S3:sumi1120176000S4:yeari2005
-	CProp	Weather a8:i0i0i0i0i18i18i0i0
+	CProp	Weather a8:i0i0i2i0i18i0i0i0
 	CProp	day i2
-	CProp	gameclock s25175125
-	CProp	nextlockid i1011
+	CProp	gameclock s25177438
+	CProp	nextlockid i1035
 	CProp	orelist d0:
 	CProp	r117ghorses i-1
 	CProp	r25gdomestic i-2

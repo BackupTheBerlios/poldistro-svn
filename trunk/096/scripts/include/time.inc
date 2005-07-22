@@ -57,6 +57,7 @@ function GetMonthName(month)
     return(mon_nam[month]);
 endfunction
 
+
 /*
  * GetMonthLength(month, year)
  *
@@ -85,6 +86,7 @@ function GetMonthLength(month, year := 0)
     return(mon_lens[month]);
 endfunction
 
+
 /*
  * IsLeap(year)
  *
@@ -105,6 +107,7 @@ function IsLeap(year)
     return(year % 4 == 0 && (year % 100 != 0 || year % 400 == 0));
 endfunction
 
+
 /*
  * GetTime()
  *
@@ -123,6 +126,7 @@ endfunction
 function GetTime()
     return(polcore().systime);
 endfunction
+
 
 /*
  * GetTimeStruct(time)
@@ -211,6 +215,7 @@ function GetTimeStruct(time)
     return(ts);
 endfunction
 
+
 /*
  * FormatTime(ts, format)
  *
@@ -249,6 +254,7 @@ function FormatTime(byref ts, format)
     endif
     return format;
 endfunction
+
 
 /*
  * AddTimeStamp(what)

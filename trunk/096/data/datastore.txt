@@ -28,8 +28,8 @@ DataFile
 	Name	gumps
 	Package	control
 	Flags	0
-	Version	3
-	OldVersion	3
+	Version	5
+	OldVersion	4
 }
 
 DataFile
@@ -38,8 +38,8 @@ DataFile
 	Name	packages
 	Package	control
 	Flags	0
-	Version	15
-	OldVersion	15
+	Version	17
+	OldVersion	16
 }
 
 DataFile

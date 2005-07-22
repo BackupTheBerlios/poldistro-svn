@@ -1,0 +1,35 @@
+use uo;
+
+include "include/properties";
+include "include/messages";
+include "include/localization";
+
+
+program command_getCProp(who, prop)
+	var obj, res;
+
+	if (!prop)
+		SendMessage(who, MSG_NO_PARAM, {}, MSG_COMMAND);
+		return;
+	else
+		SendMessage(who, MSG_TARGET_OBJ, {}, MSG_COMMAND);
+	endif
+
+	obj := Target(who, TGTOPT_NOCHECK_LOS);
+	if (!obj)
+		SendMessage(who, MSG_CANCELLED, {}, MSG_COMMAND);
+	else
+		Log(LOG_COMMAND, GetLogInfo(who) + " invoking 'getprop' command on " + GetLogInfo(obj));
+	endif
+
+        res := GetProperty(obj, prop, SECURE_MAGIC);
+
+	if (!res)
+		SendMessage(who, MSG_NOT_EXIST, {prop}, MSG_COMMAND);
+		return;
+	endif
+
+	SendMessage(who, MSG_GET_PROP, {prop, CStr(res), TypeOf(res)}, MSG_COMMAND);
+
+	return;
+endprogram
