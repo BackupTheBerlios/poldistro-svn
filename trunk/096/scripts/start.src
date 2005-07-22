@@ -1,0 +1,33 @@
+/* $Id: start.src,v 1.1 2004/03/16 14:05:46 folko Exp $
+ *
+ * Purpose
+ * This script is called when the server starts up.
+ * It will start the script scheduler which will in turn start other start scripts.
+ *
+ * Parameters: None
+ *
+ * Return value: Ignored
+ *
+ */
+use uo;
+use os;
+
+include "include/exception";
+include "include/log";
+include "include/utility";
+include "include/teleporters";
+
+program StartServer()
+	Log(LOG_MAIN, "Server started.");
+	if (!start_script(":scheduler:scheduler"))
+		Exception("::start:StartServer(): Couldn't start the script scheduler");
+	endif
+	print("Initializing merchant storage");
+	find_or_create_storage("Merchant Storage");
+	print("Wiping merchant storage");
+	start_script("storageWipe");
+	print("Initializing teleporters");
+	CreateTeleporters();
+
+	return;
+endprogram

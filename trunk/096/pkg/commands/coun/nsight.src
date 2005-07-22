@@ -1,0 +1,9 @@
+use uo;
+use util;
+
+
+program command_nsight(caster)
+	caster.setlightlevel(0, 600);
+
+	return;
+endprogram

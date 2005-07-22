@@ -1,0 +1,21 @@
+use uo;
+
+include "include/log";
+include ":bank:bank";
+
+
+program command_bank(who)
+	SendSysMessage(who, "Select mobile.");
+	var mobile := Target(who, TGTOPT_NOCHECK_LOS);
+	
+	if (!mobile.isA(POLCLASS_MOBILE))
+		SendSysMessage(who, "You can only view a mobile's bankbox.");
+	else
+		Log(LOG_COMMAND, GetLogInfo(who) + " invoking 'bank' command on " + GetLogInfo(mobile));
+		var bankbox := FindBankBox(mobile);
+
+		SendOpenSpecialContainer(who, bankbox);
+	endif
+
+	return;   
+endprogram

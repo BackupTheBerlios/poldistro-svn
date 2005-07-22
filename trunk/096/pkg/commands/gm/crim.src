@@ -1,0 +1,13 @@
+use uo;
+
+
+program command_criminal(who, text)
+	if(!text)
+		return;
+	endif
+	SendSysMessage(who, "who");
+	var npc := Target(who, "");
+	npc.setCriminal(text);
+
+	return;
+endprogram

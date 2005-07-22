@@ -1,0 +1,50 @@
+// NOTE: No animation of the player
+use uo;
+use os;
+
+include "include/client";
+include "include/objtype";
+include "include/sound";
+
+
+program dummyPickpocket(who, dummy)
+	EraseObjProperty(who, "IsMeditating");
+	EraseObjProperty(who, "HealTimer");
+	// don't work correctly, use for the future
+	if(!Accessible(who, dummy))
+	        SendSysMessage(who, "You can't reach that!");
+        	return;
+	endif
+
+	if( !CheckLineOfSight(who, dummy))
+	        SendSysMessage(who, "You can't see that.");
+        	return;
+	endif
+
+	if (CheckSkill(who, SKILLID_STEALING, 10, 40))
+
+		PlaySoundEffect(who, SFX_58 );
+		SendSysMessage(who, "You unnoticedly grip into the bag.");
+		sleepms(3600);
+
+	else
+		set_critical(1);
+
+		PlaySoundEffect(who, SFX_41);
+		SendSysMessage(who, "You foolishly grip into the bag.");
+
+		if (dummy.objtype == UOBJ_PDUMMYFREEZE_NS )
+			dummy.graphic := UOBJ_PDUMMYSWING_NS;
+			sleepms(3600); // show animation for (x) ms
+			dummy.graphic := UOBJ_PDUMMYFREEZE_NS;
+		elseif (dummy.objtype == UOBJ_PDUMMYFREEZE_EW )
+			dummy.graphic := UOBJ_PDUMMYSWING_EW;
+			sleepms(3600); // show animation for (x) ms
+			dummy.graphic := UOBJ_PDUMMYFREEZE_EW;
+		endif
+
+		set_critical(0);
+	endif
+
+	return;
+endprogram

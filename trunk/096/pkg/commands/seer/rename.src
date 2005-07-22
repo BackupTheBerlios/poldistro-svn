@@ -1,0 +1,26 @@
+use os;
+use uo;
+
+include "include/log";
+include "include/messages";
+include "include/localization";
+
+
+program command_rename(who, text)
+	var what;
+
+	if (!text)
+		SendMessage(who, MSG_NO_PARAM, {}, MSG_IMPORTANT);
+	else
+		SendMessage(who, MSG_TARGET_OBJ, {}, MSG_COMMAND);
+		if ((what := Target(who, TGTOPT_NOCHECK_LOS)) == 0)
+			SendMessage(who, MSG_CANCELLED, {}, MSG_COMMAND);
+		else
+			Log(LOG_COMMAND, GetLogInfo(who) + " invoking 'rename' command on " + GetLogInfo(what));
+			SetName(what, text);
+			SendMessage(who, MSG_DONE, {}, MSG_COMMAND);
+		endif
+	endif
+
+	return;
+endprogram

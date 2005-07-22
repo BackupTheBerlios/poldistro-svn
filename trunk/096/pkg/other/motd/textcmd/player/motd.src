@@ -1,0 +1,59 @@
+//
+// Message Of The Day
+//
+// MOTD.SRC
+//
+// Shows the message-of-the-day in a "tips" window :)
+//
+// PLAYER command
+//
+// Creator: Myrathi
+// Created: 24/05/2000 --:--
+// Updated: 23/01/2002 11:11
+// <tjh@myrathi.co.uk>
+//
+// Editing: Jouni "Mintus" Airaksinen
+// Updated: 2003-01-12
+// <mintus@bluecave.net>
+//
+// Updated: 2004-11-19
+//   include call is now absolute; res is checked for errors
+//   script now complies with formatting and name conventions
+
+use uo;
+use os;
+
+include ":motd:utilsGumps";
+
+var me;
+
+program textcmd_motd(who)
+
+  // Check to see if it's ICP calling this script
+  // if so, who[1] holds "ICP"
+  // and... who[2] holds <player> or '-1' (test run)
+
+  if (who[1] == "ICP")
+    me := who[2];
+  else
+    me := who;
+  endif
+
+  // Check for ICP doing a "test run". If so, return "I'm here!" :-)
+  if (me == -1)
+    return 1;
+  endif
+
+  var text := GetCommandHelp( me, "motd" );
+  if ( !text )
+    text := "There is no MOTD for today.";
+  endif
+
+  var res := SendStringAsHtmlWindow(me, text, "Message Of The Day");
+  if (!res)
+    syslog("Error sending MOTD to " + me.name);
+  endif
+
+  return 1;
+ 
+endprogram

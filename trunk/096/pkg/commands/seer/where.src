@@ -1,0 +1,8 @@
+use uo;
+
+
+program command_where(who)
+	SendSysMessage(who, who.x + " " + who.y + " " + who.z + ", Realm: " + who.realm);
+
+	return;
+endprogram
