@@ -18,7 +18,7 @@ Function: Allows a player to change the direction of certain items (Chairs, ect)
 
 Motd
 Syntax: .motd
-Function: Displays the shards message of the day.
+Function: Displays the shard's message of the day.
 
 
 resign
