@@ -1,18 +1,26 @@
 use uo;
 
+include "include/messages";
+include "include/localization";
+
 
 program command_reveal(who, text)
+	var mobile;
+
 	if (!text)
-		SendSysMessage(who, "Select the mobile you want to reveal.");
-		var mobile := Target(who, TGTOPT_NOCHECK_LOS);
-		if (!mobile.isA(POLCLASS_MOBILE))
-			SendSysMessage(who, "You can only reveal mobiles.");
+		SendMessage(who, MSG_TARGET_MOB, {}, MSG_COMMAND);
+		if ((mobile := Target(who, TGTOPT_NOCHECK_LOS) == 0))
+			SendMessage(who, MSG_CANCELLED, {}, MSG_COMMAND);
 		else
-			if (mobile.concealed == 0)
-				SendSysMessage(who, "Mobile is not concealed.");
+			if (!mobile.isA(POLCLASS_MOBILE))
+				SendMessage(who, MSG_NO_MOB, {}, MSG_COMMAND);
 			else
-				mobile.concealed := 0;
-				SendSysMessage(who, "Done.");
+				if (mobile.concealed == 0)
+					SendSysMessage(who, "Mobile is not concealed.");
+				else
+					mobile.concealed := 0;
+					SendMessage(who, MSG_DONE, {}, MSG_COMMAND);
+				endif
 			endif
 		endif
 	elseif (text == "me")
@@ -20,8 +28,10 @@ program command_reveal(who, text)
 			SendSysMessage(who, "You are not concealed.");
 		else
 			who.concealed := 0;
-			SendSysMessage(who, "Done.");
+			SendMessage(who, MSG_DONE, {}, MSG_COMMAND);
 		endif
+	else
+		//TODO
 	endif
 
 	return;

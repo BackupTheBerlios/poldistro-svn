@@ -1,25 +1,36 @@
 use uo;
 
-program textcmd_strip(who)
+include "include/messages";
+include "include/localization";
 
-	SendSysMessage(who, "Select target.");
-	var victim := Target(who);
 
-	if (!victim.isA(POLCLASS_MOBILE))
-		SendSysMessage(who, "Invalid target.");
+program command_strip(who)
+	var mobile, nbpack;
+	var x, i;
+
+	SendMessage(who, MSG_TARGET_MOB, {}, MSG_COMMAND);
+	mobile := Target(who);
+
+	if ((mobile := Target(who, TGTOPT_NOCHECK_LOS)) == 0)
+		SendMessage(who, MSG_CANCELLED, {}, MSG_COMMAND);
+		return;
+	endif
+	if (!mobile.isA(POLCLASS_MOBILE))
+		SendMessage(who, MSG_NO_MOB, {}, MSG_COMMAND);
 		return;
 	endif
 
-	var x, i;
-	var newpack := CreateItemAtLocation(victim.x, victim.y, victim.z, 0xe75, 1, victim.realm);
+	nbpack := CreateItemAtLocation(mobile.x, mobile.y, mobile.z, 0xE75, 1, mobile.realm);
 
 	for (i := 1; i <= 24; i := i + 1)
-		if ( (i == 0x0b) || (i == 0x10) || (i == 0x15) )
+		if ((i == 0x0b) || (i == 0x10) || (i == 0x15))
 			x := { };	// Do nothing.
 		else
-			x := GetEquipmentByLayer(victim, i);
-			MoveItemToContainer(x, newpack);
+			x := GetEquipmentByLayer(mobile, i);
+			MoveItemToContainer(x, nbpack);
 		endif
 	endfor
 
+	return;
 endprogram
+

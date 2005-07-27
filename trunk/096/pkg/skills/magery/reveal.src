@@ -3,6 +3,7 @@ use uo;
 include "include/attributes";
 include "include/magic";
 include "include/sound";
+include "include/tileEffects";
 
 
 program reveal(parms)

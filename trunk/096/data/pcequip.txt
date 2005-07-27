@@ -58,9 +58,9 @@ Item
 	X	113
 	Y	73
 	Z	0
-	Revision	1
+	Revision	2
 	Realm	britannia
-	Amount	99
+	Amount	98
 	Container	0x6ae07560
 	DecayAt	25143316
 }
@@ -103,9 +103,9 @@ Item
 	X	96
 	Y	127
 	Z	0
-	Revision	2
+	Revision	3
 	Realm	britannia
-	Amount	98
+	Amount	97
 	Container	0x6ae07560
 	DecayAt	25143316
 }
@@ -118,9 +118,9 @@ Item
 	X	110
 	Y	65
 	Z	0
-	Revision	0
+	Revision	1
 	Realm	britannia
-	Amount	100
+	Amount	99
 	Container	0x6ae07560
 	DecayAt	25143316
 }
@@ -1057,21 +1057,5 @@ Item
 	Realm	britannia
 	Container	0x6ae0751f
 	DecayAt	25143311
-}
-
-Item
-{
-	Serial	0x6ae0fe17
-	ObjType	0xf021
-	Graphic	0x3e9f
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	CProp	serial i1711925
-	Layer	25
-	Container	0x1a0edb
-	DecayAt	25175800
 }
 

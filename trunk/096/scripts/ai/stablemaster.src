@@ -6,17 +6,18 @@ use uo;
 include "include/eventID";
 include "include/attributes";
 include "include/sysEvent";
-include ":npcutils:randName";
 include "include/utility";
 include "include/mrcSpawn";
-include ":npcutils:speech";
 include "include/client";
+include ":npcutils:randName";
+include "include/dist";
+include "include/findCity";
+include "include/mobileID";
+include ":npcutils:speech";
 include ":npcutils:vetement";
 include ":npcutils:NPCBackpacks";
 include ":bank:bank";
 include ":npcutils:anchors";
-include "include/dist";
-include "include/findCity";
 include ":begging:begging";
 include ":npcutils:trainSkill";
 
@@ -136,7 +137,7 @@ program stablemaster()
                                           else
                                             say("This is not a zoo!");
                                           endif
-                                        elseif((pet.graphic == CID_HUMAN_MALE) || (pet.graphic == CID_HUMAN_FEMALE) )
+                                        elseif((pet.graphic == MOB_HUMAN_MALE) || (pet.graphic == MOB_HUMAN_FEMALE) )
                                           say("Do I look like an innkeeper?!");
                                         else
                                           say("That is not your pet.");
@@ -234,7 +235,7 @@ function sellanimal(who)
 	  CreateItemInBackpack(who, 0x0eed, buyamount);
 	  return;
     endif
-  elseif((pet.graphic == CID_HUMAN_MALE) || (pet.graphic == CID_HUMAN_FEMALE) )
+  elseif((pet.graphic == MOB_HUMAN_MALE) || (pet.graphic == MOB_HUMAN_FEMALE) )
 	say("Do I look like an innkeeper?!");
   else
 	say("You could sell " + pet.name + " but that is not your pet.");

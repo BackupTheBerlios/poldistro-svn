@@ -1,2 +1,2 @@
 01. MERGE 'include/insertSound.inc' and 'config/insertsound.cfg' into 'include/sound.inc'.
-02. 
+02. COMMANDS: bank, squelch

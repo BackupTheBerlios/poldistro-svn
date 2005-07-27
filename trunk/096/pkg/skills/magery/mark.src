@@ -2,8 +2,8 @@ use uo;
 use util;
 
 include "include/objtype";
-include "include/client";
 include "include/sound";
+include "include/tileEffects";
 
 
 program mark(parms)

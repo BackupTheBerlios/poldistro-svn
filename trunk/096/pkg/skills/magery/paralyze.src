@@ -3,6 +3,7 @@ use os;
 
 include ":magery:reflect";
 include "include/sound";
+include "include/tileEffects";
 include "include/attributes";
 include "include/statMod";
 include "include/magic";

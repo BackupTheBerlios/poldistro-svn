@@ -145,15 +145,19 @@ program barber()
   endwhile
 endprogram
 
+
 function Lookiehere(who, npc)
-  var ev;
-  ev := array;
-  ev.+ type;
-  ev.+ source;
-  ev.type := SYSEVENT_SPEECH;
-  ev.text := "node";
-  ev.source := npc;
-  foreach thing in ListItemsNearLocationOfType(who.x, who.y, who.z, 15, 0x887b, who.realm)
-    SendEvent(thing, ev);
-  endforeach
+	var ev;
+	ev := array;
+	ev.+ type;
+	ev.+ source;
+	ev.type := SYSEVENT_SPEECH;
+	ev.text := "node";
+	ev.source := npc;
+	foreach thing in ListItemsNearLocationOfType(who.x, who.y, who.z, 15, 0x887b, who.realm)
+		SendEvent(thing, ev);
+	endforeach
+
+	return;
 endfunction
+

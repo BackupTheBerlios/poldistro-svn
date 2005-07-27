@@ -4,10 +4,9 @@ use util;
 
 include "include/client";
 include "include/sound";
+include "include/tileEffects";
 include "include/skillPoints";
 include "include/canAccess";
-
-const FX_POISON_GAS := 0x113a;
 
 
 program removeTrap(who)

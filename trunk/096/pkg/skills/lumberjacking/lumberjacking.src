@@ -4,6 +4,7 @@ use os;
 use util;
 
 include "include/client";
+include "include/tileEffects";
 include "include/sound";
 include "include/attributes";
 include "include/string";
@@ -15,7 +16,6 @@ include "include/toolWear";
 include "include/noto";
 
 const UACTION_CHOP := 0x0d;
-const FX_POISON_GAS := 0x113a;
 var bowcraftconfigfile := ReadConfigFile(":bowcraft:bowcraft");
 var mex;
 var mey;

@@ -1,9 +1,37 @@
-use uo;
+// TODO: fix the integer only input
 
-program squelch( gm, duration )
-    duration := CInt( duration );
-    var who := Target( gm, TGTOPT_NOCHECK_LOS );
-    if (who)
-        who.squelch( duration );
-    endif
+use uo;
+use basic;
+
+include "include/messages";
+include "include/localization";
+
+
+program command_squelch(who, duration)
+	var mobile;
+
+	if (TypeOf(duration) != "Integer")
+		SendMessage(who, MSG_CANCELLED, {}, MSG_COMMAND);
+		return;
+	endif
+
+	SendMessage(who, MSG_TARGET_MOB, {}, MSG_COMMAND);
+	mobile := Target(who, TGTOPT_NOCHECK_LOS);
+	if (!mobile)
+		SendMessage(who, MSG_CANCELLED, {}, MSG_COMMAND);
+		return;
+	endif
+	if (mobile.isA(POLCLASS_MOBILE))
+		if (mobile.squelched == 1 || mobile == who)
+			SendMessage(who, MSG_CANCELLED, {}, MSG_COMMAND);
+			return;
+		endif
+		if (!duration)
+			mobile.squelch(-1);
+		else
+			mobile.squelch(CInt(duration));
+		endif
+	endif
+
+	return;
 endprogram

@@ -4,9 +4,9 @@ use cfgfile;
 use util;
 
 include "include/client";
+include "include/tileEffects";
 include "include/sound";
 
-const FX_POISON_GAS := 0x113a;
 
 var layout := array(
 	"page 0                            ",

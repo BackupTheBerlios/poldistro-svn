@@ -3,9 +3,8 @@ use util;
 use os;
 
 include "include/client";
+include "include/tileEffects";
 include "include/sound";
-
-const FX_POISON_GAS := 0x113a;
 
 
 program open_trapped_item(character, item)

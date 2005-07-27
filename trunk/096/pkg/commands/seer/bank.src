@@ -1,17 +1,20 @@
 use uo;
 
 include "include/log";
+include "include/messages";
+include "include/localization";
 include ":bank:bank";
 
 
 program command_bank(who)
 	var mobile;
-	SendSysMessage(who, "Select mobile.");
+	SendMessage(who, MSG_TARGET_MOB, {}, MSG_COMMAND);
 
 	mobile := Target(who, TGTOPT_NOCHECK_LOS);
 	
-	if (!mobile.isA(POLCLASS_MOBILE))
-		SendSysMessage(who, "You can only view a mobile's bankbox.");
+	if (!mobile.isA(POLCLASS_MOBILE) || mobile.isA(POLCLASS_NPC))
+		SendMessage(who, MSG_NO_CHAR, {}, MSG_COMMAND);
+		return;
 	else
 		Log(LOG_COMMAND, GetLogInfo(who) + " invoking 'bank' command on " + GetLogInfo(mobile));
 		var bankbox := FindBankBox(mobile);

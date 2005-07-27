@@ -6,6 +6,7 @@ use util;
 include "include/fields";
 include "include/attributes";
 include "include/client";
+include "include/tileEffects";
 include "include/sound";
 include "include/objtype";
 include "include/statMod";

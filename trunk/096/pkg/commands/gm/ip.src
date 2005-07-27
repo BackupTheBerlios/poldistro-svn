@@ -1,12 +1,21 @@
 use uo;
 
+include "include/messages";
+include "include/localization";
+
 
 program command_ip(who)
-	SendSysMessage(who, "Select target.");
-	var mobile := Target(who);
+	var mobile;
+
+	SendMessage(who, MSG_TARGET_CHAR, {}, MSG_COMMAND);
+
+	if ((mobile := Target(who, TGTOPT_NOCHECK_LOS)) == 0)
+		SendMessage(who, MSG_CANCELLED, {}, MSG_COMMAND);
+		return;
+	endif
 
 	if (!mobile.ip)
-		SendSysMessage(who, "Invalid target.");
+		SendMessage(who, MSG_NO_CHAR, {}, MSG_COMMAND);
 		return;
 	endif
 

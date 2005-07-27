@@ -5,6 +5,7 @@ use util;
 include "include/attributes";
 include "include/client";
 include "include/sound";
+include "include/tileEffects";
 
 
 program spell_greaterHeal(parms)

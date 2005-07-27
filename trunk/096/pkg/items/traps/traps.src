@@ -2,7 +2,7 @@ use uo;
 use util;
 use os;
 
-include "include/client";
+include "include/tileEffects";
 include "include/canAccess";
 include "include/sound";
 

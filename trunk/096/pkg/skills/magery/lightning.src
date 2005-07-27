@@ -4,6 +4,7 @@ use os;
 
 include "include/magic";
 include "include/sound";
+include "include/tileEffects";
 include ":magery:reflect";
 
 

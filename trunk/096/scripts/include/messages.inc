@@ -11,6 +11,7 @@ use basic;
 include ":gumps:include/gumps";
 include "include/localization";
 include "include/packets";
+include "include/client";
 include "include/time";
 
 enum MSG_TYPE

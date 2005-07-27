@@ -1,5 +1,6 @@
 use uo;
-include "include/client";
+
+include "include/tileEffects";
 
 program textcmd_e(who)
 

@@ -13,6 +13,8 @@ enum LOCALE_ENGLISH
 	MSG_INVALID_PARAM		:= "Invalid parameter.",
 	MSG_TARGET_OBJ			:= "Target an object.",
 	MSG_TARGET_MOB			:= "Target a mobile.",
+	MSG_TARGET_CHAR			:= "Target a character.",
+	MSG_TARGET_LOC			:= "Target location.",
 	MSG_NOTHING_DELETE		:= "Nothing to delete.",
 	MSG_SCRIPTS_UNLOADED		:= "~NUM_SCRIPTS~ scripts unloaded.",
 	MSG_CONFIG_RELOADED		:= "All configuration files reloaded.",

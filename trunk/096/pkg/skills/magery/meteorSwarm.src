@@ -3,6 +3,7 @@ use uo;
 
 include "include/magic";
 include "include/sound";
+include "include/tileEffects";
 include "include/attributes";
 include ":magery:reflect";
 include "include/spellAttack";

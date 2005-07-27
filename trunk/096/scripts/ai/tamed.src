@@ -11,6 +11,7 @@ include ":npcutils:NPCCast";
 include ":npcutils:randName";
 include "include/dist";
 include "include/snooping";
+include "include/tileEffects";
 
 set_priority(5);
 

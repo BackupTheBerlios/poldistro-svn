@@ -15,25 +15,26 @@ Character
 	Graphic	0x3db
 	Color	0x8026
 	X	675
-	Y	833
+	Y	806
 	Z	0
 	Facing	4
-	Revision	71
+	Revision	85
 	Realm	britannia
 	CProp	Equip i1
 	CProp	Fame i0
 	CProp	HighSkill i43
 	CProp	HungerLevel i10
-	CProp	HungerTimer i15
+	CProp	HungerTimer i16
 	CProp	Karma i0
-	CProp	LastLog i25176158
+	CProp	LastHit a3:S5:Admini1707739S5:curse
+	CProp	LastLog i25183784
 	CProp	OnCreate i25065898
 	CProp	Poisons d0:
-	CProp	cap_pid i15812
+	CProp	cap_pid i15893
 	CProp	guardkill i1
-	CProp	logontime i25176158
-	CProp	mailkeeper i1
-	CProp	onlinetimer i768720
+	CProp	logontime i25183784
+	CProp	mailkeeper i6
+	CProp	onlinetimer i790415
 	CmdLevel	test
 	TrueColor	0x83ea
 	TrueObjtype	0x190

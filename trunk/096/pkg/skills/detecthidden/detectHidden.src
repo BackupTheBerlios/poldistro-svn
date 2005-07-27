@@ -5,13 +5,13 @@ use cfgfile;
 
 include "include/attributes";
 include "include/sound";
+include "include/tileEffects";
 include "include/skillPoints";
 include ":poisonwatcher:poisons";
 
 var thepoints;
 var item_cfg;
 
-const FX_POISON_GAS := 0x113a;
 const TRAP := "hiddentrap";
 
 const CRITICAL_FAILURE := 1;

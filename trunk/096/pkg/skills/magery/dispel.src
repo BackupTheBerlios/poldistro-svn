@@ -4,6 +4,7 @@ use cfgfile;
 include "include/eventID";
 include "include/attributes";
 include "include/sound";
+include "include/tileEffects";
 include "include/spellAttack";
 include "include/magic";
 

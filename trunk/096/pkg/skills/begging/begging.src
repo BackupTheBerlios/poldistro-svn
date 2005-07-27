@@ -3,6 +3,7 @@ use util;
 use cfgfile;
 
 include "include/attributes";
+include "include/mobileID";
 include "include/client";
 include "include/objtype";
 
@@ -68,7 +69,7 @@ program skill_begging( who )
     SendSysMessage(who, "You might want to consider therapy.");
     return;
   endif
-  if((tgt.graphic != CID_HUMAN_MALE) && (tgt.graphic != CID_HUMAN_FEMALE))
+  if((tgt.graphic != MOB_HUMAN_MALE) && (tgt.graphic != MOB_HUMAN_FEMALE))
     SendSysMessage(who, "You look a little silly doing that.");
     return;
   endif

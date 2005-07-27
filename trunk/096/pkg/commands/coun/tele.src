@@ -1,13 +1,23 @@
 use uo;
 
+include "include/messages";
+include "include/localization";
+include "include/tileEffects";
+include "include/sound";
 
-program textcmd_tele( who )
-  SendSysMessage( who, "Where do you want to teleport?" );
-  var where := TargetCoordinates( who );
-  if(where)
-    var result := MoveCharacterToLocation( who, where.x, where.y, where.z);
-    if(!result)
-      result := MoveCharacterToLocation( who, where.x, where.y, where.z, MOVECHAR_FORCELOCATION);
-    endif
-  endif
+
+program command_tele(who)
+	var where, result;
+
+	SendMessage(who, MSG_TARGET_LOC, {}, MSG_COMMAND); 
+
+	if ((where := TargetCoordinates(who)) == 0)
+		SendMessage(who, MSG_CANCELLED, {}, MSG_COMMAND);
+	else
+		PlaySoundEffectPrivate(who, SFX_SPELL_TELEPORT, who);
+		result := MoveCharacterToLocation(who, where.x, where.y, where.z, MOVECHAR_FORCELOCATION);
+		PlayObjectCenteredEffect(who, FX_TELE_VANISH, 0, 5);
+	endif
+
+	return;
 endprogram

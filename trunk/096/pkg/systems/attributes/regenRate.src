@@ -11,39 +11,45 @@
  * These functions are called during loading and when RecalcVitals() is called.
  *
  */
-
 use uo;
 
 include ":config:include/config";
-include ":attributes:attributes";
+include ":attributes:include/attributes";
+
 
 program Regen()
 	return(1);
 endprogram
 
+
 exported function GetHitsRegenRate(who)
-    who := 0;
+	who := 0;
 	return(GetDefaultRegenRate(REGEN_HITS) * 100);
 endfunction
 
+
 exported function GetHitsMaximumValue(who)
-    return(GetAttribute(who, ATTRIBUTE_STRENGTH) * 100);
+	return(GetAttribute(who, ATTRIBUTE_STRENGTH) * 100);
 endfunction
 
+
 exported function GetStaminaRegenRate(who)
-    who := 0;
+	who := 0;
 	return(GetDefaultRegenRate(REGEN_STAM) * 100);
 endfunction
+
 
 exported function GetStaminaMaximumValue(who)
     return(GetAttribute(who, ATTRIBUTE_DEXTERITY) * 100);
 endfunction
 
+
 exported function GetManaRegenRate(who)
-    who := 0;
+	who := 0;
 	return(GetDefaultRegenRate(REGEN_MANA) * 100);
 endfunction
 
+
 exported function GetManaMaximumValue(who)
-    return(GetAttribute(who, ATTRIBUTE_INTELLIGENCE) * 100);
+	return(GetAttribute(who, ATTRIBUTE_INTELLIGENCE) * 100);
 endfunction

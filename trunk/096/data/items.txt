@@ -2787,7 +2787,7 @@ Item
 	X	523
 	Y	955
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711809
@@ -3035,7 +3035,7 @@ Item
 	X	555
 	Y	991
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a2:i1112180i1112175
@@ -4202,7 +4202,7 @@ Item
 	X	523
 	Y	1013
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1712396
@@ -5996,7 +5996,7 @@ Item
 	X	573
 	Y	2120
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a2:i926421i926424
@@ -6042,7 +6042,7 @@ Item
 	X	567
 	Y	2135
 	Z	11
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:u
@@ -7463,7 +7463,7 @@ Item
 	X	562
 	Y	2179
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a6:i213955i213957i213961i213959i213960i213953
@@ -7509,7 +7509,7 @@ Item
 	X	567
 	Y	2193
 	Z	1
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711873
@@ -7530,7 +7530,7 @@ Item
 	X	567
 	Y	2251
 	Z	2
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711810
@@ -8264,7 +8264,7 @@ Item
 	X	619
 	Y	825
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711764
@@ -9966,7 +9966,7 @@ Item
 	X	619
 	Y	883
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711819
@@ -10239,7 +10239,7 @@ Item
 	X	581
 	Y	955
 	Z	1
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:u
@@ -10300,7 +10300,7 @@ Item
 	X	581
 	Y	1013
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711778
@@ -14504,7 +14504,7 @@ Item
 	X	591
 	Y	2167
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a1:i213944
@@ -14525,7 +14525,7 @@ Item
 	X	591
 	Y	2143
 	Z	0
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a3:i213963i213962i213964
@@ -14546,7 +14546,7 @@ Item
 	X	611
 	Y	2159
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a1:i213967
@@ -14582,7 +14582,7 @@ Item
 	X	631
 	Y	2162
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a4:i213977i213975i213978i213976
@@ -14604,7 +14604,7 @@ Item
 	X	625
 	Y	2135
 	Z	11
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:u
@@ -17073,7 +17073,7 @@ Item
 	X	583
 	Y	2187
 	Z	0
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a1:i213941
@@ -17094,7 +17094,7 @@ Item
 	X	607
 	Y	2183
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a5:i214034i214037i214035i214033i214036
@@ -17115,7 +17115,7 @@ Item
 	X	593
 	Y	2207
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a1:i214038
@@ -17136,7 +17136,7 @@ Item
 	X	583
 	Y	2231
 	Z	0
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a3:i214040i214039i214041
@@ -17157,7 +17157,7 @@ Item
 	X	607
 	Y	2239
 	Z	0
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a1:i214042
@@ -17178,7 +17178,7 @@ Item
 	X	623
 	Y	2214
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a4:i214044i214045i214046i214043
@@ -17199,7 +17199,7 @@ Item
 	X	628
 	Y	2191
 	Z	0
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a2:i214024i552919
@@ -17221,7 +17221,7 @@ Item
 	X	625
 	Y	2193
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711779
@@ -18129,7 +18129,7 @@ Item
 	X	599
 	Y	2279
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i2
 	CProp	NpcList a2:i214048i214047
@@ -18151,7 +18151,7 @@ Item
 	X	625
 	Y	2251
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711820
@@ -18259,7 +18259,7 @@ Item
 	X	655
 	Y	822
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a3:i595307i595306i595305
@@ -21798,7 +21798,7 @@ Item
 	X	655
 	Y	2159
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a1:i213979
@@ -21819,7 +21819,7 @@ Item
 	X	663
 	Y	2143
 	Z	0
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a2:i213981i213980
@@ -21841,7 +21841,7 @@ Item
 	X	676
 	Y	2134
 	Z	2
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711859
@@ -22330,7 +22330,7 @@ Item
 	X	647
 	Y	2183
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a4:i214001i213995i214003i213997
@@ -22564,7 +22564,7 @@ Item
 	X	663
 	Y	2193
 	Z	2
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1712191
@@ -22585,7 +22585,7 @@ Item
 	X	678
 	Y	2247
 	Z	2
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711881
@@ -23222,7 +23222,7 @@ Item
 	X	1122
 	Y	1574
 	Z	1
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711857
@@ -23288,7 +23288,7 @@ Item
 	X	1101
 	Y	1632
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711846
@@ -23309,7 +23309,7 @@ Item
 	X	1139
 	Y	1690
 	Z	3
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1712150
@@ -23330,7 +23330,7 @@ Item
 	X	1112
 	Y	1762
 	Z	3
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711812
@@ -23351,7 +23351,7 @@ Item
 	X	1103
 	Y	1806
 	Z	3
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1712474
@@ -28187,7 +28187,7 @@ Item
 	X	1159
 	Y	1574
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1712320
@@ -28208,7 +28208,7 @@ Item
 	X	1159
 	Y	1632
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711798
@@ -28229,7 +28229,7 @@ Item
 	X	1159
 	Y	1690
 	Z	1
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711897
@@ -28250,7 +28250,7 @@ Item
 	X	1159
 	Y	1806
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711743
@@ -28271,7 +28271,7 @@ Item
 	X	1159
 	Y	1864
 	Z	1
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711891
@@ -28612,7 +28612,7 @@ Item
 	X	1217
 	Y	1574
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1712415
@@ -28633,7 +28633,7 @@ Item
 	X	1275
 	Y	1574
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711747
@@ -28654,7 +28654,7 @@ Item
 	X	1217
 	Y	1632
 	Z	1
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711823
@@ -28675,7 +28675,7 @@ Item
 	X	1275
 	Y	1632
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711806
@@ -28696,7 +28696,7 @@ Item
 	X	1217
 	Y	1690
 	Z	1
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711896
@@ -28717,7 +28717,7 @@ Item
 	X	1275
 	Y	1690
 	Z	1
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711858
@@ -28738,7 +28738,7 @@ Item
 	X	1217
 	Y	1748
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1712377
@@ -28759,7 +28759,7 @@ Item
 	X	1275
 	Y	1748
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1712502
@@ -28780,7 +28780,7 @@ Item
 	X	1217
 	Y	1806
 	Z	1
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711899
@@ -28801,7 +28801,7 @@ Item
 	X	1275
 	Y	1806
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1712578
@@ -28822,7 +28822,7 @@ Item
 	X	1217
 	Y	1864
 	Z	1
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711890
@@ -28843,7 +28843,7 @@ Item
 	X	1275
 	Y	1864
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711742
@@ -29162,7 +29162,7 @@ Item
 	X	1333
 	Y	1574
 	Z	31
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711864
@@ -29443,7 +29443,7 @@ Item
 	X	1333
 	Y	1632
 	Z	51
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711827
@@ -29548,7 +29548,7 @@ Item
 	X	1333
 	Y	1690
 	Z	31
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711876
@@ -29900,7 +29900,7 @@ Item
 	X	1295
 	Y	1762
 	Z	10
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i2
 	CProp	NpcList a2:i203725i203735
@@ -29922,7 +29922,7 @@ Item
 	X	1333
 	Y	1749
 	Z	21
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711847
@@ -29967,7 +29967,7 @@ Item
 	X	1333
 	Y	1806
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:u
@@ -29988,7 +29988,7 @@ Item
 	X	1333
 	Y	1864
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1712224
@@ -31134,7 +31134,7 @@ Item
 	X	1323
 	Y	3693
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1712455
@@ -31319,7 +31319,7 @@ Item
 	X	1319
 	Y	3775
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a2:i558564i558563
@@ -31353,7 +31353,7 @@ Item
 	X	1323
 	Y	3751
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711804
@@ -32021,7 +32021,7 @@ Item
 	X	1391
 	Y	1574
 	Z	31
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:u
@@ -33061,7 +33061,7 @@ Item
 	X	1388
 	Y	1651
 	Z	30
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a1:i563514
@@ -33103,7 +33103,7 @@ Item
 	X	1391
 	Y	1632
 	Z	31
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711855
@@ -33292,7 +33292,7 @@ Item
 	X	1391
 	Y	1690
 	Z	31
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:u
@@ -33635,7 +33635,7 @@ Item
 	X	1351
 	Y	1778
 	Z	15
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	GuardZone i2
 	CProp	NpcList a2:i201215i201214
@@ -33685,7 +33685,7 @@ Item
 	X	1391
 	Y	1748
 	Z	21
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711792
@@ -33880,7 +33880,7 @@ Item
 	X	1391
 	Y	1806
 	Z	1
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:u
@@ -33901,7 +33901,7 @@ Item
 	X	1391
 	Y	1864
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711808
@@ -33970,7 +33970,7 @@ Item
 	X	1381
 	Y	3693
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1712054
@@ -34181,7 +34181,7 @@ Item
 	X	1381
 	Y	3751
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:u
@@ -34928,7 +34928,7 @@ Item
 	X	1391
 	Y	3827
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a1:i1681625
@@ -35074,7 +35074,7 @@ Item
 	X	1346
 	Y	3807
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711814
@@ -35095,7 +35095,7 @@ Item
 	X	1381
 	Y	3809
 	Z	1
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711851
@@ -35572,7 +35572,7 @@ Item
 	X	1344
 	Y	3867
 	Z	8
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711774
@@ -35593,7 +35593,7 @@ Item
 	X	1381
 	Y	3867
 	Z	8
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:u
@@ -36618,7 +36618,7 @@ Item
 	X	1467
 	Y	1518
 	Z	20
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	GuardZone i2
 	CProp	NpcList a1:i201288
@@ -36653,7 +36653,7 @@ Item
 	X	1445
 	Y	1529
 	Z	39
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711886
@@ -39911,7 +39911,7 @@ Item
 	X	1413
 	Y	1599
 	Z	30
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a2:i201227i201228
@@ -39932,7 +39932,7 @@ Item
 	X	1412
 	Y	1599
 	Z	50
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a1:i201229
@@ -39953,7 +39953,7 @@ Item
 	X	1456
 	Y	1557
 	Z	30
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a1:i201235
@@ -39974,7 +39974,7 @@ Item
 	X	1421
 	Y	1551
 	Z	30
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a2:i211363i211362
@@ -42469,7 +42469,7 @@ Item
 	X	1433
 	Y	1595
 	Z	20
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a4:i651569i201225i201226i201224
@@ -42563,7 +42563,7 @@ Item
 	X	1445
 	Y	1587
 	Z	21
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711805
@@ -44104,7 +44104,7 @@ Item
 	X	1443
 	Y	1649
 	Z	10
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a1:i201193
@@ -44125,7 +44125,7 @@ Item
 	X	1426
 	Y	1655
 	Z	10
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a2:i201195i201194
@@ -44146,7 +44146,7 @@ Item
 	X	1433
 	Y	1611
 	Z	20
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a2:i201216i201217
@@ -44167,7 +44167,7 @@ Item
 	X	1453
 	Y	1613
 	Z	20
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a1:i201218
@@ -47586,7 +47586,7 @@ Item
 	X	1445
 	Y	1645
 	Z	19
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:u
@@ -49960,7 +49960,7 @@ Item
 	X	1453
 	Y	1685
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a1:i201112
@@ -49981,7 +49981,7 @@ Item
 	X	1471
 	Y	1689
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a4:i201184i201186i201187i201185
@@ -50002,7 +50002,7 @@ Item
 	X	1431
 	Y	1723
 	Z	20
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a5:i201201i201200i201199i201198i201197
@@ -50023,7 +50023,7 @@ Item
 	X	1455
 	Y	1723
 	Z	6
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a1:i201207
@@ -50835,7 +50835,7 @@ Item
 	X	1431
 	Y	1682
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a3:i200273i200272i1499758
@@ -50881,7 +50881,7 @@ Item
 	X	1445
 	Y	1703
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711757
@@ -52379,7 +52379,7 @@ Item
 	X	1420
 	Y	1751
 	Z	13
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a4:i201204i201205i201203i201206
@@ -52401,7 +52401,7 @@ Item
 	X	1445
 	Y	1761
 	Z	0
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:u
@@ -52548,7 +52548,7 @@ Item
 	X	1439
 	Y	3693
 	Z	1
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711895
@@ -52805,7 +52805,7 @@ Item
 	X	1439
 	Y	3751
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:u
@@ -53078,7 +53078,7 @@ Item
 	X	1431
 	Y	3823
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a4:i1285497i1285498i1285499i1285496
@@ -53368,7 +53368,7 @@ Item
 	X	1439
 	Y	3809
 	Z	1
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711887
@@ -53541,7 +53541,7 @@ Item
 	X	1439
 	Y	3867
 	Z	8
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:u
@@ -53917,7 +53917,7 @@ Item
 	X	1455
 	Y	4007
 	Z	0
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	GuardZone i2
 	CProp	NpcList a4:i1285474i1285471i1285473i1285472
@@ -54076,7 +54076,7 @@ Item
 	X	1455
 	Y	4027
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i2
 	CProp	NpcList a1:i1285479
@@ -54310,7 +54310,7 @@ Item
 	X	1447
 	Y	3983
 	Z	0
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	GuardZone i2
 	CProp	NpcList a2:i1285491i1285490
@@ -54356,7 +54356,7 @@ Item
 	X	1423
 	Y	3983
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i2
 	CProp	NpcList a4:i1285492i1285495i1285494i1285493
@@ -56876,7 +56876,7 @@ Item
 	X	1529
 	Y	1429
 	Z	16
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:u
@@ -57061,7 +57061,7 @@ Item
 	X	1503
 	Y	1529
 	Z	41
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1712743
@@ -59628,7 +59628,7 @@ Item
 	X	1472
 	Y	1579
 	Z	20
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a2:i201236i201237
@@ -59649,7 +59649,7 @@ Item
 	X	1483
 	Y	1585
 	Z	20
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a1:i201238
@@ -59707,7 +59707,7 @@ Item
 	X	1517
 	Y	1545
 	Z	25
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a2:i211361i211360
@@ -59728,7 +59728,7 @@ Item
 	X	1490
 	Y	1550
 	Z	30
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a10:i201243i201241i201239i201240i201244i201242i201246i201248i201245i201247
@@ -59814,7 +59814,7 @@ Item
 	X	1503
 	Y	1587
 	Z	11
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1712382
@@ -60996,7 +60996,7 @@ Item
 	X	1473
 	Y	1611
 	Z	20
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a2:i201219i201220
@@ -61017,7 +61017,7 @@ Item
 	X	1496
 	Y	1613
 	Z	20
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a1:i201223
@@ -61038,7 +61038,7 @@ Item
 	X	1501
 	Y	1661
 	Z	27
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a4:i201189i201190i201250i201249
@@ -61106,7 +61106,7 @@ Item
 	X	1503
 	Y	1645
 	Z	21
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711756
@@ -62597,7 +62597,7 @@ Item
 	X	1495
 	Y	1718
 	Z	7
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a2:i201209i201208
@@ -62618,7 +62618,7 @@ Item
 	X	1493
 	Y	1687
 	Z	20
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a4:i201210i201213i201212i201211
@@ -62639,7 +62639,7 @@ Item
 	X	1475
 	Y	1669
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a4:i514811i201133i201132i201131
@@ -63490,7 +63490,7 @@ Item
 	X	1477
 	Y	1723
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a1:i550504
@@ -63566,7 +63566,7 @@ Item
 	X	1503
 	Y	1703
 	Z	21
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711790
@@ -64940,7 +64940,7 @@ Item
 	X	1499
 	Y	1761
 	Z	2
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711824
@@ -65119,7 +65119,7 @@ Item
 	X	1497
 	Y	3693
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711789
@@ -65140,7 +65140,7 @@ Item
 	X	1497
 	Y	3758
 	Z	2
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711753
@@ -65161,7 +65161,7 @@ Item
 	X	1491
 	Y	3809
 	Z	2
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1712055
@@ -65220,7 +65220,7 @@ Item
 	X	1487
 	Y	3863
 	Z	2
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:u
@@ -67459,7 +67459,7 @@ Item
 	X	1561
 	Y	1529
 	Z	41
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1712704
@@ -68901,7 +68901,7 @@ Item
 	X	1587
 	Y	1591
 	Z	20
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a1:i201272
@@ -68923,7 +68923,7 @@ Item
 	X	1561
 	Y	1587
 	Z	11
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711841
@@ -69535,7 +69535,7 @@ Item
 	X	1555
 	Y	1655
 	Z	20
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a6:i201251i201254i201252i201256i201255i201253
@@ -69556,7 +69556,7 @@ Item
 	X	1595
 	Y	1655
 	Z	10
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a6:i201263i201260i201262i201264i201265i201261
@@ -69638,7 +69638,7 @@ Item
 	X	1561
 	Y	1645
 	Z	21
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711835
@@ -71218,7 +71218,7 @@ Item
 	X	1574
 	Y	1706
 	Z	35
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a3:i201280i201281i201282
@@ -71240,7 +71240,7 @@ Item
 	X	1561
 	Y	1703
 	Z	36
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1712223
@@ -74981,7 +74981,7 @@ Item
 	X	1556
 	Y	1767
 	Z	10
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	GuardZone i2
 	CProp	NpcList a5:i201285i201284i201283i201287i201286
@@ -75003,7 +75003,7 @@ Item
 	X	1561
 	Y	1761
 	Z	11
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711797
@@ -75810,7 +75810,7 @@ Item
 	X	1619
 	Y	1529
 	Z	41
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711825
@@ -77136,7 +77136,7 @@ Item
 	X	1619
 	Y	1583
 	Z	0
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a4:i201269i201270i201271i201268
@@ -77170,7 +77170,7 @@ Item
 	X	1619
 	Y	1587
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1712231
@@ -78016,7 +78016,7 @@ Item
 	X	1655
 	Y	1607
 	Z	20
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a2:i201266i201267
@@ -78037,7 +78037,7 @@ Item
 	X	1655
 	Y	1647
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a1:i201273
@@ -78059,7 +78059,7 @@ Item
 	X	1619
 	Y	1645
 	Z	36
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711783
@@ -78754,7 +78754,7 @@ Item
 	X	1639
 	Y	1699
 	Z	36
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a1:i201274
@@ -78775,7 +78775,7 @@ Item
 	X	1607
 	Y	1711
 	Z	20
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a5:i201275i201279i201276i201278i201277
@@ -78797,7 +78797,7 @@ Item
 	X	1619
 	Y	1703
 	Z	28
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711813
@@ -78870,7 +78870,7 @@ Item
 	X	1619
 	Y	1761
 	Z	66
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1712610
@@ -79007,7 +79007,7 @@ Item
 	X	1677
 	Y	1529
 	Z	24
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1712634
@@ -80230,7 +80230,7 @@ Item
 	X	1677
 	Y	1587
 	Z	8
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711776
@@ -80251,7 +80251,7 @@ Item
 	X	1727
 	Y	1586
 	Z	19
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711834
@@ -80325,7 +80325,7 @@ Item
 	X	1677
 	Y	1645
 	Z	6
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711830
@@ -80346,7 +80346,7 @@ Item
 	X	1668
 	Y	1703
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1712426
@@ -80472,7 +80472,7 @@ Item
 	X	1735
 	Y	1529
 	Z	5
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711767
@@ -84675,7 +84675,7 @@ Item
 	X	1823
 	Y	2667
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1712530
@@ -84695,7 +84695,7 @@ Item
 	X	1855
 	Y	2677
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	NpcList a2:i1711734i1711733
 	CProp	Range i15
@@ -85085,7 +85085,7 @@ Item
 	X	1844
 	Y	2735
 	Z	0
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a1:i379821
@@ -85106,7 +85106,7 @@ Item
 	X	1843
 	Y	2709
 	Z	10
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a2:i379846i379842
@@ -85127,7 +85127,7 @@ Item
 	X	1822
 	Y	2735
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a1:i522358
@@ -86565,7 +86565,7 @@ Item
 	X	1823
 	Y	2725
 	Z	1
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711874
@@ -86996,7 +86996,7 @@ Item
 	X	1852
 	Y	2792
 	Z	-8
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a3:i379791i379793i379792
@@ -89049,7 +89049,7 @@ Item
 	X	1823
 	Y	2783
 	Z	1
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711838
@@ -89204,7 +89204,7 @@ Item
 	X	1813
 	Y	2828
 	Z	0
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a2:i379740i379741
@@ -89390,7 +89390,7 @@ Item
 	X	1823
 	Y	2841
 	Z	1
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711900
@@ -89474,7 +89474,7 @@ Item
 	X	1823
 	Y	2899
 	Z	13
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711863
@@ -90182,7 +90182,7 @@ Item
 	X	1891
 	Y	2687
 	Z	10
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a2:i214981i214982
@@ -90800,7 +90800,7 @@ Item
 	X	1895
 	Y	2652
 	Z	10
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a1:i522289
@@ -91252,7 +91252,7 @@ Item
 	X	1881
 	Y	2667
 	Z	-1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711781
@@ -91297,7 +91297,7 @@ Item
 	X	1892
 	Y	2688
 	Z	30
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a1:i214983
@@ -93380,7 +93380,7 @@ Item
 	X	1883
 	Y	2724
 	Z	21
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711803
@@ -93745,7 +93745,7 @@ Item
 	X	1898
 	Y	2805
 	Z	0
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a2:i379749i379767
@@ -93766,7 +93766,7 @@ Item
 	X	1914
 	Y	2806
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a3:i379789i379790i379788
@@ -93787,7 +93787,7 @@ Item
 	X	1883
 	Y	2806
 	Z	10
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a1:i379794
@@ -95072,7 +95072,7 @@ Item
 	X	1881
 	Y	2783
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:u
@@ -95155,7 +95155,7 @@ Item
 	X	1881
 	Y	2841
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1712342
@@ -95189,7 +95189,7 @@ Item
 	X	1881
 	Y	2899
 	Z	13
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:u
@@ -97507,7 +97507,7 @@ Item
 	X	1939
 	Y	2667
 	Z	-1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:u
@@ -98760,7 +98760,7 @@ Item
 	X	1939
 	Y	2725
 	Z	11
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1712108
@@ -98917,7 +98917,7 @@ Item
 	X	1939
 	Y	2766
 	Z	10
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a1:i214980
@@ -100161,7 +100161,7 @@ Item
 	X	1930
 	Y	2796
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a3:i214978i214977i214979
@@ -100183,7 +100183,7 @@ Item
 	X	1939
 	Y	2783
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711802
@@ -100476,7 +100476,7 @@ Item
 	X	1983
 	Y	2838
 	Z	15
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a3:i555089i555090i555088
@@ -100498,7 +100498,7 @@ Item
 	X	1939
 	Y	2842
 	Z	12
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711807
@@ -100519,7 +100519,7 @@ Item
 	X	1939
 	Y	2899
 	Z	13
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:u
@@ -103460,7 +103460,7 @@ Item
 	X	1997
 	Y	2725
 	Z	31
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711842
@@ -103481,7 +103481,7 @@ Item
 	X	2037
 	Y	2724
 	Z	7
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1712228
@@ -104910,7 +104910,7 @@ Item
 	X	2031
 	Y	2797
 	Z	10
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a1:i553065
@@ -104931,7 +104931,7 @@ Item
 	X	2015
 	Y	2804
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a1:i553068
@@ -104953,7 +104953,7 @@ Item
 	X	1997
 	Y	2783
 	Z	19
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1712353
@@ -106528,7 +106528,7 @@ Item
 	X	2028
 	Y	2844
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a2:i554917i554918
@@ -106568,7 +106568,7 @@ Item
 	X	1997
 	Y	2841
 	Z	16
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1712056
@@ -106665,7 +106665,7 @@ Item
 	X	1997
 	Y	2899
 	Z	6
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711868
@@ -106700,7 +106700,7 @@ Item
 	X	1991
 	Y	2886
 	Z	5
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	NpcList a1:i1711735
 	CProp	Range i10
@@ -106780,7 +106780,7 @@ Item
 	X	2108
 	Y	2667
 	Z	2
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711817
@@ -106963,7 +106963,7 @@ Item
 	X	2055
 	Y	2783
 	Z	19
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:u
@@ -107451,7 +107451,7 @@ Item
 	X	2055
 	Y	2841
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711832
@@ -107472,7 +107472,7 @@ Item
 	X	2048
 	Y	2890
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711844
@@ -107578,7 +107578,7 @@ Item
 	X	2113
 	Y	2725
 	Z	11
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711788
@@ -107599,7 +107599,7 @@ Item
 	X	2113
 	Y	2783
 	Z	11
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711770
@@ -107620,7 +107620,7 @@ Item
 	X	2119
 	Y	2833
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1712225
@@ -107789,7 +107789,7 @@ Item
 	X	2235
 	Y	1145
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1712477
@@ -108242,7 +108242,7 @@ Item
 	X	2215
 	Y	1191
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a2:i211367i211366
@@ -108263,7 +108263,7 @@ Item
 	X	2215
 	Y	1167
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a1:i211384
@@ -108285,7 +108285,7 @@ Item
 	X	2235
 	Y	1203
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1712354
@@ -109509,7 +109509,7 @@ Item
 	X	2256
 	Y	1185
 	Z	-2
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a1:i211397
@@ -109530,7 +109530,7 @@ Item
 	X	2256
 	Y	1171
 	Z	-2
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a1:i211394
@@ -109969,7 +109969,7 @@ Item
 	X	2243
 	Y	1231
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a2:i211429i211428
@@ -110927,7 +110927,7 @@ Item
 	X	2423
 	Y	399
 	Z	16
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1712158
@@ -111379,7 +111379,7 @@ Item
 	X	2423
 	Y	457
 	Z	16
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1712235
@@ -111437,7 +111437,7 @@ Item
 	X	2423
 	Y	551
 	Z	0
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a1:i212818
@@ -112456,7 +112456,7 @@ Item
 	X	2423
 	Y	515
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711793
@@ -112477,7 +112477,7 @@ Item
 	X	2424
 	Y	565
 	Z	2
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711892
@@ -112498,7 +112498,7 @@ Item
 	X	2423
 	Y	662
 	Z	2
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1712521
@@ -112814,7 +112814,7 @@ Item
 	X	2455
 	Y	431
 	Z	15
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a3:i212828i212827i212826
@@ -112835,7 +112835,7 @@ Item
 	X	2439
 	Y	407
 	Z	15
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a1:i212829
@@ -112856,7 +112856,7 @@ Item
 	X	2477
 	Y	404
 	Z	15
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a5:i212834i212833i212832i212831i212830
@@ -116994,7 +116994,7 @@ Item
 	X	2481
 	Y	399
 	Z	16
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1712671
@@ -117090,7 +117090,7 @@ Item
 	X	2461
 	Y	457
 	Z	15
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a1:i212825
@@ -118315,7 +118315,7 @@ Item
 	X	2481
 	Y	457
 	Z	16
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711884
@@ -118387,7 +118387,7 @@ Item
 	X	2472
 	Y	560
 	Z	5
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a2:i212805i212806
@@ -118911,7 +118911,7 @@ Item
 	X	2481
 	Y	515
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711777
@@ -118932,7 +118932,7 @@ Item
 	X	2481
 	Y	573
 	Z	8
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711758
@@ -120098,7 +120098,7 @@ Item
 	X	2526
 	Y	378
 	Z	23
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a1:i212835
@@ -121206,7 +121206,7 @@ Item
 	X	2539
 	Y	399
 	Z	16
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711854
@@ -121482,7 +121482,7 @@ Item
 	X	2513
 	Y	473
 	Z	15
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a4:i212823i1320024i212821i212822
@@ -121865,7 +121865,7 @@ Item
 	X	2539
 	Y	457
 	Z	16
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:u
@@ -121988,7 +121988,7 @@ Item
 	X	2527
 	Y	551
 	Z	0
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a3:i212799i212801i212800
@@ -122009,7 +122009,7 @@ Item
 	X	2503
 	Y	551
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a3:i212802i212803i212804
@@ -123120,7 +123120,7 @@ Item
 	X	2539
 	Y	515
 	Z	1
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:u
@@ -123141,7 +123141,7 @@ Item
 	X	2539
 	Y	573
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1712660
@@ -123187,7 +123187,7 @@ Item
 	X	2529
 	Y	577
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a1:i212798
@@ -123593,7 +123593,7 @@ Item
 	X	2498
 	Y	631
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711833
@@ -123614,7 +123614,7 @@ Item
 	X	2539
 	Y	631
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:u
@@ -124076,7 +124076,7 @@ Item
 	X	2577
 	Y	594
 	Z	0
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a3:i212790i212789i212791
@@ -124470,7 +124470,7 @@ Item
 	X	2597
 	Y	631
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711787
@@ -125548,7 +125548,7 @@ Item
 	X	2635
 	Y	2083
 	Z	10
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	GuardZone i2
 	CProp	NpcList a2:i547938i547939
@@ -125714,7 +125714,7 @@ Item
 	X	2627
 	Y	2099
 	Z	10
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	GuardZone i2
 	CProp	NpcList a2:i548034i548032
@@ -126969,7 +126969,7 @@ Item
 	X	2676
 	Y	2238
 	Z	8
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i2
 	CProp	NpcList a7:i550282i550247i550240i550252i550264i550334i550263
@@ -128305,7 +128305,7 @@ Item
 	X	2718
 	Y	2090
 	Z	0
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	GuardZone i2
 	CProp	NpcList a2:i552475i552476
@@ -129082,7 +129082,7 @@ Item
 	X	2707
 	Y	2139
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i2
 	CProp	NpcList a2:i552480i552479
@@ -129729,7 +129729,7 @@ Item
 	X	2731
 	Y	2187
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i2
 	CProp	NpcList a1:i542604
@@ -130581,7 +130581,7 @@ Item
 	X	2735
 	Y	2255
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i2
 	CProp	NpcList a5:i552444i552443i552442i552340i552336
@@ -130603,7 +130603,7 @@ Item
 	X	2814
 	Y	779
 	Z	1
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711862
@@ -131459,7 +131459,7 @@ Item
 	X	2775
 	Y	967
 	Z	0
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	GuardZone i2
 	CProp	NpcList a1:i212948
@@ -131846,7 +131846,7 @@ Item
 	X	2823
 	Y	663
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1712585
@@ -132572,7 +132572,7 @@ Item
 	X	2879
 	Y	719
 	Z	0
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a1:i212853
@@ -132594,7 +132594,7 @@ Item
 	X	2823
 	Y	721
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711785
@@ -133081,7 +133081,7 @@ Item
 	X	2859
 	Y	807
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a1:i212874
@@ -133102,7 +133102,7 @@ Item
 	X	2839
 	Y	803
 	Z	0
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a2:i212876i212875
@@ -134146,7 +134146,7 @@ Item
 	X	2863
 	Y	855
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a1:i212877
@@ -134167,7 +134167,7 @@ Item
 	X	2839
 	Y	875
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a5:i212888i212894i212898i212885i212882
@@ -134189,7 +134189,7 @@ Item
 	X	2823
 	Y	837
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1712326
@@ -134210,7 +134210,7 @@ Item
 	X	2826
 	Y	894
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711818
@@ -134231,7 +134231,7 @@ Item
 	X	2865
 	Y	894
 	Z	2
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711815
@@ -134950,7 +134950,7 @@ Item
 	X	2823
 	Y	953
 	Z	3
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1712263
@@ -135860,7 +135860,7 @@ Item
 	X	2862
 	Y	996
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a2:i212922i212923
@@ -135881,7 +135881,7 @@ Item
 	X	2860
 	Y	996
 	Z	-21
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a3:i212926i212928i212927
@@ -135926,7 +135926,7 @@ Item
 	X	2879
 	Y	3471
 	Z	15
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a3:i555291i555296i555294
@@ -137936,7 +137936,7 @@ Item
 	X	2919
 	Y	671
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a3:i212847i212846i212848
@@ -137957,7 +137957,7 @@ Item
 	X	2887
 	Y	655
 	Z	0
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a2:i212850i212849
@@ -137978,7 +137978,7 @@ Item
 	X	2882
 	Y	683
 	Z	0
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a2:i212851i212852
@@ -138027,7 +138027,7 @@ Item
 	X	2881
 	Y	663
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711786
@@ -138048,7 +138048,7 @@ Item
 	X	2934
 	Y	663
 	Z	2
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711828
@@ -139146,7 +139146,7 @@ Item
 	X	2891
 	Y	743
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a3:i547652i547649i547651
@@ -139168,7 +139168,7 @@ Item
 	X	2881
 	Y	721
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:u
@@ -139189,7 +139189,7 @@ Item
 	X	2920
 	Y	721
 	Z	2
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711879
@@ -140076,7 +140076,7 @@ Item
 	X	2895
 	Y	791
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a2:i212854i212855
@@ -140097,7 +140097,7 @@ Item
 	X	2919
 	Y	799
 	Z	0
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a3:i212856i212858i212857
@@ -140119,7 +140119,7 @@ Item
 	X	2881
 	Y	779
 	Z	8
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1712537
@@ -140140,7 +140140,7 @@ Item
 	X	2939
 	Y	782
 	Z	2
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711893
@@ -140449,7 +140449,7 @@ Item
 	X	2919
 	Y	855
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a3:i212859i212861i212860
@@ -140471,7 +140471,7 @@ Item
 	X	2881
 	Y	837
 	Z	4
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1712170
@@ -140492,7 +140492,7 @@ Item
 	X	2942
 	Y	893
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711772
@@ -142240,7 +142240,7 @@ Item
 	X	2902
 	Y	908
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a4:i212920i212918i212919i212921
@@ -144067,7 +144067,7 @@ Item
 	X	2936
 	Y	3502
 	Z	10
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a4:i557578i557863i557579i557577
@@ -144088,7 +144088,7 @@ Item
 	X	2903
 	Y	3516
 	Z	10
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a2:i557030i557029
@@ -144428,7 +144428,7 @@ Item
 	X	2889
 	Y	3489
 	Z	11
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1712333
@@ -144496,7 +144496,7 @@ Item
 	X	2902
 	Y	3527
 	Z	10
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a1:i557029
@@ -145273,7 +145273,7 @@ Item
 	X	2962
 	Y	623
 	Z	0
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	GuardZone i2
 	CProp	NpcList a5:i212836i212837i212839i212840i212838
@@ -145294,7 +145294,7 @@ Item
 	X	2988
 	Y	639
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a5:i212843i212844i212842i212845i212841
@@ -145713,7 +145713,7 @@ Item
 	X	2997
 	Y	663
 	Z	1
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711869
@@ -146336,7 +146336,7 @@ Item
 	X	2999
 	Y	763
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a1:i212868
@@ -146382,7 +146382,7 @@ Item
 	X	2986
 	Y	734
 	Z	1
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711867
@@ -147603,7 +147603,7 @@ Item
 	X	3000
 	Y	815
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a3:i212867i212865i212866
@@ -147624,7 +147624,7 @@ Item
 	X	2991
 	Y	779
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a1:i212869
@@ -147646,7 +147646,7 @@ Item
 	X	2997
 	Y	779
 	Z	1
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711877
@@ -148700,7 +148700,7 @@ Item
 	X	2967
 	Y	879
 	Z	0
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a1:i212862
@@ -148721,7 +148721,7 @@ Item
 	X	2991
 	Y	839
 	Z	0
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a2:i212864i212863
@@ -148743,7 +148743,7 @@ Item
 	X	2952
 	Y	837
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:u
@@ -148764,7 +148764,7 @@ Item
 	X	2997
 	Y	837
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711759
@@ -148785,7 +148785,7 @@ Item
 	X	2978
 	Y	892
 	Z	4
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711782
@@ -148964,7 +148964,7 @@ Item
 	X	2944
 	Y	946
 	Z	1
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711831
@@ -149296,7 +149296,7 @@ Item
 	X	3007
 	Y	3355
 	Z	15
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a6:i583434i583468i583466i583472i583471i583470
@@ -149478,7 +149478,7 @@ Item
 	X	2958
 	Y	3365
 	Z	16
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1712557
@@ -151604,7 +151604,7 @@ Item
 	X	2958
 	Y	3423
 	Z	16
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1712387
@@ -151806,7 +151806,7 @@ Item
 	X	2958
 	Y	3481
 	Z	16
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711889
@@ -152134,7 +152134,7 @@ Item
 	X	3023
 	Y	763
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a1:i212873
@@ -152977,7 +152977,7 @@ Item
 	X	3013
 	Y	788
 	Z	0
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a3:i514839i514838i514837
@@ -155196,7 +155196,7 @@ Item
 	X	3016
 	Y	3365
 	Z	16
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711843
@@ -156209,7 +156209,7 @@ Item
 	X	3016
 	Y	3423
 	Z	16
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:u
@@ -156697,7 +156697,7 @@ Item
 	X	3025
 	Y	3481
 	Z	2
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711880
@@ -156843,7 +156843,7 @@ Item
 	X	3525
 	Y	1104
 	Z	21
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711763
@@ -156864,7 +156864,7 @@ Item
 	X	3525
 	Y	1149
 	Z	21
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711856
@@ -157068,7 +157068,7 @@ Item
 	X	3525
 	Y	1207
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1712726
@@ -157089,7 +157089,7 @@ Item
 	X	3583
 	Y	1207
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711748
@@ -157110,7 +157110,7 @@ Item
 	X	3525
 	Y	1323
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:u
@@ -157131,7 +157131,7 @@ Item
 	X	3641
 	Y	1091
 	Z	1
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711836
@@ -157152,7 +157152,7 @@ Item
 	X	3641
 	Y	1149
 	Z	2
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1712190
@@ -157343,7 +157343,7 @@ Item
 	X	3641
 	Y	1207
 	Z	1
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711837
@@ -157736,7 +157736,7 @@ Item
 	X	3599
 	Y	1265
 	Z	1
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711870
@@ -157757,7 +157757,7 @@ Item
 	X	3641
 	Y	1265
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711765
@@ -157778,7 +157778,7 @@ Item
 	X	3605
 	Y	1315
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711799
@@ -157799,7 +157799,7 @@ Item
 	X	3641
 	Y	1323
 	Z	1
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711885
@@ -157845,7 +157845,7 @@ Item
 	X	3615
 	Y	2472
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a2:i599496i599495
@@ -158794,7 +158794,7 @@ Item
 	X	3617
 	Y	2475
 	Z	1
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711882
@@ -158951,7 +158951,7 @@ Item
 	X	3631
 	Y	2539
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a6:i599219i599223i599200i599220i599202i599221
@@ -158972,7 +158972,7 @@ Item
 	X	3640
 	Y	2502
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a1:i599564
@@ -160171,7 +160171,7 @@ Item
 	X	3617
 	Y	2533
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711795
@@ -160391,7 +160391,7 @@ Item
 	X	3632
 	Y	2572
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a2:i599300i599301
@@ -160412,7 +160412,7 @@ Item
 	X	3611
 	Y	2574
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a2:i599310i599308
@@ -160433,7 +160433,7 @@ Item
 	X	3600
 	Y	2609
 	Z	0
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a2:i599390i599391
@@ -160454,7 +160454,7 @@ Item
 	X	3630
 	Y	2607
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a3:i599396i599397i599398
@@ -160475,7 +160475,7 @@ Item
 	X	3639
 	Y	2598
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a2:i599599i599600
@@ -160496,7 +160496,7 @@ Item
 	X	3639
 	Y	2599
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a1:i599602
@@ -162126,7 +162126,7 @@ Item
 	X	3617
 	Y	2591
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711780
@@ -162196,7 +162196,7 @@ Item
 	X	3632
 	Y	2639
 	Z	0
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a4:i599428i599414i599420i599433
@@ -162920,7 +162920,7 @@ Item
 	X	3617
 	Y	2649
 	Z	41
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:u
@@ -163740,7 +163740,7 @@ Item
 	X	3699
 	Y	1091
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1712546
@@ -163761,7 +163761,7 @@ Item
 	X	3698
 	Y	1149
 	Z	1
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711898
@@ -164056,7 +164056,7 @@ Item
 	X	3699
 	Y	1207
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:u
@@ -164175,7 +164175,7 @@ Item
 	X	3702
 	Y	1256
 	Z	21
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1712407
@@ -164293,7 +164293,7 @@ Item
 	X	3699
 	Y	1323
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1712590
@@ -164326,7 +164326,7 @@ Item
 	X	3702
 	Y	1369
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1712143
@@ -164547,7 +164547,7 @@ Item
 	X	3675
 	Y	2069
 	Z	28
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1712663
@@ -165230,7 +165230,7 @@ Item
 	X	3675
 	Y	2127
 	Z	21
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1712066
@@ -165319,7 +165319,7 @@ Item
 	X	3663
 	Y	2187
 	Z	20
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a2:i226880i226881
@@ -165340,7 +165340,7 @@ Item
 	X	3666
 	Y	2233
 	Z	20
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a2:i226883i226882
@@ -165361,7 +165361,7 @@ Item
 	X	3703
 	Y	2219
 	Z	20
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a7:i226895i226890i226893i226896i226892i226891i226894
@@ -165382,7 +165382,7 @@ Item
 	X	3687
 	Y	2219
 	Z	20
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a3:i226898i226899i226900
@@ -165735,7 +165735,7 @@ Item
 	X	3675
 	Y	2185
 	Z	21
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711971
@@ -165807,7 +165807,7 @@ Item
 	X	3667
 	Y	2254
 	Z	20
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a2:i226885i226884
@@ -165828,7 +165828,7 @@ Item
 	X	3686
 	Y	2254
 	Z	20
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a4:i226888i226887i226889i226886
@@ -167569,7 +167569,7 @@ Item
 	X	3675
 	Y	2243
 	Z	21
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711800
@@ -167625,7 +167625,7 @@ Item
 	X	3676
 	Y	2475
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a1:i599508
@@ -169176,7 +169176,7 @@ Item
 	X	3675
 	Y	2475
 	Z	1
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711888
@@ -169285,7 +169285,7 @@ Item
 	X	3694
 	Y	2510
 	Z	0
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a3:i599191i599190i599192
@@ -169319,7 +169319,7 @@ Item
 	X	3667
 	Y	2534
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a2:i599253i599254
@@ -170602,7 +170602,7 @@ Item
 	X	3675
 	Y	2533
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:u
@@ -170732,7 +170732,7 @@ Item
 	X	3666
 	Y	2588
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a3:i599188i599187i599186
@@ -170753,7 +170753,7 @@ Item
 	X	3671
 	Y	2614
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a2:i599479i599480
@@ -171752,7 +171752,7 @@ Item
 	X	3675
 	Y	2591
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:u
@@ -171834,7 +171834,7 @@ Item
 	X	3671
 	Y	2648
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a4:i599474i599476i599470i599471
@@ -172824,7 +172824,7 @@ Item
 	X	3675
 	Y	2649
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711750
@@ -172885,7 +172885,7 @@ Item
 	X	3757
 	Y	1116
 	Z	21
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711866
@@ -172906,7 +172906,7 @@ Item
 	X	3757
 	Y	1149
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1712308
@@ -173048,7 +173048,7 @@ Item
 	X	3775
 	Y	1166
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a5:i900950i900932i900942i900961i900952
@@ -173069,7 +173069,7 @@ Item
 	X	3738
 	Y	1195
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a2:i901026i901029
@@ -173091,7 +173091,7 @@ Item
 	X	3757
 	Y	1207
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1712328
@@ -173249,7 +173249,7 @@ Item
 	X	3771
 	Y	1259
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a7:i900512i900504i900500i900501i900508i900513i900509
@@ -173270,7 +173270,7 @@ Item
 	X	3771
 	Y	1227
 	Z	0
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a7:i900793i900706i900840i900798i900841i900838i900744
@@ -173291,7 +173291,7 @@ Item
 	X	3737
 	Y	1258
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a9:i901099i901129i901098i901097i901096i901132i901127i901147i901148
@@ -173411,7 +173411,7 @@ Item
 	X	3757
 	Y	1265
 	Z	1
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711875
@@ -173662,7 +173662,7 @@ Item
 	X	3763
 	Y	1318
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a2:i895620i895621
@@ -173684,7 +173684,7 @@ Item
 	X	3757
 	Y	1323
 	Z	1
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711848
@@ -173830,7 +173830,7 @@ Item
 	X	3740
 	Y	1381
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1712086
@@ -173877,7 +173877,7 @@ Item
 	X	3733
 	Y	2069
 	Z	6
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711850
@@ -173898,7 +173898,7 @@ Item
 	X	3769
 	Y	2069
 	Z	21
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711853
@@ -173958,7 +173958,7 @@ Item
 	X	3735
 	Y	2151
 	Z	20
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a3:i226875i226877i226876
@@ -173979,7 +173979,7 @@ Item
 	X	3719
 	Y	2127
 	Z	20
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a2:i226879i226878
@@ -174001,7 +174001,7 @@ Item
 	X	3733
 	Y	2127
 	Z	21
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711762
@@ -174101,7 +174101,7 @@ Item
 	X	3727
 	Y	2223
 	Z	20
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a4:i226870i226872i226871i226873
@@ -174122,7 +174122,7 @@ Item
 	X	3759
 	Y	2223
 	Z	20
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a1:i226874
@@ -174144,7 +174144,7 @@ Item
 	X	3733
 	Y	2185
 	Z	21
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711829
@@ -174179,7 +174179,7 @@ Item
 	X	3733
 	Y	2243
 	Z	21
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711883
@@ -174200,7 +174200,7 @@ Item
 	X	3733
 	Y	2475
 	Z	30
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711860
@@ -174221,7 +174221,7 @@ Item
 	X	3733
 	Y	2533
 	Z	25
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711769
@@ -174387,7 +174387,7 @@ Item
 	X	3733
 	Y	2591
 	Z	41
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711894
@@ -174890,7 +174890,7 @@ Item
 	X	3733
 	Y	2649
 	Z	41
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711849
@@ -175248,7 +175248,7 @@ Item
 	X	3791
 	Y	2127
 	Z	29
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1712454
@@ -175269,7 +175269,7 @@ Item
 	X	3791
 	Y	2243
 	Z	21
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:u
@@ -179395,7 +179395,7 @@ Item
 	X	4391
 	Y	1087
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a2:i213147i213148
@@ -179416,7 +179416,7 @@ Item
 	X	4391
 	Y	1063
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a2:i213149i213150
@@ -179437,7 +179437,7 @@ Item
 	X	4415
 	Y	1063
 	Z	0
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a4:i213160i213167i213170i213162
@@ -179458,7 +179458,7 @@ Item
 	X	4415
 	Y	1087
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a4:i213244i213241i213242i213243
@@ -180858,7 +180858,7 @@ Item
 	X	4408
 	Y	1074
 	Z	1
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711872
@@ -181881,7 +181881,7 @@ Item
 	X	4415
 	Y	1111
 	Z	0
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a3:i213246i213245i213247
@@ -181902,7 +181902,7 @@ Item
 	X	4391
 	Y	1111
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a1:i213248
@@ -181923,7 +181923,7 @@ Item
 	X	4391
 	Y	1137
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a1:i213249
@@ -181944,7 +181944,7 @@ Item
 	X	4415
 	Y	1135
 	Z	0
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a3:i213250i213251i213252
@@ -182708,7 +182708,7 @@ Item
 	X	4408
 	Y	1132
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1712171
@@ -183140,7 +183140,7 @@ Item
 	X	4398
 	Y	1159
 	Z	0
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a1:i213253
@@ -185782,7 +185782,7 @@ Item
 	X	4455
 	Y	1063
 	Z	0
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a3:i213202i213206i213208
@@ -185803,7 +185803,7 @@ Item
 	X	4455
 	Y	1087
 	Z	0
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a5:i213225i213231i213229i213221i213223
@@ -186273,7 +186273,7 @@ Item
 	X	4479
 	Y	1085
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a2:i1572224i1572225
@@ -186307,7 +186307,7 @@ Item
 	X	4466
 	Y	1074
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711811
@@ -187500,7 +187500,7 @@ Item
 	X	4466
 	Y	1132
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711822
@@ -188291,7 +188291,7 @@ Item
 	X	4439
 	Y	1159
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a1:i213254
@@ -188312,7 +188312,7 @@ Item
 	X	4471
 	Y	1162
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a2:i213258i213259
@@ -188333,7 +188333,7 @@ Item
 	X	4471
 	Y	1163
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a3:i213255i213256i213257
@@ -190571,7 +190571,7 @@ Item
 	X	4483
 	Y	1063
 	Z	0
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	GuardZone i1
 	CProp	NpcList a1:i213218
@@ -192651,7 +192651,7 @@ Item
 	X	4545
 	Y	860
 	Z	30
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i2
 	CProp	NpcList a9:i213842i213849i213829i213833i213847i213830i213836i213831i213838
@@ -194661,7 +194661,7 @@ Item
 	X	4623
 	Y	1207
 	Z	0
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	GuardZone i2
 	CProp	NpcList a6:i213827i213824i213825i213823i213826i213828
@@ -195909,7 +195909,7 @@ Item
 	X	4683
 	Y	1413
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i2
 	CProp	NpcList a7:i213892i213905i213894i213907i213899i213896i213901
@@ -196250,7 +196250,7 @@ Item
 	X	5151
 	Y	59
 	Z	25
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i2
 	CProp	NpcList a3:i901515i901518i901516
@@ -196271,7 +196271,7 @@ Item
 	X	5171
 	Y	27
 	Z	27
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i2
 	CProp	NpcList a1:i901601
@@ -196359,7 +196359,7 @@ Item
 	X	5147
 	Y	75
 	Z	25
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i2
 	CProp	NpcList a2:i901525i901526
@@ -206195,7 +206195,7 @@ Item
 	X	5157
 	Y	3965
 	Z	55
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711794
@@ -206216,7 +206216,7 @@ Item
 	X	5157
 	Y	4009
 	Z	41
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711840
@@ -206271,7 +206271,7 @@ Item
 	X	5157
 	Y	4067
 	Z	42
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711871
@@ -206403,7 +206403,7 @@ Item
 	X	5215
 	Y	117
 	Z	1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i2
 	CProp	NpcList a3:i901494i901512i901499
@@ -206424,7 +206424,7 @@ Item
 	X	5202
 	Y	90
 	Z	5
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i2
 	CProp	NpcList a1:i901586
@@ -206528,7 +206528,7 @@ Item
 	X	5246
 	Y	182
 	Z	15
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i2
 	CProp	NpcList a1:i901449
@@ -206549,7 +206549,7 @@ Item
 	X	5237
 	Y	143
 	Z	15
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	GuardZone i2
 	CProp	NpcList a1:i901480
@@ -211208,7 +211208,7 @@ Item
 	X	5215
 	Y	3951
 	Z	41
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711773
@@ -211659,7 +211659,7 @@ Item
 	X	5190
 	Y	3988
 	Z	37
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i2
 	CProp	NpcList a3:i1671119i1671118i1671120
@@ -211708,7 +211708,7 @@ Item
 	X	5215
 	Y	4009
 	Z	38
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1712248
@@ -211729,7 +211729,7 @@ Item
 	X	5215
 	Y	4067
 	Z	41
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711878
@@ -211749,7 +211749,7 @@ Item
 	X	5311
 	Y	35
 	Z	40
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i2
 	CProp	NpcList a1:i901318
@@ -211797,7 +211797,7 @@ Item
 	X	5300
 	Y	94
 	Z	15
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i2
 	CProp	NpcList a1:i901223
@@ -211872,7 +211872,7 @@ Item
 	X	5264
 	Y	130
 	Z	20
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i2
 	CProp	NpcList a1:i901381
@@ -212983,7 +212983,7 @@ Item
 	X	5273
 	Y	3951
 	Z	38
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711801
@@ -213177,7 +213177,7 @@ Item
 	X	5285
 	Y	3980
 	Z	37
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i2
 	CProp	NpcList a3:i1671114i1671112i1671113
@@ -213212,7 +213212,7 @@ Item
 	X	5295
 	Y	3977
 	Z	37
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i2
 	CProp	NpcList a3:i1671115i1671117i1671116
@@ -213600,7 +213600,7 @@ Item
 	X	5296
 	Y	4005
 	Z	40
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	GuardZone i2
 	CProp	NpcList a2:i1674539i1674538
@@ -213622,7 +213622,7 @@ Item
 	X	5273
 	Y	4009
 	Z	41
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1712443
@@ -213643,7 +213643,7 @@ Item
 	X	5278
 	Y	4064
 	Z	38
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711865
@@ -213769,7 +213769,7 @@ Item
 	X	5343
 	Y	56
 	Z	15
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i2
 	CProp	NpcList a1:i901371
@@ -213790,7 +213790,7 @@ Item
 	X	5349
 	Y	51
 	Z	15
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i2
 	CProp	NpcList a1:i901372
@@ -213811,7 +213811,7 @@ Item
 	X	5354
 	Y	56
 	Z	15
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i2
 	CProp	NpcList a1:i901374
@@ -221272,7 +221272,7 @@ Item
 	X	5670
 	Y	3130
 	Z	13
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	GuardZone i2
 	CProp	NpcList a2:i913654i913641
@@ -221294,7 +221294,7 @@ Item
 	X	5661
 	Y	3135
 	Z	-3
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711775
@@ -221314,7 +221314,7 @@ Item
 	X	5661
 	Y	3148
 	Z	13
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i2
 	CProp	NpcList a2:i913738i913642
@@ -221362,7 +221362,7 @@ Item
 	X	5662
 	Y	3193
 	Z	3
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1712459
@@ -221382,7 +221382,7 @@ Item
 	X	5694
 	Y	3209
 	Z	10
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	GuardZone i2
 	CProp	NpcList a8:i1671145i1671144i1671140i1671142i1671146i1671141i1671147i1671143
@@ -221404,7 +221404,7 @@ Item
 	X	5662
 	Y	3251
 	Z	-14
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711845
@@ -221439,7 +221439,7 @@ Item
 	X	5662
 	Y	3309
 	Z	-14
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1712156
@@ -222090,7 +222090,7 @@ Item
 	X	5720
 	Y	3135
 	Z	-3
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711821
@@ -222175,7 +222175,7 @@ Item
 	X	5731
 	Y	3194
 	Z	8
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i2
 	CProp	NpcList a7:i913506i913510i913508i913507i913501i913498i913505
@@ -222196,7 +222196,7 @@ Item
 	X	5751
 	Y	3198
 	Z	15
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	GuardZone i2
 	CProp	NpcList a2:i1203180i1203181
@@ -222218,7 +222218,7 @@ Item
 	X	5720
 	Y	3193
 	Z	-4
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711861
@@ -222291,7 +222291,7 @@ Item
 	X	5736
 	Y	3221
 	Z	11
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	GuardZone i2
 	CProp	NpcList a1:i913826
@@ -222326,7 +222326,7 @@ Item
 	X	5712
 	Y	3201
 	Z	12
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	GuardZone i2
 	CProp	NpcList a4:i1671138i1671136i1671139i1671137
@@ -222348,7 +222348,7 @@ Item
 	X	5720
 	Y	3252
 	Z	2
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1712547
@@ -222369,7 +222369,7 @@ Item
 	X	5720
 	Y	3309
 	Z	14
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711768
@@ -226073,7 +226073,7 @@ Item
 	X	5778
 	Y	3135
 	Z	-1
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711784
@@ -226094,7 +226094,7 @@ Item
 	X	5778
 	Y	3193
 	Z	-3
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711852
@@ -226115,7 +226115,7 @@ Item
 	X	5819
 	Y	3193
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711791
@@ -226136,7 +226136,7 @@ Item
 	X	5778
 	Y	3251
 	Z	-1
-	Revision	39
+	Revision	49
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711826
@@ -226157,7 +226157,7 @@ Item
 	X	5778
 	Y	3309
 	Z	-14
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711839
@@ -227307,7 +227307,7 @@ Item
 	X	5826
 	Y	3145
 	Z	0
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1712408
@@ -227328,7 +227328,7 @@ Item
 	X	5836
 	Y	3253
 	Z	3
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711796
@@ -227349,7 +227349,7 @@ Item
 	X	5836
 	Y	3309
 	Z	17
-	Revision	40
+	Revision	50
 	Realm	britannia
 	CProp	Amount i1
 	CProp	Children a1:i1711816

@@ -6,6 +6,7 @@ use cfgfile;
 include ":magery:reflect";
 include "include/spellAttack";
 include "include/sound";
+include "include/tileEffects";
 include "include/magic";
 
 program chainLightning( parms )

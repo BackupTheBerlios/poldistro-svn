@@ -4,6 +4,7 @@ use cfgfile;
 
 include "include/attributes";
 include "include/canAccess";
+include "include/tileEffects";
 include "include/client";
 include "include/sound";
 include "include/statMod";

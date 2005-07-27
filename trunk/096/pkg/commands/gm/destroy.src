@@ -4,8 +4,10 @@ include "include/log";
 
 
 program command_destroy(who)
+	var item;
 	SendSysMessage(who, "Please target something to destroy.");
-	var item := Target(who, TGTOPT_NOCHECK_LOS);
+
+	item := Target(who, TGTOPT_NOCHECK_LOS);
 	if (item)
 		Log(LOG_COMMAND, GetLogInfo(who) + " invoking 'destroy' command on " + GetLogInfo(item));
 		DestroyItem(item);
