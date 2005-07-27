@@ -11,7 +11,7 @@ use cfgfile;
 use os;
 
 include "include/exception";
-include ":scheduler:include/scheduler";
+include ":scheduler:scheduler";
 
 
 program StartScheduler()
