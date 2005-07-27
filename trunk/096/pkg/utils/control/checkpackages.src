@@ -2,7 +2,7 @@ use uo;
 use os;
 use cfgfile;
 
-include "include/datafile";
+include ":datafile:datafile";
 include "include/string";
 
 

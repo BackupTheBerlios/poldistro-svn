@@ -2,7 +2,7 @@ use uo;
 use os;
 
 include "include/bounty";
-include "include/datafile";
+include ":datafile:datafile";
 
 program bountyWatcher()
   print("////////////////////////////////");

@@ -1,6 +1,6 @@
 use uo;
 
-include "include/datafile";
+include ":datafile:datafile";
 
 program DestroyBoard(board)
 	var board_data_file := DFOpenDataFile("MessageBoards", DF_NO_CREATE);

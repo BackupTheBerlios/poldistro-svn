@@ -2,7 +2,7 @@ use uo;
 use os;
 use datafile;
 
-include "include/datafile";
+include ":datafile:datafile";
 include "include/bounty";
 include ":bank:bank";
 
