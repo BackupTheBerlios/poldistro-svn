@@ -8,8 +8,8 @@ DataFile
 	Name	BountySystem
 	Package	bountyboard
 	Flags	0
-	Version	6
-	OldVersion	5
+	Version	8
+	OldVersion	7
 }
 
 DataFile
@@ -28,8 +28,8 @@ DataFile
 	Name	gumps
 	Package	control
 	Flags	0
-	Version	10
-	OldVersion	9
+	Version	12
+	OldVersion	11
 }
 
 DataFile
@@ -38,8 +38,8 @@ DataFile
 	Name	packages
 	Package	control
 	Flags	0
-	Version	22
-	OldVersion	21
+	Version	24
+	OldVersion	23
 }
 
 DataFile

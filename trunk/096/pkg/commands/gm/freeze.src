@@ -1,13 +1,26 @@
 use uo;
 
-program hideme( gm )
-    SendSysMessage( gm, "Who do you wish to freeze?" );
-    var res := TargetCoordinates( gm );
-    if (res.mobile)
-        res.mobile.frozen := 1;
-	SetObjProperty(res.mobile,"frozen",1);
-        PrintTextAbovePrivate( res.mobile, res.mobile.name + " is now frozen", gm );
-    else
-        SendSysMessage( gm, "Cancelled." );
-    endif
+include "include/messages";
+include "include/localization";
+
+
+program command_freeze(who)
+	var mobile;
+
+	SendMessage(who, MSG_TARGET_MOB, {}, MSG_COMMAND);
+	if ((mobile := Target(who, TGTOPT_NOCHECK_LOS)) == 0)
+		SendMessage(who, MSG_CANCELLED, {}, MSG_COMMAND);
+	else
+		if (!mobile.isA(POLCLASS_MOBILE))
+			SendMessage(who, MSG_NO_MOB, {}, MSG_COMMAND);
+		else
+			if (mobile.frozen == 1)
+				SendMessage(who, , {}, MSG_COMMAND);
+			else
+				mobile.frozen := 1;
+			endif
+		endif
+	endif
+
+	return;
 endprogram

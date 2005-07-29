@@ -43,9 +43,9 @@ Item
 	X	61
 	Y	120
 	Z	0
-	Revision	0
+	Revision	4
 	Realm	britannia
-	Amount	100
+	Amount	96
 	Container	0x6ae07560
 	DecayAt	25143316
 }
@@ -58,9 +58,9 @@ Item
 	X	113
 	Y	73
 	Z	0
-	Revision	2
+	Revision	3
 	Realm	britannia
-	Amount	98
+	Amount	97
 	Container	0x6ae07560
 	DecayAt	25143316
 }
@@ -88,9 +88,9 @@ Item
 	X	59
 	Y	131
 	Z	0
-	Revision	1
+	Revision	4
 	Realm	britannia
-	Amount	99
+	Amount	96
 	Container	0x6ae07560
 	DecayAt	25143316
 }
@@ -118,9 +118,9 @@ Item
 	X	110
 	Y	65
 	Z	0
-	Revision	1
+	Revision	2
 	Realm	britannia
-	Amount	99
+	Amount	98
 	Container	0x6ae07560
 	DecayAt	25143316
 }
@@ -133,9 +133,9 @@ Item
 	X	69
 	Y	129
 	Z	0
-	Revision	1
+	Revision	4
 	Realm	britannia
-	Amount	99
+	Amount	96
 	Container	0x6ae07560
 	DecayAt	25143316
 }
