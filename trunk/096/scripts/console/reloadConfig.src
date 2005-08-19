@@ -1,7 +1,7 @@
 use polsys;
 
-program reloadConfig()
-	print("Reloading configuration.");      
+program console_reloadConfig()
+	print("System Message: Reloading configuration.");      
 	ReloadConfiguration();
 
 	return;

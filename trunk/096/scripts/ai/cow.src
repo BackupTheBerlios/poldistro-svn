@@ -22,15 +22,17 @@ var idlesnd1 := CInt(npccfgfile[me.npctemplate].idlesound1);
 var idlesnd2 := CInt(npccfgfile[me.npctemplate].idlesound2);
 
 program cow()
-  SetWarMode( 0 );
-  main_AI_loop();
+	SetWarMode(0);
+	main_AI_loop();
 endprogram
 
 function CloseDistance(opponent)
-  case (Distance(me, opponent))
-    1:
-    0:       return 1;
-    default: WalkToward(opponent);
-             return 0;
-  endcase
+	case (Distance(me, opponent))
+		1:
+		0:       return 1;
+		default:
+			WalkToward(opponent);
+			return 0;
+	endcase
 endfunction
+

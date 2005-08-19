@@ -2,9 +2,10 @@ use uo;
 
 include "include/clock";
 
-program time( cmd )
 
-    cmd := cmd;
-    print("System Message: The time in game is " + GetTimeofDay() );
+program time(cmd)
+	cmd := cmd;
+	print("System Message: The time in game is " + GetTimeofDay());
 
+	return;
 endprogram

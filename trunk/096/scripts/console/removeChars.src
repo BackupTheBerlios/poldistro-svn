@@ -3,7 +3,7 @@ use os;
 use util;
 
 
-program remove_chars(cmd)
+program console_removeChars(cmd)
 	cmd := cmd;
 
 	print("System Message: Remove all online characters!");

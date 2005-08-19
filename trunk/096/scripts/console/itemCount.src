@@ -1,6 +1,8 @@
 use uo;
 
-program itemcount( cmd )
-    cmd := cmd;
-    print( "System Message: Current # of Toplevel Items - " + polcore().itemcount );
+program console_itemcount(cmd)
+	cmd := cmd;
+	print("System Message: Current # of Toplevel Items - " + polcore().itemcount);
+
+	return;
 endprogram

@@ -72882,7 +72882,7 @@ Item
 
 Item
 {
-	Serial	0x6ae10ed8
+	Serial	0x6ae11bf2
 	ObjType	0x170d
 	Graphic	0x170d
 	Color	0x450
@@ -72893,14 +72893,14 @@ Item
 	Realm	britannia
 	Layer	3
 	Container	0x1a1e7b
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	20
 }
 
 Item
 {
-	Serial	0x6ae10ed6
+	Serial	0x6ae11bf0
 	ObjType	0x1517
 	Graphic	0x1517
 	Color	0x450
@@ -72911,14 +72911,14 @@ Item
 	Realm	britannia
 	Layer	5
 	Container	0x1a1e7b
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	20
 }
 
 Item
 {
-	Serial	0x6ae10ed9
+	Serial	0x6ae11bf3
 	ObjType	0x1515
 	Graphic	0x1515
 	Color	0x450
@@ -72929,14 +72929,14 @@ Item
 	Realm	britannia
 	Layer	20
 	Container	0x1a1e7b
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	20
 }
 
 Item
 {
-	Serial	0x6ae10ed7
+	Serial	0x6ae11bf1
 	ObjType	0x1516
 	Graphic	0x1516
 	Color	0x450
@@ -72947,14 +72947,14 @@ Item
 	Realm	britannia
 	Layer	23
 	Container	0x1a1e7b
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	20
 }
 
 Item
 {
-	Serial	0x6ae10edd
+	Serial	0x6ae11bf7
 	ObjType	0xf5e
 	Graphic	0xf5e
 	X	1
@@ -72964,7 +72964,7 @@ Item
 	Realm	britannia
 	Layer	1
 	Container	0x1a1e7c
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	65
 	HitScript	mainHitScript
@@ -72972,7 +72972,7 @@ Item
 
 Item
 {
-	Serial	0x6ae10ee5
+	Serial	0x6ae11bff
 	ObjType	0x1b76
 	Graphic	0x1b76
 	X	1
@@ -72982,14 +72982,14 @@ Item
 	Realm	britannia
 	Layer	2
 	Container	0x1a1e7c
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	35
 }
 
 Item
 {
-	Serial	0x6ae10edc
+	Serial	0x6ae11bf6
 	ObjType	0x1711
 	Graphic	0x1711
 	X	1
@@ -72999,14 +72999,14 @@ Item
 	Realm	britannia
 	Layer	3
 	Container	0x1a1e7c
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	50
 }
 
 Item
 {
-	Serial	0x6ae10ee2
+	Serial	0x6ae11bfc
 	ObjType	0x13be
 	Graphic	0x13be
 	X	1
@@ -73016,14 +73016,14 @@ Item
 	Realm	britannia
 	Layer	4
 	Container	0x1a1e7c
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	55
 }
 
 Item
 {
-	Serial	0x6ae10edf
+	Serial	0x6ae11bf9
 	ObjType	0x13bb
 	Graphic	0x13bb
 	X	1
@@ -73033,14 +73033,14 @@ Item
 	Realm	britannia
 	Layer	6
 	Container	0x1a1e7c
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	40
 }
 
 Item
 {
-	Serial	0x6ae10ee3
+	Serial	0x6ae11bfd
 	ObjType	0x1414
 	Graphic	0x1414
 	X	1
@@ -73050,14 +73050,14 @@ Item
 	Realm	britannia
 	Layer	7
 	Container	0x1a1e7c
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	60
 }
 
 Item
 {
-	Serial	0x6ae10ee4
+	Serial	0x6ae11bfe
 	ObjType	0x1413
 	Graphic	0x1413
 	X	1
@@ -73067,14 +73067,14 @@ Item
 	Realm	britannia
 	Layer	10
 	Container	0x1a1e7c
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	60
 }
 
 Item
 {
-	Serial	0x6ae10ee0
+	Serial	0x6ae11bfa
 	ObjType	0x13bf
 	Graphic	0x13bf
 	X	1
@@ -73084,14 +73084,14 @@ Item
 	Realm	britannia
 	Layer	13
 	Container	0x1a1e7c
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	53
 }
 
 Item
 {
-	Serial	0x6ae10ee1
+	Serial	0x6ae11bfb
 	ObjType	0x1410
 	Graphic	0x1410
 	X	1
@@ -73101,14 +73101,14 @@ Item
 	Realm	britannia
 	Layer	19
 	Container	0x1a1e7c
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	60
 }
 
 Item
 {
-	Serial	0x6ae10ee9
+	Serial	0x6ae11c03
 	ObjType	0x170d
 	Graphic	0x170d
 	Color	0x21f
@@ -73119,14 +73119,14 @@ Item
 	Realm	britannia
 	Layer	3
 	Container	0x1a1e7d
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	20
 }
 
 Item
 {
-	Serial	0x6ae10ee8
+	Serial	0x6ae11c02
 	ObjType	0x153a
 	Graphic	0x153a
 	Color	0x21f
@@ -73137,14 +73137,14 @@ Item
 	Realm	britannia
 	Layer	4
 	Container	0x1a1e7d
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	20
 }
 
 Item
 {
-	Serial	0x6ae10ee7
+	Serial	0x6ae11c01
 	ObjType	0x1efd
 	Graphic	0x1efd
 	Color	0x21f
@@ -73155,14 +73155,14 @@ Item
 	Realm	britannia
 	Layer	5
 	Container	0x1a1e7d
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	20
 }
 
 Item
 {
-	Serial	0x6ae10eed
+	Serial	0x6ae11c07
 	ObjType	0x1440
 	Graphic	0x1440
 	X	1
@@ -73172,7 +73172,7 @@ Item
 	Realm	britannia
 	Layer	1
 	Container	0x1a1e7e
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	55
 	HitScript	mainHitScript
@@ -73180,7 +73180,7 @@ Item
 
 Item
 {
-	Serial	0x6ae10ef5
+	Serial	0x6ae11c0f
 	ObjType	0x1b72
 	Graphic	0x1b72
 	X	1
@@ -73190,14 +73190,14 @@ Item
 	Realm	britannia
 	Layer	2
 	Container	0x1a1e7e
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	28
 }
 
 Item
 {
-	Serial	0x6ae10eec
+	Serial	0x6ae11c06
 	ObjType	0x170b
 	Graphic	0x170b
 	X	1
@@ -73207,14 +73207,14 @@ Item
 	Realm	britannia
 	Layer	3
 	Container	0x1a1e7e
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	50
 }
 
 Item
 {
-	Serial	0x6ae10ef2
+	Serial	0x6ae11c0c
 	ObjType	0x13be
 	Graphic	0x13be
 	X	1
@@ -73224,14 +73224,14 @@ Item
 	Realm	britannia
 	Layer	4
 	Container	0x1a1e7e
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	55
 }
 
 Item
 {
-	Serial	0x6ae10eef
+	Serial	0x6ae11c09
 	ObjType	0x13bb
 	Graphic	0x13bb
 	X	1
@@ -73241,14 +73241,14 @@ Item
 	Realm	britannia
 	Layer	6
 	Container	0x1a1e7e
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	40
 }
 
 Item
 {
-	Serial	0x6ae10ef3
+	Serial	0x6ae11c0d
 	ObjType	0x1414
 	Graphic	0x1414
 	X	1
@@ -73258,14 +73258,14 @@ Item
 	Realm	britannia
 	Layer	7
 	Container	0x1a1e7e
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	60
 }
 
 Item
 {
-	Serial	0x6ae10ef4
+	Serial	0x6ae11c0e
 	ObjType	0x1413
 	Graphic	0x1413
 	X	1
@@ -73275,14 +73275,14 @@ Item
 	Realm	britannia
 	Layer	10
 	Container	0x1a1e7e
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	60
 }
 
 Item
 {
-	Serial	0x6ae10ef0
+	Serial	0x6ae11c0a
 	ObjType	0x13bf
 	Graphic	0x13bf
 	X	1
@@ -73292,14 +73292,14 @@ Item
 	Realm	britannia
 	Layer	13
 	Container	0x1a1e7e
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	53
 }
 
 Item
 {
-	Serial	0x6ae10ef1
+	Serial	0x6ae11c0b
 	ObjType	0x1410
 	Graphic	0x1410
 	X	1
@@ -73309,14 +73309,14 @@ Item
 	Realm	britannia
 	Layer	19
 	Container	0x1a1e7e
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	60
 }
 
 Item
 {
-	Serial	0x6ae10ef8
+	Serial	0x6ae11c12
 	ObjType	0x1401
 	Graphic	0x1401
 	X	1
@@ -73326,7 +73326,7 @@ Item
 	Realm	britannia
 	Layer	1
 	Container	0x1a1e7f
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	60
 	HitScript	mainHitScript
@@ -73334,7 +73334,7 @@ Item
 
 Item
 {
-	Serial	0x6ae10eff
+	Serial	0x6ae11c19
 	ObjType	0x1b78
 	Graphic	0x1b78
 	X	1
@@ -73344,14 +73344,14 @@ Item
 	Realm	britannia
 	Layer	2
 	Container	0x1a1e7f
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	55
 }
 
 Item
 {
-	Serial	0x6ae10ef7
+	Serial	0x6ae11c11
 	ObjType	0x170b
 	Graphic	0x170b
 	X	1
@@ -73361,14 +73361,14 @@ Item
 	Realm	britannia
 	Layer	3
 	Container	0x1a1e7f
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	50
 }
 
 Item
 {
-	Serial	0x6ae10efc
+	Serial	0x6ae11c16
 	ObjType	0x13f0
 	Graphic	0x13f0
 	X	1
@@ -73378,14 +73378,14 @@ Item
 	Realm	britannia
 	Layer	4
 	Container	0x1a1e7f
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	45
 }
 
 Item
 {
-	Serial	0x6ae10ef9
+	Serial	0x6ae11c13
 	ObjType	0x1db9
 	Graphic	0x1db9
 	X	1
@@ -73395,14 +73395,14 @@ Item
 	Realm	britannia
 	Layer	6
 	Container	0x1a1e7f
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	35
 }
 
 Item
 {
-	Serial	0x6ae10efd
+	Serial	0x6ae11c17
 	ObjType	0x13f2
 	Graphic	0x13f2
 	X	1
@@ -73412,14 +73412,14 @@ Item
 	Realm	britannia
 	Layer	7
 	Container	0x1a1e7f
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	45
 }
 
 Item
 {
-	Serial	0x6ae10efe
+	Serial	0x6ae11c18
 	ObjType	0x1413
 	Graphic	0x1413
 	X	1
@@ -73429,14 +73429,14 @@ Item
 	Realm	britannia
 	Layer	10
 	Container	0x1a1e7f
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	60
 }
 
 Item
 {
-	Serial	0x6ae10efa
+	Serial	0x6ae11c14
 	ObjType	0x13ec
 	Graphic	0x13ec
 	X	1
@@ -73446,14 +73446,14 @@ Item
 	Realm	britannia
 	Layer	13
 	Container	0x1a1e7f
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	45
 }
 
 Item
 {
-	Serial	0x6ae10efb
+	Serial	0x6ae11c15
 	ObjType	0x13ee
 	Graphic	0x13ee
 	X	1
@@ -73463,14 +73463,14 @@ Item
 	Realm	britannia
 	Layer	19
 	Container	0x1a1e7f
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	45
 }
 
 Item
 {
-	Serial	0x6ae10f02
+	Serial	0x6ae11c1c
 	ObjType	0xf5c
 	Graphic	0xf5c
 	X	1
@@ -73481,7 +73481,7 @@ Item
 	CProp	OnHit a1:S15::combat:maceHit
 	Layer	1
 	Container	0x1a1e80
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	50
 	HitScript	mainHitScript
@@ -73489,7 +73489,7 @@ Item
 
 Item
 {
-	Serial	0x6ae10f0b
+	Serial	0x6ae11c25
 	ObjType	0x1b78
 	Graphic	0x1b78
 	X	1
@@ -73499,14 +73499,14 @@ Item
 	Realm	britannia
 	Layer	2
 	Container	0x1a1e80
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	55
 }
 
 Item
 {
-	Serial	0x6ae10f01
+	Serial	0x6ae11c1b
 	ObjType	0x1711
 	Graphic	0x1711
 	X	1
@@ -73516,14 +73516,14 @@ Item
 	Realm	britannia
 	Layer	3
 	Container	0x1a1e80
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	50
 }
 
 Item
 {
-	Serial	0x6ae10f08
+	Serial	0x6ae11c22
 	ObjType	0x13f0
 	Graphic	0x13f0
 	X	1
@@ -73533,14 +73533,14 @@ Item
 	Realm	britannia
 	Layer	4
 	Container	0x1a1e80
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	45
 }
 
 Item
 {
-	Serial	0x6ae10f05
+	Serial	0x6ae11c1f
 	ObjType	0x1db9
 	Graphic	0x1db9
 	X	1
@@ -73550,14 +73550,14 @@ Item
 	Realm	britannia
 	Layer	6
 	Container	0x1a1e80
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	35
 }
 
 Item
 {
-	Serial	0x6ae10f09
+	Serial	0x6ae11c23
 	ObjType	0x13f2
 	Graphic	0x13f2
 	X	1
@@ -73567,14 +73567,14 @@ Item
 	Realm	britannia
 	Layer	7
 	Container	0x1a1e80
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	45
 }
 
 Item
 {
-	Serial	0x6ae10f0a
+	Serial	0x6ae11c24
 	ObjType	0x1413
 	Graphic	0x1413
 	X	1
@@ -73584,14 +73584,14 @@ Item
 	Realm	britannia
 	Layer	10
 	Container	0x1a1e80
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	60
 }
 
 Item
 {
-	Serial	0x6ae10f06
+	Serial	0x6ae11c20
 	ObjType	0x13ec
 	Graphic	0x13ec
 	X	1
@@ -73601,14 +73601,14 @@ Item
 	Realm	britannia
 	Layer	13
 	Container	0x1a1e80
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	45
 }
 
 Item
 {
-	Serial	0x6ae10f07
+	Serial	0x6ae11c21
 	ObjType	0x13ee
 	Graphic	0x13ee
 	X	1
@@ -73618,14 +73618,14 @@ Item
 	Realm	britannia
 	Layer	19
 	Container	0x1a1e80
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	45
 }
 
 Item
 {
-	Serial	0x6ae10f0d
+	Serial	0x6ae11c27
 	ObjType	0x1440
 	Graphic	0x1440
 	X	1
@@ -73635,7 +73635,7 @@ Item
 	Realm	britannia
 	Layer	1
 	Container	0x1a1e81
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	55
 	HitScript	mainHitScript
@@ -73643,7 +73643,7 @@ Item
 
 Item
 {
-	Serial	0x6ae10f18
+	Serial	0x6ae11c32
 	ObjType	0x1b74
 	Graphic	0x1b74
 	X	1
@@ -73653,14 +73653,14 @@ Item
 	Realm	britannia
 	Layer	2
 	Container	0x1a1e81
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	110
 }
 
 Item
 {
-	Serial	0x6ae10f15
+	Serial	0x6ae11c2f
 	ObjType	0x1411
 	Graphic	0x1411
 	X	1
@@ -73670,14 +73670,14 @@ Item
 	Realm	britannia
 	Layer	4
 	Container	0x1a1e81
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	60
 }
 
 Item
 {
-	Serial	0x6ae10f12
+	Serial	0x6ae11c2c
 	ObjType	0x1408
 	Graphic	0x1408
 	X	1
@@ -73687,14 +73687,14 @@ Item
 	Realm	britannia
 	Layer	6
 	Container	0x1a1e81
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	55
 }
 
 Item
 {
-	Serial	0x6ae10f16
+	Serial	0x6ae11c30
 	ObjType	0x1414
 	Graphic	0x1414
 	X	1
@@ -73704,14 +73704,14 @@ Item
 	Realm	britannia
 	Layer	7
 	Container	0x1a1e81
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	60
 }
 
 Item
 {
-	Serial	0x6ae10f17
+	Serial	0x6ae11c31
 	ObjType	0x1413
 	Graphic	0x1413
 	X	1
@@ -73721,14 +73721,14 @@ Item
 	Realm	britannia
 	Layer	10
 	Container	0x1a1e81
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	60
 }
 
 Item
 {
-	Serial	0x6ae10f13
+	Serial	0x6ae11c2d
 	ObjType	0x1415
 	Graphic	0x1415
 	X	1
@@ -73738,14 +73738,14 @@ Item
 	Realm	britannia
 	Layer	13
 	Container	0x1a1e81
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	60
 }
 
 Item
 {
-	Serial	0x6ae10f0f
+	Serial	0x6ae11c29
 	ObjType	0x1541
 	Graphic	0x1541
 	Color	0x34
@@ -73756,14 +73756,14 @@ Item
 	Realm	britannia
 	Layer	17
 	Container	0x1a1e81
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	20
 }
 
 Item
 {
-	Serial	0x6ae10f14
+	Serial	0x6ae11c2e
 	ObjType	0x1410
 	Graphic	0x1410
 	X	1
@@ -73773,14 +73773,14 @@ Item
 	Realm	britannia
 	Layer	19
 	Container	0x1a1e81
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	60
 }
 
 Item
 {
-	Serial	0x6ae10f0e
+	Serial	0x6ae11c28
 	ObjType	0x1515
 	Graphic	0x1515
 	Color	0x34
@@ -73791,14 +73791,14 @@ Item
 	Realm	britannia
 	Layer	20
 	Container	0x1a1e81
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	20
 }
 
 Item
 {
-	Serial	0x6ae10f1c
+	Serial	0x6ae11c36
 	ObjType	0x170d
 	Graphic	0x170d
 	Color	0x223
@@ -73809,14 +73809,14 @@ Item
 	Realm	britannia
 	Layer	3
 	Container	0x1a1e82
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	20
 }
 
 Item
 {
-	Serial	0x6ae10f1b
+	Serial	0x6ae11c35
 	ObjType	0x152e
 	Graphic	0x152e
 	Color	0x223
@@ -73827,14 +73827,14 @@ Item
 	Realm	britannia
 	Layer	4
 	Container	0x1a1e82
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	20
 }
 
 Item
 {
-	Serial	0x6ae10f1a
+	Serial	0x6ae11c34
 	ObjType	0x1517
 	Graphic	0x1517
 	Color	0x223
@@ -73845,14 +73845,14 @@ Item
 	Realm	britannia
 	Layer	5
 	Container	0x1a1e82
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	20
 }
 
 Item
 {
-	Serial	0x6ae10f20
+	Serial	0x6ae11c3a
 	ObjType	0xf60
 	Graphic	0xf60
 	X	1
@@ -73862,7 +73862,7 @@ Item
 	Realm	britannia
 	Layer	1
 	Container	0x1a1e83
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	60
 	HitScript	mainHitScript
@@ -73870,7 +73870,7 @@ Item
 
 Item
 {
-	Serial	0x6ae10f28
+	Serial	0x6ae11c42
 	ObjType	0x1b72
 	Graphic	0x1b72
 	X	1
@@ -73880,14 +73880,14 @@ Item
 	Realm	britannia
 	Layer	2
 	Container	0x1a1e83
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	28
 }
 
 Item
 {
-	Serial	0x6ae10f1f
+	Serial	0x6ae11c39
 	ObjType	0x170b
 	Graphic	0x170b
 	X	1
@@ -73897,14 +73897,14 @@ Item
 	Realm	britannia
 	Layer	3
 	Container	0x1a1e83
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	50
 }
 
 Item
 {
-	Serial	0x6ae10f25
+	Serial	0x6ae11c3f
 	ObjType	0x13be
 	Graphic	0x13be
 	X	1
@@ -73914,14 +73914,14 @@ Item
 	Realm	britannia
 	Layer	4
 	Container	0x1a1e83
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	55
 }
 
 Item
 {
-	Serial	0x6ae10f22
+	Serial	0x6ae11c3c
 	ObjType	0x13bb
 	Graphic	0x13bb
 	X	1
@@ -73931,14 +73931,14 @@ Item
 	Realm	britannia
 	Layer	6
 	Container	0x1a1e83
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	40
 }
 
 Item
 {
-	Serial	0x6ae10f26
+	Serial	0x6ae11c40
 	ObjType	0x1414
 	Graphic	0x1414
 	X	1
@@ -73948,14 +73948,14 @@ Item
 	Realm	britannia
 	Layer	7
 	Container	0x1a1e83
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	60
 }
 
 Item
 {
-	Serial	0x6ae10f27
+	Serial	0x6ae11c41
 	ObjType	0x1413
 	Graphic	0x1413
 	X	1
@@ -73965,14 +73965,14 @@ Item
 	Realm	britannia
 	Layer	10
 	Container	0x1a1e83
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	60
 }
 
 Item
 {
-	Serial	0x6ae10f23
+	Serial	0x6ae11c3d
 	ObjType	0x13bf
 	Graphic	0x13bf
 	X	1
@@ -73982,14 +73982,14 @@ Item
 	Realm	britannia
 	Layer	13
 	Container	0x1a1e83
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	53
 }
 
 Item
 {
-	Serial	0x6ae10f24
+	Serial	0x6ae11c3e
 	ObjType	0x1410
 	Graphic	0x1410
 	X	1
@@ -73999,14 +73999,14 @@ Item
 	Realm	britannia
 	Layer	19
 	Container	0x1a1e83
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	60
 }
 
 Item
 {
-	Serial	0x6ae10f2a
+	Serial	0x6ae11c44
 	ObjType	0x13fe
 	Graphic	0x13fe
 	X	1
@@ -74016,7 +74016,7 @@ Item
 	Realm	britannia
 	Layer	1
 	Container	0x1a1e84
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	60
 	HitScript	mainHitScript
@@ -74024,7 +74024,7 @@ Item
 
 Item
 {
-	Serial	0x6ae10f34
+	Serial	0x6ae11c4e
 	ObjType	0x1b74
 	Graphic	0x1b74
 	X	1
@@ -74034,14 +74034,14 @@ Item
 	Realm	britannia
 	Layer	2
 	Container	0x1a1e84
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	110
 }
 
 Item
 {
-	Serial	0x6ae10f31
+	Serial	0x6ae11c4b
 	ObjType	0x1411
 	Graphic	0x1411
 	X	1
@@ -74051,14 +74051,14 @@ Item
 	Realm	britannia
 	Layer	4
 	Container	0x1a1e84
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	60
 }
 
 Item
 {
-	Serial	0x6ae10f2e
+	Serial	0x6ae11c48
 	ObjType	0x1408
 	Graphic	0x1408
 	X	1
@@ -74068,14 +74068,14 @@ Item
 	Realm	britannia
 	Layer	6
 	Container	0x1a1e84
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	55
 }
 
 Item
 {
-	Serial	0x6ae10f32
+	Serial	0x6ae11c4c
 	ObjType	0x1414
 	Graphic	0x1414
 	X	1
@@ -74085,14 +74085,14 @@ Item
 	Realm	britannia
 	Layer	7
 	Container	0x1a1e84
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	60
 }
 
 Item
 {
-	Serial	0x6ae10f33
+	Serial	0x6ae11c4d
 	ObjType	0x1413
 	Graphic	0x1413
 	X	1
@@ -74102,14 +74102,14 @@ Item
 	Realm	britannia
 	Layer	10
 	Container	0x1a1e84
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	60
 }
 
 Item
 {
-	Serial	0x6ae10f2f
+	Serial	0x6ae11c49
 	ObjType	0x1c0c
 	Graphic	0x1c0c
 	X	1
@@ -74119,14 +74119,14 @@ Item
 	Realm	britannia
 	Layer	13
 	Container	0x1a1e84
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	110
 }
 
 Item
 {
-	Serial	0x6ae10f2c
+	Serial	0x6ae11c46
 	ObjType	0x1541
 	Graphic	0x1541
 	Color	0x22e
@@ -74137,14 +74137,14 @@ Item
 	Realm	britannia
 	Layer	17
 	Container	0x1a1e84
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	20
 }
 
 Item
 {
-	Serial	0x6ae10f30
+	Serial	0x6ae11c4a
 	ObjType	0x1410
 	Graphic	0x1410
 	X	1
@@ -74154,14 +74154,14 @@ Item
 	Realm	britannia
 	Layer	19
 	Container	0x1a1e84
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	60
 }
 
 Item
 {
-	Serial	0x6ae10f2b
+	Serial	0x6ae11c45
 	ObjType	0x1515
 	Graphic	0x1515
 	Color	0x22e
@@ -74172,14 +74172,14 @@ Item
 	Realm	britannia
 	Layer	20
 	Container	0x1a1e84
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	20
 }
 
 Item
 {
-	Serial	0x6ae10f36
+	Serial	0x6ae11c50
 	ObjType	0xefa
 	Graphic	0xefa
 	X	1
@@ -74189,7 +74189,7 @@ Item
 	Realm	britannia
 	Layer	1
 	Container	0x1a1e85
-	DecayAt	25185789
+	DecayAt	25187485
 	Spellbits0	0
 	Spellbits1	0
 	Spellbits2	0
@@ -74202,7 +74202,7 @@ Item
 
 Item
 {
-	Serial	0x6ae10f38
+	Serial	0x6ae11c52
 	ObjType	0x170f
 	Graphic	0x170f
 	Color	0x7
@@ -74213,14 +74213,14 @@ Item
 	Realm	britannia
 	Layer	3
 	Container	0x1a1e85
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	20
 }
 
 Item
 {
-	Serial	0x6ae10f37
+	Serial	0x6ae11c51
 	ObjType	0x1f03
 	Graphic	0x1f03
 	Color	0x7
@@ -74231,14 +74231,14 @@ Item
 	Realm	britannia
 	Layer	22
 	Container	0x1a1e85
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	10
 }
 
 Item
 {
-	Serial	0x6ae10f3d
+	Serial	0x6ae11c57
 	ObjType	0xf5e
 	Graphic	0xf5e
 	X	1
@@ -74248,7 +74248,7 @@ Item
 	Realm	britannia
 	Layer	1
 	Container	0x1a1e86
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	65
 	HitScript	mainHitScript
@@ -74256,7 +74256,7 @@ Item
 
 Item
 {
-	Serial	0x6ae10f45
+	Serial	0x6ae11c5f
 	ObjType	0x1b72
 	Graphic	0x1b72
 	X	1
@@ -74266,14 +74266,14 @@ Item
 	Realm	britannia
 	Layer	2
 	Container	0x1a1e86
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	28
 }
 
 Item
 {
-	Serial	0x6ae10f3c
+	Serial	0x6ae11c56
 	ObjType	0x170b
 	Graphic	0x170b
 	X	1
@@ -74283,14 +74283,14 @@ Item
 	Realm	britannia
 	Layer	3
 	Container	0x1a1e86
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	50
 }
 
 Item
 {
-	Serial	0x6ae10f42
+	Serial	0x6ae11c5c
 	ObjType	0x13cb
 	Graphic	0x13cb
 	X	1
@@ -74300,14 +74300,14 @@ Item
 	Realm	britannia
 	Layer	4
 	Container	0x1a1e86
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	35
 }
 
 Item
 {
-	Serial	0x6ae10f43
+	Serial	0x6ae11c5d
 	ObjType	0x13c6
 	Graphic	0x13c6
 	X	1
@@ -74317,14 +74317,14 @@ Item
 	Realm	britannia
 	Layer	7
 	Container	0x1a1e86
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	35
 }
 
 Item
 {
-	Serial	0x6ae10f40
+	Serial	0x6ae11c5a
 	ObjType	0x13c7
 	Graphic	0x13c7
 	X	1
@@ -74334,14 +74334,14 @@ Item
 	Realm	britannia
 	Layer	10
 	Container	0x1a1e86
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	35
 }
 
 Item
 {
-	Serial	0x6ae10f3f
+	Serial	0x6ae11c59
 	ObjType	0x13cc
 	Graphic	0x13cc
 	X	1
@@ -74351,14 +74351,14 @@ Item
 	Realm	britannia
 	Layer	13
 	Container	0x1a1e86
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	35
 }
 
 Item
 {
-	Serial	0x6ae10f41
+	Serial	0x6ae11c5b
 	ObjType	0x13cd
 	Graphic	0x13cd
 	X	1
@@ -74368,14 +74368,14 @@ Item
 	Realm	britannia
 	Layer	19
 	Container	0x1a1e86
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	35
 }
 
 Item
 {
-	Serial	0x6ae10f44
+	Serial	0x6ae11c5e
 	ObjType	0x13c7
 	Graphic	0x13c7
 	X	76
@@ -74384,8 +74384,8 @@ Item
 	Revision	1
 	Realm	britannia
 	Layer	10
-	Container	0x6ae10f3b
-	DecayAt	25185789
+	Container	0x6ae11c55
+	DecayAt	25187485
 	Quality	1
 	HP	35
 }
@@ -74648,7 +74648,7 @@ Item
 
 Item
 {
-	Serial	0x6ae10f48
+	Serial	0x6ae11c62
 	ObjType	0xf5e
 	Graphic	0xf5e
 	X	1
@@ -74658,7 +74658,7 @@ Item
 	Realm	britannia
 	Layer	1
 	Container	0x1a1eee
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	65
 	HitScript	mainHitScript
@@ -74666,7 +74666,7 @@ Item
 
 Item
 {
-	Serial	0x6ae10f51
+	Serial	0x6ae11c6b
 	ObjType	0x1b72
 	Graphic	0x1b72
 	X	1
@@ -74676,14 +74676,14 @@ Item
 	Realm	britannia
 	Layer	2
 	Container	0x1a1eee
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	28
 }
 
 Item
 {
-	Serial	0x6ae10f47
+	Serial	0x6ae11c61
 	ObjType	0x170b
 	Graphic	0x170b
 	X	1
@@ -74693,14 +74693,14 @@ Item
 	Realm	britannia
 	Layer	3
 	Container	0x1a1eee
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	50
 }
 
 Item
 {
-	Serial	0x6ae10f4e
+	Serial	0x6ae11c68
 	ObjType	0x13cb
 	Graphic	0x13cb
 	X	1
@@ -74710,14 +74710,14 @@ Item
 	Realm	britannia
 	Layer	4
 	Container	0x1a1eee
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	35
 }
 
 Item
 {
-	Serial	0x6ae10f4f
+	Serial	0x6ae11c69
 	ObjType	0x13c6
 	Graphic	0x13c6
 	X	1
@@ -74727,14 +74727,14 @@ Item
 	Realm	britannia
 	Layer	7
 	Container	0x1a1eee
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	35
 }
 
 Item
 {
-	Serial	0x6ae10f4c
+	Serial	0x6ae11c66
 	ObjType	0x13c7
 	Graphic	0x13c7
 	X	1
@@ -74744,14 +74744,14 @@ Item
 	Realm	britannia
 	Layer	10
 	Container	0x1a1eee
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	35
 }
 
 Item
 {
-	Serial	0x6ae10f4b
+	Serial	0x6ae11c65
 	ObjType	0x13cc
 	Graphic	0x13cc
 	X	1
@@ -74761,14 +74761,14 @@ Item
 	Realm	britannia
 	Layer	13
 	Container	0x1a1eee
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	35
 }
 
 Item
 {
-	Serial	0x6ae10f4d
+	Serial	0x6ae11c67
 	ObjType	0x13cd
 	Graphic	0x13cd
 	X	1
@@ -74778,14 +74778,14 @@ Item
 	Realm	britannia
 	Layer	19
 	Container	0x1a1eee
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	35
 }
 
 Item
 {
-	Serial	0x6ae10f50
+	Serial	0x6ae11c6a
 	ObjType	0x13c7
 	Graphic	0x13c7
 	X	123
@@ -74794,15 +74794,15 @@ Item
 	Revision	1
 	Realm	britannia
 	Layer	10
-	Container	0x6ae10f46
-	DecayAt	25185789
+	Container	0x6ae11c60
+	DecayAt	25187485
 	Quality	1
 	HP	35
 }
 
 Item
 {
-	Serial	0x6ae10f54
+	Serial	0x6ae11c6e
 	ObjType	0x13b5
 	Graphic	0x13b5
 	X	1
@@ -74812,7 +74812,7 @@ Item
 	Realm	britannia
 	Layer	1
 	Container	0x1a1eef
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	50
 	HitScript	mainHitScript
@@ -74820,7 +74820,7 @@ Item
 
 Item
 {
-	Serial	0x6ae10f5b
+	Serial	0x6ae11c75
 	ObjType	0x1b78
 	Graphic	0x1b78
 	X	1
@@ -74830,14 +74830,14 @@ Item
 	Realm	britannia
 	Layer	2
 	Container	0x1a1eef
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	55
 }
 
 Item
 {
-	Serial	0x6ae10f53
+	Serial	0x6ae11c6d
 	ObjType	0x1711
 	Graphic	0x1711
 	X	1
@@ -74847,14 +74847,14 @@ Item
 	Realm	britannia
 	Layer	3
 	Container	0x1a1eef
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	50
 }
 
 Item
 {
-	Serial	0x6ae10f58
+	Serial	0x6ae11c72
 	ObjType	0x13f0
 	Graphic	0x13f0
 	X	1
@@ -74864,14 +74864,14 @@ Item
 	Realm	britannia
 	Layer	4
 	Container	0x1a1eef
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	45
 }
 
 Item
 {
-	Serial	0x6ae10f55
+	Serial	0x6ae11c6f
 	ObjType	0x1db9
 	Graphic	0x1db9
 	X	1
@@ -74881,14 +74881,14 @@ Item
 	Realm	britannia
 	Layer	6
 	Container	0x1a1eef
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	35
 }
 
 Item
 {
-	Serial	0x6ae10f59
+	Serial	0x6ae11c73
 	ObjType	0x13f2
 	Graphic	0x13f2
 	X	1
@@ -74898,14 +74898,14 @@ Item
 	Realm	britannia
 	Layer	7
 	Container	0x1a1eef
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	45
 }
 
 Item
 {
-	Serial	0x6ae10f5a
+	Serial	0x6ae11c74
 	ObjType	0x1413
 	Graphic	0x1413
 	X	1
@@ -74915,14 +74915,14 @@ Item
 	Realm	britannia
 	Layer	10
 	Container	0x1a1eef
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	60
 }
 
 Item
 {
-	Serial	0x6ae10f56
+	Serial	0x6ae11c70
 	ObjType	0x13ec
 	Graphic	0x13ec
 	X	1
@@ -74932,14 +74932,14 @@ Item
 	Realm	britannia
 	Layer	13
 	Container	0x1a1eef
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	45
 }
 
 Item
 {
-	Serial	0x6ae10f57
+	Serial	0x6ae11c71
 	ObjType	0x13ee
 	Graphic	0x13ee
 	X	1
@@ -74949,7 +74949,7 @@ Item
 	Realm	britannia
 	Layer	19
 	Container	0x1a1eef
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	45
 }
@@ -75746,7 +75746,7 @@ Item
 
 Item
 {
-	Serial	0x6ae10f5f
+	Serial	0x6ae11c79
 	ObjType	0x170f
 	Graphic	0x170f
 	Color	0x450
@@ -75757,14 +75757,14 @@ Item
 	Realm	britannia
 	Layer	3
 	Container	0x1a1f23
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	20
 }
 
 Item
 {
-	Serial	0x6ae10f5d
+	Serial	0x6ae11c77
 	ObjType	0x1efd
 	Graphic	0x1efd
 	Color	0x450
@@ -75775,14 +75775,14 @@ Item
 	Realm	britannia
 	Layer	5
 	Container	0x1a1f23
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	20
 }
 
 Item
 {
-	Serial	0x6ae10f5e
+	Serial	0x6ae11c78
 	ObjType	0x1516
 	Graphic	0x1516
 	Color	0x450
@@ -75793,14 +75793,14 @@ Item
 	Realm	britannia
 	Layer	23
 	Container	0x1a1f23
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	20
 }
 
 Item
 {
-	Serial	0x6ae10f62
+	Serial	0x6ae11c7c
 	ObjType	0xefa
 	Graphic	0xefa
 	X	1
@@ -75810,7 +75810,7 @@ Item
 	Realm	britannia
 	Layer	1
 	Container	0x1a1f24
-	DecayAt	25185789
+	DecayAt	25187485
 	Spellbits0	0
 	Spellbits1	0
 	Spellbits2	0
@@ -75823,7 +75823,7 @@ Item
 
 Item
 {
-	Serial	0x6ae10f64
+	Serial	0x6ae11c7e
 	ObjType	0x1711
 	Graphic	0x1711
 	Color	0x242
@@ -75834,14 +75834,14 @@ Item
 	Realm	britannia
 	Layer	3
 	Container	0x1a1f24
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	50
 }
 
 Item
 {
-	Serial	0x6ae10f63
+	Serial	0x6ae11c7d
 	ObjType	0x1f03
 	Graphic	0x1f03
 	Color	0x242
@@ -75852,14 +75852,14 @@ Item
 	Realm	britannia
 	Layer	22
 	Container	0x1a1f24
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	10
 }
 
 Item
 {
-	Serial	0x6ae10f69
+	Serial	0x6ae11c83
 	ObjType	0x170d
 	Graphic	0x170d
 	Color	0x223
@@ -75870,14 +75870,14 @@ Item
 	Realm	britannia
 	Layer	3
 	Container	0x1a1f25
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	20
 }
 
 Item
 {
-	Serial	0x6ae10f68
+	Serial	0x6ae11c82
 	ObjType	0x153a
 	Graphic	0x153a
 	Color	0x223
@@ -75888,14 +75888,14 @@ Item
 	Realm	britannia
 	Layer	4
 	Container	0x1a1f25
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	20
 }
 
 Item
 {
-	Serial	0x6ae10f67
+	Serial	0x6ae11c81
 	ObjType	0x1517
 	Graphic	0x1517
 	Color	0x223
@@ -75906,7 +75906,7 @@ Item
 	Realm	britannia
 	Layer	5
 	Container	0x1a1f25
-	DecayAt	25185789
+	DecayAt	25187485
 	Quality	1
 	HP	20
 }
