@@ -1,17 +1,89 @@
-/* Current Version
- * GUMPS.INC - v0.3
- * include ":gumps:include/gumps";
- *
- */
 use uo;
 use os;
 use basic;
 
+/*===============================================================
+* Current Version
+* GUMPS.INC - v0.3
+* include ":gumps:includes/gumps";
+*
+* -- Revision v0.3 --
+* Austin
+*  Added:
+*      Support for setting arbitrary data locations for GFTextEntry()
+*
+* -- Revision v0.2 --
+* Austin
+*  Added:
+*	Support for setting arbitrary button ID's and automatic assignments.
+*	Ability to change a gumps 'NoMove' 'NoClose' 'NoDispose' settings multiple times.
+*	XGFError()
+*  Changed:
+*	Function names and prototypes to better match the old gumps.inc for faster migration time.
+*	Rewrote various functions for improved error checking and utility. Will document better later
+	on as a lot of code was changed (Sorry, Melanius!)
+*
+* -- Revision v0.1 --
+* Melanius
+*  First version created to handle gumps as an object rather than as a global variable.
+*  This new include now allows multiple gumps to be handled in a single script as well
+*  as allowing easier saving of them.
+*  Added:
+*	AddCheckBox()
+*	AddGumpButton()
+*	AddGumpPic()
+*	AddHTML()
+*	AddHTMLLocalized()
+*	AddLabel()
+*	AddLabelCropped()
+*	AddPage()
+*	AddRadioButton()
+*	AddRadioGroup()
+*	AddTextInput()
+*	AddTilePic()
+*	CreateGump()
+*	Disposable()
+*	Movable()
+*	ResizePic()
+*	SendGump()
+*
+===============================================================*/
+
+/////////////////////////////////////////////////////////////////
+// * Function List *
+//
+// GFAddButton(byref gump, x, y, off_id, on_id, btn_type:=GF_PAGE_BTN, btn_value:=0)
+// GFAddHTMLLocalized(byref gump, x, y, width, height, cliloc, background, scrollbar, hue := 0)
+// GFCheckBox(byref gump, x, y, unc_id, che_id, status:=0, btn_value:=0)
+// GFCreateGump(x:=0, y:=0, width:=0, height:=0)
+// GFDisposable(byref gump, bool)
+// GFExtractData(input, data_id)
+// GFGumpPic(byref gump, x, y, gump_id, hue := 0)
+// GFHTMLArea(byref gump, x, y, width, height, text, background:=0, scrollbar:=0)
+// GFMovable(byref gump, bool)
+// GFPage(byref gump, page)
+// GFRadioButton(byref gump, x, y, unp_id, pres_id, status:=0, btn_value:=0)
+// GFResizePic(byref gump, x, y, gump_id, width:=0, height:=0)
+// GFSendGump(who, byref gump)
+// GFSetRadioGroup(byref gump, group_id)
+// GFTextCrop(byref gump, x, y, width, height, hue:=0, text:="")
+// GFTextEntry(byref gump, x, y, width, height, txt_color, ini_text:="")
+// GFTextLine(byref gump, x, y, hue:=0, text:="")
+// GFTilePic(byref gump, x, y, tile_id, hue := 0)
+//
+/////////////////////////////////////////////////////////////////
+// * Internal/Private Function List *
+//
+// XGFError(text)
+/////////////////////////////////////////////////////////////////
+// * Global Variables *
+//
 // Constants for the GFAddButton() function
 const GF_PAGE_BTN	:= 0x0;
 const GF_CLOSE_BTN	:= 0x1;
 const GF_DUMMY_BTN	:= 0x2;
-
+//
+/////////////////////////////////////////////////////////////////
 
 /*
  * GFCreateGump(x, y, width, height)

@@ -16,6 +16,4 @@ program PromptDemo(who)
 	else
 		SendSysMessage(who, "You selected 'NO'");
 	endif
-
-	return;
 endprogram

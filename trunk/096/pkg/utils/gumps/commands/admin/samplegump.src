@@ -4,8 +4,6 @@ use os;
 include ":gumps:include/gumps";
 include ":gumps:include/gumps_ex";
 
-unload_Scripts("");
-
 program GumpTest(who)
 	var temp := "";
 	var gump := GFCreateGump(0, 0, 640, 480);

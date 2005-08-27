@@ -1,3 +1,14 @@
+-=[ 4:55PM Jul. 07, 2005 (Austin)]=---------
+Changed:
+	* Renamed "configs" to "config"
+	* Renamed "includes" to "include"
+	  - Both for 096 distro standards. 
+	  - Include paths changed. Config paths changed.
+Added:
+	* New commands
+	  - resizepic.src
+	* More constants to GumpInfo.cfg
+
 -=[ 7:24AM Jun. 21, 2005 (Austin)]=---------
 Changed:
 	* GFSendGump()
