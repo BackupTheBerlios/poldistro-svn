@@ -15,11 +15,11 @@ ever shard seems to have its own unique directory structure. (Standardize!)
 If you're using the distro, my recommendation would be to put it over the existing
 control package which can be found under foundations (As of the .94 distro)
 
-You will need to have my datafile.inc as well. It can be found in the includes section
-of the POL Script Forum. It should go on your pol/scripts folder so that checkpackages.src
-can compile. It should be included with future distros.
+You will need to have my datafile package as well. It can be found in the includes section
+of the POL Script Forum. The datafile package is needed so that checkpackages.src
+can compile.
 
-You will also need to make sure you have the latest gump system. This requires gumps 1.2
+You will also need to make sure you have the latest gump system. This requires gumps 1.5
 by Melanius and myself.
 
 This new ICP system no longer uses the critical scripts. It instead uses a config
@@ -27,7 +27,7 @@ file called "icp.cfg" so if you have any of the older "ctrlReg.src" scripts you 
 remove them. 
 
 The ICP.cfg files belong in a folder called "configs" within the package.
-Example: X:/pol/pkg/control/configs/icp.cfg
+Example: X:/pol/pkg/control/config/icp.cfg
 
 The current format for an icp.cfg file is:
 

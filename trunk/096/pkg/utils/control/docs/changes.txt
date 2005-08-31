@@ -1,3 +1,12 @@
+-=[ 6:32PM Jul. 07, 2005 (Austin)]=---------
+Changed:
+	* Renamed folder 'configs' to 'config'
+	* Renamed folder 'includes' to 'include'
+	
+	* ICP will now look for icp.cfg in a package's 'config' folder
+	* Updated scripts to match folder name changes
+	* Updated scripts to use datafile.inc from its package
+
 -=[ 8:30PM Jul. 01, 2005 (Austin)]=---------
 
 Added:
