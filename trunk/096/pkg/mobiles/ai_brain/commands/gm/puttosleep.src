@@ -1,0 +1,16 @@
+//Example: .puttosleep -> Puts targetted NPC to sleep.
+use uo;
+use os;
+
+include ":ai_brain:include/NPC_Commands";
+
+program FixAI(who)
+	var targ := target(who);
+	
+	if ( targ.IsA(POLCLASS_NPC) )
+		AI_Sleep(targ);
+	else
+		SendSysMessage(who, "Cancelled.");
+		return 0;
+	endif
+endprogram

@@ -1,0 +1,8 @@
+use uo;
+
+program FixAI(who)
+	var targ := target(who);
+	var result := RestartScript(targ);
+	
+	SendSysMessage(who, "Result of RestartScript("+targ.name+") ->"+result);
+endprogram
