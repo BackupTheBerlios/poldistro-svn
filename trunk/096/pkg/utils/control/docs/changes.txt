@@ -1,3 +1,9 @@
+-=[ 3:22PM Aug. 29, 2005 (Austin)]=---------
+Changed:
+	* You can now do multiple "Description" entries in icp.cfg
+	  and they will be displayed as one long string. Use [P]
+	  to create a line break.
+
 -=[ 6:32PM Jul. 07, 2005 (Austin)]=---------
 Changed:
 	* Renamed folder 'configs' to 'config'
