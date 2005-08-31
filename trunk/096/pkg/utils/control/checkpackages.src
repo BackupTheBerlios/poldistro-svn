@@ -37,12 +37,18 @@ program CheckPackages()
 		if ( icp_cfg )
 			temp_info.+Name := GetCfgValue(icp_cfg, "Name");
 			temp_info.+Version := CDbl(GetCfgValue(icp_cfg, "Version"));
-			temp_info.+Description := GetCfgValue(icp_cfg, "Description");
 			temp_info.+Creator := GetCfgValue(icp_cfg, "Creator");
 			temp_info.+C_Email := GetCfgValue(icp_cfg, "C_Email");
 			temp_info.+Maintainer := GetCfgValue(icp_cfg, "Maintainer");
 			temp_info.+M_Email := GetCfgValue(icp_cfg, "M_Email");
-
+			
+			var description := "";
+			foreach line in  GetConfigStringArray(icp_cfg, "Description")
+				description := description + line + " ";
+				sleepms(2);
+			endforeach
+			temp_info.+Description := description;
+			
 			// Makes a list of scripts and text commands that will be on the gump.
 			var script_list := GetConfigStringArray(icp_cfg, "Script");
 			var cmd_list := GetConfigStringArray(icp_cfg, "TextCmd");
