@@ -474,15 +474,18 @@ endfunction
  * no_wake:	Optional wakeup flag:
  *		WAKEUP - Will stop the sleep script if it is running - Default.
  *		NOWAKE - Will not stop the sleep script if it is running.
+ * loop:	Number of times to attempt to wander.
+ *		Note: Loop can be interrupted and end prematurely!
  *
  * Return value
  * Result of SendEvent()
  *
  */
-function AI_Wander(mobile, no_wake:=WAKEUP)
+function AI_Wander(mobile, no_wake:=WAKEUP, loop:=0)
 	var ev		:= struct;
 	ev.+type	:= NPCEVENT_WANDER;
 	ev.+WakeUp	:= no_wake;
+	ev.+loop	:= CInt(loop);
 	ev.+process	:= GetProcess(GetPid());
 
 	return SendEvent(mobile, ev);
