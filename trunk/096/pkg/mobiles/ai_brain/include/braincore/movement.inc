@@ -1,7 +1,7 @@
 /*===============================================================
 * Current Version
 * MOVEMENT.INC - v1.0
-* Updated 8/30/2005 6:52AM
+* Updated 9/1/2005 6:42AM
 *
 * -- Revision v1.0 --
 * Austin:
@@ -110,6 +110,26 @@ function MovementXY(ev)
 	set_priority(old_pri);
 	
 	return 1;
+endfunction
+
+/*
+ * MovementWander(ev)
+ *
+ * Purpose
+ * Handles NPC wander movement for the brain.
+ *
+ * Parameters
+ * ev:	Strucuture containing event information.
+ *
+ * Return value
+ * Always returns 1
+ *
+ */
+function MovementWander(ev)
+	repeat
+		Wander();
+		sleepms(3);
+	until ( !MoveLoopCheck(ev) );
 endfunction
 
 /*

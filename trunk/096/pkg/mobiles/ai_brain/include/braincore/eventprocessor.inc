@@ -12,9 +12,10 @@ function ProcessEvent(byref ev)
 	var old_priority := set_priority(25);
 	
 	case( ev.type )
-		//Check movement first, since its the event
-		//that seems to be sent most often.
-
+		//
+		// *Check movement first, since its the event that seems to be sent most often.
+		//
+		
 		// Move NPC
 		// .source	: From/To whom/what?
 		// .speed	: Walk/Run
@@ -22,7 +23,8 @@ function ProcessEvent(byref ev)
 		// .loop	: Number of times to attempt to loop the movement.
 		NPCEVENT_MOVE:
 			Movement(ev);
-		
+			break;
+			
 		// Instructs the npc to walk toward an XY coordinate.
 		// .x and .y	: From/To  coordinates
 		// .speed	: Walk/Run
@@ -30,8 +32,15 @@ function ProcessEvent(byref ev)
 		// .loop	: Number of times to attempt to loop the movement.
 		NPCEVENT_MOVE_XY:
 			MovementXY(ev);
-		
-		// Triggered when a mobile enter's the npcs "reaction_range".
+			break;
+			
+		// Wander somewhere
+		// .loop	: Number of times to attept to wander.
+		NPCEVENT_WANDER:
+	   		MovementWander();
+	   		break;
+			
+		// Triggered when a mobile enter's the npcs 'area size'.
 		// .source	: What entered the area
 		SYSEVENT_ENTEREDAREA:
 			if ( g_settings.exists("enter_react_script") )
@@ -42,8 +51,13 @@ function ProcessEvent(byref ev)
 					process.SendEvent(ev);
 				endif
 			endif
-		
-		// Triggered when a mobile leaves the npc's "leave_react_range".
+			break;
+			
+		//
+		// * Check System Events that the core sends.
+		//
+			
+		// Triggered when a mobile leaves the npc's 'area size'.
 		// .source	: What left the area
 		SYSEVENT_LEFTAREA:
 			if ( g_settings.exists("leave_react_script") )
@@ -54,7 +68,8 @@ function ProcessEvent(byref ev)
 					process.SendEvent(ev);
 				endif
 			endif
-		
+			break;
+			
 		// Sent when something targets the npc to begin combat or
 		// when something has damaged the npc.
 		// .source	: What caused the damage or engaged the npc
@@ -72,7 +87,8 @@ function ProcessEvent(byref ev)
 					endif
 				endif
 			endif
-		
+			break;
+			
 		// Instructs the npc to run its disengage nerve.
 		// When something attacking it goes out of warmode, this is run.
 		// .source	: What was targetting this npc but has now left combat mode.
@@ -85,12 +101,12 @@ function ProcessEvent(byref ev)
 					process.SendEvent(ev);
 				endif
 			endif
-		
+			break;
+			
 		// When speech is made by a player, this nerve is used.
 		// Note: The NPC function Say() doesnt yet pass around the speech event.
 		// .source	: Where the speech originated.
 		// .text	: The actual speech
-		// extra 095 stuff
 		// .uc_text	: a "Unicode array" of 2-byte "Big Endian" integers.
 		// .langcode	: a 3-character, uppercase language code.
 		// .texttype	: "yell", "whisper", "emote", "default".
@@ -103,7 +119,8 @@ function ProcessEvent(byref ev)
 					process.SendEvent(ev);
 				endif
 			endif
-		
+			break;
+			
 		// Instructs the npc to run its double click script.
 		// Run when the npc is double clicked by a player.
 		// .source	: What sent the double click
@@ -118,6 +135,7 @@ function ProcessEvent(byref ev)
 					endif
 				endif
 			endif
+			break;
 			
 		// The NPC is a merchant, and has sold or purchased something.
 		// Both sold and bought events are sent to this same nerve.
@@ -138,7 +156,8 @@ function ProcessEvent(byref ev)
 					process.SendEvent(ev);
 				endif
 			endif
-		
+			break;
+			
 		// Someone has dragged an item onto the npc.
 		// .source	: What dragged the item over the npc.
 		// .item	: The item being given to the npc.
@@ -151,6 +170,11 @@ function ProcessEvent(byref ev)
 					process.SendEvent(ev);
 				endif
 			endif
+			break;
+			
+		//
+		// * Check custom events
+		//
 				
 		// Instructs the npc to run its flee script.
 		// .source	: What to flee from.
@@ -163,24 +187,13 @@ function ProcessEvent(byref ev)
 					process.SendEvent(ev);
 				endif
 			endif
-			
-		// The npc has killed its opponent and
-		// the combat script has sent the winfight event
-		// .source	: Defeated foe!
-		NPCEVENT_WINFIGHT:
-			if ( g_settings.exists("win_script") )
-				var process := 0; //GetNerve("Win");
-				if ( !process )
-					//StartNerve("Win", g_settings["win_script"], {npc, ev, settings});
-				else
-					process.SendEvent(ev);
-				endif
-			endif
+			break;
 			
 		//A nerve has instructed the brain to kill another nerve or its self.
 		// .name	: Nerve name
 		NPCEVENT_ENDNERVE:
 			//KillNerve(ev.name);
+			break;
 			
 		//A nerve has instructed the brain to start another nerve.
 		// .name	: Nerve name
@@ -188,18 +201,23 @@ function ProcessEvent(byref ev)
 		// .data	: array of goodies
 		NPCEVENT_STARTNERVE:
 			//StartNerve(ev.name, ev.script, ev.data);
-		
+			break;
+			
 		// Set a new opponent!
 		// NOTE: Auto-sets Warmode=1!
 		// .source	: Opponent (mobile)
 		NPCEVENT_OPPONENT:
 			SetOpponent(ev.source);
-		
+			break;
+			
 		// Say something
 		// .text	: Speech content
+		// .texttype	: Speech type ("default", "whisper", yell")
+		// .doevent	: Sends SYSEVENT_SPEECH to surrounding npcs
 		NPCEVENT_SPEAK:
-			say(ev.text);
-		
+			Say(ev.text, ev.texttype, ev.doevent);
+			break;
+			
 		// Turn toward something
 		// .source	: Target (anything)
 		// .direction	: NETURN_TOWARD or NETURN_AWAY
@@ -210,7 +228,8 @@ function ProcessEvent(byref ev)
 				NETURN_AWAY:
 					TurnAwayFrom(ev.source);
 			endcase
-		
+			break;
+			
 		// Face towards or away from XY coordinates.
 		// .x and .y replace .source for TURN_XY
 		// .direction	: NETURN_TOWARD or NETURN_AWAY
@@ -221,27 +240,27 @@ function ProcessEvent(byref ev)
 				NETURN_AWAY:
 					TurnAwayFromLocation(ev.x, ev.y);
 			endcase
-		
+			break;
+			
 		// Set WarMode state
 		// NOTE: Auto-clears Opponent if turned off!
 		// .value : 0=Off. 1=On.
 		NPCEVENT_WARMODE:
 			SetWarmode( ev.value );
-		
-		// Wander somewhere
-		NPCEVENT_WANDER:
-	   		Wander();
-	   	
+			break;
+	   		
 	   	// Force the npc to go into its sleep mode.
 	   	// If the next event in the queue tells it to wake up,
 	   	// this command will be useless.
 	   	NPCEVENT_SLEEP:
 	   		//idle_ticks := g_settings["idle_ticks"]+1;
-	   	
+	   		break;
+	   		
 	   	// Force the npc out of sleep mode.
 	   	NPCEVENT_WAKEUP:
 	   		//sleep_mode := 0;
 	   		//idle_ticks := 0;
+	   		break;
 	   		
 	   	// Forward an event from one nerve to another.
 	   	// .NerveName	: The name of the nerve to forward the event to.
@@ -252,6 +271,7 @@ function ProcessEvent(byref ev)
 			if ( process )
 				process.SendEvent(ev);
 			endif
+			break;
 			
 		// If the event .type is unknown, send it to the
 		// npc's "virtual" nerve if it has one.
@@ -264,6 +284,7 @@ function ProcessEvent(byref ev)
 					process.SendEvent(ev);
 				endif
 			endif
+			break;
 	   endcase
 
 	   // If the event has a .process, reply to it by sending
@@ -271,10 +292,7 @@ function ProcessEvent(byref ev)
 	   // and telling it what event it sent that has finished
 	   // being processed.
 	   if ( ev.process )
-	   	var temp := struct;
-	   	temp.+type := NPCEVENT_DONE;
-	   	temp.+source := ev.type;
-	   	(ev.process).SendEvent(temp);
+	   	(ev.process).SendEvent(struct{"type":=NPCEVENT_DONE, "source":=ev.type});
 	   endif
 	   
 	   set_priority(old_priority);
