@@ -2,15 +2,25 @@
 use uo;
 use os;
 
-include ":ai_brain:include/NPC_Commands";
+include ":ai_brain:NPC_Commands";
+include "include/messages";
+include "include/localization";
 
-program FixAI(who)
-	var targ := target(who);
-	
-	if ( targ.IsA(POLCLASS_NPC) )
-		AI_Sleep(targ);
-	else
-		SendSysMessage(who, "Cancelled.");
+
+program command_puttosleep(who)
+	var mobile; := target(who);
+
+	SendMessage(who, MSG_TARGET_MOB, {}, MSG_COMMAND);
+
+	if ((mobile := Target(who, TGTOPT_NOCHECK_LOS)) == 0)
+		SendMessage(who, MSG_CANCELLED, {}, MSG_COMMAND);
+	endif
+
+	if (!mobile.IsA(POLCLASS_NPC))
+		SendMessage(who, MSG_NO_MOB, {}, MSG_COMMAND);
 		return 0;
+	else
+		AI_Sleep(mobile);
+		SendMessage(who, MSG_DONE, {}, MSG_COMMAND);
 	endif
 endprogram
