@@ -17,15 +17,16 @@ use npc;
 use cfgfile;
 use polsys;
 
-include "include/sysevent";
-include ":ai_brain:include/eventid";
-include ":ai_brain:include/npc_commands";
-include ":ai_brain:include/npc_settings";
-include ":ai_brain:include/npc_util";
+include "include/sysEvent";
 include ":ai_brain:include/braincore/error";
 include ":ai_brain:include/braincore/eventprocessor";
 include ":ai_brain:include/braincore/movement";
 include ":ai_brain:include/braincore/setup";
+include ":ai_brain:include/eventid";
+include ":ai_brain:include/npc_commands";
+include ":ai_brain:include/npc_nerves";
+include ":ai_brain:include/npc_settings";
+include ":ai_brain:include/npc_util";
 
 //
 // * Global variables
@@ -34,6 +35,7 @@ var npc := Self();
 var idle_ticks := 0;
 var sleep_mode := 0;
 var g_settings := dictionary;
+var g_nerves := dictionary;
 
 program BrainAI()
 	//Run setup steps for the npc.
@@ -44,8 +46,7 @@ program BrainAI()
 	StartupScripts();
 	
 	while ( npc )
-		var ev := wait_for_event(g_settings["cycle_wait"]);
-		
+		var ev := Wait_For_Event(g_settings["cycle_wait"]);
 		ProcessEvent(ev);
 	endwhile
 endprogram
