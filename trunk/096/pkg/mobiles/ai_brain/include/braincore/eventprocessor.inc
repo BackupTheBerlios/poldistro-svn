@@ -37,7 +37,7 @@ function ProcessEvent(byref ev)
 		// Wander somewhere
 		// .loop	: Number of times to attept to wander.
 		NPCEVENT_WANDER:
-	   		MovementWander();
+	   		MovementWander(ev);
 	   		break;
 			
 		// Triggered when a mobile enter's the npcs 'area size'.
@@ -287,7 +287,7 @@ function ProcessEvent(byref ev)
 			break;
 	   endcase
 
-	   // If the event has a .process, reply to it by sending
+	   // If the event has a .process member, reply to it by sending
 	   // an event with .type being the NPCEVENT_DONE constant
 	   // and telling it what event it sent that has finished
 	   // being processed.
@@ -296,4 +296,4 @@ function ProcessEvent(byref ev)
 	   endif
 	   
 	   set_priority(old_priority);
-endfunctions
+endfunction

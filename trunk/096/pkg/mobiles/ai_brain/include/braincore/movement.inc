@@ -8,10 +8,6 @@
 *  Created include file
 ===============================================================*/
 
-use uo;
-use os;
-use npc;
-
 /*
  * Movement(ev)
  *

@@ -8,9 +8,6 @@
 *  Created include file
 ===============================================================*/
 
-use uo;
-use os;
-
 /*
  * FatalError(errmsg)
  *
@@ -29,7 +26,7 @@ function FatalError(errmsg)
 	
 	PrintTextAbove(npc, errmsg, _DEFAULT_TEXT_FONT, 32);
 	
-	BrainSysLog(errmsg);
+	NPC_ErrorSysLog(npc, errmsg);
 	
 	npc.cmdlevel := 1;
 	npc.concealed := 1;
@@ -43,24 +40,4 @@ function FatalError(errmsg)
 	return 1;
 endfunction
 
-/*
- * FatalError(errmsg)
- *
- * Purpose
- * Logs an error message.
- *
- * Parameters
- * errmsg:	Error message
- *
- * Return value
- * Always returns 1
- *
- */
-function BrainSysLog( errmsg )
-	SysLog("NPC Template: " + npc.npctemplate);
-	SysLog("NPC Name    : " + npc.name);
-	SysLog(errmsg );
-	SysLog("------------");
-	
-	return 1;
-endfunction
+
