@@ -16,7 +16,6 @@ const NPCEVENT_OPPONENT				:= 0xA00004;	// Set New Opponent (.source)
 const NPCEVENT_SPEAK				:= 0xA00005;	// Speak (.text)
 const NPCEVENT_TURN				:= 0xA00006;	// Turn towards or away from an object
 const NPCEVENT_WARMODE				:= 0xA00007;	// Set WarMode state (.value=0|1)
-const NPCEVENT_WINFIGHT				:= 0xA00008;	// NPC killed '.source' mobile
 const NPCEVENT_FLEE				:= 0xA00009;	// Tell the NPC to flee
 const NPCEVENT_ATTACK				:= 0xA0000A;	// Tell the npc to attack something
 const NPCEVENT_MOVE_XY				:= 0xA0000B;	// Tell the NPC to move to coordinates

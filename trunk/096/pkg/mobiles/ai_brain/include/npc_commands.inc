@@ -26,6 +26,7 @@ include ":ai_brain:include/eventid";
 // AI_MoveXY()
 // AI_SetOpponent()
 // AI_Sleep()
+// AI_Speak()
 // AI_StartNerve()
 // AI_Turn()
 // AI_TurnXY()
