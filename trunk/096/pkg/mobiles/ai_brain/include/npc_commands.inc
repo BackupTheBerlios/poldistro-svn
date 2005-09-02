@@ -11,30 +11,29 @@
 use uo;
 use os;
 
-include "include/sysevent";
+include "include/sysEvent";
 include ":ai_brain:include/eventid";
 
 /////////////////////////////////////////////////////////////////
 // * Function List *
 //
-// AI_Attack()
-// AI_ClearThoughts()
-// AI_EndNerve()
-// AI_Flee()
-// AI_FowardEvent()
-// AI_Move()
-// AI_MoveXY()
-// AI_SetOpponent()
-// AI_Sleep()
-// AI_Speak()
-// AI_StartNerve()
-// AI_Turn()
-// AI_TurnXY()
-// AI_WakeUp()
-// AI_Wander()
-// AI_Warmode()
-// AI_WinFight()
-//
+// AI_Attack(mobile, opponent, no_wake:=WAKEUP)
+// AI_ClearThoughts(mobile, flags)
+// AI_EndNerve(mobile, nerve_name, no_wake:=WAKEUP)
+// AI_Flee(mobile, opponent, no_wake:=WAKEUP)
+// AI_FowardEvent(mobile, nerve_name, mask, data, no_wake:=WAKEUP)
+// AI_Move(mobile, object, to_from:=NEMOVE_TOWARD, speed:=NEMOVE_RUN, no_wake:=WAKEUP, loop:=0)
+// AI_MoveXY(mobile, x, y, to_from:=NEMOVE_TOWARD, speed:=NEMOVE_RUN, no_wake:=WAKEUP, loop:=0)
+// AI_SetOpponent(mobile, opponent, no_wake:=WAKEUP)
+// AI_Sleep(mobile)
+// AI_Speak(mobile, text, text_type:=SPEAK_TEXTTYPE_DEFAULT, do_event:=SPEAK_DOEVENT_DISABLE, no_wake:=WAKEUP)
+// AI_StartNerve(mobile, nerve_name, script_name, data, no_wake:=WAKEUP)
+// AI_Turn(mobile, turn_to, direction:=NETURN_TOWARD, no_wake:=WAKEUP)
+// AI_TurnXY(mobile, x, y, direction:=NETURN_TOWARD, no_wake:=WAKEUP)
+// AI_WakeUp(mobile)
+// AI_Wander(mobile, no_wake:=WAKEUP, loop:=0)
+// AI_WarMode(mobile, mode:=0, no_wake:=WAKEUP)
+// 
 /////////////////////////////////////////////////////////////////
 
 /*
