@@ -44,43 +44,45 @@ function InitializeEvents()
 	//
 	// * Events that use the core 'speech' range.
 	//
-	if ( g_settings.exists("listen_script") )
-		EnableEvents(SYSEVENT_SPEECH, g_settings["listen_range"]);
+	if ( g_settings.exists("ListenScript") )
+		if ( g_settings["HearSpeech"] )
+			EnableEvents(SYSEVENT_SPEECH, g_settings["ListenRange"]);
+		endif
+		if ( g_settings["HearGhosts"] )
+			EnableEvents(SYSEVENT_GHOST_SPEECH, g_settings["ListenRange"]);
+		endif
 	endif
-	if ( g_settings.exists("ghost_listen_script") )
-		EnableEvents(SYSEVENT_GHOST_SPEECH, g_settings["listen_range"]);
-	endif
-	
+		
 	//
 	// * Events that use the core 'area size' range.
 	//
-	if ( g_settings.exists("enter_react_script") )
-		EnableEvents(SYSEVENT_ENTEREDAREA, g_settings["area_size"]);
+	if ( g_settings.exists("EnterAreaScript") )
+		EnableEvents(SYSEVENT_ENTEREDAREA, g_settings["AreaSize"]);
 	endif
-	if ( g_settings.exists("leave_react_script") )
-		EnableEvents(SYSEVENT_LEFTAREA, g_settings["area_size"]);
+	if ( g_settings.exists("LeftAreaScript") )
+		EnableEvents(SYSEVENT_LEFTAREA, g_settings["AreaSize"]);
 	endif
-	if ( g_settings.exists("gone_criminal_script") )
-		EnableEvents(SYSEVENT_GONE_CRIMINAL, g_settings["area_size"]);
+	if ( g_settings.exists("GoneCriminalScript") )
+		EnableEvents(SYSEVENT_GONE_CRIMINAL, g_settings["AreaSize"]);
 	endif
 	
 	//
 	// * Events that do not have a core range check.
 	//
-	if ( g_settings.exists("dbl_click_script") )
-		EnableEvents(SYSEVENT_DOUBLECLICKED, g_settings["dbl_click_range"]);
+	if ( g_settings.exists("DblClickScript") )
+		EnableEvents(SYSEVENT_DOUBLECLICKED);
 	endif
-	if ( g_settings.exists("given_item_script") )
+	if ( g_settings.exists("GivenItemScript") )
 		EnableEvents(SYSEVENT_ITEM_GIVEN);
 	endif
-	if ( g_settings.exists("disengage_script") )
+	if ( g_settings.exists("DisengagedScript") )
 		EnableEvents(SYSEVENT_DISENGAGED);
 	endif
-	if ( g_settings.exists("merchant_script") )
+	if ( g_settings.exists("MerchantScript") )
 		EnableEvents(SYSEVENT_MERCHANT_BOUGHT);
 		EnableEvents(SYSEVENT_MERCHANT_SOLD);
 	endif
-	if ( g_settings.exists("combat_script") )
+	if ( g_settings.exists("CombatScript") )
 		EnableEvents(SYSEVENT_ENGAGED+SYSEVENT_DAMAGED);
 	endif
 	
