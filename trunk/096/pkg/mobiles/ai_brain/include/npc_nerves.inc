@@ -68,7 +68,7 @@ endfunction
  * Returns 1 on success
  *
  */
-function SaveNerves(mobile, nerve_dict)
+function SaveNerves(mobile, byref nerve_dict)
 	return SetObjProperty(mobile, "#NerveInfo", nerve_dict);
 endfunction
 
@@ -134,7 +134,7 @@ endfunction
  *
  * Parameters
  * mobile:	NPC the nerve will be running for.
- * nerve_name:	The name the nerve script will be run under. (Example: "combat_script")
+ * nerve_name:	The name the nerve script will be run under. (Example: "CombatScript" or "EnterReact")
  * data:	Array of data to send to the nerve script when it starts.
  * flags:	Can contain anything - but should use NF_* flags for bitwise checks.
  * nerve_dict:	Optional parameter. Use if the settings were already loaded for faster access.

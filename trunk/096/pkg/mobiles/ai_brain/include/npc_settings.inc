@@ -54,6 +54,33 @@ function NPC_LoadCfgDefaults(template)
 	return settings;
 endfunction
 
+function NPC_LoadScriptSettings(source)
+	var template:=source;
+	if ( source.IsA(POLCLASS_NPC) )
+		template := NPC_ParseTemplateName(source.npctemplate);
+	elseif ( !template.package )
+		template := NPC_ParseTemplateName(template);
+	endif
+	
+	var npc_cfg := ReadConfigFile(template.package+"npcdesc");
+	var npc_elem := npc_cfg[template];
+	
+	var script_list := GetConfigStringArray(npc_elem, "AIScript");
+	var flag_list := GetConfigStringArray(npc_elem, "AIScriptFlag");
+	
+	var script_settings := dictionary;
+	foreach script_line in (script_list)
+		script_line := SplitWords(script_line);
+		var key := script_line[1];
+		var value := script_line[2];
+		var flags := 		
+		
+		var temp := struct;
+		
+		script_settings[key] := struct{"
+		
+endfunction
+
 /*
  * NPC_LoadCustomSettings(npc_ref, settings:=0)
  * 
