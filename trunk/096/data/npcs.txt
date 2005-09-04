@@ -44,7 +44,7 @@ NPC battlemage
 	CreatedAt	0
 	AR	30
 	script	battleMage
-	SpeechColor	97
+	SpeechColor	54
 }
 
 Item
@@ -116,7 +116,7 @@ NPC battlemage
 	CreatedAt	0
 	AR	30
 	script	battleMage
-	SpeechColor	37
+	SpeechColor	193
 }
 
 Item
@@ -189,7 +189,7 @@ NPC battlemage
 	CreatedAt	0
 	AR	30
 	script	battleMage
-	SpeechColor	160
+	SpeechColor	34
 }
 
 Item
@@ -262,7 +262,7 @@ NPC battlemage
 	CreatedAt	0
 	AR	30
 	script	battleMage
-	SpeechColor	196
+	SpeechColor	902
 }
 
 Item
@@ -336,7 +336,7 @@ NPC battlemage
 	CreatedAt	0
 	AR	30
 	script	battleMage
-	SpeechColor	7
+	SpeechColor	32
 }
 
 Item
@@ -409,7 +409,7 @@ NPC battlemage
 	CreatedAt	0
 	AR	30
 	script	battleMage
-	SpeechColor	442
+	SpeechColor	71
 }
 
 Item
@@ -481,7 +481,7 @@ NPC battlemage
 	CreatedAt	0
 	AR	30
 	script	battleMage
-	SpeechColor	192
+	SpeechColor	18
 }
 
 Item
@@ -606,8 +606,8 @@ NPC stablemaster
 	CProp	MerchantType sstable
 	CProp	MyGold i1000
 	CProp	Pets a0:
-	CProp	counter i448
-	CProp	countercheck i25190405
+	CProp	counter i449
+	CProp	countercheck i25190473
 	CProp	guardkill i1
 	CProp	mypen s8
 	CProp	restockserial i1793081515
@@ -628,7 +628,7 @@ NPC stablemaster
 	CreatedAt	0
 	AR	32
 	script	stablemaster
-	SpeechColor	52
+	SpeechColor	87
 }
 
 Item
@@ -683,8 +683,8 @@ NPC stablemaster
 	CProp	MerchantType sstable
 	CProp	MyGold i1000
 	CProp	Pets a0:
-	CProp	counter i448
-	CProp	countercheck i25190405
+	CProp	counter i449
+	CProp	countercheck i25190473
 	CProp	guardkill i1
 	CProp	mypen s9
 	CProp	restockserial i1793081514
@@ -704,7 +704,7 @@ NPC stablemaster
 	CreatedAt	0
 	AR	32
 	script	stablemaster
-	SpeechColor	348
+	SpeechColor	558
 }
 
 Item
@@ -3277,7 +3277,7 @@ NPC healer
 	CreatedAt	0
 	AR	32
 	script	townHealer
-	SpeechColor	404
+	SpeechColor	901
 }
 
 Item
@@ -3353,7 +3353,7 @@ NPC healer
 	CreatedAt	0
 	AR	32
 	script	townHealer
-	SpeechColor	42
+	SpeechColor	192
 }
 
 Item
@@ -8145,8 +8145,8 @@ NPC stablemaster
 	CProp	MerchantType sstable
 	CProp	MyGold i188673
 	CProp	Pets a0:
-	CProp	counter i295
-	CProp	countercheck i25190405
+	CProp	counter i296
+	CProp	countercheck i25190473
 	CProp	guardkill i1
 	CProp	mypen s1
 	CProp	restockserial i1793081525
@@ -8167,7 +8167,7 @@ NPC stablemaster
 	CreatedAt	0
 	AR	32
 	script	stablemaster
-	SpeechColor	32
+	SpeechColor	537
 }
 
 Item
@@ -8222,8 +8222,8 @@ NPC stablemaster
 	CProp	MerchantType sstable
 	CProp	MyGold i179368
 	CProp	Pets a0:
-	CProp	counter i294
-	CProp	countercheck i25190405
+	CProp	counter i295
+	CProp	countercheck i25190473
 	CProp	guardkill i1
 	CProp	mypen s2
 	CProp	restockserial i1793081512
@@ -8244,7 +8244,7 @@ NPC stablemaster
 	CreatedAt	0
 	AR	32
 	script	stablemaster
-	SpeechColor	17
+	SpeechColor	648
 }
 
 Item
@@ -11281,7 +11281,7 @@ NPC healer
 	CreatedAt	0
 	AR	32
 	script	townHealer
-	SpeechColor	52
+	SpeechColor	340
 }
 
 Item
@@ -11439,7 +11439,7 @@ NPC healer
 	CreatedAt	0
 	AR	32
 	script	townHealer
-	SpeechColor	101
+	SpeechColor	19
 }
 
 Item
@@ -11510,7 +11510,7 @@ NPC healer
 	CreatedAt	0
 	AR	32
 	script	townHealer
-	SpeechColor	97
+	SpeechColor	438
 }
 
 Item
@@ -13232,7 +13232,7 @@ NPC barber
 	Settings	invul 
 	CreatedAt	0
 	script	barber
-	SpeechColor	53
+	SpeechColor	34
 }
 
 Item
@@ -14015,7 +14015,7 @@ NPC bucshealer
 	CreatedAt	0
 	AR	32
 	script	bucsTownHealer
-	SpeechColor	63
+	SpeechColor	207
 }
 
 Item
@@ -14090,7 +14090,7 @@ NPC bucshealer
 	CreatedAt	0
 	AR	32
 	script	bucsTownHealer
-	SpeechColor	36
+	SpeechColor	52
 }
 
 Item
@@ -14283,8 +14283,8 @@ NPC stablemaster
 	CProp	MerchantType sstable
 	CProp	MyGold i11377
 	CProp	Pets a0:
-	CProp	counter i363
-	CProp	countercheck i25190405
+	CProp	counter i364
+	CProp	countercheck i25190473
 	CProp	guardkill i1
 	CProp	restockserial i1793081517
 	TrueColor	0x83f8
@@ -14303,7 +14303,7 @@ NPC stablemaster
 	CreatedAt	0
 	AR	32
 	script	stablemaster
-	SpeechColor	12
+	SpeechColor	196
 }
 
 Item
@@ -14445,7 +14445,7 @@ NPC healer
 	CreatedAt	0
 	AR	32
 	script	townHealer
-	SpeechColor	160
+	SpeechColor	442
 }
 
 Item
@@ -14881,7 +14881,7 @@ NPC healer
 	CreatedAt	0
 	AR	32
 	script	townHealer
-	SpeechColor	707
+	SpeechColor	243
 }
 
 Item
@@ -14951,7 +14951,7 @@ NPC healer
 	CreatedAt	0
 	AR	32
 	script	townHealer
-	SpeechColor	13
+	SpeechColor	442
 }
 
 Item
@@ -15039,7 +15039,7 @@ NPC healer
 	CreatedAt	0
 	AR	32
 	script	townHealer
-	SpeechColor	903
+	SpeechColor	19
 }
 
 Item
@@ -15930,8 +15930,8 @@ NPC stablemaster
 	CProp	MyGold i652688
 	CProp	Pets a0:
 	CProp	TempDamage i1
-	CProp	counter i180
-	CProp	countercheck i25190405
+	CProp	counter i181
+	CProp	countercheck i25190473
 	CProp	guardkill i1
 	CProp	mypen s3
 	CProp	restockserial i1793081510
@@ -15954,7 +15954,7 @@ NPC stablemaster
 	CreatedAt	0
 	AR	32
 	script	stablemaster
-	SpeechColor	17
+	SpeechColor	7
 }
 
 Item
@@ -16009,8 +16009,8 @@ NPC stablemaster
 	CProp	MerchantType sstable
 	CProp	MyGold i833074
 	CProp	Pets a0:
-	CProp	counter i181
-	CProp	countercheck i25190405
+	CProp	counter i182
+	CProp	countercheck i25190473
 	CProp	guardkill i1
 	CProp	mypen s4
 	CProp	restockserial i1793081511
@@ -16031,7 +16031,7 @@ NPC stablemaster
 	CreatedAt	0
 	AR	32
 	script	stablemaster
-	SpeechColor	63
+	SpeechColor	207
 }
 
 Item
@@ -16626,7 +16626,7 @@ NPC healer
 	CreatedAt	0
 	AR	32
 	script	townHealer
-	SpeechColor	19
+	SpeechColor	707
 }
 
 Item
@@ -16714,7 +16714,7 @@ NPC healer
 	CreatedAt	0
 	AR	32
 	script	townHealer
-	SpeechColor	7
+	SpeechColor	18
 }
 
 Item
@@ -18250,7 +18250,7 @@ NPC healer
 	CreatedAt	0
 	AR	32
 	script	townHealer
-	SpeechColor	558
+	SpeechColor	48
 }
 
 Item
@@ -18338,7 +18338,7 @@ NPC healer
 	CreatedAt	0
 	AR	32
 	script	townHealer
-	SpeechColor	80
+	SpeechColor	87
 }
 
 Item
@@ -18411,7 +18411,7 @@ NPC healer
 	CreatedAt	0
 	AR	32
 	script	townHealer
-	SpeechColor	558
+	SpeechColor	97
 }
 
 Item
@@ -20249,8 +20249,8 @@ NPC stablemaster
 	CProp	MerchantType sstable
 	CProp	MyGold i362033
 	CProp	Pets a0:
-	CProp	counter i114
-	CProp	countercheck i25190405
+	CProp	counter i115
+	CProp	countercheck i25190473
 	CProp	guardkill i1
 	CProp	mypen s5
 	CProp	restockserial i1793081516
@@ -20271,7 +20271,7 @@ NPC stablemaster
 	CreatedAt	0
 	AR	32
 	script	stablemaster
-	SpeechColor	19
+	SpeechColor	12
 }
 
 Item
@@ -22010,7 +22010,7 @@ NPC healer
 	CreatedAt	0
 	AR	32
 	script	townHealer
-	SpeechColor	648
+	SpeechColor	362
 }
 
 Item
@@ -22081,7 +22081,7 @@ NPC healer
 	CreatedAt	0
 	AR	32
 	script	townHealer
-	SpeechColor	7
+	SpeechColor	48
 }
 
 Item
@@ -24814,8 +24814,8 @@ NPC stablemaster
 	CProp	MerchantType sstable
 	CProp	MyGold i6280
 	CProp	Pets a0:
-	CProp	counter i212
-	CProp	countercheck i25190405
+	CProp	counter i213
+	CProp	countercheck i25190473
 	CProp	guardkill i1
 	CProp	restockserial i1793081526
 	TrueColor	0x83f8
@@ -24834,7 +24834,7 @@ NPC stablemaster
 	CreatedAt	0
 	AR	32
 	script	stablemaster
-	SpeechColor	340
+	SpeechColor	902
 }
 
 Item
@@ -24889,8 +24889,8 @@ NPC stablemaster
 	CProp	MerchantType sstable
 	CProp	MyGold i9310
 	CProp	Pets a0:
-	CProp	counter i212
-	CProp	countercheck i25190405
+	CProp	counter i213
+	CProp	countercheck i25190473
 	CProp	guardkill i1
 	CProp	restockserial i1793081522
 	TrueColor	0x83f8
@@ -24909,7 +24909,7 @@ NPC stablemaster
 	CreatedAt	0
 	AR	32
 	script	stablemaster
-	SpeechColor	18
+	SpeechColor	404
 }
 
 Item
@@ -25482,7 +25482,7 @@ NPC healer
 	CreatedAt	0
 	AR	32
 	script	townHealer
-	SpeechColor	32
+	SpeechColor	160
 }
 
 Item
@@ -25553,7 +25553,7 @@ NPC healer
 	CreatedAt	0
 	AR	32
 	script	townHealer
-	SpeechColor	98
+	SpeechColor	558
 }
 
 Item
@@ -26250,7 +26250,7 @@ NPC healer
 	CreatedAt	0
 	AR	32
 	script	townHealer
-	SpeechColor	9
+	SpeechColor	404
 }
 
 Item
@@ -33546,7 +33546,7 @@ NPC healer
 	CreatedAt	0
 	AR	32
 	script	townHealer
-	SpeechColor	442
+	SpeechColor	42
 }
 
 Item
@@ -33617,7 +33617,7 @@ NPC healer
 	CreatedAt	0
 	AR	32
 	script	townHealer
-	SpeechColor	97
+	SpeechColor	52
 }
 
 Item
@@ -33688,7 +33688,7 @@ NPC healer
 	CreatedAt	0
 	AR	32
 	script	townHealer
-	SpeechColor	228
+	SpeechColor	101
 }
 
 Item
@@ -33776,7 +33776,7 @@ NPC healer
 	CreatedAt	0
 	AR	32
 	script	townHealer
-	SpeechColor	901
+	SpeechColor	97
 }
 
 Item
@@ -34125,9 +34125,9 @@ NPC eagle
 	Serial	0x1006d7
 	ObjType	0x5
 	Graphic	0x5
-	X	5171
-	Y	3202
-	Z	80
+	X	5172
+	Y	3203
+	Z	81
 	Facing	3
 	Revision	0
 	Realm	britannia
@@ -34152,7 +34152,7 @@ NPC eagle
 	CreatedAt	0
 	AR	11
 	script	animal
-	SpeechColor	7
+	SpeechColor	63
 }
 
 NPC deer
@@ -34164,6 +34164,7 @@ NPC deer
 	X	5136
 	Y	3231
 	Z	95
+	Facing	7
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1050336
@@ -34689,8 +34690,8 @@ NPC stablemaster
 	CProp	MerchantType sstable
 	CProp	MyGold i580501
 	CProp	Pets a0:
-	CProp	counter i521
-	CProp	countercheck i25190405
+	CProp	counter i522
+	CProp	countercheck i25190473
 	CProp	guardkill i1
 	CProp	restockserial i1793081513
 	TrueColor	0x83f8
@@ -34709,7 +34710,7 @@ NPC stablemaster
 	CreatedAt	0
 	AR	32
 	script	stablemaster
-	SpeechColor	34
+	SpeechColor	63
 }
 
 Item
@@ -35455,8 +35456,8 @@ NPC stablemaster
 	CProp	Graphic i400
 	CProp	MerchantType sstable
 	CProp	MyGold i1000
-	CProp	counter i433
-	CProp	countercheck i25190405
+	CProp	counter i434
+	CProp	countercheck i25190473
 	CProp	guardkill i1
 	CProp	restockserial i1793081523
 	TrueColor	0x83f8
@@ -35547,8 +35548,8 @@ NPC stablemaster
 	CProp	Graphic i400
 	CProp	MerchantType sstable
 	CProp	MyGold i1000
-	CProp	counter i433
-	CProp	countercheck i25190405
+	CProp	counter i434
+	CProp	countercheck i25190473
 	CProp	guardkill i1
 	CProp	restockserial i1793081521
 	TrueColor	0x83f8
@@ -35568,7 +35569,7 @@ NPC stablemaster
 	CreatedAt	0
 	AR	32
 	script	stablemaster
-	SpeechColor	37
+	SpeechColor	71
 }
 
 Item
@@ -35639,8 +35640,8 @@ NPC stablemaster
 	CProp	Graphic i400
 	CProp	MerchantType sstable
 	CProp	MyGold i1000
-	CProp	counter i433
-	CProp	countercheck i25190405
+	CProp	counter i434
+	CProp	countercheck i25190473
 	CProp	guardkill i1
 	CProp	restockserial i1793081524
 	TrueColor	0x83f8
@@ -35660,7 +35661,7 @@ NPC stablemaster
 	CreatedAt	0
 	AR	32
 	script	stablemaster
-	SpeechColor	71
+	SpeechColor	9
 }
 
 Item
@@ -36573,7 +36574,7 @@ NPC healer
 	CreatedAt	0
 	AR	32
 	script	townHealer
-	SpeechColor	192
+	SpeechColor	160
 }
 
 Item
@@ -38564,7 +38565,7 @@ NPC healer
 	CreatedAt	0
 	AR	32
 	script	townHealer
-	SpeechColor	32
+	SpeechColor	707
 }
 
 Item
@@ -38635,7 +38636,7 @@ NPC healer
 	CreatedAt	0
 	AR	32
 	script	townHealer
-	SpeechColor	97
+	SpeechColor	13
 }
 
 Item
@@ -38723,7 +38724,7 @@ NPC healer
 	CreatedAt	0
 	AR	32
 	script	townHealer
-	SpeechColor	438
+	SpeechColor	903
 }
 
 Item
@@ -38985,8 +38986,8 @@ NPC stablemaster
 	CProp	MerchantType sstable
 	CProp	MyGold i20023
 	CProp	Pets a0:
-	CProp	counter i86
-	CProp	countercheck i25190405
+	CProp	counter i87
+	CProp	countercheck i25190473
 	CProp	guardkill i1
 	CProp	mypen s10
 	CProp	restockserial i1793081520
@@ -39007,7 +39008,7 @@ NPC stablemaster
 	CreatedAt	0
 	AR	32
 	script	stablemaster
-	SpeechColor	648
+	SpeechColor	228
 }
 
 Item
@@ -39852,7 +39853,7 @@ NPC healer
 	CreatedAt	0
 	AR	32
 	script	townHealer
-	SpeechColor	32
+	SpeechColor	19
 }
 
 Item
@@ -39939,7 +39940,7 @@ NPC healer
 	CreatedAt	0
 	AR	32
 	script	townHealer
-	SpeechColor	558
+	SpeechColor	7
 }
 
 Item
@@ -40010,7 +40011,7 @@ NPC healer
 	CreatedAt	0
 	AR	32
 	script	townHealer
-	SpeechColor	196
+	SpeechColor	558
 }
 
 Item
@@ -40565,7 +40566,7 @@ NPC battlemage
 	CreatedAt	0
 	AR	30
 	script	battleMage
-	SpeechColor	97
+	SpeechColor	348
 }
 
 Item
@@ -40607,8 +40608,8 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	662
-	Y	2185
+	X	661
+	Y	2186
 	Z	0
 	Facing	1
 	Revision	0
@@ -40634,7 +40635,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	707
+	SpeechColor	202
 	RunSpeed	500
 }
 
@@ -40677,7 +40678,7 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x190
 	Color	0x83ea
-	X	1143
+	X	1142
 	Y	1689
 	Z	0
 	Facing	1
@@ -40704,7 +40705,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	228
+	SpeechColor	648
 	RunSpeed	500
 }
 
@@ -40748,7 +40749,7 @@ NPC townguard
 	Graphic	0x190
 	Color	0x83ea
 	X	1337
-	Y	1809
+	Y	1807
 	Z	0
 	Facing	4
 	Revision	0
@@ -40774,7 +40775,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	904
+	SpeechColor	202
 	RunSpeed	500
 }
 
@@ -40818,7 +40819,7 @@ NPC townguard
 	Graphic	0x190
 	Color	0x83ea
 	X	1531
-	Y	1432
+	Y	1430
 	Z	15
 	Facing	4
 	Revision	0
@@ -40844,7 +40845,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	404
+	SpeechColor	63
 	RunSpeed	500
 }
 
@@ -40931,7 +40932,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	160
+	SpeechColor	578
 	RunSpeed	500
 }
 
@@ -40992,7 +40993,7 @@ NPC townguard
 	Graphic	0x191
 	Color	0x83ea
 	X	4401
-	Y	1133
+	Y	1135
 	Z	0
 	Revision	0
 	Realm	britannia
@@ -41017,7 +41018,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	7
+	SpeechColor	53
 	RunSpeed	500
 }
 
@@ -41087,7 +41088,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	196
+	SpeechColor	228
 	RunSpeed	500
 }
 
@@ -41131,7 +41132,7 @@ NPC townguard
 	Graphic	0x191
 	Color	0x83ea
 	X	1997
-	Y	2838
+	Y	2840
 	Z	15
 	Revision	0
 	Realm	britannia
@@ -41156,7 +41157,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	9
+	SpeechColor	558
 	RunSpeed	500
 }
 
@@ -41199,8 +41200,8 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	2428
-	Y	396
+	X	2430
+	Y	398
 	Z	15
 	Facing	7
 	Revision	0
@@ -41226,7 +41227,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	362
+	SpeechColor	80
 	RunSpeed	500
 }
 
@@ -41269,8 +41270,8 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x190
 	Color	0x83ea
-	X	3675
-	Y	2130
+	X	3676
+	Y	2129
 	Z	20
 	Facing	6
 	Revision	0
@@ -41299,7 +41300,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	903
+	SpeechColor	7
 	RunSpeed	500
 }
 
@@ -41359,8 +41360,8 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	3673
-	Y	2185
+	X	3674
+	Y	2184
 	Z	20
 	Facing	5
 	Revision	0
@@ -41386,7 +41387,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	101
+	SpeechColor	52
 	RunSpeed	500
 }
 
@@ -41455,7 +41456,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	18
+	SpeechColor	707
 	RunSpeed	500
 }
 
@@ -41499,7 +41500,7 @@ NPC townguard
 	Graphic	0x191
 	Color	0x83ea
 	X	3703
-	Y	1376
+	Y	1374
 	Z	0
 	Facing	4
 	Revision	0
@@ -41525,7 +41526,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	17
+	SpeechColor	97
 	RunSpeed	500
 }
 
@@ -41569,7 +41570,7 @@ NPC townguard
 	Graphic	0x191
 	Color	0x83ea
 	X	1335
-	Y	1863
+	Y	1864
 	Z	0
 	Facing	7
 	Revision	0
@@ -41595,7 +41596,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	9
+	SpeechColor	37
 	RunSpeed	500
 }
 
@@ -41638,7 +41639,7 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	1384
+	X	1382
 	Y	3694
 	Z	0
 	Facing	2
@@ -41665,7 +41666,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	101
+	SpeechColor	12
 	RunSpeed	500
 }
 
@@ -41708,9 +41709,9 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x190
 	Color	0x83ea
-	X	5217
-	Y	4007
-	Z	44
+	X	5216
+	Y	4008
+	Z	37
 	Facing	1
 	Revision	0
 	Realm	britannia
@@ -41735,7 +41736,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	13
+	SpeechColor	97
 	RunSpeed	500
 }
 
@@ -41795,9 +41796,9 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x190
 	Color	0x83ea
-	X	3786
-	Y	2125
-	Z	23
+	X	3785
+	Y	2124
+	Z	22
 	Facing	3
 	Revision	0
 	Realm	britannia
@@ -41822,7 +41823,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	207
+	SpeechColor	12
 	RunSpeed	500
 }
 
@@ -41883,7 +41884,7 @@ NPC townguard
 	Graphic	0x191
 	Color	0x83ea
 	X	3733
-	Y	1386
+	Y	1384
 	Z	0
 	Facing	4
 	Revision	0
@@ -41909,7 +41910,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	87
+	SpeechColor	71
 	RunSpeed	500
 }
 
@@ -41952,7 +41953,7 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	3010
+	X	3012
 	Y	3428
 	Z	15
 	Facing	6
@@ -41979,7 +41980,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	578
+	SpeechColor	160
 	RunSpeed	500
 }
 
@@ -42022,8 +42023,8 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	3667
-	Y	2588
+	X	3669
+	Y	2586
 	Z	0
 	Facing	5
 	Revision	0
@@ -42049,7 +42050,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	34
+	SpeechColor	71
 	RunSpeed	500
 }
 
@@ -42119,7 +42120,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	537
+	SpeechColor	228
 	RunSpeed	500
 }
 
@@ -42162,8 +42163,8 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	1383
-	Y	3760
+	X	1382
+	Y	3759
 	Z	0
 	Facing	2
 	Revision	0
@@ -42189,7 +42190,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	193
+	SpeechColor	52
 	RunSpeed	500
 }
 
@@ -42233,8 +42234,8 @@ NPC townguard
 	Graphic	0x190
 	Color	0x83ea
 	X	2038
-	Y	2728
-	Z	11
+	Y	2730
+	Z	20
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711512
@@ -42258,7 +42259,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	13
+	SpeechColor	348
 	RunSpeed	500
 }
 
@@ -42302,8 +42303,8 @@ NPC townguard
 	Graphic	0x190
 	Color	0x83ea
 	X	1995
-	Y	2785
-	Z	16
+	Y	2787
+	Z	15
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711513
@@ -42327,7 +42328,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	150
+	SpeechColor	32
 	RunSpeed	500
 }
 
@@ -42387,8 +42388,8 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x190
 	Color	0x83ea
-	X	5272
-	Y	4005
+	X	5273
+	Y	4004
 	Z	40
 	Facing	4
 	Revision	0
@@ -42414,7 +42415,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	150
+	SpeechColor	17
 	RunSpeed	500
 }
 
@@ -42457,9 +42458,9 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x190
 	Color	0x83ea
-	X	2881
-	Y	838
-	Z	2
+	X	2879
+	Y	840
+	Z	1
 	Facing	1
 	Revision	0
 	Realm	britannia
@@ -42484,7 +42485,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	404
+	SpeechColor	12
 	RunSpeed	500
 }
 
@@ -42527,7 +42528,7 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x190
 	Color	0x83ea
-	X	1271
+	X	1270
 	Y	1755
 	Z	0
 	Facing	3
@@ -42554,7 +42555,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	14
+	SpeechColor	17
 	RunSpeed	500
 }
 
@@ -42597,9 +42598,9 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x190
 	Color	0x83ea
-	X	1620
-	Y	1594
-	Z	5
+	X	1619
+	Y	1593
+	Z	3
 	Facing	3
 	Revision	0
 	Realm	britannia
@@ -42624,7 +42625,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	32
+	SpeechColor	63
 	RunSpeed	500
 }
 
@@ -42667,8 +42668,8 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	2825
-	Y	834
+	X	2824
+	Y	833
 	Z	8
 	Facing	3
 	Revision	0
@@ -42694,7 +42695,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	243
+	SpeechColor	19
 	RunSpeed	500
 }
 
@@ -42738,7 +42739,7 @@ NPC townguard
 	Graphic	0x191
 	Color	0x83ea
 	X	2119
-	Y	2826
+	Y	2828
 	Z	0
 	Revision	0
 	Realm	britannia
@@ -42763,7 +42764,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	150
+	SpeechColor	340
 	RunSpeed	500
 }
 
@@ -42807,8 +42808,8 @@ NPC townguard
 	Graphic	0x190
 	Color	0x83ea
 	X	1491
-	Y	3812
-	Z	-2
+	Y	3811
+	Z	1
 	Facing	4
 	Revision	0
 	Realm	britannia
@@ -42833,7 +42834,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	87
+	SpeechColor	18
 	RunSpeed	500
 }
 
@@ -42903,7 +42904,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	42
+	SpeechColor	34
 	RunSpeed	500
 }
 
@@ -42946,7 +42947,7 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x190
 	Color	0x83ea
-	X	518
+	X	520
 	Y	1015
 	Z	0
 	Facing	6
@@ -42973,7 +42974,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	101
+	SpeechColor	48
 	RunSpeed	500
 }
 
@@ -43016,8 +43017,8 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	1320
-	Y	3694
+	X	1322
+	Y	3692
 	Z	0
 	Facing	5
 	Revision	0
@@ -43043,7 +43044,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	340
+	SpeechColor	37
 	RunSpeed	500
 }
 
@@ -43087,7 +43088,7 @@ NPC townguard
 	Graphic	0x190
 	Color	0x83ea
 	X	1377
-	Y	3864
+	Y	3866
 	Z	0
 	Revision	0
 	Realm	britannia
@@ -43173,7 +43174,7 @@ NPC townguard
 	Graphic	0x190
 	Color	0x83ea
 	X	1562
-	Y	1694
+	Y	1693
 	Z	30
 	Facing	4
 	Revision	0
@@ -43199,7 +43200,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	12
+	SpeechColor	648
 	RunSpeed	500
 }
 
@@ -43243,7 +43244,7 @@ NPC townguard
 	Graphic	0x191
 	Color	0x83ea
 	X	2420
-	Y	463
+	Y	461
 	Z	15
 	Facing	4
 	Revision	0
@@ -43269,7 +43270,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	904
+	SpeechColor	207
 	RunSpeed	500
 }
 
@@ -43313,7 +43314,7 @@ NPC townguard
 	Graphic	0x191
 	Color	0x83ea
 	X	2545
-	Y	633
+	Y	632
 	Z	0
 	Facing	4
 	Revision	0
@@ -43339,7 +43340,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	7
+	SpeechColor	97
 	RunSpeed	500
 }
 
@@ -43382,9 +43383,9 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	5658
-	Y	3185
-	Z	-9
+	X	5660
+	Y	3187
+	Z	2
 	Facing	7
 	Revision	0
 	Realm	britannia
@@ -43409,7 +43410,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	63
+	SpeechColor	97
 	RunSpeed	500
 }
 
@@ -43453,7 +43454,7 @@ NPC townguard
 	Graphic	0x190
 	Color	0x83ea
 	X	1433
-	Y	3750
+	Y	3748
 	Z	0
 	Facing	4
 	Revision	0
@@ -43479,7 +43480,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	9
+	SpeechColor	37
 	RunSpeed	500
 }
 
@@ -43540,8 +43541,8 @@ NPC townguard
 	Graphic	0x190
 	Color	0x83ea
 	X	1874
-	Y	2832
-	Z	17
+	Y	2831
+	Z	13
 	Facing	5
 	Revision	0
 	Realm	britannia
@@ -43566,7 +43567,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	53
+	SpeechColor	160
 	RunSpeed	500
 }
 
@@ -43609,7 +43610,7 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	2887
+	X	2885
 	Y	728
 	Z	0
 	Facing	2
@@ -43636,7 +43637,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	97
+	SpeechColor	196
 	RunSpeed	500
 }
 
@@ -43680,8 +43681,8 @@ NPC townguard
 	Graphic	0x191
 	Color	0x83ea
 	X	2882
-	Y	780
-	Z	12
+	Y	779
+	Z	17
 	Facing	4
 	Revision	0
 	Realm	britannia
@@ -43706,7 +43707,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	18
+	SpeechColor	7
 	RunSpeed	500
 }
 
@@ -43750,8 +43751,8 @@ NPC townguard
 	Graphic	0x191
 	Color	0x83ea
 	X	5838
-	Y	3310
-	Z	-2
+	Y	3312
+	Z	13
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711533
@@ -43775,7 +43776,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	9
+	SpeechColor	442
 	RunSpeed	500
 }
 
@@ -43818,8 +43819,8 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x190
 	Color	0x83ea
-	X	1269
-	Y	1808
+	X	1271
+	Y	1806
 	Z	0
 	Facing	5
 	Revision	0
@@ -43845,7 +43846,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	904
+	SpeechColor	192
 	RunSpeed	500
 }
 
@@ -43906,7 +43907,7 @@ NPC townguard
 	Graphic	0x190
 	Color	0x83ea
 	X	1506
-	Y	1587
+	Y	1586
 	Z	10
 	Facing	5
 	Revision	0
@@ -43932,7 +43933,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	32
+	SpeechColor	97
 	RunSpeed	500
 }
 
@@ -43975,8 +43976,8 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x190
 	Color	0x83ea
-	X	1480
-	Y	3862
+	X	1482
+	Y	3860
 	Z	0
 	Facing	5
 	Revision	0
@@ -44002,7 +44003,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	63
+	SpeechColor	97
 	RunSpeed	500
 }
 
@@ -44045,9 +44046,9 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x190
 	Color	0x83ea
-	X	2823
-	Y	954
-	Z	12
+	X	2822
+	Y	955
+	Z	7
 	Facing	1
 	Revision	0
 	Realm	britannia
@@ -44072,7 +44073,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	48
+	SpeechColor	438
 	RunSpeed	500
 }
 
@@ -44132,7 +44133,7 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	3699
+	X	3700
 	Y	1094
 	Z	0
 	Facing	5
@@ -44159,7 +44160,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	442
+	SpeechColor	707
 	RunSpeed	500
 }
 
@@ -44202,8 +44203,8 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	1211
-	Y	1573
+	X	1212
+	Y	1574
 	Z	0
 	Facing	6
 	Revision	0
@@ -44229,7 +44230,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	18
+	SpeechColor	228
 	RunSpeed	500
 }
 
@@ -44273,7 +44274,7 @@ NPC townguard
 	Graphic	0x191
 	Color	0x83ea
 	X	1155
-	Y	1574
+	Y	1573
 	Z	0
 	Facing	5
 	Revision	0
@@ -44299,7 +44300,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	207
+	SpeechColor	904
 	RunSpeed	500
 }
 
@@ -44343,8 +44344,8 @@ NPC townguard
 	Graphic	0x191
 	Color	0x83ea
 	X	1685
-	Y	1535
-	Z	39
+	Y	1534
+	Z	38
 	Facing	4
 	Revision	0
 	Realm	britannia
@@ -44369,7 +44370,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	7
+	SpeechColor	404
 	RunSpeed	500
 }
 
@@ -44412,7 +44413,7 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x190
 	Color	0x83ea
-	X	1933
+	X	1935
 	Y	2903
 	Z	12
 	Facing	6
@@ -44439,7 +44440,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	63
+	SpeechColor	160
 	RunSpeed	500
 }
 
@@ -44499,8 +44500,8 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	2228
-	Y	1148
+	X	2230
+	Y	1146
 	Z	0
 	Facing	5
 	Revision	0
@@ -44526,7 +44527,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	160
+	SpeechColor	7
 	RunSpeed	500
 }
 
@@ -44569,7 +44570,7 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	2233
+	X	2232
 	Y	1210
 	Z	0
 	Facing	2
@@ -44596,7 +44597,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	578
+	SpeechColor	196
 	RunSpeed	500
 }
 
@@ -44640,7 +44641,7 @@ NPC townguard
 	Graphic	0x191
 	Color	0x83ea
 	X	2888
-	Y	3492
+	Y	3490
 	Z	10
 	Facing	4
 	Revision	0
@@ -44666,7 +44667,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	18
+	SpeechColor	9
 	RunSpeed	500
 }
 
@@ -44735,7 +44736,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	572
+	SpeechColor	362
 	RunSpeed	500
 }
 
@@ -44778,9 +44779,9 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	1659
-	Y	1700
-	Z	10
+	X	1661
+	Y	1702
+	Z	11
 	Facing	7
 	Revision	0
 	Realm	britannia
@@ -44805,7 +44806,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	648
+	SpeechColor	903
 	RunSpeed	500
 }
 
@@ -44848,8 +44849,8 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	1110
-	Y	1807
+	X	1109
+	Y	1806
 	Z	0
 	Facing	3
 	Revision	0
@@ -44875,7 +44876,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	9
+	SpeechColor	101
 	RunSpeed	500
 }
 
@@ -44918,8 +44919,8 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	2486
-	Y	402
+	X	2487
+	Y	401
 	Z	15
 	Facing	5
 	Revision	0
@@ -44945,7 +44946,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	54
+	SpeechColor	18
 	RunSpeed	500
 }
 
@@ -44989,7 +44990,7 @@ NPC townguard
 	Graphic	0x190
 	Color	0x83ea
 	X	3671
-	Y	2075
+	Y	2074
 	Z	22
 	Facing	5
 	Revision	0
@@ -45015,7 +45016,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	13
+	SpeechColor	17
 	RunSpeed	500
 }
 
@@ -45076,7 +45077,7 @@ NPC townguard
 	Graphic	0x191
 	Color	0x83ea
 	X	1216
-	Y	1746
+	Y	1748
 	Z	0
 	Revision	0
 	Realm	britannia
@@ -45101,7 +45102,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	87
+	SpeechColor	9
 	RunSpeed	500
 }
 
@@ -45144,7 +45145,7 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	2819
+	X	2820
 	Y	662
 	Z	0
 	Facing	6
@@ -45171,7 +45172,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	71
+	SpeechColor	101
 	RunSpeed	500
 }
 
@@ -45214,7 +45215,7 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	3697
+	X	3698
 	Y	1257
 	Z	20
 	Facing	5
@@ -45241,7 +45242,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	101
+	SpeechColor	13
 	RunSpeed	500
 }
 
@@ -45285,7 +45286,7 @@ NPC townguard
 	Graphic	0x190
 	Color	0x83ea
 	X	5712
-	Y	3253
+	Y	3252
 	Z	-15
 	Facing	5
 	Revision	0
@@ -45311,7 +45312,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	32
+	SpeechColor	207
 	RunSpeed	500
 }
 
@@ -45371,8 +45372,8 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	2960
-	Y	3427
+	X	2959
+	Y	3426
 	Z	15
 	Facing	3
 	Revision	0
@@ -45398,7 +45399,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	48
+	SpeechColor	87
 	RunSpeed	500
 }
 
@@ -45441,8 +45442,8 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x190
 	Color	0x83ea
-	X	3702
-	Y	1317
+	X	3701
+	Y	1318
 	Z	0
 	Facing	1
 	Revision	0
@@ -45468,7 +45469,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	80
+	SpeechColor	578
 	RunSpeed	500
 }
 
@@ -45511,8 +45512,8 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x190
 	Color	0x83ea
-	X	1504
-	Y	1518
+	X	1506
+	Y	1520
 	Z	40
 	Facing	7
 	Revision	0
@@ -45538,7 +45539,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	101
+	SpeechColor	34
 	RunSpeed	500
 }
 
@@ -45607,7 +45608,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	17
+	SpeechColor	537
 	RunSpeed	500
 }
 
@@ -45677,7 +45678,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	97
+	SpeechColor	193
 	RunSpeed	500
 }
 
@@ -45720,7 +45721,7 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x190
 	Color	0x83ea
-	X	1621
+	X	1623
 	Y	1755
 	Z	60
 	Facing	6
@@ -45747,7 +45748,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	207
+	SpeechColor	13
 	RunSpeed	500
 }
 
@@ -45790,7 +45791,7 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x190
 	Color	0x83ea
-	X	1826
+	X	1825
 	Y	2667
 	Z	0
 	Facing	3
@@ -45817,7 +45818,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	202
+	SpeechColor	150
 	RunSpeed	500
 }
 
@@ -45860,8 +45861,8 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x190
 	Color	0x83ea
-	X	3523
-	Y	1203
+	X	3521
+	Y	1201
 	Z	0
 	Facing	3
 	Revision	0
@@ -45887,7 +45888,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	101
+	SpeechColor	150
 	RunSpeed	500
 }
 
@@ -45930,7 +45931,7 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	3679
+	X	3680
 	Y	2541
 	Z	0
 	Facing	7
@@ -45957,7 +45958,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	572
+	SpeechColor	404
 	RunSpeed	500
 }
 
@@ -46000,9 +46001,9 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x190
 	Color	0x83ea
-	X	3684
+	X	3682
 	Y	2646
-	Z	1
+	Z	0
 	Facing	2
 	Revision	0
 	Realm	britannia
@@ -46027,7 +46028,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	63
+	SpeechColor	14
 	RunSpeed	500
 }
 
@@ -46070,8 +46071,8 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	564
-	Y	2126
+	X	563
+	Y	2127
 	Z	0
 	Facing	1
 	Revision	0
@@ -46097,7 +46098,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	572
+	SpeechColor	32
 	RunSpeed	500
 }
 
@@ -46140,9 +46141,9 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x190
 	Color	0x83ea
-	X	1283
-	Y	1573
-	Z	14
+	X	1281
+	Y	1575
+	Z	5
 	Facing	1
 	Revision	0
 	Realm	britannia
@@ -46167,7 +46168,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	707
+	SpeechColor	243
 	RunSpeed	500
 }
 
@@ -46211,7 +46212,7 @@ NPC townguard
 	Graphic	0x191
 	Color	0x83ea
 	X	2478
-	Y	509
+	Y	511
 	Z	15
 	Revision	0
 	Realm	britannia
@@ -46236,7 +46237,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	36
+	SpeechColor	150
 	RunSpeed	500
 }
 
@@ -46280,7 +46281,7 @@ NPC townguard
 	Graphic	0x190
 	Color	0x83ea
 	X	2997
-	Y	839
+	Y	837
 	Z	0
 	Facing	4
 	Revision	0
@@ -46306,7 +46307,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	207
+	SpeechColor	87
 	RunSpeed	500
 }
 
@@ -46349,7 +46350,7 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x190
 	Color	0x83ea
-	X	613
+	X	615
 	Y	822
 	Z	0
 	Facing	6
@@ -46376,7 +46377,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	243
+	SpeechColor	42
 	RunSpeed	500
 }
 
@@ -46437,7 +46438,7 @@ NPC townguard
 	Graphic	0x190
 	Color	0x83ea
 	X	1350
-	Y	3868
+	Y	3870
 	Z	0
 	Revision	0
 	Realm	britannia
@@ -46462,7 +46463,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	901
+	SpeechColor	101
 	RunSpeed	500
 }
 
@@ -46505,8 +46506,8 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x190
 	Color	0x83ea
-	X	3580
-	Y	1210
+	X	3579
+	Y	1209
 	Z	0
 	Facing	2
 	Revision	0
@@ -46532,7 +46533,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	12
+	SpeechColor	340
 	RunSpeed	500
 }
 
@@ -46592,9 +46593,9 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	5664
-	Y	3143
-	Z	12
+	X	5665
+	Y	3144
+	Z	-2
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711572
@@ -46618,7 +46619,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	700
+	SpeechColor	71
 	RunSpeed	500
 }
 
@@ -46661,8 +46662,8 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	1156
-	Y	1799
+	X	1157
+	Y	1800
 	Z	0
 	Facing	7
 	Revision	0
@@ -46688,7 +46689,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	17
+	SpeechColor	12
 	RunSpeed	500
 }
 
@@ -46731,7 +46732,7 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x190
 	Color	0x83ea
-	X	2421
+	X	2420
 	Y	669
 	Z	0
 	Facing	2
@@ -46758,7 +46759,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	196
+	SpeechColor	904
 	RunSpeed	500
 }
 
@@ -46801,8 +46802,8 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x190
 	Color	0x83ea
-	X	1273
-	Y	1862
+	X	1274
+	Y	1861
 	Z	0
 	Facing	5
 	Revision	0
@@ -46828,7 +46829,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	80
+	SpeechColor	7
 	RunSpeed	500
 }
 
@@ -46889,7 +46890,7 @@ NPC townguard
 	Graphic	0x191
 	Color	0x83ea
 	X	1621
-	Y	1645
+	Y	1644
 	Z	35
 	Facing	3
 	Revision	0
@@ -46915,7 +46916,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	97
+	SpeechColor	63
 	RunSpeed	500
 }
 
@@ -46958,7 +46959,7 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	2115
+	X	2114
 	Y	2722
 	Z	10
 	Facing	2
@@ -46985,7 +46986,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	19
+	SpeechColor	9
 	RunSpeed	500
 }
 
@@ -47028,8 +47029,8 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x190
 	Color	0x83ea
-	X	2589
-	Y	628
+	X	2590
+	Y	629
 	Z	0
 	Facing	6
 	Revision	0
@@ -47055,7 +47056,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	97
+	SpeechColor	53
 	RunSpeed	500
 }
 
@@ -47099,7 +47100,7 @@ NPC townguard
 	Graphic	0x190
 	Color	0x83ea
 	X	3519
-	Y	1104
+	Y	1102
 	Z	20
 	Facing	4
 	Revision	0
@@ -47125,7 +47126,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	52
+	SpeechColor	97
 	RunSpeed	500
 }
 
@@ -47185,7 +47186,7 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x190
 	Color	0x83ea
-	X	1440
+	X	1441
 	Y	1695
 	Z	0
 	Facing	7
@@ -47212,7 +47213,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	903
+	SpeechColor	18
 	RunSpeed	500
 }
 
@@ -47272,8 +47273,8 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x190
 	Color	0x83ea
-	X	1740
-	Y	1531
+	X	1741
+	Y	1532
 	Z	4
 	Facing	7
 	Revision	0
@@ -47299,7 +47300,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	63
+	SpeechColor	9
 	RunSpeed	500
 }
 
@@ -47342,8 +47343,8 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	3734
-	Y	2137
+	X	3733
+	Y	2136
 	Z	20
 	Facing	3
 	Revision	0
@@ -47369,7 +47370,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	558
+	SpeechColor	904
 	RunSpeed	500
 }
 
@@ -47412,9 +47413,9 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	1879
+	X	1877
 	Y	2664
-	Z	-5
+	Z	-9
 	Facing	2
 	Revision	0
 	Realm	britannia
@@ -47439,7 +47440,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	901
+	SpeechColor	32
 	RunSpeed	500
 }
 
@@ -47509,7 +47510,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	52
+	SpeechColor	63
 	RunSpeed	500
 }
 
@@ -47569,8 +47570,8 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x190
 	Color	0x83ea
-	X	1391
-	Y	1752
+	X	1390
+	Y	1751
 	Z	0
 	Facing	3
 	Revision	0
@@ -47596,7 +47597,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	13
+	SpeechColor	48
 	RunSpeed	500
 }
 
@@ -47666,7 +47667,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	192
+	SpeechColor	442
 	RunSpeed	500
 }
 
@@ -47710,7 +47711,7 @@ NPC townguard
 	Graphic	0x190
 	Color	0x83ea
 	X	3639
-	Y	1263
+	Y	1265
 	Z	0
 	Revision	0
 	Realm	britannia
@@ -47735,7 +47736,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	63
+	SpeechColor	18
 	RunSpeed	500
 }
 
@@ -47795,7 +47796,7 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x190
 	Color	0x83ea
-	X	2957
+	X	2956
 	Y	831
 	Z	0
 	Facing	2
@@ -47822,7 +47823,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	12
+	SpeechColor	207
 	RunSpeed	500
 }
 
@@ -47892,7 +47893,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	54
+	SpeechColor	7
 	RunSpeed	500
 }
 
@@ -47935,7 +47936,7 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x190
 	Color	0x83ea
-	X	633
+	X	631
 	Y	2197
 	Z	0
 	Facing	2
@@ -47962,7 +47963,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	700
+	SpeechColor	63
 	RunSpeed	500
 }
 
@@ -48022,8 +48023,8 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	1272
-	Y	1627
+	X	1274
+	Y	1625
 	Z	0
 	Facing	5
 	Revision	0
@@ -48049,7 +48050,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	243
+	SpeechColor	160
 	RunSpeed	500
 }
 
@@ -48092,7 +48093,7 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	3617
+	X	3619
 	Y	2656
 	Z	-2
 	Facing	6
@@ -48119,7 +48120,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	438
+	SpeechColor	578
 	RunSpeed	500
 }
 
@@ -48162,9 +48163,9 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	3735
-	Y	2525
-	Z	30
+	X	3733
+	Y	2523
+	Z	28
 	Facing	3
 	Revision	0
 	Realm	britannia
@@ -48189,7 +48190,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	97
+	SpeechColor	18
 	RunSpeed	500
 }
 
@@ -48232,9 +48233,9 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	5222
-	Y	3951
-	Z	40
+	X	5221
+	Y	3952
+	Z	41
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711594
@@ -48258,7 +48259,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	48
+	SpeechColor	572
 	RunSpeed	500
 }
 
@@ -48327,7 +48328,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	12
+	SpeechColor	648
 	RunSpeed	500
 }
 
@@ -48370,9 +48371,9 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	1499
-	Y	3759
-	Z	0
+	X	1497
+	Y	3757
+	Z	-2
 	Facing	3
 	Revision	0
 	Realm	britannia
@@ -48397,7 +48398,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	707
+	SpeechColor	9
 	RunSpeed	500
 }
 
@@ -48441,7 +48442,7 @@ NPC townguard
 	Graphic	0x191
 	Color	0x83ea
 	X	1435
-	Y	1586
+	Y	1587
 	Z	20
 	Facing	7
 	Revision	0
@@ -48467,7 +48468,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	192
+	SpeechColor	54
 	RunSpeed	500
 }
 
@@ -48510,8 +48511,8 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x190
 	Color	0x83ea
-	X	3610
-	Y	2526
+	X	3611
+	Y	2525
 	Z	0
 	Facing	5
 	Revision	0
@@ -48537,7 +48538,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	572
+	SpeechColor	13
 	RunSpeed	500
 }
 
@@ -48597,9 +48598,9 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x190
 	Color	0x83ea
-	X	5781
-	Y	3141
-	Z	1
+	X	5782
+	Y	3140
+	Z	0
 	Facing	6
 	Revision	0
 	Realm	britannia
@@ -48624,7 +48625,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	36
+	SpeechColor	87
 	RunSpeed	500
 }
 
@@ -48684,8 +48685,8 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x190
 	Color	0x83ea
-	X	2480
-	Y	572
+	X	2482
+	Y	570
 	Z	5
 	Facing	5
 	Revision	0
@@ -48711,7 +48712,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	63
+	SpeechColor	71
 	RunSpeed	500
 }
 
@@ -48771,8 +48772,8 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	1163
-	Y	1631
+	X	1162
+	Y	1632
 	Z	0
 	Facing	1
 	Revision	0
@@ -48798,7 +48799,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	53
+	SpeechColor	101
 	RunSpeed	500
 }
 
@@ -48842,7 +48843,7 @@ NPC townguard
 	Graphic	0x190
 	Color	0x83ea
 	X	2973
-	Y	890
+	Y	891
 	Z	0
 	Facing	1
 	Revision	0
@@ -48868,7 +48869,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	243
+	SpeechColor	32
 	RunSpeed	500
 }
 
@@ -48912,7 +48913,7 @@ NPC townguard
 	Graphic	0x190
 	Color	0x83ea
 	X	3615
-	Y	1317
+	Y	1315
 	Z	0
 	Facing	4
 	Revision	0
@@ -48938,7 +48939,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	98
+	SpeechColor	48
 	RunSpeed	500
 }
 
@@ -49008,7 +49009,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	7
+	SpeechColor	80
 	RunSpeed	500
 }
 
@@ -49068,9 +49069,9 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	5718
-	Y	3308
-	Z	14
+	X	5720
+	Y	3306
+	Z	15
 	Facing	5
 	Revision	0
 	Realm	britannia
@@ -49095,7 +49096,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	7
+	SpeechColor	101
 	RunSpeed	500
 }
 
@@ -49139,7 +49140,7 @@ NPC townguard
 	Graphic	0x190
 	Color	0x83ea
 	X	1938
-	Y	2778
+	Y	2777
 	Z	0
 	Facing	4
 	Revision	0
@@ -49165,7 +49166,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	207
+	SpeechColor	17
 	RunSpeed	500
 }
 
@@ -49252,7 +49253,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	348
+	SpeechColor	97
 	RunSpeed	500
 }
 
@@ -49295,9 +49296,9 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	5813
-	Y	3187
-	Z	1
+	X	5814
+	Y	3186
+	Z	-1
 	Facing	6
 	Revision	0
 	Realm	britannia
@@ -49322,7 +49323,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	87
+	SpeechColor	207
 	RunSpeed	500
 }
 
@@ -49366,7 +49367,7 @@ NPC townguard
 	Graphic	0x191
 	Color	0x83ea
 	X	1675
-	Y	1585
+	Y	1586
 	Z	7
 	Revision	0
 	Realm	britannia
@@ -49391,7 +49392,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	707
+	SpeechColor	202
 	RunSpeed	500
 }
 
@@ -49434,8 +49435,8 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x190
 	Color	0x83ea
-	X	3620
-	Y	2590
+	X	3619
+	Y	2591
 	Z	0
 	Facing	2
 	Revision	0
@@ -49461,7 +49462,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	87
+	SpeechColor	101
 	RunSpeed	500
 }
 
@@ -49505,7 +49506,7 @@ NPC townguard
 	Graphic	0x190
 	Color	0x83ea
 	X	3696
-	Y	1209
+	Y	1208
 	Z	0
 	Facing	3
 	Revision	0
@@ -49531,7 +49532,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	700
+	SpeechColor	572
 	RunSpeed	500
 }
 
@@ -49574,7 +49575,7 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x190
 	Color	0x83ea
-	X	5151
+	X	5153
 	Y	3971
 	Z	54
 	Facing	6
@@ -49601,7 +49602,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	202
+	SpeechColor	63
 	RunSpeed	500
 }
 
@@ -49688,7 +49689,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	193
+	SpeechColor	572
 	RunSpeed	500
 }
 
@@ -49731,7 +49732,7 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	2943
+	X	2945
 	Y	890
 	Z	0
 	Facing	6
@@ -49758,7 +49759,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	150
+	SpeechColor	707
 	RunSpeed	500
 }
 
@@ -49828,7 +49829,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	9
+	SpeechColor	36
 	RunSpeed	500
 }
 
@@ -49871,8 +49872,8 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	1506
-	Y	1708
+	X	1505
+	Y	1707
 	Z	20
 	Facing	2
 	Revision	0
@@ -49898,7 +49899,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	98
+	SpeechColor	207
 	RunSpeed	500
 }
 
@@ -49968,7 +49969,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	32
+	SpeechColor	243
 	RunSpeed	500
 }
 
@@ -50011,9 +50012,9 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x190
 	Color	0x83ea
-	X	2418
+	X	2416
 	Y	511
-	Z	12
+	Z	14
 	Facing	2
 	Revision	0
 	Realm	britannia
@@ -50038,7 +50039,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	98
+	SpeechColor	901
 	RunSpeed	500
 }
 
@@ -50081,7 +50082,7 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x190
 	Color	0x83ea
-	X	2880
+	X	2882
 	Y	659
 	Z	0
 	Facing	6
@@ -50108,7 +50109,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	37
+	SpeechColor	12
 	RunSpeed	500
 }
 
@@ -50151,8 +50152,8 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x190
 	Color	0x83ea
-	X	618
-	Y	880
+	X	620
+	Y	882
 	Z	0
 	Facing	7
 	Revision	0
@@ -50178,7 +50179,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	53
+	SpeechColor	700
 	RunSpeed	500
 }
 
@@ -50222,8 +50223,8 @@ NPC townguard
 	Graphic	0x190
 	Color	0x83ea
 	X	628
-	Y	2261
-	Z	-2
+	Y	2259
+	Z	0
 	Facing	4
 	Revision	0
 	Realm	britannia
@@ -50248,7 +50249,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	903
+	SpeechColor	17
 	RunSpeed	500
 }
 
@@ -50291,8 +50292,8 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	2048
-	Y	2845
+	X	2047
+	Y	2844
 	Z	0
 	Facing	3
 	Revision	0
@@ -50318,7 +50319,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	42
+	SpeechColor	196
 	RunSpeed	500
 }
 
@@ -50361,8 +50362,8 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x190
 	Color	0x83ea
-	X	2863
-	Y	896
+	X	2864
+	Y	897
 	Z	0
 	Facing	7
 	Revision	0
@@ -50388,7 +50389,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	9
+	SpeechColor	80
 	RunSpeed	500
 }
 
@@ -50431,9 +50432,9 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	5823
+	X	5821
 	Y	3147
-	Z	2
+	Z	1
 	Facing	2
 	Revision	0
 	Realm	britannia
@@ -50458,7 +50459,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	36
+	SpeechColor	97
 	RunSpeed	500
 }
 
@@ -50501,8 +50502,8 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x190
 	Color	0x83ea
-	X	5838
-	Y	3256
+	X	5836
+	Y	3254
 	Z	2
 	Facing	3
 	Revision	0
@@ -50528,7 +50529,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	150
+	SpeechColor	19
 	RunSpeed	500
 }
 
@@ -50571,7 +50572,7 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x190
 	Color	0x83ea
-	X	2819
+	X	2818
 	Y	717
 	Z	0
 	Facing	2
@@ -50598,7 +50599,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	71
+	SpeechColor	97
 	RunSpeed	500
 }
 
@@ -50641,7 +50642,7 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	1389
+	X	1390
 	Y	1577
 	Z	30
 	Facing	7
@@ -50668,7 +50669,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	63
+	SpeechColor	52
 	RunSpeed	500
 }
 
@@ -50711,7 +50712,7 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	1563
+	X	1561
 	Y	1640
 	Z	15
 	Facing	2
@@ -50738,7 +50739,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	707
+	SpeechColor	903
 	RunSpeed	500
 }
 
@@ -50808,7 +50809,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	12
+	SpeechColor	63
 	RunSpeed	500
 }
 
@@ -50851,9 +50852,9 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x190
 	Color	0x83ea
-	X	2935
-	Y	663
-	Z	-1
+	X	2933
+	Y	661
+	Z	5
 	Facing	3
 	Revision	0
 	Realm	britannia
@@ -50878,7 +50879,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	160
+	SpeechColor	558
 	RunSpeed	500
 }
 
@@ -50938,8 +50939,8 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	571
-	Y	2254
+	X	570
+	Y	2253
 	Z	0
 	Facing	3
 	Revision	0
@@ -51009,7 +51010,7 @@ NPC townguard
 	Graphic	0x191
 	Color	0x83ea
 	X	1883
-	Y	2720
+	Y	2722
 	Z	20
 	Revision	0
 	Realm	britannia
@@ -51034,7 +51035,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	348
+	SpeechColor	52
 	RunSpeed	500
 }
 
@@ -51077,8 +51078,8 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x190
 	Color	0x83ea
-	X	1343
-	Y	3810
+	X	1341
+	Y	3812
 	Z	0
 	Facing	1
 	Revision	0
@@ -51104,7 +51105,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	207
+	SpeechColor	13
 	RunSpeed	500
 }
 
@@ -51164,9 +51165,9 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	1677
+	X	1675
 	Y	1655
-	Z	15
+	Z	13
 	Facing	2
 	Revision	0
 	Realm	britannia
@@ -51191,7 +51192,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	243
+	SpeechColor	192
 	RunSpeed	500
 }
 
@@ -51234,8 +51235,8 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	2109
-	Y	2674
+	X	2111
+	Y	2672
 	Z	0
 	Facing	5
 	Revision	0
@@ -51261,7 +51262,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	9
+	SpeechColor	63
 	RunSpeed	500
 }
 
@@ -51305,7 +51306,7 @@ NPC townguard
 	Graphic	0x191
 	Color	0x83ea
 	X	2499
-	Y	623
+	Y	624
 	Z	0
 	Revision	0
 	Realm	britannia
@@ -51330,7 +51331,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	8
+	SpeechColor	12
 	RunSpeed	500
 }
 
@@ -51374,7 +51375,7 @@ NPC townguard
 	Graphic	0x190
 	Color	0x83ea
 	X	1566
-	Y	1760
+	Y	1761
 	Z	10
 	Revision	0
 	Realm	britannia
@@ -51399,7 +51400,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	192
+	SpeechColor	54
 	RunSpeed	500
 }
 
@@ -51459,8 +51460,8 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x190
 	Color	0x83ea
-	X	519
-	Y	956
+	X	521
+	Y	958
 	Z	0
 	Facing	7
 	Revision	0
@@ -51486,7 +51487,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	53
+	SpeechColor	700
 	RunSpeed	500
 }
 
@@ -51546,7 +51547,7 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x190
 	Color	0x83ea
-	X	1326
+	X	1325
 	Y	3758
 	Z	0
 	Facing	2
@@ -51573,7 +51574,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	80
+	SpeechColor	243
 	RunSpeed	500
 }
 
@@ -51617,7 +51618,7 @@ NPC townguard
 	Graphic	0x190
 	Color	0x83ea
 	X	1401
-	Y	1859
+	Y	1860
 	Z	0
 	Revision	0
 	Realm	britannia
@@ -51642,7 +51643,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	7
+	SpeechColor	438
 	RunSpeed	500
 }
 
@@ -51686,7 +51687,7 @@ NPC townguard
 	Graphic	0x190
 	Color	0x83ea
 	X	3673
-	Y	2243
+	Y	2241
 	Z	20
 	Facing	4
 	Revision	0
@@ -51712,7 +51713,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	8
+	SpeechColor	97
 	RunSpeed	500
 }
 
@@ -51755,8 +51756,8 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	3739
-	Y	2195
+	X	3737
+	Y	2193
 	Z	20
 	Facing	3
 	Revision	0
@@ -51782,7 +51783,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	7
+	SpeechColor	48
 	RunSpeed	500
 }
 
@@ -51852,7 +51853,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	8
+	SpeechColor	12
 	RunSpeed	500
 }
 
@@ -51879,7 +51880,7 @@ NPC townguard
 	Graphic	0x190
 	Color	0x83ea
 	X	4466
-	Y	1128
+	Y	1126
 	Z	0
 	Facing	4
 	Revision	0
@@ -51905,7 +51906,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	202
+	SpeechColor	707
 	RunSpeed	500
 }
 
@@ -51948,8 +51949,8 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	1106
-	Y	1631
+	X	1104
+	Y	1629
 	Z	0
 	Facing	3
 	Revision	0
@@ -51975,7 +51976,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	700
+	SpeechColor	192
 	RunSpeed	500
 }
 
@@ -52018,7 +52019,7 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	1330
+	X	1328
 	Y	1630
 	Z	50
 	Facing	2
@@ -52045,7 +52046,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	80
+	SpeechColor	572
 	RunSpeed	500
 }
 
@@ -52089,7 +52090,7 @@ NPC townguard
 	Graphic	0x190
 	Color	0x83ea
 	X	1442
-	Y	3864
+	Y	3865
 	Z	0
 	Facing	7
 	Revision	0
@@ -52115,7 +52116,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	707
+	SpeechColor	36
 	RunSpeed	500
 }
 
@@ -52142,8 +52143,8 @@ NPC townguard
 	Graphic	0x191
 	Color	0x83ea
 	X	2055
-	Y	2885
-	Z	-1
+	Y	2883
+	Z	1
 	Facing	4
 	Revision	0
 	Realm	britannia
@@ -52168,7 +52169,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	101
+	SpeechColor	63
 	RunSpeed	500
 }
 
@@ -52211,8 +52212,8 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x190
 	Color	0x83ea
-	X	5779
-	Y	3311
+	X	5778
+	Y	3312
 	Z	-15
 	Facing	1
 	Revision	0
@@ -52238,7 +52239,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	18
+	SpeechColor	53
 	RunSpeed	500
 }
 
@@ -52308,7 +52309,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	71
+	SpeechColor	243
 	RunSpeed	500
 }
 
@@ -52351,7 +52352,7 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	1881
+	X	1883
 	Y	2784
 	Z	0
 	Facing	6
@@ -52378,7 +52379,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	12
+	SpeechColor	98
 	RunSpeed	500
 }
 
@@ -52421,8 +52422,8 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	1220
-	Y	1627
+	X	1221
+	Y	1626
 	Z	0
 	Facing	6
 	Revision	0
@@ -52491,7 +52492,7 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	1499
+	X	1498
 	Y	1758
 	Z	-2
 	Facing	2
@@ -52518,7 +52519,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	578
+	SpeechColor	7
 	RunSpeed	500
 }
 
@@ -52561,9 +52562,9 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x190
 	Color	0x83ea
-	X	5773
+	X	5772
 	Y	3253
-	Z	-6
+	Z	-4
 	Facing	2
 	Revision	0
 	Realm	britannia
@@ -52588,7 +52589,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	340
+	SpeechColor	207
 	RunSpeed	500
 }
 
@@ -52648,9 +52649,9 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	1929
-	Y	2669
-	Z	2
+	X	1930
+	Y	2670
+	Z	4
 	Facing	7
 	Revision	0
 	Realm	britannia
@@ -52675,7 +52676,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	12
+	SpeechColor	348
 	RunSpeed	500
 }
 
@@ -52718,7 +52719,7 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	1818
+	X	1820
 	Y	2777
 	Z	0
 	Facing	6
@@ -52745,7 +52746,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	558
+	SpeechColor	87
 	RunSpeed	500
 }
 
@@ -52788,8 +52789,8 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x190
 	Color	0x83ea
-	X	3649
-	Y	1089
+	X	3648
+	Y	1088
 	Z	0
 	Facing	2
 	Revision	0
@@ -52815,7 +52816,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	63
+	SpeechColor	707
 	RunSpeed	500
 }
 
@@ -52858,8 +52859,8 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x190
 	Color	0x83ea
-	X	3729
-	Y	2650
+	X	3731
+	Y	2652
 	Z	40
 	Facing	7
 	Revision	0
@@ -52885,7 +52886,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	36
+	SpeechColor	87
 	RunSpeed	500
 }
 
@@ -52955,7 +52956,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	98
+	SpeechColor	700
 	RunSpeed	500
 }
 
@@ -52998,9 +52999,9 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x190
 	Color	0x83ea
-	X	5774
-	Y	3193
-	Z	-3
+	X	5776
+	Y	3195
+	Z	3
 	Facing	7
 	Revision	0
 	Realm	britannia
@@ -53025,7 +53026,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	904
+	SpeechColor	202
 	RunSpeed	500
 }
 
@@ -53138,9 +53139,9 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	3759
+	X	3760
 	Y	2064
-	Z	27
+	Z	24
 	Facing	7
 	Revision	0
 	Realm	britannia
@@ -53165,7 +53166,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	558
+	SpeechColor	150
 	RunSpeed	500
 }
 
@@ -53208,8 +53209,8 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	2954
-	Y	943
+	X	2953
+	Y	942
 	Z	0
 	Facing	3
 	Revision	0
@@ -53235,7 +53236,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	87
+	SpeechColor	9
 	RunSpeed	500
 }
 
@@ -53305,7 +53306,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	901
+	SpeechColor	98
 	RunSpeed	500
 }
 
@@ -53348,7 +53349,7 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x190
 	Color	0x83ea
-	X	1998
+	X	2000
 	Y	2723
 	Z	30
 	Facing	6
@@ -53375,7 +53376,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	12
+	SpeechColor	32
 	RunSpeed	500
 }
 
@@ -53435,7 +53436,7 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x190
 	Color	0x83ea
-	X	3643
+	X	3645
 	Y	1207
 	Z	0
 	Facing	6
@@ -53462,7 +53463,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	52
+	SpeechColor	98
 	RunSpeed	500
 }
 
@@ -53532,7 +53533,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	63
+	SpeechColor	37
 	RunSpeed	500
 }
 
@@ -53593,7 +53594,7 @@ NPC townguard
 	Graphic	0x191
 	Color	0x83ea
 	X	1119
-	Y	1582
+	Y	1580
 	Z	0
 	Facing	4
 	Revision	0
@@ -53619,7 +53620,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	18
+	SpeechColor	53
 	RunSpeed	500
 }
 
@@ -53662,9 +53663,9 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x190
 	Color	0x83ea
-	X	1720
-	Y	1575
-	Z	19
+	X	1722
+	Y	1577
+	Z	24
 	Facing	7
 	Revision	0
 	Realm	britannia
@@ -53689,7 +53690,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	87
+	SpeechColor	903
 	RunSpeed	500
 }
 
@@ -53749,9 +53750,9 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x190
 	Color	0x83ea
-	X	5155
+	X	5157
 	Y	4013
-	Z	41
+	Z	39
 	Facing	6
 	Revision	0
 	Realm	britannia
@@ -53776,7 +53777,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	904
+	SpeechColor	42
 	RunSpeed	500
 }
 
@@ -53837,7 +53838,7 @@ NPC townguard
 	Graphic	0x191
 	Color	0x83ea
 	X	3004
-	Y	660
+	Y	658
 	Z	0
 	Facing	4
 	Revision	0
@@ -53863,7 +53864,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	13
+	SpeechColor	9
 	RunSpeed	500
 }
 
@@ -53906,7 +53907,7 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	1390
+	X	1389
 	Y	1806
 	Z	0
 	Facing	3
@@ -53933,7 +53934,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	193
+	SpeechColor	36
 	RunSpeed	500
 }
 
@@ -53976,8 +53977,8 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x190
 	Color	0x83ea
-	X	1390
-	Y	3804
+	X	1389
+	Y	3805
 	Z	0
 	Revision	0
 	Realm	britannia
@@ -54002,7 +54003,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	48
+	SpeechColor	150
 	RunSpeed	500
 }
 
@@ -54046,7 +54047,7 @@ NPC townguard
 	Graphic	0x190
 	Color	0x83ea
 	X	1561
-	Y	1592
+	Y	1593
 	Z	10
 	Revision	0
 	Realm	britannia
@@ -54071,7 +54072,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	97
+	SpeechColor	71
 	RunSpeed	500
 }
 
@@ -54131,8 +54132,8 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x190
 	Color	0x83ea
-	X	5667
-	Y	3257
+	X	5668
+	Y	3256
 	Z	-15
 	Facing	5
 	Revision	0
@@ -54158,7 +54159,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	558
+	SpeechColor	63
 	RunSpeed	500
 }
 
@@ -54201,8 +54202,8 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x190
 	Color	0x83ea
-	X	5159
-	Y	4071
+	X	5160
+	Y	4072
 	Z	40
 	Facing	7
 	Revision	0
@@ -54228,7 +54229,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	207
+	SpeechColor	707
 	RunSpeed	500
 }
 
@@ -54314,7 +54315,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	901
+	SpeechColor	12
 	RunSpeed	500
 }
 
@@ -54357,7 +54358,7 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	2919
+	X	2917
 	Y	719
 	Z	0
 	Facing	2
@@ -54384,7 +54385,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	8
+	SpeechColor	160
 	RunSpeed	500
 }
 
@@ -54428,7 +54429,7 @@ NPC townguard
 	Graphic	0x190
 	Color	0x83ea
 	X	3015
-	Y	3363
+	Y	3365
 	Z	15
 	Revision	0
 	Realm	britannia
@@ -54453,7 +54454,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	97
+	SpeechColor	901
 	RunSpeed	500
 }
 
@@ -54497,7 +54498,7 @@ NPC townguard
 	Graphic	0x190
 	Color	0x83ea
 	X	568
-	Y	2185
+	Y	2186
 	Z	0
 	Revision	0
 	Realm	britannia
@@ -54522,7 +54523,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	903
+	SpeechColor	348
 	RunSpeed	500
 }
 
@@ -54582,8 +54583,8 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x190
 	Color	0x83ea
-	X	1324
-	Y	1690
+	X	1326
+	Y	1688
 	Z	30
 	Facing	5
 	Revision	0
@@ -54609,7 +54610,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	32
+	SpeechColor	207
 	RunSpeed	500
 }
 
@@ -54670,7 +54671,7 @@ NPC townguard
 	Graphic	0x191
 	Color	0x83ea
 	X	1444
-	Y	1763
+	Y	1762
 	Z	-2
 	Facing	4
 	Revision	0
@@ -54696,7 +54697,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	7
+	SpeechColor	243
 	RunSpeed	500
 }
 
@@ -54740,7 +54741,7 @@ NPC townguard
 	Graphic	0x191
 	Color	0x83ea
 	X	3754
-	Y	1326
+	Y	1328
 	Z	0
 	Revision	0
 	Realm	britannia
@@ -54765,7 +54766,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	101
+	SpeechColor	9
 	RunSpeed	500
 }
 
@@ -54808,8 +54809,8 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x190
 	Color	0x83ea
-	X	3724
-	Y	2242
+	X	3726
+	Y	2244
 	Z	20
 	Facing	7
 	Revision	0
@@ -54835,7 +54836,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	48
+	SpeechColor	8
 	RunSpeed	500
 }
 
@@ -54895,9 +54896,9 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x190
 	Color	0x83ea
-	X	3740
-	Y	2482
-	Z	31
+	X	3741
+	Y	2483
+	Z	32
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711685
@@ -54921,7 +54922,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	53
+	SpeechColor	192
 	RunSpeed	500
 }
 
@@ -54964,8 +54965,8 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	4407
-	Y	1073
+	X	4408
+	Y	1074
 	Z	0
 	Revision	0
 	Realm	britannia
@@ -54990,7 +54991,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	13
+	SpeechColor	53
 	RunSpeed	500
 }
 
@@ -55034,7 +55035,7 @@ NPC townguard
 	Graphic	0x190
 	Color	0x83ea
 	X	2835
-	Y	892
+	Y	893
 	Z	0
 	Revision	0
 	Realm	britannia
@@ -55059,7 +55060,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	648
+	SpeechColor	80
 	RunSpeed	500
 }
 
@@ -55119,8 +55120,8 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	1827
-	Y	2900
+	X	1825
+	Y	2902
 	Z	20
 	Facing	1
 	Revision	0
@@ -55146,7 +55147,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	14
+	SpeechColor	7
 	RunSpeed	500
 }
 
@@ -55189,8 +55190,8 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	2538
-	Y	400
+	X	2539
+	Y	401
 	Z	15
 	Facing	7
 	Revision	0
@@ -55216,7 +55217,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	707
+	SpeechColor	8
 	RunSpeed	500
 }
 
@@ -55260,7 +55261,7 @@ NPC townguard
 	Graphic	0x190
 	Color	0x83ea
 	X	3794
-	Y	2246
+	Y	2244
 	Z	20
 	Facing	4
 	Revision	0
@@ -55286,7 +55287,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	17
+	SpeechColor	7
 	RunSpeed	500
 }
 
@@ -55329,7 +55330,7 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	5224
+	X	5223
 	Y	4067
 	Z	39
 	Facing	2
@@ -55356,7 +55357,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	12
+	SpeechColor	8
 	RunSpeed	500
 }
 
@@ -55400,7 +55401,7 @@ NPC townguard
 	Graphic	0x191
 	Color	0x83ea
 	X	578
-	Y	957
+	Y	959
 	Z	0
 	Revision	0
 	Realm	britannia
@@ -55425,7 +55426,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	32
+	SpeechColor	202
 	RunSpeed	500
 }
 
@@ -55469,7 +55470,7 @@ NPC townguard
 	Graphic	0x190
 	Color	0x83ea
 	X	680
-	Y	2246
+	Y	2247
 	Z	-3
 	Facing	1
 	Revision	0
@@ -55495,7 +55496,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	537
+	SpeechColor	700
 	RunSpeed	500
 }
 
@@ -55556,7 +55557,7 @@ NPC townguard
 	Graphic	0x190
 	Color	0x83ea
 	X	1396
-	Y	1628
+	Y	1627
 	Z	30
 	Facing	2
 	Revision	0
@@ -55582,7 +55583,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	71
+	SpeechColor	80
 	RunSpeed	500
 }
 
@@ -55626,7 +55627,7 @@ NPC townguard
 	Graphic	0x190
 	Color	0x83ea
 	X	3528
-	Y	1143
+	Y	1145
 	Z	20
 	Revision	0
 	Realm	britannia
@@ -55651,7 +55652,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	160
+	SpeechColor	707
 	RunSpeed	500
 }
 
@@ -55711,9 +55712,9 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	3598
-	Y	1262
-	Z	0
+	X	3597
+	Y	1261
+	Z	-1
 	Facing	3
 	Revision	0
 	Realm	britannia
@@ -55738,7 +55739,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	207
+	SpeechColor	101
 	RunSpeed	500
 }
 
@@ -55808,7 +55809,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	52
+	SpeechColor	18
 	RunSpeed	500
 }
 
@@ -55868,7 +55869,7 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	2050
+	X	2049
 	Y	2776
 	Z	0
 	Facing	2
@@ -55895,7 +55896,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	192
+	SpeechColor	71
 	RunSpeed	500
 }
 
@@ -55938,7 +55939,7 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	1332
+	X	1334
 	Y	1582
 	Z	30
 	Facing	6
@@ -55965,7 +55966,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	438
+	SpeechColor	12
 	RunSpeed	500
 }
 
@@ -56009,8 +56010,8 @@ NPC townguard
 	Graphic	0x191
 	Color	0x83ea
 	X	1880
-	Y	2901
-	Z	5
+	Y	2903
+	Z	10
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711700
@@ -56034,7 +56035,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	202
+	SpeechColor	7
 	RunSpeed	500
 }
 
@@ -56077,7 +56078,7 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	2480
+	X	2481
 	Y	450
 	Z	15
 	Facing	6
@@ -56104,7 +56105,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	207
+	SpeechColor	578
 	RunSpeed	500
 }
 
@@ -56173,7 +56174,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	362
+	SpeechColor	340
 	RunSpeed	500
 }
 
@@ -56216,8 +56217,8 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	670
-	Y	2129
+	X	669
+	Y	2128
 	Z	0
 	Facing	2
 	Revision	0
@@ -56243,7 +56244,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	97
+	SpeechColor	12
 	RunSpeed	500
 }
 
@@ -56287,7 +56288,7 @@ NPC townguard
 	Graphic	0x191
 	Color	0x83ea
 	X	1158
-	Y	1862
+	Y	1860
 	Z	0
 	Facing	4
 	Revision	0
@@ -56313,7 +56314,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	438
+	SpeechColor	558
 	RunSpeed	500
 }
 
@@ -56357,7 +56358,7 @@ NPC townguard
 	Graphic	0x191
 	Color	0x83ea
 	X	1446
-	Y	1534
+	Y	1532
 	Z	35
 	Facing	4
 	Revision	0
@@ -56383,7 +56384,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	32
+	SpeechColor	63
 	RunSpeed	500
 }
 
@@ -56426,7 +56427,7 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x190
 	Color	0x83ea
-	X	1272
+	X	1273
 	Y	1691
 	Z	0
 	Facing	6
@@ -56453,7 +56454,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	52
+	SpeechColor	36
 	RunSpeed	500
 }
 
@@ -56513,9 +56514,9 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	2975
-	Y	738
-	Z	1
+	X	2976
+	Y	737
+	Z	2
 	Facing	5
 	Revision	0
 	Realm	britannia
@@ -56540,7 +56541,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	53
+	SpeechColor	98
 	RunSpeed	500
 }
 
@@ -56583,9 +56584,9 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x190
 	Color	0x83ea
-	X	3766
-	Y	1115
-	Z	20
+	X	3764
+	Y	1113
+	Z	-2
 	Facing	3
 	Revision	0
 	Realm	britannia
@@ -56610,7 +56611,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	9
+	SpeechColor	904
 	RunSpeed	500
 }
 
@@ -56654,7 +56655,7 @@ NPC townguard
 	Graphic	0x191
 	Color	0x83ea
 	X	1160
-	Y	1685
+	Y	1683
 	Z	0
 	Facing	4
 	Revision	0
@@ -56680,7 +56681,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	63
+	SpeechColor	193
 	RunSpeed	500
 }
 
@@ -56724,7 +56725,7 @@ NPC townguard
 	Graphic	0x190
 	Color	0x83ea
 	X	1218
-	Y	1867
+	Y	1868
 	Z	0
 	Facing	7
 	Revision	0
@@ -56750,7 +56751,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	34
+	SpeechColor	558
 	RunSpeed	500
 }
 
@@ -56811,7 +56812,7 @@ NPC townguard
 	Graphic	0x190
 	Color	0x83ea
 	X	2991
-	Y	779
+	Y	781
 	Z	0
 	Revision	0
 	Realm	britannia
@@ -56836,7 +56837,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	207
+	SpeechColor	87
 	RunSpeed	500
 }
 
@@ -56897,7 +56898,7 @@ NPC townguard
 	Graphic	0x190
 	Color	0x83ea
 	X	3732
-	Y	2588
+	Y	2590
 	Z	40
 	Revision	0
 	Realm	britannia
@@ -56922,7 +56923,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	48
+	SpeechColor	901
 	RunSpeed	500
 }
 
@@ -56983,7 +56984,7 @@ NPC townguard
 	Graphic	0x190
 	Color	0x83ea
 	X	1218
-	Y	1693
+	Y	1692
 	Z	0
 	Facing	4
 	Revision	0
@@ -57009,7 +57010,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	52
+	SpeechColor	12
 	RunSpeed	500
 }
 
@@ -57053,7 +57054,7 @@ NPC townguard
 	Graphic	0x190
 	Color	0x83ea
 	X	1830
-	Y	2727
+	Y	2725
 	Z	0
 	Facing	4
 	Revision	0
@@ -57079,7 +57080,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	438
+	SpeechColor	52
 	RunSpeed	500
 }
 
@@ -57123,7 +57124,7 @@ NPC townguard
 	Graphic	0x191
 	Color	0x83ea
 	X	2421
-	Y	562
+	Y	560
 	Z	0
 	Facing	4
 	Revision	0
@@ -57149,7 +57150,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	537
+	SpeechColor	63
 	RunSpeed	500
 }
 
@@ -57192,7 +57193,7 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	3761
+	X	3763
 	Y	1267
 	Z	0
 	Facing	6
@@ -57219,7 +57220,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	228
+	SpeechColor	18
 	RunSpeed	500
 }
 
@@ -57262,8 +57263,8 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x190
 	Color	0x83ea
-	X	2811
-	Y	779
+	X	2812
+	Y	780
 	Z	0
 	Facing	7
 	Revision	0
@@ -57289,7 +57290,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	340
+	SpeechColor	87
 	RunSpeed	500
 }
 
@@ -57332,9 +57333,9 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x190
 	Color	0x83ea
-	X	5284
-	Y	4070
-	Z	40
+	X	5283
+	Y	4069
+	Z	41
 	Facing	2
 	Revision	0
 	Realm	britannia
@@ -57359,7 +57360,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	63
+	SpeechColor	904
 	RunSpeed	500
 }
 
@@ -57402,8 +57403,8 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x190
 	Color	0x83ea
-	X	1217
-	Y	1795
+	X	1215
+	Y	1797
 	Z	0
 	Facing	1
 	Revision	0
@@ -57429,7 +57430,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	7
+	SpeechColor	13
 	RunSpeed	500
 }
 
@@ -57472,8 +57473,8 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	1432
-	Y	3692
+	X	1434
+	Y	3694
 	Z	0
 	Facing	7
 	Revision	0
@@ -57499,7 +57500,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	97
+	SpeechColor	193
 	RunSpeed	500
 }
 
@@ -57542,9 +57543,9 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	3694
+	X	3696
 	Y	1141
-	Z	0
+	Z	-10
 	Facing	6
 	Revision	0
 	Realm	britannia
@@ -57569,7 +57570,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	63
+	SpeechColor	48
 	RunSpeed	500
 }
 
@@ -57612,7 +57613,7 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	1432
+	X	1430
 	Y	3813
 	Z	0
 	Facing	2
@@ -57639,7 +57640,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	192
+	SpeechColor	97
 	RunSpeed	500
 }
 
@@ -57682,7 +57683,7 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	1825
+	X	1824
 	Y	2836
 	Z	0
 	Facing	1
@@ -57709,7 +57710,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	578
+	SpeechColor	558
 	RunSpeed	500
 }
 
@@ -57753,7 +57754,7 @@ NPC townguard
 	Graphic	0x190
 	Color	0x83ea
 	X	3619
-	Y	2480
+	Y	2481
 	Z	0
 	Facing	2
 	Revision	0
@@ -57779,7 +57780,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	558
+	SpeechColor	207
 	RunSpeed	500
 }
 
@@ -57823,7 +57824,7 @@ NPC townguard
 	Graphic	0x191
 	Color	0x83ea
 	X	2959
-	Y	3481
+	Y	3479
 	Z	15
 	Facing	4
 	Revision	0
@@ -57849,7 +57850,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	19
+	SpeechColor	901
 	RunSpeed	500
 }
 
@@ -57919,7 +57920,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	243
+	SpeechColor	8
 	RunSpeed	500
 }
 
@@ -57962,8 +57963,8 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x190
 	Color	0x83ea
-	X	2939
-	Y	782
+	X	2937
+	Y	784
 	Z	0
 	Facing	1
 	Revision	0
@@ -57989,7 +57990,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	707
+	SpeechColor	97
 	RunSpeed	500
 }
 
@@ -58049,8 +58050,8 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x190
 	Color	0x83ea
-	X	3642
-	Y	1326
+	X	3640
+	Y	1324
 	Z	0
 	Facing	3
 	Revision	0
@@ -58076,7 +58077,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	101
+	SpeechColor	903
 	RunSpeed	500
 }
 
@@ -58136,8 +58137,8 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	2528
-	Y	508
+	X	2529
+	Y	507
 	Z	15
 	Facing	4
 	Revision	0
@@ -58163,7 +58164,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	101
+	SpeechColor	32
 	RunSpeed	500
 }
 
@@ -58206,7 +58207,7 @@ NPC townguard
 	ObjType	0x190
 	Graphic	0x191
 	Color	0x83ea
-	X	3026
+	X	3027
 	Y	3480
 	Z	15
 	Facing	6
@@ -58277,7 +58278,7 @@ NPC townguard
 	Graphic	0x191
 	Color	0x83ea
 	X	2531
-	Y	450
+	Y	449
 	Z	15
 	Facing	4
 	Revision	0
@@ -58303,7 +58304,7 @@ NPC townguard
 	CreatedAt	0
 	AR	1
 	script	townGuard
-	SpeechColor	32
+	SpeechColor	101
 	RunSpeed	500
 }
 
@@ -58562,7 +58563,7 @@ NPC alligator
 	X	2040
 	Y	1027
 	Z	0
-	Facing	5
+	Facing	6
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711736
@@ -58586,7 +58587,7 @@ NPC alligator
 	CreatedAt	0
 	AR	15
 	script	killPCs
-	SpeechColor	48
+	SpeechColor	13
 }
 
 NPC alligator
@@ -58595,7 +58596,7 @@ NPC alligator
 	Serial	0x1a1e79
 	ObjType	0xca
 	Graphic	0xca
-	X	2035
+	X	2036
 	Y	1018
 	Z	0
 	Facing	2
@@ -58631,8 +58632,8 @@ NPC alligator
 	Serial	0x1a1e7a
 	ObjType	0xca
 	Graphic	0xca
-	X	2060
-	Y	979
+	X	2061
+	Y	980
 	Z	0
 	Facing	3
 	Revision	0
@@ -58658,12 +58659,12 @@ NPC alligator
 	CreatedAt	0
 	AR	15
 	script	killPCs
-	SpeechColor	9
+	SpeechColor	52
 }
 
 NPC employee
 {
-	Name	<employee> the beggar the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief
+	Name	<employee> the beggar the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief
 	Serial	0x1a1e7b
 	ObjType	0x190
 	Graphic	0x191
@@ -58672,7 +58673,7 @@ NPC employee
 	Y	1197
 	Z	0
 	Facing	3
-	Revision	34
+	Revision	35
 	Realm	britannia
 	CProp	AiSerial i1711739
 	CProp	Anchor a3:i2243i1197i0
@@ -58705,7 +58706,7 @@ NPC employee
 
 Item
 {
-	Serial	0x6ae11ff9
+	Serial	0x6ae1228e
 	ObjType	0x203c
 	Graphic	0x203c
 	Color	0x96
@@ -58717,12 +58718,12 @@ Item
 	CProp	faceloc i11
 	Layer	11
 	Container	0x1a1e7b
-	DecayAt	25191006
+	DecayAt	25191073
 }
 
 Item
 {
-	Serial	0x6ae11ff4
+	Serial	0x6ae12289
 	ObjType	0xe75
 	Graphic	0xe75
 	X	1
@@ -58732,12 +58733,12 @@ Item
 	Realm	britannia
 	Layer	21
 	Container	0x1a1e7b
-	DecayAt	25191006
+	DecayAt	25191073
 }
 
 NPC employee
 {
-	Name	<employee> the mage the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter
+	Name	<employee> the mage the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter
 	Serial	0x1a1e7c
 	ObjType	0x190
 	Graphic	0x191
@@ -58745,7 +58746,7 @@ NPC employee
 	X	2237
 	Y	1230
 	Z	0
-	Revision	34
+	Revision	35
 	Realm	britannia
 	CProp	AiSerial i1711740
 	CProp	Anchor a3:i2237i1230i0
@@ -58783,7 +58784,7 @@ NPC employee
 
 Item
 {
-	Serial	0x6ae11ffd
+	Serial	0x6ae12292
 	ObjType	0x203c
 	Graphic	0x203c
 	Color	0x39a
@@ -58795,12 +58796,12 @@ Item
 	CProp	faceloc i11
 	Layer	11
 	Container	0x1a1e7c
-	DecayAt	25191006
+	DecayAt	25191073
 }
 
 Item
 {
-	Serial	0x6ae11ffa
+	Serial	0x6ae1228f
 	ObjType	0xe75
 	Graphic	0xe75
 	X	1
@@ -58810,12 +58811,12 @@ Item
 	Realm	britannia
 	Layer	21
 	Container	0x1a1e7c
-	DecayAt	25191006
+	DecayAt	25191073
 }
 
 NPC employee
 {
-	Name	<employee> the fighter the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar
+	Name	<employee> the fighter the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar
 	Serial	0x1a1e7d
 	ObjType	0x190
 	Graphic	0x191
@@ -58824,7 +58825,7 @@ NPC employee
 	Y	1172
 	Z	0
 	Facing	2
-	Revision	34
+	Revision	35
 	Realm	britannia
 	CProp	AiSerial i1711741
 	CProp	Anchor a3:i2214i1172i0
@@ -58859,7 +58860,7 @@ NPC employee
 
 Item
 {
-	Serial	0x6ae12009
+	Serial	0x6ae1229e
 	ObjType	0x203b
 	Graphic	0x203b
 	Color	0x386
@@ -58871,12 +58872,12 @@ Item
 	CProp	faceloc i11
 	Layer	11
 	Container	0x1a1e7d
-	DecayAt	25191006
+	DecayAt	25191073
 }
 
 Item
 {
-	Serial	0x6ae12005
+	Serial	0x6ae1229a
 	ObjType	0xe75
 	Graphic	0xe75
 	X	1
@@ -58886,12 +58887,12 @@ Item
 	Realm	britannia
 	Layer	21
 	Container	0x1a1e7d
-	DecayAt	25191006
+	DecayAt	25191073
 }
 
 NPC employee
 {
-	Name	<employee> the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter
+	Name	<employee> the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter
 	Serial	0x1a1e7e
 	ObjType	0x190
 	Graphic	0x190
@@ -58900,7 +58901,7 @@ NPC employee
 	Y	1190
 	Z	0
 	Facing	4
-	Revision	34
+	Revision	35
 	Realm	britannia
 	CProp	AiSerial i1711742
 	CProp	Anchor a3:i2235i1190i0
@@ -58936,7 +58937,7 @@ NPC employee
 
 Item
 {
-	Serial	0x6ae1200d
+	Serial	0x6ae122a2
 	ObjType	0x2044
 	Graphic	0x2044
 	Color	0x21e
@@ -58948,12 +58949,12 @@ Item
 	CProp	faceloc i11
 	Layer	11
 	Container	0x1a1e7e
-	DecayAt	25191006
+	DecayAt	25191073
 }
 
 Item
 {
-	Serial	0x6ae1200a
+	Serial	0x6ae1229f
 	ObjType	0xe75
 	Graphic	0xe75
 	X	1
@@ -58963,12 +58964,12 @@ Item
 	Realm	britannia
 	Layer	21
 	Container	0x1a1e7e
-	DecayAt	25191006
+	DecayAt	25191073
 }
 
 NPC employee
 {
-	Name	<employee> the thief the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter
+	Name	<employee> the thief the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter
 	Serial	0x1a1e7f
 	ObjType	0x190
 	Graphic	0x190
@@ -58977,7 +58978,7 @@ NPC employee
 	Y	1174
 	Z	0
 	Facing	4
-	Revision	34
+	Revision	35
 	Realm	britannia
 	CProp	AiSerial i1711743
 	CProp	Anchor a3:i2206i1174i0
@@ -59013,7 +59014,7 @@ NPC employee
 
 Item
 {
-	Serial	0x6ae12015
+	Serial	0x6ae122aa
 	ObjType	0xe75
 	Graphic	0xe75
 	X	1
@@ -59023,12 +59024,12 @@ Item
 	Realm	britannia
 	Layer	21
 	Container	0x1a1e7f
-	DecayAt	25191006
+	DecayAt	25191073
 }
 
 NPC employee
 {
-	Name	<employee> the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter
+	Name	<employee> the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter
 	Serial	0x1a1e80
 	ObjType	0x190
 	Graphic	0x190
@@ -59036,7 +59037,7 @@ NPC employee
 	X	2224
 	Y	1190
 	Z	0
-	Revision	34
+	Revision	35
 	Realm	britannia
 	CProp	AiSerial i1711744
 	CProp	Anchor a3:i2224i1190i0
@@ -59072,7 +59073,7 @@ NPC employee
 
 Item
 {
-	Serial	0x6ae12022
+	Serial	0x6ae122b7
 	ObjType	0x2045
 	Graphic	0x2045
 	Color	0x21e
@@ -59084,12 +59085,12 @@ Item
 	CProp	faceloc i11
 	Layer	11
 	Container	0x1a1e80
-	DecayAt	25191006
+	DecayAt	25191073
 }
 
 Item
 {
-	Serial	0x6ae12023
+	Serial	0x6ae122b8
 	ObjType	0x203e
 	Graphic	0x203e
 	Color	0x21e
@@ -59101,12 +59102,12 @@ Item
 	CProp	faceloc i16
 	Layer	16
 	Container	0x1a1e80
-	DecayAt	25191006
+	DecayAt	25191073
 }
 
 Item
 {
-	Serial	0x6ae1201f
+	Serial	0x6ae122b4
 	ObjType	0xe75
 	Graphic	0xe75
 	X	1
@@ -59116,12 +59117,12 @@ Item
 	Realm	britannia
 	Layer	21
 	Container	0x1a1e80
-	DecayAt	25191006
+	DecayAt	25191073
 }
 
 NPC employee
 {
-	Name	<employee> the fighter the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin
+	Name	<employee> the fighter the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin
 	Serial	0x1a1e81
 	ObjType	0x190
 	Graphic	0x190
@@ -59130,7 +59131,7 @@ NPC employee
 	Y	1226
 	Z	0
 	Facing	7
-	Revision	34
+	Revision	35
 	Realm	britannia
 	CProp	AiSerial i1711745
 	CProp	Anchor a3:i2228i1226i0
@@ -59166,7 +59167,7 @@ NPC employee
 
 Item
 {
-	Serial	0x6ae1202f
+	Serial	0x6ae122c4
 	ObjType	0x203d
 	Graphic	0x203d
 	Color	0x21e
@@ -59178,12 +59179,12 @@ Item
 	CProp	faceloc i11
 	Layer	11
 	Container	0x1a1e81
-	DecayAt	25191006
+	DecayAt	25191073
 }
 
 Item
 {
-	Serial	0x6ae12030
+	Serial	0x6ae122c5
 	ObjType	0x2040
 	Graphic	0x2040
 	Color	0x21e
@@ -59195,12 +59196,12 @@ Item
 	CProp	faceloc i16
 	Layer	16
 	Container	0x1a1e81
-	DecayAt	25191006
+	DecayAt	25191073
 }
 
 Item
 {
-	Serial	0x6ae1202b
+	Serial	0x6ae122c0
 	ObjType	0xe75
 	Graphic	0xe75
 	X	1
@@ -59210,12 +59211,12 @@ Item
 	Realm	britannia
 	Layer	21
 	Container	0x1a1e81
-	DecayAt	25191006
+	DecayAt	25191073
 }
 
 NPC employee
 {
-	Name	<employee> the mage the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar
+	Name	<employee> the mage the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar
 	Serial	0x1a1e82
 	ObjType	0x190
 	Graphic	0x190
@@ -59224,7 +59225,7 @@ NPC employee
 	Y	3940
 	Z	0
 	Facing	2
-	Revision	34
+	Revision	35
 	Realm	britannia
 	CProp	AiSerial i1711746
 	CProp	Anchor a3:i5226i3940i0
@@ -59257,7 +59258,7 @@ NPC employee
 
 Item
 {
-	Serial	0x6ae1203c
+	Serial	0x6ae122d1
 	ObjType	0x2047
 	Graphic	0x2047
 	Color	0x99
@@ -59269,12 +59270,12 @@ Item
 	CProp	faceloc i11
 	Layer	11
 	Container	0x1a1e82
-	DecayAt	25191006
+	DecayAt	25191073
 }
 
 Item
 {
-	Serial	0x6ae12038
+	Serial	0x6ae122cd
 	ObjType	0xe75
 	Graphic	0xe75
 	X	1
@@ -59284,12 +59285,12 @@ Item
 	Realm	britannia
 	Layer	21
 	Container	0x1a1e82
-	DecayAt	25191006
+	DecayAt	25191073
 }
 
 NPC employee
 {
-	Name	<employee> the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter
+	Name	<employee> the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter
 	Serial	0x1a1e83
 	ObjType	0x190
 	Graphic	0x190
@@ -59298,7 +59299,7 @@ NPC employee
 	Y	3978
 	Z	55
 	Facing	6
-	Revision	34
+	Revision	35
 	Realm	britannia
 	CProp	AiSerial i1711747
 	CProp	Anchor a3:i5141i3978i55
@@ -59334,7 +59335,7 @@ NPC employee
 
 Item
 {
-	Serial	0x6ae12040
+	Serial	0x6ae122d5
 	ObjType	0x2044
 	Graphic	0x2044
 	Color	0x39a
@@ -59346,12 +59347,12 @@ Item
 	CProp	faceloc i11
 	Layer	11
 	Container	0x1a1e83
-	DecayAt	25191006
+	DecayAt	25191073
 }
 
 Item
 {
-	Serial	0x6ae1203d
+	Serial	0x6ae122d2
 	ObjType	0xe75
 	Graphic	0xe75
 	X	1
@@ -59361,12 +59362,12 @@ Item
 	Realm	britannia
 	Layer	21
 	Container	0x1a1e83
-	DecayAt	25191006
+	DecayAt	25191073
 }
 
 NPC employee
 {
-	Name	<employee> the fighter the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin
+	Name	<employee> the fighter the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin the paladin
 	Serial	0x1a1e84
 	ObjType	0x190
 	Graphic	0x191
@@ -59375,7 +59376,7 @@ NPC employee
 	Y	4023
 	Z	37
 	Facing	2
-	Revision	34
+	Revision	35
 	Realm	britannia
 	CProp	AiSerial i1711748
 	CProp	Anchor a3:i5195i4023i37
@@ -59411,7 +59412,7 @@ NPC employee
 
 Item
 {
-	Serial	0x6ae1204c
+	Serial	0x6ae122e1
 	ObjType	0x2046
 	Graphic	0x2046
 	Color	0x99
@@ -59423,12 +59424,12 @@ Item
 	CProp	faceloc i11
 	Layer	11
 	Container	0x1a1e84
-	DecayAt	25191006
+	DecayAt	25191073
 }
 
 Item
 {
-	Serial	0x6ae12048
+	Serial	0x6ae122dd
 	ObjType	0xe75
 	Graphic	0xe75
 	X	1
@@ -59438,12 +59439,12 @@ Item
 	Realm	britannia
 	Layer	21
 	Container	0x1a1e84
-	DecayAt	25191006
+	DecayAt	25191073
 }
 
 NPC employee
 {
-	Name	<employee> the beggar the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage
+	Name	<employee> the beggar the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage
 	Serial	0x1a1e85
 	ObjType	0x190
 	Graphic	0x190
@@ -59452,7 +59453,7 @@ NPC employee
 	Y	4020
 	Z	40
 	Facing	2
-	Revision	34
+	Revision	35
 	Realm	britannia
 	CProp	AiSerial i1711749
 	CProp	Anchor a3:i5277i4020i40
@@ -59485,7 +59486,7 @@ NPC employee
 
 Item
 {
-	Serial	0x6ae12058
+	Serial	0x6ae122ed
 	ObjType	0x2045
 	Graphic	0x2045
 	Color	0x386
@@ -59497,12 +59498,12 @@ Item
 	CProp	faceloc i11
 	Layer	11
 	Container	0x1a1e85
-	DecayAt	25191006
+	DecayAt	25191073
 }
 
 Item
 {
-	Serial	0x6ae12059
+	Serial	0x6ae122ee
 	ObjType	0x203f
 	Graphic	0x203f
 	Color	0x386
@@ -59514,12 +59515,12 @@ Item
 	CProp	faceloc i16
 	Layer	16
 	Container	0x1a1e85
-	DecayAt	25191006
+	DecayAt	25191073
 }
 
 Item
 {
-	Serial	0x6ae12054
+	Serial	0x6ae122e9
 	ObjType	0xe75
 	Graphic	0xe75
 	X	1
@@ -59529,12 +59530,12 @@ Item
 	Realm	britannia
 	Layer	21
 	Container	0x1a1e85
-	DecayAt	25191006
+	DecayAt	25191073
 }
 
 NPC employee
 {
-	Name	<employee> the paladin the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter
+	Name	<employee> the paladin the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter
 	Serial	0x1a1e86
 	ObjType	0x190
 	Graphic	0x190
@@ -59543,7 +59544,7 @@ NPC employee
 	Y	4026
 	Z	12
 	Facing	4
-	Revision	34
+	Revision	35
 	Realm	britannia
 	CProp	AiSerial i1711750
 	CProp	Anchor a3:i5173i4026i12
@@ -59578,7 +59579,7 @@ NPC employee
 
 Item
 {
-	Serial	0x6ae1205d
+	Serial	0x6ae122f2
 	ObjType	0x2044
 	Graphic	0x2044
 	Color	0x99
@@ -59590,12 +59591,12 @@ Item
 	CProp	faceloc i11
 	Layer	11
 	Container	0x1a1e86
-	DecayAt	25191006
+	DecayAt	25191073
 }
 
 Item
 {
-	Serial	0x6ae1205a
+	Serial	0x6ae122ef
 	ObjType	0xe75
 	Graphic	0xe75
 	X	1
@@ -59605,7 +59606,7 @@ Item
 	Realm	britannia
 	Layer	21
 	Container	0x1a1e86
-	DecayAt	25191006
+	DecayAt	25191073
 }
 
 NPC waterelemental
@@ -59614,8 +59615,8 @@ NPC waterelemental
 	Serial	0x1a1e87
 	ObjType	0x10
 	Graphic	0x10
-	X	5211
-	Y	777
+	X	5212
+	Y	776
 	Z	0
 	Facing	1
 	Revision	0
@@ -59644,7 +59645,7 @@ NPC waterelemental
 	CreatedAt	0
 	AR	25
 	script	spellKillPCs
-	SpeechColor	14
+	SpeechColor	17
 }
 
 Item
@@ -59698,7 +59699,7 @@ NPC waterelemental
 	CreatedAt	0
 	AR	25
 	script	spellKillPCs
-	SpeechColor	558
+	SpeechColor	37
 }
 
 Item
@@ -59722,7 +59723,7 @@ NPC goat
 	Serial	0x1a1e89
 	ObjType	0xd1
 	Graphic	0xd1
-	X	5372
+	X	5371
 	Y	4022
 	Z	-3
 	Facing	6
@@ -59749,7 +59750,7 @@ NPC goat
 	CreatedAt	0
 	AR	5
 	script	animal
-	SpeechColor	192
+	SpeechColor	97
 }
 
 NPC sheep
@@ -59761,7 +59762,7 @@ NPC sheep
 	X	5358
 	Y	3835
 	Z	2
-	Facing	3
+	Facing	2
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711754
@@ -59835,7 +59836,7 @@ NPC cow
 	CreatedAt	0
 	AR	9
 	script	cow
-	SpeechColor	578
+	SpeechColor	63
 }
 
 NPC sheep
@@ -59895,12 +59896,12 @@ NPC sheep
 	ObjType	0xcf
 	Graphic	0xcf
 	X	5330
-	Y	4011
-	Z	0
+	Y	4010
+	Z	2
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711757
-	CProp	Anchor a3:i5330i4012i1
+	CProp	Anchor a3:i5330i4011i0
 	CProp	Fame i1
 	CProp	Karma i0
 	CProp	SpawnRegion a2:S18:hills e of deluciaS8:domestic
@@ -59943,14 +59944,14 @@ NPC bull
 	Serial	0x1a1e8e
 	ObjType	0xe9
 	Graphic	0xe9
-	X	5351
+	X	5350
 	Y	4052
-	Z	-1
+	Z	-3
 	Facing	6
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711758
-	CProp	Anchor a3:i5352i4052i2
+	CProp	Anchor a3:i5351i4052i-1
 	CProp	Fame i3
 	CProp	Karma i0
 	CProp	SpawnRegion a2:S18:hills e of deluciaS8:domestic
@@ -59970,7 +59971,7 @@ NPC bull
 	CreatedAt	0
 	AR	14
 	script	animal
-	SpeechColor	202
+	SpeechColor	192
 }
 
 NPC cow
@@ -60006,7 +60007,7 @@ NPC cow
 	CreatedAt	0
 	AR	9
 	script	cow
-	SpeechColor	207
+	SpeechColor	578
 }
 
 NPC pig
@@ -60015,14 +60016,14 @@ NPC pig
 	Serial	0x1a1e90
 	ObjType	0xcb
 	Graphic	0xcb
-	X	5327
+	X	5326
 	Y	3833
-	Z	-2
+	Z	-3
 	Facing	6
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711760
-	CProp	Anchor a3:i5328i3833i-1
+	CProp	Anchor a3:i5327i3833i-2
 	CProp	Fame i1
 	CProp	Karma i0
 	CProp	SpawnRegion a2:S18:hills e of deluciaS8:domestic
@@ -60042,7 +60043,7 @@ NPC pig
 	CreatedAt	0
 	AR	6
 	script	barker
-	SpeechColor	63
+	SpeechColor	558
 }
 
 NPC cow
@@ -60054,7 +60055,7 @@ NPC cow
 	X	5311
 	Y	3965
 	Z	0
-	Facing	5
+	Facing	4
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711761
@@ -60078,7 +60079,7 @@ NPC cow
 	CreatedAt	0
 	AR	9
 	script	cow
-	SpeechColor	902
+	SpeechColor	19
 }
 
 NPC sheep
@@ -60087,14 +60088,14 @@ NPC sheep
 	Serial	0x1a1e92
 	ObjType	0xcf
 	Graphic	0xcf
-	X	5337
+	X	5338
 	Y	3965
 	Z	-2
 	Facing	2
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711762
-	CProp	Anchor a3:i5336i3965i-1
+	CProp	Anchor a3:i5337i3965i-2
 	CProp	Fame i1
 	CProp	Karma i0
 	CProp	SpawnRegion a2:S18:hills e of deluciaS8:domestic
@@ -60138,7 +60139,7 @@ NPC pig
 	ObjType	0xcb
 	Graphic	0xcb
 	X	5383
-	Y	3942
+	Y	3943
 	Z	0
 	Facing	4
 	Revision	0
@@ -60164,7 +60165,7 @@ NPC pig
 	CreatedAt	0
 	AR	6
 	script	barker
-	SpeechColor	80
+	SpeechColor	243
 }
 
 NPC cow
@@ -60174,13 +60175,13 @@ NPC cow
 	ObjType	0xd8
 	Graphic	0xd8
 	X	5312
-	Y	3888
+	Y	3889
 	Z	30
-	Facing	6
+	Facing	3
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711764
-	CProp	Anchor a3:i5317i3889i30
+	CProp	Anchor a3:i5312i3888i30
 	CProp	Fame i10
 	CProp	Karma i0
 	CProp	SpawnRegion a2:S18:hills e of deluciaS8:domestic
@@ -60196,11 +60197,11 @@ NPC cow
 	Wrestling	6
 	Life	30
 	Mana	1
-	Stamina	14
+	Stamina	15
 	CreatedAt	0
 	AR	9
 	script	cow
-	SpeechColor	37
+	SpeechColor	707
 }
 
 NPC goat
@@ -60212,10 +60213,11 @@ NPC goat
 	X	5321
 	Y	4015
 	Z	-3
+	Facing	7
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711765
-	CProp	Anchor a3:i5321i4016i-2
+	CProp	Anchor a3:i5321i4015i-3
 	CProp	Fame i1
 	CProp	Karma i0
 	CProp	SpawnRegion a2:S18:hills e of deluciaS8:domestic
@@ -60235,7 +60237,7 @@ NPC goat
 	CreatedAt	0
 	AR	5
 	script	animal
-	SpeechColor	52
+	SpeechColor	101
 }
 
 NPC goat
@@ -60247,7 +60249,6 @@ NPC goat
 	X	5374
 	Y	3850
 	Z	-1
-	Facing	1
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711766
@@ -60271,7 +60272,7 @@ NPC goat
 	CreatedAt	0
 	AR	5
 	script	animal
-	SpeechColor	54
+	SpeechColor	101
 }
 
 NPC pig
@@ -60280,9 +60281,9 @@ NPC pig
 	Serial	0x1a1e97
 	ObjType	0xcb
 	Graphic	0xcb
-	X	5367
+	X	5368
 	Y	3875
-	Z	0
+	Z	2
 	Facing	2
 	Revision	0
 	Realm	britannia
@@ -60307,7 +60308,7 @@ NPC pig
 	CreatedAt	0
 	AR	6
 	script	barker
-	SpeechColor	707
+	SpeechColor	7
 }
 
 NPC cow
@@ -60317,13 +60318,13 @@ NPC cow
 	ObjType	0xd8
 	Graphic	0xd8
 	X	5322
-	Y	3926
+	Y	3928
 	Z	-2
-	Facing	4
+	Facing	3
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711768
-	CProp	Anchor a3:i5314i3919i0
+	CProp	Anchor a3:i5322i3926i-2
 	CProp	Fame i10
 	CProp	Karma i0
 	CProp	SpawnRegion a2:S18:hills e of deluciaS8:domestic
@@ -60339,11 +60340,11 @@ NPC cow
 	Wrestling	6
 	Life	30
 	Mana	1
-	Stamina	14
+	Stamina	15
 	CreatedAt	0
 	AR	9
 	script	cow
-	SpeechColor	14
+	SpeechColor	32
 }
 
 NPC sheep
@@ -60355,11 +60356,11 @@ NPC sheep
 	X	5314
 	Y	3945
 	Z	-2
-	Facing	6
+	Facing	4
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711769
-	CProp	Anchor a3:i5315i3945i-3
+	CProp	Anchor a3:i5314i3945i-2
 	CProp	Fame i1
 	CProp	Karma i0
 	CProp	SpawnRegion a2:S18:hills e of deluciaS8:domestic
@@ -60405,7 +60406,7 @@ NPC chicken
 	X	5345
 	Y	3964
 	Z	0
-	Facing	6
+	Facing	7
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711770
@@ -60428,7 +60429,7 @@ NPC chicken
 	CreatedAt	0
 	AR	1
 	script	animal
-	SpeechColor	404
+	SpeechColor	63
 }
 
 NPC sheep
@@ -60440,7 +60441,6 @@ NPC sheep
 	X	5331
 	Y	4010
 	Z	0
-	Facing	1
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711771
@@ -60490,7 +60490,7 @@ NPC pig
 	X	5314
 	Y	3996
 	Z	9
-	Facing	1
+	Facing	2
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711772
@@ -60514,7 +60514,7 @@ NPC pig
 	CreatedAt	0
 	AR	6
 	script	barker
-	SpeechColor	37
+	SpeechColor	36
 }
 
 NPC goat
@@ -60526,6 +60526,7 @@ NPC goat
 	X	5337
 	Y	3860
 	Z	46
+	Facing	7
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711773
@@ -60559,8 +60560,8 @@ NPC bird
 	ObjType	0x6
 	Graphic	0x6
 	Color	0x25
-	X	5336
-	Y	3918
+	X	5335
+	Y	3917
 	Z	-2
 	Facing	7
 	Revision	0
@@ -60587,7 +60588,7 @@ NPC bird
 	CreatedAt	0
 	AR	1
 	script	animal
-	SpeechColor	207
+	SpeechColor	48
 }
 
 NPC bull
@@ -60599,7 +60600,6 @@ NPC bull
 	X	5350
 	Y	4049
 	Z	0
-	Facing	7
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711775
@@ -60623,7 +60623,7 @@ NPC bull
 	CreatedAt	0
 	AR	14
 	script	animal
-	SpeechColor	12
+	SpeechColor	42
 }
 
 NPC rat
@@ -60635,7 +60635,7 @@ NPC rat
 	X	5366
 	Y	3905
 	Z	0
-	Facing	5
+	Facing	4
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711776
@@ -60658,7 +60658,7 @@ NPC rat
 	CreatedAt	0
 	AR	3
 	script	animal
-	SpeechColor	97
+	SpeechColor	63
 }
 
 NPC goat
@@ -60694,7 +60694,7 @@ NPC goat
 	CreatedAt	0
 	AR	5
 	script	animal
-	SpeechColor	98
+	SpeechColor	202
 }
 
 NPC llama
@@ -60703,14 +60703,14 @@ NPC llama
 	Serial	0x1a1ea2
 	ObjType	0xdc
 	Graphic	0xdc
-	X	5362
+	X	5363
 	Y	3967
-	Z	-1
+	Z	1
 	Facing	2
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711778
-	CProp	Anchor a3:i5361i3967i0
+	CProp	Anchor a3:i5362i3967i-1
 	CProp	Fame i3
 	CProp	Karma i0
 	CProp	SpawnRegion a2:S18:hills e of deluciaS12:newbieforest
@@ -60730,7 +60730,7 @@ NPC llama
 	CreatedAt	0
 	AR	8
 	script	animal
-	SpeechColor	340
+	SpeechColor	243
 }
 
 NPC bird
@@ -60741,12 +60741,12 @@ NPC bird
 	Graphic	0x6
 	Color	0x26
 	X	5370
-	Y	3971
+	Y	3970
 	Z	0
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711779
-	CProp	Anchor a3:i5370i3972i-1
+	CProp	Anchor a3:i5370i3971i0
 	CProp	Color i38
 	CProp	Fame i1
 	CProp	Karma i0
@@ -60767,7 +60767,7 @@ NPC bird
 	CreatedAt	0
 	AR	1
 	script	animal
-	SpeechColor	901
+	SpeechColor	48
 }
 
 NPC chicken
@@ -60776,14 +60776,14 @@ NPC chicken
 	Serial	0x1a1ea4
 	ObjType	0xd0
 	Graphic	0xd0
-	X	5382
+	X	5383
 	Y	4060
-	Z	0
+	Z	-3
 	Facing	2
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711780
-	CProp	Anchor a3:i5381i4060i2
+	CProp	Anchor a3:i5382i4060i0
 	CProp	Fame i1
 	CProp	Karma i0
 	CProp	SpawnRegion a2:S18:hills e of deluciaS12:newbieforest
@@ -60802,7 +60802,7 @@ NPC chicken
 	CreatedAt	0
 	AR	1
 	script	animal
-	SpeechColor	48
+	SpeechColor	7
 }
 
 NPC bird
@@ -60812,14 +60812,14 @@ NPC bird
 	ObjType	0x6
 	Graphic	0x6
 	Color	0x1c0
-	X	5372
+	X	5371
 	Y	3935
 	Z	-2
 	Facing	6
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711781
-	CProp	Anchor a3:i5373i3935i1
+	CProp	Anchor a3:i5372i3935i-2
 	CProp	Color i448
 	CProp	Fame i1
 	CProp	Karma i0
@@ -60840,7 +60840,7 @@ NPC bird
 	CreatedAt	0
 	AR	1
 	script	animal
-	SpeechColor	578
+	SpeechColor	34
 }
 
 NPC chicken
@@ -60852,11 +60852,11 @@ NPC chicken
 	X	5344
 	Y	3889
 	Z	47
-	Facing	2
+	Facing	3
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711782
-	CProp	Anchor a3:i5343i3889i47
+	CProp	Anchor a3:i5344i3889i47
 	CProp	Fame i1
 	CProp	Karma i0
 	CProp	SpawnRegion a2:S18:hills e of deluciaS12:newbieforest
@@ -60875,7 +60875,7 @@ NPC chicken
 	CreatedAt	0
 	AR	1
 	script	animal
-	SpeechColor	42
+	SpeechColor	160
 }
 
 NPC goat
@@ -60884,7 +60884,7 @@ NPC goat
 	Serial	0x1a1ea7
 	ObjType	0xd1
 	Graphic	0xd1
-	X	5337
+	X	5338
 	Y	3912
 	Z	5
 	Facing	2
@@ -60911,7 +60911,7 @@ NPC goat
 	CreatedAt	0
 	AR	5
 	script	animal
-	SpeechColor	17
+	SpeechColor	160
 }
 
 NPC bird
@@ -60949,7 +60949,7 @@ NPC bird
 	CreatedAt	0
 	AR	1
 	script	animal
-	SpeechColor	160
+	SpeechColor	537
 }
 
 NPC Rabbit
@@ -60958,14 +60958,14 @@ NPC Rabbit
 	Serial	0x1a1ea9
 	ObjType	0xcd
 	Graphic	0xcd
-	X	5324
-	Y	4036
+	X	5323
+	Y	4035
 	Z	-1
 	Facing	7
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711785
-	CProp	Anchor a3:i5325i4037i0
+	CProp	Anchor a3:i5324i4036i-1
 	CProp	Fame i1
 	CProp	Karma i0
 	CProp	SpawnRegion a2:S18:hills e of deluciaS12:newbieforest
@@ -60984,7 +60984,7 @@ NPC Rabbit
 	CreatedAt	0
 	AR	4
 	script	barker
-	SpeechColor	7
+	SpeechColor	8
 }
 
 NPC bear
@@ -60993,14 +60993,14 @@ NPC bear
 	Serial	0x1a1eaa
 	ObjType	0xd3
 	Graphic	0xd3
-	X	5329
-	Y	3965
-	Z	0
+	X	5330
+	Y	3966
+	Z	-2
 	Facing	3
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711786
-	CProp	Anchor a3:i5328i3964i-3
+	CProp	Anchor a3:i5329i3965i0
 	CProp	Fame i2
 	CProp	Karma i0
 	CProp	SpawnRegion a2:S18:hills e of deluciaS12:newbieforest
@@ -61020,7 +61020,7 @@ NPC bear
 	CreatedAt	0
 	AR	12
 	script	animal
-	SpeechColor	87
+	SpeechColor	48
 }
 
 NPC bird
@@ -61058,7 +61058,7 @@ NPC bird
 	CreatedAt	0
 	AR	1
 	script	animal
-	SpeechColor	52
+	SpeechColor	207
 }
 
 NPC Rabbit
@@ -61070,7 +61070,7 @@ NPC Rabbit
 	X	5340
 	Y	3855
 	Z	44
-	Facing	3
+	Facing	4
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711788
@@ -61093,7 +61093,7 @@ NPC Rabbit
 	CreatedAt	0
 	AR	4
 	script	barker
-	SpeechColor	903
+	SpeechColor	13
 }
 
 NPC cow
@@ -61102,14 +61102,14 @@ NPC cow
 	Serial	0x1a1ead
 	ObjType	0xd8
 	Graphic	0xd8
-	X	5400
-	Y	3887
-	Z	22
-	Facing	5
+	X	5399
+	Y	3888
+	Z	19
+	Facing	3
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711789
-	CProp	Anchor a3:i5401i3882i17
+	CProp	Anchor a3:i5400i3887i22
 	CProp	Fame i10
 	CProp	Karma i0
 	CProp	SpawnRegion a2:S18:hills e of deluciaS12:newbieforest
@@ -61129,7 +61129,7 @@ NPC cow
 	CreatedAt	0
 	AR	9
 	script	cow
-	SpeechColor	54
+	SpeechColor	902
 }
 
 NPC bear
@@ -61141,11 +61141,11 @@ NPC bear
 	X	5370
 	Y	4028
 	Z	-1
-	Facing	3
+	Facing	2
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711790
-	CProp	Anchor a3:i5369i4027i5
+	CProp	Anchor a3:i5370i4028i-1
 	CProp	Fame i2
 	CProp	Karma i0
 	CProp	SpawnRegion a2:S18:hills e of deluciaS12:newbieforest
@@ -61165,7 +61165,7 @@ NPC bear
 	CreatedAt	0
 	AR	12
 	script	animal
-	SpeechColor	196
+	SpeechColor	53
 }
 
 NPC bird
@@ -61178,6 +61178,7 @@ NPC bird
 	X	5318
 	Y	3987
 	Z	-2
+	Facing	1
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711791
@@ -61202,7 +61203,7 @@ NPC bird
 	CreatedAt	0
 	AR	1
 	script	animal
-	SpeechColor	578
+	SpeechColor	901
 }
 
 NPC blackbear
@@ -61212,9 +61213,9 @@ NPC blackbear
 	ObjType	0xd3
 	Graphic	0xd3
 	Color	0x2e6
-	X	5357
-	Y	3838
-	Z	1
+	X	5356
+	Y	3837
+	Z	2
 	Facing	7
 	Revision	0
 	Realm	britannia
@@ -61239,7 +61240,7 @@ NPC blackbear
 	CreatedAt	0
 	AR	8
 	script	animal
-	SpeechColor	53
+	SpeechColor	37
 }
 
 NPC wanderingHealer
@@ -61276,7 +61277,7 @@ NPC wanderingHealer
 	CreatedAt	0
 	AR	32
 	script	davesHealer
-	SpeechColor	48
+	SpeechColor	14
 }
 
 Item
@@ -61337,11 +61338,10 @@ NPC goat
 	X	5201
 	Y	3853
 	Z	0
-	Facing	1
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711794
-	CProp	Anchor a3:i5200i3854i-1
+	CProp	Anchor a3:i5201i3853i0
 	CProp	Fame i1
 	CProp	Karma i0
 	CProp	SpawnRegion a2:S18:hills n of deluciaS8:domestic
@@ -61361,7 +61361,7 @@ NPC goat
 	CreatedAt	0
 	AR	5
 	script	animal
-	SpeechColor	34
+	SpeechColor	7
 }
 
 NPC cow
@@ -61397,7 +61397,7 @@ NPC cow
 	CreatedAt	0
 	AR	9
 	script	cow
-	SpeechColor	36
+	SpeechColor	7
 }
 
 NPC sheep
@@ -61409,7 +61409,6 @@ NPC sheep
 	X	5274
 	Y	3851
 	Z	0
-	Facing	7
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711796
@@ -61456,9 +61455,9 @@ NPC chicken
 	Serial	0x1a1eb5
 	ObjType	0xd0
 	Graphic	0xd0
-	X	5213
-	Y	3913
-	Z	10
+	X	5214
+	Y	3912
+	Z	11
 	Facing	1
 	Revision	0
 	Realm	britannia
@@ -61482,7 +61481,7 @@ NPC chicken
 	CreatedAt	0
 	AR	1
 	script	animal
-	SpeechColor	648
+	SpeechColor	192
 }
 
 NPC goat
@@ -61491,14 +61490,14 @@ NPC goat
 	Serial	0x1a1eb6
 	ObjType	0xd1
 	Graphic	0xd1
-	X	5196
-	Y	3882
-	Z	2
+	X	5197
+	Y	3881
+	Z	-1
 	Facing	1
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711798
-	CProp	Anchor a3:i5195i3883i0
+	CProp	Anchor a3:i5196i3882i2
 	CProp	Fame i1
 	CProp	Karma i0
 	CProp	SpawnRegion a2:S18:hills n of deluciaS8:domestic
@@ -61518,7 +61517,7 @@ NPC goat
 	CreatedAt	0
 	AR	5
 	script	animal
-	SpeechColor	202
+	SpeechColor	578
 }
 
 NPC sheep
@@ -61530,7 +61529,7 @@ NPC sheep
 	X	5162
 	Y	3907
 	Z	-2
-	Facing	7
+	Facing	6
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711799
@@ -61577,14 +61576,14 @@ NPC sheep
 	Serial	0x1a1eb8
 	ObjType	0xcf
 	Graphic	0xcf
-	X	5152
+	X	5151
 	Y	3864
-	Z	1
+	Z	-1
 	Facing	6
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711800
-	CProp	Anchor a3:i5153i3864i0
+	CProp	Anchor a3:i5152i3864i1
 	CProp	Fame i1
 	CProp	Karma i0
 	CProp	SpawnRegion a2:S18:hills n of deluciaS8:domestic
@@ -61630,11 +61629,11 @@ NPC chicken
 	X	5275
 	Y	3901
 	Z	14
-	Facing	5
+	Facing	6
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711801
-	CProp	Anchor a3:i5276i3900i15
+	CProp	Anchor a3:i5275i3901i14
 	CProp	Fame i1
 	CProp	Karma i0
 	CProp	SpawnRegion a2:S18:hills n of deluciaS8:domestic
@@ -61653,7 +61652,7 @@ NPC chicken
 	CreatedAt	0
 	AR	1
 	script	animal
-	SpeechColor	32
+	SpeechColor	202
 }
 
 NPC sheep
@@ -61663,12 +61662,12 @@ NPC sheep
 	ObjType	0xcf
 	Graphic	0xcf
 	X	5260
-	Y	3897
-	Z	1
+	Y	3896
+	Z	0
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711802
-	CProp	Anchor a3:i5260i3898i2
+	CProp	Anchor a3:i5260i3897i1
 	CProp	Fame i1
 	CProp	Karma i0
 	CProp	SpawnRegion a2:S18:hills n of deluciaS8:domestic
@@ -61714,6 +61713,7 @@ NPC sheep
 	X	5174
 	Y	3904
 	Z	0
+	Facing	7
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711803
@@ -61760,8 +61760,8 @@ NPC bull
 	Serial	0x1a1ebc
 	ObjType	0xe9
 	Graphic	0xe9
-	X	5179
-	Y	3931
+	X	5178
+	Y	3932
 	Z	19
 	Facing	5
 	Revision	0
@@ -61787,7 +61787,7 @@ NPC bull
 	CreatedAt	0
 	AR	14
 	script	animal
-	SpeechColor	228
+	SpeechColor	207
 }
 
 NPC goat
@@ -61823,7 +61823,7 @@ NPC goat
 	CreatedAt	0
 	AR	5
 	script	animal
-	SpeechColor	648
+	SpeechColor	63
 }
 
 NPC cow
@@ -61835,11 +61835,11 @@ NPC cow
 	X	5236
 	Y	3824
 	Z	26
-	Facing	5
+	Facing	6
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711806
-	CProp	Anchor a3:i5234i3826i24
+	CProp	Anchor a3:i5236i3824i26
 	CProp	Fame i10
 	CProp	Karma i0
 	CProp	SpawnRegion a2:S18:hills n of deluciaS8:domestic
@@ -61859,7 +61859,7 @@ NPC cow
 	CreatedAt	0
 	AR	9
 	script	cow
-	SpeechColor	228
+	SpeechColor	902
 }
 
 NPC cow
@@ -61895,7 +61895,7 @@ NPC cow
 	CreatedAt	0
 	AR	9
 	script	cow
-	SpeechColor	63
+	SpeechColor	80
 }
 
 NPC sheep
@@ -61904,14 +61904,14 @@ NPC sheep
 	Serial	0x1a1ec0
 	ObjType	0xcf
 	Graphic	0xcf
-	X	5170
-	Y	3865
-	Z	1
+	X	5169
+	Y	3866
+	Z	-2
 	Facing	5
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711808
-	CProp	Anchor a3:i5171i3864i1
+	CProp	Anchor a3:i5170i3865i1
 	CProp	Fame i1
 	CProp	Karma i0
 	CProp	SpawnRegion a2:S18:hills n of deluciaS8:domestic
@@ -61955,13 +61955,13 @@ NPC sheep
 	ObjType	0xcf
 	Graphic	0xcf
 	X	5287
-	Y	3850
+	Y	3851
 	Z	9
 	Facing	4
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711809
-	CProp	Anchor a3:i5287i3849i9
+	CProp	Anchor a3:i5287i3850i9
 	CProp	Fame i1
 	CProp	Karma i0
 	CProp	SpawnRegion a2:S18:hills n of deluciaS8:domestic
@@ -62007,11 +62007,11 @@ NPC sheep
 	X	5147
 	Y	3886
 	Z	14
-	Facing	6
+	Facing	4
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711810
-	CProp	Anchor a3:i5148i3886i13
+	CProp	Anchor a3:i5147i3886i14
 	CProp	Fame i1
 	CProp	Karma i0
 	CProp	SpawnRegion a2:S18:hills n of deluciaS8:domestic
@@ -62057,7 +62057,7 @@ NPC sheep
 	X	5267
 	Y	3863
 	Z	18
-	Facing	3
+	Facing	4
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711811
@@ -62104,14 +62104,14 @@ NPC goat
 	Serial	0x1a1ec4
 	ObjType	0xd1
 	Graphic	0xd1
-	X	5287
+	X	5286
 	Y	3878
-	Z	2
+	Z	1
 	Facing	6
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711812
-	CProp	Anchor a3:i5288i3878i0
+	CProp	Anchor a3:i5287i3878i2
 	CProp	Fame i1
 	CProp	Karma i0
 	CProp	SpawnRegion a2:S18:hills n of deluciaS8:domestic
@@ -62131,7 +62131,7 @@ NPC goat
 	CreatedAt	0
 	AR	5
 	script	animal
-	SpeechColor	32
+	SpeechColor	37
 }
 
 NPC goat
@@ -62143,7 +62143,7 @@ NPC goat
 	X	5309
 	Y	3890
 	Z	0
-	Facing	7
+	Facing	6
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711813
@@ -62167,7 +62167,7 @@ NPC goat
 	CreatedAt	0
 	AR	5
 	script	animal
-	SpeechColor	193
+	SpeechColor	52
 }
 
 NPC bird
@@ -62180,7 +62180,7 @@ NPC bird
 	X	5208
 	Y	3871
 	Z	9
-	Facing	7
+	Facing	6
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711814
@@ -62205,7 +62205,7 @@ NPC bird
 	CreatedAt	0
 	AR	1
 	script	animal
-	SpeechColor	192
+	SpeechColor	578
 }
 
 NPC bird
@@ -62243,7 +62243,7 @@ NPC bird
 	CreatedAt	0
 	AR	1
 	script	animal
-	SpeechColor	36
+	SpeechColor	160
 }
 
 NPC blackbear
@@ -62256,11 +62256,11 @@ NPC blackbear
 	X	5154
 	Y	3895
 	Z	-1
-	Facing	5
+	Facing	4
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711816
-	CProp	Anchor a3:i5155i3894i2
+	CProp	Anchor a3:i5154i3895i-1
 	CProp	Fame i2
 	CProp	Karma i0
 	CProp	SpawnRegion a2:S18:hills n of deluciaS12:newbieforest
@@ -62280,7 +62280,7 @@ NPC blackbear
 	CreatedAt	0
 	AR	8
 	script	animal
-	SpeechColor	87
+	SpeechColor	54
 }
 
 NPC bull
@@ -62289,14 +62289,14 @@ NPC bull
 	Serial	0x1a1ec9
 	ObjType	0xe9
 	Graphic	0xe9
-	X	5178
+	X	5177
 	Y	3835
-	Z	-2
+	Z	-1
 	Facing	6
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711817
-	CProp	Anchor a3:i5179i3835i-3
+	CProp	Anchor a3:i5178i3835i-2
 	CProp	Fame i3
 	CProp	Karma i0
 	CProp	SpawnRegion a2:S18:hills n of deluciaS12:newbieforest
@@ -62316,7 +62316,7 @@ NPC bull
 	CreatedAt	0
 	AR	14
 	script	animal
-	SpeechColor	193
+	SpeechColor	707
 }
 
 NPC goat
@@ -62351,7 +62351,7 @@ NPC goat
 	CreatedAt	0
 	AR	5
 	script	animal
-	SpeechColor	32
+	SpeechColor	14
 }
 
 NPC eagle
@@ -62361,12 +62361,12 @@ NPC eagle
 	ObjType	0x5
 	Graphic	0x5
 	X	5156
-	Y	3838
+	Y	3837
 	Z	-1
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711819
-	CProp	Anchor a3:i5156i3839i-1
+	CProp	Anchor a3:i5156i3838i-1
 	CProp	Fame i1
 	CProp	Karma i0
 	CProp	SpawnRegion a2:S18:hills n of deluciaS12:newbieforest
@@ -62386,7 +62386,7 @@ NPC eagle
 	CreatedAt	0
 	AR	11
 	script	animal
-	SpeechColor	32
+	SpeechColor	404
 }
 
 NPC cow
@@ -62398,7 +62398,7 @@ NPC cow
 	X	5218
 	Y	3947
 	Z	0
-	Facing	2
+	Facing	4
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711820
@@ -62422,7 +62422,7 @@ NPC cow
 	CreatedAt	0
 	AR	9
 	script	cow
-	SpeechColor	578
+	SpeechColor	37
 }
 
 NPC blackbear
@@ -62438,7 +62438,7 @@ NPC blackbear
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711821
-	CProp	Anchor a3:i5268i3814i2
+	CProp	Anchor a3:i5268i3813i2
 	CProp	Fame i2
 	CProp	Karma i0
 	CProp	SpawnRegion a2:S18:hills n of deluciaS12:newbieforest
@@ -62458,7 +62458,7 @@ NPC blackbear
 	CreatedAt	0
 	AR	8
 	script	animal
-	SpeechColor	243
+	SpeechColor	340
 }
 
 NPC snake
@@ -62467,9 +62467,9 @@ NPC snake
 	Serial	0x1a1ece
 	ObjType	0x34
 	Graphic	0x34
-	X	5298
-	Y	3881
-	Z	-1
+	X	5299
+	Y	3880
+	Z	1
 	Facing	1
 	Revision	0
 	Realm	britannia
@@ -62494,7 +62494,7 @@ NPC snake
 	CreatedAt	0
 	AR	1
 	script	killPCs
-	SpeechColor	228
+	SpeechColor	71
 }
 
 NPC bird
@@ -62504,9 +62504,9 @@ NPC bird
 	ObjType	0x6
 	Graphic	0x6
 	Color	0x27
-	X	5273
-	Y	3814
-	Z	1
+	X	5272
+	Y	3813
+	Z	7
 	Facing	7
 	Revision	0
 	Realm	britannia
@@ -62532,7 +62532,7 @@ NPC bird
 	CreatedAt	0
 	AR	1
 	script	animal
-	SpeechColor	902
+	SpeechColor	52
 }
 
 NPC deer
@@ -62541,14 +62541,14 @@ NPC deer
 	Serial	0x1a1ed0
 	ObjType	0xed
 	Graphic	0xed
-	X	5222
-	Y	3871
+	X	5223
+	Y	3870
 	Z	32
 	Facing	1
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711824
-	CProp	Anchor a3:i5221i3872i32
+	CProp	Anchor a3:i5222i3871i32
 	CProp	Fame i2
 	CProp	Karma i0
 	CProp	SpawnRegion a2:S18:hills n of deluciaS12:newbieforest
@@ -62568,7 +62568,7 @@ NPC deer
 	CreatedAt	0
 	AR	8
 	script	animal
-	SpeechColor	32
+	SpeechColor	12
 }
 
 NPC bird
@@ -62581,11 +62581,11 @@ NPC bird
 	X	5246
 	Y	3846
 	Z	-3
-	Facing	5
+	Facing	4
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711825
-	CProp	Anchor a3:i5247i3845i0
+	CProp	Anchor a3:i5246i3846i-3
 	CProp	Color i550
 	CProp	Fame i1
 	CProp	Karma i0
@@ -62606,7 +62606,7 @@ NPC bird
 	CreatedAt	0
 	AR	1
 	script	animal
-	SpeechColor	442
+	SpeechColor	578
 }
 
 NPC Rabbit
@@ -62615,14 +62615,14 @@ NPC Rabbit
 	Serial	0x1a1ed2
 	ObjType	0xcd
 	Graphic	0xcd
-	X	5177
-	Y	3888
-	Z	-2
+	X	5178
+	Y	3887
+	Z	0
 	Facing	1
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711826
-	CProp	Anchor a3:i5176i3889i-1
+	CProp	Anchor a3:i5177i3888i-2
 	CProp	Fame i1
 	CProp	Karma i0
 	CProp	SpawnRegion a2:S18:hills n of deluciaS12:newbieforest
@@ -62641,7 +62641,7 @@ NPC Rabbit
 	CreatedAt	0
 	AR	4
 	script	barker
-	SpeechColor	404
+	SpeechColor	97
 }
 
 NPC bird
@@ -62679,7 +62679,7 @@ NPC bird
 	CreatedAt	0
 	AR	1
 	script	animal
-	SpeechColor	87
+	SpeechColor	192
 }
 
 NPC cow
@@ -62688,14 +62688,14 @@ NPC cow
 	Serial	0x1a1ed4
 	ObjType	0xd8
 	Graphic	0xd8
-	X	5253
-	Y	3910
-	Z	8
+	X	5250
+	Y	3913
+	Z	15
 	Facing	5
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711828
-	CProp	Anchor a3:i5253i3902i1
+	CProp	Anchor a3:i5253i3910i8
 	CProp	Fame i10
 	CProp	Karma i0
 	CProp	SpawnRegion a2:S18:hills n of deluciaS12:newbieforest
@@ -62711,7 +62711,7 @@ NPC cow
 	Wrestling	6
 	Life	30
 	Mana	1
-	Stamina	14
+	Stamina	15
 	CreatedAt	0
 	AR	9
 	script	cow
@@ -62725,12 +62725,12 @@ NPC Rabbit
 	ObjType	0xcd
 	Graphic	0xcd
 	X	5158
-	Y	3807
-	Z	2
+	Y	3806
+	Z	-2
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711829
-	CProp	Anchor a3:i5158i3808i1
+	CProp	Anchor a3:i5158i3807i2
 	CProp	Fame i1
 	CProp	Karma i0
 	CProp	SpawnRegion a2:S18:hills n of deluciaS12:newbieforest
@@ -62749,7 +62749,7 @@ NPC Rabbit
 	CreatedAt	0
 	AR	4
 	script	barker
-	SpeechColor	17
+	SpeechColor	340
 }
 
 NPC blackbear
@@ -62759,14 +62759,14 @@ NPC blackbear
 	ObjType	0xd3
 	Graphic	0xd3
 	Color	0x2e6
-	X	5280
-	Y	3827
+	X	5281
+	Y	3826
 	Z	-2
 	Facing	1
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711830
-	CProp	Anchor a3:i5279i3828i0
+	CProp	Anchor a3:i5280i3827i-2
 	CProp	Fame i2
 	CProp	Karma i0
 	CProp	SpawnRegion a2:S18:hills n of deluciaS12:newbieforest
@@ -62786,7 +62786,7 @@ NPC blackbear
 	CreatedAt	0
 	AR	8
 	script	animal
-	SpeechColor	7
+	SpeechColor	48
 }
 
 NPC blackbear
@@ -62796,14 +62796,14 @@ NPC blackbear
 	ObjType	0xd3
 	Graphic	0xd3
 	Color	0x2e6
-	X	5259
+	X	5258
 	Y	3916
-	Z	21
+	Z	20
 	Facing	6
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711831
-	CProp	Anchor a3:i5260i3916i23
+	CProp	Anchor a3:i5259i3916i21
 	CProp	Fame i2
 	CProp	Karma i0
 	CProp	SpawnRegion a2:S18:hills n of deluciaS12:newbieforest
@@ -62823,7 +62823,7 @@ NPC blackbear
 	CreatedAt	0
 	AR	8
 	script	animal
-	SpeechColor	12
+	SpeechColor	42
 }
 
 NPC deer
@@ -62833,8 +62833,8 @@ NPC deer
 	ObjType	0xed
 	Graphic	0xed
 	X	5308
-	Y	3807
-	Z	25
+	Y	3806
+	Z	23
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711832
@@ -62858,7 +62858,7 @@ NPC deer
 	CreatedAt	0
 	AR	8
 	script	animal
-	SpeechColor	12
+	SpeechColor	17
 }
 
 NPC blackbear
@@ -62868,14 +62868,14 @@ NPC blackbear
 	ObjType	0xd3
 	Graphic	0xd3
 	Color	0x2e6
-	X	5299
-	Y	3874
-	Z	1
+	X	5300
+	Y	3873
+	Z	2
 	Facing	1
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711833
-	CProp	Anchor a3:i5298i3875i0
+	CProp	Anchor a3:i5299i3874i1
 	CProp	Fame i2
 	CProp	Karma i0
 	CProp	SpawnRegion a2:S18:hills n of deluciaS12:newbieforest
@@ -62895,7 +62895,7 @@ NPC blackbear
 	CreatedAt	0
 	AR	8
 	script	animal
-	SpeechColor	228
+	SpeechColor	7
 }
 
 NPC wanderingHealer
@@ -62932,7 +62932,7 @@ NPC wanderingHealer
 	CreatedAt	0
 	AR	32
 	script	davesHealer
-	SpeechColor	48
+	SpeechColor	340
 }
 
 Item
@@ -62973,14 +62973,14 @@ NPC walrus
 	Serial	0x1a1edb
 	ObjType	0xdd
 	Graphic	0xdd
-	X	4242
-	Y	331
+	X	4243
+	Y	330
 	Z	-5
 	Facing	1
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711835
-	CProp	Anchor a3:i4241i332i-5
+	CProp	Anchor a3:i4242i331i-5
 	CProp	Fame i5
 	CProp	Karma i0
 	CProp	SpawnRegion a2:S10:ice islandS13:arcticanimals
@@ -63001,7 +63001,7 @@ NPC walrus
 	CreatedAt	0
 	AR	9
 	script	animal
-	SpeechColor	7
+	SpeechColor	87
 }
 
 NPC walrus
@@ -63011,13 +63011,13 @@ NPC walrus
 	ObjType	0xdd
 	Graphic	0xdd
 	X	4034
-	Y	432
+	Y	433
 	Z	3
 	Facing	4
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711836
-	CProp	Anchor a3:i4034i431i3
+	CProp	Anchor a3:i4034i432i3
 	CProp	Fame i5
 	CProp	Karma i0
 	CProp	SpawnRegion a2:S10:ice islandS13:arcticanimals
@@ -63038,7 +63038,7 @@ NPC walrus
 	CreatedAt	0
 	AR	9
 	script	animal
-	SpeechColor	438
+	SpeechColor	903
 }
 
 NPC walrus
@@ -63047,14 +63047,14 @@ NPC walrus
 	Serial	0x1a1edd
 	ObjType	0xdd
 	Graphic	0xdd
-	X	3903
-	Y	344
+	X	3902
+	Y	343
 	Z	-5
 	Facing	7
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711837
-	CProp	Anchor a3:i3904i345i-5
+	CProp	Anchor a3:i3903i344i-5
 	CProp	Fame i5
 	CProp	Karma i0
 	CProp	SpawnRegion a2:S10:ice islandS13:arcticanimals
@@ -63075,7 +63075,7 @@ NPC walrus
 	CreatedAt	0
 	AR	9
 	script	animal
-	SpeechColor	207
+	SpeechColor	54
 }
 
 NPC walrus
@@ -63085,12 +63085,12 @@ NPC walrus
 	ObjType	0xdd
 	Graphic	0xdd
 	X	3932
-	Y	634
+	Y	633
 	Z	-5
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711838
-	CProp	Anchor a3:i3932i635i-5
+	CProp	Anchor a3:i3932i634i-5
 	CProp	Fame i5
 	CProp	Karma i0
 	CProp	SpawnRegion a2:S10:ice islandS13:arcticanimals
@@ -63111,7 +63111,7 @@ NPC walrus
 	CreatedAt	0
 	AR	9
 	script	animal
-	SpeechColor	17
+	SpeechColor	196
 }
 
 NPC walrus
@@ -63120,14 +63120,14 @@ NPC walrus
 	Serial	0x1a1edf
 	ObjType	0xdd
 	Graphic	0xdd
-	X	3914
-	Y	307
+	X	3913
+	Y	308
 	Z	0
 	Facing	5
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711839
-	CProp	Anchor a3:i3915i306i0
+	CProp	Anchor a3:i3914i307i0
 	CProp	Fame i5
 	CProp	Karma i0
 	CProp	SpawnRegion a2:S10:ice islandS13:arcticanimals
@@ -63148,7 +63148,7 @@ NPC walrus
 	CreatedAt	0
 	AR	9
 	script	animal
-	SpeechColor	32
+	SpeechColor	53
 }
 
 NPC walrus
@@ -63160,7 +63160,7 @@ NPC walrus
 	X	4212
 	Y	505
 	Z	-5
-	Facing	4
+	Facing	5
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711840
@@ -63185,7 +63185,7 @@ NPC walrus
 	CreatedAt	0
 	AR	9
 	script	animal
-	SpeechColor	228
+	SpeechColor	34
 }
 
 NPC walrus
@@ -63194,8 +63194,8 @@ NPC walrus
 	Serial	0x1a1ee1
 	ObjType	0xdd
 	Graphic	0xdd
-	X	4089
-	Y	237
+	X	4090
+	Y	238
 	Z	-5
 	Facing	3
 	Revision	0
@@ -63222,7 +63222,7 @@ NPC walrus
 	CreatedAt	0
 	AR	9
 	script	animal
-	SpeechColor	228
+	SpeechColor	36
 }
 
 NPC walrus
@@ -63234,11 +63234,11 @@ NPC walrus
 	X	4284
 	Y	232
 	Z	-5
-	Facing	3
+	Facing	4
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711842
-	CProp	Anchor a3:i4283i231i-5
+	CProp	Anchor a3:i4284i232i-5
 	CProp	Fame i5
 	CProp	Karma i0
 	CProp	SpawnRegion a2:S10:ice islandS13:arcticanimals
@@ -63259,7 +63259,7 @@ NPC walrus
 	CreatedAt	0
 	AR	9
 	script	animal
-	SpeechColor	442
+	SpeechColor	648
 }
 
 NPC walrus
@@ -63295,7 +63295,7 @@ NPC walrus
 	CreatedAt	0
 	AR	9
 	script	animal
-	SpeechColor	12
+	SpeechColor	202
 }
 
 NPC walrus
@@ -63332,7 +63332,7 @@ NPC walrus
 	CreatedAt	0
 	AR	9
 	script	animal
-	SpeechColor	442
+	SpeechColor	32
 }
 
 NPC walrus
@@ -63369,7 +63369,7 @@ NPC walrus
 	CreatedAt	0
 	AR	9
 	script	animal
-	SpeechColor	572
+	SpeechColor	228
 }
 
 NPC walrus
@@ -63378,14 +63378,87 @@ NPC walrus
 	Serial	0x1a1ee6
 	ObjType	0xdd
 	Graphic	0xdd
-	X	4035
-	Y	559
+	X	4034
+	Y	558
 	Z	0
 	Facing	7
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711846
-	CProp	Anchor a3:i4036i560i0
+	CProp	Anchor a3:i4035i559i0
+	CProp	Fame i5
+	CProp	Karma i0
+	CProp	SpawnRegion a2:S10:ice islandS13:arcticanimals
+	CProp	noloot i1
+	TrueColor	0x0
+	TrueObjtype	0xdd
+	Gender	0
+	Strength	25
+	Intelligence	20
+	Dexterity	55
+	MagicResistance	17
+	Tactics	25
+	Wrestling	25
+	Life	25
+	Mana	1
+	Stamina	55
+	MoveMode	LS
+	CreatedAt	0
+	AR	9
+	script	animal
+	SpeechColor	648
+}
+
+NPC walrus
+{
+	Name	a walrus
+	Serial	0x1a1ee7
+	ObjType	0xdd
+	Graphic	0xdd
+	X	4144
+	Y	535
+	Z	0
+	Facing	3
+	Revision	0
+	Realm	britannia
+	CProp	AiSerial i1711847
+	CProp	Anchor a3:i4144i535i0
+	CProp	Fame i5
+	CProp	Karma i0
+	CProp	SpawnRegion a2:S10:ice islandS13:arcticanimals
+	CProp	noloot i1
+	TrueColor	0x0
+	TrueObjtype	0xdd
+	Gender	0
+	Strength	25
+	Intelligence	20
+	Dexterity	55
+	MagicResistance	17
+	Tactics	25
+	Wrestling	25
+	Life	25
+	Mana	1
+	Stamina	55
+	MoveMode	LS
+	CreatedAt	0
+	AR	9
+	script	animal
+	SpeechColor	228
+}
+
+NPC walrus
+{
+	Name	a walrus
+	Serial	0x1a1ee8
+	ObjType	0xdd
+	Graphic	0xdd
+	X	4237
+	Y	201
+	Z	-5
+	Revision	0
+	Realm	britannia
+	CProp	AiSerial i1711848
+	CProp	Anchor a3:i4237i201i-5
 	CProp	Fame i5
 	CProp	Karma i0
 	CProp	SpawnRegion a2:S10:ice islandS13:arcticanimals
@@ -63412,85 +63485,11 @@ NPC walrus
 NPC walrus
 {
 	Name	a walrus
-	Serial	0x1a1ee7
-	ObjType	0xdd
-	Graphic	0xdd
-	X	4144
-	Y	535
-	Z	0
-	Facing	2
-	Revision	0
-	Realm	britannia
-	CProp	AiSerial i1711847
-	CProp	Anchor a3:i4143i535i0
-	CProp	Fame i5
-	CProp	Karma i0
-	CProp	SpawnRegion a2:S10:ice islandS13:arcticanimals
-	CProp	noloot i1
-	TrueColor	0x0
-	TrueObjtype	0xdd
-	Gender	0
-	Strength	25
-	Intelligence	20
-	Dexterity	55
-	MagicResistance	17
-	Tactics	25
-	Wrestling	25
-	Life	25
-	Mana	1
-	Stamina	55
-	MoveMode	LS
-	CreatedAt	0
-	AR	9
-	script	animal
-	SpeechColor	80
-}
-
-NPC walrus
-{
-	Name	a walrus
-	Serial	0x1a1ee8
-	ObjType	0xdd
-	Graphic	0xdd
-	X	4237
-	Y	201
-	Z	-5
-	Facing	7
-	Revision	0
-	Realm	britannia
-	CProp	AiSerial i1711848
-	CProp	Anchor a3:i4237i201i-5
-	CProp	Fame i5
-	CProp	Karma i0
-	CProp	SpawnRegion a2:S10:ice islandS13:arcticanimals
-	CProp	noloot i1
-	TrueColor	0x0
-	TrueObjtype	0xdd
-	Gender	0
-	Strength	25
-	Intelligence	20
-	Dexterity	55
-	MagicResistance	17
-	Tactics	25
-	Wrestling	25
-	Life	25
-	Mana	1
-	Stamina	55
-	MoveMode	LS
-	CreatedAt	0
-	AR	9
-	script	animal
-	SpeechColor	901
-}
-
-NPC walrus
-{
-	Name	a walrus
 	Serial	0x1a1ee9
 	ObjType	0xdd
 	Graphic	0xdd
 	X	4224
-	Y	427
+	Y	428
 	Z	-5
 	Facing	4
 	Revision	0
@@ -63517,7 +63516,7 @@ NPC walrus
 	CreatedAt	0
 	AR	9
 	script	animal
-	SpeechColor	97
+	SpeechColor	32
 }
 
 NPC walrus
@@ -63554,7 +63553,7 @@ NPC walrus
 	CreatedAt	0
 	AR	9
 	script	animal
-	SpeechColor	572
+	SpeechColor	193
 }
 
 NPC walrus
@@ -63563,14 +63562,14 @@ NPC walrus
 	Serial	0x1a1eeb
 	ObjType	0xdd
 	Graphic	0xdd
-	X	4071
+	X	4072
 	Y	696
 	Z	-5
 	Facing	2
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711851
-	CProp	Anchor a3:i4070i696i-5
+	CProp	Anchor a3:i4071i696i-5
 	CProp	Fame i5
 	CProp	Karma i0
 	CProp	SpawnRegion a2:S10:ice islandS13:arcticanimals
@@ -63591,7 +63590,7 @@ NPC walrus
 	CreatedAt	0
 	AR	9
 	script	animal
-	SpeechColor	150
+	SpeechColor	87
 }
 
 NPC walrus
@@ -63600,14 +63599,14 @@ NPC walrus
 	Serial	0x1a1eec
 	ObjType	0xdd
 	Graphic	0xdd
-	X	4103
-	Y	316
+	X	4104
+	Y	315
 	Z	0
 	Facing	1
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711852
-	CProp	Anchor a3:i4102i317i0
+	CProp	Anchor a3:i4103i316i0
 	CProp	Fame i5
 	CProp	Karma i0
 	CProp	SpawnRegion a2:S10:ice islandS13:arcticanimals
@@ -63628,7 +63627,7 @@ NPC walrus
 	CreatedAt	0
 	AR	9
 	script	animal
-	SpeechColor	37
+	SpeechColor	193
 }
 
 NPC walrus
@@ -63638,12 +63637,12 @@ NPC walrus
 	ObjType	0xdd
 	Graphic	0xdd
 	X	4254
-	Y	475
+	Y	474
 	Z	-5
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711853
-	CProp	Anchor a3:i4254i476i-5
+	CProp	Anchor a3:i4254i475i-5
 	CProp	Fame i5
 	CProp	Karma i0
 	CProp	SpawnRegion a2:S10:ice islandS13:arcticanimals
@@ -63664,12 +63663,12 @@ NPC walrus
 	CreatedAt	0
 	AR	9
 	script	animal
-	SpeechColor	537
+	SpeechColor	32
 }
 
 NPC employee
 {
-	Name	<employee> the mage the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter
+	Name	<employee> the mage the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter
 	Serial	0x1a1eee
 	ObjType	0x190
 	Graphic	0x190
@@ -63678,7 +63677,7 @@ NPC employee
 	Y	3851
 	Z	0
 	Facing	5
-	Revision	34
+	Revision	35
 	Realm	britannia
 	CProp	AiSerial i1711854
 	CProp	Anchor a3:i1533i3851i0
@@ -63715,7 +63714,7 @@ NPC employee
 
 Item
 {
-	Serial	0x6ae12068
+	Serial	0x6ae122fd
 	ObjType	0x203d
 	Graphic	0x203d
 	Color	0x99
@@ -63727,12 +63726,12 @@ Item
 	CProp	faceloc i11
 	Layer	11
 	Container	0x1a1eee
-	DecayAt	25191006
+	DecayAt	25191073
 }
 
 Item
 {
-	Serial	0x6ae12069
+	Serial	0x6ae122fe
 	ObjType	0x203e
 	Graphic	0x203e
 	Color	0x99
@@ -63744,12 +63743,12 @@ Item
 	CProp	faceloc i16
 	Layer	16
 	Container	0x1a1eee
-	DecayAt	25191006
+	DecayAt	25191073
 }
 
 Item
 {
-	Serial	0x6ae12065
+	Serial	0x6ae122fa
 	ObjType	0xe75
 	Graphic	0xe75
 	X	1
@@ -63759,12 +63758,12 @@ Item
 	Realm	britannia
 	Layer	21
 	Container	0x1a1eee
-	DecayAt	25191006
+	DecayAt	25191073
 }
 
 NPC employee
 {
-	Name	<employee> the beggar the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter
+	Name	<employee> the beggar the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter the fighter
 	Serial	0x1a1eef
 	ObjType	0x190
 	Graphic	0x190
@@ -63773,7 +63772,7 @@ NPC employee
 	Y	3828
 	Z	0
 	Facing	5
-	Revision	34
+	Revision	35
 	Realm	britannia
 	CProp	AiSerial i1711855
 	CProp	Anchor a3:i1374i3828i0
@@ -63809,7 +63808,7 @@ NPC employee
 
 Item
 {
-	Serial	0x6ae12071
+	Serial	0x6ae12306
 	ObjType	0xe75
 	Graphic	0xe75
 	X	1
@@ -63819,7 +63818,7 @@ Item
 	Realm	britannia
 	Layer	21
 	Container	0x1a1eef
-	DecayAt	25191006
+	DecayAt	25191073
 }
 
 NPC grizzly
@@ -63853,7 +63852,7 @@ NPC grizzly
 	CreatedAt	0
 	AR	12
 	script	killPCs
-	SpeechColor	14
+	SpeechColor	42
 }
 
 NPC bird
@@ -63891,7 +63890,7 @@ NPC bird
 	CreatedAt	0
 	AR	1
 	script	animal
-	SpeechColor	37
+	SpeechColor	36
 }
 
 NPC bird
@@ -63904,7 +63903,7 @@ NPC bird
 	X	1472
 	Y	635
 	Z	0
-	Facing	5
+	Facing	4
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711858
@@ -63929,7 +63928,7 @@ NPC bird
 	CreatedAt	0
 	AR	1
 	script	animal
-	SpeechColor	63
+	SpeechColor	902
 }
 
 NPC Rabbit
@@ -63939,7 +63938,7 @@ NPC Rabbit
 	ObjType	0xcd
 	Graphic	0xcd
 	X	1082
-	Y	490
+	Y	491
 	Z	1
 	Facing	4
 	Revision	0
@@ -63964,7 +63963,7 @@ NPC Rabbit
 	CreatedAt	0
 	AR	4
 	script	barker
-	SpeechColor	97
+	SpeechColor	32
 }
 
 NPC ratman2
@@ -63973,7 +63972,7 @@ NPC ratman2
 	Serial	0x1a1ef4
 	ObjType	0x2c
 	Graphic	0x2c
-	X	1373
+	X	1372
 	Y	548
 	Z	1
 	Facing	6
@@ -63999,7 +63998,7 @@ NPC ratman2
 	CreatedAt	0
 	AR	14
 	script	killPCs
-	SpeechColor	52
+	SpeechColor	54
 }
 
 Item
@@ -64026,7 +64025,7 @@ NPC ratman2
 	X	1306
 	Y	643
 	Z	6
-	Facing	5
+	Facing	6
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711861
@@ -64049,7 +64048,7 @@ NPC ratman2
 	CreatedAt	0
 	AR	14
 	script	killPCs
-	SpeechColor	160
+	SpeechColor	202
 }
 
 Item
@@ -64074,7 +64073,7 @@ NPC ettin2
 	ObjType	0x12
 	Graphic	0x12
 	X	1334
-	Y	619
+	Y	620
 	Z	6
 	Facing	4
 	Revision	0
@@ -64100,7 +64099,7 @@ NPC ettin2
 	CreatedAt	0
 	AR	19
 	script	killPCs
-	SpeechColor	12
+	SpeechColor	7
 }
 
 Item
@@ -64151,7 +64150,7 @@ NPC ettin2
 	CreatedAt	0
 	AR	19
 	script	killPCs
-	SpeechColor	54
+	SpeechColor	101
 }
 
 Item
@@ -64176,7 +64175,7 @@ NPC horse4
 	ObjType	0xe4
 	Graphic	0xe4
 	X	1130
-	Y	553
+	Y	552
 	Z	1
 	Revision	0
 	Realm	britannia
@@ -64201,7 +64200,7 @@ NPC horse4
 	CreatedAt	0
 	AR	9
 	script	animal
-	SpeechColor	340
+	SpeechColor	578
 }
 
 NPC horse
@@ -64237,7 +64236,7 @@ NPC horse
 	CreatedAt	0
 	AR	9
 	script	animal
-	SpeechColor	707
+	SpeechColor	243
 }
 
 NPC wanderingHealer
@@ -64274,7 +64273,7 @@ NPC wanderingHealer
 	CreatedAt	0
 	AR	32
 	script	davesHealer
-	SpeechColor	34
+	SpeechColor	97
 }
 
 Item
@@ -64332,14 +64331,14 @@ NPC walrus
 	Serial	0x1a1efb
 	ObjType	0xdd
 	Graphic	0xdd
-	X	4486
+	X	4485
 	Y	1400
 	Z	23
 	Facing	6
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711867
-	CProp	Anchor a3:i4487i1400i23
+	CProp	Anchor a3:i4486i1400i23
 	CProp	Fame i5
 	CProp	Karma i0
 	CProp	SpawnRegion a2:S16:moonglow_zoo_iceS7:zoo_ice
@@ -64360,7 +64359,7 @@ NPC walrus
 	CreatedAt	0
 	AR	9
 	script	animal
-	SpeechColor	150
+	SpeechColor	32
 }
 
 NPC alligator
@@ -64369,7 +64368,7 @@ NPC alligator
 	Serial	0x1a1efc
 	ObjType	0xca
 	Graphic	0xca
-	X	4553
+	X	4554
 	Y	1336
 	Z	8
 	Facing	2
@@ -64396,7 +64395,7 @@ NPC alligator
 	CreatedAt	0
 	AR	15
 	script	killPCs
-	SpeechColor	193
+	SpeechColor	12
 }
 
 NPC alligator
@@ -64406,7 +64405,7 @@ NPC alligator
 	ObjType	0xca
 	Graphic	0xca
 	X	4485
-	Y	1344
+	Y	1343
 	Z	8
 	Revision	0
 	Realm	britannia
@@ -64431,7 +64430,7 @@ NPC alligator
 	CreatedAt	0
 	AR	15
 	script	killPCs
-	SpeechColor	34
+	SpeechColor	12
 }
 
 NPC corpser
@@ -64466,7 +64465,7 @@ NPC corpser
 	CreatedAt	0
 	AR	15
 	script	immobile
-	SpeechColor	404
+	SpeechColor	160
 }
 
 Item
@@ -64516,7 +64515,7 @@ NPC deer
 	CreatedAt	0
 	AR	8
 	script	animal
-	SpeechColor	97
+	SpeechColor	404
 }
 
 NPC Rabbit
@@ -64525,14 +64524,14 @@ NPC Rabbit
 	Serial	0x1a1f00
 	ObjType	0xcd
 	Graphic	0xcd
-	X	1024
-	Y	338
+	X	1025
+	Y	337
 	Z	1
 	Facing	1
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711872
-	CProp	Anchor a3:i1023i339i0
+	CProp	Anchor a3:i1024i338i1
 	CProp	Fame i1
 	CProp	Karma i0
 	CProp	SpawnRegion a2:S18:n_yew_e_penninsulaS13:forestanimals
@@ -64551,7 +64550,7 @@ NPC Rabbit
 	CreatedAt	0
 	AR	4
 	script	barker
-	SpeechColor	12
+	SpeechColor	98
 }
 
 NPC eagle
@@ -64560,14 +64559,14 @@ NPC eagle
 	Serial	0x1a1f01
 	ObjType	0x5
 	Graphic	0x5
-	X	952
-	Y	310
+	X	953
+	Y	309
 	Z	0
 	Facing	1
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711873
-	CProp	Anchor a3:i951i311i0
+	CProp	Anchor a3:i952i310i0
 	CProp	Fame i1
 	CProp	Karma i0
 	CProp	SpawnRegion a2:S18:n_yew_e_penninsulaS13:forestanimals
@@ -64587,7 +64586,7 @@ NPC eagle
 	CreatedAt	0
 	AR	11
 	script	animal
-	SpeechColor	52
+	SpeechColor	17
 }
 
 NPC deer
@@ -64597,12 +64596,12 @@ NPC deer
 	ObjType	0xed
 	Graphic	0xed
 	X	939
-	Y	349
+	Y	348
 	Z	0
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711874
-	CProp	Anchor a3:i939i350i0
+	CProp	Anchor a3:i939i349i0
 	CProp	Fame i2
 	CProp	Karma i0
 	CProp	SpawnRegion a2:S18:n_yew_e_penninsulaS13:forestanimals
@@ -64622,7 +64621,7 @@ NPC deer
 	CreatedAt	0
 	AR	8
 	script	animal
-	SpeechColor	196
+	SpeechColor	7
 }
 
 NPC deer
@@ -64631,14 +64630,14 @@ NPC deer
 	Serial	0x1a1f03
 	ObjType	0xed
 	Graphic	0xed
-	X	1020
+	X	1019
 	Y	379
 	Z	0
 	Facing	6
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711875
-	CProp	Anchor a3:i1021i379i0
+	CProp	Anchor a3:i1020i379i0
 	CProp	Fame i2
 	CProp	Karma i0
 	CProp	SpawnRegion a2:S18:n_yew_e_penninsulaS13:forestanimals
@@ -64658,7 +64657,7 @@ NPC deer
 	CreatedAt	0
 	AR	8
 	script	animal
-	SpeechColor	572
+	SpeechColor	12
 }
 
 NPC ghart
@@ -64670,11 +64669,11 @@ NPC ghart
 	X	1002
 	Y	339
 	Z	0
-	Facing	5
+	Facing	6
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711876
-	CProp	Anchor a3:i1003i338i0
+	CProp	Anchor a3:i1002i339i0
 	CProp	Fame i3
 	CProp	Karma i0
 	CProp	SpawnRegion a2:S18:n_yew_e_penninsulaS13:forestanimals
@@ -64693,7 +64692,7 @@ NPC ghart
 	CreatedAt	0
 	AR	12
 	script	animal
-	SpeechColor	34
+	SpeechColor	12
 }
 
 NPC eagle
@@ -64705,7 +64704,7 @@ NPC eagle
 	X	1025
 	Y	294
 	Z	0
-	Facing	4
+	Facing	5
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711877
@@ -64729,7 +64728,7 @@ NPC eagle
 	CreatedAt	0
 	AR	11
 	script	animal
-	SpeechColor	901
+	SpeechColor	228
 }
 
 NPC gargoyle
@@ -64739,7 +64738,7 @@ NPC gargoyle
 	ObjType	0x4
 	Graphic	0x4
 	X	830
-	Y	406
+	Y	405
 	Z	0
 	Revision	0
 	Realm	britannia
@@ -64765,7 +64764,7 @@ NPC gargoyle
 	CreatedAt	0
 	AR	22
 	script	spellKillPCs
-	SpeechColor	17
+	SpeechColor	53
 }
 
 Item
@@ -64789,8 +64788,8 @@ NPC goat
 	Serial	0x1a1f07
 	ObjType	0xd1
 	Graphic	0xd1
-	X	830
-	Y	385
+	X	831
+	Y	386
 	Z	0
 	Facing	3
 	Revision	0
@@ -64816,7 +64815,7 @@ NPC goat
 	CreatedAt	0
 	AR	5
 	script	animal
-	SpeechColor	8
+	SpeechColor	7
 }
 
 NPC pig
@@ -64825,9 +64824,9 @@ NPC pig
 	Serial	0x1a1f08
 	ObjType	0xcb
 	Graphic	0xcb
-	X	849
-	Y	383
-	Z	0
+	X	848
+	Y	382
+	Z	1
 	Facing	7
 	Revision	0
 	Realm	britannia
@@ -64852,7 +64851,7 @@ NPC pig
 	CreatedAt	0
 	AR	6
 	script	barker
-	SpeechColor	80
+	SpeechColor	438
 }
 
 NPC sheep
@@ -64989,7 +64988,7 @@ NPC walrus
 	CreatedAt	0
 	AR	9
 	script	animal
-	SpeechColor	18
+	SpeechColor	207
 }
 
 NPC walrus
@@ -64998,14 +64997,14 @@ NPC walrus
 	Serial	0x1a1f0c
 	ObjType	0xdd
 	Graphic	0xdd
-	X	5219
+	X	5220
 	Y	2330
-	Z	30
+	Z	31
 	Facing	2
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711884
-	CProp	Anchor a3:i5218i2330i29
+	CProp	Anchor a3:i5219i2330i30
 	CProp	Fame i5
 	CProp	Karma i0
 	CProp	SpawnRegion a2:S14:nw iceland t2aS13:arcticanimals
@@ -65038,11 +65037,10 @@ NPC walrus
 	X	5172
 	Y	2369
 	Z	17
-	Facing	7
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711885
-	CProp	Anchor a3:i5173i2370i22
+	CProp	Anchor a3:i5172i2369i17
 	CProp	Fame i5
 	CProp	Karma i0
 	CProp	SpawnRegion a2:S14:nw iceland t2aS13:arcticanimals
@@ -65063,7 +65061,7 @@ NPC walrus
 	CreatedAt	0
 	AR	9
 	script	animal
-	SpeechColor	54
+	SpeechColor	32
 }
 
 NPC walrus
@@ -65073,8 +65071,8 @@ NPC walrus
 	ObjType	0xdd
 	Graphic	0xdd
 	X	5177
-	Y	2386
-	Z	20
+	Y	2385
+	Z	19
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711886
@@ -65099,7 +65097,7 @@ NPC walrus
 	CreatedAt	0
 	AR	9
 	script	animal
-	SpeechColor	71
+	SpeechColor	228
 }
 
 NPC walrus
@@ -65111,6 +65109,7 @@ NPC walrus
 	X	5168
 	Y	2313
 	Z	-5
+	Facing	7
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711887
@@ -65135,7 +65134,7 @@ NPC walrus
 	CreatedAt	0
 	AR	9
 	script	animal
-	SpeechColor	196
+	SpeechColor	228
 }
 
 NPC bird
@@ -65145,9 +65144,9 @@ NPC bird
 	ObjType	0x6
 	Graphic	0x6
 	Color	0x1c0
-	X	5845
-	Y	3990
-	Z	14
+	X	5844
+	Y	3991
+	Z	15
 	Facing	5
 	Revision	0
 	Realm	britannia
@@ -65173,7 +65172,7 @@ NPC bird
 	CreatedAt	0
 	AR	1
 	script	animal
-	SpeechColor	362
+	SpeechColor	442
 }
 
 NPC ettin
@@ -65207,7 +65206,7 @@ NPC ettin
 	CreatedAt	0
 	AR	19
 	script	killPCs
-	SpeechColor	902
+	SpeechColor	17
 }
 
 Item
@@ -65231,8 +65230,8 @@ NPC gazer
 	Serial	0x1a1f12
 	ObjType	0x16
 	Graphic	0x16
-	X	5576
-	Y	3823
+	X	5577
+	Y	3824
 	Z	14
 	Facing	3
 	Revision	0
@@ -65259,7 +65258,7 @@ NPC gazer
 	CreatedAt	0
 	AR	22
 	script	spellKillPCs
-	SpeechColor	98
+	SpeechColor	54
 }
 
 Item
@@ -65309,7 +65308,7 @@ NPC lizardman3
 	CreatedAt	0
 	AR	14
 	script	killPCs
-	SpeechColor	572
+	SpeechColor	903
 }
 
 Item
@@ -65360,7 +65359,7 @@ NPC horse4
 	CreatedAt	0
 	AR	9
 	script	animal
-	SpeechColor	348
+	SpeechColor	442
 }
 
 NPC wanderingHealer
@@ -65397,7 +65396,7 @@ NPC wanderingHealer
 	CreatedAt	0
 	AR	32
 	script	davesHealer
-	SpeechColor	537
+	SpeechColor	14
 }
 
 Item
@@ -65459,6 +65458,7 @@ NPC blackbear
 	X	5143
 	Y	3830
 	Z	0
+	Facing	7
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711894
@@ -65482,7 +65482,7 @@ NPC blackbear
 	CreatedAt	0
 	AR	8
 	script	animal
-	SpeechColor	901
+	SpeechColor	12
 }
 
 NPC orclord
@@ -65492,7 +65492,7 @@ NPC orclord
 	ObjType	0x7
 	Graphic	0x7
 	X	5196
-	Y	3808
+	Y	3807
 	Z	12
 	Revision	0
 	Realm	britannia
@@ -65516,7 +65516,7 @@ NPC orclord
 	CreatedAt	0
 	AR	35
 	script	killPCs
-	SpeechColor	37
+	SpeechColor	7
 }
 
 Item
@@ -65540,9 +65540,9 @@ NPC horse
 	Serial	0x1a1f18
 	ObjType	0xcc
 	Graphic	0xcc
-	X	5244
-	Y	3815
-	Z	-1
+	X	5245
+	Y	3816
+	Z	0
 	Facing	3
 	Revision	0
 	Realm	britannia
@@ -65567,7 +65567,7 @@ NPC horse
 	CreatedAt	0
 	AR	9
 	script	animal
-	SpeechColor	192
+	SpeechColor	442
 }
 
 NPC horse3
@@ -65579,11 +65579,10 @@ NPC horse3
 	X	5178
 	Y	3810
 	Z	2
-	Facing	1
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711897
-	CProp	Anchor a3:i5177i3811i1
+	CProp	Anchor a3:i5178i3810i2
 	CProp	Fame i4
 	CProp	Karma i5
 	CProp	SpawnRegion a2:S23:past hills n of deluciaS6:horses
@@ -65603,7 +65602,7 @@ NPC horse3
 	CreatedAt	0
 	AR	9
 	script	barker
-	SpeechColor	340
+	SpeechColor	572
 }
 
 NPC ratman1
@@ -65612,9 +65611,9 @@ NPC ratman1
 	Serial	0x1a1f1a
 	ObjType	0x2a
 	Graphic	0x2a
-	X	5824
-	Y	3372
-	Z	1
+	X	5823
+	Y	3373
+	Z	2
 	Facing	5
 	Revision	0
 	Realm	britannia
@@ -65638,7 +65637,7 @@ NPC ratman1
 	CreatedAt	0
 	AR	14
 	script	killPCs
-	SpeechColor	903
+	SpeechColor	80
 }
 
 Item
@@ -65662,7 +65661,7 @@ NPC waterelemental
 	Serial	0x1a1f1b
 	ObjType	0x10
 	Graphic	0x10
-	X	5791
+	X	5792
 	Y	3386
 	Z	-10
 	Facing	2
@@ -65692,7 +65691,7 @@ NPC waterelemental
 	CreatedAt	0
 	AR	25
 	script	spellKillPCs
-	SpeechColor	442
+	SpeechColor	19
 }
 
 Item
@@ -65717,7 +65716,7 @@ NPC alligator
 	ObjType	0xca
 	Graphic	0xca
 	X	3646
-	Y	2119
+	Y	2120
 	Z	23
 	Facing	4
 	Revision	0
@@ -65743,7 +65742,7 @@ NPC alligator
 	CreatedAt	0
 	AR	15
 	script	killPCs
-	SpeechColor	32
+	SpeechColor	12
 }
 
 NPC alligator
@@ -65755,6 +65754,7 @@ NPC alligator
 	X	4525
 	Y	1355
 	Z	23
+	Facing	1
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711901
@@ -65778,7 +65778,7 @@ NPC alligator
 	CreatedAt	0
 	AR	15
 	script	killPCs
-	SpeechColor	71
+	SpeechColor	707
 }
 
 NPC alligator
@@ -65790,7 +65790,7 @@ NPC alligator
 	X	4505
 	Y	1386
 	Z	23
-	Facing	7
+	Facing	6
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711902
@@ -65814,7 +65814,7 @@ NPC alligator
 	CreatedAt	0
 	AR	15
 	script	killPCs
-	SpeechColor	18
+	SpeechColor	71
 }
 
 NPC walrus
@@ -65823,14 +65823,14 @@ NPC walrus
 	Serial	0x1a1f1f
 	ObjType	0xdd
 	Graphic	0xdd
-	X	4513
+	X	4512
 	Y	1398
 	Z	23
 	Facing	6
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711903
-	CProp	Anchor a3:i4514i1398i23
+	CProp	Anchor a3:i4513i1398i23
 	CProp	Fame i5
 	CProp	Karma i0
 	CProp	SpawnRegion a2:S16:moonglow_zoo_iceS7:zoo_ice
@@ -65851,7 +65851,7 @@ NPC walrus
 	CreatedAt	0
 	AR	9
 	script	animal
-	SpeechColor	19
+	SpeechColor	63
 }
 
 NPC alligator
@@ -65863,7 +65863,7 @@ NPC alligator
 	X	4491
 	Y	1386
 	Z	23
-	Facing	4
+	Facing	5
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711904
@@ -65887,7 +65887,7 @@ NPC alligator
 	CreatedAt	0
 	AR	15
 	script	killPCs
-	SpeechColor	348
+	SpeechColor	243
 }
 
 NPC alligator
@@ -65897,7 +65897,7 @@ NPC alligator
 	ObjType	0xca
 	Graphic	0xca
 	X	2055
-	Y	1006
+	Y	1005
 	Z	0
 	Revision	0
 	Realm	britannia
@@ -65922,7 +65922,7 @@ NPC alligator
 	CreatedAt	0
 	AR	15
 	script	killPCs
-	SpeechColor	700
+	SpeechColor	572
 }
 
 NPC alligator
@@ -65932,7 +65932,7 @@ NPC alligator
 	ObjType	0xca
 	Graphic	0xca
 	X	2026
-	Y	1013
+	Y	1012
 	Z	0
 	Revision	0
 	Realm	britannia
@@ -65957,12 +65957,12 @@ NPC alligator
 	CreatedAt	0
 	AR	15
 	script	killPCs
-	SpeechColor	48
+	SpeechColor	32
 }
 
 NPC employee
 {
-	Name	<employee> the fighter the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief
+	Name	<employee> the fighter the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief the thief
 	Serial	0x1a1f23
 	ObjType	0x190
 	Graphic	0x191
@@ -65971,7 +65971,7 @@ NPC employee
 	Y	1215
 	Z	0
 	Facing	4
-	Revision	33
+	Revision	34
 	Realm	britannia
 	CProp	AiSerial i1711907
 	CProp	Anchor a3:i2236i1215i0
@@ -66006,7 +66006,7 @@ NPC employee
 
 Item
 {
-	Serial	0x6ae1207f
+	Serial	0x6ae12314
 	ObjType	0x2046
 	Graphic	0x2046
 	Color	0x34
@@ -66018,12 +66018,12 @@ Item
 	CProp	faceloc i11
 	Layer	11
 	Container	0x1a1f23
-	DecayAt	25191006
+	DecayAt	25191073
 }
 
 Item
 {
-	Serial	0x6ae1207b
+	Serial	0x6ae12310
 	ObjType	0xe75
 	Graphic	0xe75
 	X	1
@@ -66033,12 +66033,12 @@ Item
 	Realm	britannia
 	Layer	21
 	Container	0x1a1f23
-	DecayAt	25191006
+	DecayAt	25191073
 }
 
 NPC employee
 {
-	Name	<employee> the paladin the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage
+	Name	<employee> the paladin the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage the mage
 	Serial	0x1a1f24
 	ObjType	0x190
 	Graphic	0x190
@@ -66047,7 +66047,7 @@ NPC employee
 	Y	1206
 	Z	0
 	Facing	5
-	Revision	33
+	Revision	34
 	Realm	britannia
 	CProp	AiSerial i1711908
 	CProp	Anchor a3:i2222i1206i0
@@ -66084,7 +66084,7 @@ NPC employee
 
 Item
 {
-	Serial	0x6ae12084
+	Serial	0x6ae12319
 	ObjType	0x204a
 	Graphic	0x204a
 	Color	0x39a
@@ -66096,12 +66096,12 @@ Item
 	CProp	faceloc i11
 	Layer	11
 	Container	0x1a1f24
-	DecayAt	25191006
+	DecayAt	25191073
 }
 
 Item
 {
-	Serial	0x6ae12080
+	Serial	0x6ae12315
 	ObjType	0xe75
 	Graphic	0xe75
 	X	1
@@ -66111,12 +66111,12 @@ Item
 	Realm	britannia
 	Layer	21
 	Container	0x1a1f24
-	DecayAt	25191006
+	DecayAt	25191073
 }
 
 NPC employee
 {
-	Name	<employee> the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar
+	Name	<employee> the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar the beggar
 	Serial	0x1a1f25
 	ObjType	0x190
 	Graphic	0x190
@@ -66125,7 +66125,7 @@ NPC employee
 	Y	1194
 	Z	0
 	Facing	7
-	Revision	33
+	Revision	34
 	Realm	britannia
 	CProp	AiSerial i1711909
 	CProp	Anchor a3:i2214i1194i0
@@ -66155,7 +66155,7 @@ NPC employee
 
 Item
 {
-	Serial	0x6ae12089
+	Serial	0x6ae1231e
 	ObjType	0x2047
 	Graphic	0x2047
 	Color	0x386
@@ -66167,12 +66167,12 @@ Item
 	CProp	faceloc i11
 	Layer	11
 	Container	0x1a1f25
-	DecayAt	25191006
+	DecayAt	25191073
 }
 
 Item
 {
-	Serial	0x6ae12085
+	Serial	0x6ae1231a
 	ObjType	0xe75
 	Graphic	0xe75
 	X	1
@@ -66182,7 +66182,7 @@ Item
 	Realm	britannia
 	Layer	21
 	Container	0x1a1f25
-	DecayAt	25191006
+	DecayAt	25191073
 }
 
 NPC walrus
@@ -66194,6 +66194,7 @@ NPC walrus
 	X	4305
 	Y	550
 	Z	-5
+	Facing	7
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711910
@@ -66218,7 +66219,7 @@ NPC walrus
 	CreatedAt	0
 	AR	9
 	script	animal
-	SpeechColor	438
+	SpeechColor	80
 }
 
 NPC walrus
@@ -66230,6 +66231,7 @@ NPC walrus
 	X	4071
 	Y	613
 	Z	-5
+	Facing	7
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711911
@@ -66254,7 +66256,7 @@ NPC walrus
 	CreatedAt	0
 	AR	9
 	script	animal
-	SpeechColor	442
+	SpeechColor	901
 }
 
 NPC walrus
@@ -66266,7 +66268,7 @@ NPC walrus
 	X	3866
 	Y	189
 	Z	-5
-	Facing	2
+	Facing	1
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711912
@@ -66291,7 +66293,7 @@ NPC walrus
 	CreatedAt	0
 	AR	9
 	script	animal
-	SpeechColor	243
+	SpeechColor	97
 }
 
 NPC walrus
@@ -66300,14 +66302,14 @@ NPC walrus
 	Serial	0x1a1f29
 	ObjType	0xdd
 	Graphic	0xdd
-	X	3951
-	Y	343
+	X	3950
+	Y	342
 	Z	0
 	Facing	7
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711913
-	CProp	Anchor a3:i3952i344i0
+	CProp	Anchor a3:i3951i343i0
 	CProp	Fame i5
 	CProp	Karma i0
 	CProp	SpawnRegion a2:S10:ice islandS13:arcticanimals
@@ -66328,7 +66330,7 @@ NPC walrus
 	CreatedAt	0
 	AR	9
 	script	animal
-	SpeechColor	442
+	SpeechColor	572
 }
 
 NPC walrus
@@ -66337,14 +66339,14 @@ NPC walrus
 	Serial	0x1a1f2a
 	ObjType	0xdd
 	Graphic	0xdd
-	X	4032
+	X	4033
 	Y	581
 	Z	0
 	Facing	2
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711914
-	CProp	Anchor a3:i4031i581i0
+	CProp	Anchor a3:i4032i581i0
 	CProp	Fame i5
 	CProp	Karma i0
 	CProp	SpawnRegion a2:S10:ice islandS13:arcticanimals
@@ -66365,7 +66367,7 @@ NPC walrus
 	CreatedAt	0
 	AR	9
 	script	animal
-	SpeechColor	19
+	SpeechColor	150
 }
 
 NPC walrus
@@ -66377,7 +66379,7 @@ NPC walrus
 	X	4021
 	Y	376
 	Z	-5
-	Facing	6
+	Facing	7
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711915
@@ -66402,7 +66404,7 @@ NPC walrus
 	CreatedAt	0
 	AR	9
 	script	animal
-	SpeechColor	707
+	SpeechColor	37
 }
 
 NPC alligator
@@ -66412,7 +66414,7 @@ NPC alligator
 	ObjType	0xca
 	Graphic	0xca
 	X	1897
-	Y	2272
+	Y	2273
 	Z	0
 	Facing	4
 	Revision	0
@@ -66438,7 +66440,7 @@ NPC alligator
 	CreatedAt	0
 	AR	15
 	script	killPCs
-	SpeechColor	71
+	SpeechColor	340
 }
 
 NPC walrus
@@ -66475,7 +66477,7 @@ NPC walrus
 	CreatedAt	0
 	AR	9
 	script	animal
-	SpeechColor	18
+	SpeechColor	537
 }
 
 NPC bear
@@ -66487,7 +66489,6 @@ NPC bear
 	X	5291
 	Y	3824
 	Z	-2
-	Facing	7
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711918
@@ -66511,7 +66512,7 @@ NPC bear
 	CreatedAt	0
 	AR	12
 	script	animal
-	SpeechColor	48
+	SpeechColor	97
 }
 
 NPC ettin2
@@ -66521,8 +66522,8 @@ NPC ettin2
 	ObjType	0x12
 	Graphic	0x12
 	X	5242
-	Y	3829
-	Z	2
+	Y	3828
+	Z	1
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711919
@@ -66546,7 +66547,7 @@ NPC ettin2
 	CreatedAt	0
 	AR	19
 	script	killPCs
-	SpeechColor	9
+	SpeechColor	7
 }
 
 Item
@@ -66573,6 +66574,7 @@ NPC gazer
 	X	5178
 	Y	3811
 	Z	-1
+	Facing	1
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711920
@@ -66597,7 +66599,7 @@ NPC gazer
 	CreatedAt	0
 	AR	22
 	script	spellKillPCs
-	SpeechColor	160
+	SpeechColor	9
 }
 
 Item
@@ -66622,8 +66624,8 @@ NPC airelemental
 	ObjType	0xd
 	Graphic	0xd
 	Color	0x3c4
-	X	2209
-	Y	1338
+	X	2208
+	Y	1339
 	Z	-5
 	Facing	5
 	Revision	0
@@ -66652,7 +66654,7 @@ NPC airelemental
 	CreatedAt	0
 	AR	25
 	script	spellKillPCs
-	SpeechColor	37
+	SpeechColor	160
 }
 
 Item
@@ -66676,7 +66678,7 @@ NPC alligator
 	Serial	0x1a1f32
 	ObjType	0xca
 	Graphic	0xca
-	X	1160
+	X	1161
 	Y	2768
 	Z	0
 	Facing	2
@@ -66703,7 +66705,7 @@ NPC alligator
 	CreatedAt	0
 	AR	15
 	script	killPCs
-	SpeechColor	42
+	SpeechColor	707
 }
 
 NPC wolf
@@ -66715,6 +66717,7 @@ NPC wolf
 	X	5805
 	Y	3381
 	Z	-10
+	Facing	1
 	Revision	0
 	Realm	britannia
 	CProp	AiSerial i1711923
@@ -66738,7 +66741,7 @@ NPC wolf
 	CreatedAt	0
 	AR	9
 	script	wolf
-	SpeechColor	87
+	SpeechColor	340
 }
 
 NPC stablemaster
@@ -66761,8 +66764,8 @@ NPC stablemaster
 	CProp	MerchantType sstable
 	CProp	MyGold i9615
 	CProp	Pets a0:
-	CProp	counter i219
-	CProp	countercheck i25190405
+	CProp	counter i220
+	CProp	countercheck i25190473
 	CProp	guardkill i1
 	CProp	mypen s6
 	CProp	restockserial i1793081519
@@ -66784,7 +66787,7 @@ NPC stablemaster
 	CreatedAt	0
 	AR	32
 	script	stablemaster
-	SpeechColor	207
+	SpeechColor	14
 }
 
 Item
@@ -66838,8 +66841,8 @@ NPC stablemaster
 	CProp	MerchantType sstable
 	CProp	MyGold i1750
 	CProp	Pets a0:
-	CProp	counter i219
-	CProp	countercheck i25190405
+	CProp	counter i220
+	CProp	countercheck i25190473
 	CProp	guardkill i1
 	CProp	mypen s7
 	CProp	restockserial i1793081518
@@ -66860,7 +66863,7 @@ NPC stablemaster
 	CreatedAt	0
 	AR	32
 	script	stablemaster
-	SpeechColor	97
+	SpeechColor	12
 }
 
 Item
@@ -68187,7 +68190,7 @@ NPC healer
 	CreatedAt	0
 	AR	32
 	script	townHealer
-	SpeechColor	34
+	SpeechColor	80
 }
 
 Item
@@ -68258,7 +68261,7 @@ NPC healer
 	CreatedAt	0
 	AR	32
 	script	townHealer
-	SpeechColor	19
+	SpeechColor	558
 }
 
 Item
@@ -68346,7 +68349,7 @@ NPC healer
 	CreatedAt	0
 	AR	32
 	script	townHealer
-	SpeechColor	150
+	SpeechColor	648
 }
 
 Item
