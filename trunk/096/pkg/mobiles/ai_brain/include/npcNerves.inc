@@ -11,7 +11,7 @@
 use uo;
 use os;
 
-include ":ai_brain:include/npc_error";
+include ":ai_brain:include/npcError";
 
 /////////////////////////////////////////////////////////////////
 // * Function List *
