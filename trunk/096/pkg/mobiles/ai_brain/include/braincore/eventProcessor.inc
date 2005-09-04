@@ -1,7 +1,7 @@
 /*===============================================================
 * Current Version
 * EVENTPROCESSOR.INC - v1.0
-* Updated 9/1/2005 6:20AM
+* Updated 9/4/2005 9:30AM
 *
 * -- Revision v1.0 --
 * Austin:
@@ -10,12 +10,12 @@
 
 function ProcessEvent(byref event)
 	var old_priority := set_priority(25);
-	
+
 	case( event.type )
 		//
 		// *Check movement first, since its the event that seems to be sent most often.
 		//
-		
+
 		// Move NPC
 		// .source	: From/To whom/what?
 		// .speed	: Walk/Run
@@ -24,7 +24,7 @@ function ProcessEvent(byref event)
 		NPCEVENT_MOVE:
 			Movement(event);
 			break;
-			
+
 		// Instructs the npc to walk toward an XY coordinate.
 		// .x and .y	: From/To  coordinates
 		// .speed	: Walk/Run
@@ -33,17 +33,17 @@ function ProcessEvent(byref event)
 		NPCEVENT_MOVE_XY:
 			MovementXY(event);
 			break;
-			
+
 		// Wander somewhere
 		// .loop	: Number of times to attept to wander.
 		NPCEVENT_WANDER:
 	   		MovementWander(event);
 	   		break;
-		
+
 		//
 		// * Check System Events that the core sends.
 		//
-			
+
 		// Triggered when a mobile enter's the npcs 'area size'.
 		// .source	: What entered the area
 		SYSEVENT_ENTEREDAREA:
@@ -56,7 +56,7 @@ function ProcessEvent(byref event)
 				endif
 			endif
 			break;
-			
+
 		// Triggered when a mobile leaves the npc's 'area size'.
 		// .source	: What left the area
 		SYSEVENT_LEFTAREA:
@@ -69,7 +69,7 @@ function ProcessEvent(byref event)
 				endif
 			endif
 			break;
-			
+
 		// Someone has changed from blue to gray/red and was already within the ENTERED_AREA range
 		// .source	: What changed criminal status.
 		SYSEVENT_GONE_CRIMINAL:
@@ -82,7 +82,7 @@ function ProcessEvent(byref event)
 				endif
 			endif
 			break;
-			
+
 		// Sent when something targets the npc to begin combat or
 		// when something has damaged the npc.
 		// .source	: What caused the damage or engaged the npc
@@ -101,7 +101,7 @@ function ProcessEvent(byref event)
 				endif
 			endif
 			break;
-			
+
 		// Instructs the npc to run its disengage nerve.
 		// When something attacking it goes out of warmode, this is run.
 		// .source	: What was targetting this npc but has now left combat mode.
@@ -115,9 +115,8 @@ function ProcessEvent(byref event)
 				endif
 			endif
 			break;
-			
-		// When speech is made by a player, this nerve is used.
-		// Note: The NPC function Say() doesnt yet pass around the speech event.
+
+		// When speech is made by a mobile, this nerve is used.
 		// .source	: Where the speech originated.
 		// .text	: The actual speech
 		// .uc_text	: a "Unicode array" of 2-byte "Big Endian" integers.
@@ -134,7 +133,7 @@ function ProcessEvent(byref event)
 				endif
 			endif
 			break;
-			
+
 		// Instructs the npc to run its double click script.
 		// Run when the npc is double clicked by a player.
 		// .source	: What sent the double click
@@ -150,7 +149,7 @@ function ProcessEvent(byref event)
 				endif
 			endif
 			break;
-			
+
 		// The NPC is a merchant, and has sold or purchased something.
 		// Both sold and bought events are sent to this same nerve.
 		// The best thing to do is fork it into two functions inside the
@@ -171,7 +170,7 @@ function ProcessEvent(byref event)
 				endif
 			endif
 			break;
-			
+
 		// Someone has dragged an item onto the npc.
 		// .source	: What dragged the item over the npc.
 		// .item	: The item being given to the npc.
@@ -185,16 +184,17 @@ function ProcessEvent(byref event)
 				endif
 			endif
 			break;
-			
+
 		//
 		// * Check custom events
 		//
+
 		//A nerve has instructed the brain to kill another nerve or its self.
 		// .name	: Nerve name
 		NPCEVENT_ENDNERVE:
 			StopNerve(npc, event.name, g_nerves);
 			break;
-			
+
 		//A nerve has instructed the brain to start another nerve.
 		// .name	: Nerve name
 		// .script	: Nerve script
@@ -202,14 +202,14 @@ function ProcessEvent(byref event)
 		NPCEVENT_STARTNERVE:
 			StartNerve(npc, event.name, event.script, event.data, event.flags, g_nerves);
 			break;
-			
+
 		// Set a new opponent!
 		// NOTE: Auto-sets Warmode=1!
 		// .source	: Opponent (mobile)
 		NPCEVENT_OPPONENT:
 			SetOpponent(event.source);
 			break;
-			
+
 		// Say something
 		// .text	: Speech content
 		// .texttype	: Speech type ("default", "whisper", yell")
@@ -217,7 +217,7 @@ function ProcessEvent(byref event)
 		NPCEVENT_SPEAK:
 			Say(event.text, event.texttype, event.doevent);
 			break;
-			
+
 		// Turn toward something
 		// .source	: Target (anything)
 		// .direction	: NETURN_TOWARD or NETURN_AWAY
@@ -229,7 +229,7 @@ function ProcessEvent(byref event)
 					TurnAwayFrom(event.source);
 			endcase
 			break;
-			
+
 		// Face towards or away from XY coordinates.
 		// .x and .y replace .source for TURN_XY
 		// .direction	: NETURN_TOWARD or NETURN_AWAY
@@ -241,27 +241,27 @@ function ProcessEvent(byref event)
 					TurnAwayFromLocation(event.x, event.y);
 			endcase
 			break;
-			
+
 		// Set WarMode state
 		// NOTE: Auto-clears Opponent if turned off!
 		// .value : 0=Off. 1=On.
 		NPCEVENT_WARMODE:
 			SetWarmode( event.value );
 			break;
-	   		
+
 	   	// Force the npc to go into its sleep mode.
 	   	// If the next event in the queue tells it to wake up,
 	   	// this command will be useless.
 	   	NPCEVENT_SLEEP:
 	   		//idle_ticks := g_settings["idle_ticks"]+1;
 	   		break;
-	   		
+
 	   	// Force the npc out of sleep mode.
 	   	NPCEVENT_WAKEUP:
 	   		//sleep_mode := 0;
 	   		//idle_ticks := 0;
 	   		break;
-	   		
+
 	   	// Forward an event from one nerve to another.
 	   	// .NerveName	: The name of the nerve to forward the event to.
 	   	// .mask	: Type of event for the nerve to receive.
@@ -272,7 +272,7 @@ function ProcessEvent(byref event)
 				process.SendEvent(event);
 			endif
 			break;
-			
+
 		// If the event .type is unknown, send it to the
 		// npc's "virtual" nerve if it has one.
 	   	default:
@@ -294,6 +294,6 @@ function ProcessEvent(byref event)
 	   if ( event.process )
 	   	(event.process).SendEvent(struct{"type":=NPCEVENT_DONE, "source":=event.type});
 	   endif
-	   
+
 	   set_priority(old_priority);
 endfunction
