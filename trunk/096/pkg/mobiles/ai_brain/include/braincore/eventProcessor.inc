@@ -37,8 +37,8 @@ function ProcessEvent(byref event)
 		// Wander somewhere
 		// .loop	: Number of times to attept to wander.
 		NPCEVENT_WANDER:
-	   		MovementWander(event);
-	   		break;
+			MovementWander(event);
+			break;
 
 		//
 		// * Check System Events that the core sends.
@@ -249,25 +249,25 @@ function ProcessEvent(byref event)
 			SetWarmode( event.value );
 			break;
 
-	   	// Force the npc to go into its sleep mode.
-	   	// If the next event in the queue tells it to wake up,
-	   	// this command will be useless.
-	   	NPCEVENT_SLEEP:
-	   		//idle_ticks := g_settings["idle_ticks"]+1;
-	   		break;
+		// Force the npc to go into its sleep mode.
+		// If the next event in the queue tells it to wake up,
+		// this command will be useless.
+		NPCEVENT_SLEEP:
+			//idle_ticks := g_settings["idle_ticks"]+1;
+			break;
 
-	   	// Force the npc out of sleep mode.
-	   	NPCEVENT_WAKEUP:
-	   		//sleep_mode := 0;
-	   		//idle_ticks := 0;
-	   		break;
+		// Force the npc out of sleep mode.
+		NPCEVENT_WAKEUP:
+			//sleep_mode := 0;
+			//idle_ticks := 0;
+			break;
 
-	   	// Forward an event from one nerve to another.
-	   	// .NerveName	: The name of the nerve to forward the event to.
-	   	// .mask	: Type of event for the nerve to receive.
-	   	// .data	: Data to forward to the nerve.
-	   	NPCEVENT_FWDNERVE:
-	   	var process := GetNerveProcess(npc, event.NerveName, g_nerves);
+		// Forward an event from one nerve to another.
+		// .NerveName	: The name of the nerve to forward the event to.
+		// .mask	: Type of event for the nerve to receive.
+		// .data	: Data to forward to the nerve.
+		NPCEVENT_FWDNERVE:
+		var process := GetNerveProcess(npc, event.NerveName, g_nerves);
 			if ( process )
 				process.SendEvent(event);
 			endif
@@ -275,9 +275,9 @@ function ProcessEvent(byref event)
 
 		// If the event .type is unknown, send it to the
 		// npc's "virtual" nerve if it has one.
-	   	default:
-	   		if ( g_scripts.Exists("Virtual") )
-	   			var process := GetNerveProcess(npc, "Virtual", g_nerves);
+		default:
+			if ( g_scripts.Exists("Virtual") )
+				var process := GetNerveProcess(npc, "Virtual", g_nerves);
 				if ( !process )
 					StartNerve(npc, "Virtual", g_scripts["Virtual"].script, {event, g_settings, g_scripts}, g_scripts["Virtual"].flags, g_nerves);
 				else
@@ -292,7 +292,7 @@ function ProcessEvent(byref event)
 	   // and telling it what event it sent that has finished
 	   // being processed.
 	   if ( event.process )
-	   	(event.process).SendEvent(struct{"type":=NPCEVENT_DONE, "source":=event.type});
+		(event.process).SendEvent(struct{"type":=NPCEVENT_DONE, "source":=event.type});
 	   endif
 
 	   set_priority(old_priority);
