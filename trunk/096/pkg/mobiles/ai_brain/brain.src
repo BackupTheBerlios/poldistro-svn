@@ -19,14 +19,14 @@ use polsys;
 
 include "include/sysEvent";
 include ":ai_brain:include/braincore/error";
-include ":ai_brain:include/braincore/eventprocessor";
+include ":ai_brain:include/braincore/eventProcessor";
 include ":ai_brain:include/braincore/movement";
 include ":ai_brain:include/braincore/setup";
 include ":ai_brain:include/eventid";
-include ":ai_brain:include/npc_commands";
-include ":ai_brain:include/npc_nerves";
-include ":ai_brain:include/npc_settings";
-include ":ai_brain:include/npc_util";
+include ":ai_brain:include/npcCommands";
+include ":ai_brain:include/npcNerves";
+include ":ai_brain:include/npcSettings";
+include ":ai_brain:include/npcUtil";
 
 //
 // * Global variables
@@ -35,6 +35,7 @@ var npc := Self();
 var idle_ticks := 0;
 var sleep_mode := 0;
 var g_settings := dictionary;
+var g_scripts := dictionary;
 var g_nerves := dictionary;
 
 program BrainAI()
