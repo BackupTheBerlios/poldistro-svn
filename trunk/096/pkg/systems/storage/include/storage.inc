@@ -26,19 +26,23 @@ var box_type		:= "BankBox";
 //Toggles the bank related debug messages on and off.
 var storage_debug_mode	:= 1;
 
-// * GetBox(mobile, string)
-//
-// Returns the bank box of 'who' for the bank_name passed.
-// bank_name defaults to  "Global"
-//
-// When a new bank box is made, its stored in a global
-// property called "banks" through the RegisterBank() function
-//
-// Use SendOpenSpecialContainer(who, GetBox(who, bank_name));
-// to show someone their bank box.
+
+
+/*
+ * GetBox(who, string)
+ *
+ * Purpose
+ *
+ * Parameters
+ * who: reference to the mobile whos container we want to view
+ * bank_name: the container that belongs to the mobile referenced.
+ *
+ * Return Value
+ * The bank box of who, for the bank_name passed.
+ */
 function GetBox(who, bank_name)
 
-	if ( (!bank_name) || (bank_name == error) )
+	if ((!bank_name) || (bank_name == error))
 		bank_name := "Global";
 	endif
 
@@ -78,6 +82,7 @@ function GetBox(who, bank_name)
 	return bank_box;
 endfunction
 
+
 function HasBankBox(who, bank_name)
 	if ( (!bank_name) || (bank_name == error) )
 		bank_name := "Global";
@@ -93,6 +98,7 @@ function HasBankBox(who, bank_name)
 		return 0;
 	endif
 endfunction
+
 
 // *DestroyBox(mobile, string)
 //
@@ -112,6 +118,7 @@ function DestroyBox(who, bank_name)
 
 	return DestroyRootItemInStorageArea(bank, box_name);
 endfunction
+
 
 // * RegisterBank(string)
 //
@@ -136,6 +143,7 @@ function RegisterBank(bank_name)
 	endif
 	set_critical(0);
 endfunction
+
 
 // * GetBankNames()
 //
@@ -170,6 +178,7 @@ function GetBankNames()
 	
 	return temp;
 endfunction
+
 
 function BankDbgMsg(text)
 	if ( storage_debug_mode )

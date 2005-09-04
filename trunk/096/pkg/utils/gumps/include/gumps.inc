@@ -1,89 +1,42 @@
+/* gumps v0.3
+ *
+ * Purpose
+ * Provide various functions for creating and managing gumps as an object.
+ * Allow multiple gumps to handled in a single script.
+ *
+ * Function List
+ * GFAddButton(byref gump, x, y, off_id, on_id, btn_type:=GF_PAGE_BTN, btn_value:=0)
+ * GFAddHTMLLocalized(byref gump, x, y, width, height, cliloc, background, scrollbar, hue := 0)
+ * GFCheckBox(byref gump, x, y, unc_id, che_id, status:=0, btn_value:=0)
+ * GFCreateGump(x:=0, y:=0, width:=0, height:=0)
+ * GFDisposable(byref gump, bool)
+ * GFExtractData(input, data_id)
+ * GFGumpPic(byref gump, x, y, gump_id, hue := 0)
+ * GFHTMLArea(byref gump, x, y, width, height, text, background:=0, scrollbar:=0)
+ * GFMovable(byref gump, bool)
+ * GFPage(byref gump, page)
+ * GFRadioButton(byref gump, x, y, unp_id, pres_id, status:=0, btn_value:=0)
+ * GFResizePic(byref gump, x, y, gump_id, width:=0, height:=0)
+ * GFSendGump(who, byref gump)
+ * GFSetRadioGroup(byref gump, group_id)
+ * GFTextCrop(byref gump, x, y, width, height, hue:=0, text:="")
+ * GFTextEntry(byref gump, x, y, width, height, txt_color, ini_text:="")
+ * GFTextLine(byref gump, x, y, hue:=0, text:="")
+ * GFTilePic(byref gump, x, y, tile_id, hue := 0)
+ *
+ * Internal/Private Function List
+ * XGFError(text)
+ */
+
 use uo;
 use os;
 use basic;
 
-/*===============================================================
-* Current Version
-* GUMPS.INC - v0.3
-* include ":gumps:includes/gumps";
-*
-* -- Revision v0.3 --
-* Austin
-*  Added:
-*      Support for setting arbitrary data locations for GFTextEntry()
-*
-* -- Revision v0.2 --
-* Austin
-*  Added:
-*	Support for setting arbitrary button ID's and automatic assignments.
-*	Ability to change a gumps 'NoMove' 'NoClose' 'NoDispose' settings multiple times.
-*	XGFError()
-*  Changed:
-*	Function names and prototypes to better match the old gumps.inc for faster migration time.
-*	Rewrote various functions for improved error checking and utility. Will document better later
-	on as a lot of code was changed (Sorry, Melanius!)
-*
-* -- Revision v0.1 --
-* Melanius
-*  First version created to handle gumps as an object rather than as a global variable.
-*  This new include now allows multiple gumps to be handled in a single script as well
-*  as allowing easier saving of them.
-*  Added:
-*	AddCheckBox()
-*	AddGumpButton()
-*	AddGumpPic()
-*	AddHTML()
-*	AddHTMLLocalized()
-*	AddLabel()
-*	AddLabelCropped()
-*	AddPage()
-*	AddRadioButton()
-*	AddRadioGroup()
-*	AddTextInput()
-*	AddTilePic()
-*	CreateGump()
-*	Disposable()
-*	Movable()
-*	ResizePic()
-*	SendGump()
-*
-===============================================================*/
-
-/////////////////////////////////////////////////////////////////
-// * Function List *
-//
-// GFAddButton(byref gump, x, y, off_id, on_id, btn_type:=GF_PAGE_BTN, btn_value:=0)
-// GFAddHTMLLocalized(byref gump, x, y, width, height, cliloc, background, scrollbar, hue := 0)
-// GFCheckBox(byref gump, x, y, unc_id, che_id, status:=0, btn_value:=0)
-// GFCreateGump(x:=0, y:=0, width:=0, height:=0)
-// GFDisposable(byref gump, bool)
-// GFExtractData(input, data_id)
-// GFGumpPic(byref gump, x, y, gump_id, hue := 0)
-// GFHTMLArea(byref gump, x, y, width, height, text, background:=0, scrollbar:=0)
-// GFMovable(byref gump, bool)
-// GFPage(byref gump, page)
-// GFRadioButton(byref gump, x, y, unp_id, pres_id, status:=0, btn_value:=0)
-// GFResizePic(byref gump, x, y, gump_id, width:=0, height:=0)
-// GFSendGump(who, byref gump)
-// GFSetRadioGroup(byref gump, group_id)
-// GFTextCrop(byref gump, x, y, width, height, hue:=0, text:="")
-// GFTextEntry(byref gump, x, y, width, height, txt_color, ini_text:="")
-// GFTextLine(byref gump, x, y, hue:=0, text:="")
-// GFTilePic(byref gump, x, y, tile_id, hue := 0)
-//
-/////////////////////////////////////////////////////////////////
-// * Internal/Private Function List *
-//
-// XGFError(text)
-/////////////////////////////////////////////////////////////////
-// * Global Variables *
-//
-// Constants for the GFAddButton() function
+//Constants for the GFAddButton() function
 const GF_PAGE_BTN	:= 0x0;
 const GF_CLOSE_BTN	:= 0x1;
 const GF_DUMMY_BTN	:= 0x2;
-//
-/////////////////////////////////////////////////////////////////
+
 
 /*
  * GFCreateGump(x, y, width, height)
@@ -130,6 +83,7 @@ function GFCreateGump(x:=0, y:=0, width:=0, height:=0)
 	return(gump);
 endfunction
 
+
 /*
  * GFClosable(byref gump, bool)
  *
@@ -145,7 +99,7 @@ endfunction
  * Returns 1 on success, error on failure.
  *
  */
- function GFClosable(byref gump, bool)
+function GFClosable(byref gump, bool)
 	case(bool)
 		0:
 			if ( gump.base.CloseLoc )
@@ -167,7 +121,8 @@ endfunction
 			return XGFError("gumps::Closable: Invalid bool value '"+bool+"'");
 	endcase
 	return 1;
- endfunction
+endfunction
+
 
 /*
  * GFDisposable(byref gump, bool)
@@ -212,6 +167,7 @@ function GFDisposable(byref gump, bool)
 	return 1;
  endfunction
 
+
 /*
  * GFMovable(byref gump, bool)
  *
@@ -251,6 +207,7 @@ function GFMovable(byref gump, bool)
 	return 1;
  endfunction
 
+
 /*
  * GFPage(byref gump, page)
  *
@@ -271,6 +228,7 @@ function GFPage(byref gump, page)
 
 	return 1;
 endfunction
+
 
 /*
  * GFResizePic(byref gump, x, y, gump_id, width, height)
@@ -305,6 +263,7 @@ function GFResizePic(byref gump, x, y, gump_id, width, height)
 	return 1;
 endfunction
 
+
 /*
  * GFAddAlphaRegion(byref gump, x, y, width, height)
  *
@@ -327,6 +286,7 @@ endfunction
 				+ CStr(CInt(width)) + " " + CStr(CInt(height)));
 	return 1;
  endfunction
+
 
 /*
  * GFAddButton(byref gump, x, y, off_id, on_id, btn_type, btn_value)
@@ -352,7 +312,6 @@ endfunction
  * Return value is the button value.
  *
  */
-
 function GFAddButton(byref gump, x, y, off_id, on_id, btn_type:=GF_PAGE_BTN, btn_value:=0)
 	var line := "Button " + CStr(gump.base.x + x) + " " + CStr(gump.base.y + y) + " " + CStr(off_id) + " " + CStr(on_id);
 
@@ -374,6 +333,7 @@ function GFAddButton(byref gump, x, y, off_id, on_id, btn_type:=GF_PAGE_BTN, btn
 
 	return (btn_value);
 endfunction
+
 
 /*
  * GFCheckBox(byref gump, x, y, unc_id, che_id, status, btn_value)
@@ -422,6 +382,7 @@ function GFCheckBox(byref gump, x, y, unc_id, che_id, status:=0, btn_value:=0)
 	return (btn_value);
 endfunction
 
+
 /*
  * GFSetRadioGroup(byref gump, group_id)
  *
@@ -443,6 +404,7 @@ function GFSetRadioGroup(byref gump, group_id)
 	gump.layout.append("Group " + CStr(CInt(group_id)));
 	return 1;
 endfunction
+
 
 /*
  * GFHTMLArea(byref gump, x, y, width, height, text, background, scrollbar)
@@ -475,6 +437,7 @@ function GFHTMLArea(byref gump, x, y, width, height, text, background:=0, scroll
 				+ CStr(CInt(background)) + " " + CStr(CInt(scrollbar)));
 	return (index);
 endfunction
+
 
 /*
  * GFAddHTMLLocalized(byref gump, x, y, width, height, cliloc, background, scrollbar, hue)
@@ -511,6 +474,7 @@ function GFAddHTMLLocalized(byref gump, x, y, width, height, cliloc, background,
 	return 1;
 endfunction
 
+
 /*
  * GFGumpPic(byref gump, x, y, gump_id, hue)
  *
@@ -542,6 +506,7 @@ function GFGumpPic(byref gump, x, y, gump_id, hue := 0)
 
 	return 1;
 endfunction
+
 
 /*
  * GFTilePic(byref gump, x, y, tile_id, hue)
@@ -575,6 +540,7 @@ function GFTilePic(byref gump, x, y, tile_id, hue := 0)
 	return 1;
 endfunction
 
+
 /*
  * GFTextLine(byref gump, x, y, hue, text)
  *
@@ -600,6 +566,7 @@ function GFTextLine(byref gump, x, y, hue:=0, text:="")
 
 	return (index);
 endfunction
+
 
 /*
  * GFTextCrop(byref gump, x, y, width, height, hue, text)
@@ -630,6 +597,7 @@ function GFTextCrop(byref gump, x, y, width, height, hue:=0, text:="")
 
 	return (index);
 endfunction
+
 
 /*
  * GFRadioButton(byref gump, x, y, unp_id, pres_id, status, btn_value)
@@ -676,6 +644,7 @@ function GFRadioButton(byref gump, x, y, unp_id, pres_id, status:=0, btn_value:=
 	return (btn_value);
 endfunction
 
+
 /*
  * GFTextEntry(byref gump, x, y, width, height, txt_color, ini_text)
  *
@@ -717,6 +686,7 @@ function GFTextEntry(byref gump, x, y, width, height, txt_color, ini_text:="", t
 	return (txt_id);
 endfunction
 
+
 /*
  * GFSendGump(who, gump)
  *
@@ -741,6 +711,7 @@ function GFSendGump(who, byref gump)
 	
 	return ret_val;
 endfunction
+
 
 /*
  * XGFErrorSetup(who, gump)
