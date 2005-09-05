@@ -2,7 +2,7 @@
 use uo;
 use os;
 
-include ":ai_brain:NPC_Commands";
+include ":ai_brain:npcCommands";
 include "include/messages";
 include "include/localization";
 

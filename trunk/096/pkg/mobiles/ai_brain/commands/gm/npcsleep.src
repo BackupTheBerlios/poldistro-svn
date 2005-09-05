@@ -4,7 +4,7 @@ use os;
 use polsys;
 
 include ":gumps:include/requestgump";
-include ":ai_brain:include/NPC_Commands";
+include ":ai_brain:include/npcCommands";
 
 program PutEveryNPCToSleep(who)
 	var realm_name := RequestGump(who, "Enter the realm name to put npcs to sleep on.", "", who.realm);

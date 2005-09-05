@@ -3,7 +3,7 @@ use uo;
 use os;
 use polsys;
 
-include ":ai_brain:include/NPC_Commands";
+include ":ai_brain:include/npcCommands";
 include ":gumps:include/requestgump";
 
 program ResetAllNPCs(who)
