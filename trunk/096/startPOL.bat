@@ -1,5 +1,12 @@
 @echo OFF
 
+rem - ======================================================
+rem - startPOL by Austin
+rem -
+rem - To set POL to immediately start back up after stopping
+rem - set ENABLE_PAUSE to 0
+rem - ======================================================
+
 set ENABLE_PAUSE=1
 set RESULT=0
 
