@@ -8,6 +8,9 @@
 *  Created include file
 ===============================================================*/
 
+use uo;
+use cfgfile;
+
 /*
  * NPC_ParseTemplateName(template_name)
  *
@@ -26,6 +29,10 @@
  *
  */
 function NPC_ParseTemplateName(template_name)
+	if ( template_name.IsA(POLCLASS_NPC) )
+		template_name := template_name.npctemplate;
+	endif
+	
 	//Find positions of ":" characters
 	var colon_a := Find(template_name, ":", 1);
 	var colon_b := Find(template_name, ":", 2);
@@ -34,7 +41,7 @@ function NPC_ParseTemplateName(template_name)
 
 	if ( !colon_a || !colon_b )
 		//Not a complete package name - use default npcdesc.cfg
-		parsed.package := "::";
+		parsed.package := "";
 		parsed.template := template_name;
 	else
 		parsed.package := template_name[colon_a, colon_b];
@@ -42,4 +49,28 @@ function NPC_ParseTemplateName(template_name)
 	endif
 
 	return parsed;
+endfunction
+
+/* 
+ * NPC_GetNPCConfig(template)
+ *
+ * Purpose
+ * Retrieves a config elem for an npc template.
+ *
+ * Parameters
+ * info:	Template info from NPC_ParseTemplateName()
+ *
+ * Return value
+ * Config elem reference
+ *
+ */
+function NPC_GetNPCConfig(template)
+	if ( !template.package )
+		template := NPC_ParseTemplateName(template);
+	endif
+	
+	var npc_cfg := ReadConfigFile(":"+template.package+":npcdesc");
+	var cfg_elem := npc_cfg[template.template];
+	
+	return cfg_elem;
 endfunction

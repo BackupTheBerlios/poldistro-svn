@@ -64,18 +64,10 @@ endfunction
  *
  */
 function NPC_LoadTemplateSettings(source)
-	var template:=source;
-	if ( source.IsA(POLCLASS_NPC) )
-		template := NPC_ParseTemplateName(source.npctemplate);
-	elseif ( !template.package )
-		template := NPC_ParseTemplateName(template);
-	endif
-
 	//
 	// * Load config defaults first
 	//
-	var npc_cfg := ReadConfigFile(template.package+"npcdesc");
-	var npc_elem := npc_cfg[template.template];
+	var npc_elem := NPC_GetNPCConfig(source);
 
 	var setting_list := GetConfigStringDictionary(npc_elem, "AISetting");
 	
@@ -119,18 +111,10 @@ endfunction
  *
  */
 function NPC_LoadScriptSettings(source)
-	var template:=source;
-	if ( source.IsA(POLCLASS_NPC) )
-		template := NPC_ParseTemplateName(source.npctemplate);
-	elseif ( !template.package )
-		template := NPC_ParseTemplateName(template);
-	endif
-
 	//
 	// * Load config defaults first
 	//
-	var npc_cfg := ReadConfigFile(template.package+"npcdesc");
-	var npc_elem := npc_cfg[template.template];
+	var npc_elem := NPC_GetNPCConfig(source);
 
 	var script_list := GetConfigStringDictionary(npc_elem, "AIScript");
 	var flag_list := GetConfigStringDictionary(npc_elem, "AIScriptFlag");
