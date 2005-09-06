@@ -118,19 +118,19 @@ REM -- BUILD_ALL_REALMS() FUNCTION
 %UOCNVRT_PATH% map     realm=britannia mapid=0 usedif=1 width=6144 height=4096
 %UOCNVRT_PATH% statics realm=britannia
 %UOCNVRT_PATH% maptile realm=britannia
-
+@ECHO ----
 %UOCNVRT_PATH% map     realm=britannia_alt mapid=1 usedif=1 width=6144 height=4096
 %UOCNVRT_PATH% statics realm=britannia_alt
 %UOCNVRT_PATH% maptile realm=britannia_alt
-
+@ECHO ----
 %UOCNVRT_PATH% map     realm=ilshenar mapid=2 usedif=1 width=2304 height=1600
 %UOCNVRT_PATH% statics realm=ilshenar
 %UOCNVRT_PATH% maptile realm=ilshenar
-
+@ECHO ----
 %UOCNVRT_PATH% map     realm=malas mapid=3 usedif=1 width=2560 height=2048
 %UOCNVRT_PATH% statics realm=malas
 %UOCNVRT_PATH% maptile realm=malas
-
+@ECHO ----
 %UOCNVRT_PATH% map     realm=tokuno mapid=4 usedif=1 width=1448 height=1448
 %UOCNVRT_PATH% statics realm=tokuno
 %UOCNVRT_PATH% maptile realm=tokuno
