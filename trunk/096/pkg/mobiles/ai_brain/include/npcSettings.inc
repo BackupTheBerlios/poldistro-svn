@@ -39,8 +39,8 @@ function NPC_GetDefaultSettings(settings:=0)
 	if ( CInt(settings.exists("cycle_wait")) <= 0 )
 		settings["cycle_wait"] := 10;
 	endif
-	if ( CInt(settings.exists("sleep_time")) <= 0 )
-		settings["sleep_time"] := 1024;
+	if ( CInt(settings.exists("sleep_wait")) <= 0 )
+		settings["sleep_wait"] := 1024;
 	endif
 	if ( CInt(settings.exists("idle_ticks")) <= 0 )
 		settings["idle_ticks"] := 5;

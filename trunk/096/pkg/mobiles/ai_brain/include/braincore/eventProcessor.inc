@@ -50,7 +50,7 @@ function ProcessEvent(byref event)
 			if ( g_scripts.Exists("EnterArea") )
 				var process := GetNerveProcess(npc, "EnterArea", g_nerves);
 				if ( !process )
-					StartNerve(npc, "EnterArea", g_scripts["EnterArea"].script, {event, g_settings, g_scripts}, g_scripts["EnterArea"].flags, g_nerves);
+					StartNerve(npc, "EnterArea", g_scripts["EnterArea"].script, array{event, g_settings, g_scripts}, g_scripts["EnterArea"].flags, g_nerves);
 				else
 					process.SendEvent(event);
 				endif
@@ -63,7 +63,7 @@ function ProcessEvent(byref event)
 			if ( g_scripts.Exists("LeftArea") )
 				var process := GetNerveProcess(npc, "LeftArea", g_nerves);
 				if ( !process )
-					StartNerve(npc, "LeftArea", g_scripts["LeftArea"].script, {event, g_settings, g_scripts}, g_scripts["LeftArea"].flags, g_nerves);
+					StartNerve(npc, "LeftArea", g_scripts["LeftArea"].script, array{event, g_settings, g_scripts}, g_scripts["LeftArea"].flags, g_nerves);
 				else
 					process.SendEvent(event);
 				endif
@@ -76,7 +76,7 @@ function ProcessEvent(byref event)
 			if ( g_scripts.Exists("ItemGiven") )
 				var process := GetNerveProcess(npc, "ItemGiven", g_nerves);
 				if ( !process )
-					StartNerve(npc, "ItemGiven", g_scripts["ItemGiven"].script, {event, g_settings, g_scripts}, g_scripts["ItemGiven"].flags, g_nerves);
+					StartNerve(npc, "ItemGiven", g_scripts["ItemGiven"].script, array{event, g_settings, g_scripts}, g_scripts["ItemGiven"].flags, g_nerves);
 				else
 					process.SendEvent(event);
 				endif
@@ -94,7 +94,7 @@ function ProcessEvent(byref event)
 				if ( (event.source).ISA(POLCLASS_MOBILE) )
 					var process := GetNerveProcess(npc, "Combat", g_nerves);
 					if ( !process )
-						StartNerve(npc, "Combat", g_scripts["Combat"].script, {event, g_settings, g_scripts}, g_scripts["Combat"].flags, g_nerves);
+						StartNerve(npc, "Combat", g_scripts["Combat"].script, array{event, g_settings, g_scripts}, g_scripts["Combat"].flags, g_nerves);
 					else
 						process.SendEvent(event);
 					endif
@@ -109,7 +109,7 @@ function ProcessEvent(byref event)
 			if ( g_scripts.Exists("Disengaged") )
 				var process := GetNerveProcess(npc, "Disengaged", g_nerves);
 				if ( !process )
-					StartNerve(npc, "Disengaged", g_scripts["Disengaged"].script, {event, g_settings, g_scripts}, g_scripts["Disengaged"].flags, g_nerves);
+					StartNerve(npc, "Disengaged", g_scripts["Disengaged"].script, array{event, g_settings, g_scripts}, g_scripts["Disengaged"].flags, g_nerves);
 				else
 					process.SendEvent(event);
 				endif
@@ -127,7 +127,7 @@ function ProcessEvent(byref event)
 			if( g_scripts.Exists("Listen") )
 				var process := GetNerveProcess(npc, "Listen", g_nerves);
 				if ( !process )
-					StartNerve(npc, "Listen", g_scripts["Listen"].script, {event, g_settings, g_scripts}, g_scripts["Listen"].flags, g_nerves);
+					StartNerve(npc, "Listen", g_scripts["Listen"].script, array{event, g_settings, g_scripts}, g_scripts["Listen"].flags, g_nerves);
 				else
 					process.SendEvent(event);
 				endif
@@ -142,7 +142,7 @@ function ProcessEvent(byref event)
 				if ( Distance(event.source, npc) <= g_settings["dbl_click_range"] )
 					var process := GetNerveProcess(npc, "DblClick", g_nerves);
 					if ( !process )
-						StartNerve(npc, "DblClick", g_scripts["DblClick"].script, {event, g_settings, g_scripts}, g_scripts["DblClick"].flags, g_nerves);
+						StartNerve(npc, "DblClick", g_scripts["DblClick"].script, array{event, g_settings, g_scripts}, g_scripts["DblClick"].flags, g_nerves);
 					else
 						process.SendEvent(event);
 					endif
@@ -164,7 +164,7 @@ function ProcessEvent(byref event)
 			if ( g_scripts.Exists("Merchant") )
 				var process := GetNerveProcess(npc, "Merchant", g_nerves);
 				if ( !process )
-					StartNerve(npc, "Merchant", g_scripts["Merchant"].script, {event, g_settings, g_scripts}, g_scripts["Merchant"].flags, g_nerves);
+					StartNerve(npc, "Merchant", g_scripts["Merchant"].script, array{event, g_settings, g_scripts}, g_scripts["Merchant"].flags, g_nerves);
 				else
 					process.SendEvent(event);
 				endif
@@ -178,7 +178,7 @@ function ProcessEvent(byref event)
 			if ( g_scripts.Exists("ItemGiven") )
 				var process := GetNerveProcess(npc, "ItemGiven", g_nerves);
 				if ( !process )
-					StartNerve(npc, "ItemGiven", g_scripts["ItemGiven"].script, {event, g_settings, g_scripts}, g_scripts["ItemGiven"].flags, g_nerves);
+					StartNerve(npc, "ItemGiven", g_scripts["ItemGiven"].script, array{event, g_settings, g_scripts}, g_scripts["ItemGiven"].flags, g_nerves);
 				else
 					process.SendEvent(event);
 				endif
@@ -279,7 +279,7 @@ function ProcessEvent(byref event)
 			if ( g_scripts.Exists("Virtual") )
 				var process := GetNerveProcess(npc, "Virtual", g_nerves);
 				if ( !process )
-					StartNerve(npc, "Virtual", g_scripts["Virtual"].script, {event, g_settings, g_scripts}, g_scripts["Virtual"].flags, g_nerves);
+					StartNerve(npc, "Virtual", g_scripts["Virtual"].script, array{event, g_settings, g_scripts}, g_scripts["Virtual"].flags, g_nerves);
 				else
 					process.SendEvent(event);
 				endif
