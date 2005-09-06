@@ -19,9 +19,11 @@ use polsys;
 
 include "include/sysEvent";
 include ":ai_brain:include/braincore/error";
+include ":ai_brain:include/braincore/cycleScript";
 include ":ai_brain:include/braincore/eventProcessor";
 include ":ai_brain:include/braincore/movement";
 include ":ai_brain:include/braincore/setup";
+include ":ai_brain:include/braincore/sleepMode";
 include ":ai_brain:include/eventid";
 include ":ai_brain:include/npcCommands";
 include ":ai_brain:include/npcNerves";
@@ -34,6 +36,7 @@ include ":ai_brain:include/npcUtil";
 var npc := Self();
 var idle_ticks := 0;
 var sleep_mode := 0;
+
 var g_settings := dictionary; //"setting name"->value
 var g_scripts := dictionary; // "script type"->value{.flags, .script}
 var g_nerves := dictionary; // "nerve name"->value{.flags, .pid}
@@ -47,7 +50,27 @@ program BrainAI()
 	StartupScripts();
 	
 	while ( npc )
-		var ev := Wait_For_Event(g_settings["cycle_wait"]);
-		ProcessEvent(ev);
+		var ev;
+		if ( !sleep_mode )
+			RunCycleScript();			
+			ev := Wait_For_Event(g_settings["cycle_wait"]);
+		else
+			ev := Wait_For_Event(g_settings["sleep_wait"]);
+		endif
+		
+		if ( !ev )
+			if ( !sleep_mode )
+				idle_ticks:=idle_ticks+1;
+			endif
+			if ( ShouldSleep() )
+				EnterSleepMode();
+			endif
+		else
+			if ( ev.WakeUp != NOWAKE )
+				LeaveSleepMode();
+			endif
+			
+			ProcessEvent(ev);
+		endif
 	endwhile
 endprogram
