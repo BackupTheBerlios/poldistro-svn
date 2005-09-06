@@ -24,7 +24,7 @@ function InitializeSettings()
 	
 	g_settings := NPC_LoadTemplateSettings(npc);
 	g_settings := NPC_GetDefaultSettings(g_settings);
-	g_settings := NPC_LoadScriptSettings(npc);
+	g_scripts := NPC_LoadScriptSettings(npc);
 		
 	return 1;
 endfunction
