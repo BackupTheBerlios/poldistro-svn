@@ -22,7 +22,7 @@ ECHO  [ f ] - Build 'Britannia Alt' realm (mapid=1)
 ECHO  [ g ] - Build 'Ilshenar' realm      (mapid=2)
 ECHO  [ h ] - Build 'Malas' realm         (mapid=3)
 ECHO  [ i ] - Build 'Tokuno' realm        (mapid=4)
-ECHO  [ j ] - Build all reamlms - Takes a very long time!
+ECHO  [ j ] - Build all realms - Takes a very long time!
 ECHO.
 ECHO  [ x ] - Quit
 
