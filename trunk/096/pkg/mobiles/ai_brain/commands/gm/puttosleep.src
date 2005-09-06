@@ -6,21 +6,20 @@ include ":ai_brain:npcCommands";
 include "include/messages";
 include "include/localization";
 
-
 program command_puttosleep(who)
-	var mobile; := target(who);
+	var mobile := target(who);
 
 	SendMessage(who, MSG_TARGET_MOB, {}, MSG_COMMAND);
 
 	if ((mobile := Target(who, TGTOPT_NOCHECK_LOS)) == 0)
-		SendMessage(who, MSG_CANCELLED, {}, MSG_COMMAND);
+		SendMessage(who, MSG_CANCELLED, array{}, MSG_COMMAND);
 	endif
 
 	if (!mobile.IsA(POLCLASS_NPC))
-		SendMessage(who, MSG_NO_MOB, {}, MSG_COMMAND);
+		SendMessage(who, MSG_NO_MOB, array{}, MSG_COMMAND);
 		return 0;
 	else
 		AI_Sleep(mobile);
-		SendMessage(who, MSG_DONE, {}, MSG_COMMAND);
+		SendMessage(who, MSG_DONE, array{}, MSG_COMMAND);
 	endif
 endprogram
