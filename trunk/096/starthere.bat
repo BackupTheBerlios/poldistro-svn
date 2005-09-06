@@ -17,7 +17,7 @@ ECHO  [ b ] - Ecompiler menu       (Ecompile tools)
 ECHO  [ c ] - Cleanup menu         (File removal tools)
 ECHO.
 ECHO  [ d ] - Start POL.exe        (Returns to menu on exit)
-ECHO  [ e ] - Keep POL.exe running (Restarts when it exits use CTRL+C to stop)
+ECHO  [ e ] - Keep POL.exe running (Restarts when it exits. Use CTRL+C to stop)
 ECHO.
 ECHO  [ x ] - Quit
 
