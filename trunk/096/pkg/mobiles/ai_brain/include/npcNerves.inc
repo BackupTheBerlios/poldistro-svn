@@ -95,7 +95,7 @@ function GetNerveProcess(mobile, nerve_name, byref nerve_dict:=0)
 	if ( nerve_dict.exists(nerve_name) )
 		return GetProcess(CInt(nerve_dict[nerve_name].pid));
 	else
-		return error{"errortext" := "GetNerveProcess() - Invalid nerve name  ["+nerve_name+"]"};
+		return error{"errortext" := "Error - GetNerveProcess() :: Invalid nerve name  ["+nerve_name+"]"};
 	endif
 endfunction
 
@@ -122,7 +122,7 @@ function GetNerveFlags(mobile, nerve_name, byref nerve_dict:=0)
 	if ( nerve_dict.exists(nerve_name) )
 		return GetProcess(CInt(nerve_dict[nerve_name].flags));
 	else
-		return error{"errortext" := "GetNerveProcess() - Invalid nerve name  ["+nerve_name+"]"};
+		return error{"errortext" := "Error - GetNerveFlags() :: Invalid nerve name  ["+nerve_name+"]"};
 	endif
 endfunction
 
@@ -161,7 +161,7 @@ function StartNerve(mobile, nerve_name, nerve_script, data:=array, flags:=NF_NO_
 	var process := start_script(nerve_script, data);
 
 	if ( process.errortext )
-		var errmsg := "StartNerve() ["+nerve_name+"] ["+nerve_script+"] failed to start! ->"+process.errortext;
+		var errmsg := "Error - StartNerve() :: ["+nerve_name+"] ["+nerve_script+"] failed to start! ->"+process.errortext;
 		NPC_ErrorSysLog(mobile, errmsg);
 		return error{"errortext":=errmsg};
 	else
@@ -207,7 +207,7 @@ function StopNerve(mobile, nerve_name, byref nerve_dict:=0)
 
 		return SaveNerves(mobile, nerve_dict);
 	else
-		return error{"errortext" := "StopNerve() - Invalid nerve name  ["+nerve_name+"]"};
+		return error{"errortext" := "Error - StopNerve() :: Invalid nerve name  ["+nerve_name+"]"};
 	endif
 endfunction
 

@@ -112,7 +112,7 @@ function StartupScripts()
 		if ( g_scripts.Exists("restart_script") )
 			var restart_script := Run_Script_To_Completion(g_scripts["restart_script"], {npc, g_settings});
 			if ( restart_script.errortext )
-				FatalError("Restart script failed:"+restart_script.errortext);
+				FatalError("Error - StartupScripts() :: Restart script failed: "+restart_script.errortext);
 				return 0;
 			endif
 		endif
@@ -123,7 +123,7 @@ function StartupScripts()
 		if ( g_scripts.Exists("init_script") )
 			var init_script := Run_Script_To_Completion(g_scripts["init_script"], {npc, g_settings});
 			if ( init_script.errortext )
-				FatalError("Init script failed:"+init_script.errortext);
+				FatalError("Error - StartupScripts() :: Init script failed:"+init_script.errortext);
 				return 0;
 			endif
 		endif

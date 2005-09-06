@@ -69,7 +69,7 @@ function NPC_SetupAmmo(mobile)
 		
 	if ( npc_elem.AmmoType )
 		if ( CInt(npc_elem.AmmoAmount) > 0 )
-			var ammo := CreateItemInBackpack(mobile, npc_elem.AmmoType, npc_elem.AmmoAmount);
+			var ammo := CreateItemInBackpack(mobile, npc_elem.AmmoType, CInt(npc_elem.AmmoAmount));
 			if ( !ammo )
 				return ammo; // Will return an error with .errortext
 			endif

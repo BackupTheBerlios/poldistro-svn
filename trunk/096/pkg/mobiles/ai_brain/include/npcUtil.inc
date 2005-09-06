@@ -44,7 +44,7 @@ function NPC_ParseTemplateName(template_name)
 		parsed.package := "";
 		parsed.template := template_name;
 	else
-		parsed.package := template_name[colon_a, colon_b];
+		parsed.package := template_name[colon_a+1, colon_b-1];
 		parsed.template := template_name[colon_b+1, Len(template_name)];
 	endif
 
