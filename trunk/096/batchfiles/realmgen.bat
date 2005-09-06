@@ -22,6 +22,7 @@ ECHO  [ f ] - Build 'Britannia Alt' realm (mapid=1)
 ECHO  [ g ] - Build 'Ilshenar' realm      (mapid=2)
 ECHO  [ h ] - Build 'Malas' realm         (mapid=3)
 ECHO  [ i ] - Build 'Tokuno' realm        (mapid=4)
+ECHO  [ j ] - Build all reamlms - Takes a very long time!
 ECHO.
 ECHO  [ x ] - Quit
 
@@ -36,6 +37,8 @@ IF "%CMD%" == "f" GOTO :REALM_BRITTANIA_ALT()
 IF "%CMD%" == "g" GOTO :REALM_ILSHENAR()
 IF "%CMD%" == "h" GOTO :REALM_MALAS()
 IF "%CMD%" == "i" GOTO :REALM_TOKUNO()
+IF "%CMD%" == "j" GOTO :BUILD_ALL_REALMS()
+
 IF "%CMD%" == "x" GOTO :QUIT()
 
 ECHO.
@@ -105,6 +108,29 @@ GOTO :RETURN_TO_MENU()
 
 REM -- REALM_TOKUNO FUNCTION
 :REALM_TOKUNO()
+%UOCNVRT_PATH% map     realm=tokuno mapid=4 usedif=1 width=1448 height=1448
+%UOCNVRT_PATH% statics realm=tokuno
+%UOCNVRT_PATH% maptile realm=tokuno
+GOTO :RETURN_TO_MENU()
+
+REM -- BUILD_ALL_REALMS() FUNCTION
+:BUILD_ALL_REALMS()
+%UOCNVRT_PATH% map     realm=britannia mapid=0 usedif=1 width=6144 height=4096
+%UOCNVRT_PATH% statics realm=britannia
+%UOCNVRT_PATH% maptile realm=britannia
+
+%UOCNVRT_PATH% map     realm=britannia_alt mapid=1 usedif=1 width=6144 height=4096
+%UOCNVRT_PATH% statics realm=britannia_alt
+%UOCNVRT_PATH% maptile realm=britannia_alt
+
+%UOCNVRT_PATH% map     realm=ilshenar mapid=2 usedif=1 width=2304 height=1600
+%UOCNVRT_PATH% statics realm=ilshenar
+%UOCNVRT_PATH% maptile realm=ilshenar
+
+%UOCNVRT_PATH% map     realm=malas mapid=3 usedif=1 width=2560 height=2048
+%UOCNVRT_PATH% statics realm=malas
+%UOCNVRT_PATH% maptile realm=malas
+
 %UOCNVRT_PATH% map     realm=tokuno mapid=4 usedif=1 width=1448 height=1448
 %UOCNVRT_PATH% statics realm=tokuno
 %UOCNVRT_PATH% maptile realm=tokuno
