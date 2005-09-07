@@ -23,12 +23,12 @@ ECHO  [ x ] - Quit
 
 SET /p CMD=Command:
 
-IF "%CMD%" == "a" GOTO :REALM_GEN()
-IF "%CMD%" == "b" GOTO :ECOMPILE()
-IF "%CMD%" == "c" GOTO :CLEANUP()
-IF "%CMD%" == "d" GOTO :POL()
-IF "%CMD%" == "e" GOTO :POL_LOOP()
-IF "%CMD%" == "x" GOTO :QUIT()
+IF /i "%CMD%" == "a" GOTO :REALM_GEN()
+IF /i "%CMD%" == "b" GOTO :ECOMPILE()
+IF /i "%CMD%" == "c" GOTO :CLEANUP()
+IF /i "%CMD%" == "d" GOTO :POL()
+IF /i "%CMD%" == "e" GOTO :POL_LOOP()
+IF /i "%CMD%" == "x" GOTO :QUIT()
 
 ECHO.
 ECHO Invalid command.

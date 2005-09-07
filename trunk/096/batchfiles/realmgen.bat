@@ -28,16 +28,16 @@ ECHO  [ x ] - Quit
 
 SET /p CMD=Command:
 
-IF "%CMD%" == "a" GOTO :MULTIS.CFG()
-IF "%cMD%" == "b" GOTO :TILES.CFG()
-IF "%cMD%" == "c" GOTO :LANDTILES.CFG()
-IF "%cMD%" == "d" GOTO :ALLCONFIGS()
-IF "%CMD%" == "e" GOTO :REALM_BRITTANIA()
-IF "%CMD%" == "f" GOTO :REALM_BRITTANIA_ALT()
-IF "%CMD%" == "g" GOTO :REALM_ILSHENAR()
-IF "%CMD%" == "h" GOTO :REALM_MALAS()
-IF "%CMD%" == "i" GOTO :REALM_TOKUNO()
-IF "%CMD%" == "j" GOTO :BUILD_ALL_REALMS()
+IF /i "%CMD%" == "a" GOTO :MULTIS.CFG()
+IF /i "%cMD%" == "b" GOTO :TILES.CFG()
+IF /i "%cMD%" == "c" GOTO :LANDTILES.CFG()
+IF /i "%cMD%" == "d" GOTO :ALLCONFIGS()
+IF /i "%CMD%" == "e" GOTO :REALM_BRITTANIA()
+IF /i "%CMD%" == "f" GOTO :REALM_BRITTANIA_ALT()
+IF /i "%CMD%" == "g" GOTO :REALM_ILSHENAR()
+IF /i "%CMD%" == "h" GOTO :REALM_MALAS()
+IF /i "%CMD%" == "i" GOTO :REALM_TOKUNO()
+IF /i "%CMD%" == "j" GOTO :BUILD_ALL_REALMS()
 
 IF "%CMD%" == "x" GOTO :QUIT()
 

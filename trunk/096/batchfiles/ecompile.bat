@@ -21,10 +21,10 @@ ECHO  [ x ] - Quit
 
 SET /p CMD=Command:
 
-IF "%CMD%" == "a" GOTO :COMPILE_SCRIPT()
-IF "%CMD%" == "b" GOTO :COMPILE_ALL_SCRIPTS()
-IF "%CMD%" == "c" GOTO :COMPILE_ALL_SCRIPTS_OPTXT()
-IF "%CMD%" == "x" GOTO :QUIT()
+IF /i "%CMD%" == "a" GOTO :COMPILE_SCRIPT()
+IF /i "%CMD%" == "b" GOTO :COMPILE_ALL_SCRIPTS()
+IF /i "%CMD%" == "c" GOTO :COMPILE_ALL_SCRIPTS_OPTXT()
+IF /i "%CMD%" == "x" GOTO :QUIT()
 
 ECHO.
 ECHO Invalid command.

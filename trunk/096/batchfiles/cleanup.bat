@@ -22,14 +22,14 @@ ECHO  [ x ] - Quit
 SET /p CMD=Command:
 
 SET REMOVE_TYPE=
-IF "%CMD%" == "a" SET REMOVE_TYPE=*.ecl
-IF "%CMD%" == "b" SET REMOVE_TYPE=*.bak
-IF "%CMD%" == "c" SET REMOVE_TYPE=*.dep
-IF "%CMD%" == "d" SET REMOVE_TYPE=*.log
-IF "%CMD%" == "e" SET REMOVE_TYPE=*.lst
-IF "%CMD%" == "f" SET REMOVE_TYPE=*.dbg
-IF "%CMD%" == "g" SET REMOVE_TYPE=*.dbg.txt
-IF "%CMD%" == "x" GOTO :QUIT()
+IF /i "%CMD%" == "a" SET REMOVE_TYPE=*.ecl
+IF /i "%CMD%" == "b" SET REMOVE_TYPE=*.bak
+IF /i "%CMD%" == "c" SET REMOVE_TYPE=*.dep
+IF /i "%CMD%" == "d" SET REMOVE_TYPE=*.log
+IF /i "%CMD%" == "e" SET REMOVE_TYPE=*.lst
+IF /i "%CMD%" == "f" SET REMOVE_TYPE=*.dbg
+IF /i "%CMD%" == "g" SET REMOVE_TYPE=*.dbg.txt
+IF /i "%CMD%" == "x" GOTO :QUIT()
 
 IF NOT "%REMOVE_TYPE%"=="" GOTO REMOVE()
 
