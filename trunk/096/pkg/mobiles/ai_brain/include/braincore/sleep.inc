@@ -1,6 +1,6 @@
 /*===============================================================
 * Current Version
-* SLEEPMODE.INC - v1.0
+* SLEEP.INC - v1.0
 * Updated 9/6/2005 6:35AM
 *
 * -- Revision v1.0 --
@@ -15,7 +15,7 @@
  * Starts the sleep script if the npc has one.
  *
  * Parameters
-  *
+ *
  * Return value
  * Always returns 1
  *
@@ -29,7 +29,7 @@ function EnterSleepMode()
 			endif
 		endif
 					
-		//The brain is now in sleep mode, isnt it cute?
+		//The brain is now in sleep mode, isn't it cute?
 		sleep_mode := 1;
 	endif
 	
@@ -43,7 +43,7 @@ endfunction
  * Brings the npc out of sleep mode.
  *
  * Parameters
-  *
+ *
  * Return value
  * Always returns 1
  *
@@ -51,7 +51,7 @@ endfunction
 function LeaveSleepMode()
 	StopNerve(npc, "Sleep", g_nerves);
 	idle_ticks := 0;
-	sleep_mode := 1;
+	sleep_mode := 0;
 endfunction
 
 /*

@@ -7,7 +7,7 @@ include ":ai_brain:include/npcCommands";
 include ":gumps:include/requestgump";
 
 program ResetAllNPCs(who)
-	var realm_name := RequestGump(who, "Enter the realm name to perform the wipe on.", "", who.realm);
+	var realm_name := RequestGump(who, "Enter the realm name to perform the AI restarts on.", "", who.realm);
 	var realm_info := Realms()[realm_name];
 	if ( !realm_info )
 		SendSysMessage(who, "Invalid realm name.");

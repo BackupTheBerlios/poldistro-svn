@@ -20,7 +20,7 @@ program ControlNPC(who, event)
 	var targ := target(who);
 	if ( targ )
 		SendEvent(targ, ev);
-		SendSysMessage(who, "Event sent as "+TypeOf(event)+")");
+		SendSysMessage(who, "Event sent as ("+TypeOf(event)+")");
 	else
 		SendSysMessage(who, "Cancelled");
 	endif

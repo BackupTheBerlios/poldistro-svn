@@ -15,7 +15,7 @@
  * Runs the cycle script if one is present.
  *
  * Parameters
-  *
+ *
  * Return value
  * Always returns 1
  *
