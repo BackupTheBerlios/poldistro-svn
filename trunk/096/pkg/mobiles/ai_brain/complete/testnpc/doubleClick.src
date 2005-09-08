@@ -12,26 +12,13 @@ program BrainNerve(params)
 	//var scripts	:= params[5];
 	params := array{}; // Not needed anymore.
 	
-	var source := event.source;
 	while ( npc )
-		if ( source )
-			AI_Speak(npc, "Hey that tickles!", SPEAK_TEXTTYPE_YELL, SPEAK_DOEVENT_ENABLE, WAKEUP);
-			AI_Speak(npc, "*moves away from "+source.name+"*");
-			AI_Move(npc, source, NEMOVE_AWAY, NEMOVE_WALK, WAKEUP, 1);
+		if ( event.source )
+			AI_Speak(npc, "Eeeheee... that tickles!", SPEAK_TEXTTYPE_YELL, SPEAK_DOEVENT_ENABLE, WAKEUP);
+			AI_Speak(npc, "*moves away from "+(event.source).name+"*");
+			AI_Move(npc, event.source, NEMOVE_AWAY, NEMOVE_WALK, WAKEUP, 1);
 		endif
 		
 		event := wait_for_event(900000);
-		if ( event )
-			case ( event.type )
-				SYSEVENT_DOUBLECLICKED:
-					source := event.source;
-					break;
-				NPCEVENT_DONE:
-					source := 0;
-					break;
-			endcase
-		else
-			source := 0;
-		endif
 	endwhile
 endprogram

@@ -6,13 +6,18 @@ include ":ai_brain:include/npcCommands";
 
 program BrainNerve(params)
 	var npc		:= params[1];
-	var nerve_name	:= params[2];
+	//var nerve_name:= params[2];
 	var event	:= params[3];
-	var settings	:= params[4];
-	var scripts	:= params[5];
+	//var settings	:= params[4];
+	//var scripts	:= params[5];
 	params := array{}; // Not needed anymore.
 	
 	while ( npc )
-		// Do stuff here
+		if ( event )
+			AI_Speak(npc, "So yeah.. I just got this event and I don't know what to do with it... its virtual time, baby.", SPEAK_TEXTTYPE_YELL, SPEAK_DOEVENT_ENABLE, WAKEUP);
+			AI_Speak(npc, "The event structure is... "+event, SPEAK_TEXTTYPE_YELL, SPEAK_DOEVENT_ENABLE, WAKEUP);
+		endif
+		
+		event := wait_for_event(900000);
 	endwhile
 endprogram

@@ -1,6 +1,7 @@
 use uo;
 use os;
 
+include ":ai_brain:include/eventid";
 include ":ai_brain:include/npcNerves";
 include ":ai_brain:include/npcCommands";
 
@@ -14,7 +15,18 @@ program BrainNerve(params)
 	
 	while ( npc )
 		if ( event.source )
-			AI_Speak(npc, "I just heard "+(event.source).name+" say "+event.text, SPEAK_TEXTTYPE_DEFAULT, SPEAK_DOEVENT_DISABLE, WAKEUP);
+			AI_Speak(npc, "I just heard "+(event.source).name+" say \""+event.text+"\"", SPEAK_TEXTTYPE_DEFAULT, SPEAK_DOEVENT_DISABLE, WAKEUP);
+			case ( event.texttype )
+				SPEAK_TEXTTYPE_YELL:
+					AI_Speak(npc, "*yells* No need to yell!", event.texttype, SPEAK_DOEVENT_DISABLE, WAKEUP);
+					break;
+				SPEAK_TEXTTYPE_WHISPER:
+					AI_Speak(npc, "*whispers* Speak up next time. I could barely hear you.", event.texttype, SPEAK_DOEVENT_DISABLE, WAKEUP);
+					break;
+				default:
+					AI_Speak(npc, "You're fun to talk to, you know that?", SPEAK_TEXTTYPE_DEFAULT, SPEAK_DOEVENT_DISABLE, WAKEUP);
+					break;
+			endcase
 		endif
 		
 		event := wait_for_event(900000);

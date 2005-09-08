@@ -18,6 +18,7 @@ include ":ai_brain:include/npcError";
 //
 // GetNerveFlags(mobile, nerve_name, byref nerve_dict:=0)
 // GetNerveProcess(mobile, nerve_name, byref nerve_dict:=0)
+// KillNerves(mobile)
 // LoadNerves(mobile)
 // SaveNerves(mobile, nerve_dict)
 // StartNerve(mobile, nerve_name, nerve_script, data:=array, flags:=NF_NO_FLAGS, byref nerve_dict:=0)
@@ -211,3 +212,28 @@ function StopNerve(mobile, nerve_name, byref nerve_dict:=0)
 	endif
 endfunction
 
+/*
+ * KillNerves(mobile)
+ *
+ * Purpose
+ * Forces all nerve scripts that are running on an npc to stop.
+ *
+ * Parameters
+ * mobile:	NPC the nerves will be stopped on.
+ *
+ * Return value
+ * Returns 1
+ *
+ */
+function KillNerves(mobile)
+	Set_Critical(1);
+	
+	var nerve_dict := LoadNerves(mobile);
+	
+	foreach nerve_name in (nerve_dict.keys())
+		StopNerve(mobile, nerve_name);
+	endforeach
+	Set_Critical(0);
+
+	return 1;
+endfunction
