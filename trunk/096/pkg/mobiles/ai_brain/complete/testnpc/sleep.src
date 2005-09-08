@@ -1,0 +1,30 @@
+use uo;
+use os;
+
+include ":ai_brain:include/npcNerves";
+include ":ai_brain:include/npcCommands";
+
+program BrainNerve(params)
+	var npc		:= params[1];
+	var nerve_name	:= params[2];
+	var settings	:= params[3];
+	var scripts	:= params[4];
+	var nerves	:= params[5];
+	params := array{}; // Not needed anymore.
+	
+	foreach nerve_name in (nerves.keys())
+		if ( nerve_name.flags & NF_CONTINUE_ON_SLEEP )
+			continue;
+		else
+			StopNerve(npc, nerve_name, nerves);
+		endif
+		sleepms(2);
+	endforeach
+	
+	while ( npc )
+		AI_Speak(npc, "ZzzzzZzz", SPEAK_TEXTTYPE_DEFAULT, SPEAK_DOEVENT_DISABLE, NOWAKE);
+		
+		sleep(5);
+	endwhile
+endprogram		
+	
