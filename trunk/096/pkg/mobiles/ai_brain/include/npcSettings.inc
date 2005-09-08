@@ -1,7 +1,7 @@
 /*===============================================================
 * Current Version
 * NPC_SETTINGS.INC - v1.0
-* Updated 8/30/2005 7:28AM
+* Updated 9/8/2005 5:21AM
 *
 * -- Revision v1.0 --
 * Austin:
@@ -37,13 +37,13 @@ function NPC_GetDefaultSettings(settings:=0)
 	endif
 
 	if ( CInt(settings.exists("cycle_wait")) <= 0 )
-		settings["cycle_wait"] := 10;
+		settings["CycleWait"] := 10;
 	endif
 	if ( CInt(settings.exists("sleep_wait")) <= 0 )
-		settings["sleep_wait"] := 1024;
+		settings["SleepWait"] := 1024;
 	endif
 	if ( CInt(settings.exists("idle_ticks")) <= 0 )
-		settings["idle_ticks"] := 5;
+		settings["IdleTicks"] := 5;
 	endif
 
 	return settings;
