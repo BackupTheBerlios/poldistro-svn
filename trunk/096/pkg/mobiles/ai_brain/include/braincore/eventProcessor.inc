@@ -73,10 +73,10 @@ function ProcessEvent(byref event)
 		// Someone has changed from blue to gray/red and was already within the ENTERED_AREA range
 		// .source	: What changed criminal status.
 		SYSEVENT_GONE_CRIMINAL:
-			if ( g_scripts.Exists("ItemGiven") )
-				var process := GetNerveProcess(npc, "ItemGiven", g_nerves);
+			if ( g_scripts.Exists("GoneCriminal") )
+				var process := GetNerveProcess(npc, "GoneCriminal", g_nerves);
 				if ( !process )
-					StartNerve(npc, "ItemGiven", g_scripts["ItemGiven"].script, array{event, g_settings, g_scripts}, g_scripts["ItemGiven"].flags, g_nerves);
+					StartNerve(npc, "GoneCriminal", g_scripts["GoneCriminal"].script, array{event, g_settings, g_scripts}, g_scripts["GoneCriminal"].flags, g_nerves);
 				else
 					process.SendEvent(event);
 				endif
