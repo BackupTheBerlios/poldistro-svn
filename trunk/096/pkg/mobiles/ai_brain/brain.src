@@ -51,13 +51,15 @@ program BrainAI()
 	set_critical(1);
 	StartupScripts();
 	
+	sleep(1);
+	
 	while ( npc )
 		var ev;
 		if ( !sleep_mode )
 			RunCycleScript();			
-			ev := Wait_For_Event(g_settings["cycle_wait"]);
+			ev := Wait_For_Event(g_settings["CycleWait"]);
 		else
-			ev := Wait_For_Event(g_settings["sleep_wait"]);
+			ev := Wait_For_Event(g_settings["SleepWait"]);
 		endif
 		
 		if ( !ev )

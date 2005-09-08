@@ -71,7 +71,7 @@ function InitializeEvents()
 	// * Events that do not have a core range check.
 	//
 	if ( g_scripts.Exists("DblClick") )
-		EnableEvents(SYSEVENT_DOUBLECLICKED);
+		EnableEvents(SYSEVENT_DOUBLECLICKED, 20);
 	endif
 	if ( g_scripts.Exists("ItemGiven") )
 		EnableEvents(SYSEVENT_ITEM_GIVEN);

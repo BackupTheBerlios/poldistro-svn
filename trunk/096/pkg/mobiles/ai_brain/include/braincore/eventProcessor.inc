@@ -139,7 +139,7 @@ function ProcessEvent(byref event)
 		// .source	: What sent the double click
 		SYSEVENT_DOUBLECLICKED:
 			if ( g_scripts.Exists("DblClick") )
-				if ( Distance(event.source, npc) <= g_settings["dbl_click_range"] )
+				if ( Distance(event.source, npc) <= g_settings["DblClickRange"] )
 					var process := GetNerveProcess(npc, "DblClick", g_nerves);
 					if ( !process )
 						StartNerve(npc, "DblClick", g_scripts["DblClick"].script, array{event, g_settings, g_scripts}, g_scripts["DblClick"].flags, g_nerves);
@@ -292,7 +292,7 @@ function ProcessEvent(byref event)
 	   // and telling it what event it sent that has finished
 	   // being processed.
 	   if ( event.process )
-		(event.process).SendEvent(struct{"type":=NPCEVENT_DONE, "source":=event.type});
+		(event.process).SendEvent(struct{"type":=NPCEVENT_DONE, "evsource":=event.type});
 	   endif
 
 	   set_priority(old_priority);

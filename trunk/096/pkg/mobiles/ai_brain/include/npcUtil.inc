@@ -44,7 +44,7 @@ function NPC_ParseTemplateName(template_name)
 		parsed.package := "";
 		parsed.template := template_name;
 	else
-		parsed.package := template_name[colon_a+1, colon_b-1];
+		parsed.package := template_name[colon_a+1, colon_b-2];
 		parsed.template := template_name[colon_b+1, Len(template_name)];
 	endif
 
@@ -70,7 +70,14 @@ function NPC_GetNPCConfig(template)
 	endif
 	
 	var npc_cfg := ReadConfigFile(":"+template.package+":npcdesc");
+	if ( npc_cfg.errortext )
+		return error{"errortext":="Error - NPC_GetNPCConfig():: Could not open :"+template.package+":npcdesc ->"+npc_cfg.errortext};
+	endif
+	
 	var cfg_elem := npc_cfg[template.template];
+	if ( cfg_elem.errortext )
+		return error{"errortext":="Error - NPC_GetNPCConfig():: Could not find elem ["+template.template+"] ->"+cfg_elem.errortext};
+	endif
 	
 	return cfg_elem;
 endfunction

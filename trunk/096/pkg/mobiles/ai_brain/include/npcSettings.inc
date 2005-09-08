@@ -74,6 +74,7 @@ function NPC_LoadTemplateSettings(source)
 	var settings := dictionary;
 	foreach setting_name in (setting_list.keys())
 		settings[setting_name] := UnPack(setting_list[setting_name]);
+		
 		sleepms(2);
 	endforeach
 
@@ -115,7 +116,7 @@ function NPC_LoadScriptSettings(source)
 	// * Load config defaults first
 	//
 	var npc_elem := NPC_GetNPCConfig(source);
-
+	
 	var script_list := GetConfigStringDictionary(npc_elem, "AIScript");
 	var flag_list := GetConfigStringDictionary(npc_elem, "AIScriptFlag");
 
@@ -123,6 +124,7 @@ function NPC_LoadScriptSettings(source)
 	foreach script_type in (script_list.keys())
 		var temp := struct;
 		temp.+script := script_list[script_type];
+		
 		temp.+flags := 0x0;
 		if ( flag_list[script_type] )
 			temp.flags := UnPack(flag_list[script_type]);
