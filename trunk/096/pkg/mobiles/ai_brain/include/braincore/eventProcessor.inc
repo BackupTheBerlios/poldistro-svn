@@ -1,7 +1,7 @@
 /*===============================================================
 * Current Version
 * EVENTPROCESSOR.INC - v1.0
-* Updated 9/4/2005 9:30AM
+* Updated 9/11/2005 2:06AM
 *
 * -- Revision v1.0 --
 * Austin:
@@ -48,9 +48,9 @@ function ProcessEvent(byref event)
 		// .source	: What entered the area
 		SYSEVENT_ENTEREDAREA:
 			if ( g_scripts.Exists("EnterArea") )
-				var process := GetNerveProcess(npc, "EnterArea", g_nerves);
+				var process := GetNerveProcess(npc, "EnterArea");
 				if ( !process )
-					StartNerve(npc, "EnterArea", g_scripts["EnterArea"].script, array{event, g_settings, g_scripts}, g_scripts["EnterArea"].flags, g_nerves);
+					StartNerve(npc, "EnterArea", g_scripts["EnterArea"].script, array{event, g_settings, g_scripts}, g_scripts["EnterArea"].flags);
 				else
 					process.SendEvent(event);
 				endif
@@ -61,9 +61,9 @@ function ProcessEvent(byref event)
 		// .source	: What left the area
 		SYSEVENT_LEFTAREA:
 			if ( g_scripts.Exists("LeftArea") )
-				var process := GetNerveProcess(npc, "LeftArea", g_nerves);
+				var process := GetNerveProcess(npc, "LeftArea");
 				if ( !process )
-					StartNerve(npc, "LeftArea", g_scripts["LeftArea"].script, array{event, g_settings, g_scripts}, g_scripts["LeftArea"].flags, g_nerves);
+					StartNerve(npc, "LeftArea", g_scripts["LeftArea"].script, array{event, g_settings, g_scripts}, g_scripts["LeftArea"].flags);
 				else
 					process.SendEvent(event);
 				endif
@@ -74,9 +74,9 @@ function ProcessEvent(byref event)
 		// .source	: What changed criminal status.
 		SYSEVENT_GONE_CRIMINAL:
 			if ( g_scripts.Exists("GoneCriminal") )
-				var process := GetNerveProcess(npc, "GoneCriminal", g_nerves);
+				var process := GetNerveProcess(npc, "GoneCriminal");
 				if ( !process )
-					StartNerve(npc, "GoneCriminal", g_scripts["GoneCriminal"].script, array{event, g_settings, g_scripts}, g_scripts["GoneCriminal"].flags, g_nerves);
+					StartNerve(npc, "GoneCriminal", g_scripts["GoneCriminal"].script, array{event, g_settings, g_scripts}, g_scripts["GoneCriminal"].flags);
 				else
 					process.SendEvent(event);
 				endif
@@ -92,9 +92,9 @@ function ProcessEvent(byref event)
 		SYSEVENT_DAMAGED:
 			if ( g_scripts.Exists("Combat") )
 				if ( (event.source).ISA(POLCLASS_MOBILE) )
-					var process := GetNerveProcess(npc, "Combat", g_nerves);
+					var process := GetNerveProcess(npc, "Combat");
 					if ( !process )
-						StartNerve(npc, "Combat", g_scripts["Combat"].script, array{event, g_settings, g_scripts}, g_scripts["Combat"].flags, g_nerves);
+						StartNerve(npc, "Combat", g_scripts["Combat"].script, array{event, g_settings, g_scripts}, g_scripts["Combat"].flags);
 					else
 						process.SendEvent(event);
 					endif
@@ -107,9 +107,9 @@ function ProcessEvent(byref event)
 		// .source	: What was targetting this npc but has now left combat mode.
 		SYSEVENT_DISENGAGED:
 			if ( g_scripts.Exists("Disengaged") )
-				var process := GetNerveProcess(npc, "Disengaged", g_nerves);
+				var process := GetNerveProcess(npc, "Disengaged");
 				if ( !process )
-					StartNerve(npc, "Disengaged", g_scripts["Disengaged"].script, array{event, g_settings, g_scripts}, g_scripts["Disengaged"].flags, g_nerves);
+					StartNerve(npc, "Disengaged", g_scripts["Disengaged"].script, array{event, g_settings, g_scripts}, g_scripts["Disengaged"].flags);
 				else
 					process.SendEvent(event);
 				endif
@@ -125,9 +125,9 @@ function ProcessEvent(byref event)
 		SYSEVENT_SPEECH:
 		SYSEVENT_GHOST_SPEECH:
 			if( g_scripts.Exists("Listen") )
-				var process := GetNerveProcess(npc, "Listen", g_nerves);
+				var process := GetNerveProcess(npc, "Listen");
 				if ( !process )
-					StartNerve(npc, "Listen", g_scripts["Listen"].script, array{event, g_settings, g_scripts}, g_scripts["Listen"].flags, g_nerves);
+					StartNerve(npc, "Listen", g_scripts["Listen"].script, array{event, g_settings, g_scripts}, g_scripts["Listen"].flags);
 				else
 					process.SendEvent(event);
 				endif
@@ -140,9 +140,9 @@ function ProcessEvent(byref event)
 		SYSEVENT_DOUBLECLICKED:
 			if ( g_scripts.Exists("DblClick") )
 				if ( Distance(event.source, npc) <= g_settings["DblClickRange"] )
-					var process := GetNerveProcess(npc, "DblClick", g_nerves);
+					var process := GetNerveProcess(npc, "DblClick");
 					if ( !process )
-						StartNerve(npc, "DblClick", g_scripts["DblClick"].script, array{event, g_settings, g_scripts}, g_scripts["DblClick"].flags, g_nerves);
+						StartNerve(npc, "DblClick", g_scripts["DblClick"].script, array{event, g_settings, g_scripts}, g_scripts["DblClick"].flags);
 					else
 						process.SendEvent(event);
 					endif
@@ -162,9 +162,9 @@ function ProcessEvent(byref event)
 		SYSEVENT_MERCHANT_SOLD:
 		SYSEVENT_MERCHANT_BOUGHT:
 			if ( g_scripts.Exists("Merchant") )
-				var process := GetNerveProcess(npc, "Merchant", g_nerves);
+				var process := GetNerveProcess(npc, "Merchant");
 				if ( !process )
-					StartNerve(npc, "Merchant", g_scripts["Merchant"].script, array{event, g_settings, g_scripts}, g_scripts["Merchant"].flags, g_nerves);
+					StartNerve(npc, "Merchant", g_scripts["Merchant"].script, array{event, g_settings, g_scripts}, g_scripts["Merchant"].flags);
 				else
 					process.SendEvent(event);
 				endif
@@ -176,9 +176,9 @@ function ProcessEvent(byref event)
 		// .item	: The item being given to the npc.
 		SYSEVENT_ITEM_GIVEN:
 			if ( g_scripts.Exists("ItemGiven") )
-				var process := GetNerveProcess(npc, "ItemGiven", g_nerves);
+				var process := GetNerveProcess(npc, "ItemGiven");
 				if ( !process )
-					StartNerve(npc, "ItemGiven", g_scripts["ItemGiven"].script, array{event, g_settings, g_scripts}, g_scripts["ItemGiven"].flags, g_nerves);
+					StartNerve(npc, "ItemGiven", g_scripts["ItemGiven"].script, array{event, g_settings, g_scripts}, g_scripts["ItemGiven"].flags);
 				else
 					process.SendEvent(event);
 				endif
@@ -192,7 +192,7 @@ function ProcessEvent(byref event)
 		//A nerve has instructed the brain to kill another nerve or its self.
 		// .name	: Nerve name
 		NPCEVENT_ENDNERVE:
-			StopNerve(npc, event.name, g_nerves);
+			StopNerve(npc, event.name);
 			break;
 
 		//A nerve has instructed the brain to start another nerve.
@@ -200,7 +200,7 @@ function ProcessEvent(byref event)
 		// .script	: Nerve script
 		// .data	: array of goodies
 		NPCEVENT_STARTNERVE:
-			StartNerve(npc, event.name, event.script, event.data, event.flags, g_nerves);
+			StartNerve(npc, event.name, event.script, event.data, event.flags);
 			break;
 
 		// Set a new opponent!
@@ -267,7 +267,7 @@ function ProcessEvent(byref event)
 		// .mask	: Type of event for the nerve to receive.
 		// .data	: Data to forward to the nerve.
 		NPCEVENT_FWDNERVE:
-		var process := GetNerveProcess(npc, event.NerveName, g_nerves);
+		var process := GetNerveProcess(npc, event.NerveName);
 			if ( process )
 				process.SendEvent(event);
 			endif
@@ -277,9 +277,9 @@ function ProcessEvent(byref event)
 		// npc's "virtual" nerve if it has one.
 		default:
 			if ( g_scripts.Exists("Virtual") )
-				var process := GetNerveProcess(npc, "Virtual", g_nerves);
+				var process := GetNerveProcess(npc, "Virtual");
 				if ( !process )
-					StartNerve(npc, "Virtual", g_scripts["Virtual"].script, array{event, g_settings, g_scripts}, g_scripts["Virtual"].flags, g_nerves);
+					StartNerve(npc, "Virtual", g_scripts["Virtual"].script, array{event, g_settings, g_scripts}, g_scripts["Virtual"].flags);
 				else
 					process.SendEvent(event);
 				endif

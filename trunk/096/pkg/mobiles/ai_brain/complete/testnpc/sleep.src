@@ -9,14 +9,13 @@ program BrainNerve(params)
 	//var nerve_name	:= params[2];
 	//var settings	:= params[3];
 	//var scripts	:= params[4];
-	var nerves	:= params[5];
 	params := array{}; // Not needed anymore.
 	
-	foreach nerve_name in (nerves.keys())
+	foreach nerve_name in (LoadNerves(npc).keys())
 		if ( nerve_name.flags & NF_CONTINUE_ON_SLEEP )
 			continue;
 		else
-			StopNerve(npc, nerve_name, nerves);
+			StopNerve(npc, nerve_name);
 		endif
 		sleepms(2);
 	endforeach

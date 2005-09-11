@@ -1,7 +1,7 @@
 /*===============================================================
 * Current Version
 * NERVES.INC - v1.0
-* Updated 9/1/2005 6:15PM
+* Updated 9/11/2005 2:06AM
 *
 * -- Revision v1.0 --
 * Austin:
@@ -16,13 +16,13 @@ include ":ai_brain:include/npcError";
 /////////////////////////////////////////////////////////////////
 // * Function List *
 //
-// GetNerveFlags(mobile, nerve_name, byref nerve_dict:=0)
-// GetNerveProcess(mobile, nerve_name, byref nerve_dict:=0)
+// GetNerveFlags(mobile, nerve_name)
+// GetNerveProcess(mobile, nerve_name)
 // KillNerves(mobile)
 // LoadNerves(mobile)
 // SaveNerves(mobile, nerve_dict)
-// StartNerve(mobile, nerve_name, nerve_script, data:=array, flags:=NF_NO_FLAGS, byref nerve_dict:=0)
-// StopNerve(mobile, nerve_name, byref nerve_dict:=0)
+// StartNerve(mobile, nerve_name, nerve_script, data:=array, flags:=NF_NO_FLAGS)
+// StopNerve(mobile, nerve_name)
 //
 /////////////////////////////////////////////////////////////////
 // * Global Varibles *
@@ -69,12 +69,12 @@ endfunction
  * Returns 1 on success
  *
  */
-function SaveNerves(mobile, byref nerve_dict)
+function SaveNerves(mobile, nerve_dict)
 	return SetObjProperty(mobile, "#NerveInfo", nerve_dict);
 endfunction
 
 /*
- * GetNerveProcess(mobile, nerve_name, byref nerve_dict)
+ * GetNerveProcess(mobile, nerve_name)
  *
  * Purpose
  * Retrieves a reference to a running nerve script.
@@ -88,20 +88,43 @@ endfunction
  * Returns a script reference.
  *
  */
-function GetNerveProcess(mobile, nerve_name, byref nerve_dict:=0)
-	if ( !nerve_dict )
-		nerve_dict := LoadNerves(mobile);
-	endif
-
+function GetNerveProcess(mobile, nerve_name)
+	var nerve_dict := LoadNerves(mobile);
+	
 	if ( nerve_dict.exists(nerve_name) )
 		return GetProcess(CInt(nerve_dict[nerve_name].pid));
 	else
-		return error{"errortext" := "Error - GetNerveProcess() :: Invalid nerve name  ["+nerve_name+"]"};
+		return error{"errortext" := "Error::GetNerveProcess() - Invalid nerve name  ["+nerve_name+"]"};
 	endif
 endfunction
 
 /*
- * GetNerveFlags(mobile, nerve_name, byref nerve_dict)
+ * GetNerveNameByPid(mobile, pid)
+ * 
+ * Purpose
+ * Finds the name of a nerve by its pid.
+ *
+ * Parameters
+ * mobile:	NPC to get the nerve information from.
+ * pid:		Process ID to search for.
+ *
+ * Return value
+ * Returns a string
+ *
+ */
+function GetNerveNameByPid(mobile, pid)
+	var nerve_dict := LoadNerves(mobile);
+	
+	foreach nerve in (nerve_dict)
+		if ( nerve.pid == pid )
+			return _nerve_iter;
+		endif
+		sleepms(2);
+	endforeach
+endfunction
+
+/*
+ * GetNerveFlags(mobile, nerve_name)
  *
  * Purpose
  * Retrieves the flag setting set on a nerve.
@@ -115,20 +138,18 @@ endfunction
  * Returns a script reference.
  *
  */
-function GetNerveFlags(mobile, nerve_name, byref nerve_dict:=0)
-	if ( !nerve_dict )
-		nerve_dict := LoadNerves(mobile);
-	endif
-
+function GetNerveFlags(mobile, nerve_name)
+	var nerve_dict := LoadNerves(mobile);
+	
 	if ( nerve_dict.exists(nerve_name) )
 		return GetProcess(CInt(nerve_dict[nerve_name].flags));
 	else
-		return error{"errortext" := "Error - GetNerveFlags() :: Invalid nerve name  ["+nerve_name+"]"};
+		return error{"errortext" := "Error::GetNerveFlags() - Invalid nerve name  ["+nerve_name+"]"};
 	endif
 endfunction
 
 /*
- * StartNerve(mobile, nerve_name, nerve_script, data, flags, byref nerve_dict)
+ * StartNerve(mobile, nerve_name, nerve_script, data, flags)
  *
  * Purpose
  * Starts up a nerve script.
@@ -150,7 +171,7 @@ endfunction
  * Returns a script reference to the nerve script.
  *
  */
-function StartNerve(mobile, nerve_name, nerve_script, data:=array, flags:=NF_NO_FLAGS, byref nerve_dict:=0)
+function StartNerve(mobile, nerve_name, nerve_script, data:=array, flags:=NF_NO_FLAGS)
 	if ( Lower(TypeOf(data)) != "array")
 		data := array{data};
 	endif
@@ -162,15 +183,18 @@ function StartNerve(mobile, nerve_name, nerve_script, data:=array, flags:=NF_NO_
 	var process := start_script(nerve_script, data);
 
 	if ( process.errortext )
-		var errmsg := "Error - StartNerve() :: ["+nerve_name+"] ["+nerve_script+"] failed to start! ->"+process.errortext;
+		var errmsg := "Error::StartNerve() - ["+nerve_name+"] ["+nerve_script+"] failed to start! ->"+process.errortext;
 		NPC_ErrorSysLog(mobile, errmsg);
 		return error{"errortext":=errmsg};
 	else
+		var nerve_dict := LoadNerves(mobile);
+		
 		//Before setting the new nerve, check if one is already running.
 		if ( nerve_dict.exists(nerve_name) )
 			//Stop the old nerve, before storing the new one.
-			StopNerve(mobile, nerve_name, nerve_dict);
+			StopNerve(mobile, nerve_name);
 		endif
+		
 		var nerve_info := struct;
 		nerve_info.+pid := process.pid;
 		nerve_info.+flags := flags;
@@ -183,7 +207,7 @@ function StartNerve(mobile, nerve_name, nerve_script, data:=array, flags:=NF_NO_
 endfunction
 
 /*
- * StopNerve(mobile, nerve_name, byref nerve_dict)
+ * StopNerve(mobile, nerve_name)
  *
  * Purpose
  * Starts up a nerve script.
@@ -197,18 +221,16 @@ endfunction
  * Returns 1 on success.
  *
  */
-function StopNerve(mobile, nerve_name, byref nerve_dict:=0)
-	if ( !nerve_dict )
-		nerve_dict := LoadNerves(mobile);
-	endif
-
+function StopNerve(mobile, nerve_name)
+	var nerve_dict := LoadNerves(mobile);
+	
 	if ( nerve_dict.Exists(nerve_name) )
-		GetNerveProcess(mobile, nerve_name, nerve_dict).kill();
+		GetNerveProcess(mobile, nerve_name).kill();
 		nerve_dict.Erase(nerve_name);
 
 		return SaveNerves(mobile, nerve_dict);
 	else
-		return error{"errortext" := "Error - StopNerve() :: Invalid nerve name  ["+nerve_name+"]"};
+		return error{"errortext" := "Error::StopNerve() - Invalid nerve name  ["+nerve_name+"]"};
 	endif
 endfunction
 

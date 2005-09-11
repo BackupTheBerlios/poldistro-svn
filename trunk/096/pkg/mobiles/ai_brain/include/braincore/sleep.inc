@@ -1,7 +1,7 @@
 /*===============================================================
 * Current Version
 * SLEEP.INC - v1.0
-* Updated 9/6/2005 6:35AM
+* Updated 9/11/2005 2:06AM
 *
 * -- Revision v1.0 --
 * Austin:
@@ -23,9 +23,9 @@
 function EnterSleepMode()
 	if ( !sleep_mode )
 		if ( g_scripts["Sleep"] )
-			var process := GetNerveProcess(npc, "Sleep", g_nerves);
+			var process := GetNerveProcess(npc, "Sleep");
 			if ( !process )
-				StartNerve(npc, "Sleep", g_scripts["Sleep"].script, array{g_settings, g_scripts, g_nerves}, g_scripts["Sleep"].flags, g_nerves);
+				StartNerve(npc, "Sleep", g_scripts["Sleep"].script, array{g_settings, g_scripts}, g_scripts["Sleep"].flags);
 			endif
 		endif
 					
@@ -49,7 +49,7 @@ endfunction
  *
  */
 function LeaveSleepMode()
-	StopNerve(npc, "Sleep", g_nerves);
+	StopNerve(npc, "Sleep");
 	idle_ticks := 0;
 	sleep_mode := 0;
 endfunction

@@ -22,10 +22,10 @@
  */
 function RunCycleScript()
 	if ( g_scripts["Cycle"] )
-		var script := Run_Script_To_Completion(g_scripts["Cycle"], array{npc, g_settings, g_scripts, g_nerves});
+		var script := Run_Script_To_Completion(g_scripts["Cycle"], array{npc, g_settings, g_scripts});
 		
 		if ( script.errortext )
-			NPC_ErrorSysLog(npc, "Error - RunCycleScript() :: "+script.errortext);
+			NPC_ErrorSysLog(npc, "Error::RunCycleScript() - "+script.errortext);
 		endif
 	endif
 	

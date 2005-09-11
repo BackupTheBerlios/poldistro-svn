@@ -71,12 +71,12 @@ function NPC_GetNPCConfig(template)
 	
 	var npc_cfg := ReadConfigFile(":"+template.package+":npcdesc");
 	if ( npc_cfg.errortext )
-		return error{"errortext":="Error - NPC_GetNPCConfig():: Could not open :"+template.package+":npcdesc ->"+npc_cfg.errortext};
+		return error{"errortext":="Error::NPC_GetNPCConfig() - Could not open :"+template.package+":npcdesc ->"+npc_cfg.errortext};
 	endif
 	
 	var cfg_elem := npc_cfg[template.template];
 	if ( cfg_elem.errortext )
-		return error{"errortext":="Error - NPC_GetNPCConfig():: Could not find elem ["+template.template+"] ->"+cfg_elem.errortext};
+		return error{"errortext":="Error::NPC_GetNPCConfig() - Could not find elem ["+template.template+"] ->"+cfg_elem.errortext};
 	endif
 	
 	return cfg_elem;

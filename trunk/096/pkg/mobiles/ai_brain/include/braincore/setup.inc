@@ -25,7 +25,6 @@ function InitializeSettings()
 	g_settings := NPC_LoadTemplateSettings(npc);
 	g_settings := NPC_GetDefaultSettings(g_settings);
 	g_scripts := NPC_LoadScriptSettings(npc);
-	g_nerves := LoadNerves(npc);
 		
 	return 1;
 endfunction
@@ -111,9 +110,9 @@ function StartupScripts()
 		//StopNerves();
 		
 		if ( g_scripts.Exists("Restart") )
-			var restart_script := Run_Script_To_Completion(g_scripts["Restart"], {npc, g_settings});
+			var restart_script := Run_Script_To_Completion(g_scripts["Restart"], {npc, g_settings, g_scripts});
 			if ( restart_script.errortext )
-				FatalError("Error - StartupScripts() :: Restart script failed: "+restart_script.errortext);
+				FatalError("Error::StartupScripts() - Restart script failed: "+restart_script.errortext);
 				return 0;
 			endif
 		endif
@@ -122,9 +121,9 @@ function StartupScripts()
 		SetObjProperty(npc, "npc_info", npc_info);
 		
 		if ( g_scripts.Exists("Init") )
-			var init_script := Run_Script_To_Completion(g_scripts["Init"], {npc, g_settings});
+			var init_script := Run_Script_To_Completion(g_scripts["Init"], {npc, g_settings, g_scripts});
 			if ( init_script.errortext )
-				FatalError("Error - StartupScripts() :: Init script failed:"+init_script.errortext);
+				FatalError("Error::StartupScripts() - Init script failed:"+init_script.errortext);
 				return 0;
 			endif
 		endif

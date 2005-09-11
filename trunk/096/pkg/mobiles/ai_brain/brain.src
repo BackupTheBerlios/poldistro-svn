@@ -1,7 +1,7 @@
 /*===============================================================
 * Current Version
 * BRAIN.SRC - v5.0
-* Updated 9/1/2005 6:20AM
+* Updated 9/11/2005 2:06AM
 *
 * NPC AI-Script to control all non-setup actions. Acts as the "brain"
 * and fires off external scripts that act as the "nerves" of the NPC.
@@ -41,7 +41,6 @@ var sleep_mode := 0;
 //as references rather than copies within the brain and nerves.
 var g_settings := dictionary; //"setting name"->value
 var g_scripts := dictionary; // "script type"->value{.flags, .script}
-var g_nerves := dictionary; // "nerve name"->value{.flags, .pid}
 
 program BrainAI()
 	//Run setup steps for the npc.

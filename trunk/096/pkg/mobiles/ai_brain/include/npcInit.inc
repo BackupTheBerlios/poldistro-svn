@@ -78,7 +78,7 @@ function NPC_SetupAmmo(mobile)
 			return 1;
 		endif
 	else
-		var temp := error{"errortext":="Error - NPC_SetupAmmo() :: No 'AmmoType' was specified."};
+		var temp := error{"errortext":="Error::NPC_SetupAmmo() - No 'AmmoType' was specified."};
 		
 		NPC_ErrorSysLog(mobile, temp.errortext);
 		PrintTextAbove(mobile, temp.errortext);
@@ -112,7 +112,7 @@ function NPC_SetupEquipment(mobile, elem_name:=0)
 	if ( !elem_name )
 		return NPC_GiveBackPack(mobile);
 	elseif ( !equip_cfg[elem_name] )
-		var errmsg := error{"errortext":="Error - NPC_SetupEquipment() :: There is no elem ["+elem_name+"] in '::equip.cfg'"};
+		var errmsg := error{"errortext":="Error::NPC_SetupEquipment() - There is no elem ["+elem_name+"] in '::equip.cfg'"};
 		PrintTextAbove(mobile, errmsg);
 		return errmsg;
 	else
@@ -155,7 +155,7 @@ function NPC_SetupName(mobile, name_elem:=0)
 		var temp := error;
 		temp.+errortext := "There is no elem ["+name_elem+"] in NAMES.CFG";
 		
-		NPC_ErrorSysLog(moble, "Error - NPC_SetupName() :: "+temp.errortext);
+		NPC_ErrorSysLog(moble, "Error::NPC_SetupName() - "+temp.errortext);
 		PrintTextAbove(mobile, temp.errortext);
 		return temp;
 	endif
@@ -164,7 +164,7 @@ function NPC_SetupName(mobile, name_elem:=0)
 	if ( name_list.size() < 1 )
 		var temp := error{"errortext":="No names were found in the ["+name_elem+"] elem for names.cfg"};
 	
-		SysLog("Error - NPC_SetupName() :: "+temp.errortext);
+		SysLog("Error::NPC_SetupName() - "+temp.errortext);
 		PrintTextAbove(mobile, temp.errortext);
 	
 		return temp;
