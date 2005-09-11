@@ -9,10 +9,43 @@ program BrainNerve(params)
 	var nerve_name	:= params[2];
 	var event	:= params[3];
 	var settings	:= params[4];
-	var scripts	:= params[5];
-	params := array{}; // Not needed anymore.
+	//var scripts	:= params[5];
+	params := 0; // Not needed anymore.
+	
+	//Store it here so it does not have to do the math over and over.
+	var flee_level := GetVitalMaximumValue(npc, "Life") * (CInt(settings["FleeLevel"])/100);
+	
+	var opponent := event.source;
+	AI_SetOpponent(npc, opponent);
 	
 	while ( npc )
-		// Do stuff here
+		var dist := Distance(npc, opponent);
+		if ( GetHitPoints(npc) < flee_level )
+			AI_Disengage(npc);
+			AI_Flee(npc, opponent);
+			AI_EndNerve(npc, nerve_name);
+		// Is the opponent dead, yet?
+		elseif ( opponent.dead || !opponent )
+			AI_SetWarMode(npc, 0);
+			AI_EndNerve(npc, nerve_name);
+		// Did they hide??
+		elseif ( opponent.hidden || opponent.concealed )
+			AI_SetWarMode(npc, 0);
+			AI_EndNerve(npc, nerve_name);
+		elseif ( dist > 20 )
+			AI_SetWarMode(npc, 0);
+			AI_EndNerve(npc, nerve_name);
+		elseif ( (dist > 10) && ( !CheckLineOfSight(npc, opponent)) )
+			AI_Disengage(npc);
+			AI_EndNerve(npc, nerve_name);
+		elseif( dist > 1 )
+			AI_Move(npc, opponent, NEMOVE_TOWARD, NEMOVE_RUN, WAKEUP, 100);
+		endif
+
+		sleepms(600);
+		AI_ClearThoughts(npc, CLR_NERVE);
 	endwhile
 endprogram
+
+function FleeOpponent(npc, opponent)
+	

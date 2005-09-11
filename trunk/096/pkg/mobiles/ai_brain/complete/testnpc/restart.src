@@ -6,13 +6,12 @@ include ":ai_brain:include/npcCommands";
 
 program BrainNerve(params)
 	var npc		:= params[1];
-	var nerve_name	:= params[2];
-	var event	:= params[3];
-	var settings	:= params[4];
-	var scripts	:= params[5];
+	//var settings	:= params[2];
+	//var scripts	:= params[3];
 	params := 0; // Not needed anymore.
 	
-	while ( npc )
-		// Do stuff here
-	endwhile
-endprogram
+	foreach nerve_name in (LoadNerves(npc))
+		StopNerve(npc, nerve_name);
+	endforeach
+endprogram		
+	

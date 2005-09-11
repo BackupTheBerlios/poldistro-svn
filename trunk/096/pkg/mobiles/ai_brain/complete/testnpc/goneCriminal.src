@@ -10,7 +10,7 @@ program BrainNerve(params)
 	var event	:= params[3];
 	var settings	:= params[4];
 	var scripts	:= params[5];
-	params := array{}; // Not needed anymore.
+	params := 0; // Not needed anymore.
 	
 	while ( npc )
 		// Do stuff here

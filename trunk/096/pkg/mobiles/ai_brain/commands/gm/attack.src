@@ -2,7 +2,7 @@
 use uo;
 use os;
 
-include ":ai_brain:include/npcCommands";
+include "include/sysEvent";
 
 program MakeAttack(who)
 	SendSysMessage(who, "Select an npc (attacker).");
@@ -19,5 +19,6 @@ program MakeAttack(who)
 		return 0;
 	endif
 	
-	AI_Attack(targ, targ2);
+	var event := struct{"type":=SYSEVENT_ENGAGED, "source":=targ2};
+	SendEvent(targ, event);
 endprogram

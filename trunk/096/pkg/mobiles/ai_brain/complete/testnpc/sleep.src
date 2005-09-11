@@ -6,10 +6,10 @@ include ":ai_brain:include/npcCommands";
 
 program BrainNerve(params)
 	var npc		:= params[1];
-	//var nerve_name	:= params[2];
+	//var nerve_name:= params[2];
 	//var settings	:= params[3];
 	//var scripts	:= params[4];
-	params := array{}; // Not needed anymore.
+	params := 0; // Not needed anymore.
 	
 	foreach nerve_name in (LoadNerves(npc).keys())
 		if ( nerve_name.flags & NF_CONTINUE_ON_SLEEP )
