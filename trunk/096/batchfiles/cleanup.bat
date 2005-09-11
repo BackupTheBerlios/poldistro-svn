@@ -17,7 +17,7 @@ ECHO  [ f ] - Remove *.dbg files
 ECHO  [ g ] - Remove *.dbg.txt
 ECHO  [ h ] - Remove other (disabled)
 ECHO.
-ECHO  [ x ] - Quit
+ECHO  [ x ] - Back
 
 SET /p CMD=Command:
 

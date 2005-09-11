@@ -17,7 +17,7 @@ ECHO  [ a ] - Compile a specific script.
 ECHO  [ b ] - Compile all .src scripts.
 ECHO  [ c ] - Compile all scripts and output to POL\ecompile.log
 ECHO.
-ECHO  [ x ] - Quit
+ECHO  [ x ] - Back
 
 SET /p CMD=Command:
 

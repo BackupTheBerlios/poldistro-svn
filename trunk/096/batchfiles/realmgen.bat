@@ -24,7 +24,7 @@ ECHO  [ h ] - Build 'Malas' realm         (mapid=3)
 ECHO  [ i ] - Build 'Tokuno' realm        (mapid=4)
 ECHO  [ j ] - Build all realms - Takes a very long time!
 ECHO.
-ECHO  [ x ] - Quit
+ECHO  [ x ] - Back
 
 SET /p CMD=Command:
 
