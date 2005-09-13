@@ -1,6 +1,6 @@
 /*===============================================================
 * Current Version
-* NERVES.INC - v1.0
+* NPCNERVES.INC - v1.0
 * Updated 9/11/2005 2:06AM
 *
 * -- Revision v1.0 --

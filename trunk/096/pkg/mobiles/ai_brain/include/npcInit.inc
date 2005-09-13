@@ -1,6 +1,6 @@
 /*===============================================================
 * Current Version
-* NPC_UTIL.INC - v1.0
+* NPCUTIL.INC - v1.0
 * Updated 9/4/2005 3:43PM
 *
 * -- Revision v1.0 --

@@ -1,6 +1,6 @@
 /*===============================================================
 * Current Version
-* NPC_SETTINGS.INC - v1.0
+* NPCSETTINGS.INC - v1.0
 * Updated 9/8/2005 5:21AM
 *
 * -- Revision v1.0 --

@@ -1,6 +1,6 @@
 /*===============================================================
 * Current Version
-* NPC_ERRORS.INC - v1.0
+* NPCERRORS.INC - v1.0
 * Updated 8/31/2005 5:08AM
 *
 * -- Revision v1.0 --

@@ -1,6 +1,6 @@
 /*===============================================================
 * Current Version
-* NPC_COMMANDS.INC - v1.0
+* NPCCOMMANDS.INC - v1.0
 * Updated 8/31/2005 6:38AM
 *
 * -- Revision v1.0 --

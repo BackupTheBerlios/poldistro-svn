@@ -106,11 +106,8 @@ function StartupScripts()
 	if ( GetObjProperty(npc, "npc_info") )
 		//This can only happen if restart() was done on the npc or when POL starts up.
 		
-		SetWarmode(0);
-		//StopNerves();
-		
 		if ( g_scripts.Exists("Restart") )
-			var restart_script := Run_Script_To_Completion(g_scripts["Restart"], {npc, g_settings, g_scripts});
+			var restart_script := Run_Script_To_Completion(g_scripts["Restart"].script, {npc, g_settings, g_scripts});
 			if ( restart_script.errortext )
 				FatalError("Error::StartupScripts() - Restart script failed: "+restart_script.errortext);
 				return 0;
@@ -121,7 +118,7 @@ function StartupScripts()
 		SetObjProperty(npc, "npc_info", npc_info);
 		
 		if ( g_scripts.Exists("Init") )
-			var init_script := Run_Script_To_Completion(g_scripts["Init"], {npc, g_settings, g_scripts});
+			var init_script := Run_Script_To_Completion(g_scripts["Init"].script, {npc, g_settings, g_scripts});
 			if ( init_script.errortext )
 				FatalError("Error::StartupScripts() - Init script failed:"+init_script.errortext);
 				return 0;

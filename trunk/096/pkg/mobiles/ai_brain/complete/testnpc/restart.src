@@ -10,8 +10,7 @@ program BrainNerve(params)
 	//var scripts	:= params[3];
 	params := 0; // Not needed anymore.
 	
-	foreach nerve_name in (LoadNerves(npc))
-		StopNerve(npc, nerve_name);
-	endforeach
-endprogram		
+	KillNerves(npc);
 	
+	return 1;
+endprogram

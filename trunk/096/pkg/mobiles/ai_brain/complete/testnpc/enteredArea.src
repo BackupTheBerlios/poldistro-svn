@@ -13,6 +13,6 @@ program BrainNerve(params)
 	params := 0; // Not needed anymore.
 	
 	while ( npc )
-		// Do stuff here
+		//
 	endwhile
 endprogram

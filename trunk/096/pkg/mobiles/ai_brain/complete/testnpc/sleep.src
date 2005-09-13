@@ -6,16 +6,17 @@ include ":ai_brain:include/npcCommands";
 
 program BrainNerve(params)
 	var npc		:= params[1];
-	//var nerve_name:= params[2];
+	var nerve_name	:= params[2];
 	//var settings	:= params[3];
 	//var scripts	:= params[4];
 	params := 0; // Not needed anymore.
 	
-	foreach nerve_name in (LoadNerves(npc).keys())
-		if ( nerve_name.flags & NF_CONTINUE_ON_SLEEP )
+	// Shut down appropriate nerves.
+	foreach nerve in (LoadNerves(npc))
+		if ( nerve.flags & NF_CONTINUE_ON_SLEEP )
 			continue;
-		else
-			StopNerve(npc, nerve_name);
+		elseif ( _nerve_iter != nerve_name )
+			StopNerve(npc, _nerve_iter);
 		endif
 		sleepms(2);
 	endforeach
@@ -23,7 +24,6 @@ program BrainNerve(params)
 	while ( npc )
 		AI_Speak(npc, "ZzzzzZzz", SPEAK_TEXTTYPE_DEFAULT, SPEAK_DOEVENT_DISABLE, NOWAKE);
 		AI_ClearThoughts(npc, CLR_NERVE);
-		sleep(20);
+		sleep(40);
 	endwhile
-endprogram		
-	
+endprogram
