@@ -14,21 +14,36 @@ program BrainNerve(params)
 	params := 0; // Not needed anymore.
 	
 	while ( npc )
-		if ( event.source )
-			AI_Speak(npc, "I just heard "+(event.source).name+" say \""+event.text+"\"", SPEAK_TEXTTYPE_DEFAULT, SPEAK_DOEVENT_DISABLE, WAKEUP);
-			case ( event.texttype )
-				SPEAK_TEXTTYPE_YELL:
-					AI_Speak(npc, "*yells* No need to yell!", event.texttype, SPEAK_DOEVENT_DISABLE, WAKEUP);
-					break;
-				SPEAK_TEXTTYPE_WHISPER:
-					AI_Speak(npc, "*whispers* Speak up next time. I could barely hear you.", event.texttype, SPEAK_DOEVENT_DISABLE, WAKEUP);
+		if ( event )
+			case ( event.type )
+				SYSEVENT_SPEECH:
+					SpeechEvent(npc, event);
 					break;
 				default:
-					AI_Speak(npc, "You're fun to talk to, you know that?", SPEAK_TEXTTYPE_DEFAULT, SPEAK_DOEVENT_DISABLE, WAKEUP);
 					break;
 			endcase
+			
+			event := 0;
 		endif
 		
+		sleepms(5);
 		event := wait_for_event(900000);
 	endwhile
 endprogram
+
+function SpeechEvent(npc, event)
+	AI_Speak(npc, "I just heard "+(event.source).name+" say \""+event.text+"\"", SPEAK_TEXTTYPE_DEFAULT, SPEAK_DOEVENT_DISABLE, WAKEUP);
+	case ( event.texttype )
+		SPEAK_TEXTTYPE_YELL:
+			AI_Speak(npc, "*yells* No need to yell!", event.texttype, SPEAK_DOEVENT_DISABLE, WAKEUP);
+			break;
+		SPEAK_TEXTTYPE_WHISPER:
+			AI_Speak(npc, "*whispers* Speak up next time. I could barely hear you.", event.texttype, SPEAK_DOEVENT_DISABLE, WAKEUP);
+			break;
+		default:
+			AI_Speak(npc, "You're fun to talk to, you know that?", SPEAK_TEXTTYPE_DEFAULT, SPEAK_DOEVENT_DISABLE, WAKEUP);
+			break;
+	endcase
+	
+	return 1;
+endfunction

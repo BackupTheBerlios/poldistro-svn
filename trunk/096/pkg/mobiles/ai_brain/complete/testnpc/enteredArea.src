@@ -15,25 +15,36 @@ program BrainNerve(params)
 	
 	while ( npc )
 		if ( event )
+			var source := event.source;
 			case ( event.type )
 				SYSEVENT_ENTEREDAREA:
-					var source := event.source;
-					if ( source.npctemplate )
-						continue;
-						//Run_Script_To_Completion(settings["cycle_script"], {npc, settings});
-					elseif ( source.concealed )
-						continue;
-						//Do nothing
-					elseif ( source.acctname )
-						if ( NPC_AddToWatchList(npc, source) )
-							AI_WakeUp(npc);
-							AI_Speak(npc, "Ive added you to my watch list "+source.name);
-						endif
-					endif
+					EnteredArea(npc, source);
+					break;
+				default:
+					break;
 			endcase
+			
+			event := 0;
 		endif
 		
 		sleepms(5);
 		event := wait_for_event(600);
 	endwhile
 endprogram
+
+function EnteredArea(npc, source)
+	if ( source.npctemplate )
+		return 0;
+	elseif ( source.concealed )
+		return 0;
+	elseif ( source.acctname )
+		if ( NPC_AddToWatchList(npc, source) )
+			AI_WakeUp(npc);
+			AI_Speak(npc, "Ive added you to my watch list "+source.name);
+		endif
+		
+		return 1;
+	endif
+	
+	return 0;
+endfunction

@@ -24,6 +24,6 @@ program BrainNerve(params)
 	while ( npc )
 		AI_Speak(npc, "ZzzzzZzz", SPEAK_TEXTTYPE_DEFAULT, SPEAK_DOEVENT_DISABLE, NOWAKE);
 		AI_ClearThoughts(npc, CLR_NERVE);
-		sleep(40);
+		sleep(90);
 	endwhile
 endprogram

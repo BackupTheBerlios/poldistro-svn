@@ -3,6 +3,7 @@ use os;
 
 include ":ai_brain:include/npcNerves";
 include ":ai_brain:include/npcCommands";
+include "include/attributes";
 
 program BrainNerve(params)
 	var npc		:= params[1];
@@ -11,41 +12,75 @@ program BrainNerve(params)
 	var settings	:= params[4];
 	//var scripts	:= params[5];
 	params := 0; // Not needed anymore.
-	
+
 	//Store it here so it does not have to do the math over and over.
 	var flee_level := GetVitalMaximumValue(npc, "Life") * (CInt(settings["FleeLevel"])/100);
-	
+
 	var opponent := event.source;
 	AI_SetOpponent(npc, opponent);
-	
+
 	while ( npc )
 		var dist := Distance(npc, opponent);
-		if ( GetHitPoints(npc) < flee_level )
-			AI_Disengage(npc);
-			AI_Flee(npc, opponent);
-			AI_EndNerve(npc, nerve_name);
-		// Is the opponent dead, yet?
-		elseif ( opponent.dead || !opponent )
-			AI_SetWarMode(npc, 0);
-			AI_EndNerve(npc, nerve_name);
-		// Did they hide??
-		elseif ( opponent.hidden || opponent.concealed )
-			AI_SetWarMode(npc, 0);
-			AI_EndNerve(npc, nerve_name);
-		elseif ( dist > 20 )
-			AI_SetWarMode(npc, 0);
-			AI_EndNerve(npc, nerve_name);
-		elseif ( (dist > 10) && ( !CheckLineOfSight(npc, opponent)) )
-			AI_Disengage(npc);
+		if ( ShouldFlee(npc, flee_level) )
+			AI_Move(npc, opponent, NEMOVE_TOWARD, NEMOVE_RUN, WAKEUP, 100);
+		elseif ( DoneFighting(npc, opponent, dist) )
+			AI_WarMode(npc, 0);
 			AI_EndNerve(npc, nerve_name);
 		elseif( dist > 1 )
-			AI_Move(npc, opponent, NEMOVE_TOWARD, NEMOVE_RUN, WAKEUP, 100);
+			AI_Move(npc, opponent, NEMOVE_TOWARD, NEMOVE_RUN, WAKEUP, dist+1);
 		endif
 
 		sleepms(600);
-		AI_ClearThoughts(npc, CLR_NERVE);
+		While ( Events_Waiting() )
+			CheckForEvent(npc, event);
+		endwhile
 	endwhile
 endprogram
 
-function FleeOpponent(npc, opponent)
-	
+function DoneFighting(npc, opponent, byref dist)
+	if ( opponent.dead )
+		return 1;
+	elseif ( !opponent )
+		return 1;
+	elseif ( opponent.hidden )
+		return 1;
+	elseif ( opponent.concealed > npc.cmdlevel )
+		return 1;
+	elseif ( dist > 20 )
+		return 1;
+	elseif ( dist > 10 && !CheckLineOfSight(npc, opponent) )
+		return 1;
+	endif
+
+	return 0;
+endfunction
+
+function ShouldFlee(npc, byref flee_level)
+	if ( GetHP(npc) < flee_level )
+		return 1;
+	endif
+
+	return 0;
+endfunction
+
+function CheckForEvent(npc, byref event)
+	event := wait_for_event(0);
+	if ( event )
+		var source := event.source;
+		case ( event.type )
+			SYSEVENT_ENGAGED:
+				if ( source != npc.opponent )
+					AI_Speak(npc, "Hey "+source.name+"! No fair ganging up on me! *pouts*");
+				endif
+				break;
+			SYSEVENT_DAMAGED:
+				AI_Speak(npc, "OWCH "+source.name+" that hurts.");
+				break;
+			default:
+				break;
+		endcase
+		event := 0;
+	endif
+
+	return 1;
+endfunction
