@@ -12,7 +12,7 @@ const DEFAULT_CATEGORY	:= "None";
 
 var g_datafile := DFOpenDataFile(":ai_brain:createnpc", DF_CREATE);
 
-program MakeNPC(who, template)
+program command_CreateNPC(who, template)
 	if ( !template )
 		template := SelectTemplateFromGump(who);
 		if ( !template )
