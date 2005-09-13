@@ -9,6 +9,7 @@
 ===============================================================*/
 
 use uo;
+use polsys;
 use cfgfile;
 
 /*
@@ -80,4 +81,33 @@ function NPC_GetNPCConfig(template)
 	endif
 	
 	return cfg_elem;
+endfunction
+
+/*
+ * NPC_GetAllTemplateNames()
+ *
+ * Purpose
+ * Retrieves a list of all npc templates in the shard's npcdesc.cfg files
+ * 
+ * Parameters
+ *
+ * Return value
+ * Returns an array
+ *
+ */
+function NPC_GetAllTemplateNames()
+	var elem_names := array{};
+	elem_names := elem_names + GetConfigStringKeys(ReadConfigFile("::npcdesc"));
+	foreach package in (Packages())
+		if ( package.npcdesc )
+			var pkg_name := ":"+package.name+":";
+			foreach template_name in (GetConfigStringKeys(ReadConfigFile(pkg_name+"npcdesc")))
+				elem_names.Append(pkg_name+template_name);
+				sleepms(2);
+			endforeach
+		endif
+		sleepms(2);
+	endforeach
+
+	return elem_names;
 endfunction

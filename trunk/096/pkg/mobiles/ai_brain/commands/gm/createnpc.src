@@ -1,6 +1,8 @@
 use uo;
 use os;
+use polsys;
 
+include ":ai_brain:include/npcUtil";
 include ":datafile:include/datafile";
 include ":gumps:include/gumps";
 include ":gumps:include/gumps_ex";
@@ -8,7 +10,7 @@ include ":gumps:include/gumps_ex";
 const UNCACHE_BTN	:= 0xF000000;
 const DEFAULT_CATEGORY	:= "None";
 
-var data_file := DFOpenDataFile(":ai_brain:createnpc", DF_CREATE);
+var g_datafile := DFOpenDataFile(":ai_brain:createnpc", DF_CREATE);
 
 program MakeNPC(who, template)
 	if ( !template )
@@ -38,8 +40,8 @@ function SelectTemplateFromGump(who)
 		SendSysMessage(who, "Cancelled");
 		return 0;
 	elseif ( input[UNCACHE_BTN] )
-		foreach elem_name in DFGetElemNames(data_file)
-			data_file.DeleteElement(elem_name);
+		foreach elem_name in DFGetElemNames(g_datafile)
+			g_datafile.DeleteElement(elem_name);
 			sleepms(2);
 		endforeach
 		
@@ -54,13 +56,15 @@ function SelectTemplateFromGump(who)
 		return 0;
 	endif
 	
-	var elem_names := GetConfigStringKeys(ReadConfigFile("::npcdesc"));
+	var elem_names := GetTemplateList();
+	elem_names.Sort();
+	
 	return elem_names[input[0]];
 endfunction
 
 function RetrieveGump(category_name)
 	if ( category_name == "Index" )
-		var data_elem := DFFindElement(data_file, "Index");
+		var data_elem := DFFindElement(g_datafile, "Index");
 		var gump := data_elem.GetProp("Gump");
 		if ( !gump )
 			gump := BuildIndexGump();
@@ -68,7 +72,7 @@ function RetrieveGump(category_name)
 		
 		return gump;
 	else
-		var data_elem := DFFindElement(data_file, category_name);
+		var data_elem := DFFindElement(g_datafile, category_name);
 		var gump := data_elem.GetProp("Gump");
 		if ( !gump )
 			gump := BuildNPCGump(category_name);
@@ -79,7 +83,7 @@ function RetrieveGump(category_name)
 endfunction
 
 function GetCategoryNames()
-	var data_elem := DFFindElement(data_file, "Index");
+	var data_elem := DFFindElement(g_datafile, "Index");
 	var category_names := data_elem.GetProp("CategoryNames");
 	if ( !category_names )
 		category_names := SetupCategoryNames();
@@ -90,17 +94,29 @@ endfunction
 
 function SetupCategoryNames()
 	var category_names := (SortNPCs().keys());
-	var data_elem := DFFindElement(data_file, "Index", DF_CREATE);
+	var data_elem := DFFindElement(g_datafile, "Index", DF_CREATE);
 	data_elem.SetProp("CategoryNames", category_names);
 	
 	return category_names;
+endfunction
+
+function GetTemplateList()
+	var data_elem := DFFindElement(g_datafile, "Index");
+	var template_names := data_elem.GetProp("TemplateNames");
+	if ( !template_names )
+		template_names := NPC_GetAllTemplateNames();
+		template_names.Sort();
+		data_elem.SetProp("TemplateNames", template_names);
+	endif
+	
+	return template_names;
 endfunction
 
 function BuildIndexGump()
 	Set_Priority(100);
 	var category_names := GetCategoryNames();
 	
-	var data_elem := DFFindElement(data_file, "Index", DF_CREATE);
+	var data_elem := DFFindElement(g_datafile, "Index", DF_CREATE);
 	data_elem.SetProp("CategoryNames", category_names);
 	
 	var bkgnd_silvertrim := GFCfgConst("BackGrounds", "SILVERTRIM");
@@ -151,7 +167,7 @@ function BuildNPCGump(category_name)
 		return error{"errortext":="Category name does not exist."};
 	endif
 	
-	var data_elem := DFFindElement(data_file, Lower(category_name), DF_CREATE);	
+	var data_elem := DFFindElement(g_datafile, Lower(category_name), DF_CREATE);	
 	npc_list := npc_list[category_name];
 
 	var bkgnd_silvertrim := GFCfgConst("BackGrounds", "SILVERTRIM");
@@ -188,24 +204,24 @@ function BuildNPCGump(category_name)
 endfunction
 
 function SortNPCs()
-	var data_elem := DFFindElement(data_file, "Index", DF_CREATE);
+	var data_elem := DFFindElement(g_datafile, "Index", DF_CREATE);
 	var categories :=  data_elem.GetProp("NPCListSorted");
 	if ( categories )
 		return categories;
 	endif
 		
-	var npc_config := ReadConfigFile("::npcdesc");
-	var cfg_keys := GetConfigStringKeys(npc_config);
+	var elem_names := GetTemplateList();
+	elem_names.Sort();
 
 	categories := dictionary;
 	categories[DEFAULT_CATEGORY] := array{};
 
-	foreach template_name in (cfg_keys)
-		var cfg_elem := npc_config[template_name];
+	foreach template_name in (elem_names)
+		var cfg_elem := NPC_GetNPCConfig(template_name);
 		var template := struct;
 		template.+name :=template_name;
 		template.+pos :=_template_name_iter;
-		template.+color :=GetNameColor(npc_config[template_name].alignment);
+		template.+color :=GetNameColor(cfg_elem.alignment);
 
 		if ( !cfg_elem.category )
 			categories[DEFAULT_CATEGORY].append(template);
