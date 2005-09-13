@@ -223,13 +223,6 @@ function Dec(a)
 endfunction
 
 
-function Sqr(x)
-// Obsolete: math.em has Sqrt(x)
-	return Sqrt(x);
-
-endfunction
-
-
 function Mean(ArrayX)
 
 // Returns the arithmatic mean (average) of an array of numbers.
