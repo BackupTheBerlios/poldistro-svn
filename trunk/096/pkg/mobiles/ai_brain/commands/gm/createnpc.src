@@ -57,7 +57,6 @@ function SelectTemplateFromGump(who)
 	endif
 	
 	var elem_names := GetTemplateList();
-	elem_names.Sort();
 	
 	return elem_names[input[0]];
 endfunction
@@ -86,16 +85,10 @@ function GetCategoryNames()
 	var data_elem := DFFindElement(g_datafile, "Index");
 	var category_names := data_elem.GetProp("CategoryNames");
 	if ( !category_names )
-		category_names := SetupCategoryNames();
+		category_names := (SortNPCs().keys());
+		data_elem := DFFindElement(g_datafile, "Index", DF_CREATE);
+		data_elem.SetProp("CategoryNames", category_names);
 	endif
-	
-	return category_names;
-endfunction
-
-function SetupCategoryNames()
-	var category_names := (SortNPCs().keys());
-	var data_elem := DFFindElement(g_datafile, "Index", DF_CREATE);
-	data_elem.SetProp("CategoryNames", category_names);
 	
 	return category_names;
 endfunction
@@ -114,18 +107,11 @@ endfunction
 
 function BuildIndexGump()
 	Set_Priority(100);
-	var category_names := GetCategoryNames();
-	
-	var data_elem := DFFindElement(g_datafile, "Index", DF_CREATE);
-	data_elem.SetProp("CategoryNames", category_names);
-	
-	var bkgnd_silvertrim := GFCfgConst("BackGrounds", "SILVERTRIM");
-	var bkgnd_dark_stone := GFCfgConst("BackGrounds", "DARK_STONE");
-	
+			
 	var gump := GFCreateGump();
 	GFPage(gump, 0);
-	GFResizePic(gump, 0, 0, bkgnd_silvertrim, 300, 480);
-	GFResizePic(gump, 10, 10, bkgnd_dark_stone, 280, 460);
+	GFResizePic(gump, 0, 0, GFCfgConst("BackGrounds", "SILVERTRIM"), 300, 480);
+	GFResizePic(gump, 10, 10, GFCfgConst("BackGrounds", "DARK_STONE"), 280, 460);
 	var y_pos := 40;
 	var counter := 1;
 	var page_num := 1;
@@ -137,7 +123,7 @@ function BuildIndexGump()
 	/////
 	
 	GFPage(gump, page_num);
-	foreach category_name in (category_names)
+	foreach category_name in (GetCategoryNames())
 		GFAddButton(gump, 20, y_pos+3, 2117, 2118, GF_CLOSE_BTN, (_category_name_iter));
 		GFTextLine(gump, 40, y_pos, 2100, category_name);
 		y_pos := y_pos+20;
@@ -153,6 +139,7 @@ function BuildIndexGump()
 		endif
 		sleepms(2);
 	endforeach
+	var data_elem := DFFindElement(g_datafile, "Index", DF_CREATE);	
 	data_elem.SetProp("Gump", gump);
 	
 	return gump;
@@ -163,20 +150,14 @@ function BuildNPCGump(category_name)
 	
 	var npc_list := SortNPCs();
 	if ( !npc_list.Exists(category_name) )
-		//Nifty new trick below.
 		return error{"errortext":="Category name does not exist."};
 	endif
-	
-	var data_elem := DFFindElement(g_datafile, Lower(category_name), DF_CREATE);	
 	npc_list := npc_list[category_name];
 
-	var bkgnd_silvertrim := GFCfgConst("BackGrounds", "SILVERTRIM");
-	var bkgnd_dark_stone := GFCfgConst("BackGrounds", "DARK_STONE");
-	
 	var gump := GFCreateGump();
 	GFPage(gump, 0);
-	GFResizePic(gump, 0, 0, bkgnd_silvertrim, 300, 480);
-	GFResizePic(gump, 10, 10, bkgnd_dark_stone, 280, 460);
+	GFResizePic(gump, 0, 0, GFCfgConst("BackGrounds", "SILVERTRIM"), 300, 480);
+	GFResizePic(gump, 10, 10, GFCfgConst("BackGrounds", "DARK_STONE"), 280, 460);
 	var y_pos := 40;
 	var counter := 1;
 	var page_num := 1;
@@ -198,6 +179,8 @@ function BuildNPCGump(category_name)
 		endif
 		sleepms(2);
 	endforeach
+	
+	var data_elem := DFFindElement(g_datafile, Lower(category_name), DF_CREATE);	
 	data_elem.SetProp("Gump", gump);
 	
 	return gump;
@@ -211,8 +194,7 @@ function SortNPCs()
 	endif
 		
 	var elem_names := GetTemplateList();
-	elem_names.Sort();
-
+	
 	categories := dictionary;
 	categories[DEFAULT_CATEGORY] := array{};
 
