@@ -14,20 +14,25 @@ use os;
 /////////////////////////////////////////////////////////////////
 // * Function List *
 //
+// NPC_AddToWatchList(npc, mobile)
+// NPC_IsInWatchList(npc, mobile)
+// NPC_LoadWatchList(npc)
+// NPC_RemoveFromWatchList(npc, mobile)
+// NPC_SaveWatchList(npc, dict_list)
 //
 /////////////////////////////////////////////////////////////////
 
 /*
- * NPC_GetWatchList(npc)
+ * NPC_LoadWatchList(npc)
  *
  * Purpose
- * 
+ * Loads the watch list on an npc.
  *
  * Parameters
- * npc:	
+ * npc:	NPC to load the watch list from.
  *
  * Return value
- * 
+ * Returns a dictionary
  *
  */
 function NPC_LoadWatchList(npc)
@@ -43,37 +48,47 @@ endfunction
  * NPC_SaveWatchList(npc)
  *
  * Purpose
- * 
+ * Saves the NPC's watch list.
  *
  * Parameters
- * npc:	
+ * npc:		NPC to save the watch list on.
+ * dict_list:	Dictionary containing serials the npc is watching.
  *
  * Return value
- * 
+ * Returns the result of SetObjProperty()
  *
  */
 function NPC_SaveWatchList(npc, dict_list)
-	SetObjProprty(npc, "#WatchList", dict_list);
+	SetObjProperty(npc, "#WatchList", dict_list);
 endfunction
 
 /*
  * NPC_AddToWatchList(npc, mobile)
  *
  * Purpose
- * 
+ * Adds a mobile to the npc's watch list.
  *
  * Parameters
- * npc:	
+ * npc:		NPC that will have its list added to.
+ * mobile:	Mobile to add to the watch list.
  *
  * Return value
- * 
+ * Returns 1 if the mobile was added.
  *
  */
 function NPC_AddToWatchList(npc, mobile)
-	var watch_dict := NPC_GetWatchList(npc);
-	if ( !watch_dict.Exists(mobile.serial) )
-		watch_dict.Insert(mobile.serial, 1);
+	if ( mobile.IsA(POLCLASS_MOBILE) )
+		mobile := mobile.serial;
+	endif
+	
+	var watch_dict := NPC_LoadWatchList(npc);
+	if ( !watch_dict.Exists(mobile) )
+		watch_dict.Insert(mobile, 1);
 		NPC_SaveWatchList(npc, watch_dict);
+		
+		return 1;
+	else
+		return 0;
 	endif
 endfunction
 
@@ -81,32 +96,49 @@ endfunction
  * NPC_RemoveFromWatchList(npc)
  *
  * Purpose
- * 
+ * Removes a mobile from the npc's watch list.
  *
  * Parameters
- * npc:	
+ * npc:		NPC that will have its list modified.
+ * mobile:	Mobile to remove from the watch list.
  *
  * Return value
- * 
+ * Returns 1 if the mobile was removed.
  *
  */
 function NPC_RemoveFromWatchList(npc, mobile)
+	if ( mobile.IsA(POLCLASS_MOBILE) )
+		mobile := mobile.serial;
+	endif
 	
+	var watch_dict := NPC_LoadWatchList(npc);
+	if ( watch_dict.Exists(mobile) )
+		watch_dict.Erase(mobile);
+		NPC_SaveWatchList(npc, watch_dict);
+	else
+		return 0;
+	endif
 endfunction
 
 /*
  * NPC_IsInWatchList(npc, mobile)
  *
  * Purpose
- * 
+ * Checks if a mobile is in an npc's watch list.
  *
  * Parameters
- * npc:	
+ * npc:		NPC with the list to check
+ * mobile:	Mobile that will be checked for in the list.
  *
  * Return value
- * 
+ * Returns 1 if the mobile is in the list.
  *
  */
 function NPC_IsInWatchList(npc, mobile)
-
+	if ( mobile.IsA(POLCLASS_MOBILE) )
+		mobile := mobile.serial;
+	endif
+	
+	var watch_dict := NPC_LoadWatchList(npc);
+	return watch_dict.Exists(mobile);
 endfunction
