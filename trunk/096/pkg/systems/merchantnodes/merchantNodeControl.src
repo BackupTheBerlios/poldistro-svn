@@ -233,22 +233,26 @@ endfunction
 
 function SpawnAll()
 	foreach thing in spawn
-		var type	 := thing[1];
-		var root	 := thing[2];
-		var status := thing[3];
+		var type	:= thing[1];
+		// 9-13-2005 Austin
+		// New function in math.em makes 'root' here not compile.
+		// I renamed the var to 'root_canal' which it often feels 
+		// like I am getting when i work on old distro code.
+		var root_canal	:= thing[2];
+		var status 	:= thing[3];
 		var chest	:= thing[4];
 		var chk := 0;
 		foreach npc in npclist
-			if(root == GetObjProperty(npc, "Anchor"))
+			if(root_canal == GetObjProperty(npc, "Anchor"))
 				chk := 1;
 			endif
 		endforeach
 		if((chk == 0) and (status == 1))
 			var new := 0;
 			while((!new) and item)
-				new := CreateNpcFromTemplate(type, root[1], root[2], root[3], 0, item.realm);
+				new := CreateNpcFromTemplate(type, root_canal[1], root_canal[2], root_canal[3], 0, item.realm);
 				if(new)
-					SetObjProperty(new, "Anchor", array(root[1], root[2], root[3]));
+					SetObjProperty(new, "Anchor", array(root_canal[1], root_canal[2], root_canal[3]));
 					SetObjProperty(new, "restockserial", chest);
 					npclist.append(new);
 				endif
