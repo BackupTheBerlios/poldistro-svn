@@ -3,16 +3,37 @@ use os;
 
 include ":ai_brain:include/npcNerves";
 include ":ai_brain:include/npcCommands";
+include ":ai_brain:include/npcWatchList";
 
 program BrainNerve(params)
 	var npc		:= params[1];
-	var nerve_name	:= params[2];
+	//var nerve_name	:= params[2];
 	var event	:= params[3];
-	var settings	:= params[4];
-	var scripts	:= params[5];
+	//var settings	:= params[4];
+	//var scripts	:= params[5];
 	params := 0; // Not needed anymore.
 	
 	while ( npc )
-		//
+		if ( event )
+			case ( event.type )
+				SYSEVENT_ENTEREDAREA:
+					var source := event.source;
+					if ( source.npctemplate )
+						continue;
+						//Run_Script_To_Completion(settings["cycle_script"], {npc, settings});
+					elseif ( source.concealed )
+						continue;
+						//Do nothing
+					elseif ( source.acctname )
+						if ( NPC_AddToWatchList(npc, source) )
+							AI_WakeUp(npc);
+							AI_Speak(npc, "Ive added you to my watch list "+source.name);
+						endif
+					endif
+			endcase
+		endif
+		
+		sleepms(5);
+		event := wait_for_event(600);
 	endwhile
 endprogram

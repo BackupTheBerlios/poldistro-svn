@@ -3,16 +3,31 @@ use os;
 
 include ":ai_brain:include/npcNerves";
 include ":ai_brain:include/npcCommands";
+include ":ai_brain:include/npcWatchList";
 
 program BrainNerve(params)
 	var npc		:= params[1];
-	var nerve_name	:= params[2];
+	//var nerve_name	:= params[2];
 	var event	:= params[3];
-	var settings	:= params[4];
-	var scripts	:= params[5];
+	//var settings	:= params[4];
+	//var scripts	:= params[5];
 	params := 0; // Not needed anymore.
 	
 	while ( npc )
-		// Do stuff here
+		if ( event )
+			case ( event.type )
+				SYSEVENT_LEFTAREA:
+					var source := event.source;
+					if ( source.npctemplate )
+						continue;
+					else
+						NPC_RemoveFromWatchList(npc, source);
+						AI_Speak(npc, "I am no longer watching "+source.name);
+					endif
+			endcase
+		endif
+		
+		sleepms(5);
+		event := wait_for_event(600);
 	endwhile
 endprogram
