@@ -15,7 +15,7 @@ ECHO  [ d ] - Remove *.log files
 ECHO  [ e ] - Remove *.lst files
 ECHO  [ f ] - Remove *.dbg files
 ECHO  [ g ] - Remove *.dbg.txt
-ECHO  [ h ] - Remove other (disabled)
+ECHO  [ h ] - Remove other
 ECHO.
 ECHO  [ x ] - Back
 
@@ -29,6 +29,7 @@ IF /i "%CMD%" == "d" SET REMOVE_TYPE=*.log
 IF /i "%CMD%" == "e" SET REMOVE_TYPE=*.lst
 IF /i "%CMD%" == "f" SET REMOVE_TYPE=*.dbg
 IF /i "%CMD%" == "g" SET REMOVE_TYPE=*.dbg.txt
+IF /i "%CMD%" == "h" GOTO DELETE_CUSTOM()
 IF /i "%CMD%" == "x" GOTO :QUIT()
 
 IF NOT "%REMOVE_TYPE%"=="" GOTO REMOVE()
@@ -44,8 +45,13 @@ GOTO :MENU()
 
 REM -- REMOVE FUNCTION()
 :REMOVE()
-DEL /S %REMOVE_TYPE%
+IF NOT "%REMOVE_TYPE%"=="" DEL /S %REMOVE_TYPE%
 GOTO RETURN_TO_MENU()
+
+REM -- DELETE_CUSTOM FUNCTION()
+:DELETE_CUSTOM()
+SET /p REMOVE_TYPE=File type to remove (e.g. *.bak or orphans.txt):
+GOTO REMOVE()
 
 REM -- QUIT() FUNCTION
 :QUIT()
