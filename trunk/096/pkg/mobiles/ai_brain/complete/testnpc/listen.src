@@ -33,6 +33,8 @@ endprogram
 
 function SpeechEvent(npc, event)
 	AI_Speak(npc, "I just heard "+(event.source).name+" say \""+event.text+"\"", SPEAK_TEXTTYPE_DEFAULT, SPEAK_DOEVENT_DISABLE, WAKEUP);
+	
+	// Doing 'SPEAK_DOEVENT_ENABLE' here with multiple npcs around, could cause an infinite loop - they would keep talking to each other!
 	case ( event.texttype )
 		SPEAK_TEXTTYPE_YELL:
 			AI_Speak(npc, "*yells* No need to yell!", event.texttype, SPEAK_DOEVENT_DISABLE, WAKEUP);
