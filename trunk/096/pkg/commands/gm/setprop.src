@@ -1,6 +1,6 @@
 /*===============================================================
 * Current Version
-* SETPROP.SRC - v5.0
+* SETPROP.SRC - v1.0
 * Updated 9/13/2005 7:15AM
 *
 * -- Revision v1.0 --
@@ -32,10 +32,6 @@ program SetProperties(who, text)
 		value := "";
 	endif
 
-	ProcessInput(who, targ, property, value);
-endprogram
-
-function ProcessInput(who, targ, property, value)
 	var old_val := targ.get_member(property);
 	var old_type := Lower(TypeOf(old_val));
 	case ( old_type )
@@ -43,14 +39,24 @@ function ProcessInput(who, targ, property, value)
 		"string"	: value := CStr(value);
 		"double"	: value := CDbl(value);
 	endcase
-
 	SendSysMessage(who, "Old Value->"+old_val);
+	
+	ProcessInput(who, targ, property, value);
+	
+	SendSysMessage(who, "New Value->"+targ.get_member(property));
+endprogram
 
-	// Handles situations where methods or functions must be used.
-	case ( property )
-		"x": "y": "z": "realm": 
-			DoMovement(targ, property, value);
-			break;
+function ProcessInput(who, targ, property, value)
+	
+	//Works on items and mobiles, so do this first.
+	if ( property in array{"x", "y", "z", "realm"} ) 
+		DoMovement(targ, property, value);
+		return 1;
+	elseif ( targ.IsA(POLCLASS_MOBILE) )
+		return MobileStuff(who, targ, property, value);
+	elseif ( targ.IsA(POLCLASS_ITEM) )
+		return ItemStuff(who, targ, property, value);
+	if ( 
 		"concealed":
 			DoConceal(who, targ, value);
 			break;
@@ -66,9 +72,7 @@ function ProcessInput(who, targ, property, value)
 		default:
 			targ.set_member(property, value);
 			break;
-	endcase
-	
-	SendSysMessage(who, "New Value->"+targ.get_member(property));
+	endcase	
 endfunction
 
 function DoMovement(targ, property, value)
