@@ -24,7 +24,6 @@ program BrainNerve(params)
 		if ( ShouldFlee(npc, flee_level) )
 			AI_Move(npc, opponent, NEMOVE_TOWARD, NEMOVE_RUN, WAKEUP, 100);
 		elseif ( DoneFighting(npc, opponent, dist) )
-			AI_WarMode(npc, 0);
 			AI_EndNerve(npc, nerve_name);
 		elseif( dist > 1 )
 			AI_Move(npc, opponent, NEMOVE_TOWARD, NEMOVE_RUN, WAKEUP, dist+1);
@@ -74,7 +73,7 @@ function CheckForEvent(npc, byref event)
 				endif
 				break;
 			SYSEVENT_DAMAGED:
-				AI_Speak(npc, "OWCH "+source.name+" that hurts.");
+				//AI_Speak(npc, "OWCH "+source.name+" that hurts.");
 				break;
 			default:
 				break;

@@ -188,6 +188,20 @@ function ProcessEvent(byref event)
 		//
 		// * Check custom events
 		//
+		
+		// Combat completed with the npc being victorious
+		// .source	: What dragged the item over the npc.
+		// .item	: The item being given to the npc.
+		SYSEVENT_ITEM_GIVEN:
+			if ( g_scripts.Exists("ItemGiven") )
+				var process := GetNerveProcess(npc, "ItemGiven");
+				if ( !process )
+					StartNerve(npc, "ItemGiven", g_scripts["ItemGiven"].script, array{event, g_settings, g_scripts}, g_scripts["ItemGiven"].flags);
+				else
+					process.SendEvent(event);
+				endif
+			endif
+			break;
 
 		//A nerve has instructed the brain to kill another nerve or its self.
 		// .name	: Nerve name
@@ -201,13 +215,6 @@ function ProcessEvent(byref event)
 		// .data	: array of goodies
 		NPCEVENT_STARTNERVE:
 			StartNerve(npc, event.name, event.script, event.data, event.flags);
-			break;
-
-		// Set a new opponent!
-		// NOTE: Auto-sets Warmode=1!
-		// .source	: Opponent (mobile)
-		NPCEVENT_OPPONENT:
-			SetOpponent(event.source);
 			break;
 
 		// Say something
@@ -241,11 +248,20 @@ function ProcessEvent(byref event)
 					TurnAwayFromLocation(event.x, event.y);
 			endcase
 			break;
+			
+		// Set a new opponent!
+		// NOTE: Auto-sets Warmode=1!
+		// .source	: Opponent (mobile)
+		NPCEVENT_OPPONENT:
+			Say("Changing my warmode status to "+event.source);
+			SetOpponent(event.source);
+			break;
 
 		// Set WarMode state
 		// NOTE: Auto-clears Opponent if turned off!
 		// .value : 0=Off. 1=On.
 		NPCEVENT_WARMODE:
+			Say("Changing my warmode status to "+event.value);
 			SetWarmode( event.value );
 			break;
 
