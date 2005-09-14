@@ -126,5 +126,9 @@ function StartupScripts()
 		endif
 	endif
 	
+	if ( g_scripts.Exists("LookAround") )
+		StartNerve(npc, "LookAround", g_scripts["LookAround"].script, array{event, g_settings, g_scripts}, g_scripts["LookAround"].flags);
+		
+	
 	return 1;
 endfunction

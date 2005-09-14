@@ -82,6 +82,20 @@ function ProcessEvent(byref event)
 				endif
 			endif
 			break;
+		
+		// Instructs the npc to run its disengage nerve.
+		// When something attacking it goes out of warmode, this is run.
+		// .source	: What was targetting this npc but has now left combat mode.
+		SYSEVENT_DISENGAGED:
+			if ( g_scripts.Exists("Disengaged") )
+				var process := GetNerveProcess(npc, "Disengaged");
+				if ( !process )
+					StartNerve(npc, "Disengaged", g_scripts["Disengaged"].script, array{event, g_settings, g_scripts}, g_scripts["Disengaged"].flags);
+				else
+					process.SendEvent(event);
+				endif
+			endif
+			break;
 
 		// Sent when something targets the npc to begin combat or
 		// when something has damaged the npc.
@@ -98,20 +112,6 @@ function ProcessEvent(byref event)
 					else
 						process.SendEvent(event);
 					endif
-				endif
-			endif
-			break;
-
-		// Instructs the npc to run its disengage nerve.
-		// When something attacking it goes out of warmode, this is run.
-		// .source	: What was targetting this npc but has now left combat mode.
-		SYSEVENT_DISENGAGED:
-			if ( g_scripts.Exists("Disengaged") )
-				var process := GetNerveProcess(npc, "Disengaged");
-				if ( !process )
-					StartNerve(npc, "Disengaged", g_scripts["Disengaged"].script, array{event, g_settings, g_scripts}, g_scripts["Disengaged"].flags);
-				else
-					process.SendEvent(event);
 				endif
 			endif
 			break;

@@ -32,14 +32,7 @@ program BrainNerve(params)
 endprogram
 
 function Disengaged(npc, source)
-	PrintTextAbove(npc, "Disengaged ->"+source.name+" Source.dead == "+source.dead);
-	PrintTextAbove(npc, "Opponent == "+(npc.opponent).name);
 	if ( npc.opponent == source )
-		if ( source.dead )
-			AI_Speak(npc, "Killed ya! Neener!");
-			AI_WarMode(npc, 0);
-		else
-			AI_Speak(npc, "Wuss! Get back here and finish fighting me!");
-		endif
+		AI_Speak(npc, "Wuss! Get back here and finish fighting me!");
 	endif
 endfunction

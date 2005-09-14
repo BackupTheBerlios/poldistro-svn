@@ -142,3 +142,30 @@ function NPC_IsInWatchList(npc, mobile)
 	var watch_dict := NPC_LoadWatchList(npc);
 	return watch_dict.Exists(mobile);
 endfunction
+
+/*
+ * NPC_ShouldWatch(npc, mobile, script_path)
+ *
+ * Purpose
+ * Checks if a mobile is in an npc's watch list.
+ *
+ * Parameters
+ * npc:		NPC that will do the checking
+ * mobile:	Mobile to check to be added to the watch list.
+ * settings:	Dictionary of the NPC's settings.
+ * scripts:	Dictionary of the npcs script settings.
+ *
+ * Return value
+ * Returns 1 if the mobile is a potential target.
+ *
+ */
+function NPC_ShouldWatch(npc, mobile, byref settings, byref scripts)
+	if ( !scripts["ShouldWatch"] )
+		// Assume it wants to watch everything if it has no script.
+		return 1;
+	endif
+	
+	var result := Run_Script_To_Completion(scripts["ShouldWatch"], {npc, mobile, settings});
+	
+	return result;
+endfunction

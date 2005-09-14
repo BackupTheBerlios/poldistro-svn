@@ -1,0 +1,42 @@
+use uo;
+use os;
+use util;
+
+include ":ai_brain:include/npcNerves";
+include ":ai_brain:include/npcCommands";
+include ":ai_brain:include/npcWatchList";
+
+program BrainNerve(params)
+	var npc		:= params[1];
+	//var nerve_name	:= params[2];
+	//var event	:= params[3];
+	var settings	:= params[4];
+	//var scripts	:= params[5];
+	params := 0; // Not needed anymore.
+	
+	while ( npc )
+		if ( !npc.opponent )
+			FindOpponent(npc, settings);
+		endif
+				
+		Sleep(3);
+	endwhile
+endprogram
+
+function FindOpponent(npc, byref settings)
+	var attack_list := array;
+	foreach mobile in ListMobilesInLineOfSight(npc, CInt(settings["AreaSize"]))
+		if ( (mobile.ip) && (!mobile.cmdlevel) )
+			attack_list.Append(mobile);
+		endif
+		sleepms(2);
+	endforeach
+	
+	if ( attack_list.size() > 0 )
+		var victim := attack_list[RandomInt(attack_list.Size())+1];
+		AI_Attack(npc, victim);
+		return victim;
+	endif
+	
+	return 0;
+endfunction
