@@ -15,10 +15,9 @@ program BrainNerve(params)
 	
 	while ( npc )
 		if ( event )
-			var source := event.source;
 			case ( event.type )
 				SYSEVENT_LEFTAREA:
-					LeftArea(npc, source);
+					LeftArea(npc, event);
 					break;
 				default:
 					break;
@@ -32,13 +31,13 @@ program BrainNerve(params)
 	endwhile
 endprogram
 
-function LeftArea(npc, source)
+function LeftArea(npc, byref event)
+	var source := event.source;
+
 	if ( source.npctemplate )
 		return 0;
-	else
-		NPC_RemoveFromWatchList(npc, source);
+	elseif ( NPC_RemoveFromWatchList(npc, source) )
 		AI_Speak(npc, "I am no longer watching "+source.name);
-		
 		return 1;
 	endif
 	

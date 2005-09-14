@@ -11,6 +11,8 @@
 use uo;
 use os;
 
+include ":ai_brain:include/npcError";
+
 /////////////////////////////////////////////////////////////////
 // * Function List *
 //
@@ -115,6 +117,8 @@ function NPC_RemoveFromWatchList(npc, mobile)
 	if ( watch_dict.Exists(mobile) )
 		watch_dict.Erase(mobile);
 		NPC_SaveWatchList(npc, watch_dict);
+		
+		return 1;
 	else
 		return 0;
 	endif
@@ -165,7 +169,10 @@ function NPC_ShouldWatch(npc, mobile, byref settings, byref scripts)
 		return 1;
 	endif
 	
-	var result := Run_Script_To_Completion(scripts["ShouldWatch"], {npc, mobile, settings});
+	var result := Run_Script_To_Completion(scripts["ShouldWatch"].script, {npc, mobile, settings});
+	if ( result.errortext )
+		NPC_ErrorSysLog(npc, "Error::NPC_ShouldWatch() - "+result.errortext);
+	endif
 	
 	return result;
 endfunction

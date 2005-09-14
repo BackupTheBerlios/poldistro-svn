@@ -24,6 +24,7 @@ program BrainNerve(params)
 			endif
 		endif
 		
+		AI_ClearThoughts(npc, CLR_NERVE);
 		Sleep(1);
 	endwhile
 endprogram

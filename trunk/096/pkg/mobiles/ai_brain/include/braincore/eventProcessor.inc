@@ -255,13 +255,13 @@ function ProcessEvent(byref event)
 		// If the next event in the queue tells it to wake up,
 		// this command will be useless.
 		NPCEVENT_SLEEP:
-			//idle_ticks := g_settings["idle_ticks"]+1;
+			idle_ticks := g_settings["IdleTicks"]+1;
+			EnterSleepMode();
 			break;
 
 		// Force the npc out of sleep mode.
 		NPCEVENT_WAKEUP:
-			//sleep_mode := 0;
-			//idle_ticks := 0;
+			LeaveSleepMode();
 			break;
 
 		// Forward an event from one nerve to another.

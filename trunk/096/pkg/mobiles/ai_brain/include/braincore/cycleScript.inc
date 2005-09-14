@@ -22,7 +22,7 @@
  */
 function RunCycleScript()
 	if ( g_scripts["Cycle"] )
-		var script := Run_Script_To_Completion(g_scripts["Cycle"], array{npc, g_settings, g_scripts});
+		var script := Run_Script_To_Completion(g_scripts["Cycle"].script, array{npc, g_settings, g_scripts});
 		
 		if ( script.errortext )
 			NPC_ErrorSysLog(npc, "Error::RunCycleScript() - "+script.errortext);

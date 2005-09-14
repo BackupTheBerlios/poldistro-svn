@@ -7,9 +7,9 @@ include ":ai_brain:include/npcCommands";
 include ":ai_brain:include/npcWatchList";
 
 program BrainCriticalScript(params)
-	var npc := params[1];
-	var mobile := params[2];
-	var settings := params[3];
+	//var npc := params[1];
+	//var mobile := params[2];
+	//var settings := params[3];
 	params := 0; // Not needed anymore
 	
 	return 1;
