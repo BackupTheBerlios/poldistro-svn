@@ -6,13 +6,39 @@ include ":ai_brain:include/npcCommands";
 
 program BrainNerve(params)
 	var npc		:= params[1];
-	var nerve_name	:= params[2];
+	//var nerve_name	:= params[2];
 	var event	:= params[3];
-	var settings	:= params[4];
-	var scripts	:= params[5];
+	//var settings	:= params[4];
+	//var scripts	:= params[5];
 	params := 0; // Not needed anymore.
 	
 	while ( npc )
-		//Do stuff here.
+		if ( event )
+			case ( event.type )
+				SYSEVENT_ITEM_GIVEN:
+					ItemGivenEvent(npc, event);
+					break;
+				default:
+					break;
+			endcase
+
+			event := 0;
+		endif
+
+		sleepms(5);
+		event := wait_for_event(900000);
 	endwhile
+	
 endprogram
+
+function ItemGivenEvent(npc, event)
+	var item := event.item;
+	var source := event.source;
+	
+	if ( npc.backpack )
+		AI_Speak(npc, "Awww my very own "+item.desc+". Thank you so much "+source.name+"!", SPEAK_TEXTTYPE_DEFAULT, SPEAK_DOEVENT_DISABLE, WAKEUP);
+	else
+		AI_Speak(npc, "I have nowhere to put "+item.desc+", but thank you anyway.", SPEAK_TEXTTYPE_DEFAULT, SPEAK_DOEVENT_DISABLE, WAKEUP);
+	endif
+		
+endfunction
