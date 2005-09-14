@@ -11,22 +11,27 @@ program BrainNerve(params)
 	//var nerve_name	:= params[2];
 	//var event	:= params[3];
 	var settings	:= params[4];
-	//var scripts	:= params[5];
+	var scripts	:= params[5];
 	params := 0; // Not needed anymore.
 	
 	while ( npc )
 		if ( !npc.opponent )
-			FindOpponent(npc, settings);
+			if ( NPC_LoadWatchList(npc).size() < 1 )
+				AI_Sleep(npc);
+			else
+				AI_WakeUp(npc);
+				FindOpponent(npc, settings, scripts);
+			endif
 		endif
-				
-		Sleep(3);
+		
+		Sleep(1);
 	endwhile
 endprogram
 
-function FindOpponent(npc, byref settings)
+function FindOpponent(npc, byref settings, byref scripts)
 	var attack_list := array;
 	foreach mobile in ListMobilesInLineOfSight(npc, CInt(settings["AreaSize"]))
-		if ( (mobile.ip) && (!mobile.cmdlevel) )
+		if ( NPC_ShouldWatch(npc, mobile, settings, scripts) )
 			attack_list.Append(mobile);
 		endif
 		sleepms(2);
