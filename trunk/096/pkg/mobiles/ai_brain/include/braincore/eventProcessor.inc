@@ -189,20 +189,6 @@ function ProcessEvent(byref event)
 		// * Check custom events
 		//
 		
-		// Combat completed with the npc being victorious
-		// .source	: What dragged the item over the npc.
-		// .item	: The item being given to the npc.
-		SYSEVENT_ITEM_GIVEN:
-			if ( g_scripts.Exists("ItemGiven") )
-				var process := GetNerveProcess(npc, "ItemGiven");
-				if ( !process )
-					StartNerve(npc, "ItemGiven", g_scripts["ItemGiven"].script, array{event, g_settings, g_scripts}, g_scripts["ItemGiven"].flags);
-				else
-					process.SendEvent(event);
-				endif
-			endif
-			break;
-
 		//A nerve has instructed the brain to kill another nerve or its self.
 		// .name	: Nerve name
 		NPCEVENT_ENDNERVE:

@@ -50,6 +50,11 @@ endfunction
  */
 function LeaveSleepMode()
 	StopNerve(npc, "Sleep");
+	
+	if ( g_scripts.Exists("LookAround") )
+		StartNerve(npc, "LookAround", g_scripts["LookAround"].script, array{g_settings, g_scripts}, g_scripts["LookAround"].flags);
+	endif
+	
 	idle_ticks := 0;
 	sleep_mode := 0;
 endfunction
