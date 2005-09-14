@@ -31,51 +31,76 @@ program SetProperties(who, text)
 	if ( value == "NULL" )
 		value := "";
 	endif
-
 	var old_val := targ.get_member(property);
 	var old_type := Lower(TypeOf(old_val));
 	case ( old_type )
-		"integer"	: value := CInt(value);
-		"string"	: value := CStr(value);
-		"double"	: value := CDbl(value);
+		"integer"	: value := CInt(value); break;
+		"string"	: value := CStr(value); break;
+		"double"	: value := CDbl(value); break;
+		default:
+			SendSysMessage(who, "Original data-type '"+old_type+"' not supported. No changes can be made.");
+			return 0;
 	endcase
 	SendSysMessage(who, "Old Value->"+old_val);
-	
-	ProcessInput(who, targ, property, value);
-	
+
+	ProcessInput(who, targ,property, value);
+
 	SendSysMessage(who, "New Value->"+targ.get_member(property));
 endprogram
 
-function ProcessInput(who, targ, property, value)
-	
+function ProcessInput(who, targ, byref property, byref value)
 	//Works on items and mobiles, so do this first.
-	if ( property in array{"x", "y", "z", "realm"} ) 
-		DoMovement(targ, property, value);
+	if ( property in array{"x", "y", "z", "realm"} )
+		DoMovement(targ,property, value);
 		return 1;
-	elseif ( targ.IsA(POLCLASS_MOBILE) )
-		return MobileStuff(who, targ, property, value);
-	elseif ( targ.IsA(POLCLASS_ITEM) )
-		return ItemStuff(who, targ, property, value);
-	if ( 
-		"concealed":
-			DoConceal(who, targ, value);
-			break;
-		"cmdlevel":
-			DoCmdLevel(who, targ, value);
-			break;
-		"criminal":
-			targ.SetCriminal(value);
-			break;
-		"murderer":
-			targ.SetMurderer(value);
-			break;
-		default:
-			targ.set_member(property, value);
-			break;
-	endcase	
+	elseif ( MobileProperties(who, targ,property, value) == 1 )
+		// Special mobile methods/functions were used.
+		// 1 is checked implicitly - could be 0, 1 or error
+		return 1;
+	else
+		// Nothing special was needed to be done, just an ordinary member to change.
+		targ.set_member(property, value);
+		return 1;
+	endif
 endfunction
 
-function DoMovement(targ, property, value)
+function MobileProperties(who, targ, byref property, byref value)
+	if ( !targ.IsA(POLCLASS_MOBILE) )
+		return error;
+	endif
+	
+	case ( property )
+		"concealed":
+			if ( value > who.cmdlevel )
+				SendSysMessage(who, "You can not conceal something higher than your cmdlevel.");
+				return error;
+			else
+				targ.concealed := value; return 1;
+			endif
+		"cmdlevel":
+			if ( value > who.cmdlevel )
+				SendSysMessage(who, "You can not set a command level higher than your own.");
+				return error;
+			else
+				targ.cmdlevel := value; return 1;
+			endif
+		"criminal":
+			targ.SetCriminal(value); return 1;
+		"murderer":
+			targ.SetMurderer(value); return 1;
+		"poisoned":
+			targ.SetPoisoned(value); return 1;
+		"squelch":
+			targ.Squelch(value); return 1;
+		"warmode":
+			targ.SetWarMode(value); return 1;
+	endcase
+	
+	// Nothing was done here.
+	return 0;
+endfunction
+
+function DoMovement(targ, byref property, byref value)
 	var x := targ.x;
 	var y := targ.y;
 	var z := targ.z;
@@ -96,22 +121,4 @@ function DoMovement(targ, property, value)
 			MoveCharacterToLocation(targ, x, y, z, MOVECHAR_FORCELOCATION);
 		endif
 	endif
-endfunction
-
-function DoCmdLevel(who, targ, value)
-	if ( value > who.cmdlevel )
-		value := who.cmdlevel;
-		SendSysMessage(who, "You can not set a command level higher than your own.");
-	endif
-
-	targ.cmdlevel := value;
-endfunction
-
-function DoConceal(who, targ, value)
-	if ( value > who.cmdlevel )
-		value := who.cmdlevel;
-		SendSysMessage(who, "You can not conceal something higher than your cmdlevel.");
-	endif
-
-	targ.concealed := value;
 endfunction
