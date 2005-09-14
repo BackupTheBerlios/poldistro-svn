@@ -53,9 +53,8 @@ function ProcessInput(who, targ, byref property, byref value)
 	if ( property in array{"x", "y", "z", "realm"} )
 		DoMovement(targ,property, value);
 		return 1;
-	elseif ( MobileProperties(who, targ,property, value) == 1 )
+	elseif ( MobileProperties(who, targ,property, value) )
 		// Special mobile methods/functions were used.
-		// 1 is checked implicitly - could be 0, 1 or error
 		return 1;
 	else
 		// Nothing special was needed to be done, just an ordinary member to change.
@@ -73,14 +72,14 @@ function MobileProperties(who, targ, byref property, byref value)
 		"concealed":
 			if ( value > who.cmdlevel )
 				SendSysMessage(who, "You can not conceal something higher than your cmdlevel.");
-				return error;
+				return 1;
 			else
 				targ.concealed := value; return 1;
 			endif
 		"cmdlevel":
 			if ( value > who.cmdlevel )
 				SendSysMessage(who, "You can not set a command level higher than your own.");
-				return error;
+				return 1;
 			else
 				targ.cmdlevel := value; return 1;
 			endif
