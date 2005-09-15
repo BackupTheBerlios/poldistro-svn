@@ -9,7 +9,6 @@ include ":ai_brain:include/npcWatchList";
 program BrainNerve(params)
 	var npc		:= params[1];
 	//var nerve_name	:= params[2];
-	//var event	:= params[3];
 	var settings	:= params[4];
 	var scripts	:= params[5];
 	params := 0; // Not needed anymore.
@@ -25,7 +24,7 @@ program BrainNerve(params)
 		endif
 		
 		AI_ClearThoughts(npc, CLR_NERVE);
-		Sleep(1);
+		Sleep(5);
 	endwhile
 endprogram
 
@@ -33,6 +32,7 @@ function FindOpponent(npc, byref settings, byref scripts)
 	var attack_list := array;
 	foreach mobile in ListMobilesInLineOfSight(npc, CInt(settings["AreaSize"]))
 		if ( NPC_ShouldWatch(npc, mobile, settings, scripts) )
+			PrintTextAbove(mobile, "Its possible I will attack "+mobile.name);
 			attack_list.Append(mobile);
 		endif
 		sleepms(2);

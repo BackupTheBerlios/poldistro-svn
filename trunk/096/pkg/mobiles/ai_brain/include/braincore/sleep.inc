@@ -41,6 +41,7 @@ endfunction
  *
  * Purpose
  * Brings the npc out of sleep mode.
+ * Also used to reset idle_ticks.
  *
  * Parameters
  *
@@ -49,10 +50,12 @@ endfunction
  *
  */
 function LeaveSleepMode()
-	StopNerve(npc, "Sleep");
+	if ( sleep_mode )
+		StopNerve(npc, "Sleep");
 	
-	if ( g_scripts.Exists("LookAround") )
-		StartNerve(npc, "LookAround", g_scripts["LookAround"].script, array{g_settings, g_scripts}, g_scripts["LookAround"].flags);
+		if ( g_scripts.Exists("LookAround") )
+			StartNerve(npc, "LookAround", g_scripts["LookAround"].script, array{g_settings, g_scripts}, g_scripts["LookAround"].flags);
+		endif
 	endif
 	
 	idle_ticks := 0;
@@ -78,7 +81,7 @@ function ShouldSleep()
 	elseif ( Events_Waiting() )
 		//Events are waiting to process.
 		return 0;
-	elseif ( idle_ticks < g_settings["idle_ticks"] )
+	elseif ( idle_ticks < g_settings["IdleTicks"] )
 		//Not enough idle ticks have gone by yet.
 		return 0;
 	endif

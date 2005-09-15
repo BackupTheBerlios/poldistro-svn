@@ -287,15 +287,15 @@ function ProcessEvent(byref event)
 				endif
 			endif
 			break;
-	   endcase
+	endcase
 
-	   // If the event has a .process member, reply to it by sending
-	   // an event with .type being the NPCEVENT_DONE constant
-	   // and telling it what event it sent that has finished
-	   // being processed.
-	   if ( event.process )
-		(event.process).SendEvent(struct{"type":=NPCEVENT_DONE, "evsource":=event.type});
-	   endif
-
-	   set_priority(old_priority);
+	// If the event has a .process member, reply to it by sending
+	// an event with .type being the NPCEVENT_DONE constant
+	// and telling it what event it sent that has finished
+	// being processed.
+	//if ( event.process )
+	//	(event.process).SendEvent(struct{"type":=NPCEVENT_DONE, "evsource":=event.type});
+	//endif
+	
+	set_priority(old_priority);
 endfunction
