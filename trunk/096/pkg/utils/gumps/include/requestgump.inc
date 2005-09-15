@@ -36,8 +36,8 @@ function RequestGump(mobile, question, option := "", pre_val := "", cancel_btn:=
 	
 	var r_gump := GFCreateGump();
 	GFClosable(r_gump, 0);
-	GFResizePic(r_gump, 0, 0, GFCfgConst("BackGrounds", "SILVERTRIM"), 400, 205);
-	GFResizePic(r_gump, 15, 15, GFCfgConst("BackGrounds", "DARK_STONE"), 370, 175);
+	GFResizePic(r_gump, 0, 0, GFCfgConst("Defaults", "BackGround"), 400, 205);
+	GFResizePic(r_gump, 15, 15, GFCfgConst("Defaults", "ForeGround"), 370, 175);
 	
 	var y_pos := 20;
 	foreach line in (GFWordWrap(question, 370))

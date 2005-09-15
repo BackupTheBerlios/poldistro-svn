@@ -26,8 +26,8 @@ function GumpPrompt(mobile, text, movable:=0)
 	if ( !movable )
 		GFClosable(gump_prompt, 0);
 	endif
-	GFResizePic(gump_prompt, 180, 100, GFCfgConst("BackGrounds", "SILVERTRIM"), 300, 160);
-	GFResizePic(gump_prompt, 195, 115, GFCfgConst("BackGrounds", "DARK_STONE"), 270, 130);
+	GFResizePic(gump_prompt, 180, 100, GFCfgConst("Defaults", "BackGround"), 300, 160);
+	GFResizePic(gump_prompt, 195, 115, GFCfgConst("Defaults", "ForeGround"), 270, 130);
 	GFAddButton(gump_prompt, 300, 220, 2128, 2129, GF_CLOSE_BTN, 1);
 	
 	var y_pos := 125;

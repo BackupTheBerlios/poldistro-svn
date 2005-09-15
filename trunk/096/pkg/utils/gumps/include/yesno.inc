@@ -25,8 +25,8 @@ include ":gumps:include/gumps_ex";
 function YesNo(mobile, prompt:="", yes_text:="Yes", no_text:="No")
 	var yn_gump := GFCreateGump();
 	GFClosable(yn_gump, 0);
-	GFResizePic(yn_gump, 0, 0, GFCfgConst("BackGrounds", "SILVERTRIM"), 400, 205);
-	GFResizePic(yn_gump, 15, 15, GFCfgConst("BackGrounds", "DARK_STONE"), 370, 175);
+	GFResizePic(yn_gump, 0, 0, GFCfgConst("Defaults", "BackGround"), 400, 205);
+	GFResizePic(yn_gump, 15, 15, GFCfgConst("Defaults", "ForeGround"), 370, 175);
 	
 	var y_pos := 20;
 	foreach line in (GFWordWrap(prompt, 360))
