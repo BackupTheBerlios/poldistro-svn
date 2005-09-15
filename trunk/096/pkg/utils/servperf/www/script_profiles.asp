@@ -17,7 +17,7 @@ use os;
 
 <% 
   
-  if (QueryParam( "Action" ) = "Clear Counters") 
+  if (QueryParam( "Action" ) == "Clear Counters") 
       polcore().clear_script_profile_counters();
 	    // even better would be to redirect, but we can't.
 %>
