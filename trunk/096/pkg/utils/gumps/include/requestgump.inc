@@ -1,11 +1,20 @@
+/*===============================================================
+* Current Version
+* REQUESTGUMP.INC - v1.0
+* Updated 9/14/2005 9:24PM
+*
+* -- Revision v1.0 --
+* Austin:
+*  Created include file
+===============================================================*/
+
 use uo;
 use os;
 
 include ":gumps:include/gumps";
 include ":gumps:include/gumps_ex";
 
-/* Version 1.0 - Austin
- *
+/* 
  * RequestGump(mobile, question, option, pre_val, cancel_btn)
  *
  * Purpose
@@ -25,10 +34,6 @@ include ":gumps:include/gumps_ex";
  *
  */
 function RequestGump(mobile, question, option := "", pre_val := "", cancel_btn:=0)
-	//Mobile = Character input gump is sent to.
-	//Question = Question to ask.
-	//Option = Optional text to put under the question.
-	//Preval = What you want them to see in the text area when it comes up.
 	
 	if ( !pre_val || pre_val == error )
 		pre_val := "";

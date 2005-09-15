@@ -1,10 +1,3 @@
-use uo;
-use os;
-use basic;
-use cfgfile;
-
-include ":gumps:include/gumps";
-
 /*===============================================================
 * Current Version
 * GUMPS_EX.INC - v0.2
@@ -27,6 +20,13 @@ include ":gumps:include/gumps";
 *	GFTextWidth()	- From old-gumps.inc
 *
 ===============================================================*/
+
+use uo;
+use os;
+use basic;
+use cfgfile;
+
+include ":gumps:include/gumps";
 
 /////////////////////////////////////////////////////////////////
 // * Function List *

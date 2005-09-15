@@ -1,11 +1,20 @@
+/*===============================================================
+* Current Version
+* GUMPPROMPT.INC - v1.0
+* Updated 9/14/2005 9:24PM
+*
+* -- Revision v1.0 --
+* Austin:
+*  Created include file
+===============================================================*/
+
 use uo;
 use os;
 
 include ":gumps:include/gumps";
 include ":gumps:include/gumps_ex";
 
-/* Version 1.0 - Austin
- *
+/* 
  * GumpPrompt(mobile, text)
  *
  * Purpose
@@ -28,14 +37,15 @@ function GumpPrompt(mobile, text, movable:=0)
 	endif
 	GFResizePic(gump_prompt, 180, 100, GFCfgConst("Defaults", "BackGround"), 300, 160);
 	GFResizePic(gump_prompt, 195, 115, GFCfgConst("Defaults", "ForeGround"), 270, 130);
-	GFAddButton(gump_prompt, 300, 220, 2128, 2129, GF_CLOSE_BTN, 1);
-	
+		
 	var y_pos := 125;
 	foreach line in (GFWordWrap(text, 260))
 		GFTextLine(gump_prompt, 200, y_pos, 1153, line);
 		y_pos := y_pos+20;
 		sleepms(2);
 	endforeach
+	
+	GFAddButton(gump_prompt, 300, 220, 2128, 2129, GF_CLOSE_BTN, 1);
 	
 	var prompt_input := GFSendGump(mobile, gump_prompt);
 	return prompt_input[0];

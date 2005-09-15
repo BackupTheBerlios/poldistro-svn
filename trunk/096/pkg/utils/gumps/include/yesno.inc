@@ -1,11 +1,20 @@
+/*===============================================================
+* Current Version
+* YESNO.INC - v1.0
+* Updated 9/14/2005 9:23PM
+*
+* -- Revision v1.0 --
+* Austin:
+*  Created include file
+===============================================================*/
+
 use uo;
 use os;
 
 include ":gumps:include/gumps";
 include ":gumps:include/gumps_ex";
 
-/* Version 1.0 - Austin
- *
+/* 
  * YesNo(mobile, prompt, yes_text, no_text)
  *
  * Purpose
