@@ -46,8 +46,8 @@ program SpawnerCMD(who)
 endprogram
 
 function BuildGumpTemplate(realm_name:="")
-	var bkgnd_silvertrim := GFCfgConst("BackGrounds", "SILVERTRIM");
-	var bkgnd_dark_stone := GFCfgConst("BackGrounds", "DARK_STONE");
+	var bkgnd_silvertrim := GFCfgConst("Defaults", "BackGround");
+	var bkgnd_dark_stone := GFCfgConst("Defaults", "ForeGround");
 	
 	var gump := GFCreateGump();
 	GFResizePic(gump, 0, 0, bkgnd_silvertrim, 640, 480);
