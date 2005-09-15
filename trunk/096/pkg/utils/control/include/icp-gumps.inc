@@ -1,6 +1,6 @@
 // Gump backgrounds - Used in various functions - easier to use globally.
-var BKGND_SILVERTRIM := GFCfgConst("BackGrounds", "SILVERTRIM");
-var BKGND_DARK_STONE := GFCfgConst("BackGrounds", "DARK_STONE");
+var BKGND_SILVERTRIM := GFCfgConst("Defaults", "BackGround");
+var BKGND_DARK_STONE := GFCfgConst("Defaults", "ForeGround");
 
 function ICP_RetrieveGump(elem_name, prop_name:="main")
 	var elem := DFFindElement(pkg_gumps, elem_name);
