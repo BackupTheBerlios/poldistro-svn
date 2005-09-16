@@ -1,9 +1,0 @@
-01. MERGE 'include/insertSound.inc' and 'config/insertsound.cfg' into 'include/sound.inc'.
-02. COMMANDS: bank, squelch
-03. APPLY scheduler packager for all start.src calling packages.
-04. REMOVE old bank package and install/finish new storage package.
-05. Lots of other stuff!
-06. Finish the commands rewrite.
-07. Replace the include/attributes.inc with the installed /systems/attributes pkg
-	and script anything it might be missing.
-
