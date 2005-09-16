@@ -1,7 +1,6 @@
 //Example: .makeswarm [templateate] [radius] - Makes npcs on every tile in the radius around you.
 
 use uo;
-use util;
 use os;
 use util;
 
@@ -42,19 +41,21 @@ program MakeSwarm(who, text)
 	var end_x := who.x + CInt(radius);
 	var end_y := who.y + CInt(radius);
 
-	var x, y;
+	var x := start_x, y := start_y;
 	var created := 0;
 	
 	for ( x:=start_x; x<=end_x; x:=x+1 )
 		for ( y:=start_y; y<=end_y; y:=y+1 )
-			var npc := CreateNPCFromTemplate(template, x, y, who.z, who.realm);
+			var npc := CreateNPCFromTemplate(template, x, y, who.z, 0, who.realm);
 			if ( npc )
 				created := created+1;
+			elseif ( npc.errortext )
+				Print(npc.errortext);
 			endif
 			
 			sleepms(3);
 		endfor
 	endfor
 	
-	SendSysMessage(who, "Done making npc swarm. Created ["+created+"] npcs.");
+	SendSysMessage(who, "Done making npc swarm. Created ["+created+"] ["+template+"] npcs.");
 endprogram        
