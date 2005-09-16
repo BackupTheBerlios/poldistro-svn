@@ -24,6 +24,8 @@ ECHO  [ h ] - Build 'Malas' realm         (mapid=3)
 ECHO  [ i ] - Build 'Tokuno' realm        (mapid=4)
 ECHO  [ j ] - Build all realms - Takes a very long time!
 ECHO.
+ECHO  [ o ] - Copy needed client files to pol\MUL\
+ECHO.
 ECHO  [ x ] - Back
 
 SET /p CMD=Command:
@@ -38,6 +40,7 @@ IF /i "%CMD%" == "g" GOTO :REALM_ILSHENAR()
 IF /i "%CMD%" == "h" GOTO :REALM_MALAS()
 IF /i "%CMD%" == "i" GOTO :REALM_TOKUNO()
 IF /i "%CMD%" == "j" GOTO :BUILD_ALL_REALMS()
+IF /i "%CMD%" == "o" GOTO :COPY_CLIENT_FILES()
 
 IF "%CMD%" == "x" GOTO :QUIT()
 
@@ -134,6 +137,20 @@ REM -- BUILD_ALL_REALMS() FUNCTION
 %UOCNVRT_PATH% map     realm=tokuno mapid=4 usedif=1 width=1448 height=1448
 %UOCNVRT_PATH% statics realm=tokuno
 %UOCNVRT_PATH% maptile realm=tokuno
+GOTO :RETURN_TO_MENU()
+
+REM -- COPY_CLIENT_FILES() FUNCTION
+:COPY_CLIENT_FILES()
+SET /p UOPATH=Full path to UO directory:
+IF "%UOPATH%" == "" GOTO :RETURN_TO_MENU()
+IF NOT EXIST MUL\ MKDIR MUL
+@ECHO ON
+COPY %UOPATH%\multi.* MUL\
+COPY %UOPATH%\map* MUL\
+COPY %UOPATH%\staidx* MUL\
+COPY %UOPATH%\statics* MUL\
+COPY %UOPATH%\tiledata.mul MUL\
+@ECHO OFF
 GOTO :RETURN_TO_MENU()
 
 REM -- QUIT FUNCTION
