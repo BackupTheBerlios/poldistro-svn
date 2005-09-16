@@ -254,7 +254,7 @@ endfunction
 function GFWordWrap(text, pixels)
 	var wrap_lines := array{};
 	var word_list := SplitWords(text);
-	var num_words := word_list.size();
+	//var num_words := word_list.size();
 	
 	var space_size := GFTextWidth(" ");
 	
