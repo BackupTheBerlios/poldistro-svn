@@ -130,7 +130,7 @@ endfunction
  * Returns 1
  *
  */
-function GFOptimizeGump_A(byref gump)
+function GFOptimizeGump(byref gump)
 	//Arrays cant do [0] for page 0
 	var cur_page := 0;
 	var gump_pages := dictionary;
@@ -246,6 +246,8 @@ endfunction
  *
  * Parameters
  * gump_text:	The text to get the pixel width of.
+ *
+ * NOTE: This needs to be expanded to support fonts - and possibly be config driven?
  *
  * Return value
  * The width, in pixels, of the text's width on a gump.
