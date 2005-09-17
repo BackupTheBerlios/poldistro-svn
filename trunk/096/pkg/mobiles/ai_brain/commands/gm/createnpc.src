@@ -50,7 +50,7 @@ function SelectTemplateFromGump(who)
 	endif
 		
 	var category_names := GetCategoryNames();
-	input := GFSendGump(who, BuildNPCGump(category_names[input[0]]));
+	input := GFSendGump(who, RetrieveGump(category_names[input[0]]));
 	if ( !input )
 		SendSysMessage(who, "Cancelled");
 		return 0;
@@ -68,7 +68,6 @@ function RetrieveGump(category_name)
 		if ( !gump )
 			gump := BuildIndexGump();
 		endif
-		
 		return gump;
 	else
 		var data_elem := DFFindElement(g_datafile, category_name);
@@ -76,7 +75,6 @@ function RetrieveGump(category_name)
 		if ( !gump )
 			gump := BuildNPCGump(category_name);
 		endif
-		
 		return gump;
 	endif
 endfunction
