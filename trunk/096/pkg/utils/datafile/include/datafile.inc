@@ -7,6 +7,8 @@ use datafile;
 /*===============================================================
 * Current Version
 * DATAFILE.INC - v2.0
+* Updated 9/17/2005 5:04AM
+*
 * include ":datafile:include/datafile";
 *
 * -- Revision v2.0 --
@@ -86,7 +88,7 @@ var DF_DEBUG_MODE	:= 1;
 function DFOpenDataFile(file_name, create:=DF_NO_CREATE, flags:=DF_KEYTYPE_STRING)
 	var data_file := OpenDataFile(file_name);
 	if ( (!data_file) && (create) )
-		DF_OutPut("Creating data file: " + file_name);
+		DF_OutPut("Debug::DFOpenDataFile() - Creating data file: "+file_name);
 		CreateDataFile(file_name, flags);
 		data_file := OpenDataFile(file_name);
 	endif
@@ -94,8 +96,7 @@ function DFOpenDataFile(file_name, create:=DF_NO_CREATE, flags:=DF_KEYTYPE_STRIN
 	if ( data_file )
 		return data_file;
 	elseif ( create )
-		var errmsg := error;
-		errmsg.+errortext := "Could not open " + file_name + ":" + data_file.errortext;
+		var errmsg := error{"errortext":="Error::DFOpenDataFile() - Could not open "+file_name+" : "+data_file.errortext};
 		DF_OutPut(errmsg.errortext);
 		return errmsg;
 	endif
@@ -117,8 +118,7 @@ endfunction
 function DFGetElemNames(byref file_ref)
 	var elem_keys := file_ref.keys();
 	if ( elem_keys == error )
-		var errmsg := error;
-		errmsg.+errortext := "Could not return elem keys :"+elem_keys.errortext;
+		var errmsg := error{"errortext":="Error::DFGetElemNames() - Could not return elem keys :"+elem_keys.errortext};
 		DF_OutPut(errmsg.errortext);
 		return errmsg;
 	else
@@ -144,18 +144,17 @@ endfunction
  *
  */
 function DFFindElement(byref file_ref, elem_name, create:=DF_NO_CREATE)
-	var temp := file_ref.FindElement( cstr(elem_name) );
-	if (!temp && create)
-		DF_OutPut("Creating elem: " +  cstr(elem_name) );
-		file_ref.CreateElement( cstr(elem_name) );
-		temp := file_ref.FindElement( cstr(elem_name) );
+	var temp := file_ref.FindElement(CStr(elem_name));
+	if ( !temp && create )
+		DF_OutPut("Debug::DFFindElement() - Creating elem: "+CStr(elem_name));
+		file_ref.CreateElement(CStr(elem_name));
+		temp := file_ref.FindElement(CStr(elem_name));
 	endif
 
 	if ( temp )
 		return temp;
 	elseif (create)
-		var errmsg := error;
-		errmsg.+errortext := "Could not open data elem " + elem_name + ":" + temp.errortext;
+		var errmsg := error{"errortext":="Error::DFFindElement() - Could not open data elem ["+elem_name+"] - "+temp.errortext};
 		DF_OutPut(errmsg.errortext);
 		return errmsg;
 	endif
@@ -177,8 +176,7 @@ endfunction
 function DFGetElemProps(elem_ref)
 	var prop_names := elem_ref.PropNames();
 	if ( prop_names == error )
-		var errmsg := error;
-		errmsg.+errortext := "Could not return prop names :"+prop_names.errortext;
+		var errmsg := error{"errortext":="Error::DFGetElemProps() - Could not return prop names :"+prop_names.errortext};
 		DF_OutPut(errmsg.errortext);
 		return errmsg;
 	else
@@ -217,9 +215,8 @@ function DFGetProp(byref elem_ref, prop_name, create:=DF_NO_CREATE, assign_val:=
 		// what ever you get. Used for cases where the
 		// value is '0' but not an error.
 		return temp;
-	elseif (create)
-		var errmsg := error;
-		errmsg.+errortext := "Could not read data file property " + prop_name + ":" + temp.errortext;
+	elseif ( create )
+		var errmsg := error{"errortext":="Error::DFGetProp() - Could not read data file property "+prop_name+":"+temp.errortext};
 		DF_OutPut(errmsg.errortext);
 		return errmsg;
 	endif
@@ -245,12 +242,11 @@ endfunction
 //
 */
 function DFToCfg(df_name, cfg_name)
-	if ( lower(TypeOf(df_name))["string"] )
+	if ( Lower(TypeOf(df_name))["string"] )
 		df_name := DFOpenDataFile(df_name, DF_CREATE);
 	endif
-	if ( lower(TypeOf(cfg_name)) != "string" )
-		var errmsg := error;
-		errmsg.+errortext := "DFToCfg() cfg_name parameter passed was not a string.";
+	if ( Lower(TypeOf(cfg_name)) != "string" )
+		var errmsg := error{"errortext":="Error::DFToCfg() - cfg_name parameter passed was not a string."};
 		DF_OutPut(errmsg.errortext);
 		return errmsg;
 	endif
@@ -298,15 +294,14 @@ endfunction
 */
 function CfgToDF(cfg_name, df_name, propnames)
 	if ( propnames.size() < 1 )
-		var errmsg := error;
-		errmsg.+errortext := "CfgToDF() Size of linenames array is < 0";
+		var errmsg := error{"errortext":="Error::CfgToDF() - Size of propnames array is < 0"};
 		DF_OutPut(errmsg.errortext);
 		return errmsg;
 	endif
-	if ( lower(TypeOf(cfg_name))["string"] )
+	if ( Lower(TypeOf(cfg_name))["string"] )
 		cfg_name := ReadConfigFile(cfg_name);
 	endif
-	if ( lower(TypeOf(df_name))["string"] )
+	if ( Lower(TypeOf(df_name))["string"] )
 		df_name := DFOpenDataFile(df_name, DF_CREATE);
 	endif
 
@@ -322,6 +317,7 @@ function CfgToDF(cfg_name, df_name, propnames)
 				prop_value := array;
 				foreach line in GetConfigStringArray(elem, prop_name)
 					prop_value.Append(line);
+					sleepms(2);
 				endforeach
 			else
 				prop_value := entries[1];
