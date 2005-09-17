@@ -139,7 +139,7 @@ function SendMessage(who, name_text, is_reply:=0)
 				SendSysMessage(who, "Reminder: You have messages off.");
 				SendSysMessage(player, "Note: "+who.name+" has messages off. Use .msg reply.");
 			endif
-		elseif ( player.cmdlevel )
+		elseif ( player.cmdlevel < who.cmdlevel )
 			var rcvr_settings := GetMessageSettings(player);
 			if ( rcvr_settings.Exists("spy") )
 				SendSysMessage(player, "[MSG SpyMode] From:"+who.name+" To:"+name_text+": "+message_txt);
