@@ -93,13 +93,6 @@ function GetNamesList(who)
 		sleepms(2);
 	endforeach
 	
-	var i:=0;
-	for ( i:=0; i<=100; i:=i+1 )
-		var filler := "Z"+RandomFloat(50000);
-		the_list.Insert(filler, 0);
-		sleepms(2);
-	endfor
-
 	return the_list;
 endfunction
 
