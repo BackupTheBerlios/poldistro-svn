@@ -3,6 +3,11 @@
 * GUMPS_EX.INC - v0.2
 * include ":gumps:includes/gumps_ex";
 *
+* -- Revision v0.3 --
+* Austin
+* Added:
+*	GFOptimizeGump()
+*
 * -- Revision v0.2 --
 * Austin
 * Added:
@@ -32,6 +37,7 @@ include ":gumps:include/gumps";
 // * Function List *
 //
 // GFExtractData()
+// GFOptimizeGump()
 // GFTextCoords()
 // GFTextMid()
 // GFTextRight()
