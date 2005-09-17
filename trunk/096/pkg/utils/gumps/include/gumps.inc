@@ -104,7 +104,7 @@ const GF_DUMMY_BTN	:= 0x2;
  * The gump object.
  *
  */
-function GFCreateGump(x:=0, y:=0, width:=0, height:=0, optimize:=0)
+function GFCreateGump(x:=0, y:=0, width:=0, height:=0)
 	var gump := struct;
 
 	gump.+base := struct;
@@ -120,12 +120,6 @@ function GFCreateGump(x:=0, y:=0, width:=0, height:=0, optimize:=0)
 	gump.base.+MoveLoc := 0;	// Movable flag location
 	gump.base.+CloseLoc := 0;	// NoClose flag location
 	gump.base.+DisposeLoc := 0;	// NoDispose flag location
-
-	// Used to store the positions of where data will go for GFPage() entries.
-	// Ensures each page # only appears once.
-	gump.+optimize := CInt(optimize);
-	gump.+pagelocs := array;
-	gump.+cur_page := 0;
 
 	gump.+layout	:= array;	// Main layout array for entire gump
 	gump.+data	:= array;	// Storage array for static-text and
@@ -776,27 +770,4 @@ function XGFError(text)
 	SysLog("Gump Error:: "+text);
 
 	return temp;
-endfunction
-
-/*
- * XGAddToLayout(gump, text)
- *
- * Purpose
- * Internal function for adding to the layout array
- * and checking for optimizations.
- *
- * Parameters
- * gump:	Gump to add content to
- * text:	String to place in the layout array.
- *
- * Return value
- * Returns 1
- *
- */
-function XGFAddToLayout(byref gump, text)
-	if ( !gump.optimize )
-		(gump.layout).Append(text);
-	else
-		(gump.layout).Insert(gump.pagelocs[gump.curpage]+1, text);
-	endif
 endfunction

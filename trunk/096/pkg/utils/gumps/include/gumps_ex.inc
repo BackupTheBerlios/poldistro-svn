@@ -110,6 +110,55 @@ function GFExtractData(input, data_id)
 	return ret_val;
 endfunction
 
+/* 
+ * GFOptimizeGump(gump)
+ *
+ * Purpose
+ * Finds duplicate page number entries and combines their information.
+ *
+ * Parameters
+ * gump:	The gump to optimize
+ *
+ * Return value
+ * Returns 1
+ *
+ */
+function GFOptimizeGump_A(byref gump)
+	//Arrays cant do [0] for page 0
+	var cur_page := 0;
+	var gump_pages := dictionary;
+	gump_pages[0] := array;
+	
+	//Break the pages apart.
+	foreach entry in (gump.layout)
+		var l_entry := Lower(entry);
+		if ( l_entry[1, 5] == "page " )
+			var page_num := l_entry[6, Len(l_entry)];
+			if ( !gump_pages.Exists(page_num) )
+				gump_pages[page_num] := array;
+				cur_page := page_num;
+			else
+				cur_page := page_num;
+			endif
+		else
+			gump_pages[cur_page].Append(entry);
+		endif
+		sleepms(2);
+	endforeach
+	
+	//Put the gump back together again.
+	gump.layout := array; // Wipe it out
+	foreach page_array in (gump_pages)
+		foreach entry in (page_array)
+			(gump.layout).Append(entry);
+			sleepms(2);
+		endforeach
+		sleepms(2);
+	endforeach
+	
+	return 1;
+endfunction
+
 /*
  * GFTextCoords(type, gump_text, x_pos, width)
  *
