@@ -146,10 +146,10 @@ function GFOptimizeGump(byref gump)
 				cur_page := page_num;
 			else
 				cur_page := page_num;
+				continue;
 			endif
-		else
-			gump_pages[cur_page].Append(entry);
 		endif
+		gump_pages[cur_page].Append(entry);
 		sleepms(2);
 	endforeach
 	
