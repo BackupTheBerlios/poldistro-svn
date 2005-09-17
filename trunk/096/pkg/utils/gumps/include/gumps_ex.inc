@@ -1,6 +1,7 @@
 /*===============================================================
 * Current Version
-* GUMPS_EX.INC - v0.2
+* GUMPS_EX.INC - v0.3
+* Updated 9/17/2005 2:38AM
 * include ":gumps:includes/gumps_ex";
 *
 * -- Revision v0.3 --
