@@ -17,8 +17,6 @@ include ":gumps:include/gumps";
 include ":gumps:include/gumps_ex";
 include ":datafile:datafile";
 
-unload_scripts("");
-
 program command_Message(who, text)
 	if ( CommandIssued(who, text) )
 		return 1;
@@ -87,7 +85,7 @@ function GetNamesList(who)
 			//higher than who's command level, don't add that person.
 			continue;
 		else
-			the_list.Insert(person.name, 0);
+			the_list.Insert(person.name, person.serial);
 		endif
 		
 		sleepms(2);
