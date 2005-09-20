@@ -27,7 +27,7 @@ use uo;
  *
  */
 function AF_SetVitalRegenRate(mobile, vital_name, rate)
-	if ( !vital_name["Regeneration"] )
+	if ( !Lower(vital_name["regeneration"]) )
 		vital_name := vital_name+"Regeneration";
 	endif
 	

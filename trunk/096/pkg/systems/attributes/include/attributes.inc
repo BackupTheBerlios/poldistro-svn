@@ -43,3 +43,32 @@ function AF_GetAttributeCfgElem(attribute)
 	
 	return cfg_elem;
 endfunction
+
+/*
+ * AF_ListAttributesByType(type)
+ *
+ * Purpose
+ * Gets the name of all attributes of a certain type.
+ *
+ * Parameters
+ * Type:	String containing the type of attributes to list.
+ *
+ * Return value
+ * Returns an array
+ *
+ */
+function AF_ListAttributesByType(type)
+	type := Lower(type);
+	
+	var list := array;
+	var cfg := ReadConfigFile(":attributes:attributes");
+	foreach elem_name in ( GetConfigStringKeys(cfg) )
+		var elem_info := cfg[elem_name];
+		if ( Lower(elem_info.AttributeType) == type )
+			list.append(array);
+		endif
+		sleepms(2);
+	endforeach
+	
+	return list;
+endfunction

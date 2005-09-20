@@ -9,6 +9,36 @@
 ===============================================================*/
 
 use uo;
+use os;
+use cfgfile;
+
+
+/*
+ * AF_GetVitalCfgElem(vital)
+ *
+ * Purpose
+ * Retrieves a config elem for an vital in vitals.cfg
+ *
+ * Parameters
+ * attribute:	Name of the vital to get the elem of.
+ *
+ * Return value
+ * Returns a config file elem.
+ *
+ */
+function AF_GetVitalCfgElem(vital)
+	var cfg := ReadConfigFile(":attributes:vitals");
+	if ( cfg.errortext )
+		SysLog("Error::AF_GetVitalCfgElem() - Unable to open vitals.cfg ->"+cfg.errortext);
+	endif
+	
+	var cfg_elem := cfg[vital];
+	if ( cfg_elem.errortext )
+		SysLog("Error::AF_GetVitalsCfgElem() - unable to find cfg elem ["+vital+"] ->"+cfg_elem.errortext);
+	endif
+	
+	return cfg_elem;
+endfunction
 
 /*
  * AF_GetVital(mobile, vital_name)
@@ -81,4 +111,27 @@ endfunction
  */
 function AF_SetVital(mobile, vital_name, amount)
 	return SetVital(mobile, vital_name, CInt(CDbl(amount)*100.0));
+endfunction
+
+/*
+ * AF_RefreshVitals(mobile)
+ *
+ * Purpose
+ * Sets all vitals on a mobile to their maximum values.
+ *
+ * Parameters
+ * mobile:	Mobile to refresh.
+ *
+ * Return value
+ * Returns 1
+ *
+ */
+function AF_RefreshVitals(mobile)
+	var vital_cfg := ReadConfigFile(":attributes:vitals");
+	foreach elem_name in (vital_cfg)
+		AF_SetVital(mobile, elem_name, AF_GetVitalMaximumValue(mobile, elem_name));
+		sleepms(2);
+	endforeach
+
+	return 1;
 endfunction

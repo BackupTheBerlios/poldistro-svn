@@ -103,3 +103,21 @@ endfunction
 function AF_SetSkillMod(mobile, skill_name, points)
 	SetAttributeTemporaryMod(mobile, skill_name, CInt(CDbl(points) * 10.0));
 endfunction
+
+/*
+ * AF_SetSkillScript(attribute_name)
+ *
+ * Purpose
+ * Gets the script that a skill uses.
+ *
+ * Parameters
+ * attribute_name:	Name of the attribute to get the script for.
+ *
+ * Return value
+ * Returns a string.
+ *
+ */
+function GetSkillScript(attribute_name)
+	var cfg := AF_GetAttributeCfgElem(attribute_name);
+	return cfg.Script;
+endfunction
