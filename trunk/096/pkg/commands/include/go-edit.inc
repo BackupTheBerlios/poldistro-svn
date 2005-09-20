@@ -14,24 +14,24 @@ function Go_EditPublicLocation(who)
 
                         if ( edit_input[edit_update] )
                                 edit_name := GFExtractData(edit_input, edit_name);
-                                x_pos := CInt(GFExtractData(edit_input, x_pos));
-                                y_pos := CInt(GFExtractData(edit_input, y_pos));
-                                z_pos := CInt(GFExtractData(edit_input, z_pos));
+                                xg_pos := CInt(GFExtractData(edit_input, xg_pos));
+                                yg_pos := CInt(GFExtractData(edit_input, yg_pos));
+                                zg_pos := CInt(GFExtractData(edit_input, zg_pos));
 
                                 if ( !edit_name )
-                                        SendSysMessage(who, "Cancelled - No name entered");
-                                        return;
+                                        GumpPrompt(who, "Cancelled - No name entered");
+                                        return 0;
                                 elseif ( lower(edit_name) != send_Location.Name )
-                                        if ( go_prop_base.exists( Lower(edit_name) ) )
-                                                SendSysMessage(who, "Cancelled - location already exists with the name ["+edit_name+"]");
-                                                return;
+                                        if ( go_prop_base.Exists( Lower(edit_name) ) )
+                                                GumpPrompt(who, "Cancelled - location already exists with the name ["+edit_name+"]");
+                                                return 0;
                                         endif
                                 endif
 
                                 var original_Realm := send_Location.Realm;
                                 go_prop_base.erase(lower(send_Location.Name));
                                 go_elem.SetProp("base_Distro", go_prop_base);
-                                Go_SetLocation("base_Distro", who, edit_name, original_Realm, x_pos, y_pos, z_pos);
+                                Go_SetLocation("base_Distro", who, edit_name, original_Realm, xg_pos, yg_pos, zg_pos);
                                 SendSysMessage(who, "Updated ["+edit_name+"]");
                                 Go_RefreshMyGumps(who);
                         elseif ( edit_input[edit_delete] )
@@ -43,13 +43,15 @@ function Go_EditPublicLocation(who)
                                 SendSysMessage(who, "Cancelled");
                         endif
                 else
-                        SendSysMessage(who, "Location [" + send_Location.Name + "] does not exist.");
-                        return;
+                        GumpPrompt(who, "Location [" + send_Location.Name + "] does not exist.");
+                        return 0;
                 endif
         else
                 SendSysMessage(who, "Editing Cancelled");
-                return;
+                return 0;
         endif
+
+        return 0;
 
 endfunction
 
@@ -69,24 +71,24 @@ function Go_EditPrivateLocation(who)
 
                         if ( edit_input[edit_update] )
                                 edit_name := GFExtractData(edit_input, edit_name);
-                                x_pos := CInt(GFExtractData(edit_input, x_pos));
-                                y_pos := CInt(GFExtractData(edit_input, y_pos));
-                                z_pos := CInt(GFExtractData(edit_input, z_pos));
+                                xg_pos := CInt(GFExtractData(edit_input, xg_pos));
+                                yg_pos := CInt(GFExtractData(edit_input, yg_pos));
+                                zg_pos := CInt(GFExtractData(edit_input, zg_pos));
 
                                 if ( !edit_name )
-                                        SendSysMessage(who, "Cancelled - No name entered");
-                                        return;
+                                        GumpPrompt(who, "Cancelled - No name entered");
+                                        return 0;
                                 elseif ( lower(edit_name) != send_Location.Name )
-                                        if ( go_prop_base.exists( Lower(edit_name) ) )
-                                                SendSysMessage(who, "Cancelled - location already exists with the name ["+edit_name+"]");
-                                                return;
+                                        if ( go_prop_base.Exists( Lower(edit_name) ) )
+                                                GumpPrompt(who, "Cancelled - location already exists with the name ["+edit_name+"]");
+                                                return 0;
                                         endif
                                 endif
 
                                 var original_Realm := send_Location.Realm;
                                 go_prop.erase(lower(send_Location.Name));
                                 go_elem.SetProp(who.acctname, go_prop);
-                                Go_SetLocation(who.acctname, who, edit_name, original_Realm, x_pos, y_pos, z_pos);
+                                Go_SetLocation(who.acctname, who, edit_name, original_Realm, xg_pos, yg_pos, zg_pos);
                                 SendSysMessage(who, "Updated ["+edit_name+"]");
                                 Go_RefreshMyGumps(who);
                         elseif ( edit_input[edit_delete] )
@@ -98,13 +100,15 @@ function Go_EditPrivateLocation(who)
                                 SendSysMessage(who, "Cancelled");
                         endif
                 else
-                        SendSysMessage(who, "Location [" + send_Location.Name + "] does not exist.");
-                        return;
+                        GumpPrompt(who, "Location [" + send_Location.Name + "] does not exist.");
+                        return 0;
                 endif
         else
                 SendSysMessage(who, "Editing Cancelled");
-                return;
+                return 0;
         endif
+
+        return 0;
 
 endfunction
 
@@ -215,15 +219,15 @@ function Go_EditPublicLocationGump(send_Location)
 
         GFTextLine(gump, 20, 143, 2100, "X Coordinate");
         GFResizePic(gump, 120, 140, 2620, 100, 30);
-        x_pos := GFTextEntry(gump, 130, 145, 80, 25, 2100, send_Location.X);
+        xg_pos := GFTextEntry(gump, 130, 145, 80, 25, 2100, send_Location.X);
 
         GFTextLine(gump, 20, 166, 2100, "Y Coordinate");
         GFResizePic(gump, 120, 163, 2620, 100, 30);
-        y_pos := GFTextEntry(gump, 130, 168, 80, 25, 2100, send_Location.Y);
+        yg_pos := GFTextEntry(gump, 130, 168, 80, 25, 2100, send_Location.Y);
 
         GFTextLine(gump, 20, 189, 2100, "Z Coordinate");
         GFResizePic(gump, 120, 186, 2620, 100, 30);
-        z_pos := GFTextEntry(gump, 130, 191, 80, 25, 2100, send_Location.Z);
+        zg_pos := GFTextEntry(gump, 130, 191, 80, 25, 2100, send_Location.Z);
 
         return gump;
 
@@ -248,15 +252,15 @@ function Go_EditPrivateLocationGump(send_Location)
 
         GFTextLine(gump, 20, 143, 2100, "X Coordinate");
         GFResizePic(gump, 120, 140, 2620, 100, 30);
-        x_pos := GFTextEntry(gump, 130, 145, 80, 25, 2100, send_Location.X);
+        xg_pos := GFTextEntry(gump, 130, 145, 80, 25, 2100, send_Location.X);
 
         GFTextLine(gump, 20, 166, 2100, "Y Coordinate");
         GFResizePic(gump, 120, 163, 2620, 100, 30);
-        y_pos := GFTextEntry(gump, 130, 168, 80, 25, 2100, send_Location.Y);
+        yg_pos := GFTextEntry(gump, 130, 168, 80, 25, 2100, send_Location.Y);
 
         GFTextLine(gump, 20, 189, 2100, "Z Coordinate");
         GFResizePic(gump, 120, 186, 2620, 100, 30);
-        z_pos := GFTextEntry(gump, 130, 191, 80, 25, 2100, send_Location.Z);
+        zg_pos := GFTextEntry(gump, 130, 191, 80, 25, 2100, send_Location.Z);
 
         return gump;
 

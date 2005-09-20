@@ -17,6 +17,8 @@ function Go_CheckInit(who)
                 Go_RefreshGump("LocationIndex", "base_Distro");
         endif
 
+        return 0;
+
 endfunction
 
 function Go_RefreshMyGumps(who)
@@ -29,6 +31,6 @@ function Go_RefreshMyGumps(who)
         elem.EraseProp("base_Distro");
         elem.EraseProp(who.acctname);
 
-        SendSysMessage(who, "Your public and personal gumps have been refreshed.");
+        return 1;
 
 endfunction

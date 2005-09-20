@@ -5,23 +5,25 @@ function Go_AddPrivateLocation(who)
 
         if (!targ)
                 SendSysMessage(who, "Cancelled");
-                return;
+                return 0;
         endif
 
         var name := RequestInput(who, who.backpack, "What do you want to call this go location?");
 
         if ( !name )
                 SendSysMessage(who, "Cancelled");
-                return;
+                return 0;
         endif
 
         go_prop := go_elem.GetProp(who.acctname);
-        if ( go_prop.exists(lower(name)) )
-                SendSysMessage(who, "You already have a go location named ["+name+"]");
-                return;
+        if ( go_prop.Exists(lower(name)) )
+                GumpPrompt(who, "You already have a go location named ["+name+"]");
+                return 0;
         endif
 
         Go_SetLocation(who.acctname, who, name, targ.realm, targ.x, targ.y, targ.z);
+
+        return 0;
 
 endfunction
 
@@ -32,23 +34,25 @@ function Go_AddPublicLocation(who)
 
         if (!targ)
                 SendSysMessage(who, "Cancelled");
-                return;
+                return 0;
         endif
 
         var name := RequestInput(who, who.backpack, "What do you want to call this go location?");
 
         if ( !name )
                 SendSysMessage(who, "Cancelled");
-                return;
+                return 0;
         endif
 
         go_prop_base := go_elem.GetProp("base_Distro");
-        if ( go_prop_base.exists(lower(name)) )
-                SendSysMessage(who, "You already have a go location named ["+name+"]");
-                return;
+        if ( go_prop_base.Exists(lower(name)) )
+                GumpPrompt(who, "You already have a go location named ["+name+"]");
+                return 0;
         endif
 
         Go_SetLocation("base_Distro", who, name, targ.realm, targ.x, targ.y, targ.z);
+
+        return 0;
 
 endfunction
 
@@ -57,7 +61,6 @@ function Go_CopyPublicLocation(who)
         var gump := Go_RetrieveGump("CopyIndex", "base_Distro");
         num_keys := go_keys_base.size();
         if  ( !gump )
-                SendSysMessage(who, "Building go public copy gump...");
                 gump := Go_PublicCopyGump();
                 Go_SaveGump("CopyIndex", gump, "base_Distro");
         endif
@@ -70,23 +73,25 @@ function Go_CopyPublicLocation(who)
                 send_Location := go_prop_base[lower(go_keys_base[input])];
                 if ( send_Location )
                         go_prop_base := go_elem.GetProp("base_Distro");
-                        if ( go_prop.exists(lower(send_Location.Name)) )
-                                SendSysMessage(who, "You already have a go location named ["+send_Location.Name+"]");
-                                return;
+                        if ( go_prop.Exists(lower(send_Location.Name)) )
+                                GumpPrompt(who, "You already have a go location named ["+send_Location.Name+"]");
+                                return 0;
                         endif
                         SendSysMessage(who, "Copying [" + send_Location.Name + "] to your personal menu.");
                         Go_SetLocation(who.acctname, who, send_Location.Name, send_Location.Realm, send_Location.X, send_Location.Y, send_Location.Z);
-                        return;
+                        return 0;
                 else
-                        SendSysMessage(who, "Location [" + send_Location.Name + "] does not exist.");
+                        GumpPrompt(who, "Location [" + send_Location.Name + "] does not exist.");
                         Go_RefreshMyGumps(who);
-                        return;
+                        return 0;
                 endif
         else
                 SendSysMessage(who, "Copying Cancelled");
                 Go_RefreshMyGumps(who);
-                return;
+                return 0;
         endif
+
+        return 0;
 
 endfunction
 
@@ -95,7 +100,6 @@ function Go_CopyPrivateLocation(who)
         var gump := Go_RetrieveGump("CopyIndex", who.acctname);
         num_keys := go_keys.size();
         if  ( !gump )
-                SendSysMessage(who, "Building go private copy gump...");
                 gump := Go_PrivateCopyGump();
                 Go_SaveGump("CopyIndex", gump, who.acctname);
         endif
@@ -108,23 +112,25 @@ function Go_CopyPrivateLocation(who)
                 send_Location := go_prop[lower(go_keys[input])];
                 if ( send_Location )
                         go_prop := go_elem.GetProp(who.acctname);
-                        if ( go_prop_base.exists(lower(send_Location.Name)) )
-                                SendSysMessage(who, "You already have a public go location named ["+send_Location.Name+"]");
-                                return;
+                        if ( go_prop_base.Exists(lower(send_Location.Name)) )
+                                GumpPrompt(who, "You already have a public go location named ["+send_Location.Name+"]");
+                                return 0;
                         endif
                         SendSysMessage(who, "Copying [" + send_Location.Name + "] to the public menu.");
                         Go_SetLocation("base_Distro", who, send_Location.Name, send_Location.Realm, send_Location.X, send_Location.Y, send_Location.Z);
-                        return;
+                        return 0;
                 else
-                        SendSysMessage(who, "Location [" + send_Location.Name + "] does not exist.");
+                        GumpPrompt(who, "Location [" + send_Location.Name + "] does not exist.");
                         Go_RefreshMyGumps(who);
-                        return;
+                        return 0;
                 endif
         else
                 SendSysMessage(who, "Copying Cancelled");
                 Go_RefreshMyGumps(who);
-                return;
+                return 0;
         endif
+
+        return 0;
 
 endfunction
 
@@ -138,7 +144,7 @@ function Go_SetLocation(gump_Type, who, name, realm, x, y, z)
 
         var temp := dictionary;
         temp.+Name := lower(name);
-        temp.+Realm := realm;
+        temp.+Realm := lower(realm);
         temp.+X := x;
         temp.+Y := y;
         temp.+Z := z;
@@ -149,6 +155,8 @@ function Go_SetLocation(gump_Type, who, name, realm, x, y, z)
                    go_elem.SetProp(gump_Type, go_prop);
         endcase
         Go_RefreshMyGumps(who);
+
+        return 0;
 
 endfunction
 

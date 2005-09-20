@@ -1,6 +1,6 @@
 // Gump backgrounds - Used in various functions - easier to use globally.
-var BKGND_SILVERTRIM := GFCfgConst("BackGrounds", "SILVERTRIM");
-var BKGND_DARK_STONE := GFCfgConst("BackGrounds", "DARK_STONE");
+var BKGND_SILVERTRIM := GFCfgConst("Defaults", "BackGround");
+var BKGND_DARK_STONE := GFCfgConst("Defaults", "ForeGround");
 
 
 function Go_LocationIndex(who, gump_Type:="base_Distro")
@@ -12,7 +12,6 @@ function Go_LocationIndex(who, gump_Type:="base_Distro")
                 num_keys := go_keys.size();
         endif
         if  ( !gump )
-                SendSysMessage(who, "Building go index gump...");
                 if(gump_Type == "base_Distro")
                         gump := Go_PublicIndexGump();
                 else
@@ -26,25 +25,25 @@ function Go_LocationIndex(who, gump_Type:="base_Distro")
 
         case(input)
           0: SendSysMessage(who, "Closed");
-             return;
-          ADD_NEW_PUBLIC: Go_AddPublicLocation(who);
-                   return;
-          ADD_NEW_PRIVATE: Go_AddPrivateLocation(who);
-                   return;
-          COPY_PUBLIC_ITEM: Go_CopyPublicLocation(who);
-                   return;
-          COPY_PRIVATE_ITEM: Go_CopyPrivateLocation(who);
-                   return;
-          EDIT_PUBLIC_ITEM: Go_EditPublicLocation(who);
-                   return;
-          EDIT_PRIVATE_ITEM: Go_EditPrivateLocation(who);
-                   return;
-          SHOW_PUBLIC_INDEX: SetObjProperty(who, "#Go_Gump", 1);
-                             Go_LocationIndex(who);
-                   return;
+             return 0;
+          ADD_NEW_PUBLIC:     Go_AddPublicLocation(who);
+                              return 0;
+          ADD_NEW_PRIVATE:    Go_AddPrivateLocation(who);
+                              return 0;
+          COPY_PUBLIC_ITEM:   Go_CopyPublicLocation(who);
+                              return 0;
+          COPY_PRIVATE_ITEM:  Go_CopyPrivateLocation(who);
+                              return 0;
+          EDIT_PUBLIC_ITEM:   Go_EditPublicLocation(who);
+                              return 0;
+          EDIT_PRIVATE_ITEM:  Go_EditPrivateLocation(who);
+                              return 0;
+          SHOW_PUBLIC_INDEX:  SetObjProperty(who, "#Go_Gump", 1);
+                              Go_LocationIndex(who);
+                              return 0;
           SHOW_PRIVATE_INDEX: SetObjProperty(who, "#Go_Gump", 2);
                               Go_LocationIndex(who, who.acctname);
-                   return;
+                              return 0;
           default:
         endcase
 
@@ -59,7 +58,7 @@ function Go_LocationIndex(who, gump_Type:="base_Distro")
                         SendSysMessage(who, "Who do you want to send to " + send_Location.Name);
                         moved := target(who);
                         if (!moved)
-                                return;
+                                return 0;
                         endif
                 else
                         input := input - num_keys;
@@ -72,18 +71,25 @@ function Go_LocationIndex(who, gump_Type:="base_Distro")
                 if ( send_Location )
                         var move;
                         SendSysMessage(who, "Going to [" + send_Location.Name + "]");
-                        if ( moved.IsA(POLCLASS_ITEM) )
-                                move := MoveItemToLocation(moved, CInt(send_Location.X), CInt(send_Location.Y), CInt(send_Location.Z), MOVEITEM_FORCELOCATION);
+                        if( moved.realm == send_Location.Realm )
+                                if ( moved.IsA(POLCLASS_ITEM) )
+                                        move := MoveItemToLocation(moved, CInt(send_Location.X), CInt(send_Location.Y), CInt(send_Location.Z), MOVEITEM_FORCELOCATION);
+                                else
+                                        move := MoveCharacterToLocation(moved, CInt(send_Location.X), CInt(send_Location.Y), CInt(send_Location.Z), MOVECHAR_FORCELOCATION);
+                                endif
                         else
-                                move := MoveCharacterToLocation(moved, CInt(send_Location.X), CInt(send_Location.Y), CInt(send_Location.Z), MOVECHAR_FORCELOCATION);
+                                move := MoveObjectToRealm( who, send_Location.Realm, send_Location.X, send_Location.Y, send_Location.Z, MOVECHAR_FORCELOCATION );
                         endif
+
                         if ( TypeOf(move) != "Integer" )
-                                SendSysMessage(who, "Error moving: X[" + send_Location.X +"] Y[" + send_Location.Y + "] Z[" + send_Location.Z + "]");
+                                GumpPrompt(who, "Error moving: X[" + send_Location.X +"] Y[" + send_Location.Y + "] Z[" + send_Location.Z + "]");
                         endif
                 else
-                        SendSysMessage(who, "Location [" + send_Location.Name + "] does not exist.");
+                        GumpPrompt(who, "Location [" + send_Location.Name + "] does not exist.");
                 endif
         endif
+
+        return 0;
 
 endfunction
 
