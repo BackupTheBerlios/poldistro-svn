@@ -1,6 +1,6 @@
 /*===============================================================
 * Current Version
-* SKILLS.INC - v1.0
+* REGEN.INC - v1.0
 * Updated 9/20/2005 4:09PM
 *
 * -- Revision v1.0 --
