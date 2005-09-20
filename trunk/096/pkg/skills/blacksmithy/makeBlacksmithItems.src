@@ -1,3 +1,4 @@
+use polsys;
 use cfgfile;
 use util;
 
@@ -521,54 +522,11 @@ function ComposeSubMenu(who)
 endfunction
 
 function GFButtonIDC(x, y, release, press, close, retval)
-	var line := "button " + CStr(gfref.x + CInt(x)) + " " + CStr(gfref.y + CInt(y));
-	line := line + " " + CStr(CInt(release)) + " " + CStr(CInt(press)) + " ";
-	line := line + CStr(CInt(close)) + " 0 ";
-	line := line + CStr(CInt(retval));
-	gflayout.append( line );
-endfunction
-
-function repair_this(who)
-  SendSysMessage(who, "Select an item to repair.");
-  var use_on := Target(who);
-  if(!can_access(who, use_on))
-    return;
-  endif
-  if(use_on.movable == 0)
-    SendSysMessage(who, "You cannot repair that.");
-    return;
-  endif
-  if(!Accessible(who, use_on))
-    SendSysMessage(who, "You cannot reach that.");
-    return;
-  elseif(dist(who, use_on) > 2)
-    SendSysMessage(who, "That is too far away.");
-    return;
-  endif
-  if(is_weapon_armor(use_on.objtype))
-    var near_items := ListItemsNearLocation(who.x, who.y, who.z,3, who.realm);
-    foreach item in near_items
-      if ((item.objtype == UOBJ_ANVIL1) || (item.objtype == UOBJ_ANVIL2))
-        repair_item( who, use_on, SKILLID_BLACKSMITHY );
-        return;
-      endif
-    endforeach
-    SendSysMessage( who, "You must be near an anvil to repair items!" );
-    return;
-  else
-    SendSysMessage(who, "You cannot repair that.");
-  endif
-  return;
-endfunction
-
-function is_weapon_armor(what)
-  var elem := FindConfigElem(itemcfg, what);
-  var repairable := GetConfigInt(elem,"repairable");
-  if (repairable == 1)
-    return 1;
-  else
-    return 0;
-  endif
+        var line := "button " + CStr(gfref.x + CInt(x)) + " " + CStr(gfref.y + CInt(y));
+        line := line + " " + CStr(CInt(release)) + " " + CStr(CInt(press)) + " ";
+        line := line + CStr(CInt(close)) + " 0 ";
+        line := line + CStr(CInt(retval));
+        gflayout.append( line );
 endfunction
 
 function makeBlacksmithItems(who, what, amt, cont, hammer)
@@ -598,7 +556,7 @@ function makeBlacksmithItems(who, what, amt, cont, hammer)
   var ptmod := 0;
   case(use_on.objtype)
     0x6309: is_ingot := 1; ptmod := 0;
-	0x630a: is_ingot := 1; ptmod := 5;
+        0x630a: is_ingot := 1; ptmod := 5;
     0x630b: is_ingot := 1; ptmod := 5;
     0x630c: is_ingot := 1; ptmod := 10;
     0x630d: is_ingot := 1; ptmod := 10;
@@ -670,7 +628,7 @@ function makeBlacksmithItems(who, what, amt, cont, hammer)
           if(!theitem.isa(POLCLASS_WEAPON))
             case(use_on.objtype)
               0x6309:   nme := ""             + itemname; theitem.color := 0x0;
-	          0x630a:   nme := "dull copper " + itemname; theitem.color := 0x8415;
+                  0x630a:   nme := "dull copper " + itemname; theitem.color := 0x8415;
               0x630b:   nme := "shadow "      + itemname; theitem.color := 0x8455;
               0x630c:   nme := "copper "      + itemname; theitem.color := 0x845e;
               0x630d:   nme := "bronze "      + itemname; theitem.color := 0x86b2;
@@ -785,7 +743,7 @@ endfunction
 function checkSkillForDifferentMetals(who, ingot)
   case( ingot.objtype )
     0x6309:   return(checkHisSkill(who,  0));
-	0x630a:   return(checkHisSkill(who, 65));
+        0x630a:   return(checkHisSkill(who, 65));
     0x630b:   return(checkHisSkill(who, 70));
     0x630c:   return(checkHisSkill(who, 75));
     0x630d:   return(checkHisSkill(who, 80));
@@ -803,78 +761,5 @@ function checkHisSkill(who, skill)
     return 1;
   else
     return 0;
-  endif
-endfunction
-
-function resmelt(who, tongs)
-  var near_items := ListItemsNearLocation(who.x, who.y, who.z, 3, who.realm);
-  var forge_near := 0;
-  foreach forge in near_items
-    if((forge.objtype == 0xfb1) || ((forge.objtype >= 0x197a) && (forge.objtype <= 0x19a9)))
-      forge_near := 1;
-      break;
-    endif
-  endforeach
-  if(forge_near == 0)
-    SendSysMessage(who, "You must be near a forge to re-smelt items.");
-    return;
-  endif
-  SendSysMessage(who, "Select the item you wish to melt down.");
-  var use_on := Target(who, TGTOPT_CHECK_LOS);
-  if(!use_on)
-	SendSysMessage(who, "Targetting cancelled.");
-	return;
-  endif
-  if(!can_access(who, use_on))
-    SendSysMessage(who, "You cannot use that.");
-    return;
-  endif
-  if(!Accessible(who, use_on) || !ReserveItem( use_on ))
-    SendSysMessage(who, "You cannot use that.");
-    return;
-  endif
-  if(use_on.container != who.backpack)
-	SendSysMessage(who, "You can only melt items stored in the top level of your backpack.");
-	return;
-  endif
-  var skill := smith_cfg[use_on.objtype]."skill";
-  var amt := CInt(smith_cfg[use_on.objtype]."material");
-  if((!skill) || (!amt))
-    SendSysMessage(who, "You cannot resmelt that.");
-    return;
-  endif
-  amt := CInt((amt * GetEffectiveSkill(who,SKILLID_BLACKSMITHY) * 75 ) / 10000);
-  if(amt < 1)
-	amt := 1;
-  endif
-  var itemcfg := ReadConfigFile(":mining:itemdesc");
-  if(!itemcfg)
-	return;
-  endif
-  var elemcol;
-  var ingot := -1;
-  var color := use_on.color;
-  var valid_ingot := { 0x6309, 0x630a, 0x630b, 0x630c, 0x630d, 0x630e, 0x630f, 0x6310, 0x6311 };
-  foreach entry in valid_ingot
-    elemcol := itemcfg[entry]."Color";
-	if(color == elemcol)
-	  ingot := entry;
-	  break;
-	endif
-  endforeach
-  if(ingot == -1)
-	PrintTextAbovePrivate(use_on, "You can't melt this metal down!", who);
-	return;
-  endif
-  PlaySoundEffect(who, 0x2c);
-  sleep(1);
-  if(DestroyItem(use_on))
-	if(CheckSkill(who, SKILLID_BLACKSMITHY, skill, 10))
-	  SendSysMessage(who, "You manage to get a bit of material out of that.");
-	  CreateItemInBackpack(who, ingot, amt);
-	else
-	  SendSysMessage(who, "You fail, and destroy the item.");
-	endif
-    return;
   endif
 endfunction

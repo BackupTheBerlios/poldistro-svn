@@ -13,12 +13,6 @@ include "include/canAccess";
 include "include/toolWear";
 include "include/noto";
 
-const UOBJ_SEWING_KIT   := 0x0f9d;
-const UOBJ_BOLT_START   := 0x0f95;
-const UOBJ_BOLT_END     := 0x0f9c;
-const UOBJ_CLOTH_STARTS := 0x175d;
-const UOBJ_CLOTH_END    := 0x1768;
-const UOBJ_MUTLI_CLOTH  := 0x1766;
 const SCISSORS_SOUND    := 0x0249;
 
 var itemcfg          := ReadConfigFile( "itemdesc" );

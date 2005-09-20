@@ -18,8 +18,6 @@ include "include/noto";
 // These entries are unnecessary?  - HellRazor 19 Nov 02
 // var itemcfg   := ReadConfigFile(":combat:itemdesc");
 // var smith_cfg := ReadConfigFile("blacksmithy");
-var UOBJ_BOLT_START   := 0x0f95;
-var UOBJ_BOLT_END     := 0x0f9c;
 gfref.x := 50;
 gfref.y := 50;
 var O := 501;
