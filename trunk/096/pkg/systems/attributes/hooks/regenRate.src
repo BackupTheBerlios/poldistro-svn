@@ -24,7 +24,7 @@ endprogram
 // Hit Point Functions
 // *****
 exported function GetHitsRegenRate(mobile)
-	return 1200;
+	return 1200 + CInt(GetAttribute(mobile, "HitsRegeneration"));
 endfunction
 
 exported function GetHitsMaximumValue(mobile)
@@ -43,7 +43,7 @@ endfunction
 // Mana Functions
 // *****
 exported function GetManaRegenRate(mobile)
-	return 1200;
+	return 1200 + CInt(GetAttribute(mobile, "ManaRegeneration"));
 endfunction
 
 exported function GetManaMaximumValue(mobile)
@@ -54,7 +54,7 @@ endfunction
 // Stamina Functions
 // *****
 exported function GetStaminaRegenRate(mobile)
-	return 1200;
+	return 1200 + CInt(GetAttribute(mobile, "StaminaRegeneration"));
 endfunction
 
 exported function GetStaminaMaximumValue(mobile)
