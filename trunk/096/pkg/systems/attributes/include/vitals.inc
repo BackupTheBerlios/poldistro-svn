@@ -128,7 +128,7 @@ endfunction
  */
 function AF_RefreshVitals(mobile)
 	var vital_cfg := ReadConfigFile(":attributes:vitals");
-	foreach elem_name in (vital_cfg)
+	foreach elem_name in GetConfigStringKeys(vital_cfg)
 		AF_SetVital(mobile, elem_name, AF_GetVitalMaximumValue(mobile, elem_name));
 		sleepms(2);
 	endforeach
