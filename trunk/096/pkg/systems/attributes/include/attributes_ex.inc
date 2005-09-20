@@ -27,7 +27,7 @@ include ":attributes:include/attributes";
 function AF_IDToAttributeName(skill_number)
 	var skills_cfg := ReadConfigFile(":attributes:uoskills");
 	if ( skills_cfg.errortext )
-		SysLog("Error::AF_IDToAttributeName() - Unable to open :*:skills.cfg ->"+skills_cfg.errortext);
+		SysLog("Error::AF_IDToAttributeName() - Unable to open :attributes:uoskills.cfg ->"+skills_cfg.errortext);
 	endif
 	
 	var cfg_elem := skills_cfg[skill_number];
@@ -35,11 +35,11 @@ function AF_IDToAttributeName(skill_number)
 		SysLog("Error::AF_IDToAttributeName() - unable to find cfg elem ["+skill_number+"] ->"+cfg_elem.errortext);
 	endif
 	
-	return cfg_elem.Name;
+	return cfg_elem.Attribute;
 endfunction
 
 /*
- * AF_AttributeNameToSkillID(skill_number)
+ * AF_AttributeNameToSkillID(attribute_name)
  *
  * Purpose
  * Gets the skill number (ID) that an attribute name is associated with.
