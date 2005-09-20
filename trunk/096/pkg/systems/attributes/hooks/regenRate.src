@@ -1,0 +1,61 @@
+/*===============================================================
+* Current Version
+* regenRates.src
+* Updated 9/20/2005 12:20PM
+*
+* -- Revision v1.0 --
+* Austin:
+*  Created file
+===============================================================*/
+use uo;
+
+include ":attributes:include/attributes";
+include ":ai_brain:include/npcUtil";
+
+program Install()
+	print("INSTALLED: Exported Vital - RegenRate and MaxValue functions... ok.");
+	return 1;
+endprogram
+
+
+
+// *****
+// Hit Point Functions
+// *****
+exported function GetHitsRegenRate(mobile)
+	return 1200;
+endfunction
+
+exported function GetHitsMaximumValue(mobile)
+	var max_hits := GetAttribute(mobile, "Strength") * 100;
+	if ( mobile.npctemplate )
+		var npc_cfg := NPC_GetNPCConfig(mobile.npctemplate);
+		if ( npc_cfg.HITS )
+			max_hits := npc_cfg.HITS * 100;
+		endif
+	endif
+		
+	return max_hits;
+endfunction
+
+// *****
+// Mana Functions
+// *****
+exported function GetManaRegenRate(mobile)
+	return 1200;
+endfunction
+
+exported function GetManaMaximumValue(mobile)
+    return GetAttribute(mobile, "Mana") * 100;
+endfunction
+
+// *****
+// Stamina Functions
+// *****
+exported function GetStaminaRegenRate(mobile)
+	return 1200;
+endfunction
+
+exported function GetStaminaMaximumValue(mobile)
+	return GetAttribute(mobile, "Stamina") * 100;
+endfunction

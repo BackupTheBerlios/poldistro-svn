@@ -26,9 +26,16 @@ include ":attributes:include/attributes";
  */
 function AF_IDToAttributeName(skill_number)
 	var skills_cfg := ReadConfigFile(":*:skills");
-	var cfg_elem := skills_cfg[skill_number];
+	if ( skills_cfg.errortext )
+		SysLog("Error::AF_IDToAttributeName() - Unable to open :*:skills.cfg ->"+skills_cfg.errortext);
+	endif
 	
-	return elem.Name;
+	var cfg_elem := skills_cfg[skill_number];
+	if ( cfg_elem.errortext )
+		SysLog("Error::AF_IDToAttributeName() - unable to find cfg elem ["+skill_number+"] ->"+cfg_elem.errortext);
+	endif
+	
+	return cfg_elem.Name;
 endfunction
 
 /*
@@ -46,7 +53,7 @@ endfunction
  *
  */
 function AF_AttributeNameToSkillID(attribute_name)
-	var cfg_elem := AF_GetAttributeElem(attribute_name);
+	var cfg_elem := AF_GetAttributeCfgElem(attribute_name);
 	
 	return cfg_elem.SkillId;
 endfunction

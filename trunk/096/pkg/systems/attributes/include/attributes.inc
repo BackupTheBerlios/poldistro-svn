@@ -10,6 +10,7 @@
 
 use uo;
 use os;
+use cfgfile;
 
 include ":attributes:include/regen";
 include ":attributes:include/skills";
@@ -32,12 +33,12 @@ include ":attributes:include/vitals";
 function AF_GetAttributeCfgElem(attribute)
 	var cfg := ReadConfigFile(":attributes:attributes");
 	if ( cfg.errortext )
-		SysLog("Error::GetAttributeCfgElem() - Unable to open attributes.cfg ->"+cfg.errortext);
+		SysLog("Error::AF_GetAttributeCfgElem() - Unable to open attributes.cfg ->"+cfg.errortext);
 	endif
 	
 	var cfg_elem := cfg[attribute];
 	if ( cfg_elem.errortext )
-		SysLog("Error::GetAttributeCfgElem() - in attributes.cfg ->"+cfg_elem.errortext);
+		SysLog("Error::AF_GetAttributeCfgElem() - unable to find cfg elem ["+attribute+"] ->"+cfg_elem.errortext);
 	endif
 	
 	return cfg_elem;
