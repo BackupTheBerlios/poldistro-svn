@@ -60,7 +60,7 @@ endfunction
  * Returns an integer.
  *
  */
-function GetVitalRegenRate(mobile, vital_name)
+function AF_GetVitalRegenRate(mobile, vital_name)
 	return GetVitalRegenRate(mobile, vital_name);
 endfunction
 
