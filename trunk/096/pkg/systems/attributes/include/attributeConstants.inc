@@ -6,10 +6,10 @@
  */
 use uo;
 
-enum ATTRIBUTE_CUSTOM
-	ATTRIBUTE_HITS_REGENERATION         := "HitsRegeneration",
-	ATTRIBUTE_MANA_REGENERATION         := "ManaRegeneration",
-	ATTRIBUTE_STAMINA_REGENERATION      := "StaminaRegeneration"
+enum VITALS
+	VITAL_HITS         := "HitsRegeneration",
+	VITAL_MANA         := "ManaRegeneration",
+	VITAL_STAMINA      := "StaminaRegeneration"
 endenum
 
 enum ATTRIBUTE_STATS
