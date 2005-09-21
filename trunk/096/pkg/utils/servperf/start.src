@@ -1,3 +1,3 @@
 use os;
 
-start_script( "recbandwidth" );
+start_script( "recBandwidth" );
