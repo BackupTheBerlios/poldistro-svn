@@ -12,7 +12,6 @@ use uo;
 use os;
 use cfgfile;
 
-
 /*
  * AF_GetVitalCfgElem(vital)
  *

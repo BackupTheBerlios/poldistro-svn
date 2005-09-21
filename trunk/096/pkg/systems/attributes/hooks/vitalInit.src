@@ -1,0 +1,108 @@
+/*===============================================================
+* Current Version
+* regenRates.src
+* Updated 9/20/2005 12:20PM
+*
+* -- Revision v1.0 --
+* Austin:
+*  Created file
+===============================================================*/
+use uo;
+use util;
+
+include ":attributes:include/attributes";
+include ":ai_brain:include/npcUtil";
+include ":config:include/config";
+
+program Install()
+	print("INSTALLED: Exported Vital - RegenRate and MaxValue functions... ok.");
+	return 1;
+endprogram
+
+
+
+// *****
+// Hit Point Functions
+// *****
+exported function GetHitsRegenRate(mobile)
+	return 1200 + AF_GetVitalRegenRateMod(mobile, "hits");
+endfunction
+
+exported function GetHitsMaximumValue(mobile)
+	var vital_points := GetNPCVitalSetting(mobile, "HITS");
+	if ( !vital_points )
+		vital_points := GetAttribute(mobile, "Strength") * 100;
+	endif
+
+	return vital_points;
+endfunction
+
+// *****
+// Mana Functions
+// *****
+exported function GetManaRegenRate(mobile)
+	return 1200 + AF_GetVitalRegenRateMod(mobile, "mana");
+endfunction
+
+exported function GetManaMaximumValue(mobile)
+	var vital_points := GetNPCVitalSetting(mobile, "MANA");
+	if ( !vital_points )
+		vital_points := GetAttribute(mobile, "Intelligence") * 100;
+	endif
+
+	return vital_points;
+endfunction
+
+// *****
+// Stamina Functions
+// *****
+exported function GetStaminaRegenRate(mobile)
+	return 1200 + AF_GetVitalRegenRateMod(mobile, "stamina");
+endfunction
+
+exported function GetStaminaMaximumValue(mobile)
+	var vital_points := GetNPCVitalSetting(mobile, "STAM");
+	if ( !vital_points )
+		vital_points := GetAttribute(mobile, "Dexterity") * 100;
+	endif
+
+	return vital_points;
+endfunction
+
+// *****
+// Private Function for NPC stuff
+// *****
+function GetNPCVitalSetting(mobile, vital)
+	if ( !mobile.npctemplate )
+		return 0;
+	endif
+	
+	var value := 0;
+
+	// CProp used if NPC had dice settings - so they dont change over and over.
+	var vital_settings := GetObjProperty(mobile, "%NPC_Vitals%");
+	if ( vital_settings.Exists(vital) )
+		value := vital_settings[vital];
+	else
+		// No prior setup took place - get information from the npcdesc.cfg
+		var npc_cfg := NPC_GetNPCConfig(mobile.npctemplate);
+		value := GetConfigString(npc_cfg, vital);
+
+		if ( !value )
+			return 0;
+		endif
+
+		if ( value["d"] ) // Dice
+			value := RandomDiceRoll(value);
+			if ( Lower(TypeOf(vital_settings)) != "dictionary" )
+				vital_settings := dictionary;
+			endif
+			vital_settings[vital] := value;
+			SetObjProperty(mobile, "%NPC_Vitals%", vital_settings);
+		else
+			value := CInt(value);
+		endif
+	endif
+
+	return (value * 100);
+endfunction
