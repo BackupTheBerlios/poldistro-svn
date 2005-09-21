@@ -105,5 +105,7 @@ function AF_SaveVitalRegenRateProp(mobile, byref regen_prop)
 		return error{"errortext":="Regen prop must be a dictionary."};
 	endif
 	
+	RecalcVitals(mobile);
+	
 	return SetObjProperty(mobile, "%RegenRates%", regen_prop);
 endfunction
