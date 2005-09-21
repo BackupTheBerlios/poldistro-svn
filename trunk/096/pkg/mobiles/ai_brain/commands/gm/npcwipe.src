@@ -5,7 +5,7 @@ use polsys;
 
 include ":gumps:include/requestgump";
 
-program cmd_npcwipe(who, text)
+program cmd_npcwipe(who)
 	Set_Priority(100);
 	
 	var realm_name := RequestGump(who, "Enter the realm name to perform the wipe on.", "", who.realm);
