@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 //  name:    go.src - Staff Textcommand
-//  version: 2.0b
+//  version: 2.0c
 //  author:  MuadDib
 //
 //  Purpose: Lists and Gumps are now cached via DataFiles instead of Config files. Initial use of
@@ -25,8 +25,6 @@
 //              line, it will auto move you to that location.
 //           Refresh. If you pass the word "refresh" on the command line, it will refresh all the
 //              gumps for your private gumps, and the main gump.
-//
-//  To-Do:   Optimize gump functions within includes.
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 use polsys;
@@ -75,34 +73,34 @@ var xg_pos;
 var yg_pos;
 var zg_pos;
 
-program textcmd_go( who, text )
+program command_go( who, text )
 
-        Go_CheckInit(who);
+	Go_CheckInit(who);
 
-        // See if there is an element in the DataFile that matches their
-        // account name.
-        go_prop := go_elem.GetProp( who.acctname );
+	// See if there is an element in the DataFile that matches their
+	// account name.
+	go_prop := go_elem.GetProp( who.acctname );
 
-        // If there is no Element in the DataFile that matches their account name
-        // let's create it now.
-        if ( !go_prop )
-                var temp := dictionary;
-                go_elem.SetProp(who.acctname, temp);
-                go_prop  := go_elem.GetProp(who.acctname);
-        endif
+	// If there is no Element in the DataFile that matches their account name
+	// let's create it now.
+	if ( !go_prop )
+		var temp := dictionary;
+		go_elem.SetProp(who.acctname, temp);
+		go_prop  := go_elem.GetProp(who.acctname);
+	endif
 
-        go_keys  := go_prop.keys();
+	go_keys  := go_prop.keys();
 
-        if( Go_Parse_Text(who, text) )
-                return 0;
-        endif
+	if( Go_Parse_Text(who, text) )
+		return 0;
+	endif
 
-        var gump_Open := GetObjProperty(who, "#Go_Gump");
-        case(gump_Open)
-          1: Go_LocationIndex(who);
-          2: Go_LocationIndex(who, who.acctname);
-          default: Go_LocationIndex(who);
-        endcase
+	var gump_Open := GetObjProperty(who, "#Go_Gump");
+	case(gump_Open)
+		1: Go_LocationIndex(who);
+		2: Go_LocationIndex(who, who.acctname);
+		default: Go_LocationIndex(who);
+	endcase
 
 
 endprogram
