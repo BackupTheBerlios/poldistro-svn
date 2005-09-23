@@ -24,7 +24,7 @@ function SSGetSettingsCfgFile(engine_name:="")
 	var cfg := ReadConfigFile(":spawnsystem:config/settings");
 
 	if ( cfg.errortext )
-		SysLog("Error - Unable to open "+cfg_path+".cfg ->"+cfg.errortext);
+		SysLog("Error::SSGetSettingsCfgFile() - Unable to open "+cfg_path+".cfg ->"+cfg.errortext);
 	endif
 
 	return cfg;
@@ -49,7 +49,7 @@ function SSGetSettingsCfgElem(cfg_file, elem_name)
 	var elem := cfg[elem_name];
 
 	if ( elem.errortext )
-		SysLog("Error - Unable to find elem ["+elem_name+"] in "+cfg_file.name+" ->"+elem.errortext);
+		SysLog("Error::SSGetSettingsCfgElem() - Unable to find elem ["+elem_name+"] in "+cfg_file.name+" ->"+elem.errortext);
 	endif
 
 	return elem;

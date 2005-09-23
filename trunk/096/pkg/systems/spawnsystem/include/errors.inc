@@ -7,22 +7,18 @@ CONST SPAWN_ERROR_SYSLOG	:= 2;
 CONST SPAWN_ERROR_BROADCAST	:= 4;
 
 function SSErrorReport(error_text, err_report:=SPAWN_ERROR_DISABLE)
-	var do_print := err_report & SPAWN_ERROR_PRINT;
-	var do_syslog := err_report & SPAWN_ERROR_SYSLOG;
-	var do_broadcast := err_report & SPAWN_ERROR_BROADCAST;
-	
-	if ( do_print )
-		Print("Error - Spawn System ["+error_text+"]");
+		if ( err_report & SPAWN_ERROR_PRINT )
+		Print(""+error_text);
 	endif
 	
-	if ( do_syslog )
-		SysLog("Error - Spawn System ["+error_text+"]");
+	if ( err_report & SPAWN_ERROR_SYSLOG )
+		SysLog(""+error_text);
 	endif
 	
-	if ( do_broadcast )
+	if ( err_report & SPAWN_ERROR_BROADCAST )
 		foreach mobile in EnumerateOnlineCharacters()
 			if ( mobile.cmdlevel )
-				SendSysMessage(mobile, "Error - Spawn System ["+error_text+"]");
+				SendSysMessage(mobile, ""+error_text);
 			endif
 			sleepms(5);
 		endforeach
