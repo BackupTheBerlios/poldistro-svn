@@ -18,7 +18,7 @@ include ":attributes:include/stats";
 include ":attributes:include/vitals";
 
 /*
- * attributes_GetAttributeCfgElem(attribute)
+ * AP_GetAttributeCfgElem(attribute)
  *
  * Purpose
  * Retrieves a config elem for an attribute in attributes.cfg
@@ -30,22 +30,22 @@ include ":attributes:include/vitals";
  * Returns a config file elem.
  *
  */
-function attributes_GetAttributeCfgElem(attribute)
+function AP_GetAttributeCfgElem(attribute)
 	var cfg := ReadConfigFile(":attributes:attributes");
 	if ( cfg.errortext )
-		SysLog("Error::attributes_GetAttributeCfgElem() - Unable to open attributes.cfg ->"+cfg.errortext);
+		SysLog("Error::AP_GetAttributeCfgElem() - Unable to open attributes.cfg ->"+cfg.errortext);
 	endif
 	
 	var cfg_elem := cfg[attribute];
 	if ( cfg_elem.errortext )
-		SysLog("Error::attributes_GetAttributeCfgElem() - unable to find cfg elem ["+attribute+"] ->"+cfg_elem.errortext);
+		SysLog("Error::AP_GetAttributeCfgElem() - unable to find cfg elem ["+attribute+"] ->"+cfg_elem.errortext);
 	endif
 	
 	return cfg_elem;
 endfunction
 
 /*
- * attributes_ListAttributesByType(type)
+ * AP_ListAttributesByType(type)
  *
  * Purpose
  * Gets the name of all attributes of a certain type.
@@ -57,7 +57,7 @@ endfunction
  * Returns an array
  *
  */
-function attributes_ListAttributesByType(type)
+function AP_ListAttributesByType(type)
 	type := Lower(type);
 	
 	var list := array;

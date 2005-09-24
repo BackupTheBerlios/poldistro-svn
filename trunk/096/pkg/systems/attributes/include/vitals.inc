@@ -13,7 +13,7 @@ use os;
 use cfgfile;
 
 /*
- * attributes_GetVitalCfgElem(vital)
+ * AP_GetVitalCfgElem(vital)
  *
  * Purpose
  * Retrieves a config elem for an vital in vitals.cfg
@@ -25,22 +25,22 @@ use cfgfile;
  * Returns a config file elem.
  *
  */
-function attributes_GetVitalCfgElem(vital)
+function AP_GetVitalCfgElem(vital)
 	var cfg := ReadConfigFile(":attributes:vitals");
 	if ( cfg.errortext )
-		SysLog("Error::attributes_GetVitalCfgElem() - Unable to open vitals.cfg ->"+cfg.errortext);
+		SysLog("Error::AP_GetVitalCfgElem() - Unable to open vitals.cfg ->"+cfg.errortext);
 	endif
 	
 	var cfg_elem := cfg[vital];
 	if ( cfg_elem.errortext )
-		SysLog("Error::attributes_GetVitalsCfgElem() - unable to find cfg elem ["+vital+"] ->"+cfg_elem.errortext);
+		SysLog("Error::AP_GetVitalsCfgElem() - unable to find cfg elem ["+vital+"] ->"+cfg_elem.errortext);
 	endif
 	
 	return cfg_elem;
 endfunction
 
 /*
- * attributes_GetVital(mobile, vital_name)
+ * AP_GetVital(mobile, vital_name)
  *
  * Purpose
  * Retrieves the number of vital points a mobile has.
@@ -53,12 +53,12 @@ endfunction
  * Returns a double.
  *
  */
-function attributes_GetVital(mobile, vital_name)
+function AP_GetVital(mobile, vital_name)
 	return (GetVital(mobile, vital_name) / 100);
 endfunction
 
 /*
- * attributes_GetVital(mobile, vital_name)
+ * AP_GetVital(mobile, vital_name)
  *
  * Purpose
  * Retrieves the maximum number of vital points a mobile can have.
@@ -71,12 +71,12 @@ endfunction
  * Returns an integer.
  *
  */
-function attributes_GetVitalMaximumValue(mobile, vital_name)
+function AP_GetVitalMaximumValue(mobile, vital_name)
 	return GetVitalMaximumValue(mobile, vital_name);
 endfunction
 
 /*
- * attributes_GetVitalRegenRate(mobile, vital_name)
+ * AP_GetVitalRegenRate(mobile, vital_name)
  *
  * Purpose
  * Retrieves the regen rate of a vital on a mobile.
@@ -89,12 +89,12 @@ endfunction
  * Returns an integer.
  *
  */
-function attributes_GetVitalRegenRate(mobile, vital_name)
+function AP_GetVitalRegenRate(mobile, vital_name)
 	return GetVitalRegenRate(mobile, vital_name);
 endfunction
 
 /*
- * attributes_SetVital(mobile, vital_name, points)
+ * AP_SetVital(mobile, vital_name, points)
  *
  * Purpose
  * Sets vital points on a mobile.
@@ -108,12 +108,12 @@ endfunction
  * Returns result of the SetVital() core function.
  *
  */
-function attributes_SetVital(mobile, vital_name, amount)
+function AP_SetVital(mobile, vital_name, amount)
 	return SetVital(mobile, vital_name, CInt(CDbl(amount)*100.0));
 endfunction
 
 /*
- * attributes_RefreshVitals(mobile)
+ * AP_RefreshVitals(mobile)
  *
  * Purpose
  * Sets all vitals on a mobile to their maximum values.
@@ -125,10 +125,10 @@ endfunction
  * Returns 1
  *
  */
-function attributes_RefreshVitals(mobile)
+function AP_RefreshVitals(mobile)
 	var vital_cfg := ReadConfigFile(":attributes:vitals");
 	foreach elem_name in GetConfigStringKeys(vital_cfg)
-		attributes_SetVital(mobile, elem_name, attributes_GetVitalMaximumValue(mobile, elem_name));
+		AP_SetVital(mobile, elem_name, AP_GetVitalMaximumValue(mobile, elem_name));
 		sleepms(2);
 	endforeach
 

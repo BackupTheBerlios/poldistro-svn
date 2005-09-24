@@ -11,11 +11,11 @@
 use uo;
 
 /*
- * attributes_SetVitalRegenRate(mobile, vital_name, number)
+ * AP_SetVitalRegenRate(mobile, vital_name, number)
  *
  * Purpose
  * Sets the regeneration rate modifier for an attribute.
- * Base value is 1200 (unless you changed it)
+ * Base values are in settings.cfg (multiply by 100)
  *
  * Parameters
  * mobile:	Mobile reference to set the modifier on.
@@ -26,11 +26,11 @@ use uo;
  * Returns 1
  *
  */
-function attributes_SetVitalRegenRateMod(mobile, vital_name, number)
+function AP_SetVitalRegenRateMod(mobile, vital_name, number)
 	vital_name := Lower(vital_name);
 	number := CInt(number);
 	
-	var regen_prop := attributes_LoadVitalRegenRateProp(mobile);
+	var regen_prop := AP_LoadVitalRegenRateProp(mobile);
 		
 	if ( number == 0 )
 		// Remove keys with no modifier
@@ -39,12 +39,12 @@ function attributes_SetVitalRegenRateMod(mobile, vital_name, number)
 		regen_prop[vital_name] := CInt(number);
 	endif
 	
-	attributes_SaveVitalRegenRateProp(mobile, regen_prop);
+	AP_SaveVitalRegenRateProp(mobile, regen_prop);
 	return 1;
 endfunction
 
 /*
- * attributes_GetVitalRegenRateMod(mobile, vital_name)
+ * AP_GetVitalRegenRateMod(mobile, vital_name)
  *
  * Purpose
  * Gets the regeneration rate modifier for a vital.
@@ -57,15 +57,15 @@ endfunction
  * Returns an integer.
  *
  */
-function attributes_GetVitalRegenRateMod(mobile, vital_name)
+function AP_GetVitalRegenRateMod(mobile, vital_name)
 	vital_name := Lower(vital_name);
 	
-	var regen_prop := attributes_LoadVitalRegenRateProp(mobile);
+	var regen_prop := AP_LoadVitalRegenRateProp(mobile);
 	return CInt(regen_prop[vital_name]);
 endfunction
 
 /*
- * attributes_LoadVitalRegenRateProp(mobile)
+ * AP_LoadVitalRegenRateProp(mobile)
  *
  * Purpose
  * Loads the dictionary of regeneration settings from a mobile.
@@ -77,7 +77,7 @@ endfunction
  * Returns a dictionary
  *
  */
-function attributes_LoadVitalRegenRateProp(mobile)
+function AP_LoadVitalRegenRateProp(mobile)
 	var regen_prop := GetObjProperty(mobile, "%RegenRates%");
 	if ( Lower(TypeOf(regen_prop)) != "dictionary" )
 		regen_prop := dictionary;
@@ -87,7 +87,7 @@ function attributes_LoadVitalRegenRateProp(mobile)
 endfunction
 
 /*
- * attributes_SaveVitalRegenRateProp(mobile, regen_prop)
+ * AP_SaveVitalRegenRateProp(mobile, regen_prop)
  *
  * Purpose
  * Saves the dictionary of regeneration settings on a mobile.
@@ -100,7 +100,7 @@ endfunction
  * Returns the result of saving the property.
  *
  */
-function attributes_SaveVitalRegenRateProp(mobile, byref regen_prop)
+function AP_SaveVitalRegenRateProp(mobile, byref regen_prop)
 	if ( Lower(TypeOf(regen_prop)) != "dictionary" )
 		return error{"errortext":="Regen prop must be a dictionary."};
 	endif

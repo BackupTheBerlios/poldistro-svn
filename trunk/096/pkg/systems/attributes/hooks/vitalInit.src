@@ -11,6 +11,7 @@ use uo;
 use util;
 
 include ":attributes:include/attributes";
+include ":attributes:include/settings";
 include ":ai_brain:include/npcUtil";
 include ":config:include/config";
 
@@ -19,13 +20,13 @@ program Install()
 	return 1;
 endprogram
 
-
-
 // *****
 // Hit Point Functions
 // *****
 exported function GetHitsRegenRate(mobile)
-	return 1200 + attributes_GetVitalRegenRateMod(mobile, "hits");
+	var base_regen := CInt(AP_GetSettingsCfgElem("Regen").Hits) * 100;
+
+	return base_regen + AP_GetVitalRegenRateMod(mobile, "hits");
 endfunction
 
 exported function GetHitsMaximumValue(mobile)
@@ -41,7 +42,9 @@ endfunction
 // Mana Functions
 // *****
 exported function GetManaRegenRate(mobile)
-	return 1200 + attributes_GetVitalRegenRateMod(mobile, "mana");
+	var base_regen := CInt(AP_GetSettingsCfgElem("Regen").Mana) * 100;
+	
+	return base_regen + AP_GetVitalRegenRateMod(mobile, "mana");
 endfunction
 
 exported function GetManaMaximumValue(mobile)
@@ -57,7 +60,9 @@ endfunction
 // Stamina Functions
 // *****
 exported function GetStaminaRegenRate(mobile)
-	return 1200 + attributes_GetVitalRegenRateMod(mobile, "stamina");
+	var base_regen := CInt(AP_GetSettingsCfgElem("Regen").Stamina) * 100;
+	
+	return base_regen + AP_GetVitalRegenRateMod(mobile, "stamina");
 endfunction
 
 exported function GetStaminaMaximumValue(mobile)
@@ -76,7 +81,7 @@ function GetNPCVitalSetting(mobile, vital)
 	if ( !mobile.npctemplate )
 		return 0;
 	endif
-	
+
 	var value := 0;
 
 	// CProp used if NPC had dice settings - so they dont change over and over.

@@ -1,6 +1,6 @@
 /*===============================================================
 * Current Version
-* ATTRIBUTES_EX.INC - v1.0
+* AP_EX.INC - v1.0
 * Updated 9/20/2005 11:42AM
 *
 * -- Revision v1.0 --
@@ -11,7 +11,7 @@
 include ":attributes:include/attributes";
 
 /*
- * attributes_SkillIDToAttributeName(skill_number)
+ * AP_SkillIDToAttributeName(skill_number)
  *
  * Purpose
  * Gets the name of the attribute that is associated with a skill number.
@@ -24,22 +24,22 @@ include ":attributes:include/attributes";
  * Returns a string.
  *
  */
-function attributes_IDToAttributeName(skill_number)
+function AP_IDToAttributeName(skill_number)
 	var skills_cfg := ReadConfigFile(":attributes:uoskills");
 	if ( skills_cfg.errortext )
-		SysLog("Error::attributes_IDToAttributeName() - Unable to open :attributes:uoskills.cfg ->"+skills_cfg.errortext);
+		SysLog("Error::AP_IDToAttributeName() - Unable to open :attributes:uoskills.cfg ->"+skills_cfg.errortext);
 	endif
 	
 	var cfg_elem := skills_cfg[skill_number];
 	if ( cfg_elem.errortext )
-		SysLog("Error::attributes_IDToAttributeName() - unable to find cfg elem ["+skill_number+"] ->"+cfg_elem.errortext);
+		SysLog("Error::AP_IDToAttributeName() - unable to find cfg elem ["+skill_number+"] ->"+cfg_elem.errortext);
 	endif
 	
 	return cfg_elem.Attribute;
 endfunction
 
 /*
- * attributes_AttributeNameToSkillID(attribute_name)
+ * AP_AttributeNameToSkillID(attribute_name)
  *
  * Purpose
  * Gets the skill number (ID) that an attribute name is associated with.
@@ -52,8 +52,8 @@ endfunction
  * Returns an integer.
  *
  */
-function attributes_AttributeNameToSkillID(attribute_name)
-	var cfg_elem := attributes_GetAttributeCfgElem(attribute_name);
+function AP_AttributeNameToSkillID(attribute_name)
+	var cfg_elem := AP_GetAttributeCfgElem(attribute_name);
 	
 	return cfg_elem.SkillId;
 endfunction
