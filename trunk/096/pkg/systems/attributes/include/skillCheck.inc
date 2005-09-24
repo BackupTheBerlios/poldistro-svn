@@ -18,8 +18,7 @@ include ":attributes:include/attributes";
 const ADV_SKILL		:= 1;
 const ADV_STATS		:= 2;
 const ADV_ALL		:= ADV_SKILL+ADV_STATS; // 3
-//Set to 4 because if it was 0, it would default to ADV_ALL.
-const ADV_DISABLE	:= 4;
+const ADV_DISABLE	:= 4; // 4 - because if flags is 0, we want the default to be ADV_ALL.
 
 var g_skill_debug	:= 0;
 
