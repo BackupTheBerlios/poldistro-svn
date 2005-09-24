@@ -27,7 +27,7 @@ enum ATTRIBUTE_SKILLS
 	ATTRIBUTE_PARRY                     := "Parry",
 	ATTRIBUTE_BEGGING                   := "Begging",
 	ATTRIBUTE_BLACKSMITHY               := "Blacksmithy",
-	ATTRIBUTE_BOWCRAFT_FLETCHING        := "BowcraftFletching",
+	ATTRIBUTE_BOWCRattributes_T_FLETCHING        := "Bowcrattributes_tFletching",
 	ATTRIBUTE_PEACEMAKING               := "Peacemaking",
 	ATTRIBUTE_CAMPING                   := "Camping",
 	ATTRIBUTE_CARPENTRY                 := "Carpentry",

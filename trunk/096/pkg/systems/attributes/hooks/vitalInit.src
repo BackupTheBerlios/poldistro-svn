@@ -25,7 +25,7 @@ endprogram
 // Hit Point Functions
 // *****
 exported function GetHitsRegenRate(mobile)
-	return 1200 + AF_GetVitalRegenRateMod(mobile, "hits");
+	return 1200 + attributes_GetVitalRegenRateMod(mobile, "hits");
 endfunction
 
 exported function GetHitsMaximumValue(mobile)
@@ -41,7 +41,7 @@ endfunction
 // Mana Functions
 // *****
 exported function GetManaRegenRate(mobile)
-	return 1200 + AF_GetVitalRegenRateMod(mobile, "mana");
+	return 1200 + attributes_GetVitalRegenRateMod(mobile, "mana");
 endfunction
 
 exported function GetManaMaximumValue(mobile)
@@ -57,7 +57,7 @@ endfunction
 // Stamina Functions
 // *****
 exported function GetStaminaRegenRate(mobile)
-	return 1200 + AF_GetVitalRegenRateMod(mobile, "stamina");
+	return 1200 + attributes_GetVitalRegenRateMod(mobile, "stamina");
 endfunction
 
 exported function GetStaminaMaximumValue(mobile)

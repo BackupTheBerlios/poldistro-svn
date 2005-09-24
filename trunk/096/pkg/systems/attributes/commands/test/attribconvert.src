@@ -9,8 +9,8 @@ program command_AttribConvert(who, input)
 		SendSysMessage(who, "Error - no skillID or attribute name was sent.");
 		return;
 	elseif ( Len(input) <= 2 )
-		SendSysMessage(who, "SkillID ["+input+"] points to attribute "+AF_IDToAttributeName(input));
+		SendSysMessage(who, "SkillID ["+input+"] points to attribute "+attributes_IDToAttributeName(input));
 	else
-		SendSysMessage(who, "Attribute ["+input+"] points to skillID "+AF_AttributeNameToSkillID(input));
+		SendSysMessage(who, "Attribute ["+input+"] points to skillID "+attributes_AttributeNameToSkillID(input));
 	endif
 endprogram
