@@ -1,7 +1,7 @@
 /*===============================================================
 * Current Version
 * REGEN.INC - v1.0
-* Updated 9/20/2005 4:09PM
+* Updated 9/21/2005 8:14AM
 *
 * -- Revision v1.0 --
 * Austin:
