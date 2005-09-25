@@ -165,13 +165,13 @@ endfunction
  */
 function AP_ConsumeVital(mobile, vital_name, points)
 	points := CDbl(points);
-	var cur_amount := GetVital(mobile, vital_name);
+	var cur_amount := AP_GetVital(mobile, vital_name);
 	
 	if ( points > cur_amount )
 		return error{"errortext":="Insufficient points - unable to consume."};
 	else
 		cur_amount := cur_amount-points;
-		SetVital(mobile, vital_name, cur_amount);
+		AP_SetVital(mobile, vital_name, cur_amount);
 		return 1;
 	endif
 endfunction
