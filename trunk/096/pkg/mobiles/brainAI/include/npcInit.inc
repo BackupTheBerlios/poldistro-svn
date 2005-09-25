@@ -15,8 +15,32 @@ use cfgfile;
 include ":brainAI:include/npcUtil";
 include ":brainAI:include/npcError";
 
+
+/////////////////////////////////////////////////////////////////
+// * Function List *
+//
+// NPC_SetupAmmo(mobile)
+// NPC_SetupBackPack(mobile)
+// NPC_SetupEquipment(mobile, elem_name:=0)
+// NPC_SetupName(mobile, name_elem:=0)
+// 
+/////////////////////////////////////////////////////////////////
+// * Internal/Private Function List *
+// 
+/////////////////////////////////////////////////////////////////
+// * Global Variables *
+//
+// Constants for NPC_SetupRandomEquipment()
+CONST EQUIP_NOGENDER	:= 0x0;	// Items suited for both genders
+CONST EQUIP_MALE	:= 0x1; // Use male-only items (do any exist?)
+CONST EQUIP_FEMALE	:= 0x2; // Use female-only items
+const EQUIP_BOTHGENDER	:= 0x3; // Cross-dresser
+// 
+/////////////////////////////////////////////////////////////////
+
+
 /*
- * NPC_GiveBackPack(mobile)
+ * NPC_SetupBackPack(mobile)
  *
  * Purpose
  * Creates a backpack and places it on an npc. If it can't equip it, it removes it.
@@ -28,7 +52,7 @@ include ":brainAI:include/npcError";
  * Returns an item reference on success or if there already is one.
  *
  */
-function NPC_GiveBackPack(mobile)
+function NPC_SetupBackPack(mobile)
 	if ( !mobile.backpack )
 		var backpack := CreateItemAtLocation(mobile.x, mobile.y, mobile.z, "BackPack", 1);
 		var result := EquipItem(mobile, backpack);
@@ -61,7 +85,6 @@ function NPC_SetupAmmo(mobile)
 	
 	if ( npc_elem.MissileWeapon )
 		var weapon := CreateItemAtLocation(mobile.x, mobile.y, mobile.z, npc_elem.MissileWeapon, 1, mobile.realm);
-		weapon.newbie := 1;
 		if ( !EquipItem(mobile, weapon) )
 			DestroyItem(weapon);
 		endif
@@ -73,8 +96,8 @@ function NPC_SetupAmmo(mobile)
 			if ( !ammo )
 				return ammo; // Will return an error with .errortext
 			endif
-			
 			ammo.newbie := 1;
+						
 			return 1;
 		endif
 	else
@@ -95,7 +118,7 @@ endfunction
  * Parameters
  * mobile:	The mobile to place equipment onto
  * elem_name:	Name of the equipment template to use.
- *		If no name is set, it will use the EquipTemplate line in the npc's template.
+ *		If no name is set, it will use the 'EquipTemplate' line in the npc's template.
  *
  * Return value
  * Returns 1 or error
@@ -110,7 +133,7 @@ function NPC_SetupEquipment(mobile, elem_name:=0)
 	endif
 	
 	if ( !elem_name )
-		return NPC_GiveBackPack(mobile);
+		return NPC_SetupBackPack(mobile);
 	elseif ( !equip_cfg[elem_name] )
 		var errmsg := error{"errortext":="Error::NPC_SetupEquipment() - There is no elem ["+elem_name+"] in '::equip.cfg'"};
 		PrintTextAbove(mobile, errmsg);
@@ -121,8 +144,74 @@ function NPC_SetupEquipment(mobile, elem_name:=0)
 	
 	return 0;
 endfunction
+
+/* 
+ * NPC_SetupRandomEquipment(mobile, elem_name)
+ *
+ * Purpose
+ * Equips an NPC randomy-yet-still-fashionably. 
+ *
+ * Parameters
+ * mobile:	The mobile to place equipment onto
+ * elem_name:	Name of the equipment template to use.
+ *		If no name is set, it will use the 'EquipTemplate' line in the npc's template.
+ * flags:	Flags to control which lines to use in equipGroups.cfg
+ *		EQUIP_NOGENDER		- 'Item' lines that work for both genders (this list is used with all flags).
+ *		EQUIP_MALE		- 'Male' lines for male-only equipment.
+ *		EQUIP_FEMALE		- 'Female' lines for female-only equipment.
+ *		EQUIP_BOTHGENDER	- Uses all entries to allow for cross dressing npcs.
+ *
+ * Return value
+ * Returns 1 or error
+ *
+ */
+function NPC_SetupRandomEquipment(mobile, elem_name:=0, flags:=EQUIP_NOGENDER)
+	var index_cfg := ReadConfigFile(":brainAI:config/equipIndex");
+	var group_cfg := ReadConfigFile(":brainAI:config/equipGroups");
+	if ( index_cfg.errortext )
+		return error{"errortext":="Error - Could not open equipIndex.cfg -> "+index_cfg.errortext};
+	elseif ( group_cfg.errortext )
+		return error{"errortext":="Error - Could not open equipGroups.cfg -> "+group_cfg.errortext};
+	elseif ( !elem_name )
+		var npc_elem := NPC_GetNPCConfig(mobile);
+		elem_name := npc_elem.EquipTemplate;
+	endif
+	var index_elem := index_cfg[elem_Name];
+	if ( !index_elem )
+		return error{"errortext":="Error - equipIndex.cfg elem ["+index_elem+"] does not exist."};
+	endif
 	
+	foreach entry in ( GetConfigStringDictionary(index_elem, "Equip") )
+		if ( RandomInt(100)+1 <= entry )
+			var group_elem := index_cfg[_entry_iter];
+			if ( !group_elem )
+				PrintTextAbove(mobile, "Error - equipGroups.cfg elem ["+group_elem+"] does not exist.");
+				continue;
+			endif
+			
+			var item_list := GetConfigStringArray(group_elem, "Item");
+			if ( flags & EQUIP_MALE )
+				item_list := GetConfigStringArray(group_elem, "Male");
+			endif
+			if ( flags & EQUIP_FEMALE )
+				item_list := GetConfigStringArray(group_elem, "Female");
+			endif
+			
+			var item := item_list[RandomDiceRoll(item_list.Size())+1];
+			item := CreateItemAtLocation(mobile.x, mobile.y, mobile.z, item, 1);
+			if ( item.errortext )
+				PrintTextAbove(mobile, "Unable to create ["+item+"] ->"+item.errortext);
+			elseif ( !EquipItem(mobile, item) )
+				PrintTextAbove(mobile, "Unable to equip - "+item.desc+" - destroying.");
+				DestroyItem(item);
+			endif
+		endif
+		sleepms(2);
+	endforeach
 	
+	return 1;
+endfunction
+
 /*
  * NPC_SetupName(mobile, name_elem)
  * 
@@ -138,7 +227,6 @@ endfunction
  * Returns 1 or error
  *
  */
- 
 function NPC_SetupName(mobile, name_elem:=0)
 	if ( !mobile.name["<random>"] )
 		return 1;
@@ -155,13 +243,13 @@ function NPC_SetupName(mobile, name_elem:=0)
 		var temp := error;
 		temp.+errortext := "There is no elem ["+name_elem+"] in NAMES.CFG";
 		
-		NPC_ErrorSysLog(moble, "Error::NPC_SetupName() - "+temp.errortext);
+		NPC_ErrorSysLog(mobile, "Error::NPC_SetupName() - "+temp.errortext);
 		PrintTextAbove(mobile, temp.errortext);
 		return temp;
 	endif
 	
 	var name_list := GetConfigStringArray(npc_names[name_elem], "Name");
-	if ( name_list.size() < 1 )
+	if ( name_list.Size() < 1 )
 		var temp := error{"errortext":="No names were found in the ["+name_elem+"] elem for names.cfg"};
 	
 		SysLog("Error::NPC_SetupName() - "+temp.errortext);
@@ -172,7 +260,7 @@ function NPC_SetupName(mobile, name_elem:=0)
 	
 	var my_name := mobile.name;
 	while ( my_name["<random>"] )
-		var replacement := name_list[RandomInt(name_list.size())+1];
+		var replacement := name_list[RandomInt(name_list.Size())+1];
 		my_name["<random>"] := replacement;
 		sleepms(2);
 	endwhile
@@ -181,4 +269,3 @@ function NPC_SetupName(mobile, name_elem:=0)
 	
 	return 1;
 endfunction
-
