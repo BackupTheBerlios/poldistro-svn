@@ -1,7 +1,7 @@
 /*===============================================================
 * Current Version
 * VITALS.INC - v1.0
-* Updated 9/20/2005 2:04PM
+* Updated 9/24/2005 6:52PM
 *
 * -- Revision v1.0 --
 * Austin:
@@ -24,32 +24,36 @@ use cfgfile;
  *
  */
 function AP_GetVitalsCfgFile()
-	var cfg := ReadConfigFile(":attributes:vitals");
-	if ( cfg.errortext )
-		SysLog("Error::AP_GetVitalsCfgFile() - Unable to open vitals.cfg ->"+cfg.errortext);
+	var cfg_file := ReadConfigFile(":attributes:vitals");
+	if ( cfg_file.errortext )
+		SysLog("Error::AP_GetVitalsCfgFile() - Unable to open vitals.cfg ->"+cfg_file.errortext);
 	endif
 
-	return cfg;
+	return cfg_file;
 endfunction
 
 /*
- * AP_GetVitalCfgElem(vital)
+ * AP_GetVitalCfgElem(vital_name, cfg_file)
  *
  * Purpose
  * Retrieves a config elem for an vital in vitals.cfg
  *
  * Parameters
- * attribute:	Name of the vital to get the elem of.
+ * vital_name:	Name of the vital to get the elem of.
+ * cfg_file:	Optional parameter - reference to a config already read in.
  *
  * Return value
  * Returns a config file elem.
  *
  */
-function AP_GetVitalCfgElem(vital)
-	var cfg_file := AP_GetVitalsCfgFile();
-	var cfg_elem := cfg_file[vital];
+function AP_GetVitalCfgElem(vital_name, byref cfg_file:=0)
+	if ( !cfg_file )
+		cfg_file := AP_GetVitalsCfgFile();
+	endif
+	
+	var cfg_elem := cfg_file[vital_name];
 	if ( cfg_elem.errortext )
-		SysLog("Error::AP_GetVitalsCfgElem() - unable to find cfg elem ["+vital+"] ->"+cfg_elem.errortext);
+		SysLog("Error::AP_GetVitalsCfgElem() - unable to find cfg elem ["+vital_name+"] ->"+cfg_elem.errortext);
 	endif
 	
 	return cfg_elem;
@@ -78,7 +82,7 @@ endfunction
  * Retrieves the number of vital points a mobile has.
  *
  * Parameters
- * mobile:	Mobile reference to retrieve the points from.
+ * mobile:		Mobile reference to retrieve the points from.
  * vital_name:	Name of the vital to retrieve the points for.
  *
  * Return value
@@ -86,7 +90,7 @@ endfunction
  *
  */
 function AP_GetVital(mobile, vital_name)
-	return (GetVital(mobile, vital_name) / 100);
+	return CDbl(GetVital(mobile, vital_name)) / 100.0;
 endfunction
 
 /*
@@ -96,7 +100,7 @@ endfunction
  * Retrieves the maximum number of vital points a mobile can have.
  *
  * Parameters
- * mobile:	Mobile reference to check.
+ * mobile:		Mobile reference to check.
  * vital_name:	Name of the vital to retrieve the max. points for.
  *
  * Return value
@@ -104,7 +108,7 @@ endfunction
  *
  */
 function AP_GetVitalMaximumValue(mobile, vital_name)
-	return GetVitalMaximumValue(mobile, vital_name);
+	return CDbl(GetVitalMaximumValue(mobile, vital_name)) / 100.0;
 endfunction
 
 /*

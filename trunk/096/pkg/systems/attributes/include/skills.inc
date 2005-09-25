@@ -1,7 +1,7 @@
 /*===============================================================
 * Current Version
 * SKILLS.INC - v1.0
-* Updated 9/20/2005 2:20PM
+* Updated 9/24/2005 6:52PM
 *
 * -- Revision v1.0 --
 * Austin:

@@ -1,7 +1,7 @@
 /*===============================================================
 * Current Version
 * SKILLCHECK.INC - v1.0
-* Updated 9/24/2005 12:34AM
+* Updated 9/24/2005 6:52PM
 *
 * -- Revision v1.0 --
 * Austin:
