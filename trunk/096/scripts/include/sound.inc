@@ -1,3 +1,7 @@
+/* $Id$
+ *
+ */
+
 enum SFX_BASE
 	SFX_1     :=  0x0001, // forest
 	SFX_2     :=  0x0002, // forest

@@ -36,8 +36,6 @@ endenum
 /*
  * GetMonthName(month)
  *
- * Author: Folko
- *
  * Purpose
  * Returns the name of the month
  *
@@ -60,8 +58,6 @@ endfunction
 
 /*
  * GetMonthLength(month, year)
- *
- * Author: Folko
  *
  * Purpose
  * Returns the length of the month in days
@@ -90,8 +86,6 @@ endfunction
 /*
  * IsLeap(year)
  *
- * Author: Folko
- *
  * Purpose
  * Returns whether a year is a leap year or not.
  *
@@ -111,8 +105,6 @@ endfunction
 /*
  * GetTime()
  *
- * Author: Folko
- *
  * Purpose
  * Returns current UNIX time stamp.
  *
@@ -130,8 +122,6 @@ endfunction
 
 /*
  * GetTimeStruct(time)
- *
- * Author: Folko
  *
  * Purpose
  * Returns current time as struct.
@@ -219,8 +209,6 @@ endfunction
 /*
  * FormatTime(ts, format)
  *
- * Author:  Folko
- *
  * Purpose
  * Returns a formatted time string.
  *
@@ -258,8 +246,6 @@ endfunction
 
 /*
  * AddTimeStamp(what)
- *
- * Author: Folko
  *
  * Purpose
  * Adds a timestamp to a string.

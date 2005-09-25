@@ -1,28 +1,27 @@
-//////////////////////////////////////////////////////////////////////////
-//
-// Arrays.inc
-//
-// Contains some useful functions for arrays.
-//
-// Originally uploaded by Shilohen.
-// One function added by Madman Across the Water.
-//
-//////////////////////////////////////////////////////////////////////////
-
+/** $Id$
+ *
+ * Purpose
+ * Provide various functions for array handling.
+ *
+ */
 use basic;
 use os;
 use uo;
 
 
-////////////////////////////////////////////////////////////////
-// Function	GetIndex(byref the_array, byref to_find)
-// Parameters	the_array containing the element
-//		what to find
-// Return	the element's index if found, error otherwise.
-// Errortext	<Element not found>
-////////////////////////////////////////////////////////////////
-function GetIndex( byref the_array, byref to_find )
-
+/**
+ * GetIndex(byref the_array, byref to_find)
+ *
+ * Parameters	the_array containing the element
+ *		what to find
+ * 
+ * Errortext	<Element not found>.
+ *
+ * Return
+ * the element's index if found, error otherwise
+ *
+ */
+function GetIndex(byref the_array, byref to_find)
 	var max := the_array.Size();
 	if( !max )
 		var ret := error;
@@ -67,16 +66,21 @@ function GetIndex( byref the_array, byref to_find )
 endfunction
 
 
-////////////////////////////////////////////////////////////////
-// Function	InsertElementInSortedArray(byref the_array, byref to_find)
-// Parameters	the_array containing the element
-//		what to insert
-// Return	non-zero if the element could be insert, error otherwise.
-// Errortext	<Element <element> already exist in the array>
-//		<Couldn't insert element <element>>
-// Goal		Insert an element at the good index, must be the only one
-//		instance of that element in the array, no dupe allowed.
-////////////////////////////////////////////////////////////////
+/**
+ * InsertElementInSortedArray(byref the_array, byref to_find)
+ *
+ * Parameters	the_array containing the element
+ *		what to insert
+ * Errortext	<Element <element> already exist in the array>
+ *		<Couldn't insert element <element>>
+ * Purpose
+ * Insert an element at the good index, must be the only one
+ * instance of that element in the array, no dupe allowed.
+ *
+ * Return
+ * non-zero if the element could be insert, error otherwise.
+ *
+ */
 function InsertInSortedArray( byref the_array, byref element )
 
 	var max := the_array.Size();
@@ -119,13 +123,18 @@ function InsertInSortedArray( byref the_array, byref element )
 endfunction
 
 
-////////////////////////////////////////////////////////////////
-// Function	RemoveElement(byref the_array, byref element)
-// Parameters	the_array containing the element
-//		the element to remove
-// Return	1 is the elment was successfully removed
-//		An error otherwise
-////////////////////////////////////////////////////////////////
+/**
+ * RemoveElement(byref the_array, byref element)
+ *
+ * Parameters
+ * the_array:	containing the element
+ * element:	the element to remove
+ *
+ * Return
+ * 1 is the elment was successfully removed
+ * An error otherwise
+ *
+ */
 function RemoveElement( byref the_array, byref element )
 
 	var index := GetIndex( the_array, element );
@@ -138,12 +147,19 @@ function RemoveElement( byref the_array, byref element )
 endfunction
 
 
-////////////////////////////////////////////////////////////////
-// Function	SortArray(byref the_array)
-// Parameters	the_array to sort
-// Return	1 if the sorting was success, 0 otherwise.
-// Goal		Sort the array, even array of uobject.
-////////////////////////////////////////////////////////////////
+/**
+ * SortArray(byref the_array)
+ *
+ * Purpose
+ * Sort the array, even array of uobject.
+ *
+ * Parameters
+ * the_array:	to sort
+ *
+ * Return
+ * 1 if the sorting was success, 0 otherwise.
+ *
+ */
 function SortArray( byref the_array )
 
 	var length := the_array.Size();
@@ -172,13 +188,17 @@ function SortArray( byref the_array )
 	
 endfunction
 
-//Fill_array
-// you don't want to send this non-integers. Error checking isn't at the moment.
-// This function is handed start and end numbers, and increments. If you send it
-// (1,5,1), for instance, it will return an array {1,2,3,4,5}. (5,1,-2) will return
-// {5,3,1}. (1,5,3) will return {1,4}.
-// Added by Madman Across the Water
 
+/**
+ * fill_array(starts, ends, incr := 1)
+ *
+ * you don't want to send this non-integers. Error checking isn't at the moment.
+ * This function is handed start and end numbers, and increments. If you send it
+ * (1,5,1), for instance, it will return an array {1,2,3,4,5}. (5,1,-2) will return
+ * {5,3,1}. (1,5,3) will return {1,4}.
+ * Added by Madman Across the Water
+ *
+ */
 function fill_array(starts, ends, incr := 1)
 
 	var newarray := array;
@@ -208,4 +228,3 @@ function fill_array(starts, ends, incr := 1)
 	
 	return 0;
 endfunction
-

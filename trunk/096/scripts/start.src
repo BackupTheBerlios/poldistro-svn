@@ -17,6 +17,7 @@ include "include/log";
 include "include/utility";
 include "include/teleporters";
 
+
 program StartServer()
 	Log(LOG_MAIN, "Server started.");
 	if (!start_script(":scheduler:scheduler"))
