@@ -38,11 +38,11 @@ include ":gumps:include/gumpprompt";
 include ":gumps:include/gumps";
 include ":gumps:include/gumps_ex";
 include ":gumps:include/yesno";
-include ":commands:include/go-add";
-include ":commands:include/go-edit";
-include ":commands:include/go-text";
-include ":commands:include/go-gumps";
-include ":commands:include/go-template";
+include ":commands:include/goAdd";
+include ":commands:include/goEdit";
+include ":commands:include/goText";
+include ":commands:include/goGumps";
+include ":commands:include/goTemplate";
 
 CONST ADD_NEW_PUBLIC      := 0x20001;
 CONST ADD_NEW_PRIVATE     := 0x20002;
