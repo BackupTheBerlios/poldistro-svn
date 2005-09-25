@@ -1,4 +1,16 @@
 -- POL096 --
+09-23 Shinigami
+        Added : uo::SendStatus( character ) - to send full Status Packet to support Extensions
+                like Resistances, if you add'em via Packet Hook. Use SendStatus to update'em.
+
+09-17 Shinigami
+        Fixed : Crash if Name of Items or Mobiles was to long and you've clicked'em
+
+09-16 Shinigami
+        Added : pol.log will show last running Script and it's Program Counter
+                (you can use eCompile LST-file (Switch: -l) to get the Source Line)
+        Added : Linux: pol.log will show Backtrace (as same as STDERR)
+
 09-15 Austin
         Added : mobile.connected - To determine if the character is actively connected to the game.
                 Is set to 1 before logon/reconnect scripts are run and 0 right before logofftest is run.
