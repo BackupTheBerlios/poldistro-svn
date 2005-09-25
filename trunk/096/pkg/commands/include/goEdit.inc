@@ -1,5 +1,9 @@
-function Go_EditSendLocation(who, public:=1)
+/* $Id$
+ *
+ */
 
+
+function Go_EditSendLocation(who, public:=1)
 	var gump;
 	if( public )
 		gump := Go_SelectEditGump(1);
@@ -89,6 +93,7 @@ function Go_EditSendLocation(who, public:=1)
 
 endfunction
 
+
 function Go_SelectEditGump(public)
 
 	var gump := GFCreateGump();
@@ -159,39 +164,38 @@ function Go_SelectEditGump(public)
 
 endfunction
 
-function Go_EditLocationGump(send_Location, public:=1)
 
-        var gump := GFCreateGump();
-        GFResizePic(gump, 0, 0, BKGND_SILVERTRIM, 400, 520);
-        GFResizePic(gump, 15, 15, BKGND_DARK_STONE, 370, 35);
-	if(public)
+function Go_EditLocationGump(send_Location, public:=1)
+	var gump := GFCreateGump();
+	GFResizePic(gump, 0, 0, BKGND_SILVERTRIM, 400, 520);
+	GFResizePic(gump, 15, 15, BKGND_DARK_STONE, 370, 35);
+	if (public)
 		GFHTMLArea(gump,  15, 20, 370, 20, "<basefont color=#7FFFD4><center>Go To Locations (Public)</center>");
 	else
 		GFHTMLArea(gump,  15, 20, 370, 20, "<basefont color=#7FFFD4><center>Go To Locations (Private)</center>");
 	endif
-        GFResizePic(gump, 15, 55, BKGND_DARK_STONE, 370, 410);
-        GFResizePic(gump, 15, 470, BKGND_DARK_STONE, 370, 35);
-        edit_update := GFAddButton(gump, 25, 477, 4008, 4010, GF_CLOSE_BTN, UPDATE_BUTTON);
-        GFHTMLArea(gump,  57, 480, 40, 20, "<basefont color=#7FFFD4>Update");
-        edit_delete := GFAddButton(gump, 100, 477, 4005, 4007, GF_CLOSE_BTN, DELETE_BUTTON);
-        GFHTMLArea(gump,  132, 480, 40, 20, "<basefont color=#7FFFD4>Delete");
+	GFResizePic(gump, 15, 55, BKGND_DARK_STONE, 370, 410);
+	GFResizePic(gump, 15, 470, BKGND_DARK_STONE, 370, 35);
+	edit_update := GFAddButton(gump, 25, 477, 4008, 4010, GF_CLOSE_BTN, UPDATE_BUTTON);
+	GFHTMLArea(gump,  57, 480, 40, 20, "<basefont color=#7FFFD4>Update");
+	edit_delete := GFAddButton(gump, 100, 477, 4005, 4007, GF_CLOSE_BTN, DELETE_BUTTON);
+	GFHTMLArea(gump,  132, 480, 40, 20, "<basefont color=#7FFFD4>Delete");
 
-        GFTextLine(gump, 20, 120, 2100, "Name");
-        GFResizePic(gump, 120, 117, 2620, 180, 30);
-        edit_name := GFTextEntry(gump, 130, 122, 160, 25, 2100, send_Location.Name);
+	GFTextLine(gump, 20, 120, 2100, "Name");
+	GFResizePic(gump, 120, 117, 2620, 180, 30);
+	edit_name := GFTextEntry(gump, 130, 122, 160, 25, 2100, send_Location.Name);
 
-        GFTextLine(gump, 20, 143, 2100, "X Coordinate");
-        GFResizePic(gump, 120, 140, 2620, 100, 30);
-        xg_pos := GFTextEntry(gump, 130, 145, 80, 25, 2100, send_Location.X);
+	GFTextLine(gump, 20, 143, 2100, "X Coordinate");
+	GFResizePic(gump, 120, 140, 2620, 100, 30);
+	xg_pos := GFTextEntry(gump, 130, 145, 80, 25, 2100, send_Location.X);
 
-        GFTextLine(gump, 20, 166, 2100, "Y Coordinate");
-        GFResizePic(gump, 120, 163, 2620, 100, 30);
-        yg_pos := GFTextEntry(gump, 130, 168, 80, 25, 2100, send_Location.Y);
+	GFTextLine(gump, 20, 166, 2100, "Y Coordinate");
+	GFResizePic(gump, 120, 163, 2620, 100, 30);
+	yg_pos := GFTextEntry(gump, 130, 168, 80, 25, 2100, send_Location.Y);
 
-        GFTextLine(gump, 20, 189, 2100, "Z Coordinate");
-        GFResizePic(gump, 120, 186, 2620, 100, 30);
-        zg_pos := GFTextEntry(gump, 130, 191, 80, 25, 2100, send_Location.Z);
+	GFTextLine(gump, 20, 189, 2100, "Z Coordinate");
+	GFResizePic(gump, 120, 186, 2620, 100, 30);
+	zg_pos := GFTextEntry(gump, 130, 191, 80, 25, 2100, send_Location.Z);
 
-        return gump;
-
+	return gump;
 endfunction

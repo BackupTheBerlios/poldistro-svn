@@ -1,3 +1,8 @@
+/* $Id$
+ *
+ */
+
+
 function Go_AddNewLocation(who, public:=1)
 
 	SendSysMessage(who, "Click where you want the new Go Location to go to.");

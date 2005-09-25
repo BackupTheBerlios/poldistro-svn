@@ -1,3 +1,8 @@
+/* $Id$
+ *
+ */
+
+
 function Go_CheckInit(who)
 
         if ( !go_prop_base )
