@@ -12,6 +12,26 @@ use uo;
 use os;
 use cfgfile;
 
+/* AP_GetVitalsCfgFile()
+ * 
+ * Purpose
+ * Loads vitals.cfg
+ *
+ * Parameters
+ *
+ * Return value
+ * Config file
+ *
+ */
+function AP_GetVitalsCfgFile()
+	var cfg := ReadConfigFile(":attributes:vitals");
+	if ( cfg.errortext )
+		SysLog("Error::AP_GetVitalsCfgFile() - Unable to open vitals.cfg ->"+cfg.errortext);
+	endif
+
+	return cfg;
+endfunction
+
 /*
  * AP_GetVitalCfgElem(vital)
  *
@@ -26,17 +46,29 @@ use cfgfile;
  *
  */
 function AP_GetVitalCfgElem(vital)
-	var cfg := ReadConfigFile(":attributes:vitals");
-	if ( cfg.errortext )
-		SysLog("Error::AP_GetVitalCfgElem() - Unable to open vitals.cfg ->"+cfg.errortext);
-	endif
-	
-	var cfg_elem := cfg[vital];
+	var cfg_file := AP_GetVitalsCfgFile();
+	var cfg_elem := cfg_file[vital];
 	if ( cfg_elem.errortext )
 		SysLog("Error::AP_GetVitalsCfgElem() - unable to find cfg elem ["+vital+"] ->"+cfg_elem.errortext);
 	endif
 	
 	return cfg_elem;
+endfunction
+
+/*
+ * AP_GetVitalNames()
+ *
+ * Purpose
+ * Retrieves a list of all vitals in vitals.cfg
+ *
+ * Parameters
+ *
+ * Return value
+ * Returns an array of strings
+ *
+ */
+function AP_GetVitalNames()
+	return GetConfigStringKeys(AP_GetVitalsCfgFile());
 endfunction
 
 /*
@@ -79,7 +111,7 @@ endfunction
  * AP_GetVitalRegenRate(mobile, vital_name)
  *
  * Purpose
- * Retrieves the regen rate of a vital on a mobile.
+ * Retrieves the (base + mod) regen rate of a vital on a mobile.
  *
  * Parameters
  * mobile:	Mobile reference to check.

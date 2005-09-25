@@ -147,3 +147,35 @@ function AP_GetSkillStats(attribute_name)
 	
 	return stat_entries;
 endfunction
+
+/*
+ * AP_CheckSkillCap(mobile, skill_name)
+ *
+ * Purpose
+ * Checks if a skill is greater than or equal to its maximum value in settings.cfg
+ * If no skill_name is passed, it will check the totals.
+ *
+ * Parameters
+ * mobile:		Mobile to check the skills on
+ * stat_name:	Optional parameter - name of the skill to check.
+ *
+ * Return value
+ * Returns 1 if skill(s) >= to the cap
+ *
+ */
+function AP_CheckSkillCap(mobile, skill_name:="")
+	var cfg_elem := AP_GetSettingsCfgElem("Skills");
+	
+	if ( skill_name )
+		var cap := GetConfigReal(cfg_elem, skill_name);
+		return ( AP_GetTrueSkill(mobile, skill_name) >= cap );
+	else
+		var total := 0.0;
+		foreach attribute_name in ( AP_ListAttributesByType("Skill") )
+			total := total + AP_GetTrueSkill(mobile, attribute_name);
+			sleepms(2);
+		endforeach
+		
+		return ( total >= GetConfigReal(cfg_elem, "TotalCap") );
+	endif
+endfunction

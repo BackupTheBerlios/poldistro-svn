@@ -91,6 +91,7 @@ endfunction
  *
  * Purpose
  * Saves the dictionary of regeneration settings on a mobile.
+ * Updates the regeneration rate on the mobile.
  *
  * Parameters
  * mobile:	Mobile reference to save the regen information on.
@@ -105,7 +106,10 @@ function AP_SaveVitalRegenRateProp(mobile, byref regen_prop)
 		return error{"errortext":="Regen prop must be a dictionary."};
 	endif
 	
-	RecalcVitals(mobile);
+	var result := SetObjProperty(mobile, "%RegenRates%", regen_prop);
+	if ( result != error )
+		RecalcVitals(mobile);
+	endif
 	
-	return SetObjProperty(mobile, "%RegenRates%", regen_prop);
+	return result;
 endfunction

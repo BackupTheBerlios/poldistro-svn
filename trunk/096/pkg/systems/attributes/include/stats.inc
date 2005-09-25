@@ -17,7 +17,7 @@ use uo;
  * Retrieves the base value of the stat plus its mod value.
  *
  * Parameters
- * mobile:	Mobile reference to retrieve the points from.
+ * mobile:		Mobile reference to retrieve the points from.
  * stat_name:	Name of the stat to retrieve the points for.
  *
  * Return value
@@ -35,7 +35,7 @@ endfunction
  * Retrieves the base value of the stat and turns it into a usable number.
  *
  * Parameters
- * mobile:	Mobile reference to retrieve the points from.
+ * mobile:		Mobile reference to retrieve the points from.
  * stat_name:	Name of the stat to retrieve the points for.
  *
  * Return value
@@ -53,7 +53,7 @@ endfunction
  * Retrieves the base value of the stat mod and turns it into a usable number.
  *
  * Parameters
- * mobile:	Mobile reference to retrieve the points from.
+ * mobile:		Mobile reference to retrieve the points from.
  * stat_name:	Name of the stat to retrieve the modifier points for.
  *
  * Return value
@@ -72,9 +72,9 @@ endfunction
  * Example: AP_SetTrueStat(mobile, "strength", 44.5)
  *
  * Parameters
- * mobile:	Mobile reference to set the points on.
+ * mobile:		Mobile reference to set the points on.
  * stat_name:	Name of the stat to set the points on.
- * points:	Number of points to set the stat at.
+ * points:		Number of points to set the stat at.
  *
  * Return value
  * Returns a double.
@@ -89,12 +89,12 @@ endfunction
  *
  * Purpose
  * Sets the modifier value for the stat.
- * Example: AP_SetStatMod(mobile, "strength", -15.3)
+ * Example: 	AP_SetStatMod(mobile, "strength", -15.3)
  *
  * Parameters
- * mobile:	Mobile reference to set the modifier points on.
+ * mobile:		Mobile reference to set the modifier points on.
  * stat_name:	Name of the stat to set the modifier points on.
- * points:	Number of points to set the modifier stat at.
+ * points:		Number of points to set the modifier stat at.
  *
  * Return value
  * Returns a double.
@@ -102,4 +102,36 @@ endfunction
  */
 function AP_SetStatMod(mobile, stat_name, points)
 	SetAttributeTemporaryMod(mobile, stat_name, CInt(CDbl(points) * 10.0));
+endfunction
+
+/*
+ * AP_CheckStatCap(mobile, stat_name)
+ *
+ * Purpose
+ * Checks if a stat is greater than or equal to its maximum value in settings.cfg
+ * If no stat_name is passed, it will check the totals.
+ *
+ * Parameters
+ * mobile:		Mobile to check the stats on
+ * stat_name:	Optional parameter - name of the stat to check.
+ *
+ * Return value
+ * Returns 1 if the stat is >= to the cap
+ *
+ */
+function AP_CheckStatCap(mobile, stat_name:="")
+	var cfg_elem := AP_GetSettingsCfgElem("Stats");
+	
+	if ( stat_name )
+		var cap := GetConfigReal(cfg_elem, stat_name);
+		return ( AP_GetTrueStat(mobile, stat_name) >= cap );
+	else
+		var total := 0.0;
+		foreach attribute_name in ( AP_ListAttributesByType("Stat") )
+			total := total + AP_GetTrueStat(mobile, attribute_name);
+			sleepms(2);
+		endforeach
+		
+		return ( total >= GetConfigReal(cfg_elem, "TotalCap") );
+	endif
 endfunction

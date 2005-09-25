@@ -13,6 +13,7 @@ use os;
 use cfgfile;
 
 include ":attributes:include/regen";
+include ":attributes:include/settings";
 include ":attributes:include/skills";
 include ":attributes:include/stats";
 include ":attributes:include/vitals";
@@ -57,13 +58,18 @@ endfunction
  * Returns an array
  *
  */
-function AP_ListAttributesByType(type)
-	type := Lower(type);
+function AP_ListAttributesByType(type:="")
+	var cfg_file := ReadConfigFile(":attributes:attributes");
 	
+	if ( !type )
+		return GetConfigStringKeys(cfg_file);
+	endif
+	
+	type := Lower(type);
 	var list := array;
-	var cfg := ReadConfigFile(":attributes:attributes");
-	foreach elem_name in ( GetConfigStringKeys(cfg) )
-		var elem_info := cfg[elem_name];
+
+	foreach elem_name in ( GetConfigStringKeys(cfg_file) )
+		var elem_info := cfg_file[elem_name];
 		if ( Lower(elem_info.AttributeType) == type )
 			list.append(array);
 		endif
