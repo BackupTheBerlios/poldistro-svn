@@ -76,13 +76,16 @@ endfunction
  */
 function ShouldSleep()
 	if ( sleep_mode )
-		//Already asleep
+		// Already asleep.
 		return 0;
 	elseif ( Events_Waiting() )
-		//Events are waiting to process.
+		// Events are waiting to process.
+		return 0;
+	elseif ( GetNerveProcess(npc, "LookAround") )
+		// Look around script is currently running.
 		return 0;
 	elseif ( idle_ticks < g_settings["IdleTicks"] )
-		//Not enough idle ticks have gone by yet.
+		// Not enough idle ticks have gone by yet.
 		return 0;
 	endif
 	
