@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 //  name:    stealth.src - Skill Script
-//  version: 1.0
-//  author:  Distro
+//  version: 1.0a
+//  author:  MuadDib
 //
 //  Purpose: Follows OSI methodology for the Stealthing skill with a bit of customness. If player
 //		has at least 80 skill in hiding, they can stealth when hidden. If they have 80 hiding
@@ -11,9 +11,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 use uo;
-use util;
 
-include "include/client";
 include ":attributes:include/attributeConstants";
 include ":attributes:include/attributes";
 include ":attributes:include/skillCheck";
@@ -39,7 +37,7 @@ program skill_Stealth( who )
 	endif
 
 	var my_Skill := AP_GetSkill(who, ATTRIBUTE_STEALTH) / 10;
-	if(SkillCheck(who, SKILLID_STEALTH, -1, (my_Skill*10)) > 0)
+	if(SkillCheck(who, ATTRIBUTE_STEALTH, -1, (my_Skill*10)) > 0)
 		if( !who.hidden )
 			// Used RSTC because it runs the script in critical mode, thus
 			// ensuring the hiding attempt completes before the stealth
@@ -50,7 +48,7 @@ program skill_Stealth( who )
 				return 0;
 			endif
 		endif
-		who.stealthsteps := my_Skill + RandomInt(my_Skill);
+		who.stealthsteps := CInt(my_Skill + RandomInt(my_Skill));
 		PrintTextAbovePrivate( who, "You are now moving stealthily.", who );
 		return 1;
 	else

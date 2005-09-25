@@ -1,0 +1,19 @@
+use uo;
+
+include ":attributes:include/attributeConstants";
+include ":attributes:include/attributes";
+
+program spiritSpeak_OnReconnect(who)
+
+	var my_skill  := CInt(AP_GetSkill(who, ATTRIBUTE_SPIRIT_SPEAK));
+	if( my_skill >= 100 )
+		GrantPrivilege(who, "hearghosts");
+		who.enable("hearghosts");
+		return 1;
+	elseif( !who.cmdlevel )
+		RevokePrivilege(who, "hearghosts");
+	endif
+
+	return 1;
+
+endprogram
