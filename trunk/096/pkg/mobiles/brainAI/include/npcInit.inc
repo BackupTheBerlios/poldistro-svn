@@ -222,7 +222,7 @@ endfunction
  * Parameters
  * mobile:	The mobile to do a name check on.
  * name_elem:	Name elem in names.cfg to use
- *		If no name is set, it will use the NameList line in the npc's template.
+ *		If no name is set, it will use the 'NameList' line in the npc's template.
  *
  * Return value
  * Returns 1 or error
