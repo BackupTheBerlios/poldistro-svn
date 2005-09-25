@@ -16,9 +16,9 @@ program BrainNerve(params)
 	while ( npc )
 		if ( !npc.opponent )
 			if ( NPC_LoadWatchList(npc).size() < 1 )
-				AI_Sleep(npc);
+				// No need to look around any longer. We're all alone :(
+				return;
 			else
-				AI_WakeUp(npc);
 				FindOpponent(npc, settings, scripts);
 			endif
 		endif

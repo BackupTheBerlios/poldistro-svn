@@ -39,6 +39,12 @@ function EnteredArea(npc, byref event, byref settings, byref scripts)
 			AI_WakeUp(npc);
 			AI_Speak(npc, "Ive added you to my watch list "+source.name);
 			
+			if ( scripts["LookAround"] )
+				if ( !GetNerveProcess(npc, "LookAround") )
+					AI_WakeUp(npc);
+				endif
+			endif
+			
 			return 1;
 		endif
 	endif
