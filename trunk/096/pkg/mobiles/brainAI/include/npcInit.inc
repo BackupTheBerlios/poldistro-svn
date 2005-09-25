@@ -1,7 +1,7 @@
 /*===============================================================
 * Current Version
 * NPCUTIL.INC - v1.0
-* Updated 9/4/2005 3:43PM
+* Updated 9/25/2005 2:26PM
 *
 * -- Revision v1.0 --
 * Austin:
@@ -18,11 +18,12 @@ include ":brainAI:include/npcError";
 
 /////////////////////////////////////////////////////////////////
 // * Function List *
-//
+// 
 // NPC_SetupAmmo(mobile)
 // NPC_SetupBackPack(mobile)
 // NPC_SetupEquipment(mobile, elem_name:=0)
 // NPC_SetupName(mobile, name_elem:=0)
+// NPC_SetupRandomEquipment(mobile, elem_name:=0, flags:=EQUIP_NOGENDER)
 // 
 /////////////////////////////////////////////////////////////////
 // * Internal/Private Function List *
