@@ -11,9 +11,7 @@ use uo;
 use util;
 
 include ":attributes:include/attributes";
-include ":attributes:include/settings";
-include ":ai_brain:include/npcUtil";
-include ":config:include/config";
+include ":brainAI:include/npcUtil";
 
 program Install()
 	print("INSTALLED: Exported Vital - RegenRate and MaxValue functions... ok.");
