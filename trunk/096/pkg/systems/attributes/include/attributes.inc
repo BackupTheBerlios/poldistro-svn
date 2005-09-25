@@ -12,11 +12,12 @@ use uo;
 use os;
 use cfgfile;
 
-include ":attributes:include/regen";
-include ":attributes:include/settings";
-include ":attributes:include/skills";
-include ":attributes:include/stats";
-include ":attributes:include/vitals";
+include ":attributes:regen";
+include ":attributes:settings";
+include ":attributes:skills";
+include ":attributes:stats";
+include ":attributes:vitals";
+include ":datafile:datafile";
 
 /* AP_GetAttributesCfgFile()
  * 
@@ -42,7 +43,7 @@ endfunction
  * AP_GetAttributeCfgElem(attribute_name, cfg_file)
  *
  * Purpose
- * Retrieves a config elem for an vital in attributes.cfg
+ * Retrieves a config elem for an attribute in attributes.cfg
  *
  * Parameters
  * attribute_name:	Name of the attribute to get the elem of.
@@ -65,6 +66,50 @@ function AP_GetAttributeCfgElem(attribute_name, byref cfg_file:=0)
 	return cfg_elem;
 endfunction
 
+/* AP_GetAttributesCfgFile()
+ * 
+ * Purpose
+ * Loads the attributes datafile.
+ *
+ * Parameters
+ *
+ * Return value
+ * Config file
+ *
+ */
+function AP_GetAttributesDataFile()
+	var data_file := DFOpenDataFile(":attributes:attributes");
+	if ( data_file.errortext )
+		SysLog("Error::AP_GetAttributesDataFile() - Unable to open attributes.txt ->"+data_file.errortext);
+	endif
+
+	return data_file;
+endfunction
+
+/*
+ * AP_GetAttributeDataElem(attribute_name, cfg_file)
+ *
+ * Purpose
+ * Retrieves a datafile elem from the attributes package.
+ *
+ * Parameters
+ * attribute_name:	Name of the elem to retrieve.
+ *
+ * Return value
+ * Returns a datafile elem.
+ *
+ */
+function AP_GetAttributeDataElem(elem_name)
+	var data_file := AP_GetAttributesDataFile();
+	var data_elem := DFFindElement(data_file, elem_name, DF_CREATE);
+	
+	if ( data_elem.errortext )
+		SysLog("Error::AP_GetAttributeDataElem() - unable to find elem ["+elem_name+"] ->"+data_elem.errortext);
+	endif
+	
+	return data_elem;
+endfunction
+
 /*
  * AP_ListAttributesByType(type)
  *
@@ -79,22 +124,12 @@ endfunction
  *
  */
 function AP_ListAttributesByType(type:="")
-	var cfg_file := ReadConfigFile(":attributes:attributes");
-	
 	if ( !type )
+		var cfg_file := ReadConfigFile(":attributes:attributes");
 		return GetConfigStringKeys(cfg_file);
 	endif
 	
 	type := Lower(type);
-	var list := array;
-
-	foreach elem_name in ( GetConfigStringKeys(cfg_file) )
-		var elem_info := cfg_file[elem_name];
-		if ( Lower(elem_info.AttributeType) == type )
-			list.append(array);
-		endif
-		sleepms(2);
-	endforeach
-	
-	return list;
+	var data_elem := AP_GetAttributeDataElem("Categories");
+	return data_elem.GetProp(type);
 endfunction
