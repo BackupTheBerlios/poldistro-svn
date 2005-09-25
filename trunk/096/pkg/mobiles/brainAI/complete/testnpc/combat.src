@@ -3,7 +3,7 @@ use os;
 
 include ":brainAI:include/npcNerves";
 include ":brainAI:include/npcCommands";
-include "include/attributes";
+include ":attributes:/attributes";
 
 program BrainNerve(params)
 	var npc		:= params[1];
@@ -17,11 +17,14 @@ program BrainNerve(params)
 	var flee_level := GetVitalMaximumValue(npc, "Life") * (CInt(settings["FleeLevel"])/100);
 
 	var opponent := event.source;
+	var flee_mode := 0;
+	
 	AI_SetOpponent(npc, opponent);
 
 	while ( npc )
 		var dist := Distance(npc, opponent);
-		if ( ShouldFlee(npc, flee_level) )
+		if ( ShouldFlee(npc, flee_level, flee_mode) )
+			flee_mode := 1;
 			AI_Move(npc, opponent, NEMOVE_TOWARD, NEMOVE_RUN, WAKEUP, 100);
 		elseif ( DoneFighting(npc, opponent, dist) )
 			AI_EndNerve(npc, nerve_name);
@@ -38,24 +41,33 @@ endprogram
 
 function DoneFighting(npc, opponent, byref dist)
 	if ( opponent.dead )
+		AI_Speak(npc, "Killed ya, neener!");
 		return 1;
 	elseif ( !opponent )
+		AI_Speak(npc, "?!?!");
 		return 1;
 	elseif ( opponent.hidden )
+		AI_Speak(npc, "Where did you go?!");
 		return 1;
 	elseif ( opponent.concealed > npc.cmdlevel )
+		AI_Speak(npc, "Ooo so you're gonna FANCY hide on me now... wuss.");
 		return 1;
 	elseif ( dist > 20 )
+		AI_Speak(npc, "Darn... got away.");
 		return 1;
 	elseif ( dist > 10 && !CheckLineOfSight(npc, opponent) )
+		AI_Speak(npc, "Feh. I don't feel like beating you up anymore.");
 		return 1;
 	endif
 
 	return 0;
 endfunction
 
-function ShouldFlee(npc, byref flee_level)
-	if ( GetHP(npc) < flee_level )
+function ShouldFlee(npc, byref flee_level, byref flee_mode)
+	if ( AP_GetVital(npc, "Hits") < flee_level )
+		if ( !flee_mode )
+			AI_Speak(npc, "AAAAAIIIIIIIIEEEEEEEEEE!!!!!");
+		endif
 		return 1;
 	endif
 
@@ -73,7 +85,7 @@ function CheckForEvent(npc, byref event)
 				endif
 				break;
 			SYSEVENT_DAMAGED:
-				//AI_Speak(npc, "OWCH "+source.name+" that hurts.");
+				AI_Speak(npc, "OWCH "+source.name+" that hurts.");
 				break;
 			default:
 				break;
