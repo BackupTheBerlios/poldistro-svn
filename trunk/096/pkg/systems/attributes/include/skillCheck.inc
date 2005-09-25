@@ -42,20 +42,20 @@ var g_skill_debug	:= 0;
  */
 function SkillCheck(mobile, attrib_name, difficulty, award_points:=0, advance_flags:=ADV_ALL)
 	if ( mobile.dead )
-		SendSysMessageEX(mobile, "You can't use skills while dead.");
+		SendSysMessage(mobile, "You can't use skills while dead.");
 		return -100;
 	elseif ( GetObjProperty(mobile, "DisableSkills") )
-		SendSysMessageEX(mobile, "Your skills are disabled.");
+		SendSysMessage(mobile, "Your skills are disabled.");
 		return -100;
 	elseif ( GetObjProperty(mobile, "NoGains") )
-		advance := ADV_DISABLE;
+		advance_flags := ADV_DISABLE;
 	endif
 	
-	var advance_skill := advance & ADV_SKILL;
-	var advance_stats := advance & ADV_STATS;
+	var advance_skill := advance_flags & ADV_SKILL;
+	var advance_stats := advance_flags & ADV_STATS;
 	
 	// Global skill-debug ( for SkillDbgMsg() )
-	g_debug := (GetObjProperty(mobile,"SkillDebug") != error);
+	g_skill_debug := (GetObjProperty(mobile,"SkillDebug") != error);
 	
 	return 1;
 endfunction
