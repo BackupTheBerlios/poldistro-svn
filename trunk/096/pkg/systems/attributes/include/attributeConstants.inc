@@ -1,4 +1,4 @@
-/* $Id: attributes.inc,v 1.5 2004/05/02 12:20:56 melanius Exp $
+/* $Id$
  *
  * Purpose
  * Provide various functions and constants for the attribute system.
@@ -7,9 +7,9 @@
 use uo;
 
 enum VITALS
-	VITAL_HITS         := "HitsRegeneration",
-	VITAL_MANA         := "ManaRegeneration",
-	VITAL_STAMINA      := "StaminaRegeneration"
+	VITAL_HITS         := "Hits",
+	VITAL_MANA         := "Mana",
+	VITAL_STAMINA      := "Stamina"
 endenum
 
 enum ATTRIBUTE_STATS
@@ -27,7 +27,7 @@ enum ATTRIBUTE_SKILLS
 	ATTRIBUTE_PARRY                     := "Parry",
 	ATTRIBUTE_BEGGING                   := "Begging",
 	ATTRIBUTE_BLACKSMITHY               := "Blacksmithy",
-	ATTRIBUTE_BOWCRAP_T_FLETCHING        := "BowcrAP_tFletching",
+	ATTRIBUTE_BOWCRAP_T_FLETCHING       := "BowcraftFletching",
 	ATTRIBUTE_PEACEMAKING               := "Peacemaking",
 	ATTRIBUTE_CAMPING                   := "Camping",
 	ATTRIBUTE_CARPENTRY                 := "Carpentry",
