@@ -44,8 +44,6 @@ endenum
 /*
  * Wait(what)
  *
- * Author: Folko
- *
  * Purpose
  * Waits for a signal.
  *
@@ -66,8 +64,6 @@ endfunction
 
 /*
  * Send(what)
- *
- * Author: Folko
  *
  * Purpose
  * Send a signal to the scheduler.

@@ -1,3 +1,6 @@
+/* $Id$
+ *
+ */
 use uo;
 use os;
 use cfgfile;
@@ -9,6 +12,7 @@ include ":datafile:include/datafile";
 // Its as close as it gets to critical without the console whining about it.
 set_priority(255);
 set_script_option(SCRIPTOPT_NO_RUNAWAY, 1);
+
 
 program CheckPackages()
 	var pkg_info := DFOpenDataFile(":control:packages", DF_CREATE);
@@ -67,6 +71,7 @@ program CheckPackages()
 
 	Print("[CONTROL] Finished setting up packages.");
 endprogram
+
 
 /*
  * GetCfgValue(byref cfg_elem, value)

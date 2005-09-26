@@ -1,3 +1,6 @@
+/* $Id$
+ *
+ */
 use os;
 
 var script := start_script("checkpackages");
