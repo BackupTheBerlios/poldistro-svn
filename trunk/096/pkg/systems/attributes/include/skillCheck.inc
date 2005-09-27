@@ -1,3 +1,5 @@
+// $Id$
+
 /*===============================================================
 * Current Version
 * SKILLCHECK.INC - v1.0
@@ -13,7 +15,9 @@ use os;
 use util;
 use cfgfile;
 
-include ":attributes:include/attributes";
+include ":attributes:attributes";
+include ":attributes:settings";
+
 
 const ADV_SKILL		:= 1;
 const ADV_STATS		:= 2;
@@ -31,7 +35,7 @@ var g_skill_debug	:= 0;
  * <= 0 means the skill check failed > 0 means it was successful.
  *
  * Parameters
- * mobile:			Mobile reference to do the skill check for.
+ * mobile:		Mobile reference to do the skill check for.
  * attribute_name:	Name of the attribute to perform the check on.
  * award_points:	Determines the amount of (if any) skill gain.
  * advance_flags:	Controls the turning on/off of stat and skill advancements for the check.
@@ -60,3 +64,27 @@ function SkillCheck(mobile, attrib_name, difficulty, award_points:=0, advance_fl
 	return 1;
 endfunction
 
+/*
+ * SkillDbgMsg(mobile, message)
+ *
+ * Purpose
+ * Checks to see if it should send a skill debug message to a mobile.
+ *
+ * Parameters
+ * mobile:	Mobile to send the messages to.
+ * message:	Debug message.
+ *
+ * Return value
+ * Returns 1
+ *
+ */
+function SkillDbgMsg(mobile, message)
+	if ( g_skill_debug )
+		SendSysMessage(who, "Skill Debug: "+message);
+	endif
+	
+	return 1;
+endfunction
+
+
+//Cdbl(Pow(2.0, Cint(basevalue/100))* 10.24);
