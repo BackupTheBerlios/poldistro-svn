@@ -1,3 +1,15 @@
+//$Id$
+
+/*===============================================================
+* Current Version
+* SETTINGS.INC - v1.0
+* Updated 9/27/2005 2:54PM
+*
+* -- Revision v1.0 --
+* Austin:
+*  Created include file
+===============================================================*/
+
 use uo;
 use os;
 use cfgfile;

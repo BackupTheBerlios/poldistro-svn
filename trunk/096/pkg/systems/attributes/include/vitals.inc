@@ -1,3 +1,5 @@
+//$Id$
+
 /*===============================================================
 * Current Version
 * VITALS.INC - v1.0
@@ -11,6 +13,8 @@
 use uo;
 use os;
 use cfgfile;
+
+include ":attributes:attributes";
 
 /* AP_GetVitalsCfgFile()
  * 

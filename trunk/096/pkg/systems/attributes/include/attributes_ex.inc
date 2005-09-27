@@ -1,6 +1,8 @@
+//$Id$
+
 /*===============================================================
 * Current Version
-* AP_EX.INC - v1.0
+* ATTRIBUTES_EX.INC - v1.0
 * Updated 9/20/2005 11:42AM
 *
 * -- Revision v1.0 --
