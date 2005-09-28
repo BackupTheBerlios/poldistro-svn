@@ -1,0 +1,7 @@
+// $Id$
+
+use uo;
+
+program canRemoveScript(mobile, container, item, move_type)
+	return 1;
+endprogram
