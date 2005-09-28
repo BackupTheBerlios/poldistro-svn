@@ -1,3 +1,6 @@
+// //$Id$
+
+
 use cfgfile;
 use uo;
 use os;
@@ -15,7 +18,7 @@ include "include/noto";
 include ":bowcraft:bowcraftFunctions";
 include ":tailoring:tailoringFunctions";
 include ":fishing:fishingFunctions";
-include ":corpses:corpseFunctions";
+include ":containers:corpse/corpseFunctions";
 
 var bowcraftconfigfile := ReadConfigFile(":bowcraft:bowcraft");
 

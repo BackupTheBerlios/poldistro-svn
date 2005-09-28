@@ -22,9 +22,9 @@
 use uo;
 use os;
 
-include ":attributes:include/attributeConstants";
-include ":attributes:include/attributes";
-include ":attributes:include/skillCheck";
+include ":attributes:attributeConstants";
+include ":attributes:attributes";
+include ":attributes:skillCheck";
 include "include/sound";
 
 CONST SS_RANGE   :=  3;

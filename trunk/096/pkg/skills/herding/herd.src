@@ -45,7 +45,7 @@ program herd(who)
                 SendSysMessage(who, "You can't herd that!");
                 return;
         endif
-	var thepoints := get_default_points(SKILLID_HERDING);
+	var thepoints := 50;
         if(CheckSkill(who, SKILLID_HERDING, herdskill, thepoints))
 
                 SendSysMessage(who, "Where do you want to move "+ npc.name +" to?");

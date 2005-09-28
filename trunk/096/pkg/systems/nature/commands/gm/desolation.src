@@ -3,7 +3,7 @@
 use uo;
 use cfgfile;
 include "include/std";
-include "../../nature";
+include ":nature:nature";
 
 program desolation(who, text)
 
@@ -23,17 +23,17 @@ program desolation(who, text)
 	  UnloadConfigFile(cfg);
 
           case (calendar[MONTH])
-           
+
              3:
              4:
-             5: 
+             5:
                 if (seasons)
                      var everyone := EnumerateOnlineCharacters();
                      foreach dude in everyone
                          Season(dude, SEASON_SPRING);
                      endforeach
                 endif
-             6: 
+             6:
              7:
              8:
                 if (seasons)
