@@ -1,0 +1,27 @@
+//$Id$
+
+use uo;
+use os;
+use cfgfile;
+
+program useContainer(mobile, container)
+	var item_cfg := ReadConfigFile(":*:itemdesc");
+	item_cfg := item_cfg[container.graphic];
+	
+	if ( mobile.cmdlevel )
+		SendSysMessage(mobile, "Command level is present - container is skipping locks, traps, etc.");
+		SendViewContainer(mobile, container);
+	endif
+	
+	//To-do
+	//Check if mobile has a key for the container.
+	//Check if container is a treasure chest - generate loot.
+	
+	SendViewContainer(mobile, container);
+	
+	if ( (item_cfg.OpenGraphic) && (item_cfg.CloseGraphic) )
+		container.graphic := item_cfg.OpenGraphic;
+		sleep(2);
+		container.graphic := item_cfg.CloseGraphic;
+	endif
+endprogram

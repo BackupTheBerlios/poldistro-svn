@@ -10,6 +10,9 @@
 *  Created include file
 ===============================================================*/
 
+use uo;
+use os;
+
 /*
  * CP_RootContainerLocked(object)
  *
