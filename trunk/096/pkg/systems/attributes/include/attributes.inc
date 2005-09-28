@@ -80,7 +80,7 @@ endfunction
  *
  */
 function AP_GetAttributesDataFile()
-	var data_file := DFOpenDataFile(":attributes:attributes");
+	var data_file := DFOpenDataFile(":attributes:attributes", DF_CREATE);
 	if ( data_file.errortext )
 		SysLog("Error::AP_GetAttributesDataFile() - Unable to open attributes.txt ->"+data_file.errortext);
 	endif
