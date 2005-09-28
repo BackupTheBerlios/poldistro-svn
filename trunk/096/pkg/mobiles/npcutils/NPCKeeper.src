@@ -1,3 +1,5 @@
+// //$Id$
+
 use uo;
 use os;
 
@@ -191,7 +193,7 @@ program npckeep(who)
   if(colornum == 0)
     colornum := 1;
   endif
-  who.speech_color := CInt(colorarray[colornum]); 
+  who.speech_color := CInt(colorarray[colornum]);
 endprogram
 
 function Adjustment(who, type)

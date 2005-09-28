@@ -1,3 +1,5 @@
+// //$Id$
+
 use uo;
 use os;
 
@@ -8,7 +10,7 @@ program dyeban(who)
   var act := who.acct;
   act.ban();
   act.setprop("deleteme", 1);
-  var x, i;
+  var i;
   WipeBankBox(act.GetCharacter(1));
     foreach thing in ListEquippedItems(act.GetCharacter(1))
       MoveItemToContainer(thing, act.GetCharacter(1).backpack);

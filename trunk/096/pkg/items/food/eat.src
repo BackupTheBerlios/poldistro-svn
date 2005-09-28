@@ -1,3 +1,5 @@
+// //$Id$
+
 use uo;
 use os;
 use util;
@@ -23,9 +25,9 @@ program eat(who, food)
     SendSysMessage(who, "Someone is doing something with that.");
     return;
   endif
-  
+
   var foodcfg := ReadConfigFile(":*:itemdesc");
-  var retval, themsg;
+  var themsg;
   var poison := CInt(GetObjProperty(food, "poison_level"));
   var foodvalue := foodcfg[food.objtype].foodvalue;
   var hunger := CInt(GetObjProperty(who, "hunger"));
@@ -41,7 +43,7 @@ program eat(who, food)
     case (RandomInt(3) + 1)
       1: PlaySoundEffect(who, 0x3b);
       2: PlaySoundEffect(who, 0x3c);
-      3: PlaySoundEffect(who, 0x3d); 
+      3: PlaySoundEffect(who, 0x3d);
     endcase
     PerformAction(who, ANIM_EAT);
     SetStamina(who, GetStamina(who) +(RandomInt(5)+foodvalue));
@@ -50,16 +52,16 @@ program eat(who, food)
     endif
     hunger := hunger - foodvalue;
     case (hunger)
-      0:  
+      0:
       1:  themsg := "You manage to eat the food, but you are stuffed.";
-      2:  
+      2:
       3:  themsg := "You feel quite full after consuming the food.";
-      4:  
-      5:  
-      6:  
+      4:
+      5:
+      6:
       7:  themsg := "After eating the food you feel much less hungry.";
-      8:  
-      9:  
+      8:
+      9:
       10: themsg := "You eat the food but are still extremely hungry.";
     endcase
     if (hunger < 0)
@@ -70,10 +72,10 @@ program eat(who, food)
     case (hunger)
       0:  SetStaminaRegenRate(who, 1000);
       1:  SetStaminaRegenRate(who, 1300);
-      2:  
-      3:  
-      4:  
-      5:  
+      2:
+      3:
+      4:
+      5:
       6:  SetStaminaRegenRate(who, 1200);
       7:  SetStaminaRegenRate(who, 1000);
       8:  SetStaminaRegenRate(who, 800);

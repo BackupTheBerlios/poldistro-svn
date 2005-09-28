@@ -1,3 +1,5 @@
+// //$Id$
+
 use cfgfile;
 use os;
 use util;
@@ -85,7 +87,6 @@ function EquipItemString(who, str, lastcolor)
       var itemg := FindConfigElem(vetements, objname);
       if(itemg)
         var str := GetConfigStringArray(itemg, "Item");
-        var str3;
         var newarray := {};
         var i := 1;
         var sex := "";

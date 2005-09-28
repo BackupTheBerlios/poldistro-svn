@@ -1,3 +1,5 @@
+// //$Id$
+
 /////////////////////////////////////////
 // 2.0
 //
@@ -37,27 +39,27 @@ program BulletinBoard(who, board)
 	repeat
 		board_data_file := DFOpenDataFile("MessageBoards", DF_CREATE);
 		board_elem := DFFindElement(board_data_file, hex(board.serial), DF_CREATE);
-	
+
 		GFInitGump();
-	
+
 		GFButtonPage(40, 195, 0x1B6B, 0x1B6B, 500);
 		GFGumpPic(20, 20, 0x87A);
 		GFTextMid(260, 57, 0, GF_STDCOLOR, "Message Board");
-	
+
 		BoardIndex(board);
-	
+
 		var subject := "", msg_lines := array;
 		NewPost(who, subject, msg_lines);
-	
+
 		input := GFSendGump(who);
 		if ( !GetObjProperty(who, "#Online") )
 			//If the player goes offline, terminate the script.
 			exit;
 		endif
-			
+
 		if ( input[ADD_POST_BTN] )
 			subject := GFExtractData(subject.keyid, input);
-			
+
 			//Take the 'lines' from the post and put them into 1 string.
 			var msg_string := "";
 			foreach line in msg_lines
@@ -67,8 +69,8 @@ program BulletinBoard(who, board)
 				endif
 				sleepms(5);
 			endforeach
-			
-			var post_num := CInt(board_elem.GetProp("NextPost"));					
+
+			var post_num := CInt(board_elem.GetProp("NextPost"));
 			var new_num := CInt(board_elem.GetProp("NextPost"))+1;
 			if (new_num > 50)
 				//Were on post 50, reset the counter.
@@ -79,7 +81,7 @@ program BulletinBoard(who, board)
 			post_info.+Name := who.name;
 			post_info.+Subject := Subject;
 			post_info.+Message := msg_string;
-		
+
 			board_elem.SetProp(hex(post_num), post_info);
 		elseif ( input[0] >= DELETE_BTN )
 			var temp := CInt(input[0]-DELETE_BTN);
@@ -87,10 +89,11 @@ program BulletinBoard(who, board)
 		endif
 	until (input[0] <= 2);
 	//Right click closes the gump.
-	
+
 endprogram
 
 function BoardIndex(board)
+	board := board;
 	var y_pos := 180;
 	var page_num := 1;
 	var post_page_num := 1000;
@@ -102,19 +105,19 @@ function BoardIndex(board)
 			var name := board_elem.GetProp(postnum).Name;
 			var subject := board_elem.GetProp(postnum).Subject;
 			var message := board_elem.GetProp(postnum).Message;
-			
+
 			GFPage(page_num);
 			GFButtonPage(135, y_pos+3, 0xFC1, 0xFC1, post_page_num);
 			GFTextLine(155, y_pos, GF_STDCOLOR, subject);
 			y_pos := y_pos+20;
-			
+
 			GFPage(post_page_num);
-						
+
 			var msg := "<basefont color=#111111>"
 				+"From: "+name+"<br>"
 				+"Subject: "+subject+"<br>"
 				+"Message:<br>";
-					
+
 			if ( TypeOf(message) == "Array" )
 				foreach line in message
 					msg := msg+line+" ";
@@ -124,18 +127,18 @@ function BoardIndex(board)
 				msg := msg+" "+message;
 			endif
 			GFHTMLArea(130, 180, 263, 160, 0, 1, msg);
-			
+
 			post_page_num := post_page_num+1;
-			
+
 			GFButtonPage(135, 367, 0x15E3, 0x15E7, page_num);
 			GFTextLine(155, 365, GF_STDCOLOR, "Index");
-			
+
 			GFTextLine(350, 364, GF_STDCOLOR, "Delete");
 			GFButtonID(395, 367, 2117, 2118, 1, (CInt(postnum)+DELETE_BTN));
-			
+
 			counter := counter+1;
 			total := total+1;
-				
+
 			if ( counter > 8 && total < (prop_list.size()-1) )
 				GFPage(page_num);
 				//Down arrow
@@ -154,24 +157,24 @@ endfunction
 
 function NewPost(who, byref subject, byref msg_lines)
 	GFPage(500);
-	
+
 	GFTextLine(130, 180, GF_STDCOLOR, "From: " + who.name);
 	GFTextLine(130, 200, GF_STDCOLOR, "Subject: ");
 	subject := GFTextEntry(193, 200, 105, 20, GF_STDCOLOR, "New Message");
-	
+
 	GFTextLine(130, 230, GF_STDCOLOR, "Message:");
-	
+
 	var i;
 	var y_pos := 250;
 	//Five message lines.
 	for (i:=0; i < 5; i:=i+1)
 		msg_lines.append(GFTextEntry(130, y_pos, 255, 20, GF_STDCOLOR));
-		y_pos := y_pos+20;	
+		y_pos := y_pos+20;
 	endfor
-	
+
 	GFButtonPage(135, 367, 0x15E3, 0x15E7, 1);
 	GFTextLine(155, 365, GF_STDCOLOR, "Index");
-	
+
 	GFTextLine(355, 364, GF_STDCOLOR, "Post");
 	GFButtonID(395, 367, 2117, 2118, 1, ADD_POST_BTN);
 endfunction

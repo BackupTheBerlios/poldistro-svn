@@ -1,3 +1,5 @@
+// //$Id$
+
 use uo;
 use os;
 
@@ -30,7 +32,6 @@ program use_dyes(who, dyes)
   endif
   var color := SelectColor(who, dyetub);
   if( color > 1001 )
-    var account := who.acct;
     SendSysMessage( who, "Bug abusers aren't tolerated here." );
     who.frozen := 1;
     SendSysMessage(who, "You have been banned for exploiting.");
