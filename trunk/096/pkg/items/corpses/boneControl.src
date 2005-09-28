@@ -1,9 +1,0 @@
-use uo;
-use os;
-
-program boneControl(corpse)
-
-        sleep(300);
-        DestroyItem(corpse);
-
-endprogram
