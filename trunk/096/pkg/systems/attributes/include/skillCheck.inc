@@ -63,6 +63,25 @@ function SkillCheck(mobile, attrib_name, difficulty, award_points:=0, advance_fl
 	return 1;
 endfunction
 
+function CheckSkillAdvance(mobile, attribute, award_points)
+	if ( AP_CheckSkillCap(mobile, attribute) )
+		return error{"errortext":="Skill cap for attribute '"+attribute+"' already reached."};
+	elseif ( AP_CheckSkillCap(mobile) )
+		return error{"errortext":="Total skill cap already reached."};
+	endif
+	
+	var skill_amt := AP_GetTrueSkill(mobile, attribute);
+	var free_gain := CDbl(AP_GetSettingsCfgElem("Skills").FreeGainUntil);
+	if ( skill_amt < free_gain )
+		//Increase 0.1 if < free gain
+		AP_SetTrueSkill(mobile, attribute, skill_amt+0.1);
+	endif
+	
+	
+	return 1;
+endfunction
+	
+
 /*
  * SkillDbgMsg(mobile, message)
  *
@@ -79,7 +98,7 @@ endfunction
  */
 function SkillDbgMsg(mobile, message)
 	if ( g_skill_debug )
-		SendSysMessage(who, "Skill Debug: "+message);
+		SendSysMessage(mobile, "Skill Debug: "+message);
 	endif
 	
 	return 1;
