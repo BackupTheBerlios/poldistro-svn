@@ -169,8 +169,10 @@ function AP_CheckSkillCap(mobile, skill_name:="")
 	var cfg_elem := AP_GetSettingsCfgElem("Skills");
 	
 	if ( skill_name )
-		var cap := GetConfigReal(cfg_elem, skill_name);
-		return ( AP_GetTrueSkill(mobile, skill_name) >= cap );
+		var cap_val := GetConfigReal(cfg_elem, skill_name);
+		if ( cap_val != error )
+			return ( AP_GetTrueSkill(mobile, skill_name) >= cap_val );
+		endif
 	else
 		var total := 0.0;
 		foreach attribute_name in ( AP_ListAttributesByType("Skill") )
@@ -178,6 +180,11 @@ function AP_CheckSkillCap(mobile, skill_name:="")
 			sleepms(2);
 		endforeach
 		
-		return ( total >= GetConfigReal(cfg_elem, "TotalCap") );
+		var cap_val := GetConfigReal(cfg_elem, "TotalCap");
+		if ( cap_val != error )
+			return ( total >= cap_val );
+		endif
 	endif
+	
+	return 0;
 endfunction
