@@ -1,3 +1,5 @@
+// $Id$
+
 use os;
 use uo;
 use cfgfile;
@@ -5,7 +7,6 @@ use cfgfile;
 include "include/client";
 include "include/eventID";
 include "include/attributes";
-include "include/skillPoints";
 
 program herd(who)
         SendSysMessage(who, "What would you like to herd?");

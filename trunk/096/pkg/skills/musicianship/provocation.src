@@ -1,3 +1,4 @@
+// $Id$
 
 use uo;
 use os;
@@ -6,7 +7,6 @@ use cfgfile;
 
 include "include/client";
 include "include/objtype";
-include "include/skillPoints";
 include "include/bard";
 include "include/eventID";
 include "include/dist";
@@ -109,7 +109,7 @@ program bard_provoke(who)
    PrintTextAbovePrivate(thetarg, "You enrage " + thetarg.name + "!", who);
     SendEvent(thetarg, ev);
   endif
-endprogram 
+endprogram
 
 function canProvoke(template)
   case( template )

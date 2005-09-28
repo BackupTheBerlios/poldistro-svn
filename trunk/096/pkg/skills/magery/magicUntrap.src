@@ -1,3 +1,5 @@
+// $Id$
+
 use os;
 use uo;
 use util;
@@ -5,8 +7,6 @@ use util;
 include "include/client";
 include "include/sound";
 include "include/attributes";
-include "include/skillPoints";
-
 
 program spell_magicUntrap(parms)
 	var caster := parms.caster;

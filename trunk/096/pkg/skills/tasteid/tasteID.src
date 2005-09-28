@@ -1,3 +1,5 @@
+// $Id$
+
 use uo;
 use cfgfile;
 
@@ -7,8 +9,6 @@ include "include/attributes";
 const UOBJECT_FLASK_EMPTY:= 0x1832;
 const UOBJECT_FLASK_FULL := 0x1834;
 const UOBJECT_FLASK_HEATED := 0x1833;
-
-include "include/skillPoints";
 
 program do_tasteid(who)
   EraseObjProperty(who, "IsMeditating");

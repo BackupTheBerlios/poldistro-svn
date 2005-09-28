@@ -1,3 +1,5 @@
+// $Id$
+
 use uo;
 use cfgfile;
 use os;
@@ -6,7 +8,6 @@ use util;
 include "include/client";
 include "include/objtype";
 include "include/startEqp";
-include "include/skillPoints";
 include "include/dist";
 include "include/canAccess";
 

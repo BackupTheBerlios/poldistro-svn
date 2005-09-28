@@ -1,11 +1,11 @@
+// $Id$
+
 use os;
 use uo;
 use util;
 
 include "include/sound";
 include "include/client";
-include "include/skillPoints";
-
 
 program spell_unlock(parms)
   var caster := parms.caster;

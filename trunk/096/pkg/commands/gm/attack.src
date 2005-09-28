@@ -1,9 +1,10 @@
+// $Id$
+
 use uo;
 use util;
 
 include "include/client";
 include "include/objtype";
-include "include/skillPoints";
 include "include/bard";
 include "include/eventID";
 

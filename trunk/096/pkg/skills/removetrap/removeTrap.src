@@ -1,3 +1,5 @@
+// $Id$
+
 use uo;
 use os;
 use util;
@@ -5,14 +7,13 @@ use util;
 include "include/client";
 include "include/sound";
 include "include/tileEffects";
-include "include/skillPoints";
 include "include/canAccess";
 
 
 program removeTrap(who)
   EraseObjProperty(who, "IsMeditating");
   EraseObjProperty(who, "HealTimer");
-  var thepoints := get_default_points(SKILLID_REMOVETRAP);
+  var thepoints := 50;
   SendSysMessage(who, "Select Target.");
   var item := Target(who);
   if(!item)

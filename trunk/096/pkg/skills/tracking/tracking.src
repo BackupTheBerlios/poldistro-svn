@@ -1,3 +1,5 @@
+// $Id$
+
 use uo;
 use basic;
 use os;
@@ -5,7 +7,6 @@ use os;
 include "include/client";
 include "include/sound";
 include "include/attributes";
-include "include/skillPoints";
 
 
 program tracking(who)

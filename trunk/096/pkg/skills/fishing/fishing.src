@@ -1,3 +1,5 @@
+// $Id$
+
 use uo;
 use cfgfile;
 use os;
@@ -10,7 +12,6 @@ include "include/dist";
 include "include/math";
 include "include/objtype";
 include "include/startEqp";
-include "include/skillPoints";
 include "include/canAccess";
 include "include/toolWear";
 include "include/eventID";

@@ -1,3 +1,5 @@
+// $Id$
+
 use uo;
 use util;
 use os;
@@ -5,7 +7,6 @@ use os;
 include "include/client";
 include "include/attributes";
 include "include/objtype";
-include "include/skillPoints";
 include "include/canAccess";
 
 program UseWood( who, wood )
@@ -34,8 +35,8 @@ program UseWood( who, wood )
 		PrintTextAbovePrivate( wood, "Put that on the ground first!", who );
 		return;
 	endif
-	
-	if(CheckSkill(who, SKILLID_CAMPING, -1, get_default_points(SKILLID_CAMPING)))
+
+	if(CheckSkill(who, SKILLID_CAMPING, -1, 50))
 		var x := wood.x;
 		var y := wood.y;
 		var z := wood.z;

@@ -1,7 +1,8 @@
+// $Id$
+
 use uo;
 use cfgfile;
 
-include "include/skillPoints";
 include "include/attributes";
 include "include/spellRestrictions";
 include "include/client";

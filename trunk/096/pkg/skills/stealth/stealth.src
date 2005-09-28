@@ -14,9 +14,9 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 use uo;
 
-include ":attributes:include/attributeConstants";
-include ":attributes:include/attributes";
-include ":attributes:include/skillCheck";
+include ":attributes:attributeConstants";
+include ":attributes:attributes";
+include ":attributes:skillCheck";
 
 program skill_Stealth( who )
 

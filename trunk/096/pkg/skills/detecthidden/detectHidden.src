@@ -1,38 +1,50 @@
+// //$Id$
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//  name:    hiding.src - Skill Script
+//  version: 1.0
+//  author:  Distro
+//
+//  Purpose:
+//
+//
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////
 use uo;
 use os;
 use util;
 use cfgfile;
 
-include "include/attributes";
+include ":attributes:attributeConstants";
+include ":attributes:attributes";
+include ":attributes:skillCheck";
 include "include/sound";
 include "include/tileEffects";
-include "include/skillPoints";
 include ":poisonwatcher:poisons";
 
+CONST TRAP := "hiddentrap";
+CONST CRITICAL_FAILURE := 1;
+
 var thepoints;
-var item_cfg;
+var item_cfg := ReadConfigFile( ":*:itemdesc" );
 
-const TRAP := "hiddentrap";
+program skill_DetectHidden(who)
 
-const CRITICAL_FAILURE := 1;
+	EraseObjProperty(who, "IsMeditating");
+	EraseObjProperty(who, "HealTimer");
+	thepoints := AP_GetSkill(who, ATTRIBUTE_DETECTING_HIDDEN) + 10;
 
-
-program detectHidden(who)
-  EraseObjProperty(who, "IsMeditating");
-  EraseObjProperty(who, "HealTimer");
-    thepoints := get_default_points(SKILLID_DETECTINGHIDDEN );
-    item_cfg := ReadConfigFile( "::itemdesc" );
-    SendSysMessage(who,"Target the location to search.");
-    var targ := TargetCoordinates( who );
-    var range := getDetectRange( GetEffectiveSkill( who, SKILLID_DETECTINGHIDDEN  ) );
-    var hiders := ListMobilesNearLocationEx( cint(targ.x), cint(targ.y), cint(targ.z), range, LISTEX_FLAG_HIDDEN, who.realm );
-    var items  := ListItemsNearLocation( cint(targ.x), cint(targ.y), cint(targ.z), range, who.realm );
-    var elem;
-    var data;
-    var prop;
-    var dtct;
-    var skil;
-    var foundany := 0;
+	SendSysMessage(who,"Target the location to search.");
+	var targ := TargetCoordinates( who );
+	var range := my_DetectRange( AP_GetSkill( who, ATTRIBUTE_DETECTING_HIDDEN  ) );
+	var hiders := ListMobilesNearLocationEx( cint(targ.x), cint(targ.y), cint(targ.z), range, LISTEX_FLAG_HIDDEN, who.realm );
+	var items  := ListItemsNearLocation( cint(targ.x), cint(targ.y), cint(targ.z), range, who.realm );
+	var elem;
+	var data;
+	var prop;
+	var dtct;
+	var foundany := 0;
     foreach mobile in hiders
       if( Found( who,  mobile) )
         mobile.hidden := 0;
@@ -52,7 +64,7 @@ program detectHidden(who)
      var trapstrength := GetObjProperty(item,"trap_strength");
      thepoints := trapstrength *2;
 	 if( dtct )
-        if(CheckSkill( who, SKILLID_DETECTINGHIDDEN, -1, thepoints ))
+        if(SkillCheck( who, ATTRIBUTE_DETECTING_HIDDEN, -1, thepoints ))
 	      PrintTextAbovePrivate( item, "Trapped", who);
         else
           var results := RandomInt(9) + 1;
@@ -82,7 +94,7 @@ program detectHidden(who)
           endif
         endif
       elseif( data == TRAP)
-        if(CheckSkill( who, SKILLID_DETECTINGHIDDEN, -1, thepoints ))
+        if(SkillCheck( who, ATTRIBUTE_DETECTING_HIDDEN, -1, thepoints ))
 	      PrintTextAbovePrivate( item, "Trap", who );
           SetObjProperty( item, "trapped", 1 );
         else
@@ -117,7 +129,7 @@ program detectHidden(who)
           endif
         endif
      elseif( prop )
-        if(CheckSkill( who, SKILLID_DETECTINGHIDDEN, -1, thepoints ))
+        if(SkillCheck( who, ATTRIBUTE_DETECTING_HIDDEN, -1, thepoints ))
 	      PrintTextAbovePrivate( item, "Trapped", who);
 	      SetObjProperty( item, "trapped", 1 );
         else
@@ -169,15 +181,15 @@ endprogram
 
 
 function Found( finder, hider ) //FIXME: should not be 100% certain to find a hider if your skill is greater
-  var hide_skill := GetEffectiveSkill( hider, SKILLID_HIDING );
-  if (CheckSkill( finder, SKILLID_DETECTINGHIDDEN, hide_skill, thepoints ) )
+  var hide_skill := AP_GetSkill( hider, ATTRIBUTE_HIDING );
+  if (SkillCheck( finder, ATTRIBUTE_DETECTING_HIDDEN, hide_skill, thepoints ) )
     return 1;
   else
     return 0;
   endif
 endfunction
 
-function getDetectRange( skill )
+function my_DetectRange( skill )
     if( skill >= 100 )
         return 10;
     elseif( skill >= 90 )
