@@ -5,7 +5,7 @@ use uo;
 include ":containers:checks";
 
 
-program CanInsert(mobile, container, item, move_type, insert_type, adding_item, existing_stack, amount_to_add)
+program canInsert(mobile, container, item, move_type, insert_type, adding_item, existing_stack, amount_to_add)
 	if ( mobile.cmdlevel )
 		return 1;
 	elseif ( move_type == MOVETYPE_COREMOVE )

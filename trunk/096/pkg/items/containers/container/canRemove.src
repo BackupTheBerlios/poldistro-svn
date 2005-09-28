@@ -5,7 +5,7 @@ use uo;
 include ":containers:checks";
 
 
-program CanRemove(mobile, container, item, move_type)
+program canRemove(mobile, container, item, move_type)
 	if ( mobile.cmdlevel )
 		return 1;
 	elseif ( move_type == MOVETYPE_COREMOVE )
