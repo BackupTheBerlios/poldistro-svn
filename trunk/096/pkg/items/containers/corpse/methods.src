@@ -1,0 +1,50 @@
+use uo;
+use util;
+use os;
+
+program Install()
+	return 1;
+endprogram
+
+exported function Gibbify(corpse, range:=10)
+	var piece_list := array
+	{
+		0x1DAD, //Torso
+		0x1DB2, //Left Leg
+		0x1DB1, //Right Leg
+		0x1DB0, //Left Arm
+		0x1DAF, //Right Arm
+		0x1CEE, //Liver
+		0x1CED, //Heart
+		0x1CF0  //Brain
+	};
+	
+	foreach objtype in (piece_list)
+		var item := CreateItemAtLocation(corpse.x, corpse.y, corpse.z, objtype, 1);
+		
+		var newx, newy;
+		var num_tries := 0;
+
+		MOVE_LOOP:
+		repeat
+			newx := RandomInt(range)-CInt(range/2);
+			newy := RandomInt(range)-CInt(range/2);
+
+			newx := newx+corpse.x;
+			newy := newy+corpse.y;
+
+			num_tries := num_tries+1;
+			if ( num_tries > 30 )
+				num_tries := 0;
+				newx := corpse.x;
+				newy := corpse.y;
+				break MOVE_LOOP;
+			endif
+
+		until ( CheckLosAt(corpse, newx, newy, corpse.z) );
+		
+		MoveItemToLocation(item, newx, newy, corpse.z, MOVEITEM_FORCELOCATION);
+	endforeach
+	
+	DestroyItem(corpse);
+endfunction
