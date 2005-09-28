@@ -18,7 +18,6 @@ use cfgfile;
 include ":attributes:attributes";
 include ":attributes:settings";
 
-
 const ADV_SKILL		:= 1;
 const ADV_STATS		:= 2;
 const ADV_ALL		:= ADV_SKILL+ADV_STATS; // 3

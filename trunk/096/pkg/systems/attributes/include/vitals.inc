@@ -14,8 +14,6 @@ use uo;
 use os;
 use cfgfile;
 
-include ":attributes:attributes";
-
 /* AP_GetVitalsCfgFile()
  * 
  * Purpose
