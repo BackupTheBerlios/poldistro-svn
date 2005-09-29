@@ -1,0 +1,10 @@
+use uo;
+
+include ":crafting:method/toolWearMethod";
+
+program install()
+
+	print( "Installing Tongs MethodScript...." );
+	return 1;
+
+endprogram
