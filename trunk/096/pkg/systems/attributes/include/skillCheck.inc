@@ -119,12 +119,12 @@ function CalcSuccessPercent(mobile, attrib_name, difficulty, effective_skill)
 		var neg1chance := CDbl(settings.MaxNeg1Chance);
 		
 		percent := CInt(neg1chance * effective_skill / max_skill);
-	elseif ( (effective_skill + CDbl(settings.TooHard)) < difficulty )
+	elseif ( DifficultyTooHard(effective_skill, difficulty) )
 		SkillDbgMsg(mobile, "Too hard.");
-		return 0;
-	elseif ( (effective_skill + Cdbl(settings.TooEasy)) > difficulty )
+		percent := 0;
+	elseif ( DifficultyTooEasy(effective_skill, difficulty) )
 		SkillDbgMsg(mobile, "Too easy.");
-		return 100;
+		percent := 100;
 	else
 		percent := CInt(50.0 + ((effective_skill - difficulty) * 2.5));
 	endif
@@ -136,6 +136,16 @@ function CalcSuccessPercent(mobile, attrib_name, difficulty, effective_skill)
 	endif
 	
 	return percent;
+endfunction
+
+function DifficultyTooEasy(effective_skill, difficulty)
+	var settings := AP_GetSettingsCfgElem("Skills");
+	return ( (effective_skill + Cdbl(settings.TooEasy)) > difficulty );
+endfunction
+
+function DifficultyTooHard(effective_skill, difficulty)
+	var settings := AP_GetSettingsCfgElem("Skills");
+	return ( (effective_skill + CDbl(settings.TooHard)) < difficulty );
 endfunction
 
 /*
