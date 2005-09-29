@@ -14,8 +14,6 @@ use uo;
 use os;
 use util;
 
-include ":attributes:attributes";
-
 //function CheckStatAdvancement(mobile, stat_name)
 //	return 1;
 //endfunction

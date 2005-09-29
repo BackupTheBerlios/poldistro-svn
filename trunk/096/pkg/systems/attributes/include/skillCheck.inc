@@ -15,9 +15,6 @@ use os;
 use util;
 use cfgfile;
 
-include ":attributes:attributes";
-include ":attributes:advanceCheck";
-
 const ADV_SKILL		:= 0x1;
 const ADV_STATS		:= 0x2;
 const ADV_ALL		:= ADV_SKILL+ADV_STATS; // 3

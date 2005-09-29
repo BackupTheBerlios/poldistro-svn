@@ -19,6 +19,8 @@ include ":attributes:settings";
 include ":attributes:skills";
 include ":attributes:stats";
 include ":attributes:vitals";
+include ":attributes:skillCheck";
+include ":attributes:advanceCheck";
 include ":datafile:datafile";
 
 /* AP_GetAttributesCfgFile()
