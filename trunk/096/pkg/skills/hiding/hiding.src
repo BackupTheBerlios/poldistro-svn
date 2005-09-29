@@ -21,10 +21,7 @@ program skill_Hide(who)
 
 	EraseObjProperty(who, "IsMeditating");
 	EraseObjProperty(who, "HealTimer");
-	var thepoints := CInt(AP_GetSkill(who, ATTRIBUTE_HIDING) + 10);
-	if( thepoints < 20 )
-		thepoints := 20;
-	endif
+
 	if( who.warmode )
 		who.SetWarMode(0);
 	endif
@@ -34,11 +31,15 @@ program skill_Hide(who)
 		PrintTextAbovePrivate(who, "You cannot hide as there are hostiles in view!", who);
 		return 0;
 	endif
-	if( SkillCheck(who, ATTRIBUTE_HIDING, -1, thepoints) > 0 )
+	if( SkillCheck(who, ATTRIBUTE_HIDING, -1) > 0 )
 		who.hidden := 1;
-		PrintTextAbovePrivate(who, "You have hidden yourself well.", who);
+		if( GetObjProperty(who, "#Stealth") != 1)
+			PrintTextAbovePrivate(who, "You have hidden yourself well.", who);
+		endif
 	else
-		PrintTextAbovePrivate(who, "You can't seem to hide here.", who);
+		if( GetObjProperty(who, "#Stealth") != 1)
+			PrintTextAbovePrivate(who, "You can't seem to hide here.", who);
+		endif
 		who.hidden := 0;
 	endif
 

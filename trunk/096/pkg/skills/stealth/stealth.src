@@ -39,12 +39,14 @@ program skill_Stealth( who )
 	endif
 
 	var my_Skill := AP_GetSkill(who, ATTRIBUTE_STEALTH) / 10;
-	if(SkillCheck(who, ATTRIBUTE_STEALTH, -1, (my_Skill*10)) > 0)
+	if(SkillCheck(who, ATTRIBUTE_STEALTH, -1) > 0)
 		if( !who.hidden )
 			// Used RSTC because it runs the script in critical mode, thus
 			// ensuring the hiding attempt completes before the stealth
 			// script continues.
+			SetObjProperty(who, "#Stealth", 1);
 			Run_Script_To_Completion(":hiding:hiding", who);
+			EraseObjProperty(who, "#Stealth");
 			if ( !who.hidden )
 				SendSysMessage(who, "You must be hidden to stealth.");
 				return 0;

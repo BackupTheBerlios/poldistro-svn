@@ -42,7 +42,7 @@ program skill_SpiritSpeak(who)
 	PlaySoundEffect(who, SFX_SKILL_SPIRITSPEAK);
 
 
-  	if(SkillCheck(who, ATTRIBUTE_SPIRIT_SPEAK, -1,  my_skill) > 0)
+  	if(SkillCheck(who, ATTRIBUTE_SPIRIT_SPEAK, -1) > 0)
 		foreach corpse in ListItemsNearLocationOfType( who.x, who.y, who.z, SS_RANGE, 0x2006 )
 			channelFromCorpse(who, corpse, my_skill);
 		endforeach

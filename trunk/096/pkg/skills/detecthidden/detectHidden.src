@@ -26,14 +26,12 @@ include ":poisonwatcher:poisons";
 CONST TRAP := "hiddentrap";
 CONST CRITICAL_FAILURE := 1;
 
-var thepoints;
 var item_cfg := ReadConfigFile( ":*:itemdesc" );
 
 program skill_DetectHidden(who)
 
 	EraseObjProperty(who, "IsMeditating");
 	EraseObjProperty(who, "HealTimer");
-	thepoints := AP_GetSkill(who, ATTRIBUTE_DETECTING_HIDDEN) + 10;
 
 	SendSysMessage(who,"Target the location to search.");
 	var targ := TargetCoordinates( who );
@@ -62,9 +60,8 @@ program skill_DetectHidden(who)
      prop := GetObjProperty(item,"trap_type");
 	 dtct := GetObjProperty(item, "trapped");
      var trapstrength := GetObjProperty(item,"trap_strength");
-     thepoints := trapstrength *2;
 	 if( dtct )
-        if(SkillCheck( who, ATTRIBUTE_DETECTING_HIDDEN, -1, thepoints ))
+        if(SkillCheck( who, ATTRIBUTE_DETECTING_HIDDEN, -1) > 0)
 	      PrintTextAbovePrivate( item, "Trapped", who);
         else
           var results := RandomInt(9) + 1;
@@ -94,7 +91,7 @@ program skill_DetectHidden(who)
           endif
         endif
       elseif( data == TRAP)
-        if(SkillCheck( who, ATTRIBUTE_DETECTING_HIDDEN, -1, thepoints ))
+        if(SkillCheck( who, ATTRIBUTE_DETECTING_HIDDEN, -1) > 0)
 	      PrintTextAbovePrivate( item, "Trap", who );
           SetObjProperty( item, "trapped", 1 );
         else
@@ -129,7 +126,7 @@ program skill_DetectHidden(who)
           endif
         endif
      elseif( prop )
-        if(SkillCheck( who, ATTRIBUTE_DETECTING_HIDDEN, -1, thepoints ))
+        if(SkillCheck( who, ATTRIBUTE_DETECTING_HIDDEN, -1) > 0 )
 	      PrintTextAbovePrivate( item, "Trapped", who);
 	      SetObjProperty( item, "trapped", 1 );
         else
@@ -182,7 +179,7 @@ endprogram
 
 function Found( finder, hider ) //FIXME: should not be 100% certain to find a hider if your skill is greater
   var hide_skill := AP_GetSkill( hider, ATTRIBUTE_HIDING );
-  if (SkillCheck( finder, ATTRIBUTE_DETECTING_HIDDEN, hide_skill, thepoints ) )
+  if (SkillCheck( finder, ATTRIBUTE_DETECTING_HIDDEN, hide_skill) > 0)
     return 1;
   else
     return 0;
