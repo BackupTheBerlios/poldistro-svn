@@ -14,9 +14,39 @@ use uo;
 use os;
 use util;
 
-//function CheckStatAdvancement(mobile, stat_name)
-//	return 1;
-//endfunction
+function CheckStatsForSkill(mobile, skill_name)
+	var settings := AP_GetSettingsCfgElem("Stats");
+	
+	var next_check := CInt(GetObjProperty(mobile, "#LastStatGain"))+CInt(settings.GainWait);
+	if ( next_check > ReadGameClock() )
+		SkillDbgMsg(mobile, "Stat advance-wait timer has not yet expired.");
+		return 0;
+	endif
+	
+	var stat_mult := settings.GainSpeed;
+	foreach stat_entry in (AP_GetSkillStats(skill_name))
+		var stat_name := _stat_entry_iter;
+		var check_chance := stat_entry[1];
+		var stat_mult := RandomDiceRoll(stat_entry[2]);
+		
+		var roll := RandomInt(100)+1;
+		
+		if ( roll <= check_chance )
+			SkillDbgMsg(mobile, "("+roll+" < "+check_chance+"%) Checking stat "+stat_name);
+			CheckStatAdvancement(mobile, stat_name, stat_mult);
+		else
+			SkillDbgMsg(mobile, "("+roll+" > "+check_chance+"%) skipping stat check for "+stat_name);
+		endif
+		sleepms(10);
+	endforeach
+	
+	return 1;
+endfunction
+
+
+function CheckStatAdvancement(mobile, stat_name, stat_mult)
+		
+endfunction
 
 function CheckSkillAdvance(mobile, skill_name, award_diff, pass_chance, pass_success)
 	if ( pass_success < 0 )
@@ -94,26 +124,3 @@ function CheckSkillAdvance(mobile, skill_name, award_diff, pass_chance, pass_suc
 	
 	return 0;
 endfunction
-
-/*
-function CheckSkillAdvance(mobile, attribute, award_points)
-	if ( AP_CheckSkillCap(mobile, attribute) )
-		return error{"errortext":="Skill cap for attribute '"+attribute+"' already reached."};
-	elseif ( AP_CheckSkillCap(mobile) )
-		return error{"errortext":="Total skill cap already reached."};
-	endif
-	
-	var skill_amt := AP_GetTrueSkill(mobile, attribute);
-	var free_gain := CDbl(AP_GetSettingsCfgElem("Skills").FreeGainUntil);
-	if ( skill_amt < free_gain )
-		//Increase 0.1 if < free gain
-		AP_SetTrueSkill(mobile, attribute, skill_amt+0.1);
-	endif
-	
-	if(points != 0)
-      		points  := points * ((1000-temp_chance) / 1000);
-    	endif
-    	
-	return 1;
-endfunction
-*/
