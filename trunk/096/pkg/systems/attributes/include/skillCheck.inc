@@ -16,7 +16,7 @@ use util;
 use cfgfile;
 
 include ":attributes:attributes";
-include ":attributes:settings";
+include ":attributes:advanceCheck";
 
 const ADV_SKILL		:= 0x1;
 const ADV_STATS		:= 0x2;
@@ -71,6 +71,7 @@ function SkillCheck(mobile, attrib_name, difficulty, award_diff:=0, advance_flag
 	var check_roll := RandomInt(100)+1;
 	var pass_success := CInt(CDbl(pass_chance) - CDbl(check_roll))+1;
 	// Ensure skill- and stat-gain if it's a -1 skillcheck
+	// Do this AFTER the CalcSuccessPercent() call so '-1' isn't messed up
 	if ( difficulty == -1 )
 		difficulty := effective_skill;
 	endif
@@ -78,7 +79,27 @@ function SkillCheck(mobile, attrib_name, difficulty, award_diff:=0, advance_flag
 		award_diff := difficulty;
 	endif
 	
-	return 1;
+	SkillDbgMsg(mobile, "--");
+	SkillDbgMsg(mobile, "Difficulty: "+CStr(difficulty)+"% (Award: "+CStr(award_diff)+")");
+	SkillDbgMsg(mobile, "Effective Skill: "+CStr(effective_skill)+"%");
+	SkillDbgMsg(mobile, "Success Chance: "+CStr(pass_chance)+"%");
+	SkillDbgMsg(mobile, "Check Roll: "+CStr(check_roll));
+	SkillDbgMsg(mobile, "Success: "+CStr(pass_success));
+	SkillDbgMsg(mobile, "---");
+	
+	if ( !(advance_flags & ADV_SKILL) )
+		SkillDbgMsg(mobile, "Skill advance disabled.");
+	else
+		//CheckSkillAdvance();
+	endif
+		
+	if ( !(advance_flags & ADV_STATS) )
+		SkillDbgMsg(mobile, "Stat advancement disabled.");
+	else
+		//AdvanceStatsForSkill();
+	endif
+	
+	return pass_success;
 endfunction
 
 /*
@@ -94,14 +115,22 @@ endfunction
  *
  */
 function CalcSuccessPercent(mobile, attrib_name, difficulty, effective_skill)
-	return 1;
+	var settings := AP_GetSettingsCfgElem("Skills");
+	if ( difficulty == -1 )
+		var max_skill := AP_GetSkillCap(attrib_name);
+		var neg1chance := CDbl(settings.MaxNeg1Chance);
+		
+		return CInt(neg1chance * effective_skill / max_skill);
+	elseif ( (effective_skill + CDbl(settings.TooHard)) < difficulty )
+		SkillDbgMsg(mobile, "Too hard.");
+		return 0;
+	elseif ( (effective_skill + Cdbl(settings.TooEasy)) > difficulty )
+		SkillDbgMsg(mobile, "Too easy.");
+		return 100;
+	else
+		return (50 + ((effective_skill - difficulty) * 2.5));
+	endif
 endfunction
-
-
-function CheckSkillAdvance(mobile, attrib_name, award_difficulty, pass_chance, pass_success)
-	return 1;
-endfunction
-
 
 /*
  * SkillDbgMsg(mobile, message)

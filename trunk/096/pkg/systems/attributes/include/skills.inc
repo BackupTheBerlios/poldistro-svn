@@ -151,6 +151,33 @@ function AP_GetSkillStats(attribute_name)
 endfunction
 
 /*
+ * AP_GetSkillCap(skill_name)
+ *
+ * Purpose
+ * Gets the number a skill caps at.
+ *
+ * Parameters
+ * skill_name: Name of the skill to check
+ *
+ * Return value
+ * Returns a number or error
+ *
+ */
+function AP_GetSkillCap(skill_name)
+	var cfg_elem := AP_GetSettingsCfgElem("Skills");
+	
+	// Check if there is a cap for that particular skill.
+	var cap_val := GetConfigReal(cfg_elem, skill_name);
+	
+	if ( !cap_val )
+		// No skill specific cap so get the general one.
+		cap_val := GetConfigReal(cfg_elem, "SkillCap");
+	endif
+	
+	return cap_val;
+endfunction
+ 
+/*
  * AP_CheckSkillCap(mobile, skill_name)
  *
  * Purpose
@@ -158,7 +185,7 @@ endfunction
  * If no skill_name is passed, it will check the totals.
  *
  * Parameters
- * mobile:		Mobile to check the skills on
+ * mobile:	Mobile to check the skills on
  * stat_name:	Optional parameter - name of the skill to check.
  *
  * Return value
@@ -169,11 +196,7 @@ function AP_CheckSkillCap(mobile, skill_name:="")
 	var cfg_elem := AP_GetSettingsCfgElem("Skills");
 	
 	if ( skill_name )
-		// Check if the specific skill has a cap set for it.
-		var cap_val := GetConfigReal(cfg_elem, skill_name);
-		if ( !cap_val )
-			cap_val := GetConfigReal(cfg_elem, "SkillCap");
-		endif
+		var cap_val := AP_GetSkillCap(skill_name);
 		
 		if ( cap_val != error )
 			return ( AP_GetTrueSkill(mobile, skill_name) >= cap_val );
