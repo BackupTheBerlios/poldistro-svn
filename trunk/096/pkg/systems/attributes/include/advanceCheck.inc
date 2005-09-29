@@ -14,6 +14,20 @@ use uo;
 use os;
 use util;
 
+/*
+ * CheckStatsForSkill(mobile, skill_name)
+ *
+ * Purpose
+ * Performs a stat check on all stats that are listed within a skill's attributes.cfg elem.
+ *
+ * Parameters
+ * mobile:	Mobile to do the stat checks on.
+ * skill_name:	Skill to get the stat advance list from.
+ *
+ * Return value
+ * Returns 1
+ *
+ */
 function CheckStatsForSkill(mobile, skill_name)
 	var settings := AP_GetSettingsCfgElem("Stats");
 	
@@ -43,7 +57,22 @@ function CheckStatsForSkill(mobile, skill_name)
 	return 1;
 endfunction
 
-
+/*
+ * CheckStatAdvancement(mobile, stat_name, stat_mult)
+ *
+ * Purpose
+ * Does an advancement check on a stat.
+ *
+ * Parameters
+ * mobile:	Mobile to do the stat advancement check on.
+ * stat_name:	Name of the stat to do the advancement check on.
+ * stat_mult:	Multiplier to effect the chance of a gain. 
+ *		(rolled dice from an attributes.cfg StatCheck entry)
+ *
+ * Return value
+ * Returns 1
+ *
+ */
 function CheckStatAdvancement(mobile, stat_name, stat_mult)
 	if ( AP_CheckStatCap(mobile, stat_name) )
 		SkillDbgMsg(mobile, "Stat cap for stat '"+stat_name+"' reached. No advance." );
@@ -99,11 +128,25 @@ function CheckStatAdvancement(mobile, stat_name, stat_mult)
 	return 0;
 endfunction
 
-function CheckSkillAdvance(mobile, skill_name, award_diff, pass_chance, pass_success)
-	if ( pass_success < 0 )
-		SkillDbgMsg(mobile, "No skill advancement - skill check was not successful.");
-		return 0;
-	elseif ( AP_CheckSkillCap(mobile, skill_name) )
+/*
+ * CheckSkillAdvance(mobile, stat_name, stat_mult)
+ *
+ * Purpose
+ * Does an advancement check on a stat.
+ *
+ * Parameters
+ * mobile:	Mobile to do the skill advancement check on.
+ * skill_name:	Name of the skill to check.
+ * award_diff:	Difficulty to use for advancement award.
+ * pass_chance:	Chance of getting a gain check.
+ * 
+ *
+ * Return value
+ * Returns 1
+ *
+ */
+function CheckSkillAdvance(mobile, skill_name, award_diff, pass_chance)
+	if ( AP_CheckSkillCap(mobile, skill_name) )
 		SkillDbgMsg(mobile, "Skill cap for attribute '"+skill_name+"' already reached.");
 		return 0;
 	elseif ( AP_CheckSkillCap(mobile) )

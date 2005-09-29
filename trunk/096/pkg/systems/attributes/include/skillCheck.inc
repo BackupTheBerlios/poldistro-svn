@@ -86,7 +86,7 @@ function SkillCheck(mobile, attrib_name, difficulty, award_diff:=0, advance_flag
 	if ( !(advance_flags & ADV_SKILL) )
 		SkillDbgMsg(mobile, "Skill advance disabled.");
 	else
-		CheckSkillAdvance(mobile, attrib_name, award_diff, pass_chance, pass_success);
+		CheckSkillAdvance(mobile, attrib_name, award_diff, pass_chance);
 	endif
 		
 	if ( !(advance_flags & ADV_STATS) )
