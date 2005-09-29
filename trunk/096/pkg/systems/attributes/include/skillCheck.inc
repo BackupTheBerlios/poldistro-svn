@@ -25,7 +25,6 @@ const ADV_DISABLE	:= 0x4; // 4 - because the default is ADV_ALL.
 
 var g_skill_debug	:= 0;
 
-
 /*
  * SkillCheck(mobile, attrib_name, difficulty, award_points, advance_flags)
  *
@@ -90,7 +89,7 @@ function SkillCheck(mobile, attrib_name, difficulty, award_diff:=0, advance_flag
 	if ( !(advance_flags & ADV_SKILL) )
 		SkillDbgMsg(mobile, "Skill advance disabled.");
 	else
-		//CheckSkillAdvance();
+		CheckSkillAdvance(mobile, attrib_name, award_diff, pass_chance, pass_success);
 	endif
 		
 	if ( !(advance_flags & ADV_STATS) )
@@ -153,29 +152,3 @@ function SkillDbgMsg(mobile, message)
 	
 	return 1;
 endfunction
-
-/*
-
-function CheckSkillAdvance(mobile, attribute, award_points)
-	if ( AP_CheckSkillCap(mobile, attribute) )
-		return error{"errortext":="Skill cap for attribute '"+attribute+"' already reached."};
-	elseif ( AP_CheckSkillCap(mobile) )
-		return error{"errortext":="Total skill cap already reached."};
-	endif
-	
-	var skill_amt := AP_GetTrueSkill(mobile, attribute);
-	var free_gain := CDbl(AP_GetSettingsCfgElem("Skills").FreeGainUntil);
-	if ( skill_amt < free_gain )
-		//Increase 0.1 if < free gain
-		AP_SetTrueSkill(mobile, attribute, skill_amt+0.1);
-	endif
-	
-	if(points != 0)
-      		points  := points * ((1000-temp_chance) / 1000);
-    	endif
-    	
-	return 1;
-endfunction
-		
-//Cdbl(Pow(2.0, Cint(basevalue/100))* 10.24);
-*/
