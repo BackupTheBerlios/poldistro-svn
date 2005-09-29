@@ -107,6 +107,28 @@ function AP_SetStatMod(mobile, stat_name, points)
 endfunction
 
 /*
+ * AP_GetStatCap(stat_name)
+ *
+ * Purpose
+ * Gets the number a stat caps at.
+ *
+ * Parameters
+ * stat_name: Name of the stat to check
+ *
+ * Return value
+ * Returns a number or error
+ *
+ */
+function AP_GetStatCap(skill_name)
+	var cfg_elem := AP_GetSettingsCfgElem("Stats");
+	
+	// Check if there is a cap for that particular skill.
+	var cap_val := GetConfigReal(cfg_elem, skill_name);
+		
+	return cap_val;
+endfunction
+
+/*
  * AP_CheckStatCap(mobile, stat_name)
  *
  * Purpose
@@ -125,7 +147,7 @@ function AP_CheckStatCap(mobile, stat_name:="")
 	var cfg_elem := AP_GetSettingsCfgElem("Stats");
 	
 	if ( stat_name )
-		var cap := GetConfigReal(cfg_elem, stat_name);
+		var cap := AP_GetStatCap(stat_name);
 		return ( AP_GetTrueStat(mobile, stat_name) >= cap );
 	else
 		var total := 0.0;

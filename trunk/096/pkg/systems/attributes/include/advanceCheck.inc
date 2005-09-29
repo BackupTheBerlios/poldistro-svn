@@ -23,11 +23,10 @@ function CheckStatsForSkill(mobile, skill_name)
 		return 0;
 	endif
 	
-	var stat_mult := settings.GainSpeed;
 	foreach stat_entry in (AP_GetSkillStats(skill_name))
 		var stat_name := _stat_entry_iter;
 		var check_chance := stat_entry[1];
-		var stat_mult := RandomDiceRoll(stat_entry[2]);
+		var stat_mult := CDbl(RandomDiceRoll(stat_entry[2]));
 		
 		var roll := RandomInt(100)+1;
 		
@@ -37,6 +36,7 @@ function CheckStatsForSkill(mobile, skill_name)
 		else
 			SkillDbgMsg(mobile, "("+roll+" > "+check_chance+"%) skipping stat check for "+stat_name);
 		endif
+		
 		sleepms(10);
 	endforeach
 	
@@ -45,7 +45,58 @@ endfunction
 
 
 function CheckStatAdvancement(mobile, stat_name, stat_mult)
+	if ( AP_CheckStatCap(mobile, stat_name) )
+		SkillDbgMsg(mobile, "Stat cap for stat '"+stat_name+"' reached. No advance." );
+		return 0;
+	elseif ( AP_CheckStatCap(mobile) )
+		SkillDbgMsg(mobile, "Total stat cap reached. No advance." );
+		return 0;
+	endif
+	
+	var settings := AP_GetSettingsCfgElem("Stats");
+	var stat_cap := AP_GetStatCap(stat_name);
+	var stat_value := AP_GetTrueStat(mobile, stat_name);
+	var stat_left := stat_cap - stat_value; // Points until it is capped
+	stat_mult := stat_mult * CDbl(settings.GainSpeed);
+	
+	SkillDbgMsg(mobile, "Stat Cap: "+stat_cap);
+	SkillDbgMsg(mobile, "Stat Current: "+stat_value);
+	SkillDbgMsg(mobile, "Left to cap: "+stat_left+" ->"+stat_cap+"-"+stat_value);
+	
+	var chance := ((stat_left * stat_mult) / (stat_cap / 2));
+	if ( chance < 1.0 )
+		chance := 1.0;
+	endif
+	SkillDbgMsg(mobile, "Chance: "+chance);
+	SkillDbgMsg(mobile, "---");
+	var random := RandomFloat(100.0);
+	SkillDbgMsg(mobile, "Check %age: "+random);
+	
+	if ( random < chance )
+		var advance := CDbl(0.1 + (0.1 * CDbl(CInt(chance / 12.5))));
+		if ( advance > stat_left )
+			advance := stat_left;
+		elseif ( advance < 0.1 )
+			advance := 0.1;
+		endif
+
+		var temp := stat_value+advance;
+		while ( CInt(temp*10.0) == CInt(GetAttributeBaseValue(mobile, stat_name)) )
+			// Kludge for an old core precision bug.
+			// Makes sure it always goes up atleast 0.1.
+			temp := temp+0.1;
+			sleepms(10);
+		endwhile	
+
+		SkillDbgMsg(mobile, "Passed. Advance "+stat_name+": " + CStr(advance));
+		AP_SetTrueStat(mobile, stat_name, temp);
+		SetObjProperty(mobile, "#LastStatGain", ReadGameClock());
 		
+		return 1;
+	endif
+	
+	SkillDbgMsg(mobile, "Failed. No advance.");
+	return 0;
 endfunction
 
 function CheckSkillAdvance(mobile, skill_name, award_diff, pass_chance, pass_success)
@@ -74,27 +125,27 @@ function CheckSkillAdvance(mobile, skill_name, award_diff, pass_chance, pass_suc
 		SkillDbgMsg(mobile, "No challenge. No advance. True skill ("+true_skill+"-20) > "+award_diff);
 		return 0;
 	elseif ( adv_check <= pass_chance )
-		SkillDbgMsg(mobile, "Passed advance check: +"+CStr(pass_chance - adv_check)+"%");
+		SkillDbgMsg(mobile, "Passed advance check: +"+(pass_chance - adv_check)+"%");
 	else
 		SkillDbgMsg(mobile, "Did not pass skill advance check.");
 		return 0;
 	endif
 	
-	SkillDbgMsg(mobile, "Skill Cap: "+CStr(skill_cap)+"%");
-	SkillDbgMsg(mobile, "Left to cap: "+CStr(limit_left)+" ->"+skill_cap+"-"+true_skill);
-	SkillDbgMsg(mobile, "Multiplier: "+CStr(multiplier));
+	SkillDbgMsg(mobile, "Skill Cap: "+skill_cap+"%");
+	SkillDbgMsg(mobile, "Left to cap: "+limit_left+" ->"+skill_cap+"-"+true_skill);
+	SkillDbgMsg(mobile, "Multiplier: "+multiplier);
 	
 	var int_chance := AP_GetStat(mobile, "Intelligence") / 2.0;
 	var task_chance := (100.0 - award_diff) / 2.0;
 	var chance := CInt((int_chance + task_chance) * multiplier);
 
-	SkillDbgMsg(mobile, "INT gives "+CStr(int_chance)+"%");
-	SkillDbgMsg(mobile, "Task gives "+CStr(task_chance)+"%");
-	SkillDbgMsg(mobile, "Multiplier on "+CStr(int_chance+task_chance)+" gives "+CStr(chance));
+	SkillDbgMsg(mobile, "INT gives "+int_chance+"%");
+	SkillDbgMsg(mobile, "Task gives "+task_chance+"%");
+	SkillDbgMsg(mobile, "Multiplier on "+(int_chance+task_chance)+" gives "+chance);
 	SkillDbgMsg(mobile, "---");
 	
 	var check_roll := RandomInt(100);
-	SkillDbgMsg(mobile, "Check %age: "+CStr(check_roll));
+	SkillDbgMsg(mobile, "Check %age: "+check_roll);
 	if ( check_roll < chance )
 		var advance := 0.1;
 		if ( award_diff > true_skill )
@@ -106,7 +157,7 @@ function CheckSkillAdvance(mobile, skill_name, award_diff, pass_chance, pass_suc
 			advance := 0.1;
 		endif
 		
-		SkillDbgMsg(mobile, "Passed. Advance "+skill_name+": " + CStr(advance));
+		SkillDbgMsg(mobile, "Passed. Advance "+skill_name+": " + advance);
 		
 		var temp := true_skill+advance;
 		while ( CInt(temp*10.0) == CInt(GetAttributeBaseValue(mobile, skill_name)) )

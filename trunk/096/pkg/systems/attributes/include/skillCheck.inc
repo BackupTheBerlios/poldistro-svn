@@ -76,11 +76,11 @@ function SkillCheck(mobile, attrib_name, difficulty, award_diff:=0, advance_flag
 	endif
 	
 	SkillDbgMsg(mobile, "--");
-	SkillDbgMsg(mobile, "Difficulty: "+CStr(difficulty)+"% (Award: "+CStr(award_diff)+")");
-	SkillDbgMsg(mobile, "Effective Skill: "+CStr(effective_skill)+"%");
-	SkillDbgMsg(mobile, "Success Chance: "+CStr(pass_chance)+"%");
-	SkillDbgMsg(mobile, "Check Roll: "+CStr(check_roll));
-	SkillDbgMsg(mobile, "Success: "+CStr(pass_success));
+	SkillDbgMsg(mobile, "Difficulty: "+difficulty+"% (Award: "+award_diff+")");
+	SkillDbgMsg(mobile, "Effective Skill: "+effective_skill+"%");
+	SkillDbgMsg(mobile, "Success Chance: "+pass_chance+"%");
+	SkillDbgMsg(mobile, "Check Roll: "+check_roll);
+	SkillDbgMsg(mobile, "Success: "+pass_success);
 	SkillDbgMsg(mobile, "---");
 	
 	if ( !(advance_flags & ADV_SKILL) )
