@@ -65,7 +65,7 @@ function SkillCheck(mobile, attrib_name, difficulty, award_diff:=0, advance_flag
 	
 	var pass_chance := CalcSuccessPercent(mobile, attrib_name, difficulty, effective_skill);
 	var check_roll := RandomInt(100)+1;
-	var pass_success := CInt(CDbl(pass_chance) - CDbl(check_roll))+1;
+	var pass_success := (pass_chance - check_roll)+1;
 	// Ensure skill- and stat-gain if it's a -1 skillcheck
 	// Do this AFTER the CalcSuccessPercent() call so '-1' isn't messed up
 	if ( difficulty == -1 )
@@ -130,9 +130,9 @@ function CalcSuccessPercent(mobile, attrib_name, difficulty, effective_skill)
 	endif
 	
 	if ( percent < settings.MinChance )
-		percent := settings.MinChance;
+		percent := CInt(settings.MinChance);
 	elseif ( percent > settings.MaxChance )
-		percent := settings.MaxChance;
+		percent := CInt(settings.MaxChance);
 	endif
 	
 	return percent;

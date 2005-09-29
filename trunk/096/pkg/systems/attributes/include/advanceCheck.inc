@@ -40,8 +40,7 @@ function CheckSkillAdvance(mobile, skill_name, award_diff, pass_chance, pass_suc
 			
 	if ( true_skill < CDbl(settings.FreeGainUntil) )
 		SkillDbgMsg(mobile, "Skill is < "+CDbl(settings.FreeGainUntil)+". Allowing for advancement");
-	elseif ( true_skill+Cdbl(settings.TooEasy) > award_diff )
-		// Was it too easy? If so, return.
+	elseif (  DifficultyTooEasy(true_skill, award_diff) )
 		SkillDbgMsg(mobile, "No challenge. No advance. True skill ("+true_skill+"-20) > "+award_diff);
 		return 0;
 	elseif ( adv_check <= pass_chance )
