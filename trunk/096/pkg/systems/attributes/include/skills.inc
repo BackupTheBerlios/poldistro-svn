@@ -169,7 +169,12 @@ function AP_CheckSkillCap(mobile, skill_name:="")
 	var cfg_elem := AP_GetSettingsCfgElem("Skills");
 	
 	if ( skill_name )
+		// Check if the specific skill has a cap set for it.
 		var cap_val := GetConfigReal(cfg_elem, skill_name);
+		if ( !cap_val )
+			cap_val := GetConfigReal(cfg_elem, "SkillCap");
+		endif
+		
 		if ( cap_val != error )
 			return ( AP_GetTrueSkill(mobile, skill_name) >= cap_val );
 		endif
