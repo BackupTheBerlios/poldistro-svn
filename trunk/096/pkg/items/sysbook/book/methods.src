@@ -120,6 +120,12 @@ exported function SetAuthor(book, author)
 endfunction
 
 exported function SetTitle(book, title)
+	if ( Len(title) > 0 )
+		SetName(book, title);
+	else
+		SetName(book, "a book");
+	endif
+	
 	return SetInfo(book, "Title", CStr(title));
 endfunction
 

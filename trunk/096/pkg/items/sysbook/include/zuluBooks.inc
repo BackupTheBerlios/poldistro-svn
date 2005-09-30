@@ -94,7 +94,7 @@ function SysBook_ParseZuluCfgElem(elem_name, byref cfg_file)
 	var page_num := 1;
 	for ( page_num; page_num <= num_pages; page_num:=page_num+1 )
 		var line_num := 1;
-		for ( line_num; line_num <= 8; line_num := line_num-1 ) // 8 lines per page
+		for ( line_num; line_num <= 8; line_num := line_num+1 ) // 8 lines per page
 			var prop_string := "p"+page_num+"l"+line_num; //p#l#
 			var line_text := GetConfigString(cfg_elem, prop_string);
 			if ( !line_text )
