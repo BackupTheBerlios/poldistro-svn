@@ -8,6 +8,9 @@ include "include/attributes";
 
 
 program nightSight(parms, spellid)
+
+	spellid := spellid;
+
 	var caster := parms.caster;
 	var castOn := parms.castOn;
 
@@ -17,4 +20,5 @@ program nightSight(parms, spellid)
 	PlayObjectCenteredEffect(castOn, FX_BLESS_EFFECT, 10,10);
 
 	return;
+
 endprogram

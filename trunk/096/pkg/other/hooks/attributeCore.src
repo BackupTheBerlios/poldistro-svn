@@ -93,7 +93,6 @@ function CheckSkillCap(who, ev)
   var check := 0;
   var loops := 0;
   var holder, newval, final;
-  var base, true;
   while(check == 0)
     if(loops >= 6)
       break;

@@ -1,18 +1,16 @@
 use cfgfile;
 use uo;
-use basic;
 
-include "include/client";
-include "include/attributes";
-include "include/skillPoints";
-
+include ":attributes:attributeConstants";
+include ":attributes:attributes";
+include ":attributes:skillCheck";
 
 program skill_armslore(who)
+
 	EraseObjProperty(who, "IsMeditating");
 	EraseObjProperty(who, "HealTimer");
 
 	var quality_descr, damage_descr;
-	var thepoints := (CInt(GetEffectiveSkill(who, SKILLID_ARMSLORE)) * 2) + 20;
 	SendSysMessage(who, "Select an object to evaluate.");
 	var the_item := Target(who, TGTOPT_CHECK_LOS);
 	if (!the_item)
@@ -25,7 +23,7 @@ program skill_armslore(who)
 		SendSysMessage(who, "You can only use this skill on weapons or armor!");
 		return;
 	endif
-	if(CheckSkill(who, SKILLID_ARMSLORE, -1, thepoints))
+	if(SkillCheck(who, ATTRIBUTE_ARMS_LORE, -1) > 0)
 		var item_max_hp := the_item.maxhp;
 		var max_hp := item_max_hp;
 		var hp := the_item.hp;
@@ -69,4 +67,5 @@ program skill_armslore(who)
 	else
 		SendSysMessage(who, "You can't quite tell . . .");
 	endif
+
 endprogram

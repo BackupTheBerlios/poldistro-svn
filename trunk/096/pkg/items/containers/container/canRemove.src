@@ -6,16 +6,19 @@ include ":containers:checks";
 
 
 program canRemove(mobile, container, item, move_type)
+
+	container := container;
+
 	if ( mobile.cmdlevel )
 		return 1;
 	elseif ( move_type == MOVETYPE_COREMOVE )
-		return 1;	
+		return 1;
 	elseif ( CP_RootContainerLocked(item) )
 		SendSysMessage(mobile, "You can't remove items from locked containers.");
 		return 0;
 	endif
-	
-	//To-do 
+
+	//To-do
 	//Play sound effect now that item is being removed.
 	return 1;
 endprogram

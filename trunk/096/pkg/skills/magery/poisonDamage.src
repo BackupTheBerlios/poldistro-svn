@@ -14,6 +14,7 @@ program spell_poisonDamage(passparms)
 	var weapon   := passparms[3];
 	var level    := passparms[4];
 	var pfield   := Cint(passparms[5]);
+	weapon := weapon;
 	if (who.npctemplate)
 		//var npccfg := ReadConfigFile("::npcdesc");
 		if (who.npctemplate == "bladespirit")
