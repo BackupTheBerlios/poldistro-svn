@@ -1,10 +1,12 @@
-// //$Id$
-
+/* $Id$
+ *
+ */
 use uo;
 
 include ":attributes:attributeConstants";
 include ":attributes:attributes";
 include ":attributes:skillCheck";
+
 
 program skill_Anatomy(who)
 

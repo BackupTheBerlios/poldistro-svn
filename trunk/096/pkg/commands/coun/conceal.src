@@ -1,5 +1,8 @@
-//TODO: convert the remaining SendSysMessage()
-//	must check agaist cmdlevel within the script
+/* $Id$
+ *
+ * TODO: convert the remaining SendSysMessage()
+ * must check agaist cmdlevel within the script
+ */
 use uo; 
 
 include "include/log";
