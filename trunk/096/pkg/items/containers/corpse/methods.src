@@ -1,3 +1,5 @@
+// $Id$
+
 use uo;
 use util;
 use os;
@@ -68,7 +70,6 @@ endfunction
 exported function IsSkinned(corpse)
 	return CInt(GetObjProperty(corpse, "Skinned"));
 endfunction
-
 
 exported function Gibbify(corpse, range:=10)
 	var piece_list := array
