@@ -68,6 +68,7 @@ function GumpList(mobile)
 	endforeach
 	
 	book.ReadOnly(1);
+	book.SetNumPages(book_info.NumPages);
 	
 	SendSysMessage(mobile, "Done!");
 	
