@@ -6,6 +6,70 @@ program Install()
 	return 1;
 endprogram
 
+exported function SetOwner(corpse, owner)
+	var serial;
+	if ( owner.IsA(POLCLASS_MOBILE) )
+		serial := owner.serial;
+	else
+		serial := owner;
+		owner := SystemFindObjectBySerial(owner, SYSFIND_SEARCH_OFFLINE_MOBILES);
+	endif
+	
+	SetObjProperty(corpse, "OwnerSerial", serial);
+	SetObjProperty(owner, "CorpseSerial", corpse.serial);
+	
+	return 1;
+endfunction
+
+exported function GetOwner(corpse)
+	//Function returns the corpse as the owner if no real owner can be found
+	//This situation is met when:
+	//The corpse belonged to an npc.
+	//The player character that owned the corpse was deleted.
+
+	var owner := CInt(GetObjProperty(corpse, "OwnerSerial"));
+	if ( !owner )
+		//NPC Corpse?
+		return corpse;
+	else
+		//Return the player who owns this corpse.
+		owner := SystemFindObjectBySerial(owner);
+		if ( owner )
+			return owner;
+		else
+			//Owner has been deleted - return 0
+			return corpse;
+		endif
+	endif
+	
+	// Shouldnt be possible to get here.
+	return corpse;
+endfunction
+
+exported function SetSkinned(corpse, skinner)
+	var serial;
+
+	if ( skinner.ISA(POLCLASS_MOBILE) )
+		serial := skinner.serial;
+	else
+		serial := skinner;
+	endif
+
+	var corpse_name := corpse.desc;
+	if ( !corpse_name["[skinned]"] )
+		// Add "[skinned]" to the corpse description.
+		SetName(corpse, corpse_name+" [skinned]");
+	endif
+
+	//Store the serial of who skinned the corpse.
+	SetObjProperty(corpse, "Skinned", serial);
+endfunction
+
+exported function IsSkinned(corpse)
+	return CInt(GetObjProperty(corpse, "Skinned"));
+endfunction
+
+
 exported function Gibbify(corpse, range:=10)
 	var piece_list := array
 	{
