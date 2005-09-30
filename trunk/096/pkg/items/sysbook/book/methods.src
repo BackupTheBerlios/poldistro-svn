@@ -215,7 +215,7 @@ function GetInfo(book, prop_name)
 	// We do create the datafile if it doesnt exist.
 	// However, the elem is not created if it doesnt exist
 	// because were only reading in this function and not writing.
-	var book_data_file := DFOpenDataFile(":sysbooks:books", DF_CREATE);
+	var book_data_file := DFOpenDataFile(":sysbook:books", DF_CREATE);
 	var book_elem := DFFindElement(book_data_file, Hex(book.serial), DF_NO_CREATE);
 	prop_value := book_elem.GetProp(prop_name);
 	if ( prop_value )

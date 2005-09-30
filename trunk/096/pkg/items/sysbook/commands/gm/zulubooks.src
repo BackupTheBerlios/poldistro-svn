@@ -1,0 +1,32 @@
+// $Id$
+
+use uo;
+
+include ":sysbook:zuluBooks";
+include ":gumps:gumps_ex";
+
+program MakeZuluBook(mobile)
+	GumpList(mobile);
+endprogram
+
+function GumpList(mobile)
+	var zulu_cfg := SysBook_GetZuluCfgFile();
+	
+	var gump := GFCreateGump();
+	GFPage(gump, 0);
+	GFResizePic(gump, 0, 0, GFCfgConst("Defaults", "BackGround"), 300, 480);
+	GFResizePic(gump, 10, 10, GFCfgConst("Defaults", "ForeGround"), 280, 460);
+	var y_pos := 40;
+	var counter := 1;
+	var page_num := 1;
+	GFTextMid(gump, 10, 15, 280, 2100, "Books from zuluBooks.cfg");
+	foreach elem_name in GetConfigStringKeys(zulu_cfg)
+		var elem_info := SysBook_GetZuluCfgElem(elem_name);
+		
+		GFAddButton(gump, 15, (y_pos+3), 2117, 2118, GF_CLOSE_BTN, _elem_name_iter);
+		
+		sleepms(2);
+	endforeach
+	
+	return 1;
+endfunction

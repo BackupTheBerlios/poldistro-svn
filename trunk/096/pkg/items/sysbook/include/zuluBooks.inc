@@ -24,10 +24,10 @@ use cfgfile;
  * Config file
  *
  */
-function SysBook_GetZuluBooksCfgFile()
-	var cfg_file := ReadConfigFile(":sysbooks:config/zulubooks");
+function SysBook_GetZuluCfgFile()
+	var cfg_file := ReadConfigFile(":sysbook:config/zuluBooks");
 	if ( cfg_file.errortext )
-		SysLog("Error::SysBook_GetZuluBooksCfgFile() - Unable to open zulubooks.cfg ->"+cfg_file.errortext);
+		SysLog("Error::SysBook_GetZuluBooksCfgFile() - Unable to open zuluBooks.cfg ->"+cfg_file.errortext);
 	endif
 
 	return cfg_file;
@@ -49,7 +49,7 @@ endfunction
  */
 function SysBook_GetZuluCfgElem(elem_name, byref cfg_file:=0)
 	if ( !cfg_file )
-		cfg_file := SysBook_GetZuluBooksCfgFile();
+		cfg_file := SysBook_GetZuluCfgFile();
 	endif
 	
 	var cfg_elem := cfg_file[elem_name];
@@ -77,7 +77,7 @@ endfunction
  */
 function SysBook_ParseZuluCfgElem(elem_name, byref cfg_file)
 	if ( !cfg_file )
-		cfg_file := SysBook_GetZuluBooksCfgFile();
+		cfg_file := SysBook_GetZuluCfgFile();
 	endif
 	
 	var cfg_elem :=  SysBook_GetZuluCfgElem(elem_name, cfg_file);
