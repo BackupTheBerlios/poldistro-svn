@@ -1,1 +1,5 @@
 // $Id$
+
+program OnCreate(book)
+	return 1;
+endprogram

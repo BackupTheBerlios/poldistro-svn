@@ -94,7 +94,7 @@ exported function GetLine(book, line_num)
 
 	// Uses the GetContents() function.
 	var contents := GetContents(book);
-	if ( line_num <= contents.size() )
+	if ( line_num <= contents.Size() )
 		var line := contents[line_num];
 
 		if ( line && line != error )
@@ -217,8 +217,8 @@ function GetInfo(book, prop_name)
 	// We do create the datafile if it doesnt exist.
 	// However, the elem is not created if it doesnt exist
 	// because were only reading in this function and not writing.
-	var book_data_file := DFOpenDataFile("books", DF_CREATE);
-	var book_elem := DFFindElement(book_data_file, hex(book.serial), DF_NO_CREATE);
+	var book_data_file := DFOpenDataFile(":sysbooks:books", DF_CREATE);
+	var book_elem := DFFindElement(book_data_file, Hex(book.serial), DF_NO_CREATE);
 	prop_value := book_elem.GetProp(prop_name);
 	if ( prop_value )
 		return prop_value;
@@ -253,8 +253,8 @@ endfunction
 //       Datafiles dont like that.
 //
 function SetInfo(book, prop_name, prop_value)
-	var book_data_file := DFOpenDataFile("books", DF_CREATE);
-	var book_elem := DFFindElement(book_data_file, hex(book.serial), DF_CREATE);
+	var book_data_file := DFOpenDataFile(":sysbook:books", DF_CREATE);
+	var book_elem := DFFindElement(book_data_file, Hex(book.serial), DF_CREATE);
 
 	return book_elem.SetProp(CStr(prop_name), prop_value);
 endfunction

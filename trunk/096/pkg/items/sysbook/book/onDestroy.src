@@ -1,1 +1,10 @@
 // $Id$
+
+include ":datafile:datafile";
+
+program DestroyBook(book)
+	var book_data_file := DFOpenDataFile(":sysbooks:books", DF_NO_CREATE);
+	book_data_file.DeleteElement(Hex(book.serial));
+	
+	SysLog("Deleting datafile elem for book " + Hex(book.serial));
+endprogram
