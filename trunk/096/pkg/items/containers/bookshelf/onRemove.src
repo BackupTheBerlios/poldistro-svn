@@ -4,9 +4,15 @@ use util;
 use os;
 
 program OnRemove(who, container, item, item_amount, movetype)
+
+	movetype := movetype;
+	item := item;
+	item_amount := item_amount;
+	who := who;
+
 	var shelf_cfg := ReadConfigFile(":containers:config/bookshelf");
 	shelf_cfg := shelf_cfg[container.graphic];
-	
+
 	var num_items := EnumerateItemsInContainer(container).size();
 	if ( num_items > 0 )
 		//There are still other books left in the shelf.
@@ -19,6 +25,6 @@ program OnRemove(who, container, item, item_amount, movetype)
 		//No more books left - set to an empty shelf graphic.
 		container.graphic := shelf_cfg.EmptyGraphic;
 	endif
-	
+
 	return 1;
 endprogram
