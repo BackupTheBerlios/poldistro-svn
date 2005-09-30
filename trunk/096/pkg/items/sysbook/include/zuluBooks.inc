@@ -97,11 +97,12 @@ function SysBook_ParseZuluCfgElem(elem_name, byref cfg_file)
 		for ( line_num; line_num <= 8; line_num := line_num+1 ) // 8 lines per page
 			var prop_string := "p"+page_num+"l"+line_num; //p#l#
 			var line_text := GetConfigString(cfg_elem, prop_string);
+						
 			if ( !line_text )
 				line_text := "";
 			endif
-		
-			book_info.Append(line_text);
+					
+			(book_info.contents).Append(line_text);
 		
 			sleepms(2);
 		endfor

@@ -5,8 +5,6 @@ use uo;
 include ":sysbook:zuluBooks";
 include ":gumps:gumps_ex";
 
-unload_scripts("");
-
 program MakeZuluBook(mobile)
 	GumpList(mobile);
 endprogram
@@ -23,6 +21,8 @@ function GumpList(mobile)
 	var counter := 1;
 	var page_num := 1;
 	GFTextMid(gump, 10, 15, 560, 2100, "Books from zuluBooks.cfg");
+	
+	GFPage(gump, 1);
 	foreach elem_name in (elem_names)
 		var elem_info := SysBook_GetZuluCfgElem(elem_name);
 		
@@ -32,7 +32,16 @@ function GumpList(mobile)
 		GFTextLine(gump, 380, y_pos, 2100, "Author: "+elem_info.Author);
 				
 		y_pos := y_pos+20;
+		counter := counter+1;
 		
+		if ( counter > 20 )
+			counter := 1;
+			y_pos := 40;
+			GFAddButton(gump, 545, 445, 2648, 2649, GF_PAGE_BTN, page_num+1);
+			page_num := page_num+1;
+			GFPage(gump, page_num);
+			GFAddButton(gump, 545, 15, 2650, 2651, GF_PAGE_BTN, page_num-1);
+		endif
 		sleepms(2);
 	endforeach
 	
@@ -57,6 +66,8 @@ function GumpList(mobile)
 		book.SetLine(_text_line_iter, text_line);
 		sleepms(2);
 	endforeach
+	
+	book.ReadOnly(1);
 	
 	SendSysMessage(mobile, "Done!");
 	
