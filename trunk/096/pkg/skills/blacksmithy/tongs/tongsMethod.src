@@ -1,6 +1,6 @@
 use uo;
 
-include ":crafting:method/toolWearMethod";
+include ":crafting:toolWearMethod";
 
 program install()
 

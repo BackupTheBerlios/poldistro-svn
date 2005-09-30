@@ -7,7 +7,8 @@ var arcnt    := 61500;
 var craft_settings;
 var atc := 1;
 var PageNum := 1;
-
+// Gump backgrounds - Used in various functions - easier to use globally.
+var BKGND_SILVERTRIM := GFCfgConst("Defaults", "BackGround");
 
 // This function is the main backbone for building the Crafting Menu.
 function sendCraftGump(who, skill_name)
@@ -149,8 +150,8 @@ function Craft_IndexGump(who, skill_name)
 	// take care with your items.
 	arcnt   := 61500;
 
-	var gump := GFCreateGump(50, 50);
-	GFResizePic(gump, 0, 0, 5054, 530, 437);
+	var gump := GFCreateGump(50, 25);
+	GFResizePic(gump, 2, 0, BKGND_SILVERTRIM, 522, 440);
 	GFGumpPic(gump, 10, 10, 2624);
 	GFGumpPic(gump, 10, 205, 2624);
 	GFGumpPic(gump, 10, 225, 2624);
@@ -419,8 +420,8 @@ function GFCraftInfoPage(who, objtype, skill_config)
 		echance := CStr(ExceptionalCraft(temp1, skillreq, temp2, 1))+"%";
 	endif
 
-	var gump := GFCreateGump(50, 50);
-	GFResizePic(gump, 0, 0, 5054, 530, 417);
+	var gump := GFCreateGump(50, 25);
+	GFResizePic(gump, 2, 0, BKGND_SILVERTRIM, 521, 420);
 	GFGumpPic(gump, 10, 10, 2624);
 	GFGumpPic(gump, 10, 205, 2624);
 	GFGumpPic(gump, 250, 10, 2624);
@@ -435,7 +436,7 @@ function GFCraftInfoPage(who, objtype, skill_config)
 	GFGumpPic(gump, 10, 370, 5055);
 	GFGumpPic(gump, 90, 370, 5055);
 	GFHTMLArea(gump, 10, 27, 150, 18, "<basefont color=#ffffff>ITEM");
-	GFHTMLArea(gump, 170, 177, 150, 18, "<basefont color=#ffffff>SKILLS");
+	GFHTMLArea(gump, 170, 117, 150, 18, "<basefont color=#ffffff>SKILLS");
 	GFHTMLArea(gump, 10, 207, 150, 18, "<basefont color=#ffffff>MATERIALS");
 	GFHTMLArea(gump, 10, 287, 150, 18, "<basefont color=#ffffff>OTHER");
 	GFAddButton(gump, 15, 387, 4014, 4016, GF_CLOSE_BTN, 1);
@@ -475,12 +476,12 @@ function GFCraftInfoPage(who, objtype, skill_config)
 	// Item Name
 	GFHTMLArea(gump, 330, 40, 150, 20, ("<basefont color=#ffffff>"+itemdesc));
 	// Skill name
-	GFHTMLArea(gump, 170, 132, 150, 20, (craft_skill + " required"));
+	GFHTMLArea(gump, 170, 132, 150, 20, ("<basefont color=#ffffff>"+craft_skill + " required"));
 
 	if((skillreqb > 0) && (skillreqb != error))
 		// Skill 2 name
-		GFHTMLArea(gump, 170, 152, 150, 20, (aid_skill + " required"));
-		GFHTMLArea(gump, 430, 152, 150, 20, skillreqb);
+		GFHTMLArea(gump, 170, 152, 150, 20, ("<basefont color=#ffffff>"+aid_skill + " required"));
+		GFHTMLArea(gump, 430, 152, 150, 20, ("<basefont color=#ffffff>"+skillreqb));
 	endif
 
 	var ifres := GFSendGump(who, gump);
