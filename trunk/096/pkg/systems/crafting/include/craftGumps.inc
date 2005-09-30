@@ -16,6 +16,13 @@ function sendCraftGump(who, skill_name)
 	var menu_file    := menu_config[skill_name].MenuFile;
 	var skill_config := ReadConfigFile(menu_file);
 	craft_skill      := menu_config[skill_name].Attribute;
+	display_skill    := menu_config[skill_name].Name;
+	// Craft Cprop is a dictionary storing the information for each crafting skill
+	craft_settings := GetObjProperty(who, "Craft");
+	if( TypeOf(craft_settings) != "Dictionary" )
+		craft_settings := cBaseCraftDict();
+		SetObjProperty(who, "Craft", craft_settings);
+	endif
 
 	while( 1 )
 
@@ -96,11 +103,11 @@ function sendCraftGump(who, skill_name)
 		endif
 
 		// Sets the amount you had entered into an array to return to crafting
-		atc := Cint(SplitWords(res[1998])[2]);
+		atc := CInt(GFExtractData(res, atc));
 		if(!atc || CInt(atc) < 1)
 			atc := 1;
-		elseif(atc > CInt(menu_config[skill_name].MaxAmount))
-			SendSysMessage(who, "You can only make between 1 and " + menu_config[skill_name].MaxAmount + " at a time.");
+		elseif(atc > CInt(menu_config["Setup"].MaxAmount))
+			SendSysMessage(who, "You can only make between 1 and " + menu_config["Setup"].MaxAmount + " at a time.");
 			return 0;
 		endif
 		craft_settings[skill_name].amount := atc;
@@ -123,13 +130,6 @@ function Craft_IndexGump(who, skill_name)
 
 	var menu_file    := menu_config[skill_name].MenuFile;
 	var skill_config := ReadConfigFile(menu_file);
-
-	// Craft Cprop is a dictionary storing the information for each crafting skill
-	craft_settings := GetObjProperty(who, "Craft");
-	if( TypeOf(craft_settings) != "Dictionary" )
-		craft_settings := cBaseCraftDict();
-		SetObjProperty(who, "Craft", craft_settings);
-	endif
 
 	// Now let's get the amount, based on the menu file) from the Cprop.
 	atc := craft_settings[skill_name].amount;
@@ -476,7 +476,7 @@ function GFCraftInfoPage(who, objtype, skill_config)
 	// Item Name
 	GFHTMLArea(gump, 330, 40, 150, 20, ("<basefont color=#ffffff>"+itemdesc));
 	// Skill name
-	GFHTMLArea(gump, 170, 132, 150, 20, ("<basefont color=#ffffff>"+craft_skill + " required"));
+	GFHTMLArea(gump, 170, 132, 150, 20, ("<basefont color=#ffffff>"+display_skill + " required"));
 
 	if((skillreqb > 0) && (skillreqb != error))
 		// Skill 2 name
@@ -500,7 +500,7 @@ function cBaseCraftDict()
 	var baseDict  := dictionary;
 	foreach skillentry in GetConfigStringArray(menu_config["Skills"], "Skill")
 		var temp := dictionary;
-		temp.+skill  := menu_config[skillentry].Name;
+		temp.+skill  := menu_config[skillentry].Attribute;
 		temp.+amount := CInt(menu_config["Setup"].DefaultAmount);
 		temp.+mark   := CInt(menu_config[skillentry].MakersMark);
 		temp.+retain := CInt(menu_config[skillentry].RetainColor);
