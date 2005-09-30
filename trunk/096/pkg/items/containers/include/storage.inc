@@ -1,40 +1,35 @@
-// Bank.inc
-// By Austin Heilman
-//
-// Created 10/22/2001 11:31PM
-// Updated 10/24/2003 5:13PM
-//
-// Somewhere, define a container for banks with the item name
-// "BankBox" so you dont need to deal with object type numbers here
-// plus making a custom container makes it easy to change the bank box
-// graphic, container gump and item limits.
-//
-
+/* $Id$
+ *
+ * Somewhere, define a container for banks with the item name
+ * "BankBox" so you dont need to deal with object type numbers here
+ * plus making a custom container makes it easy to change the bank box
+ * graphic, container gump and item limits.
+ */
 use uo;
 use os;
 use polsys;
 
-//Set the 'box_type' variable to the object name of the container type
-//you want to be used for bank boxes. Example 'pouch' 'metalchest' etc.
-//This is only used when a new bank box is created. It can be changed on
-//the fly inside of a script for when you want to use specific container
-//types for special storage areas. Ideally, you should make a object type
-//with the name 'BankBox' to better control the number of items that can
-//be put in the storage container.
+/* Set the 'box_type' variable to the object name of the container type
+ * you want to be used for bank boxes. Example 'pouch' 'metalchest' etc.
+ * This is only used when a new bank box is created. It can be changed on
+ * the fly inside of a script for when you want to use specific container
+ * types for special storage areas. Ideally, you should make a object type
+ * with the name 'BankBox' to better control the number of items that can
+ * be put in the storage container.
+ */
 var box_type		:= "BankBox";
 
 //Toggles the bank related debug messages on and off.
 var storage_debug_mode	:= 1;
 
 
-
-/*
+/**
  * GetBox(who, string)
  *
  * Purpose
  *
  * Parameters
- * who: reference to the mobile whos container we want to view
+ * who: reference to the mobile whos container we want to view.
  * bank_name: the container that belongs to the mobile referenced.
  *
  * Return Value
@@ -82,7 +77,10 @@ function GetBox(who, bank_name)
 	return bank_box;
 endfunction
 
-
+/**
+ * HasBankBox(who, bank_name)
+ *
+ */
 function HasBankBox(who, bank_name)
 	if ( (!bank_name) || (bank_name == error) )
 		bank_name := "Global";
@@ -100,12 +98,21 @@ function HasBankBox(who, bank_name)
 endfunction
 
 
-// *DestroyBox(mobile, string)
-//
-// Used to remove a mobile's bank box and everything inside of it.
-// When someone deletes a character, pol does not do this automatically
-// so you may want to use this function with GetBankNames() to clear them.
-//
+/**
+ * DestroyBox(mobile, bank_name)
+ *
+ * Purpose
+ * Used to remove a mobile's bank box and everything inside of it.
+ * When someone deletes a character, pol does not do this automatically
+ * so you may want to use this function with GetBankNames() to clear them.
+ *
+ * Parameters
+ * who: reference to the mobile whos container we want to view.
+ * bank_name: the container that belongs to the mobile referenced.
+ *
+ * Return
+ * 
+ */
 function DestroyBox(who, bank_name)
 	if ( (!bank_name) || (bank_name == error) )
 		bank_name := "Global";
@@ -120,13 +127,20 @@ function DestroyBox(who, bank_name)
 endfunction
 
 
-// * RegisterBank(string)
-//
-// Registers the bank name in a global property called "banks".
-// Used to keep track of what banks exist in the world.
-//
-// This is only run the first time a storage area is used.
-//
+/**
+ * RegisterBank(string)
+ *
+ * Purpose
+ * Registers the bank name in a global property called "banks".
+ * Used to keep track of what banks exist in the world.
+ * This is only run the first time a storage area is used.
+ *
+ * Pamateres
+ * bank_name:
+ *
+ * Return
+ * Ignored
+ */
 function RegisterBank(bank_name)
 	return;
 	
@@ -145,10 +159,12 @@ function RegisterBank(bank_name)
 endfunction
 
 
-// * GetBankNames()
-//
-// Returns an array of all storage area names.
-//
+/**
+ * GetBankNames()
+ *
+ * Returns
+ * an array of all storage area names.
+ */
 function GetBankNames()
 	/*
 	var all_banks := GetGlobalProperty("banks");
