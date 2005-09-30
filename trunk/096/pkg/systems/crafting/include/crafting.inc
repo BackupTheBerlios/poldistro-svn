@@ -292,7 +292,7 @@ function CraftAssembly(who, craft_skill, tool, objtype, amt)
 	endif
 	var temp_list := dictionary;
 	for i := 1 to (parts_list.size()/2)
-		temp_list[CInt(parts_list[i])] := parts_list[i+(parts_list.size()/2)];
+		temp_list[CInt(parts_list[i])] := CInt(parts_list[i+(parts_list.size()/2)]);
 	endfor
 	parts_list := temp_list;
 
@@ -315,17 +315,13 @@ function CraftAssembly(who, craft_skill, tool, objtype, amt)
 			var thing_objtype := CInt(thing.objtype);
 			if( thing_objtype in parts_list.keys() )
 				if( CInt(material_list[thing_objtype]) < CInt(parts_list[thing_objtype]) )
-					if( ReserveItem(thing) )
-						material_list[thing_objtype] := CInt(material_list[thing_objtype]) + 1;
-					endif
+					material_list[thing_objtype] := CInt(material_list[thing_objtype]) + thing.amount;
 				endif
 			endif
 		endforeach
 
 		foreach part in ( parts_list.keys() )
-print(material_list[part]);
-print(parts_list[part]);
-			if( material_list[part] != parts_list[part] )
+			if( material_list[part] < parts_list[part] )
 				SendSysMessage(who, "You do not have the required materials to make that.");
 				return 0;
 			endif
@@ -334,16 +330,17 @@ print(parts_list[part]);
 		sleep(1);
 		if(CraftCheckSkill(who, craft_skill, diff, pts))
 			playCraftWork(who, craft_sound, craft_loops, craft_delay, craft_action);
-			foreach material_objtype in (material_list.keys())
-				var amount := material_list[material_objtype];
+			set_critical(1);
+			foreach material_objtype in (parts_list.keys())
+				var amount := parts_list[material_objtype];
 				if ( amount > 0 )
 					if( !ConsumeSubstance(who.backpack, material_objtype, amount) )
 						SendSysMessage(who, "Error - Unable to consume ["+amount+"] of material ["+material_objtype+"]");
 						return 0;
 					endif
 				endif
-				sleepms(2);
 			endforeach
+			set_critical(0);
 			theitem := CreateItemInBackpack(who, objtype, 1);
 			if(!theitem)
 				SendSysMessage(who, "You don't have enough room in your backpack!");
