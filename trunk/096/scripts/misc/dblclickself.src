@@ -3,18 +3,20 @@ use os;
 use npc;
 
 include "include/eventID";
+include "include/client";
 
 
-program dblclickself(me)
-	var mount := GetEquipmentByLayer(me, 25);
+program dblclickself(who)
+	var mount := GetEquipmentByLayer(who, LAYER_MOUNT);
 	if (!mount)
-		OpenPaperdoll(me, me);
+		OpenPaperdoll(who, who);
 		return;
 	endif
 	if (me.warmode)
-		OpenPaperdoll(me, me);
+		OpenPaperdoll(who, who);
 		return;
 	endif
+
 	var serial := GetObjProperty(mount, "serial");
 	var animal := SystemFindObjectBySerial(CInt(serial));
 	EraseObjProperty(animal,"serial");
@@ -27,10 +29,9 @@ program dblclickself(me)
 	ev.type := EVID_WAKEUP;
 	ev.source := me;
 	SendEvent(animal, ev);
-	MoveCharacterToLocation(animal, me.x, me.y, me.z, MOVECHAR_FORCELOCATION);
+	MoveCharacterToLocation(animal, who.x, who.y, who.z, MOVECHAR_FORCELOCATION);
 	RestartScript(animal);
 	DestroyItem(mount);
 
 	return;
 endprogram
-

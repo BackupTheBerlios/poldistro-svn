@@ -1,4 +1,4 @@
-/* $$
+/* $Id$
  *
  * Purpose
  * Provide localized messages
