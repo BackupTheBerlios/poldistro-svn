@@ -146,11 +146,9 @@ endfunction
 // Helper Functions
 //++++++++++++++++++++++++++++
 
-exported function SetOwner(book, owner)
-	var serial;
-	
-	if ( owner.IsA(POLCLASS_MOBILE) )
-		serial := owner.serial;
+exported function SetOwner(book, serial)
+	if ( serial.IsA(POLCLASS_MOBILE) )
+		serial := serial.serial;
 	endif
 	
 	//book.SetOwner(serial)
