@@ -145,7 +145,7 @@ endfunction
  * Return value
  *
  */
-function CP_RemoveStorageAreaContainer(container_id, storage_area_name)
+function CP_RemoveStorageAreaContainer(container_id, storage_area_name:=0)
 	if ( (!storage_area_name) || (storage_area_name == error) )
 		storage_area_name := CP_DEFAULT_AREA;
 	endif
@@ -153,7 +153,7 @@ function CP_RemoveStorageAreaContainer(container_id, storage_area_name)
 	var storage_area := FindStorageArea(storage_area_name);
 	var container_name := CP_DEFAULT_PREFIX + container_id;
 
-	CP_StorageDebugMsg("Removed root container. Storage area: [" + storage_area_name + "] ID: [" + container_id + "]");
+	CP_StorageDebugMsg("Removed root container. Storage area: ["+storage_area_name+"] ID: ["+container_id+"]");
 
 	return DestroyRootItemInStorageArea(storage_area, container_name);
 endfunction
@@ -176,7 +176,7 @@ function CP_RegisterStorageArea(storage_area_name)
 	set_critical(1);
 	var all_areas := GetGlobalProperty("StorageAreaNames");
 	if ( !all_areas.Exists(storage_area_name) )
-		CP_StorageDebugMsg("Registering bank " + storage_area_name);
+		CP_StorageDebugMsg("Registering storage area ["+storage_area_name+"]");
 		all_areas.Insert(storage_area_name, 0);
 		SetGlobalProperty("StorageAreaNames", all_areas);
 	endif
