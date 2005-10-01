@@ -4,16 +4,23 @@ use uo;
 use os;
 use polsys;
 
+include ":containers:storageAreas";
 include ":gumps:gumps_ex";
 
 unload_scripts("");
 
 program command_StorageAreas(mobile)
-	var storage_area := GFSendGump(mobile, BuildAreaListGump());
+	var area_name := AreaNamesGump(mobile);
+	if ( !area_name )
+		SendSysMessage(mobile, "Cancelled.");
+		return 0;
+	endif
+	
+	RootContainersGump(mobile, area_name);
 endprogram
 
-function BuildAreaListGump()
-	var storage_areas := StorageAreas();
+function AreaNamesGump(mobile)
+	var name_list := CP_GetStorageAreaNames();
 	
 	var gump := GFCreateGump();
 	GFPage(gump, 0);
@@ -23,11 +30,36 @@ function BuildAreaListGump()
 	var counter := 1;
 	var page_num := 1;
 	GFTextMid(gump, 10, 15, 280, 2100, "Storage Areas");
-	foreach area in (storage_areas)
-		GFAddButton(gump, 20, y_pos+3, 2117, 2118, GF_CLOSE_BTN);
-		GFTextLine(gump, 40, y_pos, 2100, _area_iter);
+	foreach area_name in (name_list)
+		GFAddButton(gump, 20, y_pos+3, 2117, 2118, GF_CLOSE_BTN, _area_name_iter);
+		GFTextLine(gump, 40, y_pos, 2100, area_name);
+		
+		counter := counter+1;
 		y_pos := y_pos+20;
 	endforeach
 	
-	return gump;
+	var input := GFSendGump(mobile, gump);
+	input := input[0];
+	return name_list[input];
+endfunction
+
+function RootContainersGump(mobile, area_name)
+	var storage_areas := StorageAreas();
+	var root_containers := storage_areas[area_name];
+	
+	var gump := GFCreateGump();
+	GFPage(gump, 0);
+	GFResizePic(gump, 0, 0, GFCfgConst("Defaults", "BackGround"), 300, 480);
+	GFResizePic(gump, 10, 10, GFCfgConst("Defaults", "ForeGround"), 280, 460);
+	var y_pos := 40;
+	var counter := 1;
+	var page_num := 1;
+	GFTextMid(gump, 10, 15, 280, 2100, "Root Containers ["+area_name+"]");
+	foreach container in (root_containers)
+		GFTextLine(gump, 40, y_pos, 2100, container.desc);
+		y_pos := y_pos+20;
+		sleepms(2);
+	endforeach
+	
+	GFSendGump(mobile, gump);
 endfunction
