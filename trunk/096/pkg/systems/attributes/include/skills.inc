@@ -146,7 +146,7 @@ function AP_GetSkillStats(attribute_name)
 		textline := SplitWords(textline);
 		sleepms(2);
 	endforeach
-	
+
 	return stat_entries;
 endfunction
 
@@ -165,18 +165,18 @@ endfunction
  */
 function AP_GetSkillCap(skill_name)
 	var cfg_elem := AP_GetSettingsCfgElem("Skills");
-	
+
 	// Check if there is a cap for that particular skill.
 	var cap_val := GetConfigReal(cfg_elem, skill_name);
-	
+
 	if ( !cap_val )
 		// No skill specific cap so get the general one.
 		cap_val := GetConfigReal(cfg_elem, "SkillCap");
 	endif
-	
+
 	return cap_val;
 endfunction
- 
+
 /*
  * AP_CheckSkillCap(mobile, skill_name)
  *
@@ -194,10 +194,10 @@ endfunction
  */
 function AP_CheckSkillCap(mobile, skill_name:="")
 	var cfg_elem := AP_GetSettingsCfgElem("Skills");
-	
+
 	if ( skill_name )
 		var cap_val := AP_GetSkillCap(skill_name);
-		
+
 		if ( cap_val != error )
 			return ( AP_GetTrueSkill(mobile, skill_name) >= cap_val );
 		endif
@@ -207,12 +207,40 @@ function AP_CheckSkillCap(mobile, skill_name:="")
 			total := total + AP_GetTrueSkill(mobile, attribute_name);
 			sleepms(2);
 		endforeach
-		
+
 		var cap_val := GetConfigReal(cfg_elem, "TotalCap");
 		if ( cap_val != error )
 			return ( total >= cap_val );
 		endif
 	endif
-	
+
 	return 0;
+endfunction
+
+
+/*
+ * AP_CheckSkillTotal(mobile, skill_name)
+ *
+ * Purpose
+ * Checks the total sum of all skills a mobile has.
+ *
+ * Parameters
+ * mobile:	Mobile to check the skills on
+ *
+ * Return value
+ * Returns Integer of the sum total of skill points
+ *
+ */
+function AP_CheckSkillsTotal(mobile)
+
+	var cfg_elem := AP_GetSettingsCfgElem("Skills");
+
+	var total := 0.0;
+	foreach attribute_name in ( AP_ListAttributesByType("Skill") )
+		total := total + AP_GetTrueSkill(mobile, attribute_name);
+		sleepms(2);
+	endforeach
+
+	return total;
+
 endfunction
