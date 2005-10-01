@@ -97,11 +97,12 @@ function CP_GetStorageAreaContainer(container_id, storage_area_name:=0)
 	var root_container := FindRootItemInStorageArea(storage_area, container_name);
 	if ( !root_container )
 		//Old distro (pre 096) root container names.
-		container_name := "Bankbox of "+container_name;
+		container_name := "Bankbox of "+container_id;
 		root_container := FindRootItemInStorageArea(storage_area, container_name);
-		//Set the name to the new style
+		//Set the name to the new style (takes effect after a restart)
 		container_name["Bankbox of "] := "";
-		container_name := "[Root Container] "+Hex(CInt(container_name));
+		container_name := CP_DEFAULT_PREFIX + Hex(CInt(container_name));
+		SetName(root_container, container_name);
 	endif
 	
 	return root_container;
@@ -132,7 +133,6 @@ function CP_CreateStorageAreaContainer(container_id, storage_area_name:=0)
 		// The storage area does not exist - so create it.
 		CreateStorageArea(storage_area_name);
 		storage_area := FindStorageArea(storage_area_name);
-		CP_RegisterStorageArea(storage_area_name);
 	endif
 	
 	var container_name := CP_DEFAULT_PREFIX + container_id;
@@ -174,37 +174,27 @@ function CP_RemoveStorageAreaContainer(container_id, storage_area_name:=0)
 	return DestroyRootItemInStorageArea(storage_area, container_name);
 endfunction
 
-
-/*
- * CP_RegisterStorageArea(storage_area_name)
+/* 
+ * CP_GetStorageAreaNames()
  *
  * Purpose
- * Tracks the names of storage areas that have been created.
+ * Returns a list of storage area names
  *
  * Parameters
- * storage_area_name:	Name of the storage area to add.
  *
  * Return value
- * Returns 1
+ * Array
  *
  */
-function CP_RegisterStorageArea(storage_area_name)
-	if ( (!storage_area_name) || (storage_area_name == error) )
-		return error{"errortext":="Not a valid storage area name"};
-	endif
-
-	set_critical(1);
-	var all_areas := GetGlobalProperty("StorageAreaNames");
-	if ( !all_areas.Exists(storage_area_name) )
-		CP_StorageDebugMsg("Registering storage area ["+storage_area_name+"]");
-		all_areas.Insert(storage_area_name, 0);
-		SetGlobalProperty("StorageAreaNames", all_areas);
-	endif
-	set_critical(0);
+function CP_GetStorageAreaNames()
+	var name_list := array;
+	foreach storage_area in (StorageAreas())
+		name_list.Append(_storage_area_iter);
+		sleepms(2);
+	endforeach
 	
-	return 1;
+	return name_list;
 endfunction
-
 
 /*
  * CP_StorageDebugMsg(text)
