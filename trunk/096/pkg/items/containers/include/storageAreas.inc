@@ -7,12 +7,12 @@ use polsys;
 /////////////////////////////////////////////////////////////////
 // * Function List *
 //
-// DestroyBox(mobile, storage_area_name)
-// GetStorageAreaContainer(mobile, storage_area_name:=0)
-// GetStorageAreaNames()
-// RegisterStorageArea(storage_area_name)
-// StorageContainerExists(mobile, storage_area_name)
-// StorageDebugMsg(text)
+// CP_CreateStorageAreaContainer(container_id, storage_area_name:=0)
+// CP_GetStorageAreaContainer(mobile, storage_area_name:=0, create:=CP_NOCREATE)
+// CP_GetStorageContainer(container_id, storage_area_name:=0)
+// CP_RegisterStorageArea(storage_area_name)
+// CP_RemoveStorageAreaContainer(container_id, storage_area_name)
+// CP_StorageDebugMsg(text)
 //
 /////////////////////////////////////////////////////////////////
 // * Internal/Private Function List *
@@ -57,7 +57,7 @@ var STORAGE_DEBUG	:= 1;
  * A storage area container reference
  *
  */
-function GetStorageAreaContainer(mobile, storage_area_name:=0, create:=CP_NOCREATE)
+function CP_GetStorageAreaContainer(mobile, storage_area_name:=0, create:=CP_NOCREATE)
 	if ( (!storage_area_name) || (storage_area_name == error) )
 		storage_area_name := CP_DEFAULT_AREA;
 	endif
