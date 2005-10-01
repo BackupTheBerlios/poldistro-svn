@@ -1,23 +1,21 @@
-// $Id$
-
+/* $Id$
+ *
+ * Purpose
+ *
+ * Function List
+ * CP_GetStorageContainerForMobile(container_id, storage_area_name:=0)
+ * CP_GetStorageAreaContainer(mobile, storage_area_name:=0, create:=CP_NOCREATE)
+ * CP_GetStorageAreaContainer(container_id, storage_area_name:=0)
+ * CP_RegisterStorageArea(storage_area_name)
+ * CP_RemoveStorageAreaContainer(container_id, storage_area_name)
+ * CP_StorageDebugMsg(text)
+ *
+ * Internal Function List
+ */
 use uo;
 use os;
 use polsys;
 
-/////////////////////////////////////////////////////////////////
-// * Function List *
-//
-// CP_GetStorageContainerForMobile(container_id, storage_area_name:=0)
-// CP_GetStorageAreaContainer(mobile, storage_area_name:=0, create:=CP_NOCREATE)
-// CP_GetStorageAreaContainer(container_id, storage_area_name:=0)
-// CP_RegisterStorageArea(storage_area_name)
-// CP_RemoveStorageAreaContainer(container_id, storage_area_name)
-// CP_StorageDebugMsg(text)
-//
-/////////////////////////////////////////////////////////////////
-// * Internal/Private Function List *
-//
-/////////////////////////////////////////////////////////////////
 // * Global Variables *
 const CP_NOCREATE	:= 0x0;
 const CP_CREATE		:= 0x1;
@@ -33,16 +31,14 @@ const CP_DEFAULT_PREFIX	:= "[Root Container] ";
  * This is ONLY used when a new root container is created. It can be changed on
  * the fly inside of a script for when you want to use specific container
  * types for special storage areas. 
- 
+ *
  * Ideally, you should make an object type with the name 'BankBox' to better
  * control the number of items that can be put in the storage container.
  */
 var container_type	:= "BankBox";
 
-//Toggles the bank related debug messages on and off.
+// Toggles the bank related debug messages on and off.
 var STORAGE_DEBUG	:= 1;
-//
-/////////////////////////////////////////////////////////////////
 
 
 /*
@@ -71,6 +67,7 @@ function CP_GetStorageContainerForMobile(mobile, storage_area_name:=0, create:=C
 	
 	return root_container;
 endfunction
+
 
 /*
  * CP_GetStorageAreaContainer(container_name, storage_area_name)
@@ -105,6 +102,7 @@ function CP_GetStorageAreaContainer(container_id, storage_area_name:=0)
 	
 	return root_container;
 endfunction
+
 
 /*
  * CP_CreateStorageAreaContainer(container_id, storage_area_name)
@@ -143,6 +141,7 @@ function CP_CreateStorageAreaContainer(container_id, storage_area_name:=0)
 	return FindRootItemInStorageArea(storage_area_name, container_name);
 endfunction
 
+
 /*
  * CP_RemoveStorageAreaContainer(container_id, storage_area_name)
  *
@@ -170,6 +169,7 @@ function CP_RemoveStorageAreaContainer(container_id, storage_area_name:=0)
 
 	return DestroyRootItemInStorageArea(storage_area, container_name);
 endfunction
+
 
 /*
  * CP_RegisterStorageArea(storage_area_name)
@@ -200,6 +200,7 @@ function CP_RegisterStorageArea(storage_area_name)
 	
 	return 1;
 endfunction
+
 
 /*
  * CP_StorageDebugMsg(text)
