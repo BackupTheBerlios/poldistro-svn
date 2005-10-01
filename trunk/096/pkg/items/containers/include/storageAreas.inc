@@ -23,6 +23,7 @@ const CP_NOCREATE	:= 0x0;
 const CP_CREATE		:= 0x1;
 
 const CP_DEFAULT_AREA	:= "World Bank";
+const CP_DEFAULT_PREFIX	:= "[Root Container] ";
 
 /* 
  * Set the 'box_type' variable to the object name of the container type
@@ -88,7 +89,7 @@ function CP_GetStorageContainer(container_id, storage_area_name:=0)
 	endif
 	var storage_area := FindStorageArea(storage_area_name);
 	
-	var container_name := "[Root Container] " + container_id;
+	var container_name := CP_DEFAULT_PREFIX + container_id;
 	var root_container := FindRootItemInStorageArea(storage_area, container_name);
 	if ( !root_container )
 		//Old distro (pre 096) root container names.
@@ -124,7 +125,7 @@ function CP_CreateStorageAreaContainer(container_id, storage_area_name:=0)
 		storage_area := FindStorageArea(storage_area_name);
 	endif
 	
-	var container_name := "[Root Container] " + container_id;
+	var container_name := CP_DEFAULT_PREFIX + container_id;
 	
 	var result := CreateRootItemInStorageArea(storage_area, container_name, container_type);
 	if ( result.errortext )
@@ -150,7 +151,7 @@ function CP_RemoveStorageAreaContainer(container_id, storage_area_name)
 	endif
 
 	var storage_area := FindStorageArea(storage_area_name);
-	var container_name := "[Root Container] " + container_id;
+	var container_name := CP_DEFAULT_PREFIX + container_id;
 
 	CP_StorageDebugMsg("Removed root container. Storage area: [" + storage_area_name + "] ID: [" + container_id + "]");
 
