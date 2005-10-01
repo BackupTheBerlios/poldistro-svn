@@ -51,11 +51,12 @@ var STORAGE_DEBUG	:= 1;
  * Purpose
  *
  * Parameters
- * mobile:	Owner of the container that will be opened (uses .serial of it)
+ * mobile:		Owner of the container that will be retrieved (uses .serial of it)
  * storage_area_name:	Name of the storage area to retrieve the container from.
+ * create:		Controls if the container will be created if it does not already exist.
  *
  * Return Value
- * A storage area container reference
+ * A container object
  *
  */
 function CP_GetStorageContainerForMobile(mobile, storage_area_name:=0, create:=CP_NOCREATE)
@@ -63,9 +64,7 @@ function CP_GetStorageContainerForMobile(mobile, storage_area_name:=0, create:=C
 		storage_area_name := CP_DEFAULT_AREA;
 	endif
 	
-	CP_RegisterStorageArea(storage_area_name);
-
-	var root_container := CP_GetStorageContainer(Hex(mobile.serial), storage_area_name);
+	var root_container := CP_GetStorageAreaContainer(Hex(mobile.serial), storage_area_name);
 	if ( !root_container && create )
 		root_container := CP_CreateStorageAreaContainer(Hex(mobile.serial), storage_area_name);
 	endif
@@ -77,10 +76,14 @@ endfunction
  * CP_GetStorageAreaContainer(container_name, storage_area_name)
  *
  * Purpose
+ * Retrieves a root container that matches the id sent.
  *
  * Parameters
+ * container_id:	Name of the root container to retrieve.
+ * storage_area_name:	Name of the storage area to retrieve the container from.
  *
  * Return value
+ * A container object
  *
  */
 function CP_GetStorageAreaContainer(container_id, storage_area_name:=0)
@@ -107,10 +110,14 @@ endfunction
  * CP_CreateStorageAreaContainer(container_id, storage_area_name)
  *
  * Purpose
+ * Creates a root container in a storage area.
  *
  * Parameters
+ * container_id:	Name of the container to create.
+ * storage_area_name:	Name of the storage area to create the container in.
  *
  * Return value
+ * A container object
  *
  */
 function CP_CreateStorageAreaContainer(container_id, storage_area_name:=0)
@@ -123,6 +130,7 @@ function CP_CreateStorageAreaContainer(container_id, storage_area_name:=0)
 		// The storage area does not exist - so create it.
 		CreateStorageArea(storage_area_name);
 		storage_area := FindStorageArea(storage_area_name);
+		CP_RegisterStorageArea(storage_area_name);
 	endif
 	
 	var container_name := CP_DEFAULT_PREFIX + container_id;
@@ -139,10 +147,15 @@ endfunction
  * CP_RemoveStorageAreaContainer(container_id, storage_area_name)
  *
  * Purpose
+ * Removes a root container from a storage area.
+ * Also deletes all of its contents.
  *
  * Parameters
+ * container_id:	Name of the container to remove.
+ * storage_area_name:	Name of the storage area to remove the container from.
  *
  * Return value
+ * Returns the result of the deletion.
  *
  */
 function CP_RemoveStorageAreaContainer(container_id, storage_area_name:=0)
@@ -162,10 +175,13 @@ endfunction
  * CP_RegisterStorageArea(storage_area_name)
  *
  * Purpose
+ * Tracks the names of storage areas that have been created.
  *
  * Parameters
+ * storage_area_name:	Name of the storage area to add.
  *
  * Return value
+ * Returns 1
  *
  */
 function CP_RegisterStorageArea(storage_area_name)
