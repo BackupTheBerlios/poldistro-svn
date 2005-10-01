@@ -7,7 +7,7 @@ use polsys;
 /////////////////////////////////////////////////////////////////
 // * Function List *
 //
-// CP_CreateStorageAreaContainer(container_id, storage_area_name:=0)
+// CP_GetStorageContainerForMobile(container_id, storage_area_name:=0)
 // CP_GetStorageAreaContainer(mobile, storage_area_name:=0, create:=CP_NOCREATE)
 // CP_GetStorageContainer(container_id, storage_area_name:=0)
 // CP_RegisterStorageArea(storage_area_name)
@@ -46,7 +46,7 @@ var STORAGE_DEBUG	:= 1;
 
 
 /*
- * GetStorageAreaContainer(mobile, storage_area_name, create)
+ * GetStorageContainerForMobile(mobile, storage_area_name, create)
  *
  * Purpose
  *
@@ -58,7 +58,7 @@ var STORAGE_DEBUG	:= 1;
  * A storage area container reference
  *
  */
-function CP_GetStorageAreaContainer(mobile, storage_area_name:=0, create:=CP_NOCREATE)
+function CP_GetStorageContainerForMobile(mobile, storage_area_name:=0, create:=CP_NOCREATE)
 	if ( (!storage_area_name) || (storage_area_name == error) )
 		storage_area_name := CP_DEFAULT_AREA;
 	endif
