@@ -295,7 +295,7 @@ endfunction
 // the Crafting gump, or create the item immediately from this page.
 function GFCraftInfoPage(who, objtype, skill_config)
 
-	objtype := Hex(objtype);
+//	objtype := Hex(objtype);
 	var i_config := ReadConfigFile(":*:itemdesc");
 	var thisitem := i_config[objtype];
 	if(TypeOf(thisitem) != "ConfigElemRef")
@@ -381,12 +381,7 @@ function GFCraftInfoPage(who, objtype, skill_config)
 		material := "";
 		if((len(tmpmat)/2) < 5)
 			for j := 1 to (len(tmpmat)/2)
-				tmatname := GetItemDescriptor(tmpmat[j]);
-				if(tmpmat[j+(len(tmpmat)/2)] > 1)
-					tmatname := tmatname.desc+"s";
-				else
-					tmatname := tmatname.desc;
-				endif
+				tmatname := TruncatePlural(tmpmat[j]);
 				case(j)
 					1:
 					2:
@@ -399,12 +394,7 @@ function GFCraftInfoPage(who, objtype, skill_config)
 		else
 			material := 0;
 			for j := 1 to (len(tmpmat)/2)
-				tmatname := GetItemDescriptor(tmpmat[j]);
-				if(tmpmat[j+(len(tmpmat)/2)] > 1)
-					tmatname := tmatname.desc+"s";
-				else
-					tmatname := tmatname.desc;
-				endif
+				tmatname := TruncatePlural(tmpmat[j]);
 				if(j == (len(tmpmat)/2))
 					matname := matname + "& " + (tmpmat[j+(len(tmpmat)/2)]) + " " + tmatname + " required";
 				else
