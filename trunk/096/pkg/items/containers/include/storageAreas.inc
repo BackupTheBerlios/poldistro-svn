@@ -9,7 +9,7 @@ use polsys;
 //
 // CP_GetStorageContainerForMobile(container_id, storage_area_name:=0)
 // CP_GetStorageAreaContainer(mobile, storage_area_name:=0, create:=CP_NOCREATE)
-// CP_GetStorageContainer(container_id, storage_area_name:=0)
+// CP_GetStorageAreaContainer(container_id, storage_area_name:=0)
 // CP_RegisterStorageArea(storage_area_name)
 // CP_RemoveStorageAreaContainer(container_id, storage_area_name)
 // CP_StorageDebugMsg(text)
@@ -74,7 +74,7 @@ function CP_GetStorageContainerForMobile(mobile, storage_area_name:=0, create:=C
 endfunction
 
 /*
- * CP_GetStorageContainer(container_name, storage_area_name)
+ * CP_GetStorageAreaContainer(container_name, storage_area_name)
  *
  * Purpose
  *
@@ -83,7 +83,7 @@ endfunction
  * Return value
  *
  */
-function CP_GetStorageContainer(container_id, storage_area_name:=0)
+function CP_GetStorageAreaContainer(container_id, storage_area_name:=0)
 	if ( (!storage_area_name) || (storage_area_name == error) )
 		storage_area_name := CP_DEFAULT_AREA;
 	endif
