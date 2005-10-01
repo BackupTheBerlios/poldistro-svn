@@ -5,12 +5,13 @@
  * Function List
  * CP_GetStorageContainerForMobile(container_id, storage_area_name:=0)
  * CP_GetStorageAreaContainer(mobile, storage_area_name:=0, create:=CP_NOCREATE)
- * CP_GetStorageAreaContainer(container_id, storage_area_name:=0)
+ * CP_CreateStorageAreaContainer(container_id, storage_area_name:=0)
  * CP_RegisterStorageArea(storage_area_name)
  * CP_RemoveStorageAreaContainer(container_id, storage_area_name)
  * CP_StorageDebugMsg(text)
  *
  * Internal Function List
+ *
  */
 use uo;
 use os;
@@ -52,20 +53,23 @@ var STORAGE_DEBUG	:= 1;
  * create:		Controls if the container will be created if it does not already exist.
  *
  * Return Value
- * A container object
+ * A container object if CP_CREATE
+ * 0 if CP_NOCREATE
  *
  */
 function CP_GetStorageContainerForMobile(mobile, storage_area_name:=0, create:=CP_NOCREATE)
-	if ( (!storage_area_name) || (storage_area_name == error) )
+	if ((!storage_area_name) || (storage_area_name == error))
 		storage_area_name := CP_DEFAULT_AREA;
 	endif
 	
 	var root_container := CP_GetStorageAreaContainer(Hex(mobile.serial), storage_area_name);
-	if ( !root_container && create )
+	if (!root_container && create)
 		root_container := CP_CreateStorageAreaContainer(Hex(mobile.serial), storage_area_name);
+
+		return root_container;
+	else
+		return 0;
 	endif
-	
-	return root_container;
 endfunction
 
 
