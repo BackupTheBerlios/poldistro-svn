@@ -16,7 +16,16 @@ program command_StorageAreas(mobile)
 		return 0;
 	endif
 	
-	RootContainersGump(mobile, area_name);
+	var container := RootContainersGump(mobile, area_name);
+	if ( !container )
+		SendSysMessage(mobile, "Cancelled.");
+		return 0;
+	else
+		SendSysMessage(mobile, "Opening...");
+		SendOpenSpecialContainer(mobile, container);
+	endif
+	
+	return 1;
 endprogram
 
 function AreaNamesGump(mobile)
@@ -45,7 +54,7 @@ endfunction
 
 function RootContainersGump(mobile, area_name)
 	var storage_areas := StorageAreas();
-	var root_containers := storage_areas[area_name];
+	var root_containers := CP_GetRootContainersInStorageArea(area_name);
 	
 	var gump := GFCreateGump();
 	GFPage(gump, 0);
@@ -56,10 +65,14 @@ function RootContainersGump(mobile, area_name)
 	var page_num := 1;
 	GFTextMid(gump, 10, 15, 280, 2100, "Root Containers ["+area_name+"]");
 	foreach container in (root_containers)
+		GFAddButton(gump, 20, y_pos+3, 2117, 2118, GF_CLOSE_BTN, _container_iter);
 		GFTextLine(gump, 40, y_pos, 2100, container.desc);
 		y_pos := y_pos+20;
 		sleepms(2);
 	endforeach
 	
-	GFSendGump(mobile, gump);
+	var input := GFSendGump(mobile, gump);
+	input := input[0];
+	
+	return root_containers[input];
 endfunction

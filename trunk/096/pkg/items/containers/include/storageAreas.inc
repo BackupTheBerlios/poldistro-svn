@@ -63,7 +63,7 @@ function CP_GetStorageContainerForMobile(mobile, storage_area_name:=0, create:=C
 	endif
 	
 	var root_container := CP_GetStorageAreaContainer(Hex(mobile.serial), storage_area_name);
-	if (!root_container && create)
+	if ( (!root_container) && (create) )
 		root_container := CP_CreateStorageAreaContainer(Hex(mobile.serial), storage_area_name);
 
 		return root_container;
@@ -194,6 +194,28 @@ function CP_GetStorageAreaNames()
 	endforeach
 	
 	return name_list;
+endfunction
+
+/* 
+ * CP_GetRootContainersInStorageArea(storage_area_name)
+ * 
+ * Purpose
+ *
+ * Parameters
+ *
+ * Return value
+ * Array
+ *
+ */
+function CP_GetRootContainersInStorageArea(storage_area_name)
+	var storage := StorageAreas();
+	var root_list := array;
+	foreach container in (storage[storage_area_name])
+		root_list.Append(container);
+		sleepms(2);
+	endforeach
+	
+	return root_list;
 endfunction
 
 /*
