@@ -1,203 +1,203 @@
-/* $Id$
- *
- * Somewhere, define a container for banks with the item name
- * "BankBox" so you dont need to deal with object type numbers here
- * plus making a custom container makes it easy to change the bank box
- * graphic, container gump and item limits.
- */
+// $Id$
+
 use uo;
 use os;
 use polsys;
 
-/* Set the 'box_type' variable to the object name of the container type
- * you want to be used for bank boxes. Example 'pouch' 'metalchest' etc.
- * This is only used when a new bank box is created. It can be changed on
+/////////////////////////////////////////////////////////////////
+// * Function List *
+//
+// DestroyBox(mobile, storage_area_name)
+// GetStorageAreaContainer(mobile, storage_area_name:=0)
+// GetStorageAreaNames()
+// RegisterStorageArea(storage_area_name)
+// StorageContainerExists(mobile, storage_area_name)
+// StorageDebugMsg(text)
+//
+/////////////////////////////////////////////////////////////////
+// * Internal/Private Function List *
+//
+/////////////////////////////////////////////////////////////////
+// * Global Variables *
+const CP_NOCREATE	:= 0x0;
+const CP_CREATE		:= 0x1;
+
+const CP_DEFAULT_AREA	:= "World Bank";
+
+/* 
+ * Set the 'box_type' variable to the object name of the container type
+ * you want to be used for bank box. 
+ * Example: "pouch" "metalchest" "barrel"
+ *
+ * This is ONLY used when a new root container is created. It can be changed on
  * the fly inside of a script for when you want to use specific container
- * types for special storage areas. Ideally, you should make a object type
- * with the name 'BankBox' to better control the number of items that can
- * be put in the storage container.
+ * types for special storage areas. 
+ 
+ * Ideally, you should make an object type with the name 'BankBox' to better
+ * control the number of items that can be put in the storage container.
  */
-var box_type		:= "BankBox";
+var container_type	:= "BankBox";
 
 //Toggles the bank related debug messages on and off.
-var storage_debug_mode	:= 1;
+var STORAGE_DEBUG	:= 1;
+//
+/////////////////////////////////////////////////////////////////
 
 
-/**
- * GetBox(who, string)
+/*
+ * GetStorageAreaContainer(mobile, storage_area_name, create)
  *
  * Purpose
  *
  * Parameters
- * who: reference to the mobile whos container we want to view.
- * bank_name: the container that belongs to the mobile referenced.
+ * mobile:	Owner of the container that will be opened (uses .serial of it)
+ * storage_area_name:	Name of the storage area to retrieve the container from.
  *
  * Return Value
- * The bank box of who, for the bank_name passed.
- */
-function GetBox(who, bank_name)
-
-	if ((!bank_name) || (bank_name == error))
-		bank_name := "Global";
-	endif
-
-	RegisterBank(bank_name);
-
-	var bank := FindStorageArea(bank_name);
-	if ( !bank )
-		CreateStorageArea(bank_name);
-		bank := FindStorageArea(bank_name);
-	endif
-
-	//Find a box by serial because a mobile's name can change
-	//but a serial never does :)
-	var box_name := "Bankbox for " + hex(who.serial);
-
-	var bank_box := FindRootItemInStorageArea(bank, box_name);
-	if ( !bank_box )
-		set_critical(1);
-		var new_box := CreateRootItemInStorageArea(bank, box_name, box_type);
-		if ( new_box.errortext )
-			return new_box;
-		endif
-		
-		bank_box := FindRootItemInStorageArea(bank, box_name);
-
-		if ( who.acctname )
-			//Makes the storage file a little easier to read by storing
-			//a person's account name and character name on the box.
-			var temp := dictionary;
-			temp["Name"] := who.name;
-			temp["Account"] := who.acctname;
-			SetObjProperty(bank_box, "Info", temp);
-		endif
-		set_critical(0);
-	endif
-
-	return bank_box;
-endfunction
-
-/**
- * HasBankBox(who, bank_name)
+ * A storage area container reference
  *
  */
-function HasBankBox(who, bank_name)
-	if ( (!bank_name) || (bank_name == error) )
-		bank_name := "Global";
+function GetStorageAreaContainer(mobile, storage_area_name:=0, create:=CP_NOCREATE)
+	if ( (!storage_area_name) || (storage_area_name == error) )
+		storage_area_name := CP_DEFAULT_AREA;
 	endif
 	
-	var bank := FindStorageArea(bank_name);
-	var box_name := "Bankbox for " + hex(who.serial);
-	var bank_box := FindRootItemInStorageArea(bank, box_name);
-	
-	if ( bank_box )
-		return 1;
-	else
-		return 0;
+	CP_RegisterStorageArea(storage_area_name);
+
+	var root_container := CP_GetStorageContainer(Hex(mobile.serial), storage_area_name);
+	if ( !root_container && create )
+		root_container := CP_CreateStorageAreaContainer(Hex(mobile.serial), storage_area_name);
 	endif
+	
+	return root_container;
 endfunction
 
-
-/**
- * DestroyBox(mobile, bank_name)
+/*
+ * CP_GetStorageContainer(container_name, storage_area_name)
  *
  * Purpose
- * Used to remove a mobile's bank box and everything inside of it.
- * When someone deletes a character, pol does not do this automatically
- * so you may want to use this function with GetBankNames() to clear them.
  *
  * Parameters
- * who: reference to the mobile whos container we want to view.
- * bank_name: the container that belongs to the mobile referenced.
  *
- * Return
- * 
+ * Return value
+ *
  */
-function DestroyBox(who, bank_name)
-	if ( (!bank_name) || (bank_name == error) )
-		bank_name := "Global";
+function CP_GetStorageContainer(container_id, storage_area_name:=0)
+	if ( (!storage_area_name) || (storage_area_name == error) )
+		storage_area_name := CP_DEFAULT_AREA;
 	endif
-
-	var bank := FindStorageArea(bank_name);
-	var box_name := "Bankbox for " + hex(who.serial);
-
-	BankDbgMsg("Removed bank box [" + bank_name + "] for [" + who.name + "]");
-
-	return DestroyRootItemInStorageArea(bank, box_name);
+	var storage_area := FindStorageArea(storage_area_name);
+	
+	var container_name := "[Root Container] " + container_id;
+	var root_container := FindRootItemInStorageArea(storage_area, container_name);
+	if ( !root_container )
+		//Old distro (pre 096) root container names.
+		container_name := "Bankbox of "+container_name;
+		root_container := FindRootItemInStorageArea(storage_area, container_name);
+		//Set the name to the new style
+		container_name["Bankbox of "] := "";
+		container_name := "[Root Container] "+Hex(CInt(container_name));
+	endif
+	
+	return root_container;
 endfunction
 
-
-/**
- * RegisterBank(string)
+/*
+ * CP_CreateStorageAreaContainer(container_id, storage_area_name)
  *
  * Purpose
- * Registers the bank name in a global property called "banks".
- * Used to keep track of what banks exist in the world.
- * This is only run the first time a storage area is used.
  *
- * Pamateres
- * bank_name:
+ * Parameters
  *
- * Return
- * Ignored
+ * Return value
+ *
  */
-function RegisterBank(bank_name)
-	return;
+function CP_CreateStorageAreaContainer(container_id, storage_area_name:=0)
+	if ( (!storage_area_name) || (storage_area_name == error) )
+		storage_area_name := CP_DEFAULT_AREA;
+	endif
 	
-	if ( (!bank_name) || (bank_name == error) )
-		return 0;
+	var storage_area := FindStorageArea(storage_area_name);
+	if ( !storage_area )
+		// The storage area does not exist - so create it.
+		CreateStorageArea(storage_area_name);
+		storage_area := FindStorageArea(storage_area_name);
+	endif
+	
+	var container_name := "[Root Container] " + container_id;
+	
+	var result := CreateRootItemInStorageArea(storage_area, container_name, container_type);
+	if ( result.errortext )
+		return result;
+	endif
+		
+	return FindRootItemInStorageArea(storage_area_name, container_name);
+endfunction
+
+/*
+ * CP_RemoveStorageAreaContainer(container_id, storage_area_name)
+ *
+ * Purpose
+ *
+ * Parameters
+ *
+ * Return value
+ *
+ */
+function CP_RemoveStorageAreaContainer(container_id, storage_area_name)
+	if ( (!storage_area_name) || (storage_area_name == error) )
+		storage_area_name := CP_DEFAULT_AREA;
+	endif
+
+	var storage_area := FindStorageArea(storage_area_name);
+	var container_name := "[Root Container] " + container_id;
+
+	CP_StorageDebugMsg("Removed root container. Storage area: [" + storage_area_name + "] ID: [" + container_id + "]");
+
+	return DestroyRootItemInStorageArea(storage_area, container_name);
+endfunction
+
+/*
+ * CP_RegisterStorageArea(storage_area_name)
+ *
+ * Purpose
+ *
+ * Parameters
+ *
+ * Return value
+ *
+ */
+function CP_RegisterStorageArea(storage_area_name)
+	if ( (!storage_area_name) || (storage_area_name == error) )
+		return error{"errortext":="Not a valid storage area name"};
 	endif
 
 	set_critical(1);
-	var all_banks := GetBankNames();
-	if ( !(bank_name in all_banks) )
-		BankDbgMsg("Registering bank " + bank_name);
-		all_banks.append(bank_name);
-		SetGlobalProperty("banks", all_banks);
+	var all_areas := GetGlobalProperty("StorageAreaNames");
+	if ( !all_areas.Exists(storage_area_name) )
+		CP_StorageDebugMsg("Registering bank " + storage_area_name);
+		all_areas.Insert(storage_area_name, 0);
+		SetGlobalProperty("StorageAreaNames", all_areas);
 	endif
 	set_critical(0);
-endfunction
-
-
-/**
- * GetBankNames()
- *
- * Returns
- * an array of all storage area names.
- */
-function GetBankNames()
-	/*
-	var all_banks := GetGlobalProperty("banks");
-	if (!all_banks)
-		all_banks := array;
-		SetGlobalProperty("banks", all_banks);
-	endif
-	return all_banks;
-	*/
-	// Note... for now I am having it use the StorageAreas()
-	// function in polsys.em. It works kind of funny though.
-	// It returns an array of the region names, but if you do
-	// TypeOf() on the region name, you get <RegionName> like,
-	// <Global> <Britain> <Minoc> etc. back. For now I convert them
-	// to a string which works. I am not really sure what Syzygy has
-	// planned for this function, but if its changed to work as I have
-	// a feeling it was intended to work, this foreach will still work.
-	// You can uncomment the global property usage above, and comment
-	// the loop below though if any problems arise. Until I am certain
-	// as to how Syzygy wants to make this function work, I am leaving
-	// the global property tracking of bank region names in.
-	var temp := array;
-	foreach key in StorageAreas()
-		temp.append(Cstr(key));
-		sleepms(2);
-	endforeach
 	
-	return temp;
+	return 1;
 endfunction
 
-
-function BankDbgMsg(text)
-	if ( storage_debug_mode )
+/*
+ * CP_StorageDebugMsg(text)
+ *
+ * Purpose
+ *
+ * Parameters
+ *
+ * Return value
+ *
+ */
+function CP_StorageDebugMsg(text)
+	if ( STORAGE_DEBUG )
 		SysLog(text);
 	endif
+	
+	return 1;
 endfunction
