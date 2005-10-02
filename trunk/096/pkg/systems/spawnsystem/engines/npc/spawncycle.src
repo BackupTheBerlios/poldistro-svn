@@ -1,9 +1,9 @@
 use uo;
 use os;
 
-include ":spawnsystem:include/groups";
-include ":spawnsystem:include/regions";
-include ":spawnsystem:include/spawner";
+include ":spawnsystem:groups";
+include ":spawnsystem:regions";
+include ":spawnsystem:spawnerUtil";
 
 program SpawnCycle(params)
 	var engine_name	:= params[1];
