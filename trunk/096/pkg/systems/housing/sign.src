@@ -3,7 +3,7 @@ use os;
 
 include "util/key";
 include "include/yesNo";
-include ":bank:bank";
+include ":containers:storageAreas";
 
 Const UOBJECT_DOORS_START := 0x0675;
 Const UOBJECT_DOORS_END   := 0x06f4;
@@ -1183,7 +1183,7 @@ function ChangeHouseOwner(oldowner, who, house)
       SendSysMessage(who, "Error: Could not find built deed. Page a GM.", 3, 40);
       return 0;
     endif
-    var hisbank := FindBankBox(who);
+    var hisbank := CP_GetStorageContainerForMobile(who, CP_DEFAULT_AREA, 1);
     if(!hisbank)
       SendSysMessage(who,      "House transfer was NOT successful.");
       SendSysMessage(oldowner, "House transfer was NOT successful.");
@@ -1354,7 +1354,7 @@ function demolish(house, sign, who)
         endif
       endif
     endforeach
-    var bankbox := FindBankBox(who);
+    var bankbox := CP_GetStorageContainerForMobile(who, CP_DEFAULT_AREA, 1);
     if(bankbox)
       foreach thing in EnumerateItemsInContainer(bankbox)
         id := GetObjProperty(thing, "lockid");

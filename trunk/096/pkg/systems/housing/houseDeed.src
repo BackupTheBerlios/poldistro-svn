@@ -3,7 +3,7 @@ use uo;
 use os;
 
 include "util/key";
-include ":bank:bank";
+include ":containers:storageAreas";
 include "include/objtype";
 include "include/findCity";
 include "include/canAccess";
@@ -107,7 +107,7 @@ function Buildhouse(character, deed)
 endfunction
 
 function CreatehouseKeysAndBuiltDeed(character, housetype, where, deed)
-  var bankbox := FindBankBox(character);
+  var bankbox := CP_GetStorageContainerForMobile(character, CP_DEFAULT_AREA, 1);
   var x := where.x, y := where.y, z := where.z;
   var packkey := CreateItemInBackpack(character, UOBJ_GOLD_KEY);
   if(!packkey)
