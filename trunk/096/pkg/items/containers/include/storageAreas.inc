@@ -62,7 +62,7 @@ function CP_GetStorageContainerForMobile(mobile, storage_area_name:=0, create:=C
 		storage_area_name := CP_DEFAULT_AREA;
 	endif
 	
-	var container_id := "Owner="+Hex(mobile.serial);
+	var container_id := CP_GetOwnerContainerID(mobile);
 	var root_container := CP_GetStorageAreaContainer(container_id, storage_area_name);
 	if ( (!root_container) && (create) )
 		root_container := CP_CreateStorageAreaContainer(container_id, storage_area_name);
@@ -71,6 +71,24 @@ function CP_GetStorageContainerForMobile(mobile, storage_area_name:=0, create:=C
 	else
 		return 0;
 	endif
+endfunction
+
+
+/*
+ * CP_GetOwnerString(mobile)
+ * 
+ * Purpose
+ * Sets up the container_id string for a mobile's root container.
+ * 
+ * Parameters
+ * mobile:	Mobile whos box will be retrieved.
+ *
+ * Return value
+ * String
+ *
+ */
+function CP_GetOwnerContainerID(mobile)
+	return "Owner="+Hex(mobile.serial);
 endfunction
 
 
