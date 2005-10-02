@@ -44789,126 +44789,6 @@ Item
 
 Item
 {
-	Serial	0x6ae078da
-	ObjType	0xf4e
-	Graphic	0xf4e
-	X	5852
-	Y	1163
-	Z	0
-	Revision	0
-	Realm	britannia
-	Layer	2
-	Container	0x1a1d8c
-	DecayAt	25143491
-	Quality	1
-	HP	65
-	HitScript	mainHitScript
-}
-
-Item
-{
-	Serial	0x6ae07903
-	ObjType	0x1411
-	Graphic	0x1411
-	X	5852
-	Y	1163
-	Z	0
-	Revision	0
-	Realm	britannia
-	Layer	4
-	Container	0x1a1d8c
-	DecayAt	25143491
-	Quality	1
-	HP	60
-}
-
-Item
-{
-	Serial	0x6ae078ef
-	ObjType	0x1408
-	Graphic	0x1408
-	X	5852
-	Y	1163
-	Z	0
-	Revision	0
-	Realm	britannia
-	Layer	6
-	Container	0x1a1d8c
-	DecayAt	25143491
-	Quality	1
-	HP	55
-}
-
-Item
-{
-	Serial	0x6ae0790a
-	ObjType	0x1414
-	Graphic	0x1414
-	X	5852
-	Y	1163
-	Z	0
-	Revision	0
-	Realm	britannia
-	Layer	7
-	Container	0x1a1d8c
-	DecayAt	25143491
-	Quality	1
-	HP	60
-}
-
-Item
-{
-	Serial	0x6ae07911
-	ObjType	0x1413
-	Graphic	0x1413
-	X	5852
-	Y	1163
-	Z	0
-	Revision	0
-	Realm	britannia
-	Layer	10
-	Container	0x1a1d8c
-	DecayAt	25143491
-	Quality	1
-	HP	60
-}
-
-Item
-{
-	Serial	0x6ae078f5
-	ObjType	0x1415
-	Graphic	0x1415
-	X	5852
-	Y	1163
-	Z	0
-	Revision	0
-	Realm	britannia
-	Layer	13
-	Container	0x1a1d8c
-	DecayAt	25143491
-	Quality	1
-	HP	60
-}
-
-Item
-{
-	Serial	0x6ae078fb
-	ObjType	0x1410
-	Graphic	0x1410
-	X	5852
-	Y	1163
-	Z	0
-	Revision	0
-	Realm	britannia
-	Layer	19
-	Container	0x1a1d8c
-	DecayAt	25143491
-	Quality	1
-	HP	60
-}
-
-Item
-{
 	Serial	0x6ae078db
 	ObjType	0x143e
 	Graphic	0x143e
@@ -45401,7 +45281,7 @@ Item
 	Container	0x1a1d91
 	DecayAt	25143493
 	Quality	1
-	HP	55
+	HP	54
 	HitScript	mainHitScript
 }
 
@@ -55601,7 +55481,7 @@ Item
 	Container	0x1a1de6
 	DecayAt	25143514
 	Quality	1
-	HP	65
+	HP	64
 	HitScript	mainHitScript
 }
 
@@ -57503,126 +57383,6 @@ Item
 	Layer	19
 	Container	0x1a1df5
 	DecayAt	25143516
-	Quality	1
-	HP	60
-}
-
-Item
-{
-	Serial	0x6ae09bf0
-	ObjType	0x143e
-	Graphic	0x143e
-	X	5852
-	Y	1163
-	Z	0
-	Revision	0
-	Realm	britannia
-	Layer	2
-	Container	0x1a1df6
-	DecayAt	25143517
-	Quality	1
-	HP	55
-	HitScript	mainHitScript
-}
-
-Item
-{
-	Serial	0x6ae09c28
-	ObjType	0x1411
-	Graphic	0x1411
-	X	5852
-	Y	1163
-	Z	0
-	Revision	0
-	Realm	britannia
-	Layer	4
-	Container	0x1a1df6
-	DecayAt	25143517
-	Quality	1
-	HP	60
-}
-
-Item
-{
-	Serial	0x6ae09c13
-	ObjType	0x1408
-	Graphic	0x1408
-	X	5852
-	Y	1163
-	Z	0
-	Revision	0
-	Realm	britannia
-	Layer	6
-	Container	0x1a1df6
-	DecayAt	25143517
-	Quality	1
-	HP	55
-}
-
-Item
-{
-	Serial	0x6ae09c2b
-	ObjType	0x1414
-	Graphic	0x1414
-	X	5852
-	Y	1163
-	Z	0
-	Revision	0
-	Realm	britannia
-	Layer	7
-	Container	0x1a1df6
-	DecayAt	25143517
-	Quality	1
-	HP	60
-}
-
-Item
-{
-	Serial	0x6ae09c2e
-	ObjType	0x1413
-	Graphic	0x1413
-	X	5852
-	Y	1163
-	Z	0
-	Revision	0
-	Realm	britannia
-	Layer	10
-	Container	0x1a1df6
-	DecayAt	25143517
-	Quality	1
-	HP	60
-}
-
-Item
-{
-	Serial	0x6ae09c18
-	ObjType	0x1415
-	Graphic	0x1415
-	X	5852
-	Y	1163
-	Z	0
-	Revision	0
-	Realm	britannia
-	Layer	13
-	Container	0x1a1df6
-	DecayAt	25143517
-	Quality	1
-	HP	60
-}
-
-Item
-{
-	Serial	0x6ae09c20
-	ObjType	0x1410
-	Graphic	0x1410
-	X	5852
-	Y	1163
-	Z	0
-	Revision	0
-	Realm	britannia
-	Layer	19
-	Container	0x1a1df6
-	DecayAt	25143517
 	Quality	1
 	HP	60
 }
@@ -61709,126 +61469,6 @@ Item
 
 Item
 {
-	Serial	0x6ae0a4b3
-	ObjType	0xf4e
-	Graphic	0xf4e
-	X	5852
-	Y	1163
-	Z	0
-	Revision	0
-	Realm	britannia
-	Layer	2
-	Container	0x1a1e19
-	DecayAt	25143523
-	Quality	1
-	HP	65
-	HitScript	mainHitScript
-}
-
-Item
-{
-	Serial	0x6ae0a514
-	ObjType	0x1411
-	Graphic	0x1411
-	X	5852
-	Y	1163
-	Z	0
-	Revision	0
-	Realm	britannia
-	Layer	4
-	Container	0x1a1e19
-	DecayAt	25143523
-	Quality	1
-	HP	60
-}
-
-Item
-{
-	Serial	0x6ae0a4f3
-	ObjType	0x1408
-	Graphic	0x1408
-	X	5852
-	Y	1163
-	Z	0
-	Revision	0
-	Realm	britannia
-	Layer	6
-	Container	0x1a1e19
-	DecayAt	25143523
-	Quality	1
-	HP	55
-}
-
-Item
-{
-	Serial	0x6ae0a51c
-	ObjType	0x1414
-	Graphic	0x1414
-	X	5852
-	Y	1163
-	Z	0
-	Revision	0
-	Realm	britannia
-	Layer	7
-	Container	0x1a1e19
-	DecayAt	25143523
-	Quality	1
-	HP	60
-}
-
-Item
-{
-	Serial	0x6ae0a523
-	ObjType	0x1413
-	Graphic	0x1413
-	X	5852
-	Y	1163
-	Z	0
-	Revision	0
-	Realm	britannia
-	Layer	10
-	Container	0x1a1e19
-	DecayAt	25143523
-	Quality	1
-	HP	60
-}
-
-Item
-{
-	Serial	0x6ae0a4fb
-	ObjType	0x1415
-	Graphic	0x1415
-	X	5852
-	Y	1163
-	Z	0
-	Revision	0
-	Realm	britannia
-	Layer	13
-	Container	0x1a1e19
-	DecayAt	25143523
-	Quality	1
-	HP	60
-}
-
-Item
-{
-	Serial	0x6ae0a503
-	ObjType	0x1410
-	Graphic	0x1410
-	X	5852
-	Y	1163
-	Z	0
-	Revision	0
-	Realm	britannia
-	Layer	19
-	Container	0x1a1e19
-	DecayAt	25143523
-	Quality	1
-	HP	60
-}
-
-Item
-{
 	Serial	0x6ae0a4aa
 	ObjType	0x143e
 	Graphic	0x143e
@@ -62902,126 +62542,6 @@ Item
 	Realm	britannia
 	Layer	19
 	Container	0x1a1e22
-	DecayAt	25143526
-	Quality	1
-	HP	60
-}
-
-Item
-{
-	Serial	0x6ae0a97a
-	ObjType	0x143e
-	Graphic	0x143e
-	X	5852
-	Y	1163
-	Z	0
-	Revision	0
-	Realm	britannia
-	Layer	2
-	Container	0x1a1e23
-	DecayAt	25143526
-	Quality	1
-	HP	55
-	HitScript	mainHitScript
-}
-
-Item
-{
-	Serial	0x6ae0a996
-	ObjType	0x1411
-	Graphic	0x1411
-	X	5852
-	Y	1163
-	Z	0
-	Revision	0
-	Realm	britannia
-	Layer	4
-	Container	0x1a1e23
-	DecayAt	25143526
-	Quality	1
-	HP	60
-}
-
-Item
-{
-	Serial	0x6ae0a98a
-	ObjType	0x1408
-	Graphic	0x1408
-	X	5852
-	Y	1163
-	Z	0
-	Revision	0
-	Realm	britannia
-	Layer	6
-	Container	0x1a1e23
-	DecayAt	25143526
-	Quality	1
-	HP	55
-}
-
-Item
-{
-	Serial	0x6ae0a997
-	ObjType	0x1414
-	Graphic	0x1414
-	X	5852
-	Y	1163
-	Z	0
-	Revision	0
-	Realm	britannia
-	Layer	7
-	Container	0x1a1e23
-	DecayAt	25143526
-	Quality	1
-	HP	60
-}
-
-Item
-{
-	Serial	0x6ae0a998
-	ObjType	0x1413
-	Graphic	0x1413
-	X	5852
-	Y	1163
-	Z	0
-	Revision	0
-	Realm	britannia
-	Layer	10
-	Container	0x1a1e23
-	DecayAt	25143526
-	Quality	1
-	HP	60
-}
-
-Item
-{
-	Serial	0x6ae0a990
-	ObjType	0x1415
-	Graphic	0x1415
-	X	5852
-	Y	1163
-	Z	0
-	Revision	0
-	Realm	britannia
-	Layer	13
-	Container	0x1a1e23
-	DecayAt	25143526
-	Quality	1
-	HP	60
-}
-
-Item
-{
-	Serial	0x6ae0a994
-	ObjType	0x1410
-	Graphic	0x1410
-	X	5852
-	Y	1163
-	Z	0
-	Revision	0
-	Realm	britannia
-	Layer	19
-	Container	0x1a1e23
 	DecayAt	25143526
 	Quality	1
 	HP	60
@@ -67102,126 +66622,6 @@ Item
 	Realm	britannia
 	Layer	19
 	Container	0x1a1e45
-	DecayAt	25143536
-	Quality	1
-	HP	60
-}
-
-Item
-{
-	Serial	0x6ae0b743
-	ObjType	0x143e
-	Graphic	0x143e
-	X	5852
-	Y	1163
-	Z	0
-	Revision	0
-	Realm	britannia
-	Layer	2
-	Container	0x1a1e46
-	DecayAt	25143536
-	Quality	1
-	HP	55
-	HitScript	mainHitScript
-}
-
-Item
-{
-	Serial	0x6ae0b77f
-	ObjType	0x1411
-	Graphic	0x1411
-	X	5852
-	Y	1163
-	Z	0
-	Revision	0
-	Realm	britannia
-	Layer	4
-	Container	0x1a1e46
-	DecayAt	25143536
-	Quality	1
-	HP	60
-}
-
-Item
-{
-	Serial	0x6ae0b76b
-	ObjType	0x1408
-	Graphic	0x1408
-	X	5852
-	Y	1163
-	Z	0
-	Revision	0
-	Realm	britannia
-	Layer	6
-	Container	0x1a1e46
-	DecayAt	25143536
-	Quality	1
-	HP	55
-}
-
-Item
-{
-	Serial	0x6ae0b78b
-	ObjType	0x1414
-	Graphic	0x1414
-	X	5852
-	Y	1163
-	Z	0
-	Revision	0
-	Realm	britannia
-	Layer	7
-	Container	0x1a1e46
-	DecayAt	25143536
-	Quality	1
-	HP	60
-}
-
-Item
-{
-	Serial	0x6ae0b799
-	ObjType	0x1413
-	Graphic	0x1413
-	X	5852
-	Y	1163
-	Z	0
-	Revision	0
-	Realm	britannia
-	Layer	10
-	Container	0x1a1e46
-	DecayAt	25143536
-	Quality	1
-	HP	60
-}
-
-Item
-{
-	Serial	0x6ae0b770
-	ObjType	0x1415
-	Graphic	0x1415
-	X	5852
-	Y	1163
-	Z	0
-	Revision	0
-	Realm	britannia
-	Layer	13
-	Container	0x1a1e46
-	DecayAt	25143536
-	Quality	1
-	HP	60
-}
-
-Item
-{
-	Serial	0x6ae0b775
-	ObjType	0x1410
-	Graphic	0x1410
-	X	5852
-	Y	1163
-	Z	0
-	Revision	0
-	Realm	britannia
-	Layer	19
-	Container	0x1a1e46
 	DecayAt	25143536
 	Quality	1
 	HP	60
@@ -72882,1304 +72282,7 @@ Item
 
 Item
 {
-	Serial	0x6ae1228c
-	ObjType	0x170d
-	Graphic	0x170d
-	Color	0x450
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	3
-	Container	0x1a1e7b
-	DecayAt	25191073
-	Quality	1
-	HP	20
-}
-
-Item
-{
-	Serial	0x6ae1228a
-	ObjType	0x1517
-	Graphic	0x1517
-	Color	0x450
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	5
-	Container	0x1a1e7b
-	DecayAt	25191073
-	Quality	1
-	HP	20
-}
-
-Item
-{
-	Serial	0x6ae1228d
-	ObjType	0x1515
-	Graphic	0x1515
-	Color	0x450
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	20
-	Container	0x1a1e7b
-	DecayAt	25191073
-	Quality	1
-	HP	20
-}
-
-Item
-{
-	Serial	0x6ae1228b
-	ObjType	0x1516
-	Graphic	0x1516
-	Color	0x450
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	23
-	Container	0x1a1e7b
-	DecayAt	25191073
-	Quality	1
-	HP	20
-}
-
-Item
-{
-	Serial	0x6ae12291
-	ObjType	0xf5e
-	Graphic	0xf5e
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	1
-	Container	0x1a1e7c
-	DecayAt	25191073
-	Quality	1
-	HP	65
-	HitScript	mainHitScript
-}
-
-Item
-{
-	Serial	0x6ae12299
-	ObjType	0x1b76
-	Graphic	0x1b76
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	2
-	Container	0x1a1e7c
-	DecayAt	25191073
-	Quality	1
-	HP	35
-}
-
-Item
-{
-	Serial	0x6ae12290
-	ObjType	0x1711
-	Graphic	0x1711
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	3
-	Container	0x1a1e7c
-	DecayAt	25191073
-	Quality	1
-	HP	50
-}
-
-Item
-{
-	Serial	0x6ae12296
-	ObjType	0x13be
-	Graphic	0x13be
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	4
-	Container	0x1a1e7c
-	DecayAt	25191073
-	Quality	1
-	HP	55
-}
-
-Item
-{
-	Serial	0x6ae12293
-	ObjType	0x13bb
-	Graphic	0x13bb
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	6
-	Container	0x1a1e7c
-	DecayAt	25191073
-	Quality	1
-	HP	40
-}
-
-Item
-{
-	Serial	0x6ae12297
-	ObjType	0x1414
-	Graphic	0x1414
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	7
-	Container	0x1a1e7c
-	DecayAt	25191073
-	Quality	1
-	HP	60
-}
-
-Item
-{
-	Serial	0x6ae12298
-	ObjType	0x1413
-	Graphic	0x1413
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	10
-	Container	0x1a1e7c
-	DecayAt	25191073
-	Quality	1
-	HP	60
-}
-
-Item
-{
-	Serial	0x6ae12294
-	ObjType	0x13bf
-	Graphic	0x13bf
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	13
-	Container	0x1a1e7c
-	DecayAt	25191073
-	Quality	1
-	HP	53
-}
-
-Item
-{
-	Serial	0x6ae12295
-	ObjType	0x1410
-	Graphic	0x1410
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	19
-	Container	0x1a1e7c
-	DecayAt	25191073
-	Quality	1
-	HP	60
-}
-
-Item
-{
-	Serial	0x6ae1229d
-	ObjType	0x170d
-	Graphic	0x170d
-	Color	0x21f
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	3
-	Container	0x1a1e7d
-	DecayAt	25191073
-	Quality	1
-	HP	20
-}
-
-Item
-{
-	Serial	0x6ae1229c
-	ObjType	0x153a
-	Graphic	0x153a
-	Color	0x21f
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	4
-	Container	0x1a1e7d
-	DecayAt	25191073
-	Quality	1
-	HP	20
-}
-
-Item
-{
-	Serial	0x6ae1229b
-	ObjType	0x1efd
-	Graphic	0x1efd
-	Color	0x21f
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	5
-	Container	0x1a1e7d
-	DecayAt	25191073
-	Quality	1
-	HP	20
-}
-
-Item
-{
-	Serial	0x6ae122a1
-	ObjType	0x1440
-	Graphic	0x1440
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	1
-	Container	0x1a1e7e
-	DecayAt	25191073
-	Quality	1
-	HP	55
-	HitScript	mainHitScript
-}
-
-Item
-{
-	Serial	0x6ae122a9
-	ObjType	0x1b72
-	Graphic	0x1b72
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	2
-	Container	0x1a1e7e
-	DecayAt	25191073
-	Quality	1
-	HP	28
-}
-
-Item
-{
-	Serial	0x6ae122a0
-	ObjType	0x170b
-	Graphic	0x170b
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	3
-	Container	0x1a1e7e
-	DecayAt	25191073
-	Quality	1
-	HP	50
-}
-
-Item
-{
-	Serial	0x6ae122a6
-	ObjType	0x13be
-	Graphic	0x13be
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	4
-	Container	0x1a1e7e
-	DecayAt	25191073
-	Quality	1
-	HP	55
-}
-
-Item
-{
-	Serial	0x6ae122a3
-	ObjType	0x13bb
-	Graphic	0x13bb
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	6
-	Container	0x1a1e7e
-	DecayAt	25191073
-	Quality	1
-	HP	40
-}
-
-Item
-{
-	Serial	0x6ae122a7
-	ObjType	0x1414
-	Graphic	0x1414
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	7
-	Container	0x1a1e7e
-	DecayAt	25191073
-	Quality	1
-	HP	60
-}
-
-Item
-{
-	Serial	0x6ae122a8
-	ObjType	0x1413
-	Graphic	0x1413
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	10
-	Container	0x1a1e7e
-	DecayAt	25191073
-	Quality	1
-	HP	60
-}
-
-Item
-{
-	Serial	0x6ae122a4
-	ObjType	0x13bf
-	Graphic	0x13bf
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	13
-	Container	0x1a1e7e
-	DecayAt	25191073
-	Quality	1
-	HP	53
-}
-
-Item
-{
-	Serial	0x6ae122a5
-	ObjType	0x1410
-	Graphic	0x1410
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	19
-	Container	0x1a1e7e
-	DecayAt	25191073
-	Quality	1
-	HP	60
-}
-
-Item
-{
-	Serial	0x6ae122ac
-	ObjType	0x1401
-	Graphic	0x1401
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	1
-	Container	0x1a1e7f
-	DecayAt	25191073
-	Quality	1
-	HP	60
-	HitScript	mainHitScript
-}
-
-Item
-{
-	Serial	0x6ae122b3
-	ObjType	0x1b78
-	Graphic	0x1b78
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	2
-	Container	0x1a1e7f
-	DecayAt	25191073
-	Quality	1
-	HP	55
-}
-
-Item
-{
-	Serial	0x6ae122ab
-	ObjType	0x170b
-	Graphic	0x170b
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	3
-	Container	0x1a1e7f
-	DecayAt	25191073
-	Quality	1
-	HP	50
-}
-
-Item
-{
-	Serial	0x6ae122b0
-	ObjType	0x13f0
-	Graphic	0x13f0
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	4
-	Container	0x1a1e7f
-	DecayAt	25191073
-	Quality	1
-	HP	45
-}
-
-Item
-{
-	Serial	0x6ae122ad
-	ObjType	0x1db9
-	Graphic	0x1db9
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	6
-	Container	0x1a1e7f
-	DecayAt	25191073
-	Quality	1
-	HP	35
-}
-
-Item
-{
-	Serial	0x6ae122b1
-	ObjType	0x13f2
-	Graphic	0x13f2
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	7
-	Container	0x1a1e7f
-	DecayAt	25191073
-	Quality	1
-	HP	45
-}
-
-Item
-{
-	Serial	0x6ae122b2
-	ObjType	0x1413
-	Graphic	0x1413
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	10
-	Container	0x1a1e7f
-	DecayAt	25191073
-	Quality	1
-	HP	60
-}
-
-Item
-{
-	Serial	0x6ae122ae
-	ObjType	0x13ec
-	Graphic	0x13ec
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	13
-	Container	0x1a1e7f
-	DecayAt	25191073
-	Quality	1
-	HP	45
-}
-
-Item
-{
-	Serial	0x6ae122af
-	ObjType	0x13ee
-	Graphic	0x13ee
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	19
-	Container	0x1a1e7f
-	DecayAt	25191073
-	Quality	1
-	HP	45
-}
-
-Item
-{
-	Serial	0x6ae122b6
-	ObjType	0xf5c
-	Graphic	0xf5c
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	CProp	OnHit a1:S15::combat:maceHit
-	Layer	1
-	Container	0x1a1e80
-	DecayAt	25191073
-	Quality	1
-	HP	50
-	HitScript	mainHitScript
-}
-
-Item
-{
-	Serial	0x6ae122bf
-	ObjType	0x1b78
-	Graphic	0x1b78
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	2
-	Container	0x1a1e80
-	DecayAt	25191073
-	Quality	1
-	HP	55
-}
-
-Item
-{
-	Serial	0x6ae122b5
-	ObjType	0x1711
-	Graphic	0x1711
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	3
-	Container	0x1a1e80
-	DecayAt	25191073
-	Quality	1
-	HP	50
-}
-
-Item
-{
-	Serial	0x6ae122bc
-	ObjType	0x13f0
-	Graphic	0x13f0
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	4
-	Container	0x1a1e80
-	DecayAt	25191073
-	Quality	1
-	HP	45
-}
-
-Item
-{
-	Serial	0x6ae122b9
-	ObjType	0x1db9
-	Graphic	0x1db9
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	6
-	Container	0x1a1e80
-	DecayAt	25191073
-	Quality	1
-	HP	35
-}
-
-Item
-{
-	Serial	0x6ae122bd
-	ObjType	0x13f2
-	Graphic	0x13f2
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	7
-	Container	0x1a1e80
-	DecayAt	25191073
-	Quality	1
-	HP	45
-}
-
-Item
-{
-	Serial	0x6ae122be
-	ObjType	0x1413
-	Graphic	0x1413
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	10
-	Container	0x1a1e80
-	DecayAt	25191073
-	Quality	1
-	HP	60
-}
-
-Item
-{
-	Serial	0x6ae122ba
-	ObjType	0x13ec
-	Graphic	0x13ec
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	13
-	Container	0x1a1e80
-	DecayAt	25191073
-	Quality	1
-	HP	45
-}
-
-Item
-{
-	Serial	0x6ae122bb
-	ObjType	0x13ee
-	Graphic	0x13ee
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	19
-	Container	0x1a1e80
-	DecayAt	25191073
-	Quality	1
-	HP	45
-}
-
-Item
-{
-	Serial	0x6ae122c1
-	ObjType	0x1440
-	Graphic	0x1440
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	1
-	Container	0x1a1e81
-	DecayAt	25191073
-	Quality	1
-	HP	55
-	HitScript	mainHitScript
-}
-
-Item
-{
-	Serial	0x6ae122cc
-	ObjType	0x1b74
-	Graphic	0x1b74
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	2
-	Container	0x1a1e81
-	DecayAt	25191073
-	Quality	1
-	HP	110
-}
-
-Item
-{
-	Serial	0x6ae122c9
-	ObjType	0x1411
-	Graphic	0x1411
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	4
-	Container	0x1a1e81
-	DecayAt	25191073
-	Quality	1
-	HP	60
-}
-
-Item
-{
-	Serial	0x6ae122c6
-	ObjType	0x1408
-	Graphic	0x1408
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	6
-	Container	0x1a1e81
-	DecayAt	25191073
-	Quality	1
-	HP	55
-}
-
-Item
-{
-	Serial	0x6ae122ca
-	ObjType	0x1414
-	Graphic	0x1414
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	7
-	Container	0x1a1e81
-	DecayAt	25191073
-	Quality	1
-	HP	60
-}
-
-Item
-{
-	Serial	0x6ae122cb
-	ObjType	0x1413
-	Graphic	0x1413
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	10
-	Container	0x1a1e81
-	DecayAt	25191073
-	Quality	1
-	HP	60
-}
-
-Item
-{
-	Serial	0x6ae122c7
-	ObjType	0x1415
-	Graphic	0x1415
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	13
-	Container	0x1a1e81
-	DecayAt	25191073
-	Quality	1
-	HP	60
-}
-
-Item
-{
-	Serial	0x6ae122c3
-	ObjType	0x1541
-	Graphic	0x1541
-	Color	0x34
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	17
-	Container	0x1a1e81
-	DecayAt	25191073
-	Quality	1
-	HP	20
-}
-
-Item
-{
-	Serial	0x6ae122c8
-	ObjType	0x1410
-	Graphic	0x1410
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	19
-	Container	0x1a1e81
-	DecayAt	25191073
-	Quality	1
-	HP	60
-}
-
-Item
-{
-	Serial	0x6ae122c2
-	ObjType	0x1515
-	Graphic	0x1515
-	Color	0x34
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	20
-	Container	0x1a1e81
-	DecayAt	25191073
-	Quality	1
-	HP	20
-}
-
-Item
-{
-	Serial	0x6ae122d0
-	ObjType	0x170d
-	Graphic	0x170d
-	Color	0x223
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	3
-	Container	0x1a1e82
-	DecayAt	25191073
-	Quality	1
-	HP	20
-}
-
-Item
-{
-	Serial	0x6ae122cf
-	ObjType	0x152e
-	Graphic	0x152e
-	Color	0x223
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	4
-	Container	0x1a1e82
-	DecayAt	25191073
-	Quality	1
-	HP	20
-}
-
-Item
-{
-	Serial	0x6ae122ce
-	ObjType	0x1517
-	Graphic	0x1517
-	Color	0x223
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	5
-	Container	0x1a1e82
-	DecayAt	25191073
-	Quality	1
-	HP	20
-}
-
-Item
-{
-	Serial	0x6ae122d4
-	ObjType	0xf60
-	Graphic	0xf60
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	1
-	Container	0x1a1e83
-	DecayAt	25191073
-	Quality	1
-	HP	60
-	HitScript	mainHitScript
-}
-
-Item
-{
-	Serial	0x6ae122dc
-	ObjType	0x1b72
-	Graphic	0x1b72
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	2
-	Container	0x1a1e83
-	DecayAt	25191073
-	Quality	1
-	HP	28
-}
-
-Item
-{
-	Serial	0x6ae122d3
-	ObjType	0x170b
-	Graphic	0x170b
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	3
-	Container	0x1a1e83
-	DecayAt	25191073
-	Quality	1
-	HP	50
-}
-
-Item
-{
-	Serial	0x6ae122d9
-	ObjType	0x13be
-	Graphic	0x13be
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	4
-	Container	0x1a1e83
-	DecayAt	25191073
-	Quality	1
-	HP	55
-}
-
-Item
-{
-	Serial	0x6ae122d6
-	ObjType	0x13bb
-	Graphic	0x13bb
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	6
-	Container	0x1a1e83
-	DecayAt	25191073
-	Quality	1
-	HP	40
-}
-
-Item
-{
-	Serial	0x6ae122da
-	ObjType	0x1414
-	Graphic	0x1414
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	7
-	Container	0x1a1e83
-	DecayAt	25191073
-	Quality	1
-	HP	60
-}
-
-Item
-{
-	Serial	0x6ae122db
-	ObjType	0x1413
-	Graphic	0x1413
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	10
-	Container	0x1a1e83
-	DecayAt	25191073
-	Quality	1
-	HP	60
-}
-
-Item
-{
-	Serial	0x6ae122d7
-	ObjType	0x13bf
-	Graphic	0x13bf
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	13
-	Container	0x1a1e83
-	DecayAt	25191073
-	Quality	1
-	HP	53
-}
-
-Item
-{
-	Serial	0x6ae122d8
-	ObjType	0x1410
-	Graphic	0x1410
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	19
-	Container	0x1a1e83
-	DecayAt	25191073
-	Quality	1
-	HP	60
-}
-
-Item
-{
-	Serial	0x6ae122de
-	ObjType	0x13fe
-	Graphic	0x13fe
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	1
-	Container	0x1a1e84
-	DecayAt	25191073
-	Quality	1
-	HP	60
-	HitScript	mainHitScript
-}
-
-Item
-{
-	Serial	0x6ae122e8
-	ObjType	0x1b74
-	Graphic	0x1b74
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	2
-	Container	0x1a1e84
-	DecayAt	25191073
-	Quality	1
-	HP	110
-}
-
-Item
-{
-	Serial	0x6ae122e5
-	ObjType	0x1411
-	Graphic	0x1411
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	4
-	Container	0x1a1e84
-	DecayAt	25191073
-	Quality	1
-	HP	60
-}
-
-Item
-{
-	Serial	0x6ae122e2
-	ObjType	0x1408
-	Graphic	0x1408
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	6
-	Container	0x1a1e84
-	DecayAt	25191073
-	Quality	1
-	HP	55
-}
-
-Item
-{
-	Serial	0x6ae122e6
-	ObjType	0x1414
-	Graphic	0x1414
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	7
-	Container	0x1a1e84
-	DecayAt	25191073
-	Quality	1
-	HP	60
-}
-
-Item
-{
-	Serial	0x6ae122e7
-	ObjType	0x1413
-	Graphic	0x1413
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	10
-	Container	0x1a1e84
-	DecayAt	25191073
-	Quality	1
-	HP	60
-}
-
-Item
-{
-	Serial	0x6ae122e3
-	ObjType	0x1c0c
-	Graphic	0x1c0c
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	13
-	Container	0x1a1e84
-	DecayAt	25191073
-	Quality	1
-	HP	110
-}
-
-Item
-{
-	Serial	0x6ae122e0
-	ObjType	0x1541
-	Graphic	0x1541
-	Color	0x22e
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	17
-	Container	0x1a1e84
-	DecayAt	25191073
-	Quality	1
-	HP	20
-}
-
-Item
-{
-	Serial	0x6ae122e4
-	ObjType	0x1410
-	Graphic	0x1410
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	19
-	Container	0x1a1e84
-	DecayAt	25191073
-	Quality	1
-	HP	60
-}
-
-Item
-{
-	Serial	0x6ae122df
-	ObjType	0x1515
-	Graphic	0x1515
-	Color	0x22e
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	20
-	Container	0x1a1e84
-	DecayAt	25191073
-	Quality	1
-	HP	20
-}
-
-Item
-{
-	Serial	0x6ae122ea
+	Serial	0x6ae1364d
 	ObjType	0xefa
 	Graphic	0xefa
 	X	1
@@ -74188,8 +72291,8 @@ Item
 	Revision	1
 	Realm	britannia
 	Layer	1
-	Container	0x1a1e85
-	DecayAt	25191073
+	Container	0x1a1e7d
+	DecayAt	25194237
 	Spellbits0	0
 	Spellbits1	0
 	Spellbits2	0
@@ -74202,78 +72305,341 @@ Item
 
 Item
 {
-	Serial	0x6ae122ec
+	Serial	0x6ae1364f
 	ObjType	0x170f
 	Graphic	0x170f
-	Color	0x7
+	Color	0xca
 	X	1
 	Y	1
 	Z	0
 	Revision	1
 	Realm	britannia
 	Layer	3
-	Container	0x1a1e85
-	DecayAt	25191073
+	Container	0x1a1e7d
+	DecayAt	25194237
 	Quality	1
 	HP	20
 }
 
 Item
 {
-	Serial	0x6ae122eb
+	Serial	0x6ae1364e
 	ObjType	0x1f03
 	Graphic	0x1f03
-	Color	0x7
+	Color	0xca
 	X	1
 	Y	1
 	Z	0
 	Revision	1
 	Realm	britannia
 	Layer	22
-	Container	0x1a1e85
-	DecayAt	25191073
+	Container	0x1a1e7d
+	DecayAt	25194237
 	Quality	1
 	HP	10
 }
 
 Item
 {
-	Serial	0x6ae122f1
-	ObjType	0xf5e
-	Graphic	0xf5e
+	Serial	0x6ae13654
+	ObjType	0x170d
+	Graphic	0x170d
+	Color	0x223
 	X	1
 	Y	1
 	Z	0
 	Revision	1
 	Realm	britannia
-	Layer	1
-	Container	0x1a1e86
-	DecayAt	25191073
+	Layer	3
+	Container	0x1a1e7e
+	DecayAt	25194237
 	Quality	1
-	HP	65
+	HP	20
+}
+
+Item
+{
+	Serial	0x6ae13653
+	ObjType	0x153a
+	Graphic	0x153a
+	Color	0x223
+	X	1
+	Y	1
+	Z	0
+	Revision	1
+	Realm	britannia
+	Layer	4
+	Container	0x1a1e7e
+	DecayAt	25194237
+	Quality	1
+	HP	20
+}
+
+Item
+{
+	Serial	0x6ae13652
+	ObjType	0x1517
+	Graphic	0x1517
+	Color	0x223
+	X	1
+	Y	1
+	Z	0
+	Revision	1
+	Realm	britannia
+	Layer	5
+	Container	0x1a1e7e
+	DecayAt	25194237
+	Quality	1
+	HP	20
+}
+
+Item
+{
+	Serial	0x6ae13659
+	ObjType	0x170b
+	Graphic	0x170b
+	Color	0x451
+	X	1
+	Y	1
+	Z	0
+	Revision	1
+	Realm	britannia
+	Layer	3
+	Container	0x1a1e7f
+	DecayAt	25194237
+	Quality	1
+	HP	50
+}
+
+Item
+{
+	Serial	0x6ae13658
+	ObjType	0x152e
+	Graphic	0x152e
+	Color	0x451
+	X	1
+	Y	1
+	Z	0
+	Revision	1
+	Realm	britannia
+	Layer	4
+	Container	0x1a1e7f
+	DecayAt	25194237
+	Quality	1
+	HP	20
+}
+
+Item
+{
+	Serial	0x6ae13657
+	ObjType	0x1efd
+	Graphic	0x1efd
+	Color	0x451
+	X	1
+	Y	1
+	Z	0
+	Revision	1
+	Realm	britannia
+	Layer	5
+	Container	0x1a1e7f
+	DecayAt	25194237
+	Quality	1
+	HP	20
+}
+
+Item
+{
+	Serial	0x6ae1365e
+	ObjType	0xf5c
+	Graphic	0xf5c
+	X	1
+	Y	1
+	Z	0
+	Revision	1
+	Realm	britannia
+	CProp	OnHit a1:S15::combat:maceHit
+	Layer	1
+	Container	0x1a1e80
+	DecayAt	25194237
+	Quality	1
+	HP	50
 	HitScript	mainHitScript
 }
 
 Item
 {
-	Serial	0x6ae122f9
-	ObjType	0x1b72
-	Graphic	0x1b72
+	Serial	0x6ae13666
+	ObjType	0x1b78
+	Graphic	0x1b78
 	X	1
 	Y	1
 	Z	0
 	Revision	1
 	Realm	britannia
 	Layer	2
-	Container	0x1a1e86
-	DecayAt	25191073
+	Container	0x1a1e80
+	DecayAt	25194237
 	Quality	1
-	HP	28
+	HP	55
 }
 
 Item
 {
-	Serial	0x6ae122f0
+	Serial	0x6ae1365d
+	ObjType	0x1711
+	Graphic	0x1711
+	X	1
+	Y	1
+	Z	0
+	Revision	1
+	Realm	britannia
+	Layer	3
+	Container	0x1a1e80
+	DecayAt	25194237
+	Quality	1
+	HP	50
+}
+
+Item
+{
+	Serial	0x6ae13663
+	ObjType	0x13da
+	Graphic	0x13da
+	X	1
+	Y	1
+	Z	0
+	Revision	1
+	Realm	britannia
+	Layer	4
+	Container	0x1a1e80
+	DecayAt	25194237
+	Quality	1
+	HP	40
+}
+
+Item
+{
+	Serial	0x6ae13660
+	ObjType	0x1db9
+	Graphic	0x1db9
+	X	1
+	Y	1
+	Z	0
+	Revision	1
+	Realm	britannia
+	Layer	6
+	Container	0x1a1e80
+	DecayAt	25194237
+	Quality	1
+	HP	35
+}
+
+Item
+{
+	Serial	0x6ae13664
+	ObjType	0x13d5
+	Graphic	0x13d5
+	X	1
+	Y	1
+	Z	0
+	Revision	1
+	Realm	britannia
+	Layer	7
+	Container	0x1a1e80
+	DecayAt	25194237
+	Quality	1
+	HP	40
+}
+
+Item
+{
+	Serial	0x6ae13665
+	ObjType	0x13d6
+	Graphic	0x13d6
+	X	1
+	Y	1
+	Z	0
+	Revision	1
+	Realm	britannia
+	Layer	10
+	Container	0x1a1e80
+	DecayAt	25194237
+	Quality	1
+	HP	40
+}
+
+Item
+{
+	Serial	0x6ae13661
+	ObjType	0x13ec
+	Graphic	0x13ec
+	X	1
+	Y	1
+	Z	0
+	Revision	1
+	Realm	britannia
+	Layer	13
+	Container	0x1a1e80
+	DecayAt	25194237
+	Quality	1
+	HP	45
+}
+
+Item
+{
+	Serial	0x6ae13662
+	ObjType	0x13d4
+	Graphic	0x13d4
+	X	1
+	Y	1
+	Z	0
+	Revision	1
+	Realm	britannia
+	Layer	19
+	Container	0x1a1e80
+	DecayAt	25194237
+	Quality	1
+	HP	40
+}
+
+Item
+{
+	Serial	0x6ae13669
+	ObjType	0x13b9
+	Graphic	0x13b9
+	X	1
+	Y	1
+	Z	0
+	Revision	1
+	Realm	britannia
+	Layer	1
+	Container	0x1a1e81
+	DecayAt	25194237
+	Quality	1
+	HP	50
+	HitScript	mainHitScript
+}
+
+Item
+{
+	Serial	0x6ae13672
+	ObjType	0x1b78
+	Graphic	0x1b78
+	X	1
+	Y	1
+	Z	0
+	Revision	1
+	Realm	britannia
+	Layer	2
+	Container	0x1a1e81
+	DecayAt	25194237
+	Quality	1
+	HP	55
+}
+
+Item
+{
+	Serial	0x6ae13668
 	ObjType	0x170b
 	Graphic	0x170b
 	X	1
@@ -74282,15 +72648,669 @@ Item
 	Revision	1
 	Realm	britannia
 	Layer	3
-	Container	0x1a1e86
-	DecayAt	25191073
+	Container	0x1a1e81
+	DecayAt	25194237
 	Quality	1
 	HP	50
 }
 
 Item
 {
-	Serial	0x6ae122f6
+	Serial	0x6ae1366f
+	ObjType	0x13f0
+	Graphic	0x13f0
+	X	1
+	Y	1
+	Z	0
+	Revision	1
+	Realm	britannia
+	Layer	4
+	Container	0x1a1e81
+	DecayAt	25194237
+	Quality	1
+	HP	45
+}
+
+Item
+{
+	Serial	0x6ae1366c
+	ObjType	0x1db9
+	Graphic	0x1db9
+	X	1
+	Y	1
+	Z	0
+	Revision	1
+	Realm	britannia
+	Layer	6
+	Container	0x1a1e81
+	DecayAt	25194237
+	Quality	1
+	HP	35
+}
+
+Item
+{
+	Serial	0x6ae13670
+	ObjType	0x13f2
+	Graphic	0x13f2
+	X	1
+	Y	1
+	Z	0
+	Revision	1
+	Realm	britannia
+	Layer	7
+	Container	0x1a1e81
+	DecayAt	25194237
+	Quality	1
+	HP	45
+}
+
+Item
+{
+	Serial	0x6ae13671
+	ObjType	0x1413
+	Graphic	0x1413
+	X	1
+	Y	1
+	Z	0
+	Revision	1
+	Realm	britannia
+	Layer	10
+	Container	0x1a1e81
+	DecayAt	25194237
+	Quality	1
+	HP	60
+}
+
+Item
+{
+	Serial	0x6ae1366d
+	ObjType	0x13ec
+	Graphic	0x13ec
+	X	1
+	Y	1
+	Z	0
+	Revision	1
+	Realm	britannia
+	Layer	13
+	Container	0x1a1e81
+	DecayAt	25194237
+	Quality	1
+	HP	45
+}
+
+Item
+{
+	Serial	0x6ae1366e
+	ObjType	0x13ee
+	Graphic	0x13ee
+	X	1
+	Y	1
+	Z	0
+	Revision	1
+	Realm	britannia
+	Layer	19
+	Container	0x1a1e81
+	DecayAt	25194237
+	Quality	1
+	HP	45
+}
+
+Item
+{
+	Serial	0x6ae13675
+	ObjType	0xf60
+	Graphic	0xf60
+	X	1
+	Y	1
+	Z	0
+	Revision	1
+	Realm	britannia
+	Layer	1
+	Container	0x1a1e82
+	DecayAt	25194237
+	Quality	1
+	HP	60
+	HitScript	mainHitScript
+}
+
+Item
+{
+	Serial	0x6ae1367d
+	ObjType	0x1b7a
+	Graphic	0x1b7a
+	X	1
+	Y	1
+	Z	0
+	Revision	1
+	Realm	britannia
+	Layer	2
+	Container	0x1a1e82
+	DecayAt	25194237
+	Quality	1
+	HP	22
+}
+
+Item
+{
+	Serial	0x6ae13674
+	ObjType	0x170b
+	Graphic	0x170b
+	X	1
+	Y	1
+	Z	0
+	Revision	1
+	Realm	britannia
+	Layer	3
+	Container	0x1a1e82
+	DecayAt	25194237
+	Quality	1
+	HP	50
+}
+
+Item
+{
+	Serial	0x6ae1367a
+	ObjType	0x13da
+	Graphic	0x13da
+	X	1
+	Y	1
+	Z	0
+	Revision	1
+	Realm	britannia
+	Layer	4
+	Container	0x1a1e82
+	DecayAt	25194237
+	Quality	1
+	HP	40
+}
+
+Item
+{
+	Serial	0x6ae13677
+	ObjType	0x1db9
+	Graphic	0x1db9
+	X	1
+	Y	1
+	Z	0
+	Revision	1
+	Realm	britannia
+	Layer	6
+	Container	0x1a1e82
+	DecayAt	25194237
+	Quality	1
+	HP	35
+}
+
+Item
+{
+	Serial	0x6ae1367b
+	ObjType	0x13d5
+	Graphic	0x13d5
+	X	1
+	Y	1
+	Z	0
+	Revision	1
+	Realm	britannia
+	Layer	7
+	Container	0x1a1e82
+	DecayAt	25194237
+	Quality	1
+	HP	40
+}
+
+Item
+{
+	Serial	0x6ae1367c
+	ObjType	0x13d6
+	Graphic	0x13d6
+	X	1
+	Y	1
+	Z	0
+	Revision	1
+	Realm	britannia
+	Layer	10
+	Container	0x1a1e82
+	DecayAt	25194237
+	Quality	1
+	HP	40
+}
+
+Item
+{
+	Serial	0x6ae13678
+	ObjType	0x1c02
+	Graphic	0x1c02
+	X	1
+	Y	1
+	Z	0
+	Revision	1
+	Realm	britannia
+	Layer	13
+	Container	0x1a1e82
+	DecayAt	25194237
+	Quality	1
+	HP	109
+}
+
+Item
+{
+	Serial	0x6ae13679
+	ObjType	0x13d4
+	Graphic	0x13d4
+	X	1
+	Y	1
+	Z	0
+	Revision	1
+	Realm	britannia
+	Layer	19
+	Container	0x1a1e82
+	DecayAt	25194237
+	Quality	1
+	HP	40
+}
+
+Item
+{
+	Serial	0x6ae1367f
+	ObjType	0xf5e
+	Graphic	0xf5e
+	X	1
+	Y	1
+	Z	0
+	Revision	1
+	Realm	britannia
+	Layer	1
+	Container	0x1a1e83
+	DecayAt	25194237
+	Quality	1
+	HP	65
+	HitScript	mainHitScript
+}
+
+Item
+{
+	Serial	0x6ae13689
+	ObjType	0x1b74
+	Graphic	0x1b74
+	X	1
+	Y	1
+	Z	0
+	Revision	1
+	Realm	britannia
+	Layer	2
+	Container	0x1a1e83
+	DecayAt	25194237
+	Quality	1
+	HP	110
+}
+
+Item
+{
+	Serial	0x6ae13686
+	ObjType	0x1411
+	Graphic	0x1411
+	X	1
+	Y	1
+	Z	0
+	Revision	1
+	Realm	britannia
+	Layer	4
+	Container	0x1a1e83
+	DecayAt	25194237
+	Quality	1
+	HP	60
+}
+
+Item
+{
+	Serial	0x6ae13683
+	ObjType	0x1408
+	Graphic	0x1408
+	X	1
+	Y	1
+	Z	0
+	Revision	1
+	Realm	britannia
+	Layer	6
+	Container	0x1a1e83
+	DecayAt	25194237
+	Quality	1
+	HP	55
+}
+
+Item
+{
+	Serial	0x6ae13687
+	ObjType	0x1414
+	Graphic	0x1414
+	X	1
+	Y	1
+	Z	0
+	Revision	1
+	Realm	britannia
+	Layer	7
+	Container	0x1a1e83
+	DecayAt	25194237
+	Quality	1
+	HP	60
+}
+
+Item
+{
+	Serial	0x6ae13688
+	ObjType	0x1413
+	Graphic	0x1413
+	X	1
+	Y	1
+	Z	0
+	Revision	1
+	Realm	britannia
+	Layer	10
+	Container	0x1a1e83
+	DecayAt	25194237
+	Quality	1
+	HP	60
+}
+
+Item
+{
+	Serial	0x6ae13684
+	ObjType	0x1c0c
+	Graphic	0x1c0c
+	X	1
+	Y	1
+	Z	0
+	Revision	1
+	Realm	britannia
+	Layer	13
+	Container	0x1a1e83
+	DecayAt	25194237
+	Quality	1
+	HP	110
+}
+
+Item
+{
+	Serial	0x6ae13681
+	ObjType	0x1541
+	Graphic	0x1541
+	Color	0xc1
+	X	1
+	Y	1
+	Z	0
+	Revision	1
+	Realm	britannia
+	Layer	17
+	Container	0x1a1e83
+	DecayAt	25194237
+	Quality	1
+	HP	20
+}
+
+Item
+{
+	Serial	0x6ae13685
+	ObjType	0x1410
+	Graphic	0x1410
+	X	1
+	Y	1
+	Z	0
+	Revision	1
+	Realm	britannia
+	Layer	19
+	Container	0x1a1e83
+	DecayAt	25194237
+	Quality	1
+	HP	60
+}
+
+Item
+{
+	Serial	0x6ae13680
+	ObjType	0x1515
+	Graphic	0x1515
+	Color	0xc1
+	X	1
+	Y	1
+	Z	0
+	Revision	1
+	Realm	britannia
+	Layer	20
+	Container	0x1a1e83
+	DecayAt	25194237
+	Quality	1
+	HP	20
+}
+
+Item
+{
+	Serial	0x6ae1368b
+	ObjType	0x13b9
+	Graphic	0x13b9
+	X	1
+	Y	1
+	Z	0
+	Revision	1
+	Realm	britannia
+	Layer	1
+	Container	0x1a1e84
+	DecayAt	25194237
+	Quality	1
+	HP	50
+	HitScript	mainHitScript
+}
+
+Item
+{
+	Serial	0x6ae13695
+	ObjType	0x1b74
+	Graphic	0x1b74
+	X	1
+	Y	1
+	Z	0
+	Revision	1
+	Realm	britannia
+	Layer	2
+	Container	0x1a1e84
+	DecayAt	25194237
+	Quality	1
+	HP	110
+}
+
+Item
+{
+	Serial	0x6ae13692
+	ObjType	0x1411
+	Graphic	0x1411
+	X	1
+	Y	1
+	Z	0
+	Revision	1
+	Realm	britannia
+	Layer	4
+	Container	0x1a1e84
+	DecayAt	25194237
+	Quality	1
+	HP	60
+}
+
+Item
+{
+	Serial	0x6ae1368f
+	ObjType	0x1408
+	Graphic	0x1408
+	X	1
+	Y	1
+	Z	0
+	Revision	1
+	Realm	britannia
+	Layer	6
+	Container	0x1a1e84
+	DecayAt	25194237
+	Quality	1
+	HP	55
+}
+
+Item
+{
+	Serial	0x6ae13693
+	ObjType	0x1414
+	Graphic	0x1414
+	X	1
+	Y	1
+	Z	0
+	Revision	1
+	Realm	britannia
+	Layer	7
+	Container	0x1a1e84
+	DecayAt	25194237
+	Quality	1
+	HP	60
+}
+
+Item
+{
+	Serial	0x6ae13694
+	ObjType	0x1413
+	Graphic	0x1413
+	X	1
+	Y	1
+	Z	0
+	Revision	1
+	Realm	britannia
+	Layer	10
+	Container	0x1a1e84
+	DecayAt	25194237
+	Quality	1
+	HP	60
+}
+
+Item
+{
+	Serial	0x6ae13690
+	ObjType	0x1415
+	Graphic	0x1415
+	X	1
+	Y	1
+	Z	0
+	Revision	1
+	Realm	britannia
+	Layer	13
+	Container	0x1a1e84
+	DecayAt	25194237
+	Quality	1
+	HP	60
+}
+
+Item
+{
+	Serial	0x6ae1368d
+	ObjType	0x1541
+	Graphic	0x1541
+	Color	0x1ba
+	X	1
+	Y	1
+	Z	0
+	Revision	1
+	Realm	britannia
+	Layer	17
+	Container	0x1a1e84
+	DecayAt	25194237
+	Quality	1
+	HP	20
+}
+
+Item
+{
+	Serial	0x6ae13691
+	ObjType	0x1410
+	Graphic	0x1410
+	X	1
+	Y	1
+	Z	0
+	Revision	1
+	Realm	britannia
+	Layer	19
+	Container	0x1a1e84
+	DecayAt	25194237
+	Quality	1
+	HP	60
+}
+
+Item
+{
+	Serial	0x6ae1368c
+	ObjType	0x1515
+	Graphic	0x1515
+	Color	0x1ba
+	X	1
+	Y	1
+	Z	0
+	Revision	1
+	Realm	britannia
+	Layer	20
+	Container	0x1a1e84
+	DecayAt	25194237
+	Quality	1
+	HP	20
+}
+
+Item
+{
+	Serial	0x6ae13698
+	ObjType	0xf5e
+	Graphic	0xf5e
+	X	1
+	Y	1
+	Z	0
+	Revision	1
+	Realm	britannia
+	Layer	1
+	Container	0x1a1e85
+	DecayAt	25194237
+	Quality	1
+	HP	65
+	HitScript	mainHitScript
+}
+
+Item
+{
+	Serial	0x6ae1369f
+	ObjType	0x1b72
+	Graphic	0x1b72
+	X	1
+	Y	1
+	Z	0
+	Revision	1
+	Realm	britannia
+	Layer	2
+	Container	0x1a1e85
+	DecayAt	25194237
+	Quality	1
+	HP	28
+}
+
+Item
+{
+	Serial	0x6ae13697
+	ObjType	0x170b
+	Graphic	0x170b
+	X	1
+	Y	1
+	Z	0
+	Revision	1
+	Realm	britannia
+	Layer	3
+	Container	0x1a1e85
+	DecayAt	25194237
+	Quality	1
+	HP	50
+}
+
+Item
+{
+	Serial	0x6ae1369c
 	ObjType	0x13cb
 	Graphic	0x13cb
 	X	1
@@ -74299,15 +73319,15 @@ Item
 	Revision	1
 	Realm	britannia
 	Layer	4
-	Container	0x1a1e86
-	DecayAt	25191073
+	Container	0x1a1e85
+	DecayAt	25194237
 	Quality	1
 	HP	35
 }
 
 Item
 {
-	Serial	0x6ae122f7
+	Serial	0x6ae1369d
 	ObjType	0x13c6
 	Graphic	0x13c6
 	X	1
@@ -74316,15 +73336,15 @@ Item
 	Revision	1
 	Realm	britannia
 	Layer	7
-	Container	0x1a1e86
-	DecayAt	25191073
+	Container	0x1a1e85
+	DecayAt	25194237
 	Quality	1
 	HP	35
 }
 
 Item
 {
-	Serial	0x6ae122f4
+	Serial	0x6ae1369a
 	ObjType	0x13c7
 	Graphic	0x13c7
 	X	1
@@ -74333,15 +73353,15 @@ Item
 	Revision	1
 	Realm	britannia
 	Layer	10
-	Container	0x1a1e86
-	DecayAt	25191073
+	Container	0x1a1e85
+	DecayAt	25194237
 	Quality	1
 	HP	35
 }
 
 Item
 {
-	Serial	0x6ae122f3
+	Serial	0x6ae13699
 	ObjType	0x13cc
 	Graphic	0x13cc
 	X	1
@@ -74350,15 +73370,15 @@ Item
 	Revision	1
 	Realm	britannia
 	Layer	13
-	Container	0x1a1e86
-	DecayAt	25191073
+	Container	0x1a1e85
+	DecayAt	25194237
 	Quality	1
 	HP	35
 }
 
 Item
 {
-	Serial	0x6ae122f5
+	Serial	0x6ae1369b
 	ObjType	0x13cd
 	Graphic	0x13cd
 	X	1
@@ -74367,27 +73387,86 @@ Item
 	Revision	1
 	Realm	britannia
 	Layer	19
-	Container	0x1a1e86
-	DecayAt	25191073
+	Container	0x1a1e85
+	DecayAt	25194237
 	Quality	1
 	HP	35
 }
 
 Item
 {
-	Serial	0x6ae122f8
+	Serial	0x6ae1369e
 	ObjType	0x13c7
 	Graphic	0x13c7
-	X	76
-	Y	127
+	X	102
+	Y	136
 	Z	0
 	Revision	1
 	Realm	britannia
 	Layer	10
-	Container	0x6ae122ef
-	DecayAt	25191073
+	Container	0x6ae13696
+	DecayAt	25194237
 	Quality	1
 	HP	35
+}
+
+Item
+{
+	Serial	0x6ae136a1
+	ObjType	0xefa
+	Graphic	0xefa
+	X	1
+	Y	1
+	Z	0
+	Revision	1
+	Realm	britannia
+	Layer	1
+	Container	0x1a1e86
+	DecayAt	25194237
+	Spellbits0	0
+	Spellbits1	0
+	Spellbits2	0
+	Spellbits3	0
+	Spellbits4	0
+	Spellbits5	0
+	Spellbits6	0
+	Spellbits7	0
+}
+
+Item
+{
+	Serial	0x6ae136a3
+	ObjType	0x1711
+	Graphic	0x1711
+	Color	0xd
+	X	1
+	Y	1
+	Z	0
+	Revision	1
+	Realm	britannia
+	Layer	3
+	Container	0x1a1e86
+	DecayAt	25194237
+	Quality	1
+	HP	50
+}
+
+Item
+{
+	Serial	0x6ae136a2
+	ObjType	0x1f03
+	Graphic	0x1f03
+	Color	0xd
+	X	1
+	Y	1
+	Z	0
+	Revision	1
+	Realm	britannia
+	Layer	22
+	Container	0x1a1e86
+	DecayAt	25194237
+	Quality	1
+	HP	10
 }
 
 Item
@@ -74648,44 +73727,10 @@ Item
 
 Item
 {
-	Serial	0x6ae122fc
-	ObjType	0xf5e
-	Graphic	0xf5e
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	1
-	Container	0x1a1eee
-	DecayAt	25191073
-	Quality	1
-	HP	65
-	HitScript	mainHitScript
-}
-
-Item
-{
-	Serial	0x6ae12305
-	ObjType	0x1b72
-	Graphic	0x1b72
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	2
-	Container	0x1a1eee
-	DecayAt	25191073
-	Quality	1
-	HP	28
-}
-
-Item
-{
-	Serial	0x6ae122fb
-	ObjType	0x170b
-	Graphic	0x170b
+	Serial	0x6ae136a8
+	ObjType	0x170d
+	Graphic	0x170d
+	Color	0x223
 	X	1
 	Y	1
 	Z	0
@@ -74693,153 +73738,53 @@ Item
 	Realm	britannia
 	Layer	3
 	Container	0x1a1eee
-	DecayAt	25191073
+	DecayAt	25194237
 	Quality	1
-	HP	50
+	HP	20
 }
 
 Item
 {
-	Serial	0x6ae12302
-	ObjType	0x13cb
-	Graphic	0x13cb
+	Serial	0x6ae136a6
+	ObjType	0x1517
+	Graphic	0x1517
+	Color	0x223
 	X	1
 	Y	1
 	Z	0
 	Revision	1
 	Realm	britannia
-	Layer	4
+	Layer	5
 	Container	0x1a1eee
-	DecayAt	25191073
+	DecayAt	25194237
 	Quality	1
-	HP	35
+	HP	20
 }
 
 Item
 {
-	Serial	0x6ae12303
-	ObjType	0x13c6
-	Graphic	0x13c6
+	Serial	0x6ae136a7
+	ObjType	0x1516
+	Graphic	0x1516
+	Color	0x223
 	X	1
 	Y	1
 	Z	0
 	Revision	1
 	Realm	britannia
-	Layer	7
+	Layer	23
 	Container	0x1a1eee
-	DecayAt	25191073
+	DecayAt	25194237
 	Quality	1
-	HP	35
+	HP	20
 }
 
 Item
 {
-	Serial	0x6ae12300
-	ObjType	0x13c7
-	Graphic	0x13c7
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	10
-	Container	0x1a1eee
-	DecayAt	25191073
-	Quality	1
-	HP	35
-}
-
-Item
-{
-	Serial	0x6ae122ff
-	ObjType	0x13cc
-	Graphic	0x13cc
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	13
-	Container	0x1a1eee
-	DecayAt	25191073
-	Quality	1
-	HP	35
-}
-
-Item
-{
-	Serial	0x6ae12301
-	ObjType	0x13cd
-	Graphic	0x13cd
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	19
-	Container	0x1a1eee
-	DecayAt	25191073
-	Quality	1
-	HP	35
-}
-
-Item
-{
-	Serial	0x6ae12304
-	ObjType	0x13c7
-	Graphic	0x13c7
-	X	123
-	Y	129
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	10
-	Container	0x6ae122fa
-	DecayAt	25191073
-	Quality	1
-	HP	35
-}
-
-Item
-{
-	Serial	0x6ae12308
-	ObjType	0x13b5
-	Graphic	0x13b5
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	1
-	Container	0x1a1eef
-	DecayAt	25191073
-	Quality	1
-	HP	50
-	HitScript	mainHitScript
-}
-
-Item
-{
-	Serial	0x6ae1230f
-	ObjType	0x1b78
-	Graphic	0x1b78
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	2
-	Container	0x1a1eef
-	DecayAt	25191073
-	Quality	1
-	HP	55
-}
-
-Item
-{
-	Serial	0x6ae12307
-	ObjType	0x1711
-	Graphic	0x1711
+	Serial	0x6ae136ad
+	ObjType	0x170f
+	Graphic	0x170f
+	Color	0x450
 	X	1
 	Y	1
 	Z	0
@@ -74847,16 +73792,17 @@ Item
 	Realm	britannia
 	Layer	3
 	Container	0x1a1eef
-	DecayAt	25191073
+	DecayAt	25194237
 	Quality	1
-	HP	50
+	HP	20
 }
 
 Item
 {
-	Serial	0x6ae1230c
-	ObjType	0x13f0
-	Graphic	0x13f0
+	Serial	0x6ae136ac
+	ObjType	0x153a
+	Graphic	0x153a
+	Color	0x450
 	X	1
 	Y	1
 	Z	0
@@ -74864,94 +73810,27 @@ Item
 	Realm	britannia
 	Layer	4
 	Container	0x1a1eef
-	DecayAt	25191073
+	DecayAt	25194237
 	Quality	1
-	HP	45
+	HP	20
 }
 
 Item
 {
-	Serial	0x6ae12309
-	ObjType	0x1db9
-	Graphic	0x1db9
+	Serial	0x6ae136ab
+	ObjType	0x1efd
+	Graphic	0x1efd
+	Color	0x450
 	X	1
 	Y	1
 	Z	0
 	Revision	1
 	Realm	britannia
-	Layer	6
+	Layer	5
 	Container	0x1a1eef
-	DecayAt	25191073
+	DecayAt	25194237
 	Quality	1
-	HP	35
-}
-
-Item
-{
-	Serial	0x6ae1230d
-	ObjType	0x13f2
-	Graphic	0x13f2
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	7
-	Container	0x1a1eef
-	DecayAt	25191073
-	Quality	1
-	HP	45
-}
-
-Item
-{
-	Serial	0x6ae1230e
-	ObjType	0x1413
-	Graphic	0x1413
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	10
-	Container	0x1a1eef
-	DecayAt	25191073
-	Quality	1
-	HP	60
-}
-
-Item
-{
-	Serial	0x6ae1230a
-	ObjType	0x13ec
-	Graphic	0x13ec
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	13
-	Container	0x1a1eef
-	DecayAt	25191073
-	Quality	1
-	HP	45
-}
-
-Item
-{
-	Serial	0x6ae1230b
-	ObjType	0x13ee
-	Graphic	0x13ee
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	19
-	Container	0x1a1eef
-	DecayAt	25191073
-	Quality	1
-	HP	45
+	HP	20
 }
 
 Item
@@ -75746,10 +74625,44 @@ Item
 
 Item
 {
-	Serial	0x6ae12313
-	ObjType	0x170f
-	Graphic	0x170f
-	Color	0x450
+	Serial	0x6ae136b1
+	ObjType	0x1440
+	Graphic	0x1440
+	X	1
+	Y	1
+	Z	0
+	Revision	1
+	Realm	britannia
+	Layer	1
+	Container	0x1a1f23
+	DecayAt	25194237
+	Quality	1
+	HP	55
+	HitScript	mainHitScript
+}
+
+Item
+{
+	Serial	0x6ae136ba
+	ObjType	0x1b78
+	Graphic	0x1b78
+	X	1
+	Y	1
+	Z	0
+	Revision	1
+	Realm	britannia
+	Layer	2
+	Container	0x1a1f23
+	DecayAt	25194237
+	Quality	1
+	HP	55
+}
+
+Item
+{
+	Serial	0x6ae136b0
+	ObjType	0x170b
+	Graphic	0x170b
 	X	1
 	Y	1
 	Z	0
@@ -75757,50 +74670,270 @@ Item
 	Realm	britannia
 	Layer	3
 	Container	0x1a1f23
-	DecayAt	25191073
+	DecayAt	25194237
 	Quality	1
-	HP	20
+	HP	50
 }
 
 Item
 {
-	Serial	0x6ae12311
-	ObjType	0x1efd
-	Graphic	0x1efd
-	Color	0x450
+	Serial	0x6ae136b7
+	ObjType	0x13f0
+	Graphic	0x13f0
 	X	1
 	Y	1
 	Z	0
 	Revision	1
 	Realm	britannia
-	Layer	5
+	Layer	4
 	Container	0x1a1f23
-	DecayAt	25191073
+	DecayAt	25194237
 	Quality	1
-	HP	20
+	HP	45
 }
 
 Item
 {
-	Serial	0x6ae12312
-	ObjType	0x1516
-	Graphic	0x1516
-	Color	0x450
+	Serial	0x6ae136b4
+	ObjType	0x1db9
+	Graphic	0x1db9
 	X	1
 	Y	1
 	Z	0
 	Revision	1
 	Realm	britannia
-	Layer	23
+	Layer	6
 	Container	0x1a1f23
-	DecayAt	25191073
+	DecayAt	25194237
 	Quality	1
-	HP	20
+	HP	35
 }
 
 Item
 {
-	Serial	0x6ae12316
+	Serial	0x6ae136b8
+	ObjType	0x13f2
+	Graphic	0x13f2
+	X	1
+	Y	1
+	Z	0
+	Revision	1
+	Realm	britannia
+	Layer	7
+	Container	0x1a1f23
+	DecayAt	25194237
+	Quality	1
+	HP	45
+}
+
+Item
+{
+	Serial	0x6ae136b9
+	ObjType	0x1413
+	Graphic	0x1413
+	X	1
+	Y	1
+	Z	0
+	Revision	1
+	Realm	britannia
+	Layer	10
+	Container	0x1a1f23
+	DecayAt	25194237
+	Quality	1
+	HP	60
+}
+
+Item
+{
+	Serial	0x6ae136b5
+	ObjType	0x13ec
+	Graphic	0x13ec
+	X	1
+	Y	1
+	Z	0
+	Revision	1
+	Realm	britannia
+	Layer	13
+	Container	0x1a1f23
+	DecayAt	25194237
+	Quality	1
+	HP	45
+}
+
+Item
+{
+	Serial	0x6ae136b6
+	ObjType	0x13ee
+	Graphic	0x13ee
+	X	1
+	Y	1
+	Z	0
+	Revision	1
+	Realm	britannia
+	Layer	19
+	Container	0x1a1f23
+	DecayAt	25194237
+	Quality	1
+	HP	45
+}
+
+Item
+{
+	Serial	0x6ae136bd
+	ObjType	0x13b9
+	Graphic	0x13b9
+	X	1
+	Y	1
+	Z	0
+	Revision	1
+	Realm	britannia
+	Layer	1
+	Container	0x1a1f24
+	DecayAt	25194237
+	Quality	1
+	HP	50
+	HitScript	mainHitScript
+}
+
+Item
+{
+	Serial	0x6ae136c5
+	ObjType	0x1b7b
+	Graphic	0x1b7b
+	X	1
+	Y	1
+	Z	0
+	Revision	1
+	Realm	britannia
+	Layer	2
+	Container	0x1a1f24
+	DecayAt	25194237
+	Quality	1
+	HP	40
+}
+
+Item
+{
+	Serial	0x6ae136bc
+	ObjType	0x1711
+	Graphic	0x1711
+	X	1
+	Y	1
+	Z	0
+	Revision	1
+	Realm	britannia
+	Layer	3
+	Container	0x1a1f24
+	DecayAt	25194237
+	Quality	1
+	HP	50
+}
+
+Item
+{
+	Serial	0x6ae136c2
+	ObjType	0x13be
+	Graphic	0x13be
+	X	1
+	Y	1
+	Z	0
+	Revision	1
+	Realm	britannia
+	Layer	4
+	Container	0x1a1f24
+	DecayAt	25194237
+	Quality	1
+	HP	55
+}
+
+Item
+{
+	Serial	0x6ae136bf
+	ObjType	0x13bb
+	Graphic	0x13bb
+	X	1
+	Y	1
+	Z	0
+	Revision	1
+	Realm	britannia
+	Layer	6
+	Container	0x1a1f24
+	DecayAt	25194237
+	Quality	1
+	HP	40
+}
+
+Item
+{
+	Serial	0x6ae136c3
+	ObjType	0x1414
+	Graphic	0x1414
+	X	1
+	Y	1
+	Z	0
+	Revision	1
+	Realm	britannia
+	Layer	7
+	Container	0x1a1f24
+	DecayAt	25194237
+	Quality	1
+	HP	60
+}
+
+Item
+{
+	Serial	0x6ae136c4
+	ObjType	0x1413
+	Graphic	0x1413
+	X	1
+	Y	1
+	Z	0
+	Revision	1
+	Realm	britannia
+	Layer	10
+	Container	0x1a1f24
+	DecayAt	25194237
+	Quality	1
+	HP	60
+}
+
+Item
+{
+	Serial	0x6ae136c0
+	ObjType	0x13bf
+	Graphic	0x13bf
+	X	1
+	Y	1
+	Z	0
+	Revision	1
+	Realm	britannia
+	Layer	13
+	Container	0x1a1f24
+	DecayAt	25194237
+	Quality	1
+	HP	53
+}
+
+Item
+{
+	Serial	0x6ae136c1
+	ObjType	0x1410
+	Graphic	0x1410
+	X	1
+	Y	1
+	Z	0
+	Revision	1
+	Realm	britannia
+	Layer	19
+	Container	0x1a1f24
+	DecayAt	25194237
+	Quality	1
+	HP	60
+}
+
+Item
+{
+	Serial	0x6ae136c7
 	ObjType	0xefa
 	Graphic	0xefa
 	X	1
@@ -75809,8 +74942,8 @@ Item
 	Revision	1
 	Realm	britannia
 	Layer	1
-	Container	0x1a1f24
-	DecayAt	25191073
+	Container	0x1a1f25
+	DecayAt	25194237
 	Spellbits0	0
 	Spellbits1	0
 	Spellbits2	0
@@ -75823,92 +74956,38 @@ Item
 
 Item
 {
-	Serial	0x6ae12318
-	ObjType	0x1711
-	Graphic	0x1711
-	Color	0x242
+	Serial	0x6ae136c9
+	ObjType	0x170b
+	Graphic	0x170b
+	Color	0x2c3
 	X	1
 	Y	1
 	Z	0
 	Revision	1
 	Realm	britannia
 	Layer	3
-	Container	0x1a1f24
-	DecayAt	25191073
+	Container	0x1a1f25
+	DecayAt	25194237
 	Quality	1
 	HP	50
 }
 
 Item
 {
-	Serial	0x6ae12317
+	Serial	0x6ae136c8
 	ObjType	0x1f03
 	Graphic	0x1f03
-	Color	0x242
+	Color	0x2c3
 	X	1
 	Y	1
 	Z	0
 	Revision	1
 	Realm	britannia
 	Layer	22
-	Container	0x1a1f24
-	DecayAt	25191073
+	Container	0x1a1f25
+	DecayAt	25194237
 	Quality	1
 	HP	10
-}
-
-Item
-{
-	Serial	0x6ae1231d
-	ObjType	0x170d
-	Graphic	0x170d
-	Color	0x223
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	3
-	Container	0x1a1f25
-	DecayAt	25191073
-	Quality	1
-	HP	20
-}
-
-Item
-{
-	Serial	0x6ae1231c
-	ObjType	0x153a
-	Graphic	0x153a
-	Color	0x223
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	4
-	Container	0x1a1f25
-	DecayAt	25191073
-	Quality	1
-	HP	20
-}
-
-Item
-{
-	Serial	0x6ae1231b
-	ObjType	0x1517
-	Graphic	0x1517
-	Color	0x223
-	X	1
-	Y	1
-	Z	0
-	Revision	1
-	Realm	britannia
-	Layer	5
-	Container	0x1a1f25
-	DecayAt	25191073
-	Quality	1
-	HP	20
 }
 
 Item
