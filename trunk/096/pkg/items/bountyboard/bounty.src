@@ -1,25 +1,26 @@
+// $Id$
+
 use uo;
 use os;
 
 include "include/bounty";
 include ":datafile:datafile";
-//include ":bank:bank";
 include ":containers:storageAreas";
 include ":gumps:include/old/old-gumps";
 include "include/client";
 
 
 program Assign_Bounty(parms)
-	var who := parms[1];
+	var mobile := parms[1];
 	var data := parms[2];
-	var bank := FindBankBox(who);
+	var bank := CP_GetStorageContainerForMobile(mobile, CP_DEFAULT_AREA, 1);
 	foreach id in data
 		var holder := FindMyGold(bank);
 		var mygold := Cint(holder[1]);
 		var goldpiles := holder[2];
 		if (mygold)
 			var mob := SystemFindObjectBySerial(id, SYSFIND_SEARCH_OFFLINE_MOBILES);
-			var bounty := GetBountyAmount(who, mygold, mob.name);
+			var bounty := GetBountyAmount(mobile, mygold, mob.name);
 			if ((bounty) && (bounty <= mygold))
 				AddBounty(mob, bounty);
 				foreach thing in goldpiles
@@ -35,18 +36,18 @@ program Assign_Bounty(parms)
 					endif
 				endforeach
 			elseif (bounty > mygold)
-				SendSysMessage(who, "You do not have that much gold.", 3, 40);
+				SendSysMessage(mobile, "You do not have that much gold.", 3, 40);
 			else
-				SendSysMessage(who, "You have declined to place a bounty on " + mob.killer.name + "'s head.");
+				SendSysMessage(mobile, "You have declined to place a bounty on " + mob.killer.name + "'s head.");
 			endif
 		else
-			SendSysMessage(who, "You have no gold in your bank from which to place a bounty.", 3, 40);
+			SendSysMessage(mobile, "You have no gold in your bank from which to place a bounty.", 3, 40);
 		endif
 	endforeach
 endprogram
 
 
-function GetBountyAmount(who, mygold, name)
+function GetBountyAmount(mobile, mygold, name)
 	GFInitGump();
 	GFPage(0);
 	GFResizePic(50,  50, 5120, 500, 200);
@@ -60,11 +61,11 @@ function GetBountyAmount(who, mygold, name)
 	var amt := GFTextEntry( 100, 190, 100, 20, 900, "0");
 	GFButtonID(380, 190, 2121, 2120, 0);
 	GFButtonID(440, 190, 2130, 2129, 1, 1);
-	var ret := GFSendGump(who);
+	var ret := GFSendGump(mobile);
 	if (ret[0] == 1)
 		amt := Cint(SplitWords(ret[amt.keyid])[2]);
 	else
-		SendSysMessage(who, "Cancelled.", 3, 40);
+		SendSysMessage(mobile, "Cancelled.", 3, 40);
 		amt := 0;
 	endif
 
