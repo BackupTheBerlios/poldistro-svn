@@ -62,7 +62,7 @@ function CP_GetStorageContainerForMobile(mobile, storage_area_name:=0, create:=C
 		storage_area_name := CP_DEFAULT_AREA;
 	endif
 	
-	var container_id := CP_GetOwnerContainerID(mobile);
+	var container_id := CP_GetMobileContainerID(mobile);
 	var root_container := CP_GetStorageAreaContainer(container_id, storage_area_name);
 	if ( (!root_container) && (create) )
 		root_container := CP_CreateStorageAreaContainer(container_id, storage_area_name);
@@ -87,7 +87,7 @@ endfunction
  * String
  *
  */
-function CP_GetOwnerContainerID(mobile)
+function CP_GetMobileContainerID(mobile)
 	return "Owner="+Hex(mobile.serial);
 endfunction
 
