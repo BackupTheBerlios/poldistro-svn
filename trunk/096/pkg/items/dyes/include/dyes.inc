@@ -1,3 +1,5 @@
+// $Id$
+
 use uo;
 use util;
 use cfgfile;
@@ -5,6 +7,20 @@ use cfgfile;
 const MIN_COLOR := 2;
 const MAX_COLOR := 1001;
 
+/*
+ * CanDye(item)
+ *
+ * Purpose
+ * Checks an object's itemdesc.cfg entry to see if it is dyable.
+ *
+ * Parameters
+ * item:	Item that will be dyed.
+ *
+ * Return value
+ * Returns 1 if it can be dyed
+ * Returns 0 if it can not
+ *
+ */
 function CanDye(item)
 	var config := ReadConfigFile(":*:itemdesc");
 	config := config[item.objtype];
@@ -16,6 +32,21 @@ function CanDye(item)
 	endif
 endfunction
 
+/*
+ * ValidDyeColor(mobile, color)
+ *
+ * Purpose
+ * Checks if the color sent by the dyes is a valid dye color.
+ *
+ * Parameters
+ * mobile:	Mobile doing the dying.
+ * color:	color set by the dyes.
+ *
+ * Return value
+ * Returns 1 if the color is allowed
+ * Returns 0 if the color is invalid
+ *
+ */
 function ValidDyeColor(mobile, color)
 	if ( mobile.cmdlevel )
 		return 1;
@@ -26,8 +57,21 @@ function ValidDyeColor(mobile, color)
 	endif
 endfunction
 
-function RandomDyeColor(item)
+/*
+ * RandomDyeColor()
+ *
+ * Purpose
+ * Gets a random dye color.
+ *
+ * Parameters
+ *
+ * Return value
+ * Integer
+ *
+ */
+function RandomDyeColor()
 	var color := RandomInt(MAX_COLOR - MIN_COLOR);
 	color := color+MIN_COLOR;
-	item.color := color;
+	
+	return color;
 endfunction
