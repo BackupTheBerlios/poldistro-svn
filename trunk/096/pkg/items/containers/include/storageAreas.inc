@@ -75,7 +75,7 @@ endfunction
 
 
 /*
- * CP_GetOwnerString(mobile)
+ * CP_GetMobileContainerID(mobile)
  * 
  * Purpose
  * Sets up the container_id string for a mobile's root container.
