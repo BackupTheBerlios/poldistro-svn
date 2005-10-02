@@ -9,7 +9,6 @@ include "include/sysEvent";
 include "include/mrcSpawn";
 include "include/utility";
 include "include/dist";
-include ":bank:bank";
 
 var npclist := {};
 var spawn, amt, item, status, rng, tmplate;
