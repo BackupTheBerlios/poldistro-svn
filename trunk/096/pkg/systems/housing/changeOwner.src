@@ -1,8 +1,10 @@
+// $Id$
+
 use uo;
 use os;
 use cfgfile;
 
-include ":bank:bank";
+include ":containers:storageAreas";
 include "util/key";
 include "include/canAccess";
 
@@ -41,7 +43,7 @@ program ChangeHouseOwner(who, title)
       EraseObjProperty(house, "coownlist");
       EraseObjProperty(house, "banlist");
     endif
-    var bankbox := FindBankBox( who );
+    var bankbox := CP_GetStorageContainerForMobile(who, CP_DEFAULT_AREA, 1);
     var packkey := CreateItemInBackpack( who, UOBJ_GOLD_KEY );
     if(!packkey)
       SendSysMessage( who, "My backpack is too full!");
