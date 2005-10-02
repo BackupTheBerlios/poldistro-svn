@@ -12,7 +12,7 @@ include ":gmtools:info";
 include ":gmtools:gotoLayout";
 include ":gmtools:accountLayout";
 include ":gmtools:spawnerLayout";
-include ":bank:bank";
+include ":containers:storageAreas";
 include "include/gumpUtil"; // Added by Shinigami
 
 const TEXTSTARTLOCY :=  70;
@@ -798,15 +798,15 @@ function ban(who, acctname);
        sleep(10);
        act.ban();
 	   var x, i;
-       WipeBankBox(act.GetCharacter(1));
-	   for(i := 1; i <= 25; i := i + 1)
+	CP_RemoveStorageAreaContainer(CP_GetMobileContainerID(act.GetCharacter(1).serial));	   
+         for(i := 1; i <= 25; i := i + 1)
 	     x := GetEquipmentByLayer(act.GetCharacter(1), i);
 	     MoveItemToContainer(x, act.GetCharacter(1).backpack);
 	   endfor
        DestroyItem(act.GetCharacter(1).backpack);
        act.DeleteCharacter(1);
        i := 0;
-       WipeBankBox(act.GetCharacter(2));
+      CP_RemoveStorageAreaContainer(CP_GetMobileContainerID(act.GetCharacter(2).serial));
 	   for(i := 1; i <= 25; i := i + 1)
 	     x := GetEquipmentByLayer(act.GetCharacter(2), i);
 	     MoveItemToContainer(x, act.GetCharacter(2).backpack);
@@ -814,7 +814,7 @@ function ban(who, acctname);
        DestroyItem(act.GetCharacter(2).backpack);
        act.DeleteCharacter(2);
        i := 0;
-       WipeBankBox(act.GetCharacter(3));
+       CP_RemoveStorageAreaContainer(CP_GetMobileContainerID(act.GetCharacter(3).serial));
 	   for(i := 1; i <= 25; i := i + 1)
 	     x := GetEquipmentByLayer(act.GetCharacter(3), i);
 	     MoveItemToContainer(x, act.GetCharacter(3).backpack);
@@ -822,7 +822,7 @@ function ban(who, acctname);
        DestroyItem(act.GetCharacter(3).backpack);
        act.DeleteCharacter(3);
        i := 0;
-       WipeBankBox(act.GetCharacter(4));
+      CP_RemoveStorageAreaContainer(CP_GetMobileContainerID(act.GetCharacter(4).serial));
 	   for(i := 1; i <= 25; i := i + 1)
 	     x := GetEquipmentByLayer(act.GetCharacter(4), i);
 	     MoveItemToContainer(x, act.GetCharacter(4).backpack);
@@ -830,7 +830,7 @@ function ban(who, acctname);
        DestroyItem(act.GetCharacter(4).backpack);
        act.DeleteCharacter(4);
        i := 0;
-       WipeBankBox(act.GetCharacter(5));
+       CP_RemoveStorageAreaContainer(CP_GetMobileContainerID(act.GetCharacter(5).serial));
 	   for(i := 1; i <= 24; i := i + 1)
 	     x := GetEquipmentByLayer(act.GetCharacter(5), i);
 	     MoveItemToContainer(x, act.GetCharacter(5).backpack);
@@ -1030,7 +1030,7 @@ function info(who, character, trg)
           endif
       20: MoveCharacterToLocation(character, 1, 1, 0);
       21: if(!character.isA(POLCLASS_NPC))
-            var bankbox := FindBankBox(character);
+            var bankbox := CP_GetStorageContainerForMobile(character);
             SendOpenSpecialContainer(who, bankbox);
           else
             SendSysMessage(who, "Only can be used on players.");
