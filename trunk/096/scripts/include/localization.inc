@@ -18,6 +18,7 @@ enum LOCALE_ENGLISH
 	MSG_NOTHING_DELETE		:= "Nothing to delete.",
 	MSG_SCRIPTS_UNLOADED		:= "~NUM_SCRIPTS~ scripts unloaded.",
 	MSG_CONFIG_RELOADED		:= "All configuration files reloaded.",
+	MSG_USE_HELP			:= "Use .help ~COMMAND_NAME~.",
 	MSG_NO_HELP			:= "There is no help available for that command.",
 	MSG_NO_PRIVS			:= "You lack the privileges to use ~COMMAND_NAME~.",
 	MSG_WELCOME			:= "Welcome to ~WHERE~, ~WHO~!",

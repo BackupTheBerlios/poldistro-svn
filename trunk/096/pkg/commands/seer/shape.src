@@ -1,0 +1,25 @@
+use uo;
+
+include "include/mobileID";
+include "include/localization";
+include "include/messages";
+
+
+program command_shape(who, params)
+	case (params)
+		"male":
+			who.graphic := MOB_HUMAN_MALE;
+			break;
+		"female":
+			who.graphic := MOB_HUMAN_FEMALE;
+			break;
+		"gm":
+			who.graphic := MOB_GM;
+			break;
+		default:
+			SendMessage(who, MSG_USE_HELP, array{".shape"}, MSG_COMMAND);
+			break;
+	endcase
+
+	return;
+endprogram
