@@ -8,10 +8,10 @@ include "include/attributes";
 include ":npcutils:NPCBackpacks";
 include "include/noto";
 
-var cfg := ReadConfigFile( "npcdesc" );
+var cfg := ReadConfigFile("npcdesc");
 
 
-program npcdeath(corpse)
+program npcDeath(corpse)
 
   // if he had things to restock, destroy them, he's dead now.
   if(GetObjProperty(corpse, "restockserial"))

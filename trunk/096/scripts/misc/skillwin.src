@@ -12,7 +12,7 @@
 use uo;
 
 
-program core_skillwin(who)
+program core_skillWin(who)
 	SendSkillWindow(who, who);
 
 	return;
