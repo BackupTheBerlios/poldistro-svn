@@ -11,8 +11,8 @@ include ":npcutils:NPCUtil";
 include "include/objtype";
 include ":npcutils:anchors";
 include "include/dist";
-include "ai/main/setup";
-include "ai/main/sleepMode";
+include ":oldAI:main/setup";
+include ":oldAI:main/sleepMode";
 include ":npcutils:animal";
 
 

@@ -10,11 +10,11 @@ include ":npcutils:NPCUtil";
 include "include/objtype";
 include "include/dist";
 include ":npcutils:anchors";
-include "ai/main/mainLoopWolf";
-include "ai/combat/fight";
-include "ai/combat/defaultCombatEvent";
-include "ai/setup/animalSetup";
-include "ai/main/sleepMode";
+include ":oldAI:main/mainLoopWolf";
+include ":oldAI:combat/fight";
+include ":oldAI:combat/defaultCombatEvent";
+include ":oldAI:setup/animalSetup";
+include ":oldAI:main/sleepMode";
 include ":npcutils:vetement";
 
 

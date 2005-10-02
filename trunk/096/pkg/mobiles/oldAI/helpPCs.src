@@ -12,12 +12,12 @@ include "include/objtype";
 include "include/dist";
 include ":npcutils:speech";
 include ":npcutils:anchors";
-include "ai/main/mainLoopGood";
-include "ai/combat/fight";
-include "ai/combat/warriorCombatEvent";
-include "ai/setup/setup";
-include "ai/main/loot";
-include "ai/main/sleepMode";
+include ":oldAI:main/mainLoopGood";
+include ":oldAI:combat/fight";
+include ":oldAI:combat/warriorCombatEvent";
+include ":oldAI:setup/setup";
+include ":oldAI:main/loot";
+include ":oldAI:main/sleepMode";
 include ":begging:begging";
 
 const HALT_THRESHOLD := 8; // how close before he attacks?

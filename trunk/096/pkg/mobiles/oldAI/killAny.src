@@ -27,13 +27,13 @@ include ":npcutils:NPCUtil";
 include "include/objtype";
 include ":npcutils:anchors";
 include "include/dist";
-include "ai/main/mainLoopKillAny";
-include "ai/combat/fight";
-include "ai/main/defaultNonCombatEvent";
-include "ai/combat/defaultCombatEvent";
-include "ai/main/setup";
-include "ai/main/loot";
-include "ai/main/sleepMode";
+include ":oldAI:main/mainLoopKillAny";
+include ":oldAI:combat/fight";
+include ":oldAI:main/defaultNonCombatEvent";
+include ":oldAI:combat/defaultCombatEvent";
+include ":oldAI:main/setup";
+include ":oldAI:main/loot";
+include ":oldAI:main/sleepMode";
 
 
 const HALT_THRESHOLD := 10; // how close before he attacks?

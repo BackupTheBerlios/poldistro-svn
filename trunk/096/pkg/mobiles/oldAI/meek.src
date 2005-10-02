@@ -28,12 +28,12 @@ include "include/objtype";
 include ":npcutils:speech";
 include "include/dist";
 include ":npcutils:anchors";
-include "ai/main/mainLoopMeek";
-include "ai/combat/fight";
-include "ai/combat/defaultCombatEvent";
-include "ai/setup/setup";
-include "ai/main/loot";
-include "ai/main/sleepMode";
+include ":oldAI:main/mainLoopMeek";
+include ":oldAI:combat/fight";
+include ":oldAI:combat/defaultCombatEvent";
+include ":oldAI:setup/setup";
+include ":oldAI:main/loot";
+include ":oldAI:main/sleepMode";
 
 
 const HALT_THRESHOLD := 5; // how close before he attacks?

@@ -12,12 +12,12 @@ include ":npcutils:NPCUtil";
 include "include/objtype";
 include "include/dist";
 include ":npcutils:anchors";
-include "ai/main/packKillPCsLoop";
-include "ai/combat/packFight";
-include "ai/combat/fireCombatEvent";
-include "ai/setup/setup";
-include "ai/main/loot";
-include "ai/main/sleepMode";
+include ":oldAI:main/packKillPCsLoop";
+include ":oldAI:combat/packFight";
+include ":oldAI:combat/fireCombatEvent";
+include ":oldAI:setup/setup";
+include ":oldAI:main/loot";
+include ":oldAI:main/sleepMode";
 
 const HALT_THRESHOLD := 15;
 var npccfgfile := ReadConfigFile( "npcdesc" );

@@ -28,11 +28,11 @@ include ":npcutils:NPCUtil";
 include "include/objtype";
 include "include/dist";
 include ":npcutils:anchors";
-include "ai/main/mainLoopImmobile";
-include "ai/combat/immobileFight";
-include "ai/main/sleepMode";
-include "ai/combat/spellCombatEvent";
-include "ai/setup/spellSetup";
+include ":oldAI:main/mainLoopImmobile";
+include ":oldAI:combat/immobileFight";
+include ":oldAI:main/sleepMode";
+include ":oldAI:combat/spellCombatEvent";
+include ":oldAI:setup/spellSetup";
 include ":npcutils:NPCCast";
 
 const HALT_THRESHOLD := 10; // how close before he attacks?

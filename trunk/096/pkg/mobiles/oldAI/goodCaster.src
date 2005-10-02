@@ -12,12 +12,12 @@ include ":npcutils:speech";
 include "include/dist";
 include ":npcutils:NPCCast";
 include ":npcutils:anchors";
-include "ai/main/mainLoopGood";
-include "ai/combat/fight";
-include "ai/combat/spellCombatEvent";
-include "ai/setup/setup";
-include "ai/main/loot";
-include "ai/main/sleepMode";
+include ":oldAI:main/mainLoopGood";
+include ":oldAI:combat/fight";
+include ":oldAI:combat/spellCombatEvent";
+include ":oldAI:setup/setup";
+include ":oldAI:main/loot";
+include ":oldAI:main/sleepMode";
 include ":begging:begging";
 
 const HALT_THRESHOLD := 10; // how close before he attacks?

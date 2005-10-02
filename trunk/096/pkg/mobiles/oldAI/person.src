@@ -20,7 +20,7 @@ include ":npcutils:vetement";
 include ":npcutils:speech";
 include ":npcutils:anchors";
 include "include/dist";
-include "ai/main/loot";
+include ":oldAI:main/loot";
 include ":begging:begging";
 
 const HALT_THRESHOLD := 2; // how close before he barks?

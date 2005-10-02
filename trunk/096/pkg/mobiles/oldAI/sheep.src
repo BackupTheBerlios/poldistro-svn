@@ -10,11 +10,11 @@ include ":npcutils:NPCUtil";
 include "include/objtype";
 include "include/dist";
 include ":npcutils:anchors";
-include "ai/main/mainLoopSheep";
-include "ai/combat/fight";
-include "ai/combat/defaultCombatEvent";
-include "ai/setup/sheepSetup";
-include "ai/main/sleepModeSheep";
+include ":oldAI:main/mainLoopSheep";
+include ":oldAI:combat/fight";
+include ":oldAI:combat/defaultCombatEvent";
+include ":oldAI:setup/sheepSetup";
+include ":oldAI:main/sleepModeSheep";
 
 
 const HALT_THRESHOLD := 5; // how close before he attacks?

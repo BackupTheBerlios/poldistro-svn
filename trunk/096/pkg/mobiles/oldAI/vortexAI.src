@@ -11,9 +11,9 @@ include ":npcutils:NPCUtil";
 include "include/objtype";
 include "include/dist";
 include ":npcutils:anchors";
-include "ai/combat/vortexCombatEvent";
-include "ai/setup/setup";
-include "ai/main/sleepMode";
+include ":oldAI:combat/vortexCombatEvent";
+include ":oldAI:setup/setup";
+include ":oldAI:main/sleepMode";
 
 const HALT_THRESHOLD := 8;
 var npccfgfile := ReadConfigFile( "npcdesc" );

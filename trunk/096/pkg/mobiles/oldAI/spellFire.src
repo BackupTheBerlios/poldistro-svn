@@ -13,12 +13,12 @@ include "include/objtype";
 include "include/dist";
 include ":npcutils:NPCCast";
 include ":npcutils:anchors";
-include "ai/main/killPCsLoop";
-include "ai/combat/fight";
-include "ai/combat/spellFireEvent";
-include "ai/setup/spellSetup";
-include "ai/main/loot";
-include "ai/main/sleepMode";
+include ":oldAI:main/killPCsLoop";
+include ":oldAI:combat/fight";
+include ":oldAI:combat/spellFireEvent";
+include ":oldAI:setup/spellSetup";
+include ":oldAI:main/loot";
+include ":oldAI:main/sleepMode";
 
 
 const HALT_THRESHOLD := 15;

@@ -12,11 +12,11 @@ include ":npcutils:NPCUtil";
 include "include/objtype";
 include "include/dist";
 include ":npcutils:anchors";
-include "ai/main/mainLoopCrier";
-include "ai/combat/fight";
-include "ai/combat/defaultCombatEvent";
-include "ai/main/sleepMode";
-include "ai/setup/crierSetup";
+include ":oldAI:main/mainLoopCrier";
+include ":oldAI:combat/fight";
+include ":oldAI:combat/defaultCombatEvent";
+include ":oldAI:main/sleepMode";
+include ":oldAI:setup/crierSetup";
 include ":begging:begging";
 
 var npccfgfile := ReadConfigFile( "npcdesc" );
