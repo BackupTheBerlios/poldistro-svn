@@ -1,18 +1,22 @@
+/* $Id$
+ *
+ */
 use uo;
 
 include "include/log";
+include "include/messages";
+include "include/localization";
 
 
 program command_destroy(who)
 	var item;
-	SendSysMessage(who, "Please target something to destroy.");
+	SendMessage(who, MSG_TARGET_OBJ, array{}, MSG_COMMAND);
 
-	item := Target(who, TGTOPT_NOCHECK_LOS);
-	if (item)
+	if ((item := Target(who, TGTOPT_NOCHECK_LOS)) == 0)
+		SendMessage(who, MSG_CANCELLED, array{}, MSG_COMMAND);
+	else
 		Log(LOG_COMMAND, GetLogInfo(who) + " invoking 'destroy' command on " + GetLogInfo(item));
 		DestroyItem(item);
-	else
-		SendSysMessage(who, "You can only destroy items.");
 	endif
 
 	return;

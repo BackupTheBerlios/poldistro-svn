@@ -1,9 +1,12 @@
+/* $Id$
+ *
+ */
 use uo;
 
 include "include/client";
 include "include/messages";
-include "include/log";
 include "include/localization";
+include "include/log";
 
 
 program command_shave(who, area)

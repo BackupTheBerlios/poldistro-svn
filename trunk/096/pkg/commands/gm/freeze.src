@@ -1,3 +1,6 @@
+/* $Id$
+ *
+ */
 use uo;
 
 include "include/messages";

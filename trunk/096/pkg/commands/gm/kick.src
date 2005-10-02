@@ -1,3 +1,6 @@
+/* $Id$
+ *
+ */
 use uo;
 
 include "include/log";
@@ -10,18 +13,20 @@ program command_kick(who)
 
 	SendMessage(who, MSG_TARGET_MOB, {}, MSG_COMMAND);
 
-	mobile := Target(who, TGTOPT_NOCHECK_LOS);
-
-	if (!mobile.isA(POLCLASS_MOBILE) || mobile.isA(POLCLASS_NPC))
-		SendMessage(who, MSG_NO_CHAR, {}, MSG_COMMAND);
+	if ((mobile := Target(who, TGTOPT_NOCHECK_LOS)) == 0)
+		SendMessage(who, MSG_CANCELLED, array{}, MSG_COMMAND);
 	else
-		if (mobile == who)
-			SendSysMessage(who, "You cannot kick yourself.");
+		if (!mobile.isA(POLCLASS_MOBILE) || mobile.isA(POLCLASS_NPC))
+			SendMessage(who, MSG_NO_CHAR, {}, MSG_COMMAND);
 		else
-			Log(LOG_COMMAND, GetLogInfo(who) + "invoking 'kick' command on: " + GetLogInfo(mobile));
-			DisconnectClient(mobile);
-			SendMessage(who, MSG_DONE, {}, MSG_COMMAND);
-		endif
+			if (mobile == who)
+				SendSysMessage(who, "You cannot kick yourself.");
+			else
+				Log(LOG_COMMAND, GetLogInfo(who) + "invoking 'kick' command on: "
+					+ GetLogInfo(mobile));
+				DisconnectClient(mobile);
+				SendMessage(who, MSG_DONE, {}, MSG_COMMAND);
+			endif
 	endif
 
 	return;

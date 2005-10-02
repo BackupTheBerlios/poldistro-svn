@@ -1,5 +1,10 @@
-// TODO: fix the integer only input
-
+/* $Id$
+ *
+ * Purpose
+ *
+ * TODO
+ * Fix the integer only input.
+ */
 use uo;
 use basic;
 

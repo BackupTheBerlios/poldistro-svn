@@ -1,11 +1,24 @@
 use uo;
+use basic;
 
 
-program bcastas(who, msg)
+program bcastas(who, params)
+	var name;
 
-  who := who;
-  if (msg)
-    Broadcast(msg);
-  endif
+	if (!params)
+		//TODO
+		return;
+	endif
 
+	params := SplitWords(params);
+	
+	if (params.size() <= 1)
+		return;
+	elseif (params.size() >= 2)
+		name :=params[1];
+		Broadcast(name + ": ");
+		//TODO
+	endif
+
+	return;
 endprogram

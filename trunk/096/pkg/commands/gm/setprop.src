@@ -1,14 +1,8 @@
-/*===============================================================
-* Current Version
-* SETPROP.SRC - v1.0
-* Updated 9/13/2005 7:15AM
-*
-* -- Revision v1.0 --
-* Austin:
-*  Created include file
-===============================================================*/
-
+/* $Id$
+ *
+ */
 use uo;
+
 
 program SetProperties(who, text)
 	var param := SplitWords(text);
@@ -48,6 +42,7 @@ program SetProperties(who, text)
 	SendSysMessage(who, "New Value->"+targ.get_member(property));
 endprogram
 
+
 function ProcessInput(who, targ, byref property, byref value)
 	//Works on items and mobiles, so do this first.
 	if ( property in array{"x", "y", "z", "realm"} )
@@ -62,6 +57,7 @@ function ProcessInput(who, targ, byref property, byref value)
 		return 1;
 	endif
 endfunction
+
 
 function MobileProperties(who, targ, byref property, byref value)
 	if ( !targ.IsA(POLCLASS_MOBILE) )
@@ -98,6 +94,7 @@ function MobileProperties(who, targ, byref property, byref value)
 	// Nothing was done here.
 	return 0;
 endfunction
+
 
 function DoMovement(targ, byref property, byref value)
 	var x := targ.x;
