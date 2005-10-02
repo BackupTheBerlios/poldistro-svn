@@ -1,9 +1,10 @@
+// $Id$
+
 use cfgfile;
 use uo;
 use os;
 
 include "util/key";
-include ":bank:bank";
 include "include/objtype";
 include "include/canAccess";
 
@@ -94,7 +95,6 @@ function ShipFacingFlags(facing)
 endfunction
 
 function CreateShipKeysAndBuiltDeed(who, shiptype, x, y, z, flags)
-  var bankbox := FindBankBox(who);
   var packkey := CreateItemInBackpack(who, UOBJ_COPPER_KEY);
   if(!packkey)
     PrintTextAbovePrivate(who, "My backpack is too full!", who);
