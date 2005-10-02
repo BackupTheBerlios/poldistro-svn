@@ -62,9 +62,10 @@ function CP_GetStorageContainerForMobile(mobile, storage_area_name:=0, create:=C
 		storage_area_name := CP_DEFAULT_AREA;
 	endif
 	
-	var root_container := CP_GetStorageAreaContainer(Hex(mobile.serial), storage_area_name);
+	var container_id := "Owner="+Hex(mobile.serial);
+	var root_container := CP_GetStorageAreaContainer(container_id, storage_area_name);
 	if ( (!root_container) && (create) )
-		root_container := CP_CreateStorageAreaContainer(Hex(mobile.serial), storage_area_name);
+		root_container := CP_CreateStorageAreaContainer(container_id, storage_area_name);
 
 		return root_container;
 	else
@@ -74,7 +75,7 @@ endfunction
 
 
 /*
- * CP_GetStorageAreaContainer(container_name, storage_area_name)
+ * CP_GetStorageAreaContainer(container_id, storage_area_name)
  *
  * Purpose
  * Retrieves a root container that matches the id sent.
@@ -95,16 +96,7 @@ function CP_GetStorageAreaContainer(container_id, storage_area_name:=0)
 	
 	var container_name := CP_DEFAULT_PREFIX + container_id;
 	var root_container := FindRootItemInStorageArea(storage_area, container_name);
-	if ( !root_container )
-		//Old distro (pre 096) root container names.
-		container_name := "Bankbox of "+container_id;
-		root_container := FindRootItemInStorageArea(storage_area, container_name);
-		//Set the name to the new style (takes effect after a restart)
-		container_name["Bankbox of "] := "";
-		container_name := CP_DEFAULT_PREFIX + Hex(CInt(container_name));
-		SetName(root_container, container_name);
-	endif
-	
+		
 	return root_container;
 endfunction
 
