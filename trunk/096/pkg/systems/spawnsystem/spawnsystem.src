@@ -8,14 +8,12 @@ include ":spawnsystem:include/errors";
 
 program SpawnSystem()
 	if ( !GetGlobalProperty("SpawnSystem") )
-		var script := Start_Script(":spawnsystem:firstrun");
+		var script := Start_Script(":spawnsystem:initializer/firstrun");
 		if ( script.errortext )
 			SSErrorReport(script.errortext, SPAWN_ERROR_SYSLOG);
 			return 0;
 		endif
 	endif
-	
-	foreach 
 	
 	return 1;
 endprogram
