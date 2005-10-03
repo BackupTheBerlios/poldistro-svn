@@ -2,9 +2,9 @@ use uo;
 use os;
 use util;
 
-include ":brainAI:include/npcNerves";
-include ":brainAI:include/npcCommands";
-include ":brainAI:include/npcWatchList";
+include ":brainAI:npcNerves";
+include ":brainAI:npcCommands";
+include ":brainAI:npcWatchList";
 
 program BrainCriticalScript(params)
 	//var npc := params[1];

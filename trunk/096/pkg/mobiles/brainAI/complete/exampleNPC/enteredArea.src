@@ -1,9 +1,9 @@
 use uo;
 use os;
 
-include ":brainAI:include/npcNerves";
-include ":brainAI:include/npcCommands";
-include ":brainAI:include/npcWatchList";
+include ":brainAI:npcNerves";
+include ":brainAI:npcCommands";
+include ":brainAI:npcWatchList";
 
 program BrainNerve(params)
 	var npc		:= params[1];

@@ -2,10 +2,10 @@ use uo;
 use os;
 use polsys;
 
-include ":brainAI:include/npcUtil";
-include ":datafile:include/datafile";
-include ":gumps:include/gumps";
-include ":gumps:include/gumps_ex";
+include ":brainAI:npcUtil";
+include ":datafile:datafile";
+include ":gumps:gumps";
+include ":gumps:gumps_ex";
 
 const UNCACHE_BTN	:= 0xF000000;
 const DEFAULT_CATEGORY	:= "None";

@@ -1,8 +1,9 @@
 use uo;
 use os;
 
-include ":brainAI:include/npcNerves";
-include ":brainAI:include/npcCommands";
+include ":brainAI:npcNerves";
+include ":brainAI:npcCommands";
+include ":brainAI:npcWatchList";
 
 program BrainNerve(params)
 	var npc		:= params[1];
@@ -14,10 +15,9 @@ program BrainNerve(params)
 	
 	while ( npc )
 		if ( event )
-			var source := event.source;
 			case ( event.type )
-				SYSEVENT_DISENGAGED:
-					Disengaged(npc, source);
+				SYSEVENT_LEFTAREA:
+					LeftArea(npc, event);
 					break;
 				default:
 					break;
@@ -31,8 +31,15 @@ program BrainNerve(params)
 	endwhile
 endprogram
 
-function Disengaged(npc, source)
-	if ( npc.opponent == source )
-		AI_Speak(npc, "Wuss! Get back here and finish fighting me!");
+function LeftArea(npc, byref event)
+	var source := event.source;
+
+	if ( source.npctemplate )
+		return 0;
+	elseif ( NPC_RemoveFromWatchList(npc, source) )
+		AI_Speak(npc, "I am no longer watching "+source.name);
+		return 1;
 	endif
+	
+	return 0;
 endfunction

@@ -12,8 +12,8 @@ use os;
 use util;
 use cfgfile;
 
-include ":brainAI:include/npcUtil";
-include ":brainAI:include/npcError";
+include ":brainAI:npcUtil";
+include ":brainAI:npcError";
 
 
 /////////////////////////////////////////////////////////////////

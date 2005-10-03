@@ -2,7 +2,7 @@
 use uo;
 use os;
 
-include ":gumps:include/requestgump";
+include ":gumps:requestgump";
 
 program ControlNPC(who, event)
 	if ( !event )

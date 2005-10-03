@@ -3,8 +3,8 @@ use uo;
 use os;
 use polsys;
 
-include ":brainAI:include/npcCommands";
-include ":gumps:include/requestgump";
+include ":brainAI:npcCommands";
+include ":gumps:requestgump";
 
 program ResetAllNPCs(who)
 	var realm_name := RequestGump(who, "Enter the realm name to perform the AI restarts on.", "", who.realm);

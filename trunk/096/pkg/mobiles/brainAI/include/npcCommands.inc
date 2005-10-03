@@ -12,7 +12,7 @@ use uo;
 use os;
 
 include "include/sysEvent";
-include ":brainAI:include/eventid";
+include ":brainAI:eventid";
 
 /////////////////////////////////////////////////////////////////
 // * Function List *

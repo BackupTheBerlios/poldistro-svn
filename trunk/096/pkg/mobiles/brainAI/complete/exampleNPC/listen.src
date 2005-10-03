@@ -1,9 +1,9 @@
 use uo;
 use os;
 
-include ":brainAI:include/eventid";
-include ":brainAI:include/npcNerves";
-include ":brainAI:include/npcCommands";
+include ":brainAI:eventid";
+include ":brainAI:npcNerves";
+include ":brainAI:npcCommands";
 
 program BrainNerve(params)
 	var npc		:= params[1];
@@ -46,6 +46,10 @@ function SpeechEvent(npc, event)
 			AI_Speak(npc, "You're fun to talk to, you know that?", SPEAK_TEXTTYPE_DEFAULT, SPEAK_DOEVENT_DISABLE, WAKEUP);
 			break;
 	endcase
+	
+	if ( event.text["buy"] )
+		SendBuyWindow(event.source, npc.backpack, npc, (event.source).backpack);
+	endif
 	
 	return 1;
 endfunction

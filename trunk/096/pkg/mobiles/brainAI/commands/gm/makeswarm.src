@@ -4,7 +4,7 @@ use uo;
 use os;
 use util;
 
-include ":gumps:include/requestgump";
+include ":gumps:requestgump";
 
 program MakeSwarm(who, text)
 

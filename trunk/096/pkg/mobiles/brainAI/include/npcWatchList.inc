@@ -11,7 +11,7 @@
 use uo;
 use os;
 
-include ":brainAI:include/npcError";
+include ":brainAI:npcError";
 
 /////////////////////////////////////////////////////////////////
 // * Function List *

@@ -3,7 +3,7 @@ use uo;
 use os;
 use polsys;
 
-include ":gumps:include/requestgump";
+include ":gumps:requestgump";
 
 program NPCWipe(who, template)
 	if ( !template )

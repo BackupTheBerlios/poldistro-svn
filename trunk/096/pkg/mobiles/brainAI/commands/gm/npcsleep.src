@@ -3,8 +3,8 @@ use uo;
 use os;
 use polsys;
 
-include ":gumps:include/requestgump";
-include ":brainAI:include/npcCommands";
+include ":gumps:requestgump";
+include ":brainAI:npcCommands";
 
 program PutEveryNPCToSleep(who)
 	var realm_name := RequestGump(who, "Enter the realm name to put npcs to sleep on.", "", who.realm);

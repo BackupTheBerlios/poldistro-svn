@@ -1,7 +1,7 @@
 //Example: .massacre [radius] - Kills npcs within the radius and leaves the corpses.
 use uo;
 
-include ":gumps:include/requestgump";
+include ":gumps:requestgump";
 
 program Massacre(who, range)
 	

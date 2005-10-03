@@ -3,7 +3,7 @@ use uo;
 use os;
 use polsys;
 
-include ":gumps:include/requestgump";
+include ":gumps:requestgump";
 
 program cmd_npcwipe(who)
 	Set_Priority(100);

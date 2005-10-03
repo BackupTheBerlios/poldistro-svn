@@ -3,8 +3,8 @@
 use uo;
 use os;
 
-include ":brainAI:include/npcNerves";
-include ":brainAI:include/npcCommands";
+include ":brainAI:npcNerves";
+include ":brainAI:npcCommands";
 include ":attributes:attributes";
 
 program BrainNerve(params)

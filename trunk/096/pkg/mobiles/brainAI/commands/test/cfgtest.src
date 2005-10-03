@@ -2,8 +2,8 @@ use uo;
 use os;
 use cfgfile;
 
-include ":brainAI:include/npcSettings";
-include ":brainAI:include/npcUtil";
+include ":brainAI:npcSettings";
+include ":brainAI:npcUtil";
 
 unload_scripts("");
 
