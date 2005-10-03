@@ -47,8 +47,14 @@ function SpeechEvent(npc, event)
 			break;
 	endcase
 	
-	if ( event.text["buy"] )
-		SendBuyWindow(event.source, npc.backpack, npc, (event.source).backpack);
+	if ( event.text["restock"] )
+		CreateItemInBackPack(npc, "longsword", 1);
+	elseif ( event.text["buy"] )
+		AI_Turn(npc, event.source, NETURN_TOWARD);
+		var result := SendBuyWindow(event.source, npc.backpack, npc, (event.source).backpack);
+		if ( !result )
+			PrintTextAbove(npc, "SendBuyWindow() error - "+result.errortext);
+		endif
 	endif
 	
 	return 1;
