@@ -43,7 +43,7 @@ function MP_GetMountsCfgFile()
 endfunction
 
 /*
- * AP_GetMountsCfgElem(elem_name, cfg_file)
+ * MP_GetMountsCfgElem(elem_name, cfg_file)
  *
  * Purpose
  * Retrieves an elem from a config file. 
@@ -78,10 +78,12 @@ endfunction
  *
  * Parameters
  * mobile:	NPC to get the mount tile graphic for.
+ *		Can also be the graphic number of an npc.
  *
  * Return value
  * Returns a graphic number.
  * Returns error if no match can be found.
+ *
  */
 function MP_GetMountGraphic(mobile)
 	var mobile_graphic;
@@ -108,11 +110,13 @@ endfunction
  * Finds what npc template must be used to match a mount tile's graphic.
  *
  * Parameters
- * mount:	Mount piece to find a matching npc template for.
+ * mount:	An item (mount piece) to find a matching npc template for.
+ *		Can also be the graphic number of a mount piece.
  *
  * Return value
  * Returns a string.
  * Returns error if no match can be found.
+ *
  */
 function MP_GetMountTemplate(mount)
 	var mount_graphic;
@@ -132,3 +136,40 @@ function MP_GetMountTemplate(mount)
 	endif
 endfunction
 
+/* 
+ * MP_RestoreMountToAnimal(mobile, mount)
+ *
+ * Purpose
+ * Removes the mount piece and recreates an npc.
+ *
+ * Parameters
+ * mobile:	Mobile that was riding the mount.
+ * mount:	Mount piece that will be used to create and restore the npc.
+ *
+ * Return value
+ * Returns the npc that was created
+ *
+ */
+function MP_RestoreMountToAnimal(mobile, mount)
+	var orig_serial := CInt(GetObjProperty(mount, "serial"));
+	var animal := SystemFindObjectBySerial(orig_serial);
+	if ( animal )
+		// Supports systems where the npc is moved to a storage area rather than killed.
+		MoveCharacterToLocation(animal, mobile.x, mobile.y, mobile.z, MOVECHAR_FORCELOCATION);
+		animal.hidden := 0;
+	else
+		var template := MP_GetMountTemplate(mount);
+		if ( !template )
+			DestroyItem(mount);
+			return template;
+		endif
+		
+		animal := CreateNPCFromTemplate(template, mobile.x, mobile.y, mobile.z);
+		animal.facing := mobile.facing;
+		animal.color := mount.color;
+		animal.name := mount.desc;
+	endif
+	DestroyItem(mount);
+	
+	return animal;
+endfunction
