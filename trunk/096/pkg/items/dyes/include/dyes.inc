@@ -1,5 +1,15 @@
 // $Id$
 
+/*===============================================================
+* Current Version
+* DYES.INC - v1.0
+* Updated 10/3/2005 12:22PM
+*
+* -- Revision v1.0 --
+* Austin:
+*  Created include file
+===============================================================*/
+
 use uo;
 use util;
 use cfgfile;
