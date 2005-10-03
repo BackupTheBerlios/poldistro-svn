@@ -175,6 +175,10 @@ function MP_Mount(mobile, npc)
 		// Setting equipped mounts prevents un-equip exploits.
 		mount_piece.movable := 0;
 	endif
+	// To do:
+	//   Either send the NPC to a storage location or kill it...
+	//   Currently this function will mount the player and the horse, llama, ostard, etc. will still be there.
+	//
 	
 	return mount_piece;
 endfunction
