@@ -137,6 +137,105 @@ function MP_GetMountTemplate(mount)
 endfunction
 
 /* 
+ * MP_Mount(mobile, npc)
+ *
+ * Purpose
+ * Removes the NPC, sets the mount piece up, and equips it on the mobile.
+ *
+ * Parameters
+ * mobile:	Mobile that will be mounted.
+ * npc:		NPC to convert into a mount piece.
+ * 
+ * Return value
+ * Returns the mount piece.
+ *
+ */
+function MP_Mount(mobile, npc)
+	var mount_piece := GetEquipmentByLayer(mobile, LAYER_MOUNT);
+	if ( mount_piece )
+		return error{"errortext":="Mobile is already mounted."};
+	endif
+	
+	Set_Critical(1);
+	var mount_graphic := MP_GetMountGraphic(npc);
+	if ( !mount_graphic )
+		return mount_graphic;
+	endif
+	
+	mount_piece := CreateItemAtLocation(mobile.x, mobile.y, mobile.z, MOUNT_OBJTYPE, 1);
+	mount_piece.graphic := mount_graphic;
+	SetName(mount_piece, npc.name);
+	
+	var result := EquipItem(mobile, mount_piece);
+	if ( !result )
+		// Unable to equip the mount piece.
+		DestroyItem(mount_piece);
+		return result;
+	else
+		// Setting equipped mounts prevents un-equip exploits.
+		mount_piece.movable := 0;
+	endif
+	
+	return mount_piece;
+endfunction
+
+
+/* 
+ * MP_Unmount(mobile)
+ *
+ * Purpose
+ * Removes the mount piece from the mobile and restores it to an npc.
+ *
+ * Parameters
+ * mobile:	Mobile to unmount
+ *
+ * Return value
+ * Returns the restored npc.
+ *
+ */
+function MP_Unmount(mobile)
+	var mount_piece := GetEquipmentByLayer(mobile, LAYER_MOUNT);
+
+	if ( !mount_piece )
+		return error{"errortext":="Mobile does not have a mount item."};
+	elseif ( Lower(mount_piece.desc) == "mount piece" )
+		// Mount piece exists, but contains no npc information.
+		DestroyItem(mount_piece);
+		return 0;
+	else
+		return MP_RestoreMountToAnimal(mobile, mount_piece);
+	endif
+endfunction
+
+/*
+ * MP_DeathUnmount(corpse)
+ *
+ * Purpose
+ * Finds a mount piece in the corpse and restores the npc.
+ *
+ * Parameters
+ * corpse:	Corpse to search for mount pieces in.
+ *
+ * Return value
+ * Returns the restored npc.
+ *
+ */
+function MP_DeathUnmount(corpse)
+	if ( !corpse.IsA(POLCLASS_CORPSE) )
+		return error{"errortext":="Object passed is not a corpse."};
+	endif
+	
+	foreach item in ( EnumerateItemsInContainer(corpse) )
+		if ( item.objtype == MOUNT_OBJTYPE )
+			return MP_RestoreMountToAnimal(corpse, item);
+			break;
+		endif
+	endforeach
+	
+	return error{"errortext":="No mount pieces were found on the corpse."};
+endfunction
+ 
+/* 
  * MP_RestoreMountToAnimal(mobile, mount)
  *
  * Purpose
@@ -147,7 +246,7 @@ endfunction
  * mount:	Mount piece that will be used to create and restore the npc.
  *
  * Return value
- * Returns the npc that was created
+ * Returns the npc that was created / restored.
  *
  */
 function MP_RestoreMountToAnimal(mobile, mount)
