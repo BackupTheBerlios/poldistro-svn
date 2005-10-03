@@ -219,7 +219,7 @@ endfunction
 
 
 /*
- * AP_CheckSkillTotal(mobile, skill_name)
+ * AP_CheckSkillTotal(mobile)
  *
  * Purpose
  * Checks the total sum of all skills a mobile has.
