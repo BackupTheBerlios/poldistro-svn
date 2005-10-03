@@ -1,0 +1,5 @@
+use uo;
+
+program UnequipScript(mobile, item, start_up)
+	return 1;
+endprogram
