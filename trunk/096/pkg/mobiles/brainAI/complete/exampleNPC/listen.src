@@ -4,6 +4,7 @@ use os;
 include ":brainAI:eventid";
 include ":brainAI:npcNerves";
 include ":brainAI:npcCommands";
+include ":brainAI:merchantUtil";
 
 program BrainNerve(params)
 	var npc		:= params[1];
@@ -48,13 +49,23 @@ function SpeechEvent(npc, event)
 	endcase
 	
 	if ( event.text["restock"] )
-		CreateItemInBackPack(npc, "longsword", 1);
+		CreateItemInContainer(NPC_MerchantForSaleContainer(npc), "longsword", 1);
 	elseif ( event.text["buy"] )
-		AI_Turn(npc, event.source, NETURN_TOWARD);
-		var result := SendBuyWindow(event.source, npc.backpack, npc, (event.source).backpack);
-		if ( !result )
-			PrintTextAbove(npc, "SendBuyWindow() error - "+result.errortext);
-		endif
+		BuyStuff(npc, event.source);
+	endif
+	
+	return 1;
+endfunction
+
+function BuyStuff(npc, mobile)
+	var forsale_bp := NPC_MerchantForSaleContainer(npc);
+	var shopping_cart := NPC_MerchantShoppingCartContainer(npc);
+	
+	AI_Turn(npc, mobile, NETURN_TOWARD);
+		
+	var result := SendBuyWindow(mobile, forsale_bp, npc, shopping_cart);
+	if ( !result )
+		PrintTextAbove(npc, "SendBuyWindow() error - "+result.errortext);
 	endif
 	
 	return 1;
