@@ -1,11 +1,19 @@
-/////////////////////////////////////////////////////////////////////////////
-// The boat control script has been moved into the 'boat' package
-// which can be found in pkg/std/boat
-/////////////////////////////////////////////////////////////////////////////
-
+/* $Id$
+ *
+ * Purpose
+ * This script acts as a control script for a boat. Use it for navigation commands 
+ * (e.g. the tillerman control script), boat decay, etc.
+ *
+ * Note
+ * The boat control script has been moved into the 'boat' package
+ * which can be found in /pkg/systems/boat/
+ *
+ */
 use os;
 
-program autostart_boat( param )
-	start_script( ":boat:boat", param );
-endprogram
 
+program autostart_boat(param)
+	start_script(":boat:boat", param);
+
+	return;
+endprogram

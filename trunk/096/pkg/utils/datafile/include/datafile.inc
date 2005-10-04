@@ -1,70 +1,39 @@
+/* $Id$
+ *
+ * Purpose
+ * TODO
+ *
+ * Function List *
+ * DFFindElement(byref file_ref, elem_name, create)
+ * DFGetElemNames(byref file_ref)
+ * DFGetElemProps(elem_ref)
+ * DFGetProp(byref elem_ref, prop_name, create, assign_val)
+ * DFOpenDataFile(file_name, create, flags)
+ * CfgToDF(cfg_name, df_name, propnames)
+ * DFToCfg(df_name, cfg_name)
+ *
+ * Private Function List *
+ * DF_OutPut(text)
+ *
+ * Global Variables *
+ * Datafile.em constants
+ * const DF_KEYTYPE_STRING       := 0x00; // default
+ * const DF_KEYTYPE_INTEGER      := 0x01;
+ *
+ */
 use uo;
 use os;
 use basic;
 use cfgfile;
 use datafile;
 
-/*===============================================================
-* Current Version
-* DATAFILE.INC - v2.0
-* Updated 9/17/2005 5:04AM
-*
-* include ":datafile:include/datafile";
-*
-* -- Revision v2.0 --
-* Austin:
-*  Changed:
-*	Now a package, rather than loose include file.
-*	Cleaned up to match new distro comment, code and package directory structure standards.
-*
-* -- Revision 1.3 --
-* Austin:
-*  Added:
-*	Global variable called 'DF_DEBUG_MODE'
-*		Setting it to 0 in your script will make the functions
-*		no longer SysLog() information to the console. By default
-*		it is enabled.
-*
-*  Fixed:
-*	Bug in DFSetProp() when I improved the .errortext return stuff.
-*
-* -- Revision 1.2 --
-* Austin
-*  Added:
-*	Flags option for DFOpenDataFile()
-*	DFGetElemNames()
-*
-*  Changed:
-*	Changed the error stuff, to return .errortext
-===============================================================*/
-
-/////////////////////////////////////////////////////////////////
-// * Function List *
-// DFFindElement(byref file_ref, elem_name, create)
-// DFGetElemNames(byref file_ref)
-// DFGetElemProps(elem_ref)
-// DFGetProp(byref elem_ref, prop_name, create, assign_val)
-// DFOpenDataFile(file_name, create, flags)
-//
-// CfgToDF(cfg_name, df_name, propnames)
-// DFToCfg(df_name, cfg_name)
-//
-/////////////////////////////////////////////////////////////////
-// * Internal/Private Function List *
-// DF_OutPut(text)
-//
-/////////////////////////////////////////////////////////////////
-// * Global Variables *
-//
-// Datafile.em constants
-// const DF_KEYTYPE_STRING       := 0x00; // default
-// const DF_KEYTYPE_INTEGER      := 0x01;
-//
 // Determines if a file or elem will be created when a read attempt is made.
 const DF_NO_CREATE	:= 0;
 const DF_CREATE		:= 1;
+
 // Set to 0 in your script to turn off SysLog() calls.
 var DF_DEBUG_MODE	:= 1;
+
 
 /*
  * DFOpenDataFile(filename, create, flags)
@@ -102,6 +71,7 @@ function DFOpenDataFile(file_name, create:=DF_NO_CREATE, flags:=DF_KEYTYPE_STRIN
 	endif
 endfunction
 
+
 /*
  * DFGetElemNames(byref file_ref)
  *
@@ -125,6 +95,7 @@ function DFGetElemNames(byref file_ref)
 		return elem_keys;
 	endif
 endfunction
+
 
 /*
  * DFFindElement(byref file_ref, elem_name, create)
@@ -160,6 +131,7 @@ function DFFindElement(byref file_ref, elem_name, create:=DF_NO_CREATE)
 	endif
 endfunction
 
+
 /*
  * DFGetElemProps(byref elem_ref)
  *
@@ -183,6 +155,7 @@ function DFGetElemProps(elem_ref)
 		return prop_names;
 	endif
 endfunction
+
 
 /*
  * DFGetProp(byref elem_ref, prop_name, create, assign_val)
@@ -221,6 +194,7 @@ function DFGetProp(byref elem_ref, prop_name, create:=DF_NO_CREATE, assign_val:=
 		return errmsg;
 	endif
 endfunction
+
 
 //===============================================================
 /*
@@ -270,6 +244,7 @@ function DFToCfg(df_name, cfg_name)
 	
 	return 1;
 endfunction
+
 
 /*
 // -=Experimental Function=-
@@ -333,6 +308,7 @@ function CfgToDF(cfg_name, df_name, propnames)
 	
 	return 1;
 endfunction
+
 
 /*
  * DF_OutPut(text)

@@ -1,3 +1,9 @@
+/* $Id$
+ *
+ * Purpose
+ * This script allows the scripter to run code when a character is deleted.
+ *
+ */
 use uo;
 
 include "include/startEqp";

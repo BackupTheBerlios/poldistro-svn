@@ -1,3 +1,10 @@
+/* $Id$
+ *
+ * Purpose
+ * This script allows an alternate behavior other than the default 'open paperdoll' behavior.
+ * Useful for things like dismounting.
+ *
+ */
 use uo;
 use os;
 use npc;
@@ -6,7 +13,8 @@ include "include/eventID";
 include "include/client";
 include ":mounts:mounts";
 
-program dblClickSelf(who)
+
+program core_dblClickSelf(who)
 	var mount := GetEquipmentByLayer(who, LAYER_MOUNT);
 	if ( mount && !who.warmode )
 		return MP_Unmount(who);

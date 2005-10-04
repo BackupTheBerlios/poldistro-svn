@@ -1,30 +1,32 @@
+/* $Id$
+ *
+ * TODO
+ * Wait for Austin to implement the corpse method/member.
+ *
+ */
 use os;
 use uo;
 use boat;
 
+include "include/messages";
+include "include/localization";
 
-program textcmd_resme( who )
-  if(who.dead)
-    Resurrect( who );
-    foreach item in ListItemsNearLocation(who.x, who.y, who.z, 0, who.realm)
-      if(GetObjProperty(item,"serial") == who.serial)
-//        foreach thing in ListEquippedItems(who)
-//          if(thing.objtype == 0x1f03)
-//            MoveItemToContainer(thing, who.backpack);
-//          endif
-//        endforeach
-//        foreach thing in ListEquippedItems(item)
-//          equipitem(who, thing);
-//        endforeach
-        foreach thing in EnumerateItemsInContainer(item)
-          if(thing.container == item)
-            MoveItemToContainer(thing, who.backpack);
-          endif
-        endforeach
-      endif
-      break;
-    endforeach
-  else
-    SendSysMessage( who, "But I'm not dead yet!" );
-  endif
+
+program command_res(who, params)
+	if (!params)
+		//
+	elseif (params == "me")
+		//
+		if (!who.dead)
+			SendMessage(who, MSG_CANCELLED, array{}, MSG_COMMAND);
+		else
+			SendSysMessage(who, CStr(body));
+			Resurrect(who);
+			DestroyItem(body);
+		endif
+	else
+		SendMessage(who, MSG_USE_HELP, array{"res"}, MSG_COMMAND);
+	endif
+
+	return;
 endprogram

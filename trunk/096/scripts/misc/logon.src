@@ -1,3 +1,10 @@
+/* $Id$
+ *
+ * Purpose
+ * This script allows code to run when the player logs in. Can be used for welcome messages, etc.
+ * This script runs critical, so be careful how much code you run!
+ *
+ */
 use uo;
 use os;
 use util;
@@ -11,7 +18,7 @@ include ":combat:equip";
 include "include/noto";
 
 
-program onlogon(who)
+program core_logon(who)
 	TrackIP(who);
 	RestoreMods(who);
 	SetObjProperty(who,"logontime",ReadGameClock());
@@ -323,4 +330,3 @@ function RestoreMods(who)
 
 	return;
 endfunction
-

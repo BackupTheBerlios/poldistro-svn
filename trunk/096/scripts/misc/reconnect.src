@@ -1,9 +1,17 @@
+/* $Id$
+ *
+ * Purpose
+ * This script allows code to run when the player logs in after having recently logged off.
+ *
+ */
 use uo;
 use os;
 
+include "include/client";
 
-program reconnect(who)
-	var mount := GetEquipmentByLayer(who, 25 );
+
+program core_reconnect(who)
+	var mount := GetEquipmentByLayer(who, LAYER_MOUNT);
 	if (mount)
 		var animal := SystemFindObjectBySerial(CInt(GetObjProperty(mount,"serial")));
 		EraseObjProperty(animal,"onhold");
@@ -20,4 +28,5 @@ program reconnect(who)
 		endif
 	endforeach
 
+	return;
 endprogram
