@@ -1,32 +1,18 @@
-/*===============================================================
-* Current Version
-* GUMPS_EX.INC - v0.3
-* Updated 9/17/2005 2:38AM
-* include ":gumps:includes/gumps_ex";
-*
-* -- Revision v0.3 --
-* Austin
-* Added:
-*	GFOptimizeGump()
-*
-* -- Revision v0.2 --
-* Austin
-* Added:
-*	GFWordWrap()
-* Changed
-*	Spaces are 9 pixels instead of 5 in GFTextWidth()
-*
-* -- Revision v0.1 --
-* Austin
-*  Added:
-*	GFTextCoords()
-*	GFTextMid()
-*	GFTextRight()
-*	GFExtractData()	- Copied from old-gumps.inc
-*	GFTextWidth()	- From old-gumps.inc
-*
-===============================================================*/
-
+/* $Id$
+ *
+ * Purpose
+ * TODO
+ *
+ * Function List
+ * GFExtractData()
+ * GFOptimizeGump()
+ * GFTextCoords()
+ * GFTextMid()
+ * GFTextRight()
+ * GFTextWidth()
+ * GFWordWrap()
+ *
+ */
 use uo;
 use os;
 use basic;
@@ -34,28 +20,10 @@ use cfgfile;
 
 include ":gumps:include/gumps";
 
-/////////////////////////////////////////////////////////////////
-// * Function List *
-//
-// GFExtractData()
-// GFOptimizeGump()
-// GFTextCoords()
-// GFTextMid()
-// GFTextRight()
-// GFTextWidth()
-// GFWordWrap()
-//
-/////////////////////////////////////////////////////////////////
-// * Internal/Private Function List *
-//
-/////////////////////////////////////////////////////////////////
-// * Global Variables *
-//
 // Constants for GFTextCoords()
 const ALIGN_CENTER	:= 0x1;
 const ALIGN_RIGHT	:= 0x2;
-//
-/////////////////////////////////////////////////////////////////
+
 
 /*
  * GFCfgConst(elem_name, prop_name)
@@ -94,6 +62,7 @@ function GFCfgConst(elem_name, prop_name)
 	return value;
 endfunction
 
+
 /*
  * GFExtractData(input, data_id)
  *
@@ -116,6 +85,7 @@ function GFExtractData(input, data_id)
 
 	return ret_val;
 endfunction
+
 
 /* 
  * GFOptimizeGump(gump)
@@ -166,6 +136,7 @@ function GFOptimizeGump(byref gump)
 	return 1;
 endfunction
 
+
 /*
  * GFTextCoords(type, gump_text, x_pos, width)
  *
@@ -193,6 +164,7 @@ function GFTextCoords(type:=ALIGN_CENTER, gump_text, x_pos, width:=0)
 	endif
 endfunction
 
+
 /*
  * GFTextMid(gump, x, y, width, color, text)
  *
@@ -216,6 +188,7 @@ function GFTextMid(byref gump, x, y, width, color, text)
 	return GFTextLine(gump, x_pos, y, color, text);
 endfunction
 
+
 /*
  * GFTextRight(gump, x, y, color, text)
  *
@@ -237,6 +210,7 @@ function GFTextRight(byref gump, x, y, color, text)
 	var x_pos := GFTextCoords(ALIGN_RIGHT, text, x);
 	return GFTextLine(gump, x_pos, y, color, text);
 endfunction
+
 
 /*
  * GFGetTextWidth(char)
@@ -293,6 +267,7 @@ function GFTextWidth(gump_text)
 
 	return (points);
 endfunction
+
 
 /*
  * GFWordWrap(text, pixels)
