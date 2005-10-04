@@ -4,19 +4,16 @@ use npc;
 
 include "include/eventID";
 include "include/client";
-
+include ":mounts:mounts";
 
 program dblClickSelf(who)
 	var mount := GetEquipmentByLayer(who, LAYER_MOUNT);
-	if (!mount)
-		OpenPaperdoll(who, who);
-		return;
+	if ( mount && !who.warmode )
+		return MP_Unmount(who);
 	endif
-	if (who.warmode)
-		OpenPaperdoll(who, who);
-		return;
-	endif
-
+	
+	return OpenPaperdoll(who, who);
+	/*
 	var serial := GetObjProperty(mount, "serial");
 	var animal := SystemFindObjectBySerial(CInt(serial));
 	EraseObjProperty(animal,"serial");
@@ -32,6 +29,6 @@ program dblClickSelf(who)
 	MoveCharacterToLocation(animal, who.x, who.y, who.z, MOVECHAR_FORCELOCATION);
 	RestartScript(animal);
 	DestroyItem(mount);
-
-	return;
+	*/
+	return 1;
 endprogram
