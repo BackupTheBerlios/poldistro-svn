@@ -110,7 +110,7 @@ endfunction
  * Finds what npc template must be used to match a mount tile's graphic.
  *
  * Parameters
- * mount:	An item (mount piece) to find a matching npc template for.
+ * mount:	An item (mount piece) to find an npc template from.
  *		Can also be the graphic number of a mount piece.
  *
  * Return value
@@ -119,15 +119,20 @@ endfunction
  *
  */
 function MP_GetMountTemplate(mount)
-	var mount_graphic;
+	var mount_graphic, template;
 	if ( mount.IsA(POLCLASS_ITEM) )
-		mount_graphic := Hex(mount.graphic);
+		template := GetObjProperty(mount, "NPCTemplate");
+		if ( template )
+			return template;
+		else
+			mount_graphic := Hex(mount.graphic);
+		endif
 	else
 		mount_graphic := Hex(CInt(mount));
 	endif
 	
 	var elem := MP_GetMountsCfgElem("MountToMobile");
-	var template := GetConfigString(elem, mount_graphic);
+	template := GetConfigString(elem, mount_graphic);
 	
 	if ( template )
 		return template;
