@@ -1,0 +1,9 @@
+// $Id$
+
+
+program skill_Discordance(who)
+
+	return 0;
+
+endprogram
+

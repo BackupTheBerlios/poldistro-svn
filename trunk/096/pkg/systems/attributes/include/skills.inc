@@ -233,8 +233,6 @@ endfunction
  */
 function AP_CheckSkillsTotal(mobile)
 
-	var cfg_elem := AP_GetSettingsCfgElem("Skills");
-
 	var total := 0.0;
 	foreach attribute_name in ( AP_ListAttributesByType("Skill") )
 		total := total + AP_GetTrueSkill(mobile, attribute_name);
