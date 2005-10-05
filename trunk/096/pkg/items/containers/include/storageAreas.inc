@@ -41,39 +41,6 @@ var container_type	:= "BankBox";
 // Toggles the bank related debug messages on and off.
 var STORAGE_DEBUG	:= 1;
 
-
-/*
- * GetStorageContainerForMobile(mobile, storage_area_name, create)
- *
- * Purpose
- *
- * Parameters
- * mobile:		Owner of the container that will be retrieved (uses .serial of it)
- * storage_area_name:	Name of the storage area to retrieve the container from.
- * create:		Controls if the container will be created if it does not already exist.
- *
- * Return Value
- * A container object if CP_CREATE
- * 0 if CP_NOCREATE
- *
- */
-function CP_GetStorageContainerForMobile(mobile, storage_area_name:=0, create:=CP_NOCREATE)
-	if ((!storage_area_name) || (storage_area_name == error))
-		storage_area_name := CP_DEFAULT_AREA;
-	endif
-	
-	var container_id := CP_GetMobileContainerID(mobile);
-	var root_container := CP_GetStorageAreaContainer(container_id, storage_area_name);
-	if ( (!root_container) && (create) )
-		root_container := CP_CreateStorageAreaContainer(container_id, storage_area_name);
-
-		return root_container;
-	else
-		return 0;
-	endif
-endfunction
-
-
 /*
  * CP_GetMobileContainerID(mobile)
  * 
@@ -91,9 +58,33 @@ function CP_GetMobileContainerID(mobile)
 	return "Owner="+Hex(mobile.serial);
 endfunction
 
+/*
+ * GetStorageContainerForMobile(mobile, storage_area_name, create)
+ *
+ * Purpose
+ *
+ * Parameters
+ * mobile:		Owner of the container that will be retrieved (uses .serial of it)
+ * storage_area_name:	Name of the storage area to retrieve the container from.
+ * create:		Controls if the container will be created if it does not already exist.
+ *
+ * Return Value
+ * A container object 
+ *
+ */
+function CP_GetStorageContainerForMobile(mobile, storage_area_name:=0, create:=CP_NOCREATE)
+	if ((!storage_area_name) || (storage_area_name == error))
+		storage_area_name := CP_DEFAULT_AREA;
+	endif
+	
+	var container_id := CP_GetMobileContainerID(mobile);
+	var root_container := CP_GetStorageAreaContainer(container_id, storage_area_name, create);
+		
+	return root_container;
+endfunction
 
 /*
- * CP_GetStorageAreaContainer(container_id, storage_area_name)
+ * CP_GetStorageAreaContainer(container_id, storage_area_name, create)
  *
  * Purpose
  * Retrieves a root container that matches the id sent.
@@ -101,12 +92,13 @@ endfunction
  * Parameters
  * container_id:	Name of the root container to retrieve.
  * storage_area_name:	Name of the storage area to retrieve the container from.
+ * create:		Controls if the container will be created if it does not already exist.
  *
  * Return value
  * A container object
  *
  */
-function CP_GetStorageAreaContainer(container_id, storage_area_name:=0)
+function CP_GetStorageAreaContainer(container_id, storage_area_name:=0, create:=CP_NOCREATE)
 	if ( (!storage_area_name) || (storage_area_name == error) )
 		storage_area_name := CP_DEFAULT_AREA;
 	endif
@@ -114,6 +106,9 @@ function CP_GetStorageAreaContainer(container_id, storage_area_name:=0)
 	
 	var container_name := CP_DEFAULT_PREFIX + container_id;
 	var root_container := FindRootItemInStorageArea(storage_area, container_name);
+	if ( (!root_container) && (create) )
+		root_container := CP_CreateStorageAreaContainer(container_id, storage_area_name);
+	endif
 		
 	return root_container;
 endfunction

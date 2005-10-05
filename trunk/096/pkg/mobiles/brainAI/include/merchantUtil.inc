@@ -12,6 +12,7 @@
 
 use uo;
 
+include ":containers:storageAreas";
 
 /*
  * NPC_MerchantForSaleContainer(npc)
@@ -25,17 +26,28 @@ use uo;
  * Returns a container
  *
  */
-function NPC_MerchantForSaleContainer(npc)
-	var forsale_pack := CInt(GetObjProperty(npc, "ForSaleContainer"));
-	forsale_pack := SystemFindObjectBySerial(forsale_pack);
-	
-	if ( !forsale_pack )
-		forsale_pack := CreateItemInBackPack(npc, "backpack", 1);
-		SetName(forsale_pack, "Items Being Sold");
-		SetObjProperty(npc, "ForSaleContainer", forsale_pack.serial);
-	endif
-	
-	return forsale_pack;
+function Merchant_DeleteContainers(npc)
+	var container_id := CP_GetMobileContainerID(npc);
+	CP_RemoveStorageAreaContainer(container_id, "Merchat - ForSale");
+	CP_RemoveStorageAreaContainer(container_id, "Merchat - Buying");
+	CP_RemoveStorageAreaContainer(container_id, "Merchat - ShoppingCart");
+	CP_RemoveStorageAreaContainer(container_id, "Merchat - Holding");
+endfunction
+
+/*
+ * NPC_MerchantForSaleContainer(npc)
+ *
+ * Purpose
+ *
+ * Parameters
+ * npc:	
+ *
+ * Return value
+ * Returns a container
+ *
+ */
+function Merchant_GetForSaleContainer(npc)
+	return CP_GetStorageContainerForMobile(npc, "Merchat - ForSale", CP_CREATE);
 endfunction
 
 /*
@@ -50,17 +62,8 @@ endfunction
  * Returns a container
  *
  */
-function NPC_MerchantBuyingContainer(npc)
-	var buying_pack := CInt(GetObjProperty(npc, "BuyingContainer"));
-	buying_pack := SystemFindObjectBySerial(buying_pack);
-	
-	if ( !buying_pack )
-		buying_pack := CreateItemInBackPack(npc, "backpack", 1);
-		SetName(buying_pack, "Items Ill Buy");
-		SetObjProperty(npc, "BuyingContainer", buying_pack.serial);
-	endif
-	
-	return buying_pack;
+function Merchant_GetBuyingContainer(npc)
+	return CP_GetStorageContainerForMobile(npc, "Merchat - Buying", CP_CREATE);
 endfunction
 
 /*
@@ -75,15 +78,22 @@ endfunction
  * Returns a container
  *
  */
-function NPC_MerchantShoppingCartContainer(npc)
-	var shopcart_pack := CInt(GetObjProperty(npc, "ShopCartContainer"));
-	shopcart_pack := SystemFindObjectBySerial(shopcart_pack);
-	
-	if ( !shopcart_pack )
-		shopcart_pack := CreateItemInBackPack(npc, "backpack", 1);
-		SetName(shopcart_pack, "Shopping Cart");
-		SetObjProperty(npc, "ShopCartContainer", shopcart_pack.serial);
-	endif
-	
-	return shopcart_pack;
+function Merchant_GetShoppingCartContainer(npc)
+	return CP_GetStorageContainerForMobile(npc, "Merchat - ShoppingCart", CP_CREATE);
+endfunction
+
+/*
+ * Merchant_ShoppingCartContainer(npc)
+ *
+ * Purpose
+ *
+ * Parameters
+ * npc:	
+ *
+ * Return value
+ * Returns a container
+ *
+ */
+function Merchant_GetHoldingContainer(npc)
+	return CP_GetStorageContainerForMobile(npc, "Merchat - Holding", CP_CREATE);
 endfunction
