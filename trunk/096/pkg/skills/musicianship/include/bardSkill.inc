@@ -19,7 +19,7 @@
  * Returns an integer. 1 on success, 0 on failure.
  *
  */
-function bardSkillCheck( character, instrument, bard_skill, bard_difficulty, award_diff:=0, advance_flags:=ADV_ALL)
+function bardSkillCheck( character, instrument, bard_skill, bard_difficulty, award_diff:=0, advance_flags:=3)
 
 	// Gets a dictionary for success/fail.
 	var soundCheck := bardSoundCheck(character, instrument, bard_skill);
