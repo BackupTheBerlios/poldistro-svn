@@ -1,8 +1,11 @@
 /* $Id$
  *
  * Purpose
+ * Assists in the use of storage areas.
  *
- * Function List
+ * Author: Austin
+ *
+ * [ Function List ]
  * CP_GetStorageContainerForMobile(container_id, storage_area_name:=0)
  * CP_GetStorageAreaContainer(mobile, storage_area_name:=0, create:=CP_NOCREATE)
  * CP_CreateStorageAreaContainer(container_id, storage_area_name:=0)
@@ -10,7 +13,7 @@
  * CP_RemoveStorageAreaContainer(container_id, storage_area_name)
  * CP_StorageDebugMsg(text)
  *
- * Internal Function List
+ * [ Internal Function List ]
  *
  */
 use uo;
@@ -55,7 +58,11 @@ var STORAGE_DEBUG	:= 1;
  *
  */
 function CP_GetMobileContainerID(mobile)
-	return "Owner="+Hex(mobile.serial);
+	if ( mobile.IsA(POLCLASS_CORPSE) )
+		return "Owner="+Hex(mobile.ownerserial);
+	else
+		return "Owner="+Hex(mobile.serial);
+	endif
 endfunction
 
 /*

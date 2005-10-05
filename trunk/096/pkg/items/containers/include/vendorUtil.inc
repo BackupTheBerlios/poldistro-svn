@@ -2,8 +2,8 @@
 
 /*===============================================================
 * Current Version
-* MERCHANTUTIL.INC - v1.0
-* Updated 10/2/2005 8:39PM
+* VENDORUTIL.INC - v1.0
+* Updated 10/5/2005 6:15AM
 *
 * -- Revision v1.0 --
 * Austin:
