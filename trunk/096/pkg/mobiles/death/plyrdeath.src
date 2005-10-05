@@ -10,18 +10,32 @@ use uo;
 use os;
 use util;
 
-include ":attributes:attributes";
-include "include/statMod";
 include "include/noto";
 include "include/reportMurder";
+include ":attributes:attributes";
+include ":death:death";
+include ":mounts:mounts";
 
 program core_chrDeath(params)
 	var corpse := params[1];
 	var ghost := params[2];
 	
 	EraseObjProperty(ghost, "IsMeditating");
-	//  ghost.SetPoisoned(0);
-  	var killer := GetObjProperty(ghost, "LastHit");
+	
+	DP_PlayDeathSound(ghost);
+	MP_DeathUnmount(corpse);
+	
+	CheckForAutoRes(ghost, corpse);
+	
+	if ( (ghost.reportables).Size() > 0)
+		SendReportGump(ghost);
+	endif
+	
+	return 1;
+endprogram
+
+function NotorietyChecks(ghost)
+	var killer := GetObjProperty(ghost, "LastHit");
   	if (killer != error)
 		AdjustNoto((SystemFindObjectBySerial(killer[2], SYSFIND_SEARCH_OFFLINE_MOBILES)), ghost);
 	endif
@@ -29,32 +43,21 @@ program core_chrDeath(params)
 	fame := (fame - CInt(fame / 20));
 	SetObjProperty(ghost, "Fame", fame);
 	SetObjProperty(corpse,"serial", ghost.serial);
-	dismount(corpse);
-	CheckForAutoRes(ghost, corpse);
-	var corpsenamearray := SplitWords(corpse.name);
-	var corpsenamearraylen := len(corpsenamearray);
-	var x, corpsename := "";
-	for (x := 4; x <= corpsenamearraylen; x := x + 1)
-		corpsename := corpsename + " " + corpsenamearray[x];
-	endfor
-	if (len(ghost.reportables) > 0)
-		SendReportGump(ghost);
-	endif
-endprogram
-
+endfunction
 
 function CheckForAutoRes(who, corpse)
 	if(CInt(GetObjProperty(corpse, "AutoRes")) == 1)
 		Resurrect(who);
 		AP_RefreshVitals(who);	
-		var mypack := who.backpack;
-		if (!mypack)
+		
+		if ( !who.backpack )
 			return;
 		endif
-		foreach thing in EnumerateItemsInContainer(corpse)
-			if (thing.container == corpse)
-				if (!EquipItem(who, thing))
-					MoveItemToContainer(thing, mypack);
+		
+		foreach item in (EnumerateItemsInContainer(corpse))
+			if ( item.container == corpse )
+				if ( !EquipItem(who, item) )
+					MoveItemToContainer(item, who.backpack);
 				endif
 			endif
 		endforeach
@@ -63,23 +66,3 @@ function CheckForAutoRes(who, corpse)
 	return;
 endfunction
 
-function dismount(corpse)
-	var mount := GetEquipmentByLayer( corpse, 25 );
-	foreach item in EnumerateItemsInContainer(corpse)
-		if (item.objtype == 0xf021)
-			mount := item;
-			break;
-		endif
-	endforeach
-	if (!mount)
-		return;
-	endif
-	var animal := SystemFindObjectBySerial(CInt(GetObjProperty(mount,"serial")));
-	animal.facing := corpse.facing;
-	EraseObjProperty(animal, "mounted");
-	EraseObjProperty(animal, "mounted_on");
-	MoveCharacterToLocation( animal, corpse.x, corpse.y, corpse.z, MOVECHAR_FORCELOCATION);
-	DestroyItem(mount);
-
-	return;
-endfunction
