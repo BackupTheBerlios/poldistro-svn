@@ -11,17 +11,85 @@ use os;
 use util;
 use cfgfile;
 
-include "include/client";
-include "include/attributes";
-include ":npcutils:NPCBackpacks";
 include "include/noto";
-
-var cfg := ReadConfigFile("npcdesc");
-
+include ":containers:vendorUtil";
+include ":death:death";
+include ":mounts:mounts";
 
 program core_npcDeath(params)
 	var corpse := params[1];
 	
+	var template := GetObjProperty(corpse, "npctemplate"); // Set by the core.
+	var npc_cfg := NPC_GetNPCConfig(template);
+	var death_script := npc_cfg.DeathScript;
+	
+	if ( death_script )
+		params.Append(npc_cfg);
+		var result := Start_Script(death_script, params);
+		if ( result.errortext )
+			PrintTextAbove(corpse, "Error::Death Script -"+result.errortext);
+			SysLog("Error::Death Script Tmplt:["+template+"] Desc:["+corpse.desc+"] Ser:["+Hex(corpse.serial)+"] - "+result.errortext);
+		endif
+	endif
+		
+	DP_PlayDeathSound(corpse);
+	CPV_DeleteContainers(corpse);
+	
+	if ( GuardKillCheck(corpse) )
+		return 1;
+	elseif ( NoCorpseCheck(corpse, npc_cfg) )
+		return 1;
+	else
+		MP_DeathUnmount(corpse);
+	endif
+endprogram
+
+function GuardKillCheck(corpse)
+	if ( GetObjProperty(corpse, "GuardKill") );
+		// Nothing
+	elseif ( GetObjProperty(corpse, "guardkill") ); 
+		// Nothing - Old CProp
+	else
+		return 0;
+	endif
+	
+	// No corpse. Don't drop backpack contents.
+	//PrintTextAbove(corpse, "*guardkilling*");
+	foreach item in (EnumerateItemsInContainer(corpse))
+		if ( item.container == corpse )
+			DestroyItem(item);
+		endif
+		sleepms(2);
+	endforeach
+	DestroyItem(corpse);
+	
+	return 1;
+endfunction
+
+function NoCorpseCheck(corpse, npc_cfg)
+	if ( npc_cfg.NoCorpse );
+		// Nothing
+	elseif ( GetObjProperty(corpse, "NoCorpse") );
+		// Nothing
+	elseif ( GetObjProperty(corpse, "summoned") );
+		// Nothing;
+	else
+		return 0;
+	endif
+	
+	// No corpse. Place backpack contents where the corpse is.
+	foreach item in (EnumerateItemsInContainer(corpse))
+		if ( item.container == corpse )
+			MoveItemToLocation(item, corpse.x, corpse.y, corpse.z, MOVEITEM_FORCELOCATION);
+		endif
+		sleepms(2);
+	endforeach
+	DestroyItem(corpse);
+	
+	return 1;
+endfunction
+
+/*	
 	// if he had things to restock, destroy them, he's dead now.
 	if (GetObjProperty(corpse, "restockserial"))
 		var stocklist := SystemFindObjectBySerial(CInt(GetObjProperty(corpse, "restockserial")));
@@ -163,75 +231,6 @@ program core_npcDeath(params)
 	return;
 endprogram
 
-
-function dismount(corpse)
-	var mount := 0;
-	GetEquipmentByLayer( corpse, 25 );
-	foreach item in EnumerateItemsInContainer(corpse)
-		if (item.objtype == 0xf021)
-			mount := item;
-			break;
-		endif
-	endforeach
-	if (!mount)
-		return;
-	endif
-	var critter := "";
-	case (mount.graphic)
-	0x3ea2: critter := "horse";
-	0x3e9f: critter := "horse2";
-	0x3ea0: critter := "horse3";
-	0x3ea1: critter := "horse4";
-	0x3ea6:	critter := "llama";
-	0x3ea3:	critter := "desertostard";
-	0x3ea4:	critter := "frenziedostard";
-	0x3ea5:	critter := "forestostard";
-	endcase
-	if (mount.color == 1109)
-		critter := "nightmare";
-	endif
-	if (!GetObjProperty(corpse,"doppelganger"))
-		var animal := CreateNpcFromTemplate(critter, corpse.x, corpse.y, corpse.z,0, corpse.realm);
-		animal.color := mount.color;
-	endif
-	DestroyItem(mount);
-
-	return;
-endfunction
-
-
-function dismountme(who, corpse)
-	var mount := GetEquipmentByLayer(who, 25 );
-	var clone := GetObjProperty(corpse,"npctemplate");
-	var newcorpse := CreateNpcFromTemplate(clone, corpse.x, corpse.y, corpse.z, 0, corpse.realm);
-	var serial := newcorpse.serial;
-	SetObjProperty(newcorpse,"myserial", serial);
-	newcorpse.color := corpse.color;
-	newcorpse.facing := who.facing;
-	MoveCharacterToLocation(newcorpse, who.x, who.y, who.z, MOVECHAR_FORCELOCATION);
-	var x := newcorpse.x;
-	var y := newcorpse.y;
-	var z := newcorpse.z;
-	newcorpse.facing := who.facing;
-	ApplyRawDamage(newcorpse, GetHp(newcorpse)+3);
-	var contain;
-	foreach cpse in ListItemsAtLocation(x, y, z, who.realm );
-		if (CInt(GetObjProperty(cpse,"myserial")) == serial)
-			contain := cpse;
-			break;
-		endif
-	endforeach
-	contain.name := corpse.name;
-	foreach item in ListRootItemsInContainer(corpse)
-		MoveItemToContainer(item, contain);
-	endforeach
-	DestroyItem(corpse);
-	DestroyItem(mount);
-
-	return;
-endfunction
-
-
 function ListRootItemsInContainer(container)
 	var ret := { };
 	foreach item in EnumerateItemsInContainer(container)
@@ -242,3 +241,4 @@ function ListRootItemsInContainer(container)
 
 	return ret;
 endfunction
+*/
