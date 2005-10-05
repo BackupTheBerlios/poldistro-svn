@@ -37,21 +37,23 @@ endprogram
 function NotorietyChecks(ghost)
 	var killer := GetObjProperty(ghost, "LastHit");
   	if (killer != error)
-		AdjustNoto((SystemFindObjectBySerial(killer[2], SYSFIND_SEARCH_OFFLINE_MOBILES)), ghost);
+		AdjustNoto((SystemFindObjectBySerial(killer[2])), ghost);
 	endif
 	var fame := CInt(GetObjProperty(ghost, "Fame"));
 	fame := (fame - CInt(fame / 20));
 	SetObjProperty(ghost, "Fame", fame);
 	SetObjProperty(corpse,"serial", ghost.serial);
+	
+	return 1;
 endfunction
 
 function CheckForAutoRes(who, corpse)
-	if(CInt(GetObjProperty(corpse, "AutoRes")) == 1)
+	if( CInt(GetObjProperty(corpse, "AutoRes")) >= 1 )
 		Resurrect(who);
 		AP_RefreshVitals(who);	
 		
 		if ( !who.backpack )
-			return;
+			return 1;
 		endif
 		
 		foreach item in (EnumerateItemsInContainer(corpse))
@@ -61,8 +63,9 @@ function CheckForAutoRes(who, corpse)
 				endif
 			endif
 		endforeach
+		
+		return 1;
 	endif
-
-	return;
+	return 0;
 endfunction
 
