@@ -3,7 +3,7 @@ use os;
 
 //include "include/bounty";
 include ":gumps:include/gumps";
-include ":datafile:include/datafile";
+include ":datafile:datafile";
 
 const LONG_COUNT_DECAY_TIME := 144000; //40 hours
 const SHORT_COUNT_DECAY_TIME := 28800; //8 hours
