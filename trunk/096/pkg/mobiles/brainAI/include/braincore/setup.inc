@@ -103,7 +103,7 @@ endfunction
  *
  */
 function StartupScripts()
-	if ( GetObjProperty(npc, "npc_info") )
+	if ( GetObjProperty(npc, "Initialized") )
 		//This can only happen if restart() was done on the npc or when POL starts up.
 		
 		if ( g_scripts.Exists("Restart") )
@@ -114,8 +114,7 @@ function StartupScripts()
 			endif
 		endif
 	else
-		var npc_info := struct{"npctemplate":=npc.npctemplate, "serial":=npc.serial};
-		SetObjProperty(npc, "npc_info", npc_info);
+		SetObjProperty(npc, "Initiaized", polcore().systime);
 		
 		if ( g_scripts.Exists("Init") )
 			var init_script := Run_Script_To_Completion(g_scripts["Init"].script, {npc, g_settings, g_scripts});
