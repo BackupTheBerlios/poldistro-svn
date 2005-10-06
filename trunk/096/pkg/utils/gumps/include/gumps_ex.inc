@@ -18,7 +18,7 @@ use os;
 use basic;
 use cfgfile;
 
-include ":gumps:include/gumps";
+include ":gumps:gumps";
 
 // Constants for GFTextCoords()
 const ALIGN_CENTER	:= 0x1;
