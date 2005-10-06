@@ -12,7 +12,7 @@ use util;
 use cfgfile;
 
 include "include/noto";
-include ":containers:vendorUtil";
+include ":containers:merchantUtil";
 include ":death:death";
 include ":mounts:mounts";
 
@@ -33,7 +33,7 @@ program core_npcDeath(params)
 	endif
 		
 	DP_PlayDeathSound(corpse);
-	CPV_DeleteContainers(corpse);
+	CPM_DeleteContainers(corpse);
 	
 	if ( GuardKillCheck(corpse) )
 		return 1;
