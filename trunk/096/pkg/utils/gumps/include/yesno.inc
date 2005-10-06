@@ -11,8 +11,8 @@
 use uo;
 use os;
 
-include ":gumps:include/gumps";
-include ":gumps:include/gumps_ex";
+include ":gumps:gumps";
+include ":gumps:gumps_ex";
 
 /* 
  * YesNo(mobile, prompt, yes_text, no_text)

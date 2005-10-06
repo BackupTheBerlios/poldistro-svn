@@ -11,8 +11,8 @@
 use uo;
 use os;
 
-include ":gumps:include/gumps";
-include ":gumps:include/gumps_ex";
+include ":gumps:gumps";
+include ":gumps:gumps_ex";
 
 /* 
  * RequestGump(mobile, question, option, pre_val, cancel_btn)
