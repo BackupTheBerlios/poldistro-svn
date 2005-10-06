@@ -1,0 +1,20 @@
+// $Id$
+
+use uo;
+use os;
+
+include ":brainAI:npcNerves";
+include ":brainAI:npcCommands";
+include ":attributes:attributes";
+
+program BrainNerve(params)
+	var npc		:= params[1];
+	//var nerve_name	:= params[2];
+	//var opponent	:= params[3];
+	//var settings	:= params[4];
+	//var scripts	:= params[5];
+	params := 0; // Not needed anymore.
+	
+	AI_Speak(npc, "Killed ya, neener!");
+	
+endprogram
