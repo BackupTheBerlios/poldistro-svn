@@ -12,7 +12,7 @@ program BrainNerve(params)
 	var nerve_name	:= params[2];
 	var event	:= params[3];
 	var settings	:= params[4];
-	//var scripts	:= params[5];
+	var scripts	:= params[5];
 	params := 0; // Not needed anymore.
 
 	//Store it here so it does not have to do the math over and over.
@@ -29,6 +29,11 @@ program BrainNerve(params)
 			flee_mode := 1;
 			AI_Move(npc, opponent, NEMOVE_TOWARD, NEMOVE_RUN, WAKEUP, 100);
 		elseif ( DoneFighting(npc, opponent, dist) )
+			AI_SetOpponent(npc, 0);
+			if ( scripts.Exists("WonFight") )
+				params := array{opponent, settings, scripts};
+				AI_StartNerve(npc, "WonFight", scripts["WonFight"], params);
+			endif
 			AI_EndNerve(npc, nerve_name);
 		elseif( dist > 1 )
 			AI_Move(npc, opponent, NEMOVE_TOWARD, NEMOVE_RUN, WAKEUP, dist+1);
