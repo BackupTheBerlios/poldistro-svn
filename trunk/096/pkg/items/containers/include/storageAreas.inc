@@ -27,14 +27,14 @@ const CP_CREATE		:= 0x1;
 const CP_DEFAULT_AREA	:= "World Bank";
 const CP_DEFAULT_PREFIX	:= "[Root Container] ";
 
-/* 
+/*
  * Set the 'box_type' variable to the object name of the container type
- * you want to be used for bank box. 
+ * you want to be used for bank box.
  * Example: "pouch" "metalchest" "barrel"
  *
  * This is ONLY used when a new root container is created. It can be changed on
  * the fly inside of a script for when you want to use specific container
- * types for special storage areas. 
+ * types for special storage areas.
  *
  * Ideally, you should make an object type with the name 'BankBox' to better
  * control the number of items that can be put in the storage container.
@@ -46,10 +46,10 @@ var STORAGE_DEBUG	:= 1;
 
 /*
  * CP_GetMobileContainerID(mobile)
- * 
+ *
  * Purpose
  * Sets up the container_id string for a mobile's root container.
- * 
+ *
  * Parameters
  * mobile:	Mobile whos box will be retrieved.
  *
@@ -76,17 +76,17 @@ endfunction
  * create:		Controls if the container will be created if it does not already exist.
  *
  * Return Value
- * A container object 
+ * A container object
  *
  */
 function CP_GetStorageContainerForMobile(mobile, storage_area_name:=0, create:=CP_NOCREATE)
 	if ((!storage_area_name) || (storage_area_name == error))
 		storage_area_name := CP_DEFAULT_AREA;
 	endif
-	
+
 	var container_id := CP_GetMobileContainerID(mobile);
 	var root_container := CP_GetStorageAreaContainer(container_id, storage_area_name, create);
-		
+
 	return root_container;
 endfunction
 
@@ -109,14 +109,14 @@ function CP_GetStorageAreaContainer(container_id, storage_area_name:=0, create:=
 	if ( (!storage_area_name) || (storage_area_name == error) )
 		storage_area_name := CP_DEFAULT_AREA;
 	endif
-	var storage_area := FindStorageArea(storage_area_name);
-	
 	var container_name := CP_DEFAULT_PREFIX + container_id;
+
+	var storage_area := FindStorageArea(storage_area_name);
 	var root_container := FindRootItemInStorageArea(storage_area, container_name);
 	if ( (!root_container) && (create) )
 		root_container := CP_CreateStorageAreaContainer(container_id, storage_area_name);
 	endif
-		
+
 	return root_container;
 endfunction
 
@@ -139,22 +139,21 @@ function CP_CreateStorageAreaContainer(container_id, storage_area_name:=0)
 	if ( (!storage_area_name) || (storage_area_name == error) )
 		storage_area_name := CP_DEFAULT_AREA;
 	endif
-	
+
 	var storage_area := FindStorageArea(storage_area_name);
 	if ( !storage_area )
 		// The storage area does not exist - so create it.
-		CreateStorageArea(storage_area_name);
-		storage_area := FindStorageArea(storage_area_name);
+		storage_area := CreateStorageArea(storage_area_name);
 	endif
-	
+
 	var container_name := CP_DEFAULT_PREFIX + container_id;
-	
-	var result := CreateRootItemInStorageArea(storage_area, container_name, container_type);
-	if ( result.errortext )
-		return result;
+
+	var root_container := CreateRootItemInStorageArea(storage_area, container_name, container_type);
+	if ( root_container.errortext )
+		CP_StorageDebugMsg("Error::CP_CreateStorageAreaContainer() - "+root_container.errortext);
 	endif
-		
-	return FindRootItemInStorageArea(storage_area_name, container_name);
+
+	return root_container;
 endfunction
 
 
@@ -186,7 +185,7 @@ function CP_RemoveStorageAreaContainer(container_id, storage_area_name:=0)
 	return DestroyRootItemInStorageArea(storage_area, container_name);
 endfunction
 
-/* 
+/*
  * CP_GetStorageAreaNames()
  *
  * Purpose
@@ -204,13 +203,13 @@ function CP_GetStorageAreaNames()
 		name_list.Append(_storage_area_iter);
 		sleepms(2);
 	endforeach
-	
+
 	return name_list;
 endfunction
 
-/* 
+/*
  * CP_GetRootContainersInStorageArea(storage_area_name)
- * 
+ *
  * Purpose
  *
  * Parameters
@@ -226,7 +225,7 @@ function CP_GetRootContainersInStorageArea(storage_area_name)
 		root_list.Append(container);
 		sleepms(2);
 	endforeach
-	
+
 	return root_list;
 endfunction
 
@@ -244,6 +243,6 @@ function CP_StorageDebugMsg(text)
 	if ( STORAGE_DEBUG )
 		SysLog(text);
 	endif
-	
+
 	return 1;
 endfunction
