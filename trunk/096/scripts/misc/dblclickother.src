@@ -1,0 +1,30 @@
+/* $Id: dblclickself.src 402 2005-10-04 09:33:15Z panosl $
+ *
+ * Purpose
+ * This script allows an alternate behavior other than the default 'open paperdoll' behavior.
+ *
+ */
+use uo;
+use os;
+use npc;
+
+program core_dblClickSelf(who, clicked)
+	PrintTextAbove(who, "I clicked.");
+	PrintTextAbove(clicked, "I got clicked.");
+	
+	if ( HasPDGraphic(clicked) )
+		OPenPaperDoll(who, clicked);
+	endif
+endprogram
+
+function HasPDGraphic(clicked)
+	if ( clicked.graphic == 401 ) // Male
+		return 1;
+	elseif ( clicked.graphic == 402 ) // Female
+		return 1;
+	elseif ( clicked.graphic == 403 ) // Ghost
+		return 1;
+	endif
+	
+	return 0;
+endfunction
