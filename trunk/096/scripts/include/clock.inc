@@ -2,7 +2,7 @@ use uo;
 use cfgfile;
 
 function GetTime()
-  var cfg := ReadConfigFile( "::days" );
+  var cfg := ReadConfigFile( ":daynight:config/days" );
   var elem := FindConfigElem( cfg, "WholeDay" );
   var length := GetConfigInt( elem, "Length" );
   var day_length := (60 * length);
@@ -14,14 +14,14 @@ function GetTime()
 endfunction
 
 function GetTransition()
-  var cfg := ReadConfigFile( "::days" );
+  var cfg := ReadConfigFile( ":daynight:config/days" );
   var elem := FindConfigElem( cfg, "Transition" );
   var length := GetConfigInt( elem, "Length" );
   return length;
 endfunction
 
 function GetDayLength()
-  var cfg := ReadConfigFile( "::days" );
+  var cfg := ReadConfigFile( ":daynight:config/days" );
   var elem := FindConfigElem( cfg, "WholeDay" );
   var length := GetConfigInt( elem, "Length" );
   return length;
