@@ -1,6 +1,12 @@
 -- POL096 --
+10-07 Austin
+        Added : servspecopt.cfg - 'DoubleClickWait'. (Default is 0)
+                Time in seconds that must pass before a player can double click something again.
+        Added : mobile.GetCorpse() - Returns an item reference to the most recent corpse made.
+ 
 10-03 Austin
         Added : corpse.ownerserial - Returns the serial of the npc / player that died.
+
 10-02 Shinigami
         Added : Prop script_process.attached_to and script_process.controller.
                 (script_process comes from NPC.process or uo::GetProcess(pid))
