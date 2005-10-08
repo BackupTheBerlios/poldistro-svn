@@ -5,7 +5,7 @@
 use uo;
 use util;
 
-include ":systems:nature:nature";
+include ":nature:nature";
 
 
 program lookup(who)

@@ -2,7 +2,7 @@
 use uo;
 use cfgfile;
 
-include "../../nature";
+include ":nature:nature";
 include "include/std";
 
 program setyear(who, text)

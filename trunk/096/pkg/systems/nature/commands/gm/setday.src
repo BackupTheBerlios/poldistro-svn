@@ -1,7 +1,7 @@
 
 use uo;
 
-include "../../nature";
+include ":nature:nature";
 
 program setyear(who, text)
 
