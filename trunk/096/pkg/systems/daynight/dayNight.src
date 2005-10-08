@@ -4,7 +4,7 @@ use os;
 set_critical( 1);
 
 include "include/clock";
-include "moonlight";
+include ":daynight:moonlight";
 
 const NIGHT_NUMERATOR := 1.0;
 const DENOMINATOR := 4;
