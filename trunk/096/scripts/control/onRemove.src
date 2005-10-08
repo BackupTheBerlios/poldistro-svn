@@ -1,7 +1,7 @@
 use uo;
 use os;
 
-include "include/insertSound";
+include ":containers:insertSound";
 
 program on_remove(who, backpack, item, movetype)
 
