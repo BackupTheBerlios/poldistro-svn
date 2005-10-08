@@ -1,5 +1,8 @@
 -- POL096 --
 10-07 Austin
+        Added : scripts/misc/dblclickother - Runs when a player double clicks another player or npc.
+                Will not run if the npc has the double click event enabled.
+                Program arguments are (who, mobile_clicked)
         Added : servspecopt.cfg - 'DoubleClickWait'. (Default is 0)
                 Time in seconds that must pass before a player can double click something again.
         Added : mobile.GetCorpse() - Returns an item reference to the most recent corpse made.
