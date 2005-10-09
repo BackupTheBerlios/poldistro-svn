@@ -239,7 +239,6 @@ function ProcessEvent(byref event)
 		// NOTE: Auto-sets Warmode=1!
 		// .source	: Opponent (mobile)
 		NPCEVENT_OPPONENT:
-			Say("Changing my warmode status to "+event.source);
 			SetOpponent(event.source);
 			break;
 
@@ -247,8 +246,7 @@ function ProcessEvent(byref event)
 		// NOTE: Auto-clears Opponent if turned off!
 		// .value : 0=Off. 1=On.
 		NPCEVENT_WARMODE:
-			Say("Changing my warmode status to "+event.value);
-			SetWarmode( event.value );
+			SetWarmode(event.value);
 			break;
 
 		// Force the npc to go into its sleep mode.
