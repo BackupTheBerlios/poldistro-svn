@@ -1,7 +1,7 @@
 use uo;
 use os;
 
-include "include/yesNo";
+include ":gumps:yesno";
 
 program use_guild_stone(who)
   EraseObjProperty(who, "IsMeditating");
