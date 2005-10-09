@@ -4,7 +4,7 @@ use cfgfile;
 
 include "include/client";
 include "include/attributes";
-include "include/yesNo";
+include ":gumps:yesno";
 include "include/canAccess";
 
 program cook(who, item)
