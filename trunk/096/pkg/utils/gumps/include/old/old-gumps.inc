@@ -262,7 +262,7 @@ XGFReset();
 //
 // Returns: A structure {x,y} containing the old origin
 //
-function GFSetRef( x := 0, y := 0 )
+function OldGFSetRef( x := 0, y := 0 )
 	var oldref := GFref;
 	GFref.x := CInt(x);
 	GFref.y := CInt(y);
@@ -273,7 +273,7 @@ endfunction
 //
 // Returns: A structure {x,y} containing the old origin
 //
-function GFSetRefRel( dx, dy )
+function OldGFSetRefRel( dx, dy )
 	var oldref := GFref;
 	GFref.x := GFref.x + CInt(dx);
 	GFref.y := GFref.y + CInt(dy);
@@ -282,11 +282,11 @@ endfunction
 
 // Initialises this include file's global variables
 //
-function GFInitGump( sx := 0, sy := 0 )
+function OldGFInitGump( sx := 0, sy := 0 )
 	XGFReset();
-	GFSetRef( sx, sy );
-	GFPage( 0 );
-	GFNoDispose();
+	OldGFSetRef( sx, sy );
+	OldGFPage( 0 );
+	OldGFNoDispose();
 endfunction
 
 // Gump page #x - start of definition
@@ -295,7 +295,7 @@ endfunction
 //	.lytidx = Layout-array index changed
 //	.keyid  = Page number
 //
-function GFPage( page )
+function OldGFPage( page )
 	page := CInt(page);
 	GFlayout.append( "page " + CStr(page) );
 	return XGFRetVal( GFlayout.size(), -1, page );
@@ -306,7 +306,7 @@ endfunction
 // Returns: A structure...
 //	.lytidx = Layout-array index changed
 //
-function GFNoClose()
+function OldGFNoClose()
 	GFlayout.append( "noclose" );
 	return XGFRetVal( GFlayout.size() );
 endfunction
@@ -316,7 +316,7 @@ endfunction
 // Returns: A structure...
 //	.lytidx = Layout-array index changed
 //
-function GFNoDispose()
+function OldGFNoDispose()
 	GFlayout.append( "nodispose" );
 	return XGFRetVal( GFlayout.size() );
 endfunction
@@ -326,7 +326,7 @@ endfunction
 // Returns: A structure...
 //	.lytidx = Layout-array index changed
 //
-function GFNoMove()
+function OldGFNoMove()
 	GFlayout.append( "nomove" );
 	return XGFRetVal( GFlayout.size() );
 endfunction
@@ -336,7 +336,7 @@ endfunction
 // Returns: A structure...
 //	.lytidx = Layout-array index changed
 //
-function GFUser1( l_line )
+function OldGFUser1( l_line )
 	GFlayout.append( l_line );
 	return XGFRetVal( GFlayout.size() );
 endfunction
@@ -348,7 +348,7 @@ endfunction
 //	.lytidx = Layout-array index changed
 //	.dtidx  = Data-array index changed
 //
-function GFUser2( l_line, d_pos, d_line )
+function OldGFUser2( l_line, d_pos, d_line )
 	GFlayout.append( l_line );
 	GFdata[CInt(d_pos)] := d_line;
 	return XGFRetVal( GFlayout.size(), d_pos );
@@ -360,7 +360,7 @@ endfunction
 // Returns: A structure...
 //	.lytidx = Layout-array index changed
 //
-function GFGumpPic( x, y, gumpid, hue:=0 )
+function OldGFGumpPic( x, y, gumpid, hue:=0 )
 	var line := "gumppic " + CStr(GFref.x + CInt(x)) + " " + CStr(GFref.y + CInt(y));
 	line := line + " " + CStr(CInt(gumpid));
 	line := line + " hue="+CStr(CInt(hue));
@@ -374,7 +374,7 @@ endfunction
 // Returns: A structure...
 //	.lytidx = Layout-array index changed
 //
-function GFResizePic( x, y, gumpid, w, h )
+function OldGFResizePic( x, y, gumpid, w, h )
 	var line := "resizepic " + CStr(GFref.x + CInt(x)) + " " + CStr(GFref.y + CInt(y));
 	line := line + " " + CStr(CInt(gumpid)) + " " + CStr(CInt(w)) + " " + CStr(CInt(h));
 	GFlayout.append( line );
@@ -388,7 +388,7 @@ endfunction
 //	.lytidx = Layout-array index changed
 //	.dtidx  = Data-array index changed (0-based index)
 //
-function GFHTMLArea(x, y, width, height, background, scroll_bar, text:="")
+function OldGFHTMLArea(x, y, width, height, background, scroll_bar, text:="")
 	//x y w h l# bg sb
 	//"htmlgump 52 79 276 348 1 0 1",
 	var line := "htmlgump "+CStr(GFref.x+CInt(x))+" "+CStr(GFref.y+CInt(y));
@@ -409,7 +409,7 @@ endfunction
 // Returns: A structure...
 //	.lytidx = Layout-array index changed
 //
-function GFTilePic( x, y, tileid )
+function OldGFTilePic( x, y, tileid )
 	var line := "tilepic " + CStr(GFref.x + CInt(x)) + " " + CStr(GFref.y + CInt(y));
 	line := line + " " + CStr(CInt(tileid));
 	GFlayout.append( line );
@@ -422,7 +422,7 @@ endfunction
 //	.lytidx = Layout-array index changed
 //	.dtidx  = Data-array index changed (0-based index)
 //
-function GFTextLine(x, y, colour, text)
+function OldGFTextLine(x, y, colour, text)
 	text := CStr(text);
 	var line := "text " + CStr(GFref.x + CInt(x)) + " " + CStr(GFref.y + CInt(y));
 	line := line + " " + CStr(CInt(colour)) + " " + CStr(GFdtidx);
@@ -438,7 +438,7 @@ endfunction
 //	.lytidx = Layout-array index changed
 //	.dtidx  = Data-array index changed (0-based index)
 //
-function GFTextMid(x, y, w, colour, text )
+function OldGFTextMid(x, y, w, colour, text )
 	text := CStr(text);
 	x := XGFTextMid( text, CInt(x), w );
 	var line := "text " + CStr(GFref.x + x) + " " + CStr(GFref.y + CInt(y));
@@ -455,7 +455,7 @@ endfunction
 //	.lytidx = Layout-array index changed
 //	.dtidx  = Data-array index changed (0-based index)
 //
-function GFTextRight( rx, y, colour, text )
+function OldGFTextRight( rx, y, colour, text )
 	text := CStr(text);
 	rx := XGFTextRight( text, CInt(rx) );
 	var line := "text " + CStr(GFref.x + rx) + " " + CStr(GFref.y + CInt(y));
@@ -476,7 +476,7 @@ endfunction
 //	.lytidx = Layout-array index changed
 //	.dtidx  = Data-array index changed (0-based index)
 //
-function GFTextCrop( x, y, w, h, colour, text )
+function OldGFTextCrop( x, y, w, h, colour, text )
 	text := CStr(text);
 	var line := "croppedtext " + CStr(GFref.x + CInt(x)) + " " + CStr(GFref.y + CInt(y));
 	line := line + " " + CStr(CInt(w)) + " " + CStr(CInt(h)) + " " + CStr(CInt(colour));
@@ -499,7 +499,7 @@ endfunction
 //	          (This method is DAFT! But hey, I didn't write it! :-P" )
 //              (Returns eg:  "Key=2024, Value=2024: This is the text" )
 //
-function GFTextEntry( x, y, w, h, colour, text := "" )
+function OldGFTextEntry( x, y, w, h, colour, text := "" )
 	if ( text == error )
 		text := "";
 	else
@@ -528,7 +528,7 @@ endfunction
 //	.lytidx = Layout-array index changed
 //	.keyid  = Page number that the button changes to
 //
-function GFButtonPage( x, y, release, press, page )
+function OldGFButtonPage( x, y, release, press, page )
 	// "button x y release press 0 page"
 	var line := "button " + CStr(GFref.x + CInt(x)) + " " + CStr(GFref.y + CInt(y));
 	line := line + " " + CStr(CInt(release)) + " " + CStr(CInt(press));
@@ -547,7 +547,7 @@ endfunction
 //	.keyid  = KeyID allocated to the button - returned from Gump if pressed
 //	          (butid)
 //
-function GFButtonID( x, y, release, press, close, id := 0 )
+function OldGFButtonID( x, y, release, press, close, id := 0 )
 	// "button x y release press close 0 key"
 	var line := "button " + CStr(GFref.x + CInt(x)) + " " + CStr(GFref.y + CInt(y));
 	line := line + " " + CStr(CInt(release)) + " " + CStr(CInt(press)) + " ";
@@ -574,7 +574,7 @@ endfunction
 //	.lytidx = Layout-array index changed
 //	.keyid  = KeyID allocated to the checkbox (cbxid)
 //
-function GFCheckBox( x, y, off, on, state, id := 0)
+function OldGFCheckBox( x, y, off, on, state, id := 0)
 	var line := "checkbox " + CStr(GFref.x + CInt(x)) + " " + CStr(GFref.y + CInt(y));
 	line := line + " " + CStr(CInt(off)) + " " + CStr(CInt(on)) + " ";
 	if ( state == 0 )
@@ -601,7 +601,7 @@ endfunction
 //	.lytidx = Layout-array index changed
 //	.keyid  = KeyID allocated to the radio-button (radid)
 //
-function GFRadioButton( x, y, off, on, state, id := 0)
+function OldGFRadioButton( x, y, off, on, state, id := 0)
 	if (state == error)
 		state := 0;
 	endif
@@ -629,7 +629,7 @@ endfunction
 //	.lytidx = Layout-array index changed
 //	.keyid  = The group number (integer form)
 //
-function GFSetRadioGroup( group )
+function OldGFSetRadioGroup( group )
 	group := CInt(group);
 	GFlayout.append( "group " + CStr(group) );
 	return XGFRetVal( GFlayout.size(), -1, group );
@@ -639,7 +639,7 @@ endfunction
 //
 // Returns: The text string
 //
-function GFExtractData( keyid, keyarray )
+function OldGFExtractData( keyid, keyarray )
 	var keystr := CStr(keyid)+": ";
 	var datstr := keyarray[CInt(keyid)];
 	var retval := datstr[len(keystr)+1,len(datstr)];
@@ -649,7 +649,7 @@ endfunction
 
 // Returns: Value of the next index to be used
 //
-function GFGetNextIndex( type )
+function OldGFGetNextIndex( type )
 	sleepms(2);
 	case ( type )
 		GFIDX_TEXT:
@@ -672,7 +672,7 @@ endfunction
 //
 // Returns: The old index value
 //
-function GFSetNextIndex( type, value )
+function OldGFSetNextIndex( type, value )
 	var oldidx;
 	value := CInt(value);
 	sleepms(2);
@@ -703,8 +703,8 @@ endfunction
 //
 // Returns: The new index value
 //
-function GFIncIndex( type )
-	var oldidx := GFSetNextIndex( type, GFGetNextIndex( type ) + 1 );
+function OldGFIncIndex( type )
+	var oldidx := OldGFSetNextIndex( type, OldGFGetNextIndex( type ) + 1 );
 	return (oldidx + 1); // Because it's just been incremented! :P"
 endfunction
 
@@ -712,7 +712,7 @@ endfunction
 //
 // Returns: the text
 //
-function GFGetData( index )
+function OldGFGetData( index )
 	// Internally, the gump uses 0-based indexing...
 	// Take that into account when altering the 1-based array
 	return GFdata[index+1];
@@ -724,7 +724,7 @@ endfunction
 //
 // Returns: Index changed
 //
-function GFSetData( index, text )
+function OldGFSetData( index, text )
 	// Internally, the gump uses 0-based indexing...
 	// Take that into account when altering the 1-based array
 	GFdata[index+1] := text;
@@ -735,7 +735,7 @@ endfunction
 //
 // Returns: the text
 //
-function GFGetLayout( index )
+function OldGFGetLayout( index )
 	return GFlayout[index];
 endfunction
 
@@ -745,7 +745,7 @@ endfunction
 //
 // Returns: Index changed
 //
-function GFSetLayout( index, text )
+function OldGFSetLayout( index, text )
 	GFlayout[index] := text;
 	return index;
 endfunction
@@ -762,7 +762,7 @@ endfunction
 //		.cbx	= Copy of GFcbxid
 //		.rad	= Copy of GFradid
 //
-function GFStoreGump()
+function OldGFStoreGump()
 	var idx := struct;
 	idx.+dt := GFdtidx;
 	idx.+txt := GFtxtid;
@@ -784,7 +784,7 @@ endfunction
 //	0 = Failure
 //	1 = Success
 //
-function GFRestoreGump( gumpvar )
+function OldGFRestoreGump( gumpvar )
 	if ( !(gumpvar.layout) or !(gumpvar.data) or !(gumpvar.indexes) )
 		print("GFRG(): missing one of .layout/.data/.indexes");
 		return 0;
@@ -812,7 +812,7 @@ endfunction
 //
 // NOTE: This WILL crash the client if you've created duff arrays!!
 //
-function GFSendGump( who )
+function OldGFSendGump( who )
 	return SendDialogGump( who, GFlayout, GFdata );
 endfunction
 
@@ -823,7 +823,7 @@ endfunction
 //
 // NOTE: This WILL crash the client if you've corrupted the array!
 //
-function GFSendGumpV( who, gumpvar )
+function OldGFSendGumpV( who, gumpvar )
 	if ( !(gumpvar.layout) or !(gumpvar.data) )
 		return;
 	endif
