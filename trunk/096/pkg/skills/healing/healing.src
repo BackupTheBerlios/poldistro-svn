@@ -6,8 +6,7 @@ use cfgfile;
 
 include "include/dist";
 include "include/client";
-include "include/res";
-include "include/resPenalty";
+include "include/resurrection";
 include "include/canAccess";
 include "include/attributes";
 include ":poisonwatcher:poisons";
@@ -382,7 +381,7 @@ function do_res(who, mobile)
 		SetObjProperty(mobile, "#ResMenu", 1);
 		if(ResNow(mobile) == 1)
 			Resurrect(mobile);
-			ResPenalties(mobile);
+			MurdererStatLoss(mobile);
 			EraseObjProperty(mobile, "#ResMenu");
 			return 1;
 		else
