@@ -11,22 +11,14 @@ use boat;
 include "include/messages";
 include "include/localization";
 
-
 program command_res(who, params)
-	if (!params)
-		//
-	elseif (params == "me")
-		//
-		if (!who.dead)
-			SendMessage(who, MSG_CANCELLED, array{}, MSG_COMMAND);
-		else
-			SendSysMessage(who, CStr(body));
-			Resurrect(who);
-			DestroyItem(body);
-		endif
+	if ( who.dead )
+		Resurrect(who);
 	else
-		SendMessage(who, MSG_USE_HELP, array{"res"}, MSG_COMMAND);
+		var targ := Target(who);
+		if ( targ.dead )
+			Resurrect(targ);
+		endif
 	endif
-
-	return;
 endprogram
+	
