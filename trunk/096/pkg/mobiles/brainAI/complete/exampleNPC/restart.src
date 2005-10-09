@@ -11,6 +11,9 @@ program BrainCriticalScript(params)
 	params := 0; // Not needed anymore.
 	
 	KillNerves(npc);
+	if ( npc.warmode )
+		npc.SetWarMode(0);
+	endif
 	
 	return 1;
 endprogram

@@ -29,17 +29,18 @@ program BrainNerve(params)
 			flee_mode := 1;
 			AI_Move(npc, opponent, NEMOVE_TOWARD, NEMOVE_RUN, WAKEUP, 100);
 		elseif ( DoneFighting(npc, opponent, dist) )
-			AI_SetOpponent(npc, 0);
 			if ( scripts.Exists("WonFight") )
 				params := array{opponent, settings, scripts};
-				AI_StartNerve(npc, "WonFight", scripts["WonFight"], params);
+				AI_StartNerve(npc, "WonFight", scripts["WonFight"].script, params);
+			else
+				AI_WarMode(npc, 0);
 			endif
 			AI_EndNerve(npc, nerve_name);
 		elseif( dist > 1 )
 			AI_Move(npc, opponent, NEMOVE_TOWARD, NEMOVE_RUN, WAKEUP, dist+1);
 		endif
 
-		sleepms(600);
+		sleep(5);
 		While ( Events_Waiting() )
 			CheckForEvent(npc, event);
 		endwhile
