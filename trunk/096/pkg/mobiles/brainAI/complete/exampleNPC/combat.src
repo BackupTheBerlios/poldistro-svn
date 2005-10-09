@@ -27,7 +27,8 @@ program BrainNerve(params)
 		var dist := Distance(npc, opponent);
 		if ( ShouldFlee(npc, flee_level, flee_mode) )
 			flee_mode := 1;
-			AI_Move(npc, opponent, NEMOVE_TOWARD, NEMOVE_RUN, WAKEUP, 100);
+			AI_WarMode(npc, 0);
+			AI_Move(npc, opponent, NEMOVE_AWAY, NEMOVE_RUN, WAKEUP, 100);
 		elseif ( DoneFighting(npc, opponent, dist) )
 			if ( scripts.Exists("WonFight") )
 				params := array{opponent, settings, scripts};
@@ -40,7 +41,7 @@ program BrainNerve(params)
 			AI_Move(npc, opponent, NEMOVE_TOWARD, NEMOVE_RUN, WAKEUP, dist+1);
 		endif
 
-		sleep(5);
+		sleepms(400);
 		While ( Events_Waiting() )
 			CheckForEvent(npc, event);
 		endwhile
@@ -72,7 +73,9 @@ function DoneFighting(npc, opponent, byref dist)
 endfunction
 
 function ShouldFlee(npc, byref flee_level, byref flee_mode)
-	if ( AP_GetVital(npc, "Hits") < flee_level )
+	if ( flee_mode )
+		return 1;
+	elseif ( AP_GetVital(npc, "Hits") < flee_level )
 		if ( !flee_mode )
 			AI_Speak(npc, "AAAAAIIIIIIIIEEEEEEEEEE!!!!!");
 		endif
