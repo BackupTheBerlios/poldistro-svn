@@ -5,7 +5,7 @@ use cfgfile;
 include "util/key";
 include "include/attributes";
 include "include/objtype";
-include "include/yesNo";
+include ":gumps:yesno";
 
 const UOBJECT_DOORS_START   := 0x0675;
 const UOBJECT_DOORS_END     := 0x06f4;
