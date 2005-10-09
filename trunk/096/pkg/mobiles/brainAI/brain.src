@@ -61,19 +61,19 @@ program BrainAI()
 			ev := Wait_For_Event(g_settings["SleepWait"]);
 		endif
 		
-		if ( !ev )
-			if ( !sleep_mode )
-				idle_ticks:=idle_ticks+1;
-			endif
-			if ( ShouldSleep() )
-				EnterSleepMode();
-			endif
-		else
+		if ( ev )
 			if ( ev.WakeUp != NOWAKE )
 				LeaveSleepMode();
 			endif
 			
 			ProcessEvent(ev);
+		else
+			if ( !sleep_mode )
+				idle_ticks:=idle_ticks+1;
+				if ( ShouldSleep() )
+					EnterSleepMode();
+				endif
+			endif
 		endif
 	endwhile
 endprogram
