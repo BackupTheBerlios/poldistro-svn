@@ -22,25 +22,26 @@ program controlScript(field)
 	endif
 	
 	while ( field )
-		PlaySoundEffect(field, 0x209);
+		PlaySoundEffect(field, 0x1DE);
 		
-		var event := Wait_For_Event(1);
+		var event := Wait_For_Event(2);
 		if ( event )
 			//Someone just walked onto the tile.
 			BurnMobile(event, dmg_dice);
 		endif
-		BurnNearbyMobiles(field, dmg_dice);		
+		BurnNearbyMobiles(field, dmg_dice);
 	endwhile
 endprogram
 
 function BurnNearbyMobiles(field, dmg_dice)
-	foreach mobile in (ListMobilesNearLocationEX(field.x, field.y, field.z, 0, LISTEX_FLAG_NORMAL+LISTEX_FLAG_HIDDEN, field.realm))
+	var nearby := ListMobilesNearLocationEX(field.x, field.y, field.z, 0, LISTEX_FLAG_NORMAL+LISTEX_FLAG_HIDDEN, field.realm);
+	foreach mobile in ( nearby )
 		BurnMobile(mobile, dmg_dice);
 		
 		sleepms(2);
 	endforeach
 	
-	return 1;
+	return (nearby.size());
 endfunction
 
 function BurnMobile(mobile, dmg_dice)
