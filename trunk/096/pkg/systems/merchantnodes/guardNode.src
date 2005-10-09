@@ -3,7 +3,6 @@ use os;
 
 include ":gumps:include/old/old-gumps";
 include "include/client";
-include "include/gumpUtil";
 
 var pid, proc, item, newtype, newamt, respawn, apply, cancel;
 
@@ -16,12 +15,12 @@ program GuardNodeManager(who, itm)
     SendSysMessage(who, "That guard node is not responding.");
     return;
   endif
-  GFInitGump(0, 0);
-  GFPage(0);
-  GFResizePic(  0,   0, 5120, 440, 300);
-  GFResizePic( 10,  10, 5054, 420, 250);
-  GFTextLine(132, 17, 0, "Guard Node Interface");
-  GFTextLine(130, 15, COLOR_YELLOW, "Guard Node Interface");
+  OldGFInitGump(0, 0);
+  OldGFPage(0);
+  OldGFResizePic(  0,   0, 5120, 440, 300);
+  OldGFResizePic( 10,  10, 5054, 420, 250);
+  OldGFTextLine(132, 17, 0, "Guard Node Interface");
+  OldGFTextLine(130, 15, COLOR_YELLOW, "Guard Node Interface");
   var type := GetObjProperty(item, "Type");
   if(!type)
     type := "townguard";
@@ -32,9 +31,9 @@ program GuardNodeManager(who, itm)
     amt := 1;
     SetObjProperty(item, "Amount", 1);
   endif
-  GFTextLine( 20,  50, COLOR_GREEN, "Guard Set Type:");
-  GFTextLine( 20,  80, COLOR_GREEN, "Guard Set Amount:");
-  GFTextLine(255,  80, COLOR_GREEN, "Current:");
+  OldGFTextLine( 20,  50, COLOR_GREEN, "Guard Set Type:");
+  OldGFTextLine( 20,  80, COLOR_GREEN, "Guard Set Amount:");
+  OldGFTextLine(255,  80, COLOR_GREEN, "Current:");
   var npclist := GetObjProperty(item, "NpcList");
   var current := 0;
   var holder := array;
@@ -46,20 +45,20 @@ program GuardNodeManager(who, itm)
   endforeach
   SetObjProperty(item, "NpcList", holder);
   if(current == amt)
-    GFTextLine(350,  80, COLOR_BLUE,   current+"/"+amt);
+    OldGFTextLine(350,  80, COLOR_BLUE,   current+"/"+amt);
   elseif(current == 0)
-    GFTextLine(350,  80, COLOR_RED,    current+"/"+amt);
+    OldGFTextLine(350,  80, COLOR_RED,    current+"/"+amt);
   else
-    GFTextLine(350,  80, COLOR_YELLOW, current+"/"+amt);
+    OldGFTextLine(350,  80, COLOR_YELLOW, current+"/"+amt);
   endif
-  GFGumpPic(171, 50, 2440);
-  GFGumpPic(171, 80, 2444);
-  newtype     := GFTextEntry(178,  50, 200,  30, COLOR_GREEN, type);
-  newamt      := GFTextEntry(178,  80, 200,  30, COLOR_GREEN, amt);
-  apply   := GFButtonID( 20, 270, G_YELLOW_OVAL_APPLY_0, G_YELLOW_OVAL_APPLY_1, 1);
-  cancel  := GFButtonID(100, 270, G_RED_OVAL_CANCEL_0, G_RED_OVAL_CANCEL_1, 1);
+  OldGFGumpPic(171, 50, 2440);
+  OldGFGumpPic(171, 80, 2444);
+  newtype     := OldGFTextEntry(178,  50, 200,  30, COLOR_GREEN, type);
+  newamt      := OldGFTextEntry(178,  80, 200,  30, COLOR_GREEN, amt);
+  apply   := OldGFButtonID( 20, 270, 2124, 2123, 1);
+  cancel  := OldGFButtonID(100, 270, 2121, 2120, 1);
   GetStatus(item, respawn);
-  var retkey  := GFSendGump(who);
+  var retkey  := OldGFSendGump(who);
   if((retkey[cancel.keyid]) or (retkey[0] == 0))
     SendSysMessage(who, "Cancelled.");
   elseif(retkey[apply.keyid])
@@ -72,18 +71,18 @@ function GetStatus(item, byref respawn)
   var color, txt;
     case(status)
       "on":      color := COLOR_GREEN; txt := "Guard Node Enabled";
-                 GFSetRadioGroup(1);
-                 GFRadioButton(20, 150, 210, 211, 1, 200);
-                 GFRadioButton(20, 175, 210, 211, 0, 201);
+                 OldGFSetRadioGroup(1);
+                 OldGFRadioButton(20, 150, 210, 211, 1, 200);
+                 OldGFRadioButton(20, 175, 210, 211, 0, 201);
       "off":     color := COLOR_RED; txt := "Guard Node Disabled";
-                 GFSetRadioGroup(1);
-                 GFRadioButton(20, 150, 210, 211, 0, 200);
-                 GFRadioButton(20, 175, 210, 211, 1, 201);
+                 OldGFSetRadioGroup(1);
+                 OldGFRadioButton(20, 150, 210, 211, 0, 200);
+                 OldGFRadioButton(20, 175, 210, 211, 1, 201);
       default:   color := COLOR_GREEN; txt := "Guard Node Enabled";
                  SetObjProperty(item, "Status", "on");
-                 GFSetRadioGroup(1);
-                 GFRadioButton(20, 150, 210, 211, 1, 200);
-                 GFRadioButton(20, 175, 210, 211, 0, 201);
+                 OldGFSetRadioGroup(1);
+                 OldGFRadioButton(20, 150, 210, 211, 1, 200);
+                 OldGFRadioButton(20, 175, 210, 211, 0, 201);
     endcase
   var cs := GetObjProperty(item, "#wait");
   if(cs == 1)
@@ -93,12 +92,12 @@ function GetStatus(item, byref respawn)
     color := COLOR_YELLOW;
     txt := "Guard Nodes Are Disabled Globally";
   elseif(status != "off")
-    respawn := GFCheckBox(  20, 120, 208, 209, 0, 300);
-    GFTextLine( 50, 120, COLOR_GREEN, "Respawn Guards");
+    respawn := OldGFCheckBox(  20, 120, 208, 209, 0, 300);
+    OldGFTextLine( 50, 120, COLOR_GREEN, "Respawn Guards");
   endif
-  GFTextMid(150, 270, 300, color, txt);
-  GFTextLine(60, 150, COLOR_GREEN, "Enable Node");
-  GFTextLine(60, 175, COLOR_GREEN, "Disable Node");
+  OldGFTextMid(150, 270, 300, color, txt);
+  OldGFTextLine(60, 150, COLOR_GREEN, "Enable Node");
+  OldGFTextLine(60, 175, COLOR_GREEN, "Disable Node");
 endfunction
 
 function ResetGuardNode(item, ret)
