@@ -2,7 +2,7 @@ use uo;
 use os;
 use boat;
 include "include/objtype";
-include "include/yesNo";
+include ":gumps:yesno";
 include "include/myUtil";
 include "util/key";
 include "include/canAccess";
