@@ -8,6 +8,7 @@
 use uo;
 use os;
 
+include ":attributes:attributes";
 include ":gumps:gumps";
 
 const MAXIMUM_LOSS := 0.20; //20% loss for 20 shortterm murders or more
@@ -45,28 +46,30 @@ function MurdererStatLoss(who)
 		
 		multiplier := 1.0 - multiplier;
 		
-		var str := GetStrength(who);
-		var dex := GetDexterity(who);
-		var inte := GetIntelligence(who);
+		var str := AP_GetTrueStat(who, "strength");
+		var dex := AP_GetTrueStat(who, "dexterity");
+		var inte := AP_GetTrueStat(who, "intelligence");
 	
 		str := CInt(str * multiplier);
 		dex := CInt(dex * multiplier);
 		inte := CInt(inte * multiplier);
 	
-		SetBaseStrength(who,str);
-		SetBaseDexterity(who,dex);
-		SetBaseIntelligence(who,inte);
-		SetHp(who, who.maxhp);
-		SetStamina(who, who.maxstamina);
-		SetMana(who, who.maxmana);
+		AP_SetTrueStat(who, "strength", str);
+		AP_SetTrueStat(who, "dexterity", dex);
+		AP_SetTrueStat(who, "intelligence", inte);
+		
+		AP_SetVital(who, "hits", AP_GetVitalMaximumValue(who, "hits"));
+		AP_SetVital(who, "stamina", AP_GetVitalMaximumValue(who, "stamina"));
+		AP_SetVital(who, "mana", AP_GetVitalMaximumValue(who, "mana"));
 		
 		var skillarray := GetObjProperty(who, "SkillArray");
 		var newval, final;
-		foreach entry in skillarray
-			if((GetTrueEffectiveSkill(who, entry)	) > 0.0)
-				newval:= (GetTrueEffectiveSkill(who, entry)	);
-				final:=(newval * multiplier);
-				SetBaseSkillBaseValue(who, entry, CInt(final * 10));
+		
+		foreach entry in (AP_ListAttributesByType("skill"))
+			var skill_level := AP_GetTrueSkill(who, entry);
+			if ( skill_level > 0.0 )
+				newval := skill_level * multiplier;
+				AP_SetTrueSkill(who, entry, newval);
 			endif
 		endforeach
 		SendSysMessage(who,"Thy body pays the price for thy sins.");
