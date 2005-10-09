@@ -1,7 +1,7 @@
 use uo;
 use os;
 
-include "include/yesNo";
+include ":gumps:yesno";
 include "include/canAccess";
 include "guildData";
 include ":gumps:include/old/old-gumps";
@@ -39,36 +39,36 @@ program use_guild_stone(who, stone)
     return;
   endif
   if(((guild_pl != guild_id)||(!guild.ismember(who)))&&(who.cmdlevel < 3))
-    GFInitGump();
-    GFPage(0);
-    GFResizePic(150,  25, 5120, 460, 140);
-    GFResizePic(160,  35, 5054, 440, 120);
-    GFButtonID (165,  40, 4017, 4018, 1, 2000);
-    GFTextLine (205,  40,    0, guild.getprop("guildname"));
-    GFTextLine (205,  60,    0, title + "   " + gm[1]);
-    GFTextLine (170,  85,    0, "Members:   " + count.size());
+    OldGFInitGump();
+    OldGFPage(0);
+    OldGFResizePic(150,  25, 5120, 460, 140);
+    OldGFResizePic(160,  35, 5054, 440, 120);
+    OldGFButtonID (165,  40, 4017, 4018, 1, 2000);
+    OldGFTextLine (205,  40,    0, guild.getprop("guildname"));
+    OldGFTextLine (205,  60,    0, title + "   " + gm[1]);
+    OldGFTextLine (170,  85,    0, "Members:   " + count.size());
     var type := guild.getprop("type");
     if(type == "Order")
-      GFTextLine (170,  105,  0, "Guild type: Order");
+      OldGFTextLine (170,  105,  0, "Guild type: Order");
     elseif(type == "Chaos")
-      GFTextLine (170,  105,  0, "Guild type: Chaos");
+      OldGFTextLine (170,  105,  0, "Guild type: Chaos");
     else
-      GFTextLine (170,  105,  0, "Guild type: Standard");
+      OldGFTextLine (170,  105,  0, "Guild type: Standard");
       guild.setprop("type", "Standard");
     endif
     if(!guild_pl.errortext)
       var guild2 := FindGuild(guild_pl);
       if(guild2.isallyguild(guild))
-        GFTextLine (170,  125,  940, "This guild is an ally of your guild.");
+        OldGFTextLine (170,  125,  940, "This guild is an ally of your guild.");
       elseif(guild2.isenemyguild(guild))
-        GFTextLine (170,  125,  940, "This guild is an enemy of your guild.");
+        OldGFTextLine (170,  125,  940, "This guild is an enemy of your guild.");
       else
-        GFTextLine (170,  125,  940, "This guild is neutral towards your guild.");
+        OldGFTextLine (170,  125,  940, "This guild is neutral towards your guild.");
       endif
     else
-      GFTextLine (170,  125,  940, "This guild is neutral towards you.");
+      OldGFTextLine (170,  125,  940, "This guild is neutral towards you.");
     endif
-    GFSendGump(who);
+    OldGFSendGump(who);
     return;
   endif
   count:=0;
@@ -88,58 +88,58 @@ function buildgump(who)
   if(!title)
     title := "Guild Master";
   endif
-  GFInitGump();
-  GFPage(0);
-  GFResizePic(110,  25, 5120,  470, 470);
-  GFResizePic(120,  35, 5054,  450, 450);
-  GFResizePic(133, 415, 5120,  420,  45);
-  GFResizePic(137, 420, 5100,  410,  35);
-  GFTextLine(140,  45, 5, guild.getprop("guildname") + " (" + title + " " + gm[1] + ")");
-  GFButtonID(350, 426, 5042, 5043, 1);
-  GFButtonID(240, 426, 5200, 5201, 1);
-  GFTextLine(165,  95,  0, "Recruit someone into the guild.");
-  GFTextLine(165, 115,  0, "View the current roster.");
-  GFTextLine(165, 135,  0, "View the guild's charter.");
-  GFTextLine(165, 155,  0, "Declare your fealty. You are currently loyal to");
+  OldGFInitGump();
+  OldGFPage(0);
+  OldGFResizePic(110,  25, 5120,  470, 470);
+  OldGFResizePic(120,  35, 5054,  450, 450);
+  OldGFResizePic(133, 415, 5120,  420,  45);
+  OldGFResizePic(137, 420, 5100,  410,  35);
+  OldGFTextLine(140,  45, 5, guild.getprop("guildname") + " (" + title + " " + gm[1] + ")");
+  OldGFButtonID(350, 426, 5042, 5043, 1);
+  OldGFButtonID(240, 426, 5200, 5201, 1);
+  OldGFTextLine(165,  95,  0, "Recruit someone into the guild.");
+  OldGFTextLine(165, 115,  0, "View the current roster.");
+  OldGFTextLine(165, 135,  0, "View the guild's charter.");
+  OldGFTextLine(165, 155,  0, "Declare your fealty. You are currently loyal to");
   var flty := GetObjProperty(who, "fealty");
   if(flty == who.serial)
-    GFTextLine(165, 172, 0, "yourself.");
+    OldGFTextLine(165, 172, 0, "yourself.");
   else
     foreach thing in (guild.members)
       if(thing.serial == flty)
-        GFTextLine(165, 172, 0, thing.name + ".");
+        OldGFTextLine(165, 172, 0, thing.name + ".");
         break;
       endif
     endforeach
   endif
-  GFTextLine (165, 195, 0, "Toggle your the guild's abbreviation in");
+  OldGFTextLine (165, 195, 0, "Toggle your the guild's abbreviation in");
   if(guild.getprop("guildabv") == "NONE")
-    GFTextLine (165, 212, 0, "your name. Currently off.");
+    OldGFTextLine (165, 212, 0, "your name. Currently off.");
   elseif(GetObjProperty(who, "abv") == "0")
-    GFTextLine (165, 212, 0, "your name. Currently off.");
+    OldGFTextLine (165, 212, 0, "your name. Currently off.");
   else
-    GFTextLine (165, 212, 0, "your name. Currently on.");
+    OldGFTextLine (165, 212, 0, "your name. Currently on.");
   endif
-  GFTextLine (165, 235, 0, "Resign from the guild.");
-  GFTextLine (165, 255, 0, "View list of cantidates who have been");
-  GFTextLine (165, 272, 0, "sponsored to the guild.");
-  GFTextLine (165, 295, 0, "Guild Master functions.");
-  GFTextLine (165, 315, 0, "View list of your guild allies.");
-  GFTextLine (165, 335, 0, "View list of your guild enemies.");
-  GFTextLine (165, 355, 0, "View pending allies/enemies.");
-  GFSetRadioGroup(1);
-  GFRadioButton(140,  98, 210, 211, 0);
-  GFRadioButton(140, 118, 210, 211, 0);
-  GFRadioButton(140, 138, 210, 211, 0);
-  GFRadioButton(140, 158, 210, 211, 0);
-  GFRadioButton(140, 198, 210, 211, 0);
-  GFRadioButton(140, 238, 210, 211, 0);
-  GFRadioButton(140, 258, 210, 211, 0);
-  GFRadioButton(140, 298, 210, 211, 0);
-  GFRadioButton(140, 318, 210, 211, 0);
-  GFRadioButton(140, 338, 210, 211, 0);
-  GFRadioButton(140, 358, 210, 211, 0);
-  var box := GFSendGump(who);
+  OldGFTextLine (165, 235, 0, "Resign from the guild.");
+  OldGFTextLine (165, 255, 0, "View list of cantidates who have been");
+  OldGFTextLine (165, 272, 0, "sponsored to the guild.");
+  OldGFTextLine (165, 295, 0, "Guild Master functions.");
+  OldGFTextLine (165, 315, 0, "View list of your guild allies.");
+  OldGFTextLine (165, 335, 0, "View list of your guild enemies.");
+  OldGFTextLine (165, 355, 0, "View pending allies/enemies.");
+  OldGFSetRadioGroup(1);
+  OldGFRadioButton(140,  98, 210, 211, 0);
+  OldGFRadioButton(140, 118, 210, 211, 0);
+  OldGFRadioButton(140, 138, 210, 211, 0);
+  OldGFRadioButton(140, 158, 210, 211, 0);
+  OldGFRadioButton(140, 198, 210, 211, 0);
+  OldGFRadioButton(140, 238, 210, 211, 0);
+  OldGFRadioButton(140, 258, 210, 211, 0);
+  OldGFRadioButton(140, 298, 210, 211, 0);
+  OldGFRadioButton(140, 318, 210, 211, 0);
+  OldGFRadioButton(140, 338, 210, 211, 0);
+  OldGFRadioButton(140, 358, 210, 211, 0);
+  var box := OldGFSendGump(who);
   if((box[0] == 0) or (box[0] == 1026))
     SendSysMessage(who, "Cancelled.", 3, 40);
     return;
@@ -181,57 +181,57 @@ function gm_menu(who)
   if(!title)
     title := "Guild Master";
   endif
-  GFInitGump();
-  GFPage(0);
-  GFResizePic(110,  25, 5120,  470, 470);
-  GFResizePic(120,  35, 5054,  450, 450);
-  GFResizePic(133, 415, 5120,  420,  45);
-  GFResizePic(137, 420, 5100,  410,  35);
-  GFTextLine(140,  45, 5, guild.getprop("guildname") + " (" + title + " " + gm[1] + ")");
-  var cancel := GFButtonID(240, 426, 5200, 5201, 1);
-  var ok     := GFButtonID(350, 426, 5042, 5043, 1);
-  GFTextLine(165,  95, 0, "Set the guild name.");
-  GFTextLine(165, 115, 0, "Set the guild's abbreviation.");
+  OldGFInitGump();
+  OldGFPage(0);
+  OldGFResizePic(110,  25, 5120,  470, 470);
+  OldGFResizePic(120,  35, 5054,  450, 450);
+  OldGFResizePic(133, 415, 5120,  420,  45);
+  OldGFResizePic(137, 420, 5100,  410,  35);
+  OldGFTextLine(140,  45, 5, guild.getprop("guildname") + " (" + title + " " + gm[1] + ")");
+  var cancel := OldGFButtonID(240, 426, 5200, 5201, 1);
+  var ok     := OldGFButtonID(350, 426, 5042, 5043, 1);
+  OldGFTextLine(165,  95, 0, "Set the guild name.");
+  OldGFTextLine(165, 115, 0, "Set the guild's abbreviation.");
   var type := guild.getprop("type");
   if(type == "Order")
-    GFTextLine(165, 135, 0, "Change guild type. [currently an Order guild]");
+    OldGFTextLine(165, 135, 0, "Change guild type. [currently an Order guild]");
   elseif(type == "Chaos")
-    GFTextLine(165, 135, 0, "Change guild type. [currently a Chaos guild]");
+    OldGFTextLine(165, 135, 0, "Change guild type. [currently a Chaos guild]");
   else
-    GFTextLine(165, 135, 0, "Change guild type. [currently a Standard guild]");
+    OldGFTextLine(165, 135, 0, "Change guild type. [currently a Standard guild]");
     guild.setprop("type", "Standard");
   endif
-  GFTextLine(165, 155, 0, "Change the color of the guild stone.");
-  GFTextLine(165, 175, 0, "Set the guild charter.");
-  GFTextLine(165, 195, 0, "Dismiss a member.");
-  GFTextLine(165, 215, 0, "Declare war.");
-  GFTextLine(165, 235, 0, "Declare peace.");
-  GFTextLine(165, 255, 0, "Propose an alliance with another guild.");
-  GFTextLine(165, 275, 0, "Break alliance with another guild.");
-  GFTextLine(165, 295, 0, "Accept a cantidate seeking membership.");
-  GFTextLine(165, 315, 0, "Refuse a cantidate seeking membership.");
-  GFTextLine(165, 335, 0, "Set the guildmaster's title.");
-  GFTextLine(165, 355, 0, "Grant a title to another member.");
-  GFTextLine(165, 375, 0, "Transport this guildstone.");
-  GFTextLine(165, 395, 0, "Return to the main menu.");
-  GFSetRadioGroup(1);
-  GFRadioButton(140,  95, 210, 211, 0);
-  GFRadioButton(140, 115, 210, 211, 0);
-  GFRadioButton(140, 135, 210, 211, 0);
-  GFRadioButton(140, 155, 210, 211, 0);
-  GFRadioButton(140, 175, 210, 211, 0);
-  GFRadioButton(140, 195, 210, 211, 0);
-  GFRadioButton(140, 215, 210, 211, 0);
-  GFRadioButton(140, 235, 210, 211, 0);
-  GFRadioButton(140, 255, 210, 211, 0);
-  GFRadioButton(140, 275, 210, 211, 0);
-  GFRadioButton(140, 295, 210, 211, 0);
-  GFRadioButton(140, 315, 210, 211, 0);
-  GFRadioButton(140, 335, 210, 211, 0);
-  GFRadioButton(140, 355, 210, 211, 0);
-  GFRadioButton(140, 375, 210, 211, 0);
-  GFRadioButton(140, 395, 210, 211, 0);
-  var box := GFSendGump(who);
+  OldGFTextLine(165, 155, 0, "Change the color of the guild stone.");
+  OldGFTextLine(165, 175, 0, "Set the guild charter.");
+  OldGFTextLine(165, 195, 0, "Dismiss a member.");
+  OldGFTextLine(165, 215, 0, "Declare war.");
+  OldGFTextLine(165, 235, 0, "Declare peace.");
+  OldGFTextLine(165, 255, 0, "Propose an alliance with another guild.");
+  OldGFTextLine(165, 275, 0, "Break alliance with another guild.");
+  OldGFTextLine(165, 295, 0, "Accept a cantidate seeking membership.");
+  OldGFTextLine(165, 315, 0, "Refuse a cantidate seeking membership.");
+  OldGFTextLine(165, 335, 0, "Set the guildmaster's title.");
+  OldGFTextLine(165, 355, 0, "Grant a title to another member.");
+  OldGFTextLine(165, 375, 0, "Transport this guildstone.");
+  OldGFTextLine(165, 395, 0, "Return to the main menu.");
+  OldGFSetRadioGroup(1);
+  OldGFRadioButton(140,  95, 210, 211, 0);
+  OldGFRadioButton(140, 115, 210, 211, 0);
+  OldGFRadioButton(140, 135, 210, 211, 0);
+  OldGFRadioButton(140, 155, 210, 211, 0);
+  OldGFRadioButton(140, 175, 210, 211, 0);
+  OldGFRadioButton(140, 195, 210, 211, 0);
+  OldGFRadioButton(140, 215, 210, 211, 0);
+  OldGFRadioButton(140, 235, 210, 211, 0);
+  OldGFRadioButton(140, 255, 210, 211, 0);
+  OldGFRadioButton(140, 275, 210, 211, 0);
+  OldGFRadioButton(140, 295, 210, 211, 0);
+  OldGFRadioButton(140, 315, 210, 211, 0);
+  OldGFRadioButton(140, 335, 210, 211, 0);
+  OldGFRadioButton(140, 355, 210, 211, 0);
+  OldGFRadioButton(140, 375, 210, 211, 0);
+  OldGFRadioButton(140, 395, 210, 211, 0);
+  var box := OldGFSendGump(who);
   var choose := 0;
   if(box[cancel.keyid])
     SendSysMessage(who, "Cancelled.", 3, 40);
@@ -279,37 +279,37 @@ function ToggleVirtue(who);
     sleep(2);
     return;
   endif
-  GFInitGump();
-  GFPage(0);
-  GFResizePic(110,  25, 5120,  470, 470);
-  GFResizePic(120,  35, 5054,  450, 450);
-  GFResizePic(133, 415, 5120,  420,  45);
-  GFResizePic(137, 420, 5100,  410,  35);
-  GFResizePic(140, 110, 2620,  410, 280);
-  GFTextLine (240,  50,   0, "Guild Virtue Menu");
-  GFTextLine (160,  70, 900, "Guild Master: " + gm[1]);
-  var cancel := GFButtonID(240, 426, 5200, 5201, 1);
-  /*var ok     :=*/ GFButtonID(350, 426, 5042, 5043, 1);
-  GFSetRadioGroup(1);
+  OldGFInitGump();
+  OldGFPage(0);
+  OldGFResizePic(110,  25, 5120,  470, 470);
+  OldGFResizePic(120,  35, 5054,  450, 450);
+  OldGFResizePic(133, 415, 5120,  420,  45);
+  OldGFResizePic(137, 420, 5100,  410,  35);
+  OldGFResizePic(140, 110, 2620,  410, 280);
+  OldGFTextLine (240,  50,   0, "Guild Virtue Menu");
+  OldGFTextLine (160,  70, 900, "Guild Master: " + gm[1]);
+  var cancel := OldGFButtonID(240, 426, 5200, 5201, 1);
+  /*var ok     :=*/ OldGFButtonID(350, 426, 5042, 5043, 1);
+  OldGFSetRadioGroup(1);
   var type := guild.getprop("type");
   var order, chaos, standard;
   if(type == "Standard")
-    standard := GFRadioButton(150, 122, 210, 211, 1, 1);
-    order    := GFRadioButton(150, 142, 210, 211, 0, 2);
-    chaos    := GFRadioButton(150, 162, 210, 211, 0, 3);
+    standard := OldGFRadioButton(150, 122, 210, 211, 1, 1);
+    order    := OldGFRadioButton(150, 142, 210, 211, 0, 2);
+    chaos    := OldGFRadioButton(150, 162, 210, 211, 0, 3);
   elseif(type == "Order")
-    standard := GFRadioButton(150, 122, 210, 211, 0, 1);
-    order    := GFRadioButton(150, 142, 210, 211, 1, 2);
-    chaos    := GFRadioButton(150, 162, 210, 211, 0, 3);
+    standard := OldGFRadioButton(150, 122, 210, 211, 0, 1);
+    order    := OldGFRadioButton(150, 142, 210, 211, 1, 2);
+    chaos    := OldGFRadioButton(150, 162, 210, 211, 0, 3);
   else
-    standard := GFRadioButton(150, 122, 210, 211, 0, 1);
-    order    := GFRadioButton(150, 142, 210, 211, 0, 2);
-    chaos    := GFRadioButton(150, 162, 210, 211, 1, 3);
+    standard := OldGFRadioButton(150, 122, 210, 211, 0, 1);
+    order    := OldGFRadioButton(150, 142, 210, 211, 0, 2);
+    chaos    := OldGFRadioButton(150, 162, 210, 211, 1, 3);
   endif
-  GFTextLine(175, 120, 300, "Standard");
-  GFTextLine(175, 140, 300, "Order");
-  GFTextLine(175, 160, 300, "Chaos");
-  var box := GFSendGump(who);
+  OldGFTextLine(175, 120, 300, "Standard");
+  OldGFTextLine(175, 140, 300, "Order");
+  OldGFTextLine(175, 160, 300, "Chaos");
+  var box := OldGFSendGump(who);
   if(box[cancel.keyid])
     return;
   endif
@@ -386,19 +386,19 @@ function viewmembers(who)
   var count := 0;
   var rc := 120;
   var pc := 0;
-  GFInitGump();
-  GFPage(pc);
+  OldGFInitGump();
+  OldGFPage(pc);
   pc := pc + 1;
-  GFResizePic(110,  25, 5120,  470, 470);
-  GFResizePic(120,  35, 5054,  450, 450);
-  GFResizePic(133, 415, 5120,  420,  45);
-  GFResizePic(137, 420, 5100,  410,  35);
-  GFResizePic(140, 110, 2620,  410, 280);
-  GFTextLine (240,  50,   0, "Guild Roster");
-  GFTextLine (160,  70, 900, "Guild Master: " + gm[1]);
-  GFTextLine (140,  90,   0, "Member Name");
-  var ok := GFButtonID (285, 425, 5042, 5043, 1);
-  GFPage(pc);
+  OldGFResizePic(110,  25, 5120,  470, 470);
+  OldGFResizePic(120,  35, 5054,  450, 450);
+  OldGFResizePic(133, 415, 5120,  420,  45);
+  OldGFResizePic(137, 420, 5100,  410,  35);
+  OldGFResizePic(140, 110, 2620,  410, 280);
+  OldGFTextLine (240,  50,   0, "Guild Roster");
+  OldGFTextLine (160,  70, 900, "Guild Master: " + gm[1]);
+  OldGFTextLine (140,  90,   0, "Member Name");
+  var ok := OldGFButtonID (285, 425, 5042, 5043, 1);
+  OldGFPage(pc);
   pc := pc + 1;
   foreach member in (guild.members)
     if(gm[2] != member.serial)
@@ -406,37 +406,37 @@ function viewmembers(who)
       if(count > 13)
         count := 1;
         rc := 120;
-        GFButtonPage(315, 393, 5540, 5541, pc);
+        OldGFButtonPage(315, 393, 5540, 5541, pc);
         if(pc > 2)
-          GFButtonPage(275, 393, 5537, 5538,(pc - 2));
+          OldGFButtonPage(275, 393, 5537, 5538,(pc - 2));
         endif
-        GFPage(pc);
+        OldGFPage(pc);
         pc := pc + 1;
       endif
       var title := GetObjProperty(member, "guildtitle");
       if(!title)
         title := "";
       endif
-      GFTextLine(150, rc, 300, member.name + ":  " + title);
+      OldGFTextLine(150, rc, 300, member.name + ":  " + title);
       rc := rc + 20;
     endif
   endforeach
   if(count == 0)
-    GFTextLine(150, rc, 940, "No Members");
+    OldGFTextLine(150, rc, 940, "No Members");
   endif
-  var box := GFSendGump(who);
+  var box := OldGFSendGump(who);
   if(box[ok.keyid])
     buildgump(who);
   endif
 endfunction
 
 function viewcharter(who)
-  GFInitGump();
-  GFPage(0);
-  GFResizePic( 40, 40, 5120, 560, 400);
-  GFResizePic( 50, 50, 5054, 540, 380);
-  GFResizePic( 60, 90, 2620, 520, 270);
-  GFTextLine(200, 70, 5, "Charter for "+guild.getprop("guildname"));
+  OldGFInitGump();
+  OldGFPage(0);
+  OldGFResizePic( 40, 40, 5120, 560, 400);
+  OldGFResizePic( 50, 50, 5054, 540, 380);
+  OldGFResizePic( 60, 90, 2620, 520, 270);
+  OldGFTextLine(200, 70, 5, "Charter for "+guild.getprop("guildname"));
   var message := guild.getprop("gc");
   if(message[1]=="NONE")
     message:={"", "No Charter has been set up yet.", ""};
@@ -445,20 +445,20 @@ function viewcharter(who)
   var line := 3;
   for(i:=4; i<=15; i:=i+1)
     if(message[i-3]!=error)
-      GFTextLine(70, (82+((line-2)*20)), 300, message[i-3]);
+      OldGFTextLine(70, (82+((line-2)*20)), 300, message[i-3]);
       line:=line+1;
     endif
   endfor
-  GFTextLine(200, 360, 70, "Guild Master " + gm[1]);
+  OldGFTextLine(200, 360, 70, "Guild Master " + gm[1]);
   var wp := guild.getprop("webpage");
   if(wp == error)
-    GFTextLine(170, 390, 0, "Guild Web Page: Not Entered");
+    OldGFTextLine(170, 390, 0, "Guild Web Page: Not Entered");
   else
-    GFTextLine(170, 390, 0, "Guild Web Page: " + wp);
+    OldGFTextLine(170, 390, 0, "Guild Web Page: " + wp);
   endif
-  GFTextLine( 60, 390, 0, "go there?:");
-  var goweb := GFButtonID(130, 390, 4023, 4025, 1);
-  var res := GFSendGump(who);
+  OldGFTextLine( 60, 390, 0, "go there?:");
+  var goweb := OldGFButtonID(130, 390, 4023, 4025, 1);
+  var res := OldGFSendGump(who);
   if(res[goweb.keyid])
     OpenWebSite(who, wp);
   endif
@@ -469,48 +469,48 @@ function SetFealty(who)
   var count := 0;
   var rc := 120;
   var pc := 0;
-  GFInitGump();
-  GFPage(pc);
+  OldGFInitGump();
+  OldGFPage(pc);
   pc := pc + 1;
-  GFResizePic(110,  25, 5120,  470, 470);
-  GFResizePic(120,  35, 5054,  450, 450);
-  GFResizePic(133, 415, 5120,  420,  45);
-  GFResizePic(137, 420, 5100,  410,  35);
-  GFResizePic(140, 110, 2620,  410, 280);
-  GFTextLine (240,  50,   0, "Declare Fealty");
-  GFTextLine (160,  70, 900, "Guild Master: " + gm[1]);
-  GFTextLine (140,  90,   0, "Member Name");
-  /*var cancel :=*/ GFButtonID(240, 426, 5200, 5201, 1);
-  var ok     := GFButtonID(350, 426, 5042, 5043, 1);
-  GFPage(pc);
+  OldGFResizePic(110,  25, 5120,  470, 470);
+  OldGFResizePic(120,  35, 5054,  450, 450);
+  OldGFResizePic(133, 415, 5120,  420,  45);
+  OldGFResizePic(137, 420, 5100,  410,  35);
+  OldGFResizePic(140, 110, 2620,  410, 280);
+  OldGFTextLine (240,  50,   0, "Declare Fealty");
+  OldGFTextLine (160,  70, 900, "Guild Master: " + gm[1]);
+  OldGFTextLine (140,  90,   0, "Member Name");
+  /*var cancel :=*/ OldGFButtonID(240, 426, 5200, 5201, 1);
+  var ok     := OldGFButtonID(350, 426, 5042, 5043, 1);
+  OldGFPage(pc);
   pc := pc + 1;
   var rg := 1;
-  GFSetRadioGroup(rg);
+  OldGFSetRadioGroup(rg);
   rg := rg + 1;
   foreach member in guildmembers
     count := count + 1;
     if(count > 13)
       count := 1;
       rc := 120;
-      GFButtonPage(315, 393, 5540, 5541, pc);
+      OldGFButtonPage(315, 393, 5540, 5541, pc);
       if(pc > 2)
-        GFButtonPage(275, 393, 5537, 5538, (pc - 2));
+        OldGFButtonPage(275, 393, 5537, 5538, (pc - 2));
       endif
-      GFPage(pc);
+      OldGFPage(pc);
       pc := pc + 1;
       rg := rg + 1;
-      GFSetRadioGroup(rg);
+      OldGFSetRadioGroup(rg);
     endif
-    GFRadioButton(150, rc + 2, 2103, 2104, 0, member.serial);
+    OldGFRadioButton(150, rc + 2, 2103, 2104, 0, member.serial);
     if(gm[2] == member.serial)
-      GFTextLine(185, rc, 940, "GM: " + member.name);
+      OldGFTextLine(185, rc, 940, "GM: " + member.name);
     else
-      GFTextLine(185, rc, 940, member.name);
+      OldGFTextLine(185, rc, 940, member.name);
     endif
     rc := rc + 20;
   endforeach
   var choose;
-  var box := GFSendGump(who);
+  var box := OldGFSendGump(who);
   if(box[ok.keyid])
     foreach k in(box.keys)
       if((k != ok.keyid) and (k != 0))
@@ -549,18 +549,18 @@ function viewrecruits(who)
   var count := 0;
   var rc := 120;
   var pc := 0;
-  GFInitGump();
-  GFPage(pc);
+  OldGFInitGump();
+  OldGFPage(pc);
   pc := pc + 1;
-  GFResizePic(110,  25, 5120,  470, 470);
-  GFResizePic(120,  35, 5054,  450, 450);
-  GFResizePic(133, 415, 5120,  420,  45);
-  GFResizePic(137, 420, 5100,  410,  35);
-  GFResizePic(140, 110, 2620,  410, 280);
-  GFTextLine (240,  50,   0, "Guild Recruitment Status Page");
-  GFTextLine (160,  70, 900, "Guild Master: " + gm[1]);
-  GFTextLine (140,  90,   0, "Guild Listing");
-  var ok := GFButtonID (285, 425, 5042, 5043, 1);
+  OldGFResizePic(110,  25, 5120,  470, 470);
+  OldGFResizePic(120,  35, 5054,  450, 450);
+  OldGFResizePic(133, 415, 5120,  420,  45);
+  OldGFResizePic(137, 420, 5100,  410,  35);
+  OldGFResizePic(140, 110, 2620,  410, 280);
+  OldGFTextLine (240,  50,   0, "Guild Recruitment Status Page");
+  OldGFTextLine (160,  70, 900, "Guild Master: " + gm[1]);
+  OldGFTextLine (140,  90,   0, "Guild Listing");
+  var ok := OldGFButtonID (285, 425, 5042, 5043, 1);
   var total := 0;
   foreach gstatus in (guild.getprop("recruits"))
     var enemy := SystemFindObjectBySerial(gstatus, SYSFIND_SEARCH_OFFLINE_MOBILES);
@@ -569,23 +569,23 @@ function viewrecruits(who)
       if(count > 13)
         count := 1;
         rc := 120;
-        GFButtonPage(315, 396, 5540, 5541, pc);
+        OldGFButtonPage(315, 396, 5540, 5541, pc);
         if(pc > 2)
-          GFButtonPage(275, 396, 5537, 5538, (pc - 2));
+          OldGFButtonPage(275, 396, 5537, 5538, (pc - 2));
         endif
-        GFPage(pc);
+        OldGFPage(pc);
         pc := pc + 1;
       endif
-      GFTextLine(150, rc, 300, enemy.name);
+      OldGFTextLine(150, rc, 300, enemy.name);
       rc := rc + 20;
       total := total + 1;
     endif
   endforeach
   if(total == 0)
-    GFTextLine(150, rc, 300, "No Current Recruits");
+    OldGFTextLine(150, rc, 300, "No Current Recruits");
   endif
-  GFTextLine (340,  90,   0, "total recruits: " + total);
-  var res := GFSendGump(who);
+  OldGFTextLine (340,  90,   0, "total recruits: " + total);
+  var res := OldGFSendGump(who);
   if(res[ok.keyid]);
     buildgump(who);
   endif
@@ -595,50 +595,50 @@ function Dismiss(who)
   var count := 0;
   var rc := 120;
   var pc := 0;
-  GFInitGump();
-  GFPage(pc);
+  OldGFInitGump();
+  OldGFPage(pc);
   pc := pc + 1;
-  GFResizePic(110,  25, 5120,  470, 470);
-  GFResizePic(120,  35, 5054,  450, 450);
-  GFResizePic(133, 415, 5120,  420,  45);
-  GFResizePic(137, 420, 5100,  410,  35);
-  GFResizePic(140, 110, 2620,  410, 280);
-  GFTextLine (240,  50,   0, "Guild Roster");
-  GFTextLine (160,  70, 900, "Guild Master: " + gm[1]);
-  GFTextLine (140,  90,   0, "Member Name");
-  var ok := GFButtonID (285, 425, 5042, 5043, 1);
-  GFPage(pc);
+  OldGFResizePic(110,  25, 5120,  470, 470);
+  OldGFResizePic(120,  35, 5054,  450, 450);
+  OldGFResizePic(133, 415, 5120,  420,  45);
+  OldGFResizePic(137, 420, 5100,  410,  35);
+  OldGFResizePic(140, 110, 2620,  410, 280);
+  OldGFTextLine (240,  50,   0, "Guild Roster");
+  OldGFTextLine (160,  70, 900, "Guild Master: " + gm[1]);
+  OldGFTextLine (140,  90,   0, "Member Name");
+  var ok := OldGFButtonID (285, 425, 5042, 5043, 1);
+  OldGFPage(pc);
   pc := pc + 1;
   var rg := 1;
-  GFSetRadioGroup(rg);
+  OldGFSetRadioGroup(rg);
   foreach member in (guild.members)
     if(gm[2] != member.serial)
       count := count + 1;
       if(count > 13)
         count := 1;
         rc := 120;
-        GFButtonPage(315, 393, 5540, 5541, pc);
+        OldGFButtonPage(315, 393, 5540, 5541, pc);
         if(pc > 2)
-          GFButtonPage(275, 393, 5537, 5538,(pc - 2));
+          OldGFButtonPage(275, 393, 5537, 5538,(pc - 2));
         endif
-        GFPage(pc);
+        OldGFPage(pc);
         pc := pc + 1;
         rg := rg + 1;
-        GFSetRadioGroup(rg);
+        OldGFSetRadioGroup(rg);
       endif
       var title := GetObjProperty(member, "guildtitle");
       if(!title)
         title := "";
       endif
-      GFTextLine(175, rc, 300, member.name + ":  " + title);
-      GFRadioButton(150, rc, 210, 211, 0, member.serial);
+      OldGFTextLine(175, rc, 300, member.name + ":  " + title);
+      OldGFRadioButton(150, rc, 210, 211, 0, member.serial);
       rc := rc + 20;
     endif
   endforeach
   if(count == 0)
-    GFTextLine(150, rc, 940, "No Members");
+    OldGFTextLine(150, rc, 940, "No Members");
   endif
-  var box := GFSendGump(who);
+  var box := OldGFSendGump(who);
   var choose := 0;
   if(box[ok.keyid])
     foreach k in(box.keys)
@@ -676,23 +676,23 @@ function setallies(who)
   var count := 0;
   var rc := 120;
   var pc := 0;
-  GFInitGump();
-  GFPage(pc);
+  OldGFInitGump();
+  OldGFPage(pc);
   pc := pc + 1;
-  GFResizePic(110,  25, 5120,  470, 470);
-  GFResizePic(120,  35, 5054,  450, 450);
-  GFResizePic(133, 415, 5120,  420,  45);
-  GFResizePic(137, 420, 5100,  410,  35);
-  GFResizePic(140, 110, 2620,  410, 280);
-  GFTextLine (240,  50,   0, "Delcare Peace(allies)");
-  GFTextLine (160,  70, 900, "Guild Master: " + gm[1]);
-  GFTextLine (140,  90,   0, "Guild Name");
-  /*var cancel :=*/ GFButtonID(240, 426, 5200, 5201, 1);
-  var ok     := GFButtonID(350, 426, 5042, 5043, 1);
-  GFPage(pc);
+  OldGFResizePic(110,  25, 5120,  470, 470);
+  OldGFResizePic(120,  35, 5054,  450, 450);
+  OldGFResizePic(133, 415, 5120,  420,  45);
+  OldGFResizePic(137, 420, 5100,  410,  35);
+  OldGFResizePic(140, 110, 2620,  410, 280);
+  OldGFTextLine (240,  50,   0, "Delcare Peace(allies)");
+  OldGFTextLine (160,  70, 900, "Guild Master: " + gm[1]);
+  OldGFTextLine (140,  90,   0, "Guild Name");
+  /*var cancel :=*/ OldGFButtonID(240, 426, 5200, 5201, 1);
+  var ok     := OldGFButtonID(350, 426, 5042, 5043, 1);
+  OldGFPage(pc);
   pc := pc + 1;
   var rg := 1;
-  GFSetRadioGroup(rg);
+  OldGFSetRadioGroup(rg);
   //var orderguilds := GetGlobalProperty("OrderGuilds"); // uncomment if needed
   //var chaosguilds := GetGlobalProperty("ChaosGuilds"); // uncomment if needed
   foreach gstatus in ListGuilds()
@@ -701,22 +701,22 @@ function setallies(who)
       if(count > 13)
         count := 1;
         rc := 120;
-        GFButtonPage(315, 393, 5540, 5541, pc);
+        OldGFButtonPage(315, 393, 5540, 5541, pc);
         if(pc > 2)
-          GFButtonPage(275, 393, 5537, 5538, (pc - 2));
+          OldGFButtonPage(275, 393, 5537, 5538, (pc - 2));
         endif
-        GFPage(pc);
+        OldGFPage(pc);
         rg := rg + 1;
-        GFSetRadioGroup(rg);
+        OldGFSetRadioGroup(rg);
         pc := pc + 1;
       endif
-      GFTextLine(175, rc, 300, gstatus.getprop("guildname") + " [" + gstatus.getprop("guildabv") + "]");
-      GFRadioButton(150, rc, 210, 211, 0, gstatus.guildid);
+      OldGFTextLine(175, rc, 300, gstatus.getprop("guildname") + " [" + gstatus.getprop("guildabv") + "]");
+      OldGFRadioButton(150, rc, 210, 211, 0, gstatus.guildid);
       rc := rc + 20;
     endif
   endforeach
   var choose:=0;
-  var box := GFSendGump(who);
+  var box := OldGFSendGump(who);
   if(box[ok.keyid])
     foreach k in(box.keys)
       if(k > 1)
@@ -749,23 +749,23 @@ function remallies(who)
   var count := 0;
   var rc := 120;
   var pc := 0;
-  GFInitGump();
-  GFPage(pc);
+  OldGFInitGump();
+  OldGFPage(pc);
   pc := pc + 1;
-  GFResizePic(110,  25, 5120,  470, 470);
-  GFResizePic(120,  35, 5054,  450, 450);
-  GFResizePic(133, 415, 5120,  420,  45);
-  GFResizePic(137, 420, 5100,  410,  35);
-  GFResizePic(140, 110, 2620,  410, 280);
-  GFTextLine (240,  50,   0, "End Peace(allies)");
-  GFTextLine (160,  70, 900, "Guild Master: " + gm[1]);
-  GFTextLine (140,  90,   0, "Guild Name");
-  /*var cancel :=*/ GFButtonID(240, 426, 5200, 5201, 1);
-  var ok     := GFButtonID(350, 426, 5042, 5043, 1);
-  GFPage(pc);
+  OldGFResizePic(110,  25, 5120,  470, 470);
+  OldGFResizePic(120,  35, 5054,  450, 450);
+  OldGFResizePic(133, 415, 5120,  420,  45);
+  OldGFResizePic(137, 420, 5100,  410,  35);
+  OldGFResizePic(140, 110, 2620,  410, 280);
+  OldGFTextLine (240,  50,   0, "End Peace(allies)");
+  OldGFTextLine (160,  70, 900, "Guild Master: " + gm[1]);
+  OldGFTextLine (140,  90,   0, "Guild Name");
+  /*var cancel :=*/ OldGFButtonID(240, 426, 5200, 5201, 1);
+  var ok     := OldGFButtonID(350, 426, 5042, 5043, 1);
+  OldGFPage(pc);
   pc := pc + 1;
   var rg := 1;
-  GFSetRadioGroup(rg);
+  OldGFSetRadioGroup(rg);
   //var orderguilds := GetGlobalProperty("OrderGuilds"); // uncomment if needed
   //var chaosguilds := GetGlobalProperty("ChaosGuilds"); // uncomment if needed
   foreach gstatus in ListGuilds()
@@ -774,22 +774,22 @@ function remallies(who)
       if(count > 13)
         count := 1;
         rc := 120;
-        GFButtonPage(315, 393, 5540, 5541, pc);
+        OldGFButtonPage(315, 393, 5540, 5541, pc);
         if(pc > 2)
-          GFButtonPage(275, 393, 5537, 5538, (pc - 2));
+          OldGFButtonPage(275, 393, 5537, 5538, (pc - 2));
         endif
-        GFPage(pc);
+        OldGFPage(pc);
         rg := rg + 1;
-        GFSetRadioGroup(rg);
+        OldGFSetRadioGroup(rg);
         pc := pc + 1;
       endif
-      GFTextLine(175, rc, 300, gstatus.getprop("guildname") + " [" + gstatus.getprop("guildabv") + "]");
-      GFRadioButton(150, rc, 210, 211, 0, gstatus.guildid);
+      OldGFTextLine(175, rc, 300, gstatus.getprop("guildname") + " [" + gstatus.getprop("guildabv") + "]");
+      OldGFRadioButton(150, rc, 210, 211, 0, gstatus.guildid);
       rc := rc + 20;
     endif
   endforeach
   var choose:=0;
-  var box := GFSendGump(who);
+  var box := OldGFSendGump(who);
   if(box[ok.keyid])
     foreach k in(box.keys)
       if(k > 1)
@@ -822,23 +822,23 @@ function setenemies(who)
   var count := 0;
   var rc := 120;
   var pc := 0;
-  GFInitGump();
-  GFPage(pc);
+  OldGFInitGump();
+  OldGFPage(pc);
   pc := pc + 1;
-  GFResizePic(110,  25, 5120,  470, 470);
-  GFResizePic(120,  35, 5054,  450, 450);
-  GFResizePic(133, 415, 5120,  420,  45);
-  GFResizePic(137, 420, 5100,  410,  35);
-  GFResizePic(140, 110, 2620,  410, 280);
-  GFTextLine (240,  50,   0, "Delcare War(Enemies)");
-  GFTextLine (160,  70, 900, "Guild Master: " + gm[1]);
-  GFTextLine (140,  90,   0, "Guild Name");
-  /*var cancel :=*/ GFButtonID(240, 426, 5200, 5201, 1);
-  var ok     := GFButtonID(350, 426, 5042, 5043, 1);
-  GFPage(pc);
+  OldGFResizePic(110,  25, 5120,  470, 470);
+  OldGFResizePic(120,  35, 5054,  450, 450);
+  OldGFResizePic(133, 415, 5120,  420,  45);
+  OldGFResizePic(137, 420, 5100,  410,  35);
+  OldGFResizePic(140, 110, 2620,  410, 280);
+  OldGFTextLine (240,  50,   0, "Delcare War(Enemies)");
+  OldGFTextLine (160,  70, 900, "Guild Master: " + gm[1]);
+  OldGFTextLine (140,  90,   0, "Guild Name");
+  /*var cancel :=*/ OldGFButtonID(240, 426, 5200, 5201, 1);
+  var ok     := OldGFButtonID(350, 426, 5042, 5043, 1);
+  OldGFPage(pc);
   pc := pc + 1;
   var rg := 1;
-  GFSetRadioGroup(rg);
+  OldGFSetRadioGroup(rg);
   //var orderguilds := GetGlobalProperty("OrderGuilds"); // uncomment if needed
   //var chaosguilds := GetGlobalProperty("ChaosGuilds"); // uncomment if needed
   foreach gstatus in ListGuilds()
@@ -847,23 +847,23 @@ function setenemies(who)
       if(count > 13)
         count := 1;
         rc := 120;
-        GFButtonPage(315, 393, 5540, 5541, pc);
+        OldGFButtonPage(315, 393, 5540, 5541, pc);
         if(pc > 2)
-          GFButtonPage(275, 393, 5537, 5538, (pc - 2));
+          OldGFButtonPage(275, 393, 5537, 5538, (pc - 2));
         endif
-        GFPage(pc);
-        GFSetRadioGroup(rg);
+        OldGFPage(pc);
+        OldGFSetRadioGroup(rg);
         pc := pc + 1;
         rg := rg + 1;
-        GFSetRadioGroup(rg);
+        OldGFSetRadioGroup(rg);
       endif
-      GFTextLine(175, rc, 300, gstatus.getprop("guildname") + " [" + gstatus.getprop("guildabv") + "]");
-      GFRadioButton(150, rc, 210, 211, 0, gstatus.guildid);
+      OldGFTextLine(175, rc, 300, gstatus.getprop("guildname") + " [" + gstatus.getprop("guildabv") + "]");
+      OldGFRadioButton(150, rc, 210, 211, 0, gstatus.guildid);
       rc := rc + 20;
     endif
   endforeach
   var choose:=0;
-  var box := GFSendGump(who);
+  var box := OldGFSendGump(who);
   if(box[ok.keyid])
     foreach k in(box.keys)
       if(k > 1)
@@ -896,23 +896,23 @@ function remenemies(who)
   var count := 0;
   var rc := 120;
   var pc := 0;
-  GFInitGump();
-  GFPage(pc);
+  OldGFInitGump();
+  OldGFPage(pc);
   pc := pc + 1;
-  GFResizePic(110,  25, 5120,  470, 470);
-  GFResizePic(120,  35, 5054,  450, 450);
-  GFResizePic(133, 415, 5120,  420,  45);
-  GFResizePic(137, 420, 5100,  410,  35);
-  GFResizePic(140, 110, 2620,  410, 280);
-  GFTextLine (240,  50,   0, "End War: (remove enemies)");
-  GFTextLine (160,  70, 900, "Guild Master: " + gm[1]);
-  GFTextLine (140,  90,   0, "Guild Name");
-  /*var cancel :=*/ GFButtonID(240, 426, 5200, 5201, 1);
-  var ok     := GFButtonID(350, 426, 5042, 5043, 1);
-  GFPage(pc);
+  OldGFResizePic(110,  25, 5120,  470, 470);
+  OldGFResizePic(120,  35, 5054,  450, 450);
+  OldGFResizePic(133, 415, 5120,  420,  45);
+  OldGFResizePic(137, 420, 5100,  410,  35);
+  OldGFResizePic(140, 110, 2620,  410, 280);
+  OldGFTextLine (240,  50,   0, "End War: (remove enemies)");
+  OldGFTextLine (160,  70, 900, "Guild Master: " + gm[1]);
+  OldGFTextLine (140,  90,   0, "Guild Name");
+  /*var cancel :=*/ OldGFButtonID(240, 426, 5200, 5201, 1);
+  var ok     := OldGFButtonID(350, 426, 5042, 5043, 1);
+  OldGFPage(pc);
   pc := pc + 1;
   var rg := 1;
-  GFSetRadioGroup(rg);
+  OldGFSetRadioGroup(rg);
   //var orderguilds := GetGlobalProperty("OrderGuilds"); // uncomment if needed
   //var chaosguilds := GetGlobalProperty("ChaosGuilds"); // uncomment if needed
   foreach gstatus in ListGuilds()
@@ -921,22 +921,22 @@ function remenemies(who)
       if(count > 13)
         count := 1;
         rc := 120;
-        GFButtonPage(315, 393, 5540, 5541, pc);
+        OldGFButtonPage(315, 393, 5540, 5541, pc);
         if(pc > 2)
-          GFButtonPage(275, 393, 5537, 5538, (pc - 2));
+          OldGFButtonPage(275, 393, 5537, 5538, (pc - 2));
         endif
-        GFPage(pc);
+        OldGFPage(pc);
         rg := rg + 1;
-        GFSetRadioGroup(rg);
+        OldGFSetRadioGroup(rg);
         pc := pc + 1;
       endif
-      GFTextLine(175, rc, 300, gstatus.getprop("guildname") + " [" + gstatus.getprop("guildabv") + "]");
-      GFRadioButton(150, rc, 210, 211, 0, gstatus.guildid);
+      OldGFTextLine(175, rc, 300, gstatus.getprop("guildname") + " [" + gstatus.getprop("guildabv") + "]");
+      OldGFRadioButton(150, rc, 210, 211, 0, gstatus.guildid);
       rc := rc + 20;
     endif
   endforeach
   var choose:=0;
-  var box := GFSendGump(who);
+  var box := OldGFSendGump(who);
   if(box[ok.keyid])
     foreach k in(box.keys)
       if(k > 1)
@@ -969,18 +969,18 @@ function yourallies(who)
   var count := 0;
   var rc := 120;
   var pc := 0;
-  GFInitGump();
-  GFPage(pc);
+  OldGFInitGump();
+  OldGFPage(pc);
   pc := pc + 1;
-  GFResizePic(110,  25, 5120,  470, 470);
-  GFResizePic(120,  35, 5054,  450, 450);
-  GFResizePic(133, 415, 5120,  420,  45);
-  GFResizePic(137, 420, 5100,  410,  35);
-  GFResizePic(140, 110, 2620,  410, 280);
-  GFTextLine (240,  50,   0, "Guild Ally Status Page");
-  GFTextLine (160,  70, 900, "Guild Master: " + gm[1]);
-  GFTextLine (140,  90,   0, "Guild Listing");
-  var ok := GFButtonID (285, 425, 5042, 5043, 1);
+  OldGFResizePic(110,  25, 5120,  470, 470);
+  OldGFResizePic(120,  35, 5054,  450, 450);
+  OldGFResizePic(133, 415, 5120,  420,  45);
+  OldGFResizePic(137, 420, 5100,  410,  35);
+  OldGFResizePic(140, 110, 2620,  410, 280);
+  OldGFTextLine (240,  50,   0, "Guild Ally Status Page");
+  OldGFTextLine (160,  70, 900, "Guild Master: " + gm[1]);
+  OldGFTextLine (140,  90,   0, "Guild Listing");
+  var ok := OldGFButtonID (285, 425, 5042, 5043, 1);
   var total := 0;
   //var orderguilds := GetGlobalProperty("OrderGuilds"); // uncomment if needed
   //var chaosguilds := GetGlobalProperty("ChaosGuilds"); // uncomment if needed
@@ -991,23 +991,23 @@ function yourallies(who)
       if(count > 13)
         count := 1;
         rc := 120;
-        GFButtonPage(315, 396, 5540, 5541, pc);
+        OldGFButtonPage(315, 396, 5540, 5541, pc);
         if(pc > 2)
-          GFButtonPage(275, 396, 5537, 5538, (pc - 2));
+          OldGFButtonPage(275, 396, 5537, 5538, (pc - 2));
         endif
-        GFPage(pc);
+        OldGFPage(pc);
         pc := pc + 1;
       endif
-      GFTextLine(150, rc, 300, enemy.GetProp("guildname") + "  " + enemy.GetProp("guildabv"));
+      OldGFTextLine(150, rc, 300, enemy.GetProp("guildname") + "  " + enemy.GetProp("guildabv"));
       rc := rc + 20;
       total := total + 1;
     endif
   endforeach
   if(total == 0)
-    GFTextLine(150, rc, 300, "No Current Requests");
+    OldGFTextLine(150, rc, 300, "No Current Requests");
   endif
-  GFTextLine (340,  90,   0, "total requests: " + total);
-  var res := GFSendGump(who);
+  OldGFTextLine (340,  90,   0, "total requests: " + total);
+  var res := OldGFSendGump(who);
   if(res[ok.keyid]);
     buildgump(who);
   endif
@@ -1017,18 +1017,18 @@ function yourenemies(who)
   var count := 0;
   var rc := 120;
   var pc := 0;
-  GFInitGump();
-  GFPage(pc);
+  OldGFInitGump();
+  OldGFPage(pc);
   pc := pc + 1;
-  GFResizePic(110,  25, 5120,  470, 470);
-  GFResizePic(120,  35, 5054,  450, 450);
-  GFResizePic(133, 415, 5120,  420,  45);
-  GFResizePic(137, 420, 5100,  410,  35);
-  GFResizePic(140, 110, 2620,  410, 280);
-  GFTextLine (240,  50,   0, "Guild Enemy Status Page");
-  GFTextLine (160,  70, 900, "Guild Master: " + gm[1]);
-  GFTextLine (140,  90,   0, "Guild Listing");
-  var ok := GFButtonID (285, 425, 5042, 5043, 1);
+  OldGFResizePic(110,  25, 5120,  470, 470);
+  OldGFResizePic(120,  35, 5054,  450, 450);
+  OldGFResizePic(133, 415, 5120,  420,  45);
+  OldGFResizePic(137, 420, 5100,  410,  35);
+  OldGFResizePic(140, 110, 2620,  410, 280);
+  OldGFTextLine (240,  50,   0, "Guild Enemy Status Page");
+  OldGFTextLine (160,  70, 900, "Guild Master: " + gm[1]);
+  OldGFTextLine (140,  90,   0, "Guild Listing");
+  var ok := OldGFButtonID (285, 425, 5042, 5043, 1);
   var total := 0;
   //var orderguilds := GetGlobalProperty("OrderGuilds"); // uncomment if needed
   //var chaosguilds := GetGlobalProperty("ChaosGuilds"); // uncomment if needed
@@ -1039,23 +1039,23 @@ function yourenemies(who)
       if(count > 13)
         count := 1;
         rc := 120;
-        GFButtonPage(315, 396, 5540, 5541, pc);
+        OldGFButtonPage(315, 396, 5540, 5541, pc);
         if(pc > 2)
-          GFButtonPage(275, 396, 5537, 5538, (pc - 2));
+          OldGFButtonPage(275, 396, 5537, 5538, (pc - 2));
         endif
-        GFPage(pc);
+        OldGFPage(pc);
         pc := pc + 1;
       endif
-      GFTextLine(150, rc, 300, enemy.GetProp("guildname") + "  " + enemy.GetProp("guildabv"));
+      OldGFTextLine(150, rc, 300, enemy.GetProp("guildname") + "  " + enemy.GetProp("guildabv"));
       rc := rc + 20;
       total := total + 1;
     endif
   endforeach
   if(total == 0)
-    GFTextLine(150, rc, 300, "No Current Requests");
+    OldGFTextLine(150, rc, 300, "No Current Requests");
   endif
-  GFTextLine (340,  90,   0, "total requests: " + total);
-  var res := GFSendGump(who);
+  OldGFTextLine (340,  90,   0, "total requests: " + total);
+  var res := OldGFSendGump(who);
   if(res[ok.keyid]);
     buildgump(who);
   endif
@@ -1065,18 +1065,18 @@ function viewstatus(who)
   var count := 0;
   var rc := 120;
   var pc := 0;
-  GFInitGump();
-  GFPage(pc);
+  OldGFInitGump();
+  OldGFPage(pc);
   pc := pc + 1;
-  GFResizePic(110,  25, 5120,  470, 470);
-  GFResizePic(120,  35, 5054,  450, 450);
-  GFResizePic(133, 415, 5120,  420,  45);
-  GFResizePic(137, 420, 5100,  410,  35);
-  GFResizePic(140, 110, 2620,  410, 280);
-  GFTextLine (240,  50,   0, "Guild Relation Status Page");
-  GFTextLine (160,  70, 900, "Guild Master: " + gm[1]);
-  GFTextLine (140,  90,   0, "Guild Listing");
-  var ok := GFButtonID (285, 425, 5042, 5043, 1);
+  OldGFResizePic(110,  25, 5120,  470, 470);
+  OldGFResizePic(120,  35, 5054,  450, 450);
+  OldGFResizePic(133, 415, 5120,  420,  45);
+  OldGFResizePic(137, 420, 5100,  410,  35);
+  OldGFResizePic(140, 110, 2620,  410, 280);
+  OldGFTextLine (240,  50,   0, "Guild Relation Status Page");
+  OldGFTextLine (160,  70, 900, "Guild Master: " + gm[1]);
+  OldGFTextLine (140,  90,   0, "Guild Listing");
+  var ok := OldGFButtonID (285, 425, 5042, 5043, 1);
   var total := 0;
   //var orderguilds := GetGlobalProperty("OrderGuilds"); // uncomment if needed
   //var chaosguilds := GetGlobalProperty("ChaosGuilds"); // uncomment if needed
@@ -1092,18 +1092,18 @@ function viewstatus(who)
         if(count > 13)
           count := 1;
           rc := 120;
-          GFButtonPage(315, 396, 5540, 5541, pc);
+          OldGFButtonPage(315, 396, 5540, 5541, pc);
           if(pc > 2)
-            GFButtonPage(275, 396, 5537, 5538, (pc - 2));
+            OldGFButtonPage(275, 396, 5537, 5538, (pc - 2));
           endif
-          GFPage(pc);
+          OldGFPage(pc);
           pc := pc + 1;
         endif
         var gname := chk.GetProp("guildname");
         if(gstatus[3] == "RA")
-          GFTextLine(150, rc, 300, gname + " (pending alliance)");
+          OldGFTextLine(150, rc, 300, gname + " (pending alliance)");
         elseif(gstatus[3] == "RE")
-          GFTextLine(150, rc, 300, gname + " (pending war)");
+          OldGFTextLine(150, rc, 300, gname + " (pending war)");
         endif
         rc := rc + 20;
         total := total + 1;
@@ -1111,10 +1111,10 @@ function viewstatus(who)
     endif
   endforeach
   if(total == 0)
-    GFTextLine(150, rc, 300, "No Current Requests");
+    OldGFTextLine(150, rc, 300, "No Current Requests");
   endif
-  GFTextLine (340,  90,   0, "total requests: " + total);
-  var res := GFSendGump(who);
+  OldGFTextLine (340,  90,   0, "total requests: " + total);
+  var res := OldGFSendGump(who);
   if(res[ok.keyid]);
     buildgump(who);
   endif
@@ -1208,7 +1208,7 @@ endfunction
 
 function setcharter(who)
   SetNotes(guild);
-  var box := GFSendGump(who);
+  var box := OldGFSendGump(who);
   if(box[0]!=2)
     SendSysMessage(who, "Canceled.", 3, 40);
     sleep(2);
@@ -1235,35 +1235,35 @@ function setcharter(who)
 endfunction
 
 function SetNotes(guild)
-  GFInitGump();
-  GFPage(0);
-  GFResizePic( 20,   0, 5120, 560, 340);
-  GFResizePic( 30,  30, 2620, 540, 260);
-  GFResizePic( 30, 300, 5054, 540,  30);
-  GFTextLine ( 30,  5,  910, "Input your Guild Charter:");
-  GFTextLine (400,  5,  910, "Save Charter:");
-  GFButtonID(508, 5, 4011, 4013, 1, 2);
+  OldGFInitGump();
+  OldGFPage(0);
+  OldGFResizePic( 20,   0, 5120, 560, 340);
+  OldGFResizePic( 30,  30, 2620, 540, 260);
+  OldGFResizePic( 30, 300, 5054, 540,  30);
+  OldGFTextLine ( 30,  5,  910, "Input your Guild Charter:");
+  OldGFTextLine (400,  5,  910, "Save Charter:");
+  OldGFButtonID(508, 5, 4011, 4013, 1, 2);
   var i;
   var message := guild.getprop("gc");
   var y := 40;
   if(message[1] == "NONE")
     for(i:=3; i<=14; i:=i+1)
-      GFTextEntry(40, y, 500, 20, 910, "");
+      OldGFTextEntry(40, y, 500, 20, 910, "");
       y := y + 20;
     endfor
   else
     for(i:=3; i<=14; i:=i+1)
       if(message[i-2] != error)
-        GFTextEntry(40, y, 500, 20, 910, message[i-2]);
+        OldGFTextEntry(40, y, 500, 20, 910, message[i-2]);
       else
-        GFTextEntry(40, y, 500, 20, 910, "");
+        OldGFTextEntry(40, y, 500, 20, 910, "");
       endif
       y := y + 20;
     endfor
   endif
-  GFTextLine( 40, 305, 0, "Guild Web Page:");
+  OldGFTextLine( 40, 305, 0, "Guild Web Page:");
   var wp := guild.getprop("webpage");
-  GFTextEntry(170, 305, 400, 30, 900, wp);
+  OldGFTextEntry(170, 305, 400, 30, 900, wp);
 endfunction
 
 function setstonecolor(who)
@@ -1337,21 +1337,21 @@ function AcceptCandidate(who)
   var count := 0;
   var rc := 120;
   var pc := 0;
-  GFInitGump();
-  GFPage(pc);
+  OldGFInitGump();
+  OldGFPage(pc);
   pc := pc + 1;
-  GFResizePic(110,  25, 5120,  470, 470);
-  GFResizePic(120,  35, 5054,  450, 450);
-  GFResizePic(133, 415, 5120,  420,  45);
-  GFResizePic(137, 420, 5100,  410,  35);
-  GFResizePic(140, 110, 2620,  410, 280);
-  GFTextLine (240,  50,   0, "Guild Recruit Acceptance Page");
-  GFTextLine (160,  70, 900, "Guild Master: " + gm[1]);
-  GFTextLine (140,  90,   0, "Recruit Listing");
-  var ok := GFButtonID (285, 425, 5042, 5043, 1);
+  OldGFResizePic(110,  25, 5120,  470, 470);
+  OldGFResizePic(120,  35, 5054,  450, 450);
+  OldGFResizePic(133, 415, 5120,  420,  45);
+  OldGFResizePic(137, 420, 5100,  410,  35);
+  OldGFResizePic(140, 110, 2620,  410, 280);
+  OldGFTextLine (240,  50,   0, "Guild Recruit Acceptance Page");
+  OldGFTextLine (160,  70, 900, "Guild Master: " + gm[1]);
+  OldGFTextLine (140,  90,   0, "Recruit Listing");
+  var ok := OldGFButtonID (285, 425, 5042, 5043, 1);
   var total := 0;
   var rg := 1;
-  GFSetRadioGroup(rg);
+  OldGFSetRadioGroup(rg);
   foreach gstatus in (guild.getprop("recruits"))
     var enemy := SystemFindObjectBySerial(gstatus, SYSFIND_SEARCH_OFFLINE_MOBILES);
     if(enemy)
@@ -1359,26 +1359,26 @@ function AcceptCandidate(who)
       if(count > 13)
         count := 1;
         rc := 120;
-        GFButtonPage(315, 396, 5540, 5541, pc);
+        OldGFButtonPage(315, 396, 5540, 5541, pc);
         if(pc > 2)
-          GFButtonPage(275, 396, 5537, 5538, (pc - 2));
+          OldGFButtonPage(275, 396, 5537, 5538, (pc - 2));
         endif
-        GFPage(pc);
+        OldGFPage(pc);
         pc := pc + 1;
         rg := rg + 1;
-        GFSetRadioGroup(rg);
+        OldGFSetRadioGroup(rg);
       endif
-      GFTextLine(175, rc, 300, enemy.name);
-      GFRadioButton(150, rc, 210, 211, 0, enemy.serial);
+      OldGFTextLine(175, rc, 300, enemy.name);
+      OldGFRadioButton(150, rc, 210, 211, 0, enemy.serial);
       rc := rc + 20;
       total := total + 1;
     endif
   endforeach
   if(total == 0)
-    GFTextLine(150, rc, 300, "No Current Recruits");
+    OldGFTextLine(150, rc, 300, "No Current Recruits");
   endif
-  GFTextLine (340,  90,   0, "total recruits: " + total);
-  var res := GFSendGump(who);
+  OldGFTextLine (340,  90,   0, "total recruits: " + total);
+  var res := OldGFSendGump(who);
   if(res[ok.keyid]);
     if(total == 0)
       sleep(2);
@@ -1421,21 +1421,21 @@ function RefuseCandidate(who)
   var count := 0;
   var rc := 120;
   var pc := 0;
-  GFInitGump();
-  GFPage(pc);
+  OldGFInitGump();
+  OldGFPage(pc);
   pc := pc + 1;
-  GFResizePic(110,  25, 5120,  470, 470);
-  GFResizePic(120,  35, 5054,  450, 450);
-  GFResizePic(133, 415, 5120,  420,  45);
-  GFResizePic(137, 420, 5100,  410,  35);
-  GFResizePic(140, 110, 2620,  410, 280);
-  GFTextLine (240,  50,   0, "Guild Recruit Rejection Page");
-  GFTextLine (160,  70, 900, "Guild Master: " + gm[1]);
-  GFTextLine (140,  90,   0, "Recruit Listing");
-  var ok := GFButtonID (285, 425, 5042, 5043, 1);
+  OldGFResizePic(110,  25, 5120,  470, 470);
+  OldGFResizePic(120,  35, 5054,  450, 450);
+  OldGFResizePic(133, 415, 5120,  420,  45);
+  OldGFResizePic(137, 420, 5100,  410,  35);
+  OldGFResizePic(140, 110, 2620,  410, 280);
+  OldGFTextLine (240,  50,   0, "Guild Recruit Rejection Page");
+  OldGFTextLine (160,  70, 900, "Guild Master: " + gm[1]);
+  OldGFTextLine (140,  90,   0, "Recruit Listing");
+  var ok := OldGFButtonID (285, 425, 5042, 5043, 1);
   var total := 0;
   var rg := 1;
-  GFSetRadioGroup(rg);
+  OldGFSetRadioGroup(rg);
   foreach gstatus in (guild.getprop("recruits"))
     var enemy := SystemFindObjectBySerial(gstatus, SYSFIND_SEARCH_OFFLINE_MOBILES);
     if(enemy)
@@ -1443,26 +1443,26 @@ function RefuseCandidate(who)
       if(count > 13)
         count := 1;
         rc := 120;
-        GFButtonPage(315, 396, 5540, 5541, pc);
+        OldGFButtonPage(315, 396, 5540, 5541, pc);
         if(pc > 2)
-          GFButtonPage(275, 396, 5537, 5538, (pc - 2));
+          OldGFButtonPage(275, 396, 5537, 5538, (pc - 2));
         endif
-        GFPage(pc);
+        OldGFPage(pc);
         pc := pc + 1;
         rg := rg + 1;
-        GFSetRadioGroup(rg);
+        OldGFSetRadioGroup(rg);
       endif
-      GFTextLine(175, rc, 300, enemy.name);
-      GFRadioButton(150, rc, 210, 211, 0, enemy.serial);
+      OldGFTextLine(175, rc, 300, enemy.name);
+      OldGFRadioButton(150, rc, 210, 211, 0, enemy.serial);
       rc := rc + 20;
       total := total + 1;
     endif
   endforeach
   if(total == 0)
-    GFTextLine(150, rc, 300, "No Current Recruits");
+    OldGFTextLine(150, rc, 300, "No Current Recruits");
   endif
-  GFTextLine (340,  90,   0, "total recruits: " + total);
-  var res := GFSendGump(who);
+  OldGFTextLine (340,  90,   0, "total recruits: " + total);
+  var res := OldGFSendGump(who);
   if(res[ok.keyid]);
     if(total == 0)
       sleep(2);
@@ -1517,23 +1517,23 @@ function GrantTitle(who)
   var count := 0;
   var rc := 120;
   var pc := 0;
-  GFInitGump();
-  GFPage(pc);
+  OldGFInitGump();
+  OldGFPage(pc);
   pc := pc + 1;
-  GFResizePic(110,  25, 5120,  470, 470);
-  GFResizePic(120,  35, 5054,  450, 450);
-  GFResizePic(133, 415, 5120,  420,  45);
-  GFResizePic(137, 420, 5100,  410,  35);
-  GFResizePic(140, 110, 2620,  410, 280);
-  GFTextLine (240,  50,   0, "Declare Fealty");
-  GFTextLine (160,  70, 900, "Guild Master: " + gm[1]);
-  GFTextLine (140,  90,   0, "Member Name");
-  /*var cancel :=*/ GFButtonID(240, 426, 5200, 5201, 1);
-  var ok     := GFButtonID(350, 426, 5042, 5043, 1);
-  GFPage(pc);
+  OldGFResizePic(110,  25, 5120,  470, 470);
+  OldGFResizePic(120,  35, 5054,  450, 450);
+  OldGFResizePic(133, 415, 5120,  420,  45);
+  OldGFResizePic(137, 420, 5100,  410,  35);
+  OldGFResizePic(140, 110, 2620,  410, 280);
+  OldGFTextLine (240,  50,   0, "Declare Fealty");
+  OldGFTextLine (160,  70, 900, "Guild Master: " + gm[1]);
+  OldGFTextLine (140,  90,   0, "Member Name");
+  /*var cancel :=*/ OldGFButtonID(240, 426, 5200, 5201, 1);
+  var ok     := OldGFButtonID(350, 426, 5042, 5043, 1);
+  OldGFPage(pc);
   pc := pc + 1;
   var rg := 1;
-  GFSetRadioGroup(rg);
+  OldGFSetRadioGroup(rg);
   rg := rg + 1;
   foreach member in guildmembers
     if(member != gm[3])
@@ -1541,26 +1541,26 @@ function GrantTitle(who)
       if(count > 13)
         count := 1;
         rc := 120;
-        GFButtonPage(315, 393, 5540, 5541, pc);
+        OldGFButtonPage(315, 393, 5540, 5541, pc);
         if(pc > 2)
-          GFButtonPage(275, 393, 5537, 5538, (pc - 2));
+          OldGFButtonPage(275, 393, 5537, 5538, (pc - 2));
         endif
-        GFPage(pc);
+        OldGFPage(pc);
         pc := pc + 1;
         rg := rg + 1;
-        GFSetRadioGroup(rg);
+        OldGFSetRadioGroup(rg);
       endif
-      GFRadioButton(150, rc + 2, 2103, 2104, 0, member.serial);
-      GFTextLine(185, rc, 940, member.name);
+      OldGFRadioButton(150, rc + 2, 2103, 2104, 0, member.serial);
+      OldGFTextLine(185, rc, 940, member.name);
       count := count + 1;
       rc := rc + 20;
     endif
   endforeach
   if(count == 0)
-    GFTextLine(150, rc, 300, "No Current Members");
+    OldGFTextLine(150, rc, 300, "No Current Members");
   endif
   var choose;
-  var box := GFSendGump(who);
+  var box := OldGFSendGump(who);
   if(count == 0)
     return;
   endif
