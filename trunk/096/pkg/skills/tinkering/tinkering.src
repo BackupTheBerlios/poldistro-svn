@@ -51,135 +51,135 @@ program MakeTinkerItems(who, item)
     SendSysMessage(who, "You cannot use that.");
     return;
   endif
-  GFInitGump(0, 0);
-  GFNoDispose();
-  GFNoClose();
-  GFPage(0);
-  GFResizePic(0, 60, 2600, 500, 400);
-  GFGumpPic( 20, 120, 5100);
-  GFGumpPic( 28, 120, 5101);
-  GFGumpPic(118, 120, 5101);
-  GFGumpPic(208, 120, 5101);
-  GFGumpPic(298, 120, 5101);
-  GFGumpPic(370, 120, 5101);
-  GFGumpPic(460, 120, 5102);
-  GFGumpPic( 20, 128, 5103);
-  GFGumpPic( 28, 128, 5104);
-  GFGumpPic(118, 128, 5104);
-  GFGumpPic(208, 128, 5104);
-  GFGumpPic(298, 128, 5104);
-  GFGumpPic(370, 128, 5104);
-  GFGumpPic(460, 128, 5105);
-  GFGumpPic( 20, 136, 5058);
-  GFGumpPic(118, 136, 5058);
-  GFGumpPic(232, 136, 5058);
-  GFGumpPic(350, 136, 5058);
-  GFGumpPic( 20, 136, 5106);
-  GFGumpPic( 28, 136, 5107);
-  GFGumpPic(118, 136, 5107);
-  GFGumpPic(208, 136, 5107);
-  GFGumpPic(298, 136, 5107);
-  GFGumpPic(370, 136, 5107);
-  GFGumpPic(460, 136, 5108);
-  GFGumpPic( 28, 278, 5104);
-  GFGumpPic(118, 278, 5104);
-  GFGumpPic(208, 278, 5104);
-  GFGumpPic(298, 278, 5104);
-  GFGumpPic(368, 278, 5104);
-  GFGumpPic( 20, 278, 5103);
-  GFGumpPic(460, 278, 5105);
-  GFGumpPic( 20, 226, 5058);
-  GFGumpPic(118, 226, 5058);
-  GFGumpPic(232, 226, 5058);
-  GFGumpPic(350, 226, 5058);
-  GFGumpPic( 20, 366, 5106);
-  GFGumpPic( 28, 366, 5107);
-  GFGumpPic(118, 366, 5107);
-  GFGumpPic(208, 366, 5107);
-  GFGumpPic(298, 366, 5107);
-  GFGumpPic(370, 366, 5107);
-  GFGumpPic(460, 366, 5108);
-  GFGumpPic( 20, 350, 5100);
-  GFGumpPic( 28, 350, 5101);
-  GFGumpPic(118, 350, 5101);
-  GFGumpPic(208, 350, 5101);
-  GFGumpPic(298, 350, 5101);
-  GFGumpPic(370, 350, 5101);
-  GFGumpPic(460, 350, 5102);
-  GFTextLine( 90, 380, 900, "Make Last");
-  GFTextLine(300, 420, 900, "How Many?");
-  GFGumpPic(390, 417, 2443);
+  OldGFInitGump(0, 0);
+  OldGFNoDispose();
+  OldGFNoClose();
+  OldGFPage(0);
+  OldGFResizePic(0, 60, 2600, 500, 400);
+  OldGFGumpPic( 20, 120, 5100);
+  OldGFGumpPic( 28, 120, 5101);
+  OldGFGumpPic(118, 120, 5101);
+  OldGFGumpPic(208, 120, 5101);
+  OldGFGumpPic(298, 120, 5101);
+  OldGFGumpPic(370, 120, 5101);
+  OldGFGumpPic(460, 120, 5102);
+  OldGFGumpPic( 20, 128, 5103);
+  OldGFGumpPic( 28, 128, 5104);
+  OldGFGumpPic(118, 128, 5104);
+  OldGFGumpPic(208, 128, 5104);
+  OldGFGumpPic(298, 128, 5104);
+  OldGFGumpPic(370, 128, 5104);
+  OldGFGumpPic(460, 128, 5105);
+  OldGFGumpPic( 20, 136, 5058);
+  OldGFGumpPic(118, 136, 5058);
+  OldGFGumpPic(232, 136, 5058);
+  OldGFGumpPic(350, 136, 5058);
+  OldGFGumpPic( 20, 136, 5106);
+  OldGFGumpPic( 28, 136, 5107);
+  OldGFGumpPic(118, 136, 5107);
+  OldGFGumpPic(208, 136, 5107);
+  OldGFGumpPic(298, 136, 5107);
+  OldGFGumpPic(370, 136, 5107);
+  OldGFGumpPic(460, 136, 5108);
+  OldGFGumpPic( 28, 278, 5104);
+  OldGFGumpPic(118, 278, 5104);
+  OldGFGumpPic(208, 278, 5104);
+  OldGFGumpPic(298, 278, 5104);
+  OldGFGumpPic(368, 278, 5104);
+  OldGFGumpPic( 20, 278, 5103);
+  OldGFGumpPic(460, 278, 5105);
+  OldGFGumpPic( 20, 226, 5058);
+  OldGFGumpPic(118, 226, 5058);
+  OldGFGumpPic(232, 226, 5058);
+  OldGFGumpPic(350, 226, 5058);
+  OldGFGumpPic( 20, 366, 5106);
+  OldGFGumpPic( 28, 366, 5107);
+  OldGFGumpPic(118, 366, 5107);
+  OldGFGumpPic(208, 366, 5107);
+  OldGFGumpPic(298, 366, 5107);
+  OldGFGumpPic(370, 366, 5107);
+  OldGFGumpPic(460, 366, 5108);
+  OldGFGumpPic( 20, 350, 5100);
+  OldGFGumpPic( 28, 350, 5101);
+  OldGFGumpPic(118, 350, 5101);
+  OldGFGumpPic(208, 350, 5101);
+  OldGFGumpPic(298, 350, 5101);
+  OldGFGumpPic(370, 350, 5101);
+  OldGFGumpPic(460, 350, 5102);
+  OldGFTextLine( 90, 380, 900, "Make Last");
+  OldGFTextLine(300, 420, 900, "How Many?");
+  OldGFGumpPic(390, 417, 2443);
   var sa := GetObjProperty(who, "#TinkerAmt");
   if(!sa)
     sa := 1;
   endif
-  var ct := GFTextEntry(400, 420, 100, 30, 0, sa);
-  var lastitm := GFButtonID( 70, 384,   3, 4, 99);
-  var close   := GFButtonID(410, 380, 242, 241, 1);
+  var ct := OldGFTextEntry(400, 420, 100, 30, 0, sa);
+  var lastitm := OldGFButtonID( 70, 384,   3, 4, 99);
+  var close   := OldGFButtonID(410, 380, 242, 241, 1);
   if((trg.objtype == 0x1bd7) || (trg.objtype == 0x1bdd))
-    GFTextLine(110,  80, 900, "WOOD SELECTION MENU");
+    OldGFTextLine(110,  80, 900, "WOOD SELECTION MENU");
     var num := 2;
     var skill := (GetEffectiveSkill(who, SKILLID_TINKERING) + 20);
     var color := 0;
     if(skill >= Cint(tinker_cfg[4144]."skill"))
       color := 900;
-      GFButtonIDC(120, 180, 210, 211, 1, 4144);
+      OldGFButtonIDC(120, 180, 210, 211, 1, 4144);
     endif
-    GFTextLine( 70, 150, color, "Jointing Plane");
-    GFTilePic( 80, 180, 4144);
+    OldGFTextLine( 70, 150, color, "Jointing Plane");
+    OldGFTilePic( 80, 180, 4144);
     color := 0;
     if(skill >= Cint(tinker_cfg[4140]."skill"))
       color := 900;
-      GFButtonIDC(260, 180, 210, 211, 1, 4140);
+      OldGFButtonIDC(260, 180, 210, 211, 1, 4140);
     endif
-    GFTextLine(190, 150, color, "Moulding Plane");
-    GFTilePic(210, 180, 4140);
+    OldGFTextLine(190, 150, color, "Moulding Plane");
+    OldGFTilePic(210, 180, 4140);
     color := 0;
     if(skill >= Cint(tinker_cfg[4146]."skill"))
       color := 900;
-      GFButtonIDC(390, 180, 210, 211, 1, 4146);
+      OldGFButtonIDC(390, 180, 210, 211, 1, 4146);
     endif
-    GFTextLine(350, 150, color, "Smoothing Plane");
-    GFTilePic(350, 180, 4146);
+    OldGFTextLine(350, 150, color, "Smoothing Plane");
+    OldGFTilePic(350, 180, 4146);
     color := 0;
     if(skill >= Cint(tinker_cfg[4173]."skill"))
       color := 900;
-      GFButtonIDC(120, 240, 210, 211, 1, 4173);
+      OldGFButtonIDC(120, 240, 210, 211, 1, 4173);
     endif
-    GFTextLine( 70, 210, color, "Clock Frame");
-    GFTilePic( 80, 240, 4173);
+    OldGFTextLine( 70, 210, color, "Clock Frame");
+    OldGFTilePic( 80, 240, 4173);
     color := 0;
     if(skill >= Cint(tinker_cfg[4187]."skill"))
       color := 900;
-      GFButtonIDC(260, 240, 210, 211, 1, 4187);
+      OldGFButtonIDC(260, 240, 210, 211, 1, 4187);
     endif
-    GFTextLine(220, 210, color, "Axle");
-    GFTilePic(210, 240, 4187);
+    OldGFTextLine(220, 210, color, "Axle");
+    OldGFTilePic(210, 240, 4187);
     color := 0;
   elseif((trg.objtype >= 0x6309) and (trg.objtype <= 0x6311))
-    GFTextLine(110,  80, 900, "TINKERING SELECTION MENU");
-    GFTextLine( 30, 121,   0, "Traps");
-    GFTextLine(150, 121,   0, "Tools");
-    GFTextLine(260, 121,   0, "Parts");
-    GFTextLine(370, 121,   0, "Utensils");
-    GFTextLine( 30, 351,   0, "Jewelry");
-    GFTextLine(160, 351,   0, "Miscellaneous");
-    GFTextLine(335, 351,   0, "More Parts");
-//  GFTextLine(320, 380, 900, "Repair Item");
-//  var repair  := GFButtonID(300, 384,   3, 4, 97);
-    GFButtonPage(110, 123, 5209, 5209, 2);
-    GFButtonPage(230, 123, 5209, 5209, 3);
-    GFButtonPage(340, 123, 5209, 5209, 4);
-    GFButtonPage(435, 123, 5209, 5209, 5);
-    GFButtonPage( 90, 353, 5209, 5209, 6);
-    GFButtonPage(260, 353, 5209, 5209, 7);
-    GFButtonPage(430, 353, 5209, 5209, 8);
+    OldGFTextLine(110,  80, 900, "TINKERING SELECTION MENU");
+    OldGFTextLine( 30, 121,   0, "Traps");
+    OldGFTextLine(150, 121,   0, "Tools");
+    OldGFTextLine(260, 121,   0, "Parts");
+    OldGFTextLine(370, 121,   0, "Utensils");
+    OldGFTextLine( 30, 351,   0, "Jewelry");
+    OldGFTextLine(160, 351,   0, "Miscellaneous");
+    OldGFTextLine(335, 351,   0, "More Parts");
+//  OldGFTextLine(320, 380, 900, "Repair Item");
+//  var repair  := OldGFButtonID(300, 384,   3, 4, 97);
+    OldGFButtonPage(110, 123, 5209, 5209, 2);
+    OldGFButtonPage(230, 123, 5209, 5209, 3);
+    OldGFButtonPage(340, 123, 5209, 5209, 4);
+    OldGFButtonPage(435, 123, 5209, 5209, 5);
+    OldGFButtonPage( 90, 353, 5209, 5209, 6);
+    OldGFButtonPage(260, 353, 5209, 5209, 7);
+    OldGFButtonPage(430, 353, 5209, 5209, 8);
     ComposeSubMenu(who);
   else
     SendSysMessage(who, "You cannot make anything out of that.");
     return;
   endif
-  var res := GFSendGump(who);
+  var res := OldGFSendGump(who);
   var split := SplitWords(res[ct.keyid]);
   ct := split[2];
   SetObjProperty(who, "#TinkerAmt", Cint(ct));
@@ -208,12 +208,12 @@ program MakeTinkerItems(who, item)
   endif
 endprogram
 
-function GFButtonIDC(x, y, release, press, close, retval)
-    var line := "button " + CStr(gfref.x + Cint(x)) + " " + CStr(gfref.y + Cint(y));
+function OldGFButtonIDC(x, y, release, press, close, retval)
+    var line := "button " + CStr(GFref.x + Cint(x)) + " " + CStr(GFref.y + Cint(y));
     line := line + " " + CStr(Cint(release)) + " " + CStr(Cint(press)) + " ";
     line := line + "1 0 ";
     line := line + CStr(retval);
-    gflayout.append( line );
+    GFlayout.append( line );
 endfunction
 
 function ComposeSubMenu(who)
@@ -222,375 +222,375 @@ function ComposeSubMenu(who)
   var color := 0;
   while(num < 9)
     case(num)
-       2: GFPage(2);        // Page 2
+       2: OldGFPage(2);        // Page 2
           if(skill >= Cint(tinker_cfg[4402]."skill"))
             color := 900;
-            GFButtonIDC(120, 220, 210, 211, 1, 4402);
+            OldGFButtonIDC(120, 220, 210, 211, 1, 4402);
           endif
-          GFTextLine( 70, 180, color, "Dart Trap");
-          GFTilePic( 80, 210, 7164);
+          OldGFTextLine( 70, 180, color, "Dart Trap");
+          OldGFTilePic( 80, 210, 7164);
           color := 0;
           if(skill >= Cint(tinker_cfg[4414]."skill"))
             color := 900;
-            GFButtonIDC(260, 220, 210, 211, 1, 4414);
+            OldGFButtonIDC(260, 220, 210, 211, 1, 4414);
           endif
-          GFTextLine(200, 180, color, "Poison Trap");
-          GFTilePic(210, 210, 4414);
+          OldGFTextLine(200, 180, color, "Poison Trap");
+          OldGFTilePic(210, 210, 4414);
           color := 0;
           if(skill >= Cint(tinker_cfg[4345]."skill"))
             color := 900;
-            GFButtonIDC(400, 220, 210, 211, 1, 4345);
+            OldGFButtonIDC(400, 220, 210, 211, 1, 4345);
           endif
-          GFTextLine(330, 180, color, "Explosion Trap");
-          GFTilePic(340, 120, 14093);
+          OldGFTextLine(330, 180, color, "Explosion Trap");
+          OldGFTilePic(340, 120, 14093);
           color := 0;
-       3: GFPage(3);        // Page 3
+       3: OldGFPage(3);        // Page 3
           if(skill >= Cint(tinker_cfg[4325]."skill"))
             color := 900;
-            GFButtonIDC(120, 180, 210, 211, 1, 4325);
+            OldGFButtonIDC(120, 180, 210, 211, 1, 4325);
           endif
-          GFTextLine( 70, 150, color, "Froe");
-          GFTilePic( 80, 180, 4325);
+          OldGFTextLine( 70, 150, color, "Froe");
+          OldGFTilePic( 80, 180, 4325);
           color := 0;
           if(skill >= Cint(tinker_cfg[4027]."skill"))
             color := 900;
-            GFButtonIDC(260, 180, 210, 211, 1, 4027);
+            OldGFButtonIDC(260, 180, 210, 211, 1, 4027);
           endif
-          GFTextLine(190, 150, color, "Tongs");
-          GFTilePic(210, 180, 4028);
+          OldGFTextLine(190, 150, color, "Tongs");
+          OldGFTilePic(210, 180, 4028);
           color := 0;
           if(skill >= Cint(tinker_cfg[3897]."skill"))
             color := 900;
-            GFButtonIDC(400, 180, 210, 211, 1, 3897);
+            OldGFButtonIDC(400, 180, 210, 211, 1, 3897);
           endif
-          GFTextLine(370, 150, color, "Shovel");
-          GFTilePic(290, 180, 3898);
+          OldGFTextLine(370, 150, color, "Shovel");
+          OldGFTilePic(290, 180, 3898);
           color := 0;
           if(skill >= Cint(tinker_cfg[4138]."skill"))
             color := 900;
-            GFButtonIDC(120, 240, 210, 211, 1, 4138);
+            OldGFButtonIDC(120, 240, 210, 211, 1, 4138);
           endif
-          GFTextLine( 70, 210, color, "Hammer");
-          GFTilePic( 80, 240, 4138);
+          OldGFTextLine( 70, 210, color, "Hammer");
+          OldGFTilePic( 80, 240, 4138);
           color := 0;
           if(skill >= Cint(tinker_cfg[5091]."skill"))
             color := 900;
-            GFButtonIDC(260, 240, 210, 211, 1, 5091);
+            OldGFButtonIDC(260, 240, 210, 211, 1, 5091);
           endif
-          GFTextLine(200, 210, color, "Smith's Hammer");
-          GFTilePic(210, 240, 5091);
+          OldGFTextLine(200, 210, color, "Smith's Hammer");
+          OldGFTilePic(210, 240, 5091);
           color := 0;
           if(skill >= Cint(tinker_cfg[4020]."skill"))
             color := 900;
-            GFButtonIDC(400, 240, 210, 211, 1, 4020);
+            OldGFButtonIDC(400, 240, 210, 211, 1, 4020);
           endif
-          GFTextLine(350, 210, color, "Sledge Hammer");
-          GFTilePic(350, 240, 4021);
+          OldGFTextLine(350, 210, color, "Sledge Hammer");
+          OldGFTilePic(350, 240, 4021);
           color := 0;
           if(skill >= Cint(tinker_cfg[4326]."skill"))
             color := 900;
-            GFButtonIDC(120, 310, 210, 211, 1, 4326);
+            OldGFButtonIDC(120, 310, 210, 211, 1, 4326);
           endif
-          GFTextLine( 70, 280, color, "Inshave");
-          GFTilePic( 80, 310, 4326);
+          OldGFTextLine( 70, 280, color, "Inshave");
+          OldGFTilePic( 80, 310, 4326);
           color := 0;
           if(skill >= Cint(tinker_cfg[3717]."skill"))
             color := 900;
-            GFButtonIDC(260, 310, 210, 211, 1, 3717);
+            OldGFButtonIDC(260, 310, 210, 211, 1, 3717);
           endif
-          GFTextLine(220, 280, color, "Pickaxe");
-          GFTilePic(210, 310, 3718);
+          OldGFTextLine(220, 280, color, "Pickaxe");
+          OldGFTilePic(210, 310, 3718);
           color := 0;
           if(skill >= Cint(tinker_cfg[5371]."skill"))
             color := 900;
-            GFButtonIDC(400, 310, 210, 211, 1, 5371);
+            OldGFButtonIDC(400, 310, 210, 211, 1, 5371);
           endif
-          GFTextLine(370, 280, color, "Lockpick");
-          GFTilePic(350, 310, 5371);
+          OldGFTextLine(370, 280, color, "Lockpick");
+          OldGFTilePic(350, 310, 5371);
           color := 0;
-       4: GFPage(4);        // Page 4
+       4: OldGFPage(4);        // Page 4
           if(skill >= Cint(tinker_cfg[4179]."skill"))
             color := 900;
-            GFButtonIDC(120, 180, 210, 211, 1, 4179);
+            OldGFButtonIDC(120, 180, 210, 211, 1, 4179);
           endif
-          GFTextLine( 70, 150, color, "Gears");
-          GFTilePic( 80, 180, 4179);
+          OldGFTextLine( 70, 150, color, "Gears");
+          OldGFTilePic( 80, 180, 4179);
           color := 0;
           if(skill >= Cint(tinker_cfg[4175]."skill"))
             color := 900;
-            GFButtonIDC(260, 180, 210, 211, 1, 4175);
+            OldGFButtonIDC(260, 180, 210, 211, 1, 4175);
           endif
-          GFTextLine(190, 150, color, "Clock Parts");
-          GFTilePic(210, 180, 4175);
+          OldGFTextLine(190, 150, color, "Clock Parts");
+          OldGFTilePic(210, 180, 4175);
           color := 0;
           if(skill >= Cint(tinker_cfg[4100]."skill"))
             color := 900;
-            GFButtonIDC(400, 180, 210, 211, 1, 4100);
+            OldGFButtonIDC(400, 180, 210, 211, 1, 4100);
           endif
-          GFTextLine(370, 150, color, "Keg Tap");
-          GFTilePic(350, 180, 4100);
+          OldGFTextLine(370, 150, color, "Keg Tap");
+          OldGFTilePic(350, 180, 4100);
           color := 0;
           if(skill >= Cint(tinker_cfg[4189]."skill"))
             color := 900;
-            GFButtonIDC(120, 240, 210, 211, 1, 4189);
+            OldGFButtonIDC(120, 240, 210, 211, 1, 4189);
           endif
-          GFTextLine( 70, 210, color, "springs");
-          GFTilePic( 80, 240, 4189);
+          OldGFTextLine( 70, 210, color, "springs");
+          OldGFTilePic( 80, 240, 4189);
           color := 0;
           if(skill >= Cint(tinker_cfg[4185]."skill"))
             color := 900;
-            GFButtonIDC(260, 240, 210, 211, 1, 4185);
+            OldGFButtonIDC(260, 240, 210, 211, 1, 4185);
           endif
-          GFTextLine(200, 210, color, "Sextant Parts");
-          GFTilePic(210, 240, 4185);
+          OldGFTextLine(200, 210, color, "Sextant Parts");
+          OldGFTilePic(210, 240, 4185);
           color := 0;
           if(skill >= Cint(tinker_cfg[4321]."skill"))
             color := 900;
-            GFButtonIDC(400, 240, 210, 211, 1, 4321);
+            OldGFButtonIDC(400, 240, 210, 211, 1, 4321);
           endif
-          GFTextLine(350, 210, color, "Barrel Hoops");
-          GFTilePic(350, 240, 4321);
+          OldGFTextLine(350, 210, color, "Barrel Hoops");
+          OldGFTilePic(350, 240, 4321);
           color := 0;
           if(skill >= Cint(tinker_cfg[4181]."skill"))
             color := 900;
-            GFButtonIDC(120, 310, 210, 211, 1, 4181);
+            OldGFButtonIDC(120, 310, 210, 211, 1, 4181);
           endif
-          GFTextLine( 90, 280, color, "Hinge");
-          GFTilePic( 80, 310, 4181);
+          OldGFTextLine( 90, 280, color, "Hinge");
+          OldGFTilePic( 80, 310, 4181);
           color := 0;
-       5: GFPage(5);        //Page 5
+       5: OldGFPage(5);        //Page 5
           if(skill >= Cint(tinker_cfg[5110]."skill"))
             color := 900;
-            GFButtonIDC(120, 180, 210, 211, 1, 5110);
+            OldGFButtonIDC(120, 180, 210, 211, 1, 5110);
           endif
-          GFTextLine( 70, 150, color, "Butcher Knife");
-          GFTilePic( 80, 180, 5110);
+          OldGFTextLine( 70, 150, color, "Butcher Knife");
+          OldGFTilePic( 80, 180, 5110);
           color := 0;
           if(skill >= Cint(tinker_cfg[2553]."skill"))
             color := 900;
-            GFButtonIDC(200, 180, 210, 211, 1, 2553);
-            GFButtonIDC(260, 180, 210, 211, 1, 2552);
+            OldGFButtonIDC(200, 180, 210, 211, 1, 2553);
+            OldGFButtonIDC(260, 180, 210, 211, 1, 2552);
           endif
-          GFTextLine(220, 150, color, "Spoons");
-          GFTilePic(238, 180, 2552);
-          GFTilePic(198, 180, 2553);
+          OldGFTextLine(220, 150, color, "Spoons");
+          OldGFTilePic(238, 180, 2552);
+          OldGFTilePic(198, 180, 2553);
           color := 0;
           if(skill >= Cint(tinker_cfg[2519]."skill"))
             color := 900;
-            GFButtonIDC(400, 180, 210, 211, 1, 2519);
+            OldGFButtonIDC(400, 180, 210, 211, 1, 2519);
           endif
-          GFTextLine(370, 150, color, "Plate");
-          GFTilePic(350, 180, 2519);
+          OldGFTextLine(370, 150, color, "Plate");
+          OldGFTilePic(350, 180, 2519);
           color := 0;
           if(skill >= Cint(tinker_cfg[3781]."skill"))
             color := 900;
-            GFButtonIDC(120, 240, 210, 211, 1, 3781);
+            OldGFButtonIDC(120, 240, 210, 211, 1, 3781);
           endif
-          GFTextLine( 70, 210, color, "Skinning Knife");
-          GFTilePic( 80, 240, 3781);
+          OldGFTextLine( 70, 210, color, "Skinning Knife");
+          OldGFTilePic( 80, 240, 3781);
           color := 0;
           if(skill >= Cint(tinker_cfg[2549]."skill"))
             color := 900;
-            GFButtonIDC(200, 240, 210, 211, 1, 2549);
-            GFButtonIDC(260, 240, 210, 211, 1, 2548);
+            OldGFButtonIDC(200, 240, 210, 211, 1, 2549);
+            OldGFButtonIDC(260, 240, 210, 211, 1, 2548);
           endif
-          GFTextLine(220, 210, color, "Forks");
-          GFTilePic(220, 240, 2548);
-          GFTilePic(210, 240, 2549);
+          OldGFTextLine(220, 210, color, "Forks");
+          OldGFTilePic(220, 240, 2548);
+          OldGFTilePic(210, 240, 2549);
           color := 0;
           if(skill >= Cint(tinker_cfg[2458]."skill"))
             color := 900;
-            GFButtonIDC(400, 240, 210, 211, 1, 2458);
+            OldGFButtonIDC(400, 240, 210, 211, 1, 2458);
           endif
-          GFTextLine(370, 210, color, "Goblet");
-          GFTilePic(350, 240, 2458);
+          OldGFTextLine(370, 210, color, "Goblet");
+          OldGFTilePic(350, 240, 2458);
           color := 0;
           if(skill >= Cint(tinker_cfg[3778]."skill"))
             color := 900;
-            GFButtonIDC(120, 310, 210, 211, 1, 3778);
+            OldGFButtonIDC(120, 310, 210, 211, 1, 3778);
           endif
-          GFTextLine( 70, 280, color, "Cleaver");
-          GFTilePic( 80, 310, 3778);
+          OldGFTextLine( 70, 280, color, "Cleaver");
+          OldGFTilePic( 80, 310, 3778);
           color := 0;
           if(skill >= Cint(tinker_cfg[2551]."skill"))
             color := 900;
-            GFButtonIDC(200, 310, 210, 211, 1, 2551);
-            GFButtonIDC(260, 310, 210, 211, 1, 2550);
+            OldGFButtonIDC(200, 310, 210, 211, 1, 2551);
+            OldGFButtonIDC(260, 310, 210, 211, 1, 2550);
           endif
-          GFTextLine(220, 280, color, "Knives");
-          GFTilePic(205, 310, 2551);
-          GFTilePic(235, 310, 2550);
+          OldGFTextLine(220, 280, color, "Knives");
+          OldGFTilePic(205, 310, 2551);
+          OldGFTilePic(235, 310, 2550);
           color := 0;
           if(skill >= Cint(tinker_cfg[4096]."skill"))
             color := 900;
-            GFButtonIDC(400, 310, 210, 211, 1, 4096);
+            OldGFButtonIDC(400, 310, 210, 211, 1, 4096);
           endif
-          GFTextLine(370, 280, color, "Pewter Mug");
-          GFTilePic(350, 310, 4096);
+          OldGFTextLine(370, 280, color, "Pewter Mug");
+          OldGFTilePic(350, 310, 4096);
           color := 0;
-       6: GFPage(6);        //Page 6
+       6: OldGFPage(6);        //Page 6
           if(skill >= Cint(tinker_cfg[4234]."skill"))
             color := 900;
-            GFButtonIDC(120, 180, 210, 211, 1, 4234);
+            OldGFButtonIDC(120, 180, 210, 211, 1, 4234);
           endif
-          GFTextLine( 70, 150, color, "Ring");
-          GFTilePic( 80, 180, 4234);
+          OldGFTextLine( 70, 150, color, "Ring");
+          OldGFTilePic( 80, 180, 4234);
           color := 0;
           if(skill >= Cint(tinker_cfg[4233]."skill"))
             color := 900;
-            GFButtonIDC(260, 180, 210, 211, 1, 4233);
+            OldGFButtonIDC(260, 180, 210, 211, 1, 4233);
           endif
-          GFTextLine(190, 150, color, "Necklace");
-          GFTilePic(210, 180, 4233);
+          OldGFTextLine(190, 150, color, "Necklace");
+          OldGFTilePic(210, 180, 4233);
           color := 0;
           if(skill >= Cint(tinker_cfg[4239]."skill"))
             color := 900;
-            GFButtonIDC(400, 180, 210, 211, 1, 4239);
+            OldGFButtonIDC(400, 180, 210, 211, 1, 4239);
           endif
-          GFTextLine(370, 150, color, "Necklace");
-          GFTilePic(350, 180, 4229);
+          OldGFTextLine(370, 150, color, "Necklace");
+          OldGFTilePic(350, 180, 4229);
           color := 0;
           if(skill >= Cint(tinker_cfg[4231]."skill"))
             color := 900;
-            GFButtonIDC(120, 240, 210, 211, 1, 4231);
+            OldGFButtonIDC(120, 240, 210, 211, 1, 4231);
           endif
-          GFTextLine( 70, 210, color, "Earrings");
-          GFTilePic( 80, 240, 4231);
+          OldGFTextLine( 70, 210, color, "Earrings");
+          OldGFTilePic( 80, 240, 4231);
           color := 0;
           if(skill >= Cint(tinker_cfg[4232]."skill"))
             color := 900;
-            GFButtonIDC(260, 240, 210, 211, 1, 4232);
+            OldGFButtonIDC(260, 240, 210, 211, 1, 4232);
           endif
-          GFTextLine(220, 210, color, "Necklace");
-          GFTilePic(210, 240, 4232);
+          OldGFTextLine(220, 210, color, "Necklace");
+          OldGFTilePic(210, 240, 4232);
           color := 0;
           if(skill >= Cint(tinker_cfg[4230]."skill"))
             color := 900;
-            GFButtonIDC(400, 240, 210, 211, 1, 4230);
+            OldGFButtonIDC(400, 240, 210, 211, 1, 4230);
           endif
-          GFTextLine(370, 210, color, "Bracelet");
-          GFTilePic(350, 240, 4230);
+          OldGFTextLine(370, 210, color, "Bracelet");
+          OldGFTilePic(350, 240, 4230);
           color := 0;
-       7: GFPage(7);        //Page 7
+       7: OldGFPage(7);        //Page 7
           if(skill >= Cint(tinker_cfg[4113]."skill"))
             color := 900;
-            GFButtonIDC(120, 180, 210, 211, 1, 4113);
+            OldGFButtonIDC(120, 180, 210, 211, 1, 4113);
           endif
-          GFTextLine( 70, 150, color, "Keyring");
-          GFTilePic( 80, 180, 4113);
+          OldGFTextLine( 70, 150, color, "Keyring");
+          OldGFTilePic( 80, 180, 4113);
           color := 0;
           if(skill >= Cint(tinker_cfg[2599]."skill"))
             color := 900;
-            GFButtonIDC(260, 180, 210, 211, 1, 2599);
+            OldGFButtonIDC(260, 180, 210, 211, 1, 2599);
           endif
-          GFTextLine(190, 150, color, "Candelabra");
-          GFTilePic(210, 180, 2599);
+          OldGFTextLine(190, 150, color, "Candelabra");
+          OldGFTilePic(210, 180, 2599);
           color := 0;
           if(skill >= Cint(tinker_cfg[6225]."skill"))
             color := 900;
-            GFButtonIDC(400, 180, 210, 211, 1, 6225);
+            OldGFButtonIDC(400, 180, 210, 211, 1, 6225);
           endif
-          GFTextLine(370, 150, color, "Scales");
-          GFTilePic(350, 180, 6225);
+          OldGFTextLine(370, 150, color, "Scales");
+          OldGFTilePic(350, 180, 6225);
           color := 0;
           if(skill >= Cint(tinker_cfg[4112]."skill"))
             color := 900;
-            GFButtonIDC(120, 240, 210, 211, 1, 4112);
+            OldGFButtonIDC(120, 240, 210, 211, 1, 4112);
           endif
-          GFTextLine( 70, 210, color, "Iron Key");
-          GFTilePic( 80, 240, 4112);
+          OldGFTextLine( 70, 210, color, "Iron Key");
+          OldGFTilePic( 80, 240, 4112);
           color := 0;
           if(skill >= Cint(tinker_cfg[4167]."skill"))
             color := 900;
-            GFButtonIDC(260, 240, 210, 211, 1, 4167);
+            OldGFButtonIDC(260, 240, 210, 211, 1, 4167);
           endif
-          GFTextLine(220, 210, color, "Globe");
-          GFTilePic(210, 240, 4167);
+          OldGFTextLine(220, 210, color, "Globe");
+          OldGFTilePic(210, 240, 4167);
           color := 0;
           if(skill >= Cint(tinker_cfg[5365]."skill"))
             color := 900;
-            GFButtonIDC(400, 240, 210, 211, 1, 5365);
+            OldGFButtonIDC(400, 240, 210, 211, 1, 5365);
           endif
-          GFTextLine(370, 210, color, "Spy Glass");
-          GFTilePic(350, 240, 5365);
+          OldGFTextLine(370, 210, color, "Spy Glass");
+          OldGFTilePic(350, 240, 5365);
           color := 0;
           if(skill >= Cint(tinker_cfg[2597]."skill"))
             color := 900;
-            GFButtonIDC(120, 310, 210, 211, 1, 2597);
+            OldGFButtonIDC(120, 310, 210, 211, 1, 2597);
           endif
-          GFTextLine( 70, 280, color, "Lantern");
-          GFTilePic( 80, 310, 2584);
+          OldGFTextLine( 70, 280, color, "Lantern");
+          OldGFTilePic( 80, 310, 2584);
           color := 0;
           if(skill >= Cint(tinker_cfg[6217]."skill"))
             color := 900;
-            GFButtonIDC(260, 310, 210, 211, 1, 6217);
+            OldGFButtonIDC(260, 310, 210, 211, 1, 6217);
           endif
-          GFTextLine(220, 280, color, "Heating Stand");
-          GFTilePic(210, 310, 6217);
+          OldGFTextLine(220, 280, color, "Heating Stand");
+          OldGFTilePic(210, 310, 6217);
           color := 0;
-       8: GFPage(8);        //Page 8
+       8: OldGFPage(8);        //Page 8
           if(skill >= Cint(tinker_cfg[3998]."skill"))
             color := 900;
-            GFButtonIDC(120, 180, 210, 211, 1, 3998);
+            OldGFButtonIDC(120, 180, 210, 211, 1, 3998);
           endif
-          GFTextLine( 70, 150, color, "Scissors");
-          GFTilePic( 80, 180, 3998);
+          OldGFTextLine( 70, 150, color, "Scissors");
+          OldGFTilePic( 80, 180, 3998);
           color := 0;
           if(skill >= Cint(tinker_cfg[3739]."skill"))
             color := 900;
-            GFButtonIDC(260, 180, 210, 211, 1, 3739);
+            OldGFButtonIDC(260, 180, 210, 211, 1, 3739);
           endif
-          GFTextLine(190, 150, color, "Mortar & Pestle");
-          GFTilePic(210, 180, 3739);
+          OldGFTextLine(190, 150, color, "Mortar & Pestle");
+          OldGFTilePic(210, 180, 3739);
           color := 0;
           if(skill >= Cint(tinker_cfg[4327]."skill"))
             color := 900;
-            GFButtonIDC(400, 180, 210, 211, 1, 4327);
+            OldGFButtonIDC(400, 180, 210, 211, 1, 4327);
           endif
-          GFTextLine(370, 150, color, "Scorp");
-          GFTilePic(350, 180, 4327);
+          OldGFTextLine(370, 150, color, "Scorp");
+          OldGFTilePic(350, 180, 4327);
           color := 0;
           if(skill >= Cint(tinker_cfg[7865]."skill"))
             color := 900;
-            GFButtonIDC(120, 240, 210, 211, 1, 7865);
+            OldGFButtonIDC(120, 240, 210, 211, 1, 7865);
           endif
-          GFTextLine( 70, 210, color, "Tinker's Tools");
-          GFTilePic( 80, 240, 7865);
+          OldGFTextLine( 70, 210, color, "Tinker's Tools");
+          OldGFTilePic( 80, 240, 7865);
           color := 0;
           if(skill >= Cint(tinker_cfg[3907]."skill"))
             color := 900;
-            GFButtonIDC(260, 240, 210, 211, 1, 3907);
+            OldGFButtonIDC(260, 240, 210, 211, 1, 3907);
           endif
-          GFTextLine(220, 210, color, "Hatchet");
-          GFTilePic(210, 240, 3907);
+          OldGFTextLine(220, 210, color, "Hatchet");
+          OldGFTilePic(210, 240, 3907);
           color := 0;
           if(skill >= Cint(tinker_cfg[4324]."skill"))
             color := 900;
-            GFButtonIDC(400, 240, 210, 211, 1, 4324);
+            OldGFButtonIDC(400, 240, 210, 211, 1, 4324);
           endif
-          GFTextLine(370, 210, color, "Draw Knife");
-          GFTilePic(350, 240, 4324);
+          OldGFTextLine(370, 210, color, "Draw Knife");
+          OldGFTilePic(350, 240, 4324);
           color := 0;
           if(skill >= Cint(tinker_cfg[3997]."skill"))
             color := 900;
-            GFButtonIDC(120, 310, 210, 211, 1, 3997);
+            OldGFButtonIDC(120, 310, 210, 211, 1, 3997);
           endif
-          GFTextLine( 70, 280, color, "Sewing Kit");
-          GFTilePic( 80, 310, 3997);
+          OldGFTextLine( 70, 280, color, "Sewing Kit");
+          OldGFTilePic( 80, 310, 3997);
           color := 0;
           if(skill >= Cint(tinker_cfg[4148]."skill"))
             color := 900;
-            GFButtonIDC(260, 310, 210, 211, 1, 4148);
+            OldGFButtonIDC(260, 310, 210, 211, 1, 4148);
           endif
-          GFTextLine(220, 280, color, "Saw");
-          GFTilePic(210, 310, 4148);
+          OldGFTextLine(220, 280, color, "Saw");
+          OldGFTilePic(210, 310, 4148);
           color := 0;
           if(skill >= Cint(tinker_cfg[4136]."skill"))
             color := 900;
-            GFButtonIDC(400, 310, 210, 211, 1, 4136);
+            OldGFButtonIDC(400, 310, 210, 211, 1, 4136);
           endif
-          GFTextLine(370, 280, color, "Dovetail Saw");
-          GFTilePic(350, 310, 4136);
+          OldGFTextLine(370, 280, color, "Dovetail Saw");
+          OldGFTilePic(350, 310, 4136);
           color := 0;
     endcase
     num := num + 1;
