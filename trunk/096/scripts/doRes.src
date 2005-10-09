@@ -1,8 +1,7 @@
 use uo;
 use os;
 
-include "include/res";
-include "include/resPenalty";
+include "include/resurrection";
 include "include/client";
 //include "include/poisons";
 
@@ -31,7 +30,7 @@ program do_res(parms)
 			PerformAction(who, ACTION_EFFECT_CAST2);
 			PlaySoundEffect(who, SOUND_EFFECT_RES);
 			Resurrect(mobile);
-			ResPenalties(mobile);
+			MurdererStatLoss(mobile);
 		endif
 		EraseObjProperty(mobile, "#ResMenu");
 //	elseif ((GetPoisonByType(who, "DefaultPoison").size() > 0) &&
