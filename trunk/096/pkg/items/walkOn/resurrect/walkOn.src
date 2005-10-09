@@ -1,0 +1,12 @@
+// $Id$
+
+use uo;
+use os;
+
+program walkon(mobile, tile)
+	if ( mobile.dead )
+		Resurrect(mobile);
+	else
+		SendSysMessage(mobile, "You are at peace...");
+	endif
+endprogram
