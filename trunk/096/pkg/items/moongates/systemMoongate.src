@@ -3,10 +3,9 @@ use os;
 use cfgfile;
 
 include ":gumps:include/old/old-gumps";
-include "include/gumpUtil";
 
-gfref.x := 50;
-gfref.y := 50;
+GFref.x := 50;
+GFref.y := 50;
 
 var townarray := {};
 
@@ -30,30 +29,30 @@ program gumptest(who, item)
     "Skara":    townarray := array("Moonglow", "Britain", "Jhelom", "Yew", "Minoc", "Trinsic", "Magincia");
     "Magincia": townarray := array("Moonglow", "Britain", "Jhelom", "Yew", "Minoc", "Trinsic", "Skara Brae");
   endcase
-  GFInitGump(0, 0);
-  GFPage(0);
-  GFResizePic(100, 100, BKGND_STONESLAB, 350, 300);
-  GFTextLine(110, 110, 0, "Pick your destination:");
-  GFSetRadioGroup(1);
-  GFRadioButton(300, 140, 210, 211, 1);
-  GFRadioButton(300, 165, 210, 211, 0);
-  GFRadioButton(300, 190, 210, 211, 0);
-  GFRadioButton(300, 215, 210, 211, 0);
-  GFRadioButton(300, 240, 210, 211, 0);
-  GFRadioButton(300, 265, 210, 211, 0);
-  GFRadioButton(300, 290, 210, 211, 0);
-  GFTextLine(330, 140,   0, townarray[1]);
-  GFTextLine(330, 165,   0, townarray[2]);
-  GFTextLine(330, 190,   0, townarray[3]);
-  GFTextLine(330, 215,   0, townarray[4]);
-  GFTextLine(330, 240,   0, townarray[5]);
-  GFTextLine(330, 265,   0, townarray[6]);
-  GFTextLine(330, 290,   0, townarray[7]);
-  var ok := GFButtonID(110, 315, 4005, 4007, 1);
-  var cancel := GFButtonID(110, 340, 4005, 4007, 1);
-  GFTextLine(145, 315,   0, "OKAY");
-  GFTextLine(145, 340,   0, "CANCEL");
-  var res := GFSendGump(who);
+  OldGFInitGump(0, 0);
+  OldGFPage(0);
+  OldGFResizePic(100, 100, BKGND_STONESLAB, 350, 300);
+  OldGFTextLine(110, 110, 0, "Pick your destination:");
+  OldGFSetRadioGroup(1);
+  OldGFRadioButton(300, 140, 210, 211, 1);
+  OldGFRadioButton(300, 165, 210, 211, 0);
+  OldGFRadioButton(300, 190, 210, 211, 0);
+  OldGFRadioButton(300, 215, 210, 211, 0);
+  OldGFRadioButton(300, 240, 210, 211, 0);
+  OldGFRadioButton(300, 265, 210, 211, 0);
+  OldGFRadioButton(300, 290, 210, 211, 0);
+  OldGFTextLine(330, 140,   0, townarray[1]);
+  OldGFTextLine(330, 165,   0, townarray[2]);
+  OldGFTextLine(330, 190,   0, townarray[3]);
+  OldGFTextLine(330, 215,   0, townarray[4]);
+  OldGFTextLine(330, 240,   0, townarray[5]);
+  OldGFTextLine(330, 265,   0, townarray[6]);
+  OldGFTextLine(330, 290,   0, townarray[7]);
+  var ok := OldGFButtonID(110, 315, 4005, 4007, 1);
+  var cancel := OldGFButtonID(110, 340, 4005, 4007, 1);
+  OldGFTextLine(145, 315,   0, "OKAY");
+  OldGFTextLine(145, 340,   0, "CANCEL");
+  var res := OldGFSendGump(who);
   if(res[cancel.keyid] || !res[ok.keyid])
     SendSysMessage(who, "Cancelled.");
     return;
