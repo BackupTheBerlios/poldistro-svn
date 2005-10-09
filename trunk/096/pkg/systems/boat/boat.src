@@ -19,7 +19,7 @@ include "include/sysEvent";
 include "include/myUtil";
 include "include/client";
 include "include/sound";
-include "include/yesNo";
+include ":gumps:yesno";
 include "include/math";
 include "util/key";
 include "plankUtil";
