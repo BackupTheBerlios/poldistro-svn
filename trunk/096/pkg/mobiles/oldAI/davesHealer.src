@@ -13,8 +13,7 @@ include "include/dist";
 include ":npcutils:anchors";
 include ":npcutils:speech";
 include "include/client";
-include "include/res";
-include "include/resPenalty";
+include "include/resurrection";
 include ":begging:begging";
 
 const SOUND_EFFECT_RES := 0x215;
