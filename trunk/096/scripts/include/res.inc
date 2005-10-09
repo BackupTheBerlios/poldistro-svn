@@ -1,30 +1,22 @@
 use uo;
 
-var layout := {
-"page 0",
-"nodispose",
-"noclose",
-"gumppic 300 230 2070",
-"button 330 305 2073 2072 1 0 0",
-"button 400 305 2076 2075 1 0 1",
-"text 332 264 40 0"
-};
+include ":gumps:gumps";
 
-var data := {
-"Resurrect Now?"
-};
-
-function ResNow(who)
-  var x := who.x;
-  var y := who.y;
-  var z := who.z;
-  var ret := SendDialogGump(who,layout,data);
-  if(!ret)
-	return 0;
-  endif
-  if(MoveCharacterToLocation(who, x, y, z, MOVECHAR_FORCELOCATION))
-    return ret[0];
-  else
-    return 0;
-  endif
+function ResNow(mobile)
+	var gump := GFCreateGump();
+	GFClosable(gump, 0);
+	GFGumpPic(gump, 300, 230, 2070);
+	GFAddButton(gump, 330, 305, 2073, 2072, GF_CLOSE_BTN, 10);
+	GFAddButton(gump, 400, 305, 2076, 2075, GF_CLOSE_BTN, 11);
+	GFTextLine(gump, 332, 264, 40, "Resurrect Now?");
+	
+	var input := GFSendGump(mobile, gump);
+	input := input[0];
+	input := input-10;
+	
+	if ( !input )
+		return 0;
+	else
+		return 1;
+	endif
 endfunction
