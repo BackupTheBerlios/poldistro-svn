@@ -6,8 +6,7 @@ include "include/sound";
 include "include/tileEffects";
 include "include/attributes";
 include "include/client";
-include "include/res";
-include "include/resPenalty";
+include "include/resurrection";
 include "include/magic";
 
 
@@ -56,7 +55,7 @@ program spell_resurrect(parms)
     detach();
     if(ResNow(castOn)==1)
       Resurrect(castOn);
-      ResPenalties(castOn);
+      MurdererStatLoss(caston);
     endif
   endif
 
