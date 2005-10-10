@@ -9,8 +9,6 @@ use polsys;
 include ":gumps:gumps";
 include ":gumps:gumps_ex";
 
-unload_scripts("");
-
 CONST A_REALM_TXT	:= 0xB001;
 CONST A_XCOORD_TXT	:= 0xB002;
 CONST A_YCOORD_TXT	:= 0xB003;
@@ -97,6 +95,8 @@ program command_MakeTele(who)
 		else
 			SendSysMessage(who, "One way teleporter created.");
 		endif		
+	else
+		SendSysMessage(who, "Cancelled.");
 	endif
 	
 	return 1;
