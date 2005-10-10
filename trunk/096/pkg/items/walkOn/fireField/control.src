@@ -22,8 +22,6 @@ program controlScript(field)
 	endif
 
 	while ( field )
-		PrintTextAbove(field, "*tick*");
-		
 		BurnNearbyMobiles(field, dmg_dice);
 
 		if ( ReadGameClock() % 3 == 0 )
