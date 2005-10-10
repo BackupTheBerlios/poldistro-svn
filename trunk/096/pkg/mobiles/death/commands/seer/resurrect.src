@@ -1,0 +1,40 @@
+/*
+ * $Id$
+ *
+ */
+
+use uo;
+
+include ":attributes:attributes";
+
+program textcmd_Resurrection(who)
+	if ( who.dead )
+		Resurrect(who);
+		AP_RefreshVitals(who);
+		return 1;
+	endif
+
+	SendSysMessage(who, "Select a player corpse or ghost to resurrect.");
+	var targ := Target(who);
+	if ( !targ )
+		SendSysMessage(who, "Cancelled.");
+		return 0;
+	endif
+
+	if ( targ.IsA(POLCLASS_CORPSE) )
+		targ := SystemFindObjectBySerial(targ.ownerserial);
+		if ( !targ )
+			SendSysMessage(who, "No owner could be found for that corpse.");
+			return 0;
+		endif
+	endif
+
+	var result := Resurrect(targ);
+	if ( result.errortext )
+		SendSysMessage(who, "Error - "+result.errortext);
+		return 0;
+	endif
+
+	SendSysMessage(who, "Done.");
+	return 1;
+endprogram
