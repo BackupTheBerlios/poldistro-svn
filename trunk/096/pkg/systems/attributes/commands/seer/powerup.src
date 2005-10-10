@@ -7,12 +7,17 @@ use os;
 use uo;
 
 include ":attributes:attributes";
+include ":gumps:requestgump";
 
 program textcmd_PowerUp(who, level)
-	level := CInt(level);
+	if ( !level )
+		level := CInt(RequestGump(who, "Power up level", "", 100));
+	else
+		level := CInt(level);
+	endif
+		
 	foreach attrib_name in AP_ListAttributesByType()
 		AP_SetTrueSkill(who, attrib_name, level);
-		SendSysMessage(who, "Setting "+attrib_name+" to "+level);
 		sleepms(10);
 	endforeach
 	
