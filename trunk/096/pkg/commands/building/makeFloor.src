@@ -1,0 +1,78 @@
+/*
+ * $Id$
+ *
+ */
+
+use os;
+use uo;
+
+CONST MAX_DISTANCE := 10;
+
+program textcmd_MakeFloor(who, input)
+	input := SplitWords(input);
+	var dist := CInt(input[1]);
+	var graphic := CInt(input[2]);
+
+	if ( !dist || !graphic )
+		SendSysMessage(who, "Syntax: .makefloor <distance> <graphic #>");
+		return;
+	endif
+
+	if ( graphic < 1 || graphic > 16382 )
+		SendSysMessage(who, "Invalid graphic number.");
+		return 0;
+	endif
+
+	if ( dist > MAX_DISTANCE )
+		dist := MAX_DISTANCE;
+		SendSysMessage (who,"You have gone over " + MAX_DISTANCE + " tiles. Distance has been adjusted.");
+	endif
+
+	var xdiff := 0, ydiff := 0;
+	case ( who.facing )
+		0:
+			xdiff := 0;
+			ydiff := -1;
+			break;
+		1:
+			xdiff := +1;
+			ydiff := -1;
+			break;
+		2:
+			xdiff := +1;
+			ydiff := 0;
+			break;
+		3:
+			xdiff := +1;
+			ydiff := +1;
+			break;
+		4:
+			xdiff := 0;
+			ydiff := +1;
+			break;
+		5:
+			xdiff := -1;
+			ydiff := +1;
+			break;
+		6:
+			xdiff := -1;
+			ydiff := 0;
+			break;
+		7:
+			xdiff := -1;
+			ydiff := -1;
+			break;
+		default:
+			SendSysMessage(who, "Cant figure out your facing!");
+			return 0;
+			break;
+	endcase
+
+	var i;
+	for( i := 1; i <= dist; i := i + 1 )
+		var created := CreateItemAtLocation(who.x + i*xdiff, who.y + i*ydiff, who.z, graphic, 1, who.realm);
+		created.decayat := 0;
+		sleepms(1);
+	endfor
+
+endprogram

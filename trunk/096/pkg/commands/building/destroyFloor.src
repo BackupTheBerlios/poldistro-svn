@@ -1,0 +1,80 @@
+/*
+ * $Id$
+ *
+ */
+
+use os;
+use uo;
+
+CONST MAX_DISTANCE := 10;
+
+program textcmd_MakeFloor(who, text)
+	text := SplitWords(text);
+	var dist := CInt(text[1]);
+	var graphic := CInt(text[2]);
+	
+	if ( !dist )
+		SendSysMessage(who, ".destroyfloor <distance> (graphic) - graphic is optional.");
+		return 0;
+	endif
+	
+	if ( dist > MAX_DISTANCE )
+		dist := MAX_DISTANCE;
+		SendSysMessage (who,"You have exceeded "+MAX_DISTANCE+" tiles. Distance will be lowered.");
+	endif
+	
+	var xdiff := 0, ydiff := 0;
+	case ( who.facing )
+		0:
+			xdiff := 0;
+			ydiff := -1;
+			break;
+		1:
+			xdiff := +1;
+			ydiff := -1;
+			break;
+		2:
+			xdiff := +1;
+			ydiff := 0;
+			break;
+		3:
+			xdiff := +1;
+			ydiff := +1;
+			break;
+		4:
+			xdiff := 0;
+			ydiff := +1;
+			break;
+		5:
+			xdiff := -1;
+			ydiff := +1;
+			break;
+		6:
+			xdiff := -1;
+			ydiff := 0;
+			break;
+		7:
+			xdiff := -1;
+			ydiff := -1;
+			break;
+		default:
+			SendSysMessage(who, "Cant figure out your facing!");
+			return 0;
+			break;
+	endcase
+	
+	var i;
+	for( i := 1; i <= dist; i := i + 1 )
+		foreach object in ListItemsNearLocation(who.x + i*xdiff, who.y + i*ydiff, who.z, 0, who.realm)
+			if ( graphic )
+				if ( object.graphic == graphic )
+					DestroyItem(object);
+				endif
+			else
+				DestroyItem(object);
+			endif
+		endforeach
+	endfor
+	
+	return 1;
+endprogram

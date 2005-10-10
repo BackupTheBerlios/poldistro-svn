@@ -1,19 +1,21 @@
+/*
+ * $Id$
+ *
+ */
+
 use os;
 use uo;
 
-include "include/client";
-include "include/attributes";
+include ":attributes:attributes";
 
-program textcmd_setskill( who )
-var i;
-for (i := 0; i <= SKILLID__HIGHEST; i := i + 1)
-
-        print( "Setting Skill " + i + " to 100" );
-        var res := SetBaseSkillBaseValue( who, i, 1000 );
-        if (res == error)
-            SendSysMessage( who, "Unable to set skill: " + res.errortext );
-        else
-            SendSysMessage( who, "New Effective Skill: " + GetEffectiveSkill(who,i) );
-        endif
-    endfor
+program textcmd_PowerUp(who, level)
+	level := CInt(level);
+	foreach attrib_name in AP_ListAttributesByType()
+		AP_SetTrueSkill(who, attrib_name, level);
+		SendSysMessage(who, "Setting "+attrib_name+" to "+level);
+		sleepms(10);
+	endforeach
+	
+	SendSysMessage(who, "Done.");
+	return 1;
 endprogram

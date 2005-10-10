@@ -1,0 +1,38 @@
+/*
+ * $Id$
+ *
+ */
+
+use uo;
+
+
+program textcmd_MoveItem(who)
+	SendSysMessage(who, "Select an item to move.");
+	var targ := Target(who);
+	if ( !targ.IsA(POLCLASS_ITEM) )
+		SendSysMessage(who, "Cancelled.");
+		return 0;
+	endif
+
+	SendSysMessage(who, "Select where to move object to.");
+	var where := TargetCoordinates(who);
+	if ( !where )
+		SendSysMessage(who, "Cancelled.");
+		return 0;
+	endif
+
+	var was_movable := 1;
+	if ( !targ.movable )
+		was_movable := 0;
+		targ.movable := 1;
+	endif
+
+	MoveItemToLocation(targ, where.x, where.y, where.z, MOVEITEM_FORCELOCATION);
+
+	if ( !was_movable )
+		targ.movable := 0;
+	endif
+
+	SendSysMessage(who, "Done.");
+	return 1;
+endprogram

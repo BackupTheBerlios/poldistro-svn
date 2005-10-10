@@ -1,0 +1,23 @@
+/*
+ * $Id$
+ *
+ */
+
+use uo;
+
+
+program textcmd_TileInfo(who)
+	SendSysMessage(who, "Click a tile");
+
+	var targ := TargetCoordinates(who);
+
+	if ( !targ )
+		SendSysMessage(who, "Cancelled");
+		return;
+	endif
+
+	SendSysMessage(who, "Graphic: "+targ.objtype);
+	SendSysMessage(who, "Objtype: "+Hex(targ.objtype));
+	SendSysMessage(who, "Color: "+targ.color);
+	SendSysMessage(who, "Landscape Tile: "+GetMapInfo(targ.x, targ.y, who.realm).landtile);
+endprogram
