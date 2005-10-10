@@ -40,5 +40,39 @@ Do not use it for a live shard because of the above mentioned reasons.
 * In the future you can right click here and select "SVN Update" to retrieve the latest files.
 
 [ 096 CORE ]
-* Download the latest POL 096 test core at:
+* Download the latest POL 096 test core at: (.zip file, newest is usually at the bottom of the list)
   http://games.groups.yahoo.com/group/pol-core-test/files/%20Latest%20Cores/
+* Save it next to the "096" folder.
+  
+* Extract the following files from the zip file to the "096" folder:
+POL.EXE
+UOCONVERT.EXE
+UOCONVERT.CFG
+
+* Extract the following files from the zip file to the "096/scripts" folder:
+ECOMPILE.EXE
+
+* Extract the following files from the zip file to the "096/scripts/modules" folder:
+(*.EM FILES)
+BASIC.EM
+BASICIO.EM
+BOAT.EM
+CFGFILE.EM
+FILE.EM
+HTTP.EM
+MATH.EM
+NPC.EM
+OS.EM
+POLSYS.EM
+UNICODE.EM
+UO.EM
+UTIL.EM
+
+* Double click "StartHere.bat" and follow the menus.
+* Start with realms. 
+  - Copy the client files over.
+  - Run UO convert on them.
+ 
+* Compile all scripts
+
+* Start POL
