@@ -1,4 +1,5 @@
 Last Updated - 10/10/2005 10:35AM
+By Austin
 
 This file includes instructions for how to retrieve 
 the distro code while it is in development. 
