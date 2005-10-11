@@ -36,13 +36,13 @@ function NPC_GetDefaultSettings(settings:=0)
 		settings := dictionary;
 	endif
 
-	if ( CInt(settings.exists("cycle_wait")) <= 0 )
+	if ( CInt(settings.exists("CycleWait")) <= 0 )
 		settings["CycleWait"] := 10;
 	endif
-	if ( CInt(settings.exists("sleep_wait")) <= 0 )
+	if ( CInt(settings.exists("SleepWait")) <= 0 )
 		settings["SleepWait"] := 1024;
 	endif
-	if ( CInt(settings.exists("idle_ticks")) <= 0 )
+	if ( CInt(settings.exists("IdleTicks")) <= 0 )
 		settings["IdleTicks"] := 5;
 	endif
 
