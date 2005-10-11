@@ -112,6 +112,8 @@ function StartupScripts()
 				FatalError("Error::StartupScripts() - Restart script failed: "+restart_script.errortext);
 				return 0;
 			endif
+		else
+			KillNerves(npc);
 		endif
 	else
 		SetObjProperty(npc, "CreateTime", polcore().systime);
