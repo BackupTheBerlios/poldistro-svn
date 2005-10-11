@@ -10,25 +10,23 @@
 
 <body text="#000000">
 
-<table border="0" cellpadding="6" cellspacing="0" width="1276" style="border-right-width: 0; border-top-width: 0" height="893">
+<table border="0" cellpadding="6" cellspacing="0" width="1276" style="border-right-width: 0; border-top-width: 0; border-bottom-width:0" height="893">
   <tr>
     <td width="103" height="36"></td>
     <td width="10" style="border-right-style: none; border-right-width: medium" height="36">
     </td>
-    <td nowrap width="935" style="border-left-style: none; border-left-width: medium; border-right-style: none; border-right-width: medium; border-top-style: none; border-top-width: medium" height="36">
-    <font size="6">BRAIN AI DOCUMENTATION - <i>BRAIN 5 KRANG EDITION</i></font><font size="2"><br>
-    by Austin Heilman - <a href="mailto:AustinHeilman@Gmail.com">
-    AustinHeilman@Gmail.com</a></font><br>
-&nbsp;</td>
+    <td nowrap width="935" style="border-style:none; border-width:medium; " height="36">
+    &nbsp;</td>
   </tr>
   <tr>
-    <td valign="top" width="103" height="833"><strong><font size="2">Brain 5.0</font></strong><font size="3"><br>
-    </font><font size="2"><b>Introduction</b><br>
+    <td valign="top" width="103" height="833"><font face="Tahoma"><strong>
+    <font size="2">Brain 5.0</font></strong><font size="2"><br>
+    <a href="index.htm">Introduction</a><br>
     <a href="conversion.htm">Conversion</a><br>
     <a href="changeLog.htm">Change Log</a><br>
-    <a href="configSettings.htm">Config Settings</a></font><p><strong>
-    <font size="2">Script Types</font></strong><font size="3"><br>
-    </font><font size="2"><a href="scriptTypes.htm">Combat</a><br>
+    <a href="configSettings.htm">Config Settings</a></font></font><p>
+    <font face="Tahoma"><strong><font size="2">Script Types</font></strong><font size="2"><br>
+    <a href="scriptTypes.htm">Combat</a><br>
     <a href="scriptTypes.htm">Cycle</a><br>
     <a href="scriptTypes.htm">DblClick</a><br>
     <a href="scriptTypes.htm">Disengaged</a><br>
@@ -43,41 +41,45 @@
     <a href="scriptTypes.htm">Restart</a><br>
     <a href="scriptTypes.htm">Sleep</a><br>
     <a href="scriptTypes.htm">ShouldWatch</a><br>
-    <a href="scriptTypes.htm">Virtual</a></font></p>
-    <p><strong><font size="2">Include Files</font></strong><font size="3"><br>
-    </font><font size="2"><a href="eventId.htm">eventId.inc</a><br>
+    <a href="scriptTypes.htm">Virtual</a></font></font></p>
+    <p><font face="Tahoma"><strong><font size="2">Include Files</font></strong><font size="2"><br>
+    <a href="eventId.htm">eventId.inc</a><br>
     <a href="npcCommands.htm">npcCommands.inc</a><br>
     <a href="npcError.htm">npcError.inc</a><br>
     <a href="npcInit.htm">npcInit.inc</a><br>
     <a href="npcNerves.htm">npcNerves.inc</a><br>
     <a href="npcSettings.htm">npcSettings.inc</a><br>
     <a href="npcUtil.htm">npcUtil.inc</a><br>
-    <a href="npcWatchList.htm">npcWatchList.inc</a></font></p>
+    <a href="npcWatchList.htm">npcWatchList.inc</a></font></font></p>
     <p><font size="3"><br>
     </font></td>
-    <td width="10" style="border-right-style: solid; border-right-width: 1" height="833">
+    <td width="10" style="border-right-style: none; border-right-width: medium" height="833">
     </td>
-    <td valign="top" width="935" style="border-style: solid; border-width: 1" height="833">
-    This text is included with Brain 5 for historical reference. Please note 
+    <td valign="top" width="935" style="border-style: none; border-width: medium; " height="833">
+    <font size="4" face="Tahoma"><b>BRAIN AI DOCUMENTATION - <i>BRAIN 5 'KRANG EDITION'</i></b></font><font size="2" face="Tahoma"><br>
+    by Austin Heilman - <a href="mailto:AustinHeilman@Gmail.com">
+    AustinHeilman@Gmail.com</a></font><p>&nbsp;</p>
+    <p><font face="Tahoma" size="2">This text is included with Brain 5 for historical reference. Please note 
     that the contents are mostly valid, however they were written for Brain 4.x 
     and its previous versions. <br>
     The below text is pasted from the above URL on the
-    <a href="http://www.polserver.com">http://www.polserver.com</a> forums.<p>
-    The text, made by Birdy, explains in an easy way what the brain is about and 
-    what the ideas behind it are. </p>
-    <p>[
+    <a href="http://www.polserver.com">http://www.polserver.com</a> forums.</font></p>
+    <p>
+    <font face="Tahoma" size="2">The text, made by Birdy, explains in an easy way what the brain is about and 
+    what the ideas behind it are. </font> </p>
+    <p><font face="Tahoma" size="2">[
     <a href="http://www.polserver.com/modules.php?name=Forums&file=viewtopic&t=508">
     http://www.polserver.com/modules.php?name=Forums&amp;file=viewtopic&amp;t=508</a> ]
+    </font>
     </p>
     <hr noshade color="#000000" size="1">
-    <p>There is no real documentation outside of the package itself. However, 
+    <p><font face="Tahoma" size="2">There is no real documentation outside of the package itself. However, 
     the package itself, in the code, is pretty well documented. So it shouldn't 
-    be that hard to figure out what exactly is going on. </p>
-    <font SIZE="4"></font>
-    <p>The AI_Brain package is basically a package that uses dictionaries for 
+    be that hard to figure out what exactly is going on. </font> </p>
+    <p><font face="Tahoma" size="2">The AI_Brain package is basically a package that uses dictionaries for 
     it's database of scripts, and messages to know which ones to call and to 
-    receive instruction from those scripts. </p>
-    <p>At it's heart, the brain.src script is your one true &quot;npc script&quot;. It 
+    receive instruction from those scripts. </font> </p>
+    <p><font face="Tahoma" size="2">At it's heart, the brain.src script is your one true &quot;npc script&quot;. It 
     includes an include which includes npc.em, and it is the script which does 
     all direct communication with the npc reference. It is also generic enough 
     that you should really never have to touch it for the most part. It 
@@ -92,8 +94,9 @@
     functions which basically packages up an event for each type of standard 
     npc.em function, and sends an event for each one off to the brain. The brain 
     processes these events, and executes the appropriate npc.em functionality.
+    </font>
     </p>
-    <p>That is a basic understanding of what it is all about, and if you look at 
+    <p><font face="Tahoma" size="2">That is a basic understanding of what it is all about, and if you look at 
     brain.src and the various include files when appropriate, you should be able 
     to see all of this taking place and put it all together as to exactly how it 
     is happening. The brain package is a little less efficient than typical AI, 
@@ -116,23 +119,23 @@
     main AI loop, but also the combat loop. With the brain AI, the brain fires 
     off events to the appropriate scripts, starting off the scripts if 
     necessary, and those scripts run independantly of one another(unless you 
-    make them rely on each other for some reason, or in some manner).</p>
-    <p>While adding some overhead to AI in it's pre-processing of events and 
+    make them rely on each other for some reason, or in some manner).</font></p>
+    <p><font face="Tahoma" size="2">While adding some overhead to AI in it's pre-processing of events and 
     multiple scripts to handle them, the brain package does provide quite a bit 
-    of easy flexibility to make your npc a little easier to manage.</p>
+    of easy flexibility to make your npc a little easier to manage.</font></p>
     <hr noshade color="#000000" size="1">
-    <p>Brain_AI is an &quot;AI system&quot; that is very different architecturally from 
+    <p><font face="Tahoma" size="2">Brain_AI is an &quot;AI system&quot; that is very different architecturally from 
     the current distro AI. So far as I understand, it is the only other released 
     AI system for POL, although undoubtably other people have written their own 
-    from ground up and just not released them.</p>
-    <p>It attempts, and often succeeds, at taking the highly convoluted and 
+    from ground up and just not released them.</font></p>
+    <p><font face="Tahoma" size="2">It attempts, and often succeeds, at taking the highly convoluted and 
     complex task of operating your NPC's and makes that task into a fairly 
     modular approach. In doing so, it makes alot of things much easier and even 
-    simply doable. </p>
-    <p>You really have to probably pick it up for yourself however and try it 
+    simply doable. </font> </p>
+    <p><font face="Tahoma" size="2">You really have to probably pick it up for yourself however and try it 
     out. It can work fine right along side of the distro AI, so you can just 
     create a new NPC in npcdesc.cfg which uses the brain_AI to control it. So 
-    give it a try is the best advice.</td>
+    give it a try is the best advice.</font></td>
   </tr>
 </table>
 
