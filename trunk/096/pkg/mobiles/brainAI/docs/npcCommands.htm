@@ -69,7 +69,7 @@
         </tr>
       <tr>
           <td width="1%" bgcolor="#808080" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-left-style:solid; border-left-width:1; border-right-style:solid; border-right-width:1; border-bottom-style:solid; border-bottom-width:1" colspan="2">
-          <b><font face="Tahoma" size="2">Parameters:</font></b></td>
+          <b><font face="Tahoma" size="2">Parameters</font></b></td>
         </tr>
       <tr>
           <td width="1%" bgcolor="#C0C0C0" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-style: solid; border-width: 1" colspan="2">
@@ -129,7 +129,7 @@
         </tr>
       <tr>
           <td width="1%" bgcolor="#808080" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-style: solid; border-width: 1" colspan="2">
-          <b><font face="Tahoma" size="2">Parameters:</font></b></td>
+          <b><font face="Tahoma" size="2">Parameters</font></b></td>
         </tr>
       <tr>
           <td width="1%" bgcolor="#C0C0C0" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-style: solid; border-width: 1" colspan="2">
@@ -145,13 +145,18 @@
           <td width="25%" bgcolor="#C0C0C0" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-left-style:solid; border-left-width:1; border-right-style:none; border-right-width:medium; border-bottom-style:none; border-bottom-width:medium">
           <font face="Tahoma" size="2">npc</font></td>
           <td width="102%" bgcolor="#C0C0C0" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-left-style:none; border-left-width:medium; border-right-style:solid; border-right-width:1; border-bottom-style:none; border-bottom-width:medium" height="18">
-          <font face="Tahoma" size="2">The NPC that will receive the command.</font></td>
+          <font face="Tahoma" size="2">The NPC that will have its event queue 
+          cleared.</font></td>
         </tr>
       <tr>
           <td width="25%" bgcolor="#C0C0C0" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-left-style:solid; border-left-width:1; border-right-style:none; border-right-width:medium; border-top-style:none; border-top-width:medium; border-bottom-style:none; border-bottom-width:medium">
-          <font face="Tahoma" size="2">Name</font></td>
+          <font face="Tahoma" size="2">flags</font></td>
           <td width="102%" bgcolor="#C0C0C0" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-left-style:none; border-left-width:medium; border-right-style:solid; border-right-width:1; border-top-style:none; border-top-width:medium; border-bottom-style:none; border-bottom-width:medium" height="18">
-          <font face="Tahoma" size="2">Type</font></td>
+          <font face="Tahoma" size="2">CLR_* flag for what scripts should have 
+          their event queues cleared.<br>
+          CLR_BRAIN - Clears the brain's queue.<br>
+          CLR_NERVE - Clears the nerve's queue.<br>
+          CLR_BOTH - Clears the queue for both.</font></td>
         </tr>
       <tr>
           <td width="1%" bgcolor="#808080" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-style: solid; border-width: 1" colspan="2">
@@ -159,7 +164,8 @@
         </tr>
       <tr>
           <td width="1%" bgcolor="#C0C0C0" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-style: solid; border-width: 1" colspan="2">
-          <font face="Tahoma" size="2">Some description.</font></td>
+          <font face="Tahoma" size="2">Clears the event queue for the script 
+          calling it and or the brain.</font></td>
         </tr>
       <tr>
           <td width="1%" bgcolor="#808080" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-style: solid; border-width: 1" colspan="2">
@@ -167,7 +173,7 @@
         </tr>
       <tr>
           <td width="1%" bgcolor="#C0C0C0" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-style: solid; border-width: 1" colspan="2">
-          <font face="Tahoma" size="2">Returned</font></td>
+          <font face="Tahoma" size="2">Returns 1</font></td>
         </tr>
       <tr>
         <td width="1%" colspan="2">&nbsp;</td>
@@ -178,7 +184,7 @@
         </tr>
       <tr>
           <td width="1%" bgcolor="#808080" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-style: solid; border-width: 1" colspan="2">
-          <b><font face="Tahoma" size="2">Parameters:</font></b></td>
+          <b><font face="Tahoma" size="2">Parameters</font></b></td>
         </tr>
       <tr>
           <td width="1%" bgcolor="#C0C0C0" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-style: solid; border-width: 1" colspan="2">
@@ -198,9 +204,19 @@
         </tr>
       <tr>
           <td width="25%" bgcolor="#C0C0C0" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-left-style:solid; border-left-width:1; border-right-style:none; border-right-width:medium; border-top-style:none; border-top-width:medium; border-bottom-style:none; border-bottom-width:medium">
-          <font face="Tahoma" size="2">Name</font></td>
+          <font face="Tahoma" size="2">nerve_name</font></td>
           <td width="102%" bgcolor="#C0C0C0" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-left-style:none; border-left-width:medium; border-right-style:solid; border-right-width:1; border-top-style:none; border-top-width:medium; border-bottom-style:none; border-bottom-width:medium" height="18">
-          <font face="Tahoma" size="2">Type</font></td>
+          <font face="Tahoma" size="2">The key id name of the nerve to stop.<br>
+          Example: &quot;Combat&quot;, &quot;LookAround&quot;, &quot;Sleep&quot;</font></td>
+        </tr>
+      <tr>
+          <td width="25%" bgcolor="#C0C0C0" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-left-style:solid; border-left-width:1; border-right-style:none; border-right-width:medium; border-top-style:none; border-top-width:medium; border-bottom-style:none; border-bottom-width:medium">
+          <font face="Tahoma" size="2">no_wake</font></td>
+          <td width="102%" bgcolor="#C0C0C0" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-left-style:none; border-left-width:medium; border-right-style:solid; border-right-width:1; border-top-style:none; border-top-width:medium; border-bottom-style:none; border-bottom-width:medium" height="18">
+          <font face="Tahoma" size="2">WAKEUP - Will reset the NPC's idle ticks 
+          counter. If it is in sleep mode, it will wake it up.<br>
+          NOWAKE - Will leave the NPC's idle counter and sleep status alone.&nbsp;
+          </font></td>
         </tr>
       <tr>
           <td width="1%" bgcolor="#808080" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-style: solid; border-width: 1" colspan="2">
@@ -227,7 +243,7 @@
         </tr>
       <tr>
           <td width="1%" bgcolor="#808080" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-style: solid; border-width: 1" colspan="2">
-          <b><font face="Tahoma" size="2">Parameters:</font></b></td>
+          <b><font face="Tahoma" size="2">Parameters</font></b></td>
         </tr>
       <tr>
           <td width="1%" bgcolor="#C0C0C0" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-style: solid; border-width: 1" colspan="2">
@@ -250,6 +266,15 @@
           <font face="Tahoma" size="2">Name</font></td>
           <td width="102%" bgcolor="#C0C0C0" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-left-style:none; border-left-width:medium; border-right-style:solid; border-right-width:1; border-top-style:none; border-top-width:medium; border-bottom-style:none; border-bottom-width:medium" height="18">
           <font face="Tahoma" size="2">Type</font></td>
+        </tr>
+      <tr>
+          <td width="25%" bgcolor="#C0C0C0" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-left-style:solid; border-left-width:1; border-right-style:none; border-right-width:medium; border-top-style:none; border-top-width:medium; border-bottom-style:none; border-bottom-width:medium">
+          <font face="Tahoma" size="2">no_wake</font></td>
+          <td width="102%" bgcolor="#C0C0C0" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-left-style:none; border-left-width:medium; border-right-style:solid; border-right-width:1; border-top-style:none; border-top-width:medium; border-bottom-style:none; border-bottom-width:medium" height="18">
+          <font face="Tahoma" size="2">WAKEUP - Will reset the NPC's idle ticks 
+          counter. If it is in sleep mode, it will wake it up.<br>
+          NOWAKE - Will leave the NPC's idle counter and sleep status alone.&nbsp;
+          </font></td>
         </tr>
       <tr>
           <td width="1%" bgcolor="#808080" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-style: solid; border-width: 1" colspan="2">
@@ -276,7 +301,7 @@
         </tr>
       <tr>
           <td width="1%" bgcolor="#808080" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-style: solid; border-width: 1" colspan="2">
-          <b><font face="Tahoma" size="2">Parameters:</font></b></td>
+          <b><font face="Tahoma" size="2">Parameters</font></b></td>
         </tr>
       <tr>
           <td width="1%" bgcolor="#C0C0C0" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-style: solid; border-width: 1" colspan="2">
@@ -300,6 +325,15 @@
           <font face="Tahoma" size="2">Name</font></td>
           <td width="102%" bgcolor="#C0C0C0" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-left-style:none; border-left-width:medium; border-right-style:solid; border-right-width:1; border-top-style:none; border-top-width:medium; border-bottom-style:none; border-bottom-width:medium" height="18">
           <font face="Tahoma" size="2">Type</font></td>
+        </tr>
+      <tr>
+          <td width="25%" bgcolor="#C0C0C0" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-left-style:solid; border-left-width:1; border-right-style:none; border-right-width:medium; border-top-style:none; border-top-width:medium; border-bottom-style:none; border-bottom-width:medium">
+          <font face="Tahoma" size="2">no_wake</font></td>
+          <td width="102%" bgcolor="#C0C0C0" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-left-style:none; border-left-width:medium; border-right-style:solid; border-right-width:1; border-top-style:none; border-top-width:medium; border-bottom-style:none; border-bottom-width:medium" height="18">
+          <font face="Tahoma" size="2">WAKEUP - Will reset the NPC's idle ticks 
+          counter. If it is in sleep mode, it will wake it up.<br>
+          NOWAKE - Will leave the NPC's idle counter and sleep status alone.&nbsp;
+          </font></td>
         </tr>
       <tr>
           <td width="1%" bgcolor="#808080" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-style: solid; border-width: 1" colspan="2">
@@ -326,7 +360,7 @@
         </tr>
       <tr>
           <td width="1%" bgcolor="#808080" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-style: solid; border-width: 1" colspan="2">
-          <b><font face="Tahoma" size="2">Parameters:</font></b></td>
+          <b><font face="Tahoma" size="2">Parameters</font></b></td>
         </tr>
       <tr>
           <td width="1%" bgcolor="#C0C0C0" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-style: solid; border-width: 1" colspan="2">
@@ -350,6 +384,15 @@
           <font face="Tahoma" size="2">Name</font></td>
           <td width="102%" bgcolor="#C0C0C0" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-left-style:none; border-left-width:medium; border-right-style:solid; border-right-width:1; border-top-style:none; border-top-width:medium; border-bottom-style:none; border-bottom-width:medium" height="18">
           <font face="Tahoma" size="2">Type</font></td>
+        </tr>
+      <tr>
+          <td width="25%" bgcolor="#C0C0C0" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-left-style:solid; border-left-width:1; border-right-style:none; border-right-width:medium; border-top-style:none; border-top-width:medium; border-bottom-style:none; border-bottom-width:medium">
+          <font face="Tahoma" size="2">no_wake</font></td>
+          <td width="102%" bgcolor="#C0C0C0" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-left-style:none; border-left-width:medium; border-right-style:solid; border-right-width:1; border-top-style:none; border-top-width:medium; border-bottom-style:none; border-bottom-width:medium" height="18">
+          <font face="Tahoma" size="2">WAKEUP - Will reset the NPC's idle ticks 
+          counter. If it is in sleep mode, it will wake it up.<br>
+          NOWAKE - Will leave the NPC's idle counter and sleep status alone.&nbsp;
+          </font></td>
         </tr>
       <tr>
           <td width="1%" bgcolor="#808080" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-style: solid; border-width: 1" colspan="2">
@@ -376,7 +419,7 @@
         </tr>
       <tr>
           <td width="1%" bgcolor="#808080" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-style: solid; border-width: 1" colspan="2">
-          <b><font face="Tahoma" size="2">Parameters:</font></b></td>
+          <b><font face="Tahoma" size="2">Parameters</font></b></td>
         </tr>
       <tr>
           <td width="1%" bgcolor="#C0C0C0" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-style: solid; border-width: 1" colspan="2">
@@ -399,6 +442,15 @@
           <font face="Tahoma" size="2">Name</font></td>
           <td width="102%" bgcolor="#C0C0C0" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-left-style:none; border-left-width:medium; border-right-style:solid; border-right-width:1; border-top-style:none; border-top-width:medium; border-bottom-style:none; border-bottom-width:medium" height="18">
           <font face="Tahoma" size="2">Type</font></td>
+        </tr>
+      <tr>
+          <td width="25%" bgcolor="#C0C0C0" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-left-style:solid; border-left-width:1; border-right-style:none; border-right-width:medium; border-top-style:none; border-top-width:medium; border-bottom-style:none; border-bottom-width:medium">
+          <font face="Tahoma" size="2">no_wake</font></td>
+          <td width="102%" bgcolor="#C0C0C0" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-left-style:none; border-left-width:medium; border-right-style:solid; border-right-width:1; border-top-style:none; border-top-width:medium; border-bottom-style:none; border-bottom-width:medium" height="18">
+          <font face="Tahoma" size="2">WAKEUP - Will reset the NPC's idle ticks 
+          counter. If it is in sleep mode, it will wake it up.<br>
+          NOWAKE - Will leave the NPC's idle counter and sleep status alone.&nbsp;
+          </font></td>
         </tr>
       <tr>
           <td width="1%" bgcolor="#808080" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-style: solid; border-width: 1" colspan="2">
@@ -425,7 +477,7 @@
         </tr>
       <tr>
           <td width="1%" bgcolor="#808080" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-style: solid; border-width: 1" colspan="2">
-          <b><font face="Tahoma" size="2">Parameters:</font></b></td>
+          <b><font face="Tahoma" size="2">Parameters</font></b></td>
         </tr>
       <tr>
           <td width="1%" bgcolor="#C0C0C0" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-style: solid; border-width: 1" colspan="2">
@@ -474,7 +526,7 @@
         </tr>
       <tr>
           <td width="1%" bgcolor="#808080" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-style: solid; border-width: 1" colspan="2">
-          <b><font face="Tahoma" size="2">Parameters:</font></b></td>
+          <b><font face="Tahoma" size="2">Parameters</font></b></td>
         </tr>
       <tr>
           <td width="1%" bgcolor="#C0C0C0" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-style: solid; border-width: 1" colspan="2">
@@ -498,6 +550,15 @@
           <font face="Tahoma" size="2">Name</font></td>
           <td width="102%" bgcolor="#C0C0C0" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-left-style:none; border-left-width:medium; border-right-style:solid; border-right-width:1; border-top-style:none; border-top-width:medium; border-bottom-style:none; border-bottom-width:medium" height="18">
           <font face="Tahoma" size="2">Type</font></td>
+        </tr>
+      <tr>
+          <td width="25%" bgcolor="#C0C0C0" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-left-style:solid; border-left-width:1; border-right-style:none; border-right-width:medium; border-top-style:none; border-top-width:medium; border-bottom-style:none; border-bottom-width:medium">
+          <font face="Tahoma" size="2">no_wake</font></td>
+          <td width="102%" bgcolor="#C0C0C0" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-left-style:none; border-left-width:medium; border-right-style:solid; border-right-width:1; border-top-style:none; border-top-width:medium; border-bottom-style:none; border-bottom-width:medium" height="18">
+          <font face="Tahoma" size="2">WAKEUP - Will reset the NPC's idle ticks 
+          counter. If it is in sleep mode, it will wake it up.<br>
+          NOWAKE - Will leave the NPC's idle counter and sleep status alone.&nbsp;
+          </font></td>
         </tr>
       <tr>
           <td width="1%" bgcolor="#808080" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-style: solid; border-width: 1" colspan="2">
@@ -524,7 +585,7 @@
         </tr>
       <tr>
           <td width="1%" bgcolor="#808080" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-style: solid; border-width: 1" colspan="2">
-          <b><font face="Tahoma" size="2">Parameters:</font></b></td>
+          <b><font face="Tahoma" size="2">Parameters</font></b></td>
         </tr>
       <tr>
           <td width="1%" bgcolor="#C0C0C0" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-style: solid; border-width: 1" colspan="2">
@@ -574,7 +635,7 @@
         </tr>
       <tr>
           <td width="1%" bgcolor="#808080" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-style: solid; border-width: 1" colspan="2">
-          <b><font face="Tahoma" size="2">Parameters:</font></b></td>
+          <b><font face="Tahoma" size="2">Parameters</font></b></td>
         </tr>
       <tr>
           <td width="1%" bgcolor="#C0C0C0" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-style: solid; border-width: 1" colspan="2">
@@ -598,6 +659,15 @@
           <font face="Tahoma" size="2">Name</font></td>
           <td width="102%" bgcolor="#C0C0C0" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-left-style:none; border-left-width:medium; border-right-style:solid; border-right-width:1; border-top-style:none; border-top-width:medium; border-bottom-style:none; border-bottom-width:medium" height="18">
           <font face="Tahoma" size="2">Type</font></td>
+        </tr>
+      <tr>
+          <td width="25%" bgcolor="#C0C0C0" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-left-style:solid; border-left-width:1; border-right-style:none; border-right-width:medium; border-top-style:none; border-top-width:medium; border-bottom-style:none; border-bottom-width:medium">
+          <font face="Tahoma" size="2">no_wake</font></td>
+          <td width="102%" bgcolor="#C0C0C0" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-left-style:none; border-left-width:medium; border-right-style:solid; border-right-width:1; border-top-style:none; border-top-width:medium; border-bottom-style:none; border-bottom-width:medium" height="18">
+          <font face="Tahoma" size="2">WAKEUP - Will reset the NPC's idle ticks 
+          counter. If it is in sleep mode, it will wake it up.<br>
+          NOWAKE - Will leave the NPC's idle counter and sleep status alone.&nbsp;
+          </font></td>
         </tr>
       <tr>
           <td width="1%" bgcolor="#808080" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-style: solid; border-width: 1" colspan="2">
@@ -624,7 +694,7 @@
         </tr>
       <tr>
           <td width="1%" bgcolor="#808080" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-style: solid; border-width: 1" colspan="2">
-          <b><font face="Tahoma" size="2">Parameters:</font></b></td>
+          <b><font face="Tahoma" size="2">Parameters</font></b></td>
         </tr>
       <tr>
           <td width="1%" bgcolor="#C0C0C0" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-style: solid; border-width: 1" colspan="2">
@@ -648,6 +718,15 @@
           <font face="Tahoma" size="2">Name</font></td>
           <td width="102%" bgcolor="#C0C0C0" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-left-style:none; border-left-width:medium; border-right-style:solid; border-right-width:1; border-top-style:none; border-top-width:medium; border-bottom-style:none; border-bottom-width:medium" height="18">
           <font face="Tahoma" size="2">Type</font></td>
+        </tr>
+      <tr>
+          <td width="25%" bgcolor="#C0C0C0" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-left-style:solid; border-left-width:1; border-right-style:none; border-right-width:medium; border-top-style:none; border-top-width:medium; border-bottom-style:none; border-bottom-width:medium">
+          <font face="Tahoma" size="2">no_wake</font></td>
+          <td width="102%" bgcolor="#C0C0C0" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-left-style:none; border-left-width:medium; border-right-style:solid; border-right-width:1; border-top-style:none; border-top-width:medium; border-bottom-style:none; border-bottom-width:medium" height="18">
+          <font face="Tahoma" size="2">WAKEUP - Will reset the NPC's idle ticks 
+          counter. If it is in sleep mode, it will wake it up.<br>
+          NOWAKE - Will leave the NPC's idle counter and sleep status alone.&nbsp;
+          </font></td>
         </tr>
       <tr>
           <td width="1%" bgcolor="#808080" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-style: solid; border-width: 1" colspan="2">
@@ -674,7 +753,7 @@
         </tr>
       <tr>
           <td width="1%" bgcolor="#808080" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-style: solid; border-width: 1" colspan="2">
-          <b><font face="Tahoma" size="2">Parameters:</font></b></td>
+          <b><font face="Tahoma" size="2">Parameters</font></b></td>
         </tr>
       <tr>
           <td width="1%" bgcolor="#C0C0C0" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-style: solid; border-width: 1" colspan="2">
@@ -723,7 +802,7 @@
         </tr>
       <tr>
           <td width="1%" bgcolor="#808080" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-style: solid; border-width: 1" colspan="2">
-          <b><font face="Tahoma" size="2">Parameters:</font></b></td>
+          <b><font face="Tahoma" size="2">Parameters</font></b></td>
         </tr>
       <tr>
           <td width="1%" bgcolor="#C0C0C0" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-style: solid; border-width: 1" colspan="2">
@@ -746,6 +825,15 @@
           <font face="Tahoma" size="2">Name</font></td>
           <td width="102%" bgcolor="#C0C0C0" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-left-style:none; border-left-width:medium; border-right-style:solid; border-right-width:1; border-top-style:none; border-top-width:medium; border-bottom-style:none; border-bottom-width:medium" height="18">
           <font face="Tahoma" size="2">Type</font></td>
+        </tr>
+      <tr>
+          <td width="25%" bgcolor="#C0C0C0" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-left-style:solid; border-left-width:1; border-right-style:none; border-right-width:medium; border-top-style:none; border-top-width:medium; border-bottom-style:none; border-bottom-width:medium">
+          <font face="Tahoma" size="2">no_wake</font></td>
+          <td width="102%" bgcolor="#C0C0C0" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-left-style:none; border-left-width:medium; border-right-style:solid; border-right-width:1; border-top-style:none; border-top-width:medium; border-bottom-style:none; border-bottom-width:medium" height="18">
+          <font face="Tahoma" size="2">WAKEUP - Will reset the NPC's idle ticks 
+          counter. If it is in sleep mode, it will wake it up.<br>
+          NOWAKE - Will leave the NPC's idle counter and sleep status alone.&nbsp;
+          </font></td>
         </tr>
       <tr>
           <td width="1%" bgcolor="#808080" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-style: solid; border-width: 1" colspan="2">
@@ -772,7 +860,7 @@
         </tr>
       <tr>
           <td width="1%" bgcolor="#808080" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-style: solid; border-width: 1" colspan="2">
-          <b><font face="Tahoma" size="2">Parameters:</font></b></td>
+          <b><font face="Tahoma" size="2">Parameters</font></b></td>
         </tr>
       <tr>
           <td width="1%" bgcolor="#C0C0C0" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-style: solid; border-width: 1" colspan="2">
@@ -795,6 +883,15 @@
           <font face="Tahoma" size="2">Name</font></td>
           <td width="102%" bgcolor="#C0C0C0" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-left-style:none; border-left-width:medium; border-right-style:solid; border-right-width:1; border-top-style:none; border-top-width:medium; border-bottom-style:none; border-bottom-width:medium" height="18">
           <font face="Tahoma" size="2">Type</font></td>
+        </tr>
+      <tr>
+          <td width="25%" bgcolor="#C0C0C0" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-left-style:solid; border-left-width:1; border-right-style:none; border-right-width:medium; border-top-style:none; border-top-width:medium; border-bottom-style:none; border-bottom-width:medium">
+          <font face="Tahoma" size="2">no_wake</font></td>
+          <td width="102%" bgcolor="#C0C0C0" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-left-style:none; border-left-width:medium; border-right-style:solid; border-right-width:1; border-top-style:none; border-top-width:medium; border-bottom-style:none; border-bottom-width:medium" height="18">
+          <font face="Tahoma" size="2">WAKEUP - Will reset the NPC's idle ticks 
+          counter. If it is in sleep mode, it will wake it up.<br>
+          NOWAKE - Will leave the NPC's idle counter and sleep status alone.&nbsp;
+          </font></td>
         </tr>
       <tr>
           <td width="1%" bgcolor="#808080" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-style: solid; border-width: 1" colspan="2">
