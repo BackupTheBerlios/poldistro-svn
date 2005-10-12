@@ -34,7 +34,7 @@ const NF_CONTINUE_ON_SLEEP	:= 0x1;
 /////////////////////////////////////////////////////////////////
 
 /*
- * LoadNerves()
+ * LoadNerves(mobile)
  *
  * Purpose
  * Loads nerve information for an npc.
@@ -82,7 +82,6 @@ endfunction
  * Parameters
  * mobile:	NPC to get the nerve information from.
  * nerve_name:	Name of the nerve to get the information for.
- * nerve_dict:	Optional parameter. Use if the settings were already loaded for faster access.
  *
  * Return value
  * Returns a script reference.
@@ -91,7 +90,7 @@ endfunction
 function GetNerveProcess(mobile, nerve_name)
 	var nerve_dict := LoadNerves(mobile);
 	
-	if ( nerve_dict.exists(nerve_name) )
+	if ( nerve_dict.Existsnerve_name) )
 		return GetProcess(CInt(nerve_dict[nerve_name].pid));
 	else
 		return error{"errortext" := "Error::GetNerveProcess() - Invalid nerve name  ["+nerve_name+"]"};
@@ -132,16 +131,15 @@ endfunction
  * Parameters
  * mobile:	NPC to get the nerve information from.
  * nerve_name:	Name of the nerve to get the information for.
- * nerve_dict:	Optional parameter. Use if the settings were already loaded for faster access.
  *
  * Return value
- * Returns a script reference.
+ * Return the .flags member of the nerve setting
  *
  */
 function GetNerveFlags(mobile, nerve_name)
 	var nerve_dict := LoadNerves(mobile);
 	
-	if ( nerve_dict.exists(nerve_name) )
+	if ( nerve_dict.Existsnerve_name) )
 		return GetProcess(CInt(nerve_dict[nerve_name].flags));
 	else
 		return error{"errortext" := "Error::GetNerveFlags() - Invalid nerve name  ["+nerve_name+"]"};
@@ -159,7 +157,6 @@ endfunction
  * nerve_name:	The name the nerve script will be run under. (Example: "CombatScript" or "EnterReact")
  * data:	Array of data to send to the nerve script when it starts.
  * flags:	Can contain anything - but should use NF_* flags for bitwise checks.
- * nerve_dict:	Optional parameter. Use if the settings were already loaded for faster access.
  *
  * Notes:
  * data[1] - Will contain the mobile argument.
@@ -190,7 +187,7 @@ function StartNerve(mobile, nerve_name, nerve_script, data:=array, flags:=NF_NO_
 		var nerve_dict := LoadNerves(mobile);
 		
 		//Before setting the new nerve, check if one is already running.
-		if ( nerve_dict.exists(nerve_name) )
+		if ( nerve_dict.Existsnerve_name) )
 			//Stop the old nerve, before storing the new one.
 			StopNerve(mobile, nerve_name);
 		endif
@@ -210,12 +207,11 @@ endfunction
  * StopNerve(mobile, nerve_name)
  *
  * Purpose
- * Starts up a nerve script.
+ * Stops a nerve script.
  *
  * Parameters
  * mobile:	NPC the nerve will be stopped on.
  * nerve_name:	The name of the nerve script to stop.
- * nerve_dict:	Optional parameter. Use if the settings were already loaded for faster access.
  *
  * Return value
  * Returns 1 on success.
@@ -224,7 +220,7 @@ endfunction
 function StopNerve(mobile, nerve_name)
 	var nerve_dict := LoadNerves(mobile);
 	
-	if ( nerve_dict.Exists(nerve_name) )
+	if ( nerve_dict.Existsnerve_name) )
 		GetNerveProcess(mobile, nerve_name).kill();
 		nerve_dict.Erase(nerve_name);
 

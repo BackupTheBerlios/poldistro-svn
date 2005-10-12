@@ -35,7 +35,7 @@ include ":brainAI:npcError";
 CONST EQUIP_NOGENDER	:= 0x0;	// Items suited for both genders
 CONST EQUIP_MALE	:= 0x1; // Use male-only items (do any exist?)
 CONST EQUIP_FEMALE	:= 0x2; // Use female-only items
-const EQUIP_BOTHGENDER	:= 0x3; // Cross-dresser
+CONST EQUIP_BOTHGENDER	:= 0x3; // Cross-dresser
 // 
 /////////////////////////////////////////////////////////////////
 
@@ -147,7 +147,7 @@ function NPC_SetupEquipment(mobile, elem_name:=0)
 endfunction
 
 /* 
- * NPC_SetupRandomEquipment(mobile, elem_name)
+ * NPC_SetupRandomEquipment(mobile, elem_name, flags)
  *
  * Purpose
  * Equips an NPC randomy-yet-still-fashionably. 
