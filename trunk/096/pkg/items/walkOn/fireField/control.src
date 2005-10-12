@@ -11,7 +11,7 @@ program controlScript(field)
 	SetObjProperty(field, "#PID", GetPid());
 
 	var creator := CInt(GetObjProperty(field, "Creator"));
-	if ( creator )
+	if ( creator.IsA(POLCLASS_MOBILE) )
 		creator := SystemFindObjectBySerial(creator);
 		SetScriptController(creator);
 	endif

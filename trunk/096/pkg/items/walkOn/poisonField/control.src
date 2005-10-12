@@ -1,0 +1,56 @@
+/*
+ * $Id$
+ *
+ */
+
+use uo;
+use os;
+use util;
+
+program controlScript(field)
+	SetObjProperty(field, "#PID", GetPid());
+
+	var creator := CInt(GetObjProperty(field, "Creator"));
+	if ( creator.IsA(POLCLASS_MOBILE) )
+		creator := SystemFindObjectBySerial(creator);
+		SetScriptController(creator);
+	endif
+
+	var dmg_dice := GetObjProperty(field, "DamageDice");
+	if ( !dmg_dice )
+		dmg_dice := "1d5";
+	endif
+
+	while ( field )
+		BurnNearbyMobiles(field, dmg_dice);
+
+		if ( ReadGameClock() % 3 == 0 )
+			// Play once every 3 seconds.
+			PlaySoundEffect(field, 0x1DE);
+		endif
+
+		var event := Wait_For_Event(1);
+		if ( event )
+			//Someone just walked onto the tile.
+			BurnMobile(event, dmg_dice);
+		endif
+	endwhile
+endprogram
+
+function PoisonNearbyMobiles(field, dmg_dice)
+	var nearby := ListMobilesNearLocationEX(field.x, field.y, field.z, 0, LISTEX_FLAG_NORMAL+LISTEX_FLAG_HIDDEN, field.realm);
+	foreach mobile in ( nearby )
+		BurnMobile(mobile, dmg_dice);
+
+		sleepms(2);
+	endforeach
+
+	return (nearby.size());
+endfunction
+
+function PoisonMobile(mobile, dmg_dice)
+	var dmg := RandomDiceRoll(dmg_dice); // - resistance ?
+	ApplyRawDamage(mobile, dmg);
+
+	return 1;
+endfunction
