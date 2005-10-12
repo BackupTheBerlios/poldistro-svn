@@ -4,13 +4,16 @@ use os;
 include ":spawnsystem:include/groups";
 include ":spawnsystem:include/realms";
 include ":spawnsystem:include/regions";
-include ":spawnsystem:include/errors";
+include ":spawnsystem:include/report";
 
 program SpawnSystem()
+	SS_ReportText("-------------------------", SPAWN_REPORT_SYSLOG);
+	SS_ReportText("[ Spawner has started up ]", SPAWN_REPORT_SYSLOG);
+	
 	if ( !GetGlobalProperty("SpawnSystem") )
 		var script := Start_Script(":spawnsystem:initializer/firstrun");
 		if ( script.errortext )
-			SS_ErrorReport(script.errortext, SPAWN_ERROR_SYSLOG);
+			SS_ReportText(script.errortext, SPAWN_REPORT_SYSLOG);
 			return 0;
 		endif
 	endif

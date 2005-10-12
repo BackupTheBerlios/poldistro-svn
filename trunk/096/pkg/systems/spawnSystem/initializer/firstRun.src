@@ -4,18 +4,18 @@ use os;
 include ":spawnsystem:include/groups";
 include ":spawnsystem:include/realms";
 include ":spawnsystem:include/regions";
-include ":spawnsystem:include/errors";
+include ":spawnsystem:include/report";
 
 program FirstRun()
 	var start_cfg := ReadConfigFile(":spawnsystem:config/firstrun");
-	if ( start_cfg.errortext )
-		SS_ErrorReport(start_cfg.errortext, SPAWN_ERROR_SYSLOG);
+	if ( start_cfg.REPORTtext )
+		SS_ReportText(start_cfg.REPORTtext, SPAWN_REPORT_SYSLOG);
 		return 0;
 	endif
 
 	var realm_list := start_cfg["Realms"];
-	if ( realm_list.errortext)
-		SS_ErrorReport(start_cfg.errortext, SPAWN_ERROR_SYSLOG);
+	if ( realm_list.REPORTtext)
+		SS_ReportText(start_cfg.REPORTtext, SPAWN_REPORT_SYSLOG);
 		return 0;
 	endif
 
@@ -39,8 +39,8 @@ endprogram
 
 function SetupRealm(realm_name, start_cfg)
 	var realm_info := start_cfg[realm_name];
-	if ( realm_info.errortext )
-		SS_ErrorReport("No cfg elem for realm ("+realm_name+") -> "+realm_info.errortext, SPAWN_ERROR_SYSLOG);
+	if ( realm_info.REPORTtext )
+		SS_ReportText("No cfg elem for realm ("+realm_name+") -> "+realm_info.REPORTtext, SPAWN_REPORT_SYSLOG);
 		return 0;
 	endif
 	
@@ -68,8 +68,8 @@ endfunction
 
 function SetupRegion(region_name, realm_name, start_cfg)
 	var region_info := start_cfg[region_name];
-	if ( region_info.errortext )
-		SS_ErrorReport("No cfg elem for region ("+region_name+") -> "+region_info.errortext, SPAWN_ERROR_SYSLOG);
+	if ( region_info.REPORTtext )
+		SS_ReportText("No cfg elem for region ("+region_name+") -> "+region_info.REPORTtext, SPAWN_REPORT_SYSLOG);
 		return 0;
 	endif
 
@@ -110,11 +110,11 @@ function SetupGroup(group_name, start_cfg)
 	SysLog("Setting up spawner group ("+group_name+")");
 	
 	var group_info := start_cfg[group_name];
-	if ( group_info.errortext )
-		SS_ErrorReport("No cfg elem for group ("+group_name+") -> "+group_info.errortext, SPAWN_ERROR_SYSLOG);
+	if ( group_info.REPORTtext )
+		SS_ReportText("No cfg elem for group ("+group_name+") -> "+group_info.REPORTtext, SPAWN_REPORT_SYSLOG);
 		return 0;
 	elseif ( !group_info.Engine )
-		SS_ErrorReport("No valid engine name was set for group ("+group_name+")", SPAWN_ERROR_SYSLOG);
+		SS_ReportText("No valid engine name was set for group ("+group_name+")", SPAWN_REPORT_SYSLOG);
 		return 0;
 	endif
 	
