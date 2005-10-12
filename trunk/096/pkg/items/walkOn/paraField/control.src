@@ -1,0 +1,57 @@
+/*
+ * $Id$
+ *
+ */
+
+use uo;
+use os;
+use util;
+
+include ":poisonwatcher:poisons";
+
+program controlScript(field)
+	SetObjProperty(field, "#PID", GetPid());
+
+	var creator := CInt(GetObjProperty(field, "Creator"));
+	if ( creator.IsA(POLCLASS_MOBILE) )
+		creator := SystemFindObjectBySerial(creator);
+		SetScriptController(creator);
+	endif
+
+	var duration := CInt(GetObjProperty(field, "Duration"));
+	if ( !duration )
+		duration := RandomDiceRoll("5d3");
+	endif
+
+	while ( field )
+		ParalyzeNearbyMobiles(field, duration);
+
+		if ( ReadGameClock() % 5 == 0 )
+			// Play once every 5 seconds.
+			PlaySoundEffect(field, 0x20C);
+		endif
+
+		var event := Wait_For_Event(1);
+		if ( event )
+			//Someone just walked onto the tile.
+			ParalyzeMobile(event, duration);
+		endif
+	endwhile
+endprogram
+
+function ParalyzeNearbyMobiles(field, duration)
+	var nearby := ListMobilesNearLocationEX(field.x, field.y, field.z, 0, LISTEX_FLAG_NORMAL+LISTEX_FLAG_HIDDEN, field.realm);
+	foreach mobile in ( nearby )
+		ParalyzeMobile(mobile, duration);
+
+		sleepms(2);
+	endforeach
+
+	return (nearby.size());
+endfunction
+
+function ParalyzeMobile(mobile, duration)
+	AddPoison(mobile, "Paralyze", duration, 0);
+
+	return 1;
+endfunction
