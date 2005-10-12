@@ -8,6 +8,7 @@ program poisonScript(params)
 	var who := params[1];
 	
 	PlaySoundEffect(who, 0x205);
+	SendSysMessage(who, "You are unable to move.");
 	while ( who )
 		who.paralyzed := 1;
 		sleepms(250);

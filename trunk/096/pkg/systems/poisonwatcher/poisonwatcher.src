@@ -161,7 +161,7 @@ function Add_Poison(who, byref event, byref poisons, byref num_poisons)
 	endif
 
 	var cumulative := CfgInfo(event.name).Cumulative;
-	if( !poisons.exists(event.name) )
+	if( !poisons.Exists(event.name) )
 		var script := CfgInfo(event.name).Script;
 		script := start_script(script, {who, event.attacker, event.level});
 
@@ -176,11 +176,11 @@ function Add_Poison(who, byref event, byref poisons, byref num_poisons)
 		poisons[event.name].+level := event.level;
 		
 		var maxdur := CInt(CfgInfo(event.name).MaxDuration);
-		if (maxdur < poisons[event.name].duration)
+		if ( maxdur < poisons[event.name].duration )
 			poisons[event.name].duration := maxdur;
 		endif
 
-		if( CfgInfo(event.name).IndicatePoison)
+		if( CfgInfo(event.name).IndicatePoison )
 			num_poisons := num_poisons+1;
 		endif
 	else
@@ -252,7 +252,7 @@ function Cure_Specific(who, byref event, byref poisons, byref num_poisons, check
 
 	var cure_amount := event.amount;
 	var level := event.level;
-	if( poisons.exists(event.name) )
+	if( poisons.Exists(event.name) )
 		if( cure_amount == -1 )
 			check_virulence:=0;
 			cure_amount := poisons[event.name].duration + 1;
@@ -320,7 +320,7 @@ endfunction
 function ShouldRun( who, byref poison_keys )
 	if ( Events_Waiting() >= 1 )
 		return 1;
-	elseif( (who.npctemplate) || (GetObjProperty(who, "#Online")) )
+	elseif( who.connected )
 		if( poison_keys.size() > 0 )
 			return 1;
 		endif
