@@ -7,26 +7,28 @@ include ":spawnsystem:include/regions";
 include ":spawnsystem:include/report";
 
 program FirstRun()
+	SS_ReportText("Setting up spawner for first time use...");
+	
 	var start_cfg := ReadConfigFile(":spawnsystem:config/firstrun");
-	if ( start_cfg.REPORTtext )
-		SS_ReportText(start_cfg.REPORTtext, SPAWN_REPORT_SYSLOG);
+	if ( start_cfg.errortext )
+		SS_ReportText(start_cfg.errortext);
 		return 0;
 	endif
 
 	var realm_list := start_cfg["Realms"];
-	if ( realm_list.REPORTtext)
-		SS_ReportText(start_cfg.REPORTtext, SPAWN_REPORT_SYSLOG);
+	if ( realm_list.errortext)
+		SS_ReportText(start_cfg.errortext);
 		return 0;
 	endif
 
 	foreach realm_name in (GetConfigStringArray(realm_list, "Realm"))
-		SysLog("Setting up spawner realm ("+realm_name+")");
+		SS_ReportText("Setting up spawner realm ("+realm_name+")");
 		var success := SetupRealm(realm_name, start_cfg);
 		
 		if ( success )
-			SysLog("Spawn realm ("+realm_name+") setup... okay.");
+			SS_ReportText("Spawn realm ("+realm_name+") setup... okay.");
 		else
-			SysLog("Spawn realm ("+realm_name+") setup... failed!");
+			SS_ReportText("Spawn realm ("+realm_name+") setup... failed!");
 		endif
 		
 		sleepms(2);
@@ -39,15 +41,15 @@ endprogram
 
 function SetupRealm(realm_name, start_cfg)
 	var realm_info := start_cfg[realm_name];
-	if ( realm_info.REPORTtext )
-		SS_ReportText("No cfg elem for realm ("+realm_name+") -> "+realm_info.REPORTtext, SPAWN_REPORT_SYSLOG);
+	if ( realm_info.errortext )
+		SS_ReportText("No cfg elem for realm ("+realm_name+") -> "+realm_info.errortext);
 		return 0;
 	endif
 	
 	SS_AddRealm(realm_name);
 
 	foreach region_name in (GetConfigStringArray(realm_info, "Region"))
-		SysLog("Setting up spawn region ("+region_name+")");
+		SS_ReportText("Setting up spawn region ("+region_name+")");
 		var success := SetupRegion(region_name, realm_name, start_cfg);
 		
 		if ( success )
@@ -55,9 +57,9 @@ function SetupRealm(realm_name, start_cfg)
 		endif
 		
 		if ( success )
-			SysLog("Spawn region ("+region_name+") setup... okay.");
+			SS_ReportText("Spawn region ("+region_name+") setup... okay.");
 		else
-			SysLog("Spawn region ("+region_name+") setup... failed!");
+			SS_ReportText("Spawn region ("+region_name+") setup... failed!");
 		endif
 		
 		sleepms(2);
@@ -68,8 +70,8 @@ endfunction
 
 function SetupRegion(region_name, realm_name, start_cfg)
 	var region_info := start_cfg[region_name];
-	if ( region_info.REPORTtext )
-		SS_ReportText("No cfg elem for region ("+region_name+") -> "+region_info.REPORTtext, SPAWN_REPORT_SYSLOG);
+	if ( region_info.errortext )
+		SS_ReportText("No cfg elem for region ("+region_name+") -> "+region_info.errortext);
 		return 0;
 	endif
 
@@ -90,9 +92,9 @@ function SetupRegion(region_name, realm_name, start_cfg)
 			success := SS_AddGroupToRegion(region_name, group_name, max_amt, spawn_wait, 1);
 		endif
 		if ( success )
-			SysLog("Adding group ("+group_name+") to region ("+region_name+")... okay.");
+			SS_ReportText("Adding group ("+group_name+") to region ("+region_name+")... okay.");
 		else
-			SysLog("Adding group ("+group_name+") to region ("+region_name+")... failed!");
+			SS_ReportText("Adding group ("+group_name+") to region ("+region_name+")... failed!");
 		endif
 		
 		sleepms(2);
@@ -107,14 +109,14 @@ function SetupGroup(group_name, start_cfg)
 		return 1;
 	endif
 	
-	SysLog("Setting up spawner group ("+group_name+")");
+	SS_ReportText("Setting up spawner group ("+group_name+")");
 	
 	var group_info := start_cfg[group_name];
-	if ( group_info.REPORTtext )
-		SS_ReportText("No cfg elem for group ("+group_name+") -> "+group_info.REPORTtext, SPAWN_REPORT_SYSLOG);
+	if ( group_info.errortext )
+		SS_ReportText("No cfg elem for group ("+group_name+") -> "+group_info.errortext);
 		return 0;
 	elseif ( !group_info.Engine )
-		SS_ReportText("No valid engine name was set for group ("+group_name+")", SPAWN_REPORT_SYSLOG);
+		SS_ReportText("No valid engine name was set for group ("+group_name+")");
 		return 0;
 	endif
 	

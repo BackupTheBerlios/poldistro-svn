@@ -7,13 +7,12 @@ include ":spawnsystem:include/regions";
 include ":spawnsystem:include/report";
 
 program SpawnSystem()
-	SS_ReportText("-------------------------", SPAWN_REPORT_SYSLOG);
-	SS_ReportText("[ Spawner has started up ]", SPAWN_REPORT_SYSLOG);
+	SS_ReportText("---=[ SPAWNER HAS STARTED UP ]=---");
 	
 	if ( !GetGlobalProperty("SpawnSystem") )
-		var script := Start_Script(":spawnsystem:initializer/firstrun");
+		var script := Start_Script(":spawnSystem:initializer/firstRun");
 		if ( script.errortext )
-			SS_ReportText(script.errortext, SPAWN_REPORT_SYSLOG);
+			SS_ReportText(script.errortext);
 			return 0;
 		endif
 	endif
