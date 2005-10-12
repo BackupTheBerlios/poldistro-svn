@@ -28,7 +28,7 @@ include ":brainAI:npcError";
  * NPC_LoadWatchList(npc)
  *
  * Purpose
- * Loads the watch list on an npc.
+ * Loads the watch list on an NPC.
  *
  * Parameters
  * npc:	NPC to load the watch list from.
@@ -68,7 +68,7 @@ endfunction
  * NPC_AddToWatchList(npc, mobile)
  *
  * Purpose
- * Adds a mobile to the npc's watch list.
+ * Adds a mobile to the NPC's watch list.
  *
  * Parameters
  * npc:		NPC that will have its list added to.
@@ -98,7 +98,7 @@ endfunction
  * NPC_RemoveFromWatchList(npc)
  *
  * Purpose
- * Removes a mobile from the npc's watch list.
+ * Removes a mobile from the NPC's watch list.
  *
  * Parameters
  * npc:		NPC that will have its list modified.
@@ -128,7 +128,7 @@ endfunction
  * NPC_IsInWatchList(npc, mobile)
  *
  * Purpose
- * Checks if a mobile is in an npc's watch list.
+ * Checks if a mobile is in an NPC's watch list.
  *
  * Parameters
  * npc:		NPC with the list to check
@@ -151,7 +151,7 @@ endfunction
  * NPC_ShouldWatch(npc, mobile, script_path)
  *
  * Purpose
- * Checks if a mobile is in an npc's watch list.
+ * Checks if the NPC should watch the mobile.
  *
  * Parameters
  * npc:		NPC that will do the checking
