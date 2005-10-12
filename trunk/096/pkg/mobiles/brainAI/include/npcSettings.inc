@@ -21,7 +21,6 @@ include ":brainAI:npcUtil";
  * Checks the settings dictionary to make sure required values are set.
  * If a dictionary is passed, it will check it for required parameters.
  * If they are not present, they will be set.
- * Nothing will be overwritten in this function.
  *
  * Parameters
  * settings:	Optional parameter
@@ -53,11 +52,12 @@ endfunction
  * NPC_LoadTemplateSettings(source)
  *
  * Purpose
- * Loads settings for a template from npcdesc.cfg
+ * Loads script settings for a template from the appropriate npcdesc.cfg.
+ * Uses AISetting lines.
  *
  * Parameters
  * source:	Name of the npc template to load settings for.
- *		Can also be an npc reference - if custom settings should be loaded off it.
+ *		If an NPC reference is used it will also load custom settings set on it.
  *
  * Return value
  * Returns a dictionary
@@ -102,6 +102,7 @@ endfunction
  *
  * Purpose
  * Loads brain AI script settings for an NPC. Gives .script and .flag values for them.
+ * Uses AIScript and AIScriptFlag entries.
  *
  * Parameters
  * source:	Name of the npc template to load settings for.
