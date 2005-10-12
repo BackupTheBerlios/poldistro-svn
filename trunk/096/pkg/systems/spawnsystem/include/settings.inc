@@ -3,7 +3,7 @@ use os;
 use cfgfile;
 
 /*
- * SSGetSettingsCfgFile(engine_name)
+ * SS_GetSettingsCfgFile(engine_name)
  *
  * Purpose
  * Reads in an engine's settings.cfg or if no engine name is passed, the main settings.cfg.
@@ -15,7 +15,7 @@ use cfgfile;
  * A config file reference.
  *
  */
-function SSGetSettingsCfgFile(engine_name:="")
+function SS_GetSettingsCfgFile(engine_name:="")
 	var cfg_path := ":spawnsystem:config/settings";
 	if ( engine_name )
 		cfg_path := ":spawnsystem:engines/"+engine_name+"/settings";
@@ -24,14 +24,14 @@ function SSGetSettingsCfgFile(engine_name:="")
 	var cfg := ReadConfigFile(":spawnsystem:config/settings");
 
 	if ( cfg.errortext )
-		SysLog("Error::SSGetSettingsCfgFile() - Unable to open "+cfg_path+".cfg ->"+cfg.errortext);
+		SysLog("Error::SS_GetSettingsCfgFile() - Unable to open "+cfg_path+".cfg ->"+cfg.errortext);
 	endif
 
 	return cfg;
 endfunction
 
 /*
- * SSGetSettingsCfgElem(cfg_file, elem_name)
+ * SS_GetSettingsCfgElem(cfg_file, elem_name)
  *
  * Purpose
  * Retrieves an elem from a config file. 
@@ -44,19 +44,19 @@ endfunction
  * A config file elem reference.
  *
  */
-function SSGetSettingsCfgElem(cfg_file, elem_name)
-	var cfg := SSGetSettingsCfgFile();
+function SS_GetSettingsCfgElem(cfg_file, elem_name)
+	var cfg := SS_GetSettingsCfgFile();
 	var elem := cfg[elem_name];
 
 	if ( elem.errortext )
-		SysLog("Error::SSGetSettingsCfgElem() - Unable to find elem ["+elem_name+"] in "+cfg_file.name+" ->"+elem.errortext);
+		SysLog("Error::SS_GetSettingsCfgElem() - Unable to find elem ["+elem_name+"] in "+cfg_file.name+" ->"+elem.errortext);
 	endif
 
 	return elem;
 endfunction
 
 /*
- * SSLoadSettings(cfg_elem)
+ * SS_LoadSettings(cfg_elem)
  *
  * Purpose
  * Parses settings in an engine's or the main spawner's settings.cfg
@@ -68,7 +68,7 @@ endfunction
  * A dictionary containing mixed variable types.
  *
  */
-function SSLoadSettings(cfg_elem)
+function SS_LoadSettings(cfg_elem)
 	var settings := dictionary;
 
 	foreach line in GetConfigStringArray(cfg_elem, "Setting")

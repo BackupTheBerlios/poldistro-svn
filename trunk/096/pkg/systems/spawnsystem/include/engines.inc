@@ -6,7 +6,7 @@ include ":datafile:include/datafile";
 include ":spawnsystem:include/settings";
 
 /*
- * SSGetEnginesList()
+ * SS_GetEnginesList()
  *
  * Purpose
  * Retrieves the list of engines in :spawnsystem:configs/settings.cfg
@@ -17,15 +17,15 @@ include ":spawnsystem:include/settings";
  * Array of strings
  *
  */
-function SSGetEnginesList()
-	var cfg_file := SSGetSettingsCfgFile();
-	var cfg_elem := SSGetSettingsCfgElem(cfg_file, "EngineList");
+function SS_GetEnginesList()
+	var cfg_file := SS_GetSettingsCfgFile();
+	var cfg_elem := SS_GetSettingsCfgElem(cfg_file, "EngineList");
 	
 	return GetConfigStringArray(cfg_elem, "Engine");
 endfunction
 
 /*
- * SSEngineEnabled(engine_name)
+ * SS_EngineEnabled(engine_name)
  *
  * Purpose
  * Tells if an engine is set to be enabled or disabled
@@ -37,15 +37,15 @@ endfunction
  * 1 if the engine is enabled
  *
  */
-function SSEngineEnabled(engine_name)
-	var settings := SSGetSettingsCfgFile(engine_name);
+function SS_EngineEnabled(engine_name)
+	var settings := SS_GetSettingsCfgFile(engine_name);
 	settings := settings["Settings"];
 
 	return CInt(settings.Enabled);
 endfunction
 
 /*
- * SSStartSpawnEngine(engine_name, realm_name, region_name, group_name)
+ * SS_StartSpawnEngine(engine_name, realm_name, region_name, group_name)
  *
  * Purpose
  * Instructs an engine to do a spawn cycle
@@ -60,14 +60,14 @@ endfunction
  * 1 on engine start
  *
  */
-function SSStartSpawnEngine(engine_name, realm_name, region_name, group_name)
-	var script := Start_Script(SSGetEnginePath(engine_name), {engine_name, realm_name, region_name, group_name});
+function SS_StartSpawnEngine(engine_name, realm_name, region_name, group_name)
+	var script := Start_Script(SS_GetEnginePath(engine_name), {engine_name, realm_name, region_name, group_name});
 
 	return script;
 endfunction
 
 /*
- * SSGetEnginePath(engine_name)
+ * SS_GetEnginePath(engine_name)
  *
  * Purpose
  * Takes in the name of the engine and gives the path to call configs/scripts in it.
@@ -79,6 +79,6 @@ endfunction
  * String
  *
  */
-function SSGetEnginePath(engine_name)
+function SS_GetEnginePath(engine_name)
 	return ":spawnsystem:engines/"+engine_name+"/spawncycle";
 endfunction

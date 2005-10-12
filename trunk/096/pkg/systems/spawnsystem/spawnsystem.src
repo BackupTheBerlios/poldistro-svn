@@ -10,7 +10,7 @@ program SpawnSystem()
 	if ( !GetGlobalProperty("SpawnSystem") )
 		var script := Start_Script(":spawnsystem:initializer/firstrun");
 		if ( script.errortext )
-			SSErrorReport(script.errortext, SPAWN_ERROR_SYSLOG);
+			SS_ErrorReport(script.errortext, SPAWN_ERROR_SYSLOG);
 			return 0;
 		endif
 	endif

@@ -4,7 +4,7 @@ use os;
 include ":datafile:include/datafile";
 
 /*
- * SSGetGroupDataFile()
+ * SS_GetGroupDataFile()
  *
  * Purpose
  * Quickly pull up the datafile that stores group information.
@@ -15,14 +15,14 @@ include ":datafile:include/datafile";
  * Data file reference
  *
  */
-function SSGetGroupDataFile()
+function SS_GetGroupDataFile()
 	var data_file := DFOpenDataFile(":spawnsystem:Groups", DF_CREATE);
 		
 	return data_file;
 endfunction
 
 /*
- * SSGetGroupDataElem(elem_name)
+ * SS_GetGroupDataElem(elem_name)
  *
  * Purpose
  * Quickly retrieve a group elem for the spawner.
@@ -34,15 +34,15 @@ endfunction
  * A datafile elem reference.
  *
  */
-function SSGetGroupDataElem(elem_name)
-	var data_file := SSGetGroupDataFile();
+function SS_GetGroupDataElem(elem_name)
+	var data_file := SS_GetGroupDataFile();
 	var group_elem := DFFindElement(data_file, elem_name, DF_NO_CREATE);
 	
 	return group_elem;
 endfunction
 
 /* 
- * SSAddGroup(group_name, engine_type)
+ * SS_AddGroup(group_name, engine_type)
  * 
  * Purpose
  * Created a new group elem in the data file.
@@ -55,19 +55,19 @@ endfunction
  * Returns the result of the elem creation
  *
  */
-function SSAddGroup(group_name, engine_type:="")
-	var data_file := SSGetGroupDataFile();
+function SS_AddGroup(group_name, engine_type:="")
+	var data_file := SS_GetGroupDataFile();
 	var result := data_file.CreateElement(group_name);
 	
 	if ( engine_type && result )
-		SSSetGroupEngine(group_name, engine_type);
+		SS_SetGroupEngine(group_name, engine_type);
 	endif
 	
 	return result;
 endfunction
 
 /*
- * SSRemoveGroup(group_name)
+ * SS_RemoveGroup(group_name)
  *
  * Purpose
  * Removes a group elem from the groups list
@@ -79,13 +79,13 @@ endfunction
  * Result of the elem deletion.
  *
  */
-function SSRemoveGroup(group_name)
-	var data_file := SSGetGroupDataFile();
+function SS_RemoveGroup(group_name)
+	var data_file := SS_GetGroupDataFile();
 	return data_file.DeleteElement(group_name);
 endfunction
 
 /*
- * SSGetGroupNames()
+ * SS_GetGroupNames()
  *
  * Purpose
  * Retrieves a list of group names listed in the spawner.
@@ -96,15 +96,15 @@ endfunction
  * An array of strings
  *
  */
-function SSGetGroupNames()
-	var data_file := SSGetGroupDataFile();
+function SS_GetGroupNames()
+	var data_file := SS_GetGroupDataFile();
 	var group_names := DFGetElemNames(data_file);
 	
 	return group_names;
 endfunction
 
 /*
- * SSGetGroupEngine(group_name)
+ * SS_GetGroupEngine(group_name)
  * 
  * Purpose
  * Retrieves the engine that the group will use.
@@ -116,13 +116,13 @@ endfunction
  * String
  *
  */
-function SSGetGroupEngine(group_name)
-	var group_elem := SSGetGroupDataElem(group_name);
+function SS_GetGroupEngine(group_name)
+	var group_elem := SS_GetGroupDataElem(group_name);
 	return group_elem.GetProp("Engine");
 endfunction
 
 /*
- * SSSetGroupEngine(group_name)
+ * SS_SetGroupEngine(group_name)
  * 
  * Purpose
  * Sets the engine that the group will use.
@@ -135,13 +135,13 @@ endfunction
  * 1 on succcess
  *
  */
-function SSSetGroupEngine(group_name, engine_name)
-	var group_elem := SSGetGroupDataElem(group_name);
+function SS_SetGroupEngine(group_name, engine_name)
+	var group_elem := SS_GetGroupDataElem(group_name);
 	return group_elem.SetProp("Engine", engine_name);
 endfunction
 
 /*
- * SSAddEntryToGroup(group_name, entry_name)
+ * SS_AddEntryToGroup(group_name, entry_name)
  * 
  * Purpose
  * Adds an entry name to the groups's elem.
@@ -154,20 +154,20 @@ endfunction
  * 1 on success
  *
  */
-function SSAddEntryToGroup(group_name, entry_name)
-	var entry_list := SSGetEntriesInGroup(group_name);
+function SS_AddEntryToGroup(group_name, entry_name)
+	var entry_list := SS_GetEntriesInGroup(group_name);
 	
 	if ( entry_list.Exists(entry_name) )
 		return 0;
 	else
 		entry_list.Insert(entry_name, 1);
-		var group_elem := SSGetGroupDataElem(group_name);
+		var group_elem := SS_GetGroupDataElem(group_name);
 		return group_elem.SetProp("EntryList", entry_list);
 	endif
 endfunction
 
 /*
- * SSRemoveEntryFromGroup(group_name, entry_name)
+ * SS_RemoveEntryFromGroup(group_name, entry_name)
  * 
  * Purpose
  * Removes an entry name from the groups's elem.
@@ -180,20 +180,20 @@ endfunction
  * 1 on success
  *
  */
-function SSRemoveEntryFromGroup(group_name, entry_name)
-	var entry_list := SSGetEntriesInGroup(group_name);
+function SS_RemoveEntryFromGroup(group_name, entry_name)
+	var entry_list := SS_GetEntriesInGroup(group_name);
 			
 	if ( !entry_list.Exists(entry_name) )
 		return 0;
 	else
 		entry_list.Erase(entry_name);
-		var group_elem := SSGetGroupDataElem(group_name);
+		var group_elem := SS_GetGroupDataElem(group_name);
 		return group_elem.SetProp("EntryList", entry_list);
 	endif
 endfunction
 
 /*
- * SSGetEntriesInGroup(group_name)
+ * SS_GetEntriesInGroup(group_name)
  *
  * Purpose
  * Retrieves the entries in a spawn group
@@ -206,8 +206,8 @@ endfunction
  * Keys are the entries - nothing else is used.
  * 
  */
-function SSGetEntriesInGroup(group_name)
-	var group_elem := SSGetGroupDataElem(group_name);
+function SS_GetEntriesInGroup(group_name)
+	var group_elem := SS_GetGroupDataElem(group_name);
 	var group_list := group_elem.GetProp("EntryList");
 	
 	if ( !group_list )

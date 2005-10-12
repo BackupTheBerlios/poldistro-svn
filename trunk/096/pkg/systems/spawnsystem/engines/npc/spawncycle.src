@@ -11,21 +11,21 @@ program SpawnCycle(params)
 	var region_name	:= params[3];
 	var group_name	:= params[4];
 
-	var coords := SSGetRegionCoordinates(region_name);
-	var group_entries := SSGetEntriesInGroup(group_name).keys();
+	var coords := SS_GetRegionCoordinates(region_name);
+	var group_entries := SS_GetEntriesInGroup(group_name).keys();
 	var num_entries := group_entries.size();
-	var group_settings := SSGetGroupInRegion(region_name, group_name);
+	var group_settings := SS_GetGroupInRegion(region_name, group_name);
 
 	var max_amt := group_settings.max_amt;
-	var cur_amount := SSGetSpawnsInRegionGroup(region_name, group_name).size();
+	var cur_amount := SS_GetSpawnsInRegionGroup(region_name, group_name).size();
 
 	for ( cur_amount; cur_amount <= max_amt; cur_amount := cur_amount+1 )
-		var spawn_coords := SSSelectCoordsInArea(coords.x1, coords.y1, coords.x2, coords.y2);
+		var spawn_coords := SS_SelectCoordsInArea(coords.x1, coords.y1, coords.x2, coords.y2);
 		var spawn_object := group_entries[RandomInt(num_entries)];
 
 		var created := CreateNPCFromTemplate(spawn_object, spawn_coords.x, spawn_coords.y, spawn_coords.z, 0, realm_name);
 		if ( created )
-			SSAddSpawnToRegion(region_name, group_name, created);
+			SS_AddSpawnToRegion(region_name, group_name, created);
 		endif
 		sleepms(2);
 	endfor

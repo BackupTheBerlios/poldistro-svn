@@ -6,7 +6,7 @@ include ":spawnsystem:include/realms";
 include ":spawnsystem:include/regions";
 
 /*
- * SSMoveRegionToNewRealm(region_name, realm_name)
+ * SS_MoveRegionToNewRealm(region_name, realm_name)
  *
  * Purpose
  * Makes calls to regions.inc and realms.inc to move a spawn region from one realm to another.
@@ -20,22 +20,22 @@ include ":spawnsystem:include/regions";
  * 1 (No useful return value)
  *
  */
-function SSMoveRegionToNewRealm(region_name, realm_name)
+function SS_MoveRegionToNewRealm(region_name, realm_name)
 	Set_Critical(1);
-	var cur_realm := SSGetRegionRealm(region_name);
-	SSRemoveRegionFromRealm(cur_realm, region_name);
-	SSAddRegionToRealm(realm_name, region_name);
-	SSSetRegionRealm(region_name, realm_name);
+	var cur_realm := SS_GetRegionRealm(region_name);
+	SS_RemoveRegionFromRealm(cur_realm, region_name);
+	SS_AddRegionToRealm(realm_name, region_name);
+	SS_SetRegionRealm(region_name, realm_name);
 	Set_Critical(0);
 	
 	return 1;
 endfunction
 
 /* 
- * SSFullRemoveRegion(region_name)
+ * SS_FullRemoveRegion(region_name)
  *
  * Purpose
- * Calls SSRemoveRegionFromRealm() and SSRemoveRegion() to cleanly remove a region.
+ * Calls SS_RemoveRegionFromRealm() and SS_RemoveRegion() to cleanly remove a region.
  * 
  * Parameters
  * region_name:	Name of the region to erase.
@@ -44,10 +44,10 @@ endfunction
  * Returns 1
  *
  */
-function SSFullRemoveRegion(region_name)
-	var realm_name := SSGetRegionRealm(region_name);
-	SSRemoveRegionFromRealm(realm_name, region_name);
-	SSRemoveRegion(region_name);
+function SS_FullRemoveRegion(region_name)
+	var realm_name := SS_GetRegionRealm(region_name);
+	SS_RemoveRegionFromRealm(realm_name, region_name);
+	SS_RemoveRegion(region_name);
 	
 	return 1;
 endfunction

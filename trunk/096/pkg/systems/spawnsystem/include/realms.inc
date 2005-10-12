@@ -4,7 +4,7 @@ use os;
 include ":datafile:include/datafile";
 
 /*
- * SSGetRealmDataFile()
+ * SS_GetRealmDataFile()
  * 
  * Purpose
  * Quickly pull up the datafile that stores realm information.
@@ -15,13 +15,13 @@ include ":datafile:include/datafile";
  * Data file reference
  *
  */
-function SSGetRealmDataFile()
+function SS_GetRealmDataFile()
 	var data_file := DFOpenDataFile(":spawnsystem:Realms", DF_CREATE);
 	return data_file;
 endfunction
 
 /*
- * SSGetRealmDataElem(elem_name)
+ * SS_GetRealmDataElem(elem_name)
  * 
  * Purpose
  * Quickly retrieve a realm elem for the spawner.
@@ -33,15 +33,15 @@ endfunction
  * A datafile elem reference.
  *
  */
-function SSGetRealmDataElem(elem_name)
-	var data_file := SSGetRealmDataFile();
+function SS_GetRealmDataElem(elem_name)
+	var data_file := SS_GetRealmDataFile();
 	var realm_elem := DFFindElement(data_file, elem_name, DF_NO_CREATE);
 
 	return realm_elem;
 endfunction
 
 /*
- * SSAddRealm(realm_name)
+ * SS_AddRealm(realm_name)
  * 
  * Purpose
  * Adds a realm name to the spawner's realm list
@@ -53,13 +53,13 @@ endfunction
  * Returns 1 on success.
  *
  */
-function SSAddRealm(realm_name)
-	var data_file := SSGetRealmDataFile();
+function SS_AddRealm(realm_name)
+	var data_file := SS_GetRealmDataFile();
 	return data_file.CreateElement(realm_name);
 endfunction
 
 /*
- * SSRemoveRealm(realm_name)
+ * SS_RemoveRealm(realm_name)
  *
  * Purpose
  * Removes a realm elem from the spawner's list
@@ -71,13 +71,13 @@ endfunction
  * Result of the elem deletion.
  *
  */
-function SSRemoveRealm(realm_name)
-	var data_file := SSGetRealmDataFile();
+function SS_RemoveRealm(realm_name)
+	var data_file := SS_GetRealmDataFile();
 	return data_file.DeleteElement(realm_name);
 endfunction
 
 /*
- * SSGetRealmNames()
+ * SS_GetRealmNames()
  *
  * Purpose
  * Retrieves a list of realm names listed in the spawner.
@@ -88,15 +88,15 @@ endfunction
  * An array of strings
  *
  */
-function SSGetRealmNames()
-	var data_file := SSGetRealmDataFile();
+function SS_GetRealmNames()
+	var data_file := SS_GetRealmDataFile();
 	var realm_names := DFGetElemNames(data_file);
 	
 	return realm_names;
 endfunction
 
 /*
- * SSAddRegionToRealm(realm_name, region_name)
+ * SS_AddRegionToRealm(realm_name, region_name)
  * 
  * Purpose
  * Adds a region name to the realm's elem.
@@ -109,9 +109,9 @@ endfunction
  * 1 on success
  *
  */
-function SSAddRegionToRealm(realm_name, region_name)
-	var realm_elem := SSGetRealmDataElem(realm_name);
-	var region_list := SSGetRegionsInRealm(realm_name);
+function SS_AddRegionToRealm(realm_name, region_name)
+	var realm_elem := SS_GetRealmDataElem(realm_name);
+	var region_list := SS_GetRegionsInRealm(realm_name);
 	
 	if ( region_list.Exists(region_name) )
 		return 0;
@@ -122,7 +122,7 @@ function SSAddRegionToRealm(realm_name, region_name)
 endfunction
 
 /*
- * SSRemoveRegionFromRealm(realm_name, region_name)
+ * SS_RemoveRegionFromRealm(realm_name, region_name)
  * 
  * Purpose
  * Removes a region name from the realm's elem.
@@ -135,12 +135,12 @@ endfunction
  * Returns the modified region list.
  *
  * Notes:
- *    See SSFullRemoveRegion() in commontasks.inc
+ *    See SS_FullRemoveRegion() in commontasks.inc
  *
  */
-function SSRemoveRegionFromRealm(realm_name, region_name)
-	var realm_elem := SSGetRealmDataElem(realm_name);
-	var region_list := SSGetRegionsInRealm(realm_name);
+function SS_RemoveRegionFromRealm(realm_name, region_name)
+	var realm_elem := SS_GetRealmDataElem(realm_name);
+	var region_list := SS_GetRegionsInRealm(realm_name);
 	
 	if ( !region_list.Exists(region_name) )
 		return 0;
@@ -151,7 +151,7 @@ function SSRemoveRegionFromRealm(realm_name, region_name)
 endfunction
 
 /*
- * SSGetRegionsInRealm(realm_name)
+ * SS_GetRegionsInRealm(realm_name)
  * 
  * Purpose
  * Lists the spawn regions that exist within a realm.
@@ -163,8 +163,8 @@ endfunction
  * Returns an array of spawn region names in the realm.
  *
  */
-function SSGetRegionsInRealm(realm_name)
-	var realm_elem := SSGetRealmDataElem(realm_name);
+function SS_GetRegionsInRealm(realm_name)
+	var realm_elem := SS_GetRealmDataElem(realm_name);
 	var region_list := realm_elem.GetProp("Regions");
 	if ( !region_list )
 		region_list := dictionary;

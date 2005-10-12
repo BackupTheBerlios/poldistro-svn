@@ -75,7 +75,7 @@ function BuildGumpTemplate(realm_name:="")
 endfunction
 	
 function BuildRealmListGump(who)
-	var realm_list := SSGetRealmNames();
+	var realm_list := SS_GetRealmNames();
 	var gump := BuildGumpTemplate();
 	
 	GFTextMid(gump, 145, 20, 485, 2100, "Realm List");
@@ -93,7 +93,7 @@ function BuildRealmListGump(who)
 endfunction
 
 function BuildRegionListGump(who, realm_name)
-	var region_list := SSGetRegionsInRealm(realm_name).keys();
+	var region_list := SS_GetRegionsInRealm(realm_name).keys();
 	var gump := BuildGumpTemplate(realm_name);
 	
 	GFTextMid(gump, 145, 20, 485, 2100, "Region List ["+realm_name+"]");
@@ -112,7 +112,7 @@ function BuildRegionListGump(who, realm_name)
 endfunction
 
 function BuildRegionInfoGump(who, realm_name, region_name)
-	var region_info := SSGetRegionDataElem(region_name);
+	var region_info := SS_GetRegionDataElem(region_name);
 	var gump := BuildGumpTemplate(realm_name);
 	
 	GFTextMid(gump, 145, 20, 485, 2100, "Region Information ["+region_name+"]");

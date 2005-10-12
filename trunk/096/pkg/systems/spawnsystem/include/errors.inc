@@ -6,7 +6,7 @@ CONST SPAWN_ERROR_PRINT		:= 1;
 CONST SPAWN_ERROR_SYSLOG	:= 2;
 CONST SPAWN_ERROR_BROADCAST	:= 4;
 
-function SSErrorReport(error_text, err_report:=SPAWN_ERROR_DISABLE)
+function SS_ErrorReport(error_text, err_report:=SPAWN_ERROR_DISABLE)
 		if ( err_report & SPAWN_ERROR_PRINT )
 		Print(""+error_text);
 	endif

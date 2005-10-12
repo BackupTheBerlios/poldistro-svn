@@ -4,7 +4,7 @@ use os;
 include ":datafile:include/datafile";
 
 /*
- * SSGetRegionDataFile()
+ * SS_GetRegionDataFile()
  *
  * Purpose
  * Quickly pull up the datafile that stores region information.
@@ -15,13 +15,13 @@ include ":datafile:include/datafile";
  * Data file reference
  *
  */
-function SSGetRegionDataFile()
+function SS_GetRegionDataFile()
 	var data_file := DFOpenDataFile(":spawnsystem:Regions", DF_CREATE);
 	return data_file;
 endfunction
 
 /*
- * SSGetRegionDataElem(elem_name)
+ * SS_GetRegionDataElem(elem_name)
  *
  * Purpose
  * Quickly retrieve a region elem for the spawner.
@@ -33,15 +33,15 @@ endfunction
  * A datafile elem reference.
  *
  */
-function SSGetRegionDataElem(elem_name)
-	var data_file := SSGetRegionDataFile();
+function SS_GetRegionDataElem(elem_name)
+	var data_file := SS_GetRegionDataFile();
 	var region_elem := DFFindElement(data_file, elem_name, DF_NO_CREATE);
 
 	return region_elem;
 endfunction
 
 /*
- * SSAddRegion(region_name)
+ * SS_AddRegion(region_name)
  *
  * Purpose
  * Adds a region name to the spawner's region list
@@ -54,19 +54,19 @@ endfunction
  * Returns 1 on success.
  *
  */
-function SSAddRegion(region_name, realm_name:="")
-	var data_file := SSGetRegionDataFile();
+function SS_AddRegion(region_name, realm_name:="")
+	var data_file := SS_GetRegionDataFile();
 	var result := data_file.CreateElement(region_name);
 	
 	if ( realm_name && result )
-		SSSetRegionRealm(region_name, realm_name);
+		SS_SetRegionRealm(region_name, realm_name);
 	endif
 	
 	return result;
 endfunction
 
 /*
- * SSRemoveRegion(region_name)
+ * SS_RemoveRegion(region_name)
  *
  * Purpose
  * Removes a region elem from the spawner's list
@@ -78,37 +78,37 @@ endfunction
  * Result of the elem deletion.
  *
  * Notes:
- *    See SSFullRemoveRegion() in commontasks.inc
+ *    See SS_FullRemoveRegion() in commontasks.inc
  * 
  */
-function SSRemoveRegion(region_name)
-	var data_file := SSGetRegionDataFile();
+function SS_RemoveRegion(region_name)
+	var data_file := SS_GetRegionDataFile();
 	return data_file.DeleteElement(region_name);
 endfunction
 
 /*
- * SSGetRegionNames(region_name:="")
+ * SS_GetRegionNames(region_name:="")
  *
  * Purpose
  * Retrieves a list of region names listed in the spawner.
  *
  * Parameters
  * realm_name:	Optional parameter to list regions that belong to a specific realm.
- *		- Note its better to get them from SSGetRegionsInRealm(realm_name) in realms.inc
+ *		- Note its better to get them from SS_GetRegionsInRealm(realm_name) in realms.inc
  *
  * Return Value
  * An array of strings
  *
  */
-function SSGetRegionNames(realm_name:="")
-	var data_file := SSGetRegionDataFile();
+function SS_GetRegionNames(realm_name:="")
+	var data_file := SS_GetRegionDataFile();
 
 	var region_names := array{};
 	if ( !realm_name )
 		region_names := DFGetElemNames(data_file);
 	else
 		foreach region_name in DFGetElemNames(data_file)
-			if ( Lower(SSGetRegionRealm(region_name)) == Lower(realm_name) )
+			if ( Lower(SS_GetRegionRealm(region_name)) == Lower(realm_name) )
 				region_names.append(region_name);
 			endif
 			sleepms(2);
@@ -119,7 +119,7 @@ function SSGetRegionNames(realm_name:="")
 endfunction
 
 /*
- * SSGetRegionRealm(region_name)
+ * SS_GetRegionRealm(region_name)
  *
  * Purpose
  * Get the name of the realm the region is set to.
@@ -131,13 +131,13 @@ endfunction
  * A string containing the name of a realm
  *
  */
-function SSGetRegionRealm(region_name)
-	var region_elem := SSGetRegionDataElem(region_name);
+function SS_GetRegionRealm(region_name)
+	var region_elem := SS_GetRegionDataElem(region_name);
 	return region_elem.GetProp("Realm");
 endfunction
 
 /*
- * SSSetRegionRealm(region_name, realm_name)
+ * SS_SetRegionRealm(region_name, realm_name)
  *
  * Purpose
  * Sets the realm the region belongs to. 
@@ -150,13 +150,13 @@ endfunction
  * 1 on success
  *
  */
-function SSSetRegionRealm(region_name, realm_name)
-	var region_elem := SSGetRegionDataElem(region_name);
+function SS_SetRegionRealm(region_name, realm_name)
+	var region_elem := SS_GetRegionDataElem(region_name);
 	return region_elem.SetProp("Realm", realm_name);
 endfunction
 
 /*
- * SSGetRegionCoordinates(region_name)
+ * SS_GetRegionCoordinates(region_name)
  *
  * Purpose
  * Retrieves the coordinates for the region
@@ -168,13 +168,13 @@ endfunction
  * Returns a structure containing .x1, .y1, .x2, .y2
  *
  */
-function SSGetRegionCoordinates(region_name)
-	var region_elem := SSGetRegionDataElem(region_name);
+function SS_GetRegionCoordinates(region_name)
+	var region_elem := SS_GetRegionDataElem(region_name);
 	return region_elem.GetProp("Coordinates");
 endfunction
 
 /*
- * SSGetRegionCoordinates(region_name, x1, y1, x2, y2)
+ * SS_GetRegionCoordinates(region_name, x1, y1, x2, y2)
  *
  * Purpose
  * Sets the coordinates for a region
@@ -190,8 +190,8 @@ endfunction
  * 1 on success
  *
  */
-function SSSetRegionCoordinates(region_name, x1, y1, x2, y2)
-	var region_elem := SSGetRegionDataElem(region_name);
+function SS_SetRegionCoordinates(region_name, x1, y1, x2, y2)
+	var region_elem := SS_GetRegionDataElem(region_name);
 	
 	var coords := struct{"x1":=x1, "y1":=y1, "x2":=x2, "y2":=y2};
 		
@@ -199,7 +199,7 @@ function SSSetRegionCoordinates(region_name, x1, y1, x2, y2)
 endfunction
 
 /*
- * SSGetGroupsInRegion(region_name)
+ * SS_GetGroupsInRegion(region_name)
  *
  * Purpose
  * Retrieves the groups and their settings in a spawn region
@@ -212,8 +212,8 @@ endfunction
  * -keys are the group name, with a struct inside for settings.
  * 
  */
-function SSGetGroupsInRegion(region_name)
-	var region_elem := SSGetRegionDataElem(region_name);
+function SS_GetGroupsInRegion(region_name)
+	var region_elem := SS_GetRegionDataElem(region_name);
 	var group_list := region_elem.GetProp("Groups");
 	if ( !group_list )
 		group_list := dictionary;
@@ -223,7 +223,7 @@ function SSGetGroupsInRegion(region_name)
 endfunction
 
 /* 
- * SSGetGroupInRegion(region_name, group_name)
+ * SS_GetGroupInRegion(region_name, group_name)
  * Retrieves a specific spawn group and its settings from a region
  *
  * Parameters
@@ -234,13 +234,13 @@ endfunction
  * Struct 
  *
  */
- function SSGetGroupInRegion(region_name, group_name)
- 	var group_list := SSGetGroupsInRegion(region_name);
+ function SS_GetGroupInRegion(region_name, group_name)
+ 	var group_list := SS_GetGroupsInRegion(region_name);
  	return group_list[group_name];
  endfunction
 
 /*
- * SSAddGroupToRegion(region_name, group_name, max_amt, spawn_wait, enabled)
+ * SS_AddGroupToRegion(region_name, group_name, max_amt, spawn_wait, enabled)
  *
  * Purpose
  * Adds a spawn group to a spawn region
@@ -259,21 +259,21 @@ endfunction
  * 	This function can also be used to update a spawn group's settings in a region.
  *
  */
-function SSAddGroupToRegion(region_name, group_name, max_amt, spawn_wait, enabled)
+function SS_AddGroupToRegion(region_name, group_name, max_amt, spawn_wait, enabled)
 	var settings := struct;
 	settings.+max_amt := max_amt;
 	settings.+spawn_wait := spawn_wait;
 	settings.+enabled := enabled;
 	
-	var group_list := SSGetGroupsInRegion(region_name);
+	var group_list := SS_GetGroupsInRegion(region_name);
 	group_list.Insert(group_name, settings);
 	
-	var region_elem := SSGetRegionDataElem(region_name);
+	var region_elem := SS_GetRegionDataElem(region_name);
 	return region_elem.SetProp("Groups", group_list);
 endfunction
 
 /*
- * SSRemoveGroupFromRegion(region_name, group_name)
+ * SS_RemoveGroupFromRegion(region_name, group_name)
  *
  * Purpose
  * Removes a spawn group from a spawn region
@@ -286,17 +286,17 @@ endfunction
  * 1 on success
  *
  */
-function SSRemoveGroupFromRegion(region_name, group_name)
-	var group_list := SSGetGroupsInRegion(region_name);
+function SS_RemoveGroupFromRegion(region_name, group_name)
+	var group_list := SS_GetGroupsInRegion(region_name);
 	group_list.Erase(group_name);
 	
-	var region_elem := SSGetRegionDataElem(region_name);
+	var region_elem := SS_GetRegionDataElem(region_name);
 	region_elem.EraseProp("Spawns-"+group_name); //Clears the spawns list too
 	return region_elem.SetProp("Groups", group_list);
 endfunction
 
 /*
- * SSAddSpawnToRegion(region_name, group_name, serial)
+ * SS_AddSpawnToRegion(region_name, group_name, serial)
  *
  * Purpose
  * Used to track what has been spawned in a region's group list. 
@@ -310,8 +310,8 @@ endfunction
  * 1 on success
  *
  */
-function SSAddSpawnToRegion(region_name, group_name, object)
-	var spawn_list := SSGetSpawnsInRegionGroup(region_name, group_name);
+function SS_AddSpawnToRegion(region_name, group_name, object)
+	var spawn_list := SS_GetSpawnsInRegionGroup(region_name, group_name);
 	
 	var spawn_info := struct;
 	spawn_info.+time := polcore().systime;
@@ -319,12 +319,12 @@ function SSAddSpawnToRegion(region_name, group_name, object)
 	
 	spawn_list[object.serial] := spawn_info;
 	
-	var region_elem := SSGetRegionDataElem(region_name);
+	var region_elem := SS_GetRegionDataElem(region_name);
 	region_elem.SetProp("Spawns-"+group_name, spawn_list);
 endfunction
 
 /*
- * SSGetSpawnsInRegion(region_name, group_name)
+ * SS_GetSpawnsInRegionGroup(region_name, group_name)
  *
  * Purpose
  * Returns a list of objects that have been spawned in a region's group.
@@ -337,8 +337,8 @@ endfunction
  * Dictionary
  *
  */
-function SSGetSpawnsInRegionGroup(region_name, group_name)
-	var region_elem := SSGetRegionDataElem(region_name);
+function SS_GetSpawnsInRegionGroup(region_name, group_name)
+	var region_elem := SS_GetRegionDataElem(region_name);
 	var spawns := region_elem.GetProp("Spawns-"+group_name);
 	if ( !spawns )
 		spawns := dictionary;

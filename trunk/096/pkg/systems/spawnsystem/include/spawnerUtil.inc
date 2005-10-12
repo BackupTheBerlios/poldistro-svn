@@ -5,7 +5,7 @@ use util;
 include ":datafile:include/datafile";
 
 /*
- * SSSelectCoordsInArea(x1, y1, x2, y2)
+ * SS_SelectCoordsInArea(x1, y1, x2, y2)
  *
  * Purpose
  * Takes in four numbers (two coordinates) and
@@ -21,10 +21,13 @@ include ":datafile:include/datafile";
  * A structure containing an X and Y property.
  *
  */
-function SSSelectCoordsInArea(x1, y1, x2, y2)
+function SS_SelectCoordsInArea(x1, y1, x2, y2)
 	var coord := struct;
 	coord.+x := RandomInt(x2-x1)+x1;
 	coord.+y := RandomInt(y2-y1)+y1;
 
 	return coord;
 endfunction
+
+/*
+ * SS_
