@@ -2,28 +2,28 @@ use os;
 use cfgfile;
 use uo;
 
-const EVENT_ADD_POISON				:= 0x1;
-const EVENT_CURE_POISON				:= 0x2;
+const EVENT_ADD_POISON			:= 0x1;
+const EVENT_CURE_POISON			:= 0x2;
 const EVENT_CURE_SPECIFIC_POISON	:= 0x3;
-const EVENT_DEAD					:= 0x4;
+const EVENT_DEAD			:= 0x4;
 
 
 //
 // ListPoisonsByType(mobile, type)
 // Returns an array of strings listing poisons names
-// running on the targetted mobile that are of the type 
+// running on the targetted mobile that are of the type
 // passed.
 //
 function ListPoisonsByType(mobile, the_type)
 	var p_list := array;
 	var temp_list := GetObjProperty(mobile, "Poisons");
 	foreach poison_name in (temp_list.keys())
-		if (lower(CfgInfo(poison_name).Type) == lower(the_type))
+		if (Lower(PW_CfgInfo(poison_name).Type) == Lower(the_type))
 			p_list.append(poison_name);
 		endif
 		sleepms(2);
 	endforeach
-	
+
 	return p_list;
 endfunction
 
@@ -36,12 +36,12 @@ endfunction
 function GetAllPoisons(mobile)
 	var p_list := array;
 	var temp_list := GetObjProperty(mobile, "Poisons");
-	var temp := temp_list.keys();
+	
 	foreach poison_name in (temp_list.keys())
 		p_list.append(poison_name);
 		sleepms(2);
 	endforeach
-	
+
 	return p_list;
 endfunction
 
@@ -60,14 +60,14 @@ function AddPoison(mobile, poison_name, amount, attacker, level := 1)
 	event.+ amount;
 	event.+ level;
 	event.+ attacker;
-	
+
 	event.type := EVENT_ADD_POISON;
 	event.name := poison_name;
 	event.amount := amount;
 	event.attacker := attacker;
 	event.level := level;
-	
-	GetScript(mobile).SendEvent(event);
+
+	PW_GetScript(mobile).SendEvent(event);
 
 	return;
 endfunction
@@ -79,9 +79,9 @@ endfunction
 // the mobile. This will only cure poisons that
 // are NOT set to 'NoCure 1'.
 // Poisontype is for if we group poisons into families that have seperate
-// scripts and as such CureSpecific is not appropriate. 
-// Level is for the level of the cure. A level 2 cure will be twice 
-// as effective against a level 1 poison and half as effective against 
+// scripts and as such CureSpecific is not appropriate.
+// Level is for the level of the cure. A level 2 cure will be twice
+// as effective against a level 1 poison and half as effective against
 // a level 4 poison.
 //
 function CurePoison(mobile, amount, poisontype := "", level := 1)
@@ -91,22 +91,22 @@ function CurePoison(mobile, amount, poisontype := "", level := 1)
 	event.+ amount;
 	event.+ poisontype;
 	event.+ level;
-	
+
 	event.type := EVENT_CURE_POISON;
 	event.amount := amount;
 	event.poisontype := poisontype;
 	event.level := level;
-	
-	GetScript(mobile).SendEvent(event);
+
+	PW_GetScript(mobile).SendEvent(event);
 
 	return;
 endfunction
 
 
-// 
+//
 // CureSpecific(mobile, poison_name, amount)
 // Cures 'amount' seconds of a specific poison.
-// Ignores the 'NoCure' setting. 
+// Ignores the 'NoCure' setting.
 //
 function CureSpecific(mobile, poison_name, amount, level := 1)
 	var event := struct;
@@ -114,47 +114,52 @@ function CureSpecific(mobile, poison_name, amount, level := 1)
 	event.+ name;
 	event.+ amount;
 	event.+ level;
-	
+
 	event.type := EVENT_CURE_SPECIFIC_POISON;
 	event.name := poison_name;
 	event.amount := amount;
 	event.level := level;
-	
-	GetScript(mobile).SendEvent(event);
+
+	PW_GetScript(mobile).SendEvent(event);
 
 	return;
 endfunction
 
 
 //
-// GetScript(mobile)
+// PW_GetScript(mobile)
 // Returns the process of the poison watcher.
-// If the poison watcher is not running, it will 
+// If the poison watcher is not running, it will
 // start it up on the mobile unless no_start is set to
 // a non-zero value.
 //
-function GetScript(mobile, no_start := 0)
+function PW_GetScript(mobile, no_start := 0)
 	var poison_pid := CInt(GetObjProperty(mobile, "#PoisonPID"));
 	var poison_watcher := GetProcess(poison_pid);
 
-	if (!poison_watcher && !no_start) 
+	if (!poison_watcher && !no_start)
 		//How to start it on an npc!
 		poison_watcher := start_script(":poisonwatcher:poisonwatcher", {mobile});
-		
+
 		if ( poison_watcher.errortext )
-			PrintTextAbove(mobile, "Poison Watcher GetScript() " + poison_watcher.errortext);
+			PrintTextAbove(mobile, "Poison Watcher PW_GetScript() " + poison_watcher.errortext);
 		endif
 	endif
-	
+
 	return poison_watcher;
 endfunction
 
 
 //
-// CfgInfo(poison_name)
+// PW_CfgInfo(poison_name)
 // Returns config information about the poison name passed.
 //
-function CfgInfo(poison_name)
-	return ReadConfigFile(":poisonwatcher:poisons")[poison_name];	
-endfunction
+function PW_CfgInfo(poison_name)
+	var cfg_file := ReadConfigFile(":poisonwatcher:config/poisons");
+	if ( cfg_file.errortext )
+		SysLog("Error::PW_CfgInfo() - Unable to open poisons.cfg -> "+cfg_file.errortext);
+		return 0;
+	endif
 
+	return cfg_file[poison_name];
+endfunction

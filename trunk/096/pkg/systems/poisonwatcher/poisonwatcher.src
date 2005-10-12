@@ -41,7 +41,7 @@ program poisonWatcher(who)
 		elseif( event.type == EVENT_CURE_SPECIFIC_POISON )
 			Cure_Specific(who, event, poisons, num_poisons, 1);
 		elseif( event.type == EVENT_DEAD || who.dead )
-			Cure_Death(who, event, poisons, num_poisons);
+			Cure_Death(who, poisons, num_poisons);
 		endif
 
 		CheckPids(who, poisons, num_poisons);
@@ -50,7 +50,7 @@ program poisonWatcher(who)
 		Set_Critical(1);
 		if( !ShouldRun(who, poisons.keys()) )
 			who.SetPoisoned(0);
-			LogOff(who, poisons, num_poisons);
+			LogOff(who, poisons);
 			exit;
 		endif
 		Set_Critical(0);
@@ -78,7 +78,7 @@ function StartUp(who, byref poisons, byref num_poisons)
 	endforeach
 endfunction
 
-function LogOff(who, byref poisons, byref num_poisons)
+function LogOff(who, byref poisons)
 	//On Logout, we want to save the status of poisons. Then stop the scripts.
 	Set_Critical(1);
 	SetObjProperty(who, "Poisons", poisons);
@@ -86,9 +86,9 @@ function LogOff(who, byref poisons, byref num_poisons)
 	foreach poison_name in ( poisons.keys() )
 		KillPoison(poisons[poison_name].pid, poisons, poison_name);
 
-		if( CfgInfo(poison_name).LogOutScript )
+		if( PW_CfgInfo(poison_name).LogOutScript )
 			who := SystemFindObjectBySerial(who.serial, SYSFIND_SEARCH_OFFLINE_MOBILES);
-			var LogOutScript := start_script(CfgInfo(poison_name).LogOutScript, {who});
+			var LogOutScript := start_script(PW_CfgInfo(poison_name).LogOutScript, {who});
 			if( LogOutScript.errortext )
 				Print("PoisonWatcher LogoffScript: (" +  who.name + ") " + LogOutScript.errortext);
 			endif
@@ -99,11 +99,11 @@ function LogOff(who, byref poisons, byref num_poisons)
 	Set_Critical(0);
 endfunction
 
-function Cure_Death(who, byref event, byref poisons, byref num_poisons)
+function Cure_Death(who, byref poisons, byref num_poisons)
 	//Cure poisons on death that dont continue afterwards.
 	Set_Critical(1);
 	foreach poison_name in ( poisons.keys() )
-		if( !CfgInfo(poison_name).ContinueOnDeath )
+		if( !PW_CfgInfo(poison_name).ContinueOnDeath )
 			var event := struct;
 			event.+name := poison_name;
 			event.+amount := -1;
@@ -120,7 +120,7 @@ function CheckPids(who, byref poisons, byref num_poisons)
 	//if they are set to be considered cured when the script finishes.
 
 	foreach poison_name in ( poisons.keys() )
-		if( CfgInfo(poison_name).CureOnEnd )
+		if( PW_CfgInfo(poison_name).CureOnEnd )
 			//Does it cure when the sub script stops?
 			var script := GetProcess(poisons[poison_name].pid);
 			if( !script )
@@ -139,7 +139,7 @@ endfunction
 function WearDown(who, byref poisons, byref num_poisons)
 	//Run through each poison that is not set to NoEnd and wear it down 1 second.);
 	foreach poison_name in ( poisons.keys() )
-		if( !CfgInfo(poison_name).NoEnd ) //It does wear off
+		if( !PW_CfgInfo(poison_name).NoEnd ) //It does wear off
 			if (poisons[poison_name].duration <= 1)
 				KillPoison(poisons[poison_name].pid, poisons, poison_name);
 				CleanupPoison(who, poison_name, num_poisons);
@@ -155,14 +155,14 @@ function Add_Poison(who, byref event, byref poisons, byref num_poisons)
 	//Check if a poison exists. If it does, increase its duration.
 	//If it does not exist, add it to the list on the mobile. Start
 	//the necessary script and store the name, duration and sub-script pid.
-	if( !CfgInfo(event.name) )
+	if( !PW_CfgInfo(event.name) )
 		SendSysMessage(who, "Debug: You were infected with a poison not in poisons.cfg Poison Name -> [" + event.name + "] please page and report this.");
 		return;
 	endif
 
-	var cumulative := CfgInfo(event.name).Cumulative;
+	var cumulative := PW_CfgInfo(event.name).Cumulative;
 	if( !poisons.Exists(event.name) )
-		var script := CfgInfo(event.name).Script;
+		var script := PW_CfgInfo(event.name).Script;
 		script := start_script(script, {who, event.attacker, event.level});
 
 		if( script.errortext )
@@ -175,12 +175,12 @@ function Add_Poison(who, byref event, byref poisons, byref num_poisons)
 		poisons[event.name].+pid := script.pid;
 		poisons[event.name].+level := event.level;
 		
-		var maxdur := CInt(CfgInfo(event.name).MaxDuration);
+		var maxdur := CInt(PW_CfgInfo(event.name).MaxDuration);
 		if ( maxdur < poisons[event.name].duration )
 			poisons[event.name].duration := maxdur;
 		endif
 
-		if( CfgInfo(event.name).IndicatePoison )
+		if( PW_CfgInfo(event.name).IndicatePoison )
 			num_poisons := num_poisons+1;
 		endif
 	else
@@ -214,7 +214,7 @@ function Add_Poison(who, byref event, byref poisons, byref num_poisons)
 				endif
 			endif
 		endif
-		var maxdur := CfgInfo(event.name).MaxDuration;
+		var maxdur := PW_CfgInfo(event.name).MaxDuration;
 		if (maxdur < poisons[event.name].duration)
 			poisons[event.name].duration := maxdur;
 		endif
@@ -226,9 +226,9 @@ function Cure_Poison(who, byref event, byref poisons, byref num_poisons)
 	//of curing power.
 
 	foreach poison_name in ( poisons.keys() )
-		var poisoncfg := CfgInfo(poison_name);
+		var poisoncfg := PW_CfgInfo(poison_name);
 		if (!event.poisontype || (lower(event.poisontype) == lower(poisoncfg.Type)))
-			if( !CfgInfo(poison_name).NoCure ) //Its curable
+			if( !PW_CfgInfo(poison_name).NoCure ) //Its curable
 				event.name := poison_name;
 				Cure_Specific(who, event, poisons, num_poisons, 1);
 			endif
@@ -245,7 +245,7 @@ function Cure_Specific(who, byref event, byref poisons, byref num_poisons, check
 	//Cures a specific poison by event.amount.
 	//If -1 is sent for amount, it completely cures the poison.
 
-	if( !CfgInfo(event.name) )
+	if( !PW_CfgInfo(event.name) )
 		SendSysMessage(who, "Debug: Something tried to cure a poison not in poisons.cfg Poison Name -> [" + event.name + "] please page and report this.");
 		return;
 	endif
@@ -258,13 +258,13 @@ function Cure_Specific(who, byref event, byref poisons, byref num_poisons, check
 			cure_amount := poisons[event.name].duration + 1;
 			level := 1;
 		elseif( check_virulence )
-			var virulence := CfgInfo(event.name).Virulence;
+			var virulence := PW_CfgInfo(event.name).Virulence;
 			if( !virulence )
 				virulence := 1;
 			endif
 			
 			/*
-			var resist_skill := CfgInfo(event.name).ResistSkill;
+			var resist_skill := PW_CfgInfo(event.name).ResistSkill;
 			if( resist_skill )
 				var i := virulence;
 				for( i; i > 0; i:=i-1 )
@@ -276,10 +276,10 @@ function Cure_Specific(who, byref event, byref poisons, byref num_poisons, check
 			endif
 			*/
 
-			cure_amount := CInt(event.amount / CfgInfo(event.name).Virulence);
+			cure_amount := CInt(event.amount / PW_CfgInfo(event.name).Virulence);
 		endif
 
-		var allornothing := CfgInfo(event.name).AllOrNothingCure;
+		var allornothing := PW_CfgInfo(event.name).AllOrNothingCure;
 		if (allornothing)
 			var chance := 0;
 			if (level >= poisons[event.name].level)
@@ -336,16 +336,16 @@ function KillPoison(pid, byref poisons, event_name)
 endfunction
 
 function CleanupPoison(who, poison_name, byref num_poisons)
-	if( CfgInfo(poison_name).IndicatePoison )
+	if( PW_CfgInfo(poison_name).IndicatePoison )
 		num_poisons := num_poisons-1;
 	endif
 
-	if( CfgInfo(poison_name).CureMessage )
-		SendSysMessage(who, CfgInfo(poison_name).CureMessage);
+	if( PW_CfgInfo(poison_name).CureMessage )
+		SendSysMessage(who, PW_CfgInfo(poison_name).CureMessage);
 	endif
 
-	if( CfgInfo(poison_name).CureScript )
-		var script := start_script(CfgInfo(poison_name).CureScript, {who});
+	if( PW_CfgInfo(poison_name).CureScript )
+		var script := start_script(PW_CfgInfo(poison_name).CureScript, {who});
 		if( script.errortext )
 			SendSysMessage(who, "Debug - Cure Script CureSpecific(): " + script.errortext);
 		endif
