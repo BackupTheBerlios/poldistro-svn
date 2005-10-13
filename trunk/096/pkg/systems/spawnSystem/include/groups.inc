@@ -1,7 +1,7 @@
 use uo;
 use os;
 
-include ":datafile:include/datafile";
+include ":datafile:datafile";
 
 /*
  * SS_GetGroupDataFile()

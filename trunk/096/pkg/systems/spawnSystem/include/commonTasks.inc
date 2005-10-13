@@ -1,9 +1,9 @@
 use uo;
 use os;
 
-include ":spawnsystem:include/groups";
-include ":spawnsystem:include/realms";
-include ":spawnsystem:include/regions";
+include ":spawnsystem:groups";
+include ":spawnsystem:realms";
+include ":spawnsystem:regions";
 
 /*
  * SS_MoveRegionToNewRealm(region_name, realm_name)

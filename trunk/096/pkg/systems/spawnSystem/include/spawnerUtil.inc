@@ -2,7 +2,7 @@ use uo;
 use os;
 use util;
 
-include ":datafile:include/datafile";
+include ":datafile:datafile";
 
 /*
  * SS_SelectCoordsInArea(x1, y1, x2, y2)
@@ -31,3 +31,4 @@ endfunction
 
 /*
  * SS_
+ */

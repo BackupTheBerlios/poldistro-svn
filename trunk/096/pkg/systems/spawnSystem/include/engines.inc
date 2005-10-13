@@ -2,8 +2,8 @@ use uo;
 use os;
 use cfgfile;
 
-include ":datafile:include/datafile";
-include ":spawnsystem:include/settings";
+include ":datafile:datafile";
+include ":spawnsystem:settings";
 
 /*
  * SS_GetEnginesList()
