@@ -23,6 +23,7 @@
  */
 use uo;
 use os;
+use file;
 use basic;
 use cfgfile;
 use datafile;
@@ -325,7 +326,9 @@ endfunction
  */
 function DF_OutPut(text)
 	if ( DF_DEBUG_MODE )
-		SysLog(text);
+		//SysLog(text);
+		var script_name := GetProcess(GetPid()).name;
+		LogToFile("::log/dataFile.log", "["+script_name+"]: "+text, LOG_DATETIME);
 	endif
 	
 	return 1;
