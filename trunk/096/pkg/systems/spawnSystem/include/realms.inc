@@ -56,7 +56,7 @@ endfunction
  */
 function SS_AddRealm(realm_name)
 	var core_realms := Realms();
-	if ( !core_realms.Exists(realm_name) )
+	if ( !core_realms.Exists(Lower(realm_name)) )
 		return error{"errortext":="'"+realm_name+"' is not a valid realm name."};
 	endif
 	
