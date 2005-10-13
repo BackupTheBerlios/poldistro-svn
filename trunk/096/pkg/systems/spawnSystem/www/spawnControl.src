@@ -13,18 +13,14 @@ program www_SpawnControl()
 	var realm_name := QueryParam("Realm");
 	var region_name := QueryParam("Region");
 	var group_name := QueryParam("Group");
-	
-	WriteHTML("<HTML>");
-	WriteHTML("<BODY>");
-	WriteHTML("<STYLE>");
-	WriteHTML("body,td,th {");
-	WriteHTML("font-family: Tahoma, Verdana, Trebuchet MS, Arial, MS Sans Serif, sans-serif;");
-	WriteHTML("font-size: 13px; color: #000000;");
-	WriteHTML("}");
-	WriteHTML("</STYLE>");
 
+	WriteHTML("<HTML>");
+	WriteHTML("<HEAD>");
+	WriteHTML("<BODY>");
+	WriteStyleInfo();
 	WriteHTML("<TITLE>Spawn System Management</TITLE>");
-	
+	WriteHTML("</HEAD>");
+
 	if ( realm_name )
 		WriteHTML(" "+MakeAHref("")+"Realm List</A>");
 		if ( region_name )
@@ -44,22 +40,26 @@ program www_SpawnControl()
 	else
 		ListRealms();
 	endif
-	
+
 	WriteHTML("</HTML>");
 	WriteHTML("</BODY>");
 	return 1;
 endprogram
 
 function ListRealms()
-	WriteHTML("<BR><BR><TABLE BORDER='1' CELLPADDING='3' CELLSPACING='0'>");
+	WriteHTML("<BR><BR><TABLE>");
 	WriteHTML("<TR>");
-	WriteHTML("<TD BGCOLOR='808080' ALIGN='CENTER'><B>Realms List</B></TD>");
+	WriteHTML("<TD COLSPAN='2' CLASS='header'>Realms List</TD>");
 	WriteHTML("</TR>");
-	
+	WriteHTML("<TR>");
+	WriteHTML("<TD CLASS='delete'>Delete</TD><TD CLASS='normal'>Realm Name</TD>");
+	WriteHTML("</TR>");
+
 	var core_realms := Realms();
 	foreach realm_name in SS_GetRealmNames()
 		WriteHTML("<TR>");
-		WriteHTMLRaw("<TD BGCOLOR='C0C0C0'>");
+		WriteHTMLRaw("<TD CLASS='delete'>Delete</TD>");
+		WriteHTMLRaw("<TD CLASS='normal'>");
 		if ( !core_realms.Exists(Lower(realm_name)) )
 			WriteHTMLRaw("<FONT COLOR='DARKRED'><B>");
 		endif
@@ -68,36 +68,36 @@ function ListRealms()
 		WriteHTML("</TR>");
 		sleepms(2);
 	endforeach
-	
+
 	WriteHTML("<TR>");
-	WriteHTML("<TD>");
+	WriteHTML("<TD COLSPAN='2'>");
 	WriteHTML("<FORM METHOD='GET' NAME='FORM'>");
 	WriteHTML("<INPUT TYPE='TEXT' NAME='Name' VALUE=''>");
 	WriteHTML("<INPUT TYPE='SUBMIT' Name='AddRealm' VALUE='Add Realm'>");
 	WriteHTML("</TD>");
 	WriteHTML("</TR>");
-	
+
 	WriteHTML("</TABLE>");
-	
+
 	return 1;
 endfunction
 
 function ShowRegionsInRealm(realm_name)
-	WriteHTML("<BR><BR><TABLE BORDER='1' CELLPADDING='3' CELLSPACING='0'>");
+	WriteHTML("<BR><BR><TABLE>");
 	WriteHTML("<TR>");
-	WriteHTML("<TD BGCOLOR='808080' ALIGN='CENTER'><B>Spawn Regions in Realm '"+realm_name+"'</B></TD>");
+	WriteHTML("<TD CLASS='header'>Spawn Regions in Realm '"+realm_name+"'</TD>");
 	WriteHTML("</TR>");
-	
+
 	var spawn_regions := SS_GetRegionsInRealm(realm_name);
 	foreach region_name in (spawn_regions.Keys())
 		WriteHTML("<TR>");
-		WriteHTMLRaw("<TD BGCOLOR='C0C0C0'>");
+		WriteHTMLRaw("<TD CLASS='normal'>");
 		var region_link := MakeAHref(realm_name, region_name);
 		WriteHTML(region_link+region_name+"</A></TD>");
 		WriteHTML("</TR>");
 		sleepms(2);
 	endforeach
-	
+
 	WriteHTML("<TR>");
 	WriteHTML("<TD>");
 	WriteHTML("<FORM METHOD='GET' NAME='FORM'>");
@@ -106,48 +106,48 @@ function ShowRegionsInRealm(realm_name)
 	WriteHTML("<INPUT TYPE='SUBMIT' Name='AddRegion' VALUE='Add Region'>");
 	WriteHTML("</TD>");
 	WriteHTML("</TR>");
-	
+
 	WriteHTML("</TABLE>");
-	
+
 	return 1;
 endfunction
 
 function ShowRegionInfo(realm_name, region_name)
-	WriteHTML("<BR><BR><TABLE BORDER='1' CELLPADDING='3' CELLSPACING='0'>");
+	WriteHTML("<BR><BR><TABLE>");
 	WriteHTML("<TR>");
-	WriteHTML("<TD BGCOLOR='808080' ALIGN='CENTER'><B>Spawn Groups in Region '"+region_name+"'</B></TD>");
+	WriteHTML("<TD CLASS='header'>Spawn Groups in Region '"+region_name+"'</TD>");
 	WriteHTML("</TR>");
-	
+
 	var spawn_regions := SS_GetGroupsInRegion(region_name);
 	foreach group_name in (spawn_regions.Keys())
 		WriteHTML("<TR>");
-		WriteHTMLRaw("<TD BGCOLOR='C0C0C0'>");
+		WriteHTMLRaw("<TD CLASS='normal'>");
 		var group_link := MakeAHref(realm_name, region_name, group_name);
 		WriteHTML(group_link+group_name+"</A></TD>");
 		WriteHTML("</TR>");
 		sleepms(2);
 	endforeach
-	
+
 	WriteHTML("<TR>");
 	WriteHTML("<TD>");
 	WriteHTML("<FORM METHOD='GET' NAME='FORM'>");
 	WriteHTML("<INPUT TYPE='TEXT' NAME='Name' VALUE=''>");
-	WriteHTML("<INPUT TYPE='HIDDEN' NAME='Realm' Value='"+realm_name+"'>");
-	WriteHTML("<INPUT TYPE='SUBMIT' Name='AddRegion' VALUE='Add Region'>");
+	WriteHTML("<INPUT TYPE='HIDDEN' NAME='Region' Value='"+region_name+"'>");
+	WriteHTML("<INPUT TYPE='SUBMIT' Name='AddRegion' VALUE='Add Group'>");
 	WriteHTML("</TD>");
 	WriteHTML("</TR>");
-	
+
 	WriteHTML("</TABLE>");
-	
+
 	return 1;
 endfunction
 
 function ShowGroupInfo(group_name)
-	WriteHTML("<BR><BR><TABLE BORDER='1' CELLPADDING='3' CELLSPACING='0'>");
+	WriteHTML("<BR><BR><TABLE>");
 	WriteHTML("<TR>");
-	WriteHTML("<TD BGCOLOR='808080' ALIGN='CENTER'><B>Entries in Spawn Group '"+group_name+"'</B></TD>");
+	WriteHTML("<TD CLASS='header'>Entries in Spawn Group '"+group_name+"'</TD>");
 	WriteHTML("</TR>");
-	
+
 	var spawn_group := SS_GeTEntriesInGroup(group_name);
 	foreach entry in (spawn_group.Keys())
 		WriteHTML("<TR>");
@@ -156,9 +156,18 @@ function ShowGroupInfo(group_name)
 		WriteHTML("</TR>");
 		sleepms(2);
 	endforeach
-		
+
+	WriteHTML("<TR>");
+	WriteHTML("<TD>");
+	WriteHTML("<FORM METHOD='GET' NAME='FORM'>");
+	WriteHTML("<INPUT TYPE='TEXT' NAME='Name' VALUE=''>");
+	WriteHTML("<INPUT TYPE='HIDDEN' NAME='Group' Value='"+group_name+"'>");
+	WriteHTML("<INPUT TYPE='SUBMIT' Name='AddRegion' VALUE='Add Entry'>");
+	WriteHTML("</TD>");
+	WriteHTML("</TR>");
+
 	WriteHTML("</TABLE>");
-	
+
 	return 1;
 endfunction
 
@@ -178,4 +187,19 @@ endfunction
 function ShowError(text)
 	WriteHTMLRaw("<FONT COLOR='DARKRED'><B>"+text+"</B></FONT>");
 	return 1;
+endfunction
+
+function WriteStyleInfo()
+	WriteHTML("<STYLE TYPE='TEXT/CSS'>");
+	WriteHTMLRaw("body, td, th, table{");
+	WriteHTMLRaw("font-family: Tahoma, Verdana, Trebuchet MS, Arial, MS Sans Serif, sans-serif;");
+	WriteHTMLRaw("font-size: 13px; color: #000000;");
+	WriteHTML("}");
+	
+	WriteHTML("table{border-collapse: collapse}");
+	WriteHTML("td{border-style:solid; border-width:1; border-color:#000000; padding:2}");
+	WriteHTML("td.header{text-align:center; font-weight:bold; color:#000000; background-color:808080}");
+	WriteHTML("td.normal{color: #000000; background-color: #C0C0C0}");
+	WriteHTML("td.delete{color: #FFFFFF; background-color: DARKRED}");
+	WriteHTML("</STYLE>");
 endfunction
