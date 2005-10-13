@@ -168,7 +168,7 @@ function MakeAHref(realm_name, region_name:="", group_name:="")
 		link_text := link_text+"&Region="+region_name;
 	endif
 	if ( group_name )
-		link_text := link_text+"&Group="+region_name;
+		link_text := link_text+"&Group="+group_name;
 	endif
 	link_text := link_text+">";
 
