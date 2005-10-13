@@ -10,6 +10,10 @@ include ":spawnsystem:report";
 unload_scripts("");
 
 program www_SpawnControl()
+	var realm_name := QueryParam("Realm");
+	var region_name := QueryParam("Region");
+	var group_name := QueryParam("Group");
+	
 	WriteHTML("<HTML>");
 	WriteHTML("<BODY>");
 	WriteHTML("<STYLE>");
@@ -20,8 +24,23 @@ program www_SpawnControl()
 	WriteHTML("</STYLE>");
 
 	WriteHTML("<TITLE>Spawn System Management</TITLE>");
-	if ( QueryParam("Realm") )
-		ShowRegionsInRealm(QueryParam("Realm"));
+	
+	if ( realm_name )
+		WriteHTML(" "+MakeAHref("")+"Realm List</A>");
+		if ( region_name )
+			WriteHTML("<B>»</B> "+MakeAHref(realm_name)+realm_name+"</A>");
+			if ( group_name );
+				WriteHTML("<B>»</B> "+MakeAHref(realm_name, region_name)+region_name+"</A>");
+				WriteHTML("<B>»</B> "+group_name);
+				ShowGroupInfo(group_name);
+			else
+				WriteHTML("<B>»</B> "+region_name);
+				ShowRegionInfo(realm_name, region_name);
+			endif
+		else
+			WriteHTML("<B>»</B> "+realm_name);
+			ShowRegionsInRealm(realm_name);
+		endif
 	else
 		ListRealms();
 	endif
@@ -31,39 +50,10 @@ program www_SpawnControl()
 	return 1;
 endprogram
 
-function ShowRegionsInRealm(realm_name)
-	WriteHTML("<TABLE BORDER='1' CELLPADDING='3' CELLSPACING='0'>");
-	WriteHTML("<TR>");
-	WriteHTML("<TD BGCOLOR='808080'><B>Spawn Regions in Realm '"+realm_name+"'</B></TD>");
-	WriteHTML("</TR>");
-	
-	var spawn_regions := SS_GetRegionsInRealm(realm_name);
-	foreach region_name in (spawn_regions.Keys())
-		WriteHTML("<TR>");
-		WriteHTMLRaw("<TD BGCOLOR='C0C0C0'>");
-		WriteHTML(region_name+"</TD>");
-		WriteHTML("</TR>");
-		sleepms(2);
-	endforeach
-	
-	WriteHTML("<TR>");
-	WriteHTML("<TD>");
-	WriteHTML("<FORM METHOD='GET' NAME='FORM'>");
-	WriteHTML("<INPUT TYPE='TEXT' NAME='Name' VALUE=''>");
-	WriteHTML("<INPUT TYPE='HIDDEN' NAME='Realm' Value='"+realm_name+"'>");
-	WriteHTML("<INPUT TYPE='SUBMIT' Name='AddRegion' VALUE='Add Region'>");
-	WriteHTML("</TD>");
-	WriteHTML("</TR>");
-	
-	WriteHTML("</TABLE>");
-	
-	return 1;
-endfunction
-
 function ListRealms()
-	WriteHTML("<TABLE BORDER='1' CELLPADDING='3' CELLSPACING='0'>");
+	WriteHTML("<BR><BR><TABLE BORDER='1' CELLPADDING='3' CELLSPACING='0'>");
 	WriteHTML("<TR>");
-	WriteHTML("<TD BGCOLOR='808080'><B>Realms List</B></TD>");
+	WriteHTML("<TD BGCOLOR='808080' ALIGN='CENTER'><B>Realms List</B></TD>");
 	WriteHTML("</TR>");
 	
 	var core_realms := Realms();
@@ -87,6 +77,86 @@ function ListRealms()
 	WriteHTML("</TD>");
 	WriteHTML("</TR>");
 	
+	WriteHTML("</TABLE>");
+	
+	return 1;
+endfunction
+
+function ShowRegionsInRealm(realm_name)
+	WriteHTML("<BR><BR><TABLE BORDER='1' CELLPADDING='3' CELLSPACING='0'>");
+	WriteHTML("<TR>");
+	WriteHTML("<TD BGCOLOR='808080' ALIGN='CENTER'><B>Spawn Regions in Realm '"+realm_name+"'</B></TD>");
+	WriteHTML("</TR>");
+	
+	var spawn_regions := SS_GetRegionsInRealm(realm_name);
+	foreach region_name in (spawn_regions.Keys())
+		WriteHTML("<TR>");
+		WriteHTMLRaw("<TD BGCOLOR='C0C0C0'>");
+		var region_link := MakeAHref(realm_name, region_name);
+		WriteHTML(region_link+region_name+"</A></TD>");
+		WriteHTML("</TR>");
+		sleepms(2);
+	endforeach
+	
+	WriteHTML("<TR>");
+	WriteHTML("<TD>");
+	WriteHTML("<FORM METHOD='GET' NAME='FORM'>");
+	WriteHTML("<INPUT TYPE='TEXT' NAME='Name' VALUE=''>");
+	WriteHTML("<INPUT TYPE='HIDDEN' NAME='Realm' Value='"+realm_name+"'>");
+	WriteHTML("<INPUT TYPE='SUBMIT' Name='AddRegion' VALUE='Add Region'>");
+	WriteHTML("</TD>");
+	WriteHTML("</TR>");
+	
+	WriteHTML("</TABLE>");
+	
+	return 1;
+endfunction
+
+function ShowRegionInfo(realm_name, region_name)
+	WriteHTML("<BR><BR><TABLE BORDER='1' CELLPADDING='3' CELLSPACING='0'>");
+	WriteHTML("<TR>");
+	WriteHTML("<TD BGCOLOR='808080' ALIGN='CENTER'><B>Spawn Groups in Region '"+region_name+"'</B></TD>");
+	WriteHTML("</TR>");
+	
+	var spawn_regions := SS_GetGroupsInRegion(region_name);
+	foreach group_name in (spawn_regions.Keys())
+		WriteHTML("<TR>");
+		WriteHTMLRaw("<TD BGCOLOR='C0C0C0'>");
+		var group_link := MakeAHref(realm_name, region_name, group_name);
+		WriteHTML(group_link+group_name+"</A></TD>");
+		WriteHTML("</TR>");
+		sleepms(2);
+	endforeach
+	
+	WriteHTML("<TR>");
+	WriteHTML("<TD>");
+	WriteHTML("<FORM METHOD='GET' NAME='FORM'>");
+	WriteHTML("<INPUT TYPE='TEXT' NAME='Name' VALUE=''>");
+	WriteHTML("<INPUT TYPE='HIDDEN' NAME='Realm' Value='"+realm_name+"'>");
+	WriteHTML("<INPUT TYPE='SUBMIT' Name='AddRegion' VALUE='Add Region'>");
+	WriteHTML("</TD>");
+	WriteHTML("</TR>");
+	
+	WriteHTML("</TABLE>");
+	
+	return 1;
+endfunction
+
+function ShowGroupInfo(group_name)
+	WriteHTML("<BR><BR><TABLE BORDER='1' CELLPADDING='3' CELLSPACING='0'>");
+	WriteHTML("<TR>");
+	WriteHTML("<TD BGCOLOR='808080' ALIGN='CENTER'><B>Entries in Spawn Group '"+group_name+"'</B></TD>");
+	WriteHTML("</TR>");
+	
+	var spawn_group := SS_GeTEntriesInGroup(group_name);
+	foreach entry in (spawn_group.Keys())
+		WriteHTML("<TR>");
+		WriteHTMLRaw("<TD BGCOLOR='C0C0C0'>");
+		WriteHTML(entry+"</A></TD>");
+		WriteHTML("</TR>");
+		sleepms(2);
+	endforeach
+		
 	WriteHTML("</TABLE>");
 	
 	return 1;
