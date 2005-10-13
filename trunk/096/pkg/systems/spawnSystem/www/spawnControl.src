@@ -7,36 +7,41 @@ include ":spawnsystem:realms";
 include ":spawnsystem:regions";
 include ":spawnsystem:report";
 
-CONST WWW_LVL_SSREALMS := 0x0;
-CONST WWW_LVL_SSREGION := 0x1;
-CONST WWW_LVL_SSGROUPS := 0x2;
-
 unload_scripts("");
 
 program www_SpawnControl()
 	WriteHTML("<HTML>");
 	WriteHTML("<BODY>");
+	WriteHTML("<STYLE>");
+	WriteHTML("body,td,th {");
+	WriteHTML("font-family: Tahoma, Verdana, Trebuchet MS, Arial, MS Sans Serif, sans-serif;");
+	WriteHTML("font-size: 13px; color: #000000;");
+	WriteHTML("}");
+	WriteHTML("</STYLE>");
+
 	WriteHTML("<TITLE>Spawn System Management</TITLE>");
-	
-	case ( CInt(QueryParam("Level")) )
-		WWW_LVL_SSREALMS: ListRealms(); break;
-		//WWW_LVL_SSREGION: ListGroups(); break;
-		//WWW_LVL_SSGROUPS: ListGroups(); break;
-	endcase
+	if ( QueryParam("Realm") )
+		ShowRegionsInRealm(QueryParam("Realm"));
+	else
+		ListRealms();
+	endif
 	
 	WriteHTML("</HTML>");
 	WriteHTML("</BODY>");
 	return 1;
 endprogram
 
-function ListRealms()
-	WriteHTML("<TABLE BORDER='1' CELLPADDING='1' CELLSPACING='0' WIDTH='50%'>");
+function ShowRegionsInRealm(realm_name)
+	WriteHTML("<TABLE BORDER='1' CELLPADDING='3' CELLSPACING='0'>");
 	WriteHTML("<TR>");
-	WriteHTML("<TD>Realm Name</TD>");
+	WriteHTML("<TD BGCOLOR='808080'><B>Spawn Regions in Realm '"+realm_name+"'</B></TD>");
 	WriteHTML("</TR>");
-	foreach realm_name in SS_GetRealmNames()
+	
+	var spawn_regions := SS_GetRegionsInRealm(realm_name);
+	foreach region_name in (spawn_regions.Keys())
 		WriteHTML("<TR>");
-		WriteHTML("<TD>"+realm_name+"</TD>");
+		WriteHTMLRaw("<TD BGCOLOR='C0C0C0'>");
+		WriteHTML(region_name+"</TD>");
 		WriteHTML("</TR>");
 		sleepms(2);
 	endforeach
@@ -44,12 +49,63 @@ function ListRealms()
 	WriteHTML("<TR>");
 	WriteHTML("<TD>");
 	WriteHTML("<FORM METHOD='GET' NAME='FORM'>");
-	WriteHTML("<INPUT TYPE='TEXT' NAME='Name'>");
-	WriteHTML("
+	WriteHTML("<INPUT TYPE='TEXT' NAME='Name' VALUE=''>");
+	WriteHTML("<INPUT TYPE='HIDDEN' NAME='Realm' Value='"+realm_name+"'>");
+	WriteHTML("<INPUT TYPE='SUBMIT' Name='AddRegion' VALUE='Add Region'>");
 	WriteHTML("</TD>");
 	WriteHTML("</TR>");
 	
 	WriteHTML("</TABLE>");
 	
+	return 1;
+endfunction
+
+function ListRealms()
+	WriteHTML("<TABLE BORDER='1' CELLPADDING='3' CELLSPACING='0'>");
+	WriteHTML("<TR>");
+	WriteHTML("<TD BGCOLOR='808080'><B>Realms List</B></TD>");
+	WriteHTML("</TR>");
+	
+	var core_realms := Realms();
+	foreach realm_name in SS_GetRealmNames()
+		WriteHTML("<TR>");
+		WriteHTMLRaw("<TD BGCOLOR='C0C0C0'>");
+		if ( !core_realms.Exists(Lower(realm_name)) )
+			WriteHTMLRaw("<FONT COLOR='DARKRED'><B>");
+		endif
+		var realm_link := MakeAHref(realm_name);
+		WriteHTML(realm_link+realm_name+"</A></TD>");
+		WriteHTML("</TR>");
+		sleepms(2);
+	endforeach
+	
+	WriteHTML("<TR>");
+	WriteHTML("<TD>");
+	WriteHTML("<FORM METHOD='GET' NAME='FORM'>");
+	WriteHTML("<INPUT TYPE='TEXT' NAME='Name' VALUE=''>");
+	WriteHTML("<INPUT TYPE='SUBMIT' Name='AddRealm' VALUE='Add Realm'>");
+	WriteHTML("</TD>");
+	WriteHTML("</TR>");
+	
+	WriteHTML("</TABLE>");
+	
+	return 1;
+endfunction
+
+function MakeAHref(realm_name, region_name:="", group_name:="")
+	var link_text := "<A HREF=?Realm="+realm_name;
+	if ( region_name )
+		link_text := link_text+"&Region="+region_name;
+	endif
+	if ( group_name )
+		link_text := link_text+"&Group="+region_name;
+	endif
+	link_text := link_text+">";
+
+	return link_text;
+endfunction
+
+function ShowError(text)
+	WriteHTMLRaw("<FONT COLOR='DARKRED'><B>"+text+"</B></FONT>");
 	return 1;
 endfunction
