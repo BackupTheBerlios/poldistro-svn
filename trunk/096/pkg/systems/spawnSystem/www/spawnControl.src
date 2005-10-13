@@ -1,0 +1,55 @@
+use uo;
+use os;
+use http;
+
+include ":spawnsystem:groups";
+include ":spawnsystem:realms";
+include ":spawnsystem:regions";
+include ":spawnsystem:report";
+
+CONST WWW_LVL_SSREALMS := 0x0;
+CONST WWW_LVL_SSREGION := 0x1;
+CONST WWW_LVL_SSGROUPS := 0x2;
+
+unload_scripts("");
+
+program www_SpawnControl()
+	WriteHTML("<HTML>");
+	WriteHTML("<BODY>");
+	WriteHTML("<TITLE>Spawn System Management</TITLE>");
+	
+	case ( CInt(QueryParam("Level")) )
+		WWW_LVL_SSREALMS: ListRealms(); break;
+		//WWW_LVL_SSREGION: ListGroups(); break;
+		//WWW_LVL_SSGROUPS: ListGroups(); break;
+	endcase
+	
+	WriteHTML("</HTML>");
+	WriteHTML("</BODY>");
+	return 1;
+endprogram
+
+function ListRealms()
+	WriteHTML("<TABLE BORDER='1' CELLPADDING='1' CELLSPACING='0' WIDTH='50%'>");
+	WriteHTML("<TR>");
+	WriteHTML("<TD>Realm Name</TD>");
+	WriteHTML("</TR>");
+	foreach realm_name in SS_GetRealmNames()
+		WriteHTML("<TR>");
+		WriteHTML("<TD>"+realm_name+"</TD>");
+		WriteHTML("</TR>");
+		sleepms(2);
+	endforeach
+	
+	WriteHTML("<TR>");
+	WriteHTML("<TD>");
+	WriteHTML("<FORM METHOD='GET' NAME='FORM'>");
+	WriteHTML("<INPUT TYPE='TEXT' NAME='Name'>");
+	WriteHTML("
+	WriteHTML("</TD>");
+	WriteHTML("</TR>");
+	
+	WriteHTML("</TABLE>");
+	
+	return 1;
+endfunction

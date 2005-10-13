@@ -1,19 +1,23 @@
 use uo;
 use os;
 
-include ":spawnsystem:include/groups";
-include ":spawnsystem:include/realms";
-include ":spawnsystem:include/regions";
-include ":spawnsystem:include/report";
+include ":spawnsystem:groups";
+include ":spawnsystem:realms";
+include ":spawnsystem:regions";
+include ":spawnsystem:report";
 
 program SpawnSystem()
 	SS_ReportText("---=[ SPAWNER HAS STARTED UP ]=---");
 	
 	if ( !GetGlobalProperty("SpawnSystem") )
-		var script := Start_Script(":spawnSystem:initializer/firstRun");
+		var script := Start_Script(":spawnsystem:initializer/firstRun");
 		if ( script.errortext )
 			SS_ReportText(script.errortext);
 			return 0;
+		else
+			while ( script.pid )
+				sleep(1);
+			endwhile
 		endif
 	endif
 	

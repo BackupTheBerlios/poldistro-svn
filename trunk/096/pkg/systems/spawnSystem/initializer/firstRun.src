@@ -1,13 +1,13 @@
 use uo;
 use os;
 
-include ":spawnsystem:include/groups";
-include ":spawnsystem:include/realms";
-include ":spawnsystem:include/regions";
-include ":spawnsystem:include/report";
+include ":spawnsystem:groups";
+include ":spawnsystem:realms";
+include ":spawnsystem:regions";
+include ":spawnsystem:report";
 
 program FirstRun()
-	SS_ReportText("Setting up spawner for first time use...");
+	SS_ReportText("Setting up spawner for first time use...", SPAWN_REPORT_CONSOLE+SPAWN_REPORT_SYSLOG);
 	
 	var start_cfg := ReadConfigFile(":spawnsystem:config/firstrun");
 	if ( start_cfg.errortext )
