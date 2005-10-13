@@ -1,7 +1,8 @@
 use uo;
 use os;
+use polsys;
 
-include ":datafile:include/datafile";
+include ":datafile:datafile";
 
 /*
  * SS_GetRealmDataFile()
@@ -54,6 +55,11 @@ endfunction
  *
  */
 function SS_AddRealm(realm_name)
+	var core_realms := Realms();
+	if ( !core_realms[realm_name] )
+		return error{"errortext":="'"+realm_name+"' is not a valid realm name."};
+	endif
+	
 	var data_file := SS_GetRealmDataFile();
 	return data_file.CreateElement(realm_name);
 endfunction
