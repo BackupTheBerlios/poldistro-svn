@@ -71,7 +71,7 @@ function ListRealms()
 	endforeach
 
 	WriteHTML("<TR>");
-	WriteHTML("<TD COLSPAN='2'>");
+	WriteHTML("<TD COLSPAN='2' CLASS='addform'>");
 	WriteHTML("<FORM METHOD='GET' NAME='FORM'>");
 	WriteHTML("<INPUT TYPE='TEXT' NAME='Name' VALUE=''>");
 	WriteHTML("<INPUT TYPE='SUBMIT' Name='AddRealm' VALUE='Add Realm'>");
@@ -107,7 +107,7 @@ function ShowRegionsInRealm(realm_name)
 	endforeach
 
 	WriteHTML("<TR>");
-	WriteHTML("<TD COLSPAN='3'>");
+	WriteHTML("<TD COLSPAN='3' CLASS='addform'>");
 	WriteHTML("<FORM METHOD='GET' NAME='FORM'>");
 	WriteHTML("<INPUT TYPE='TEXT' NAME='Name' VALUE=''>");
 	WriteHTML("<INPUT TYPE='HIDDEN' NAME='Realm' Value='"+realm_name+"'>");
@@ -128,7 +128,7 @@ function ShowRegionInfo(realm_name, region_name)
 	WriteHTML("<TR>");
 	WriteHTML("<TD CLASS='delete'>Delete</TD>");
 	WriteHTML("<TD CLASS='edit'>Edit</TD>");
-	WriteHTML("<TD CLASS='normal'>Region Name</TD>");
+	WriteHTML("<TD CLASS='normal'>Group Name</TD>");
 	WriteHTML("</TR>");
 
 	var spawn_regions := SS_GetGroupsInRegion(region_name);
@@ -144,7 +144,7 @@ function ShowRegionInfo(realm_name, region_name)
 	endforeach
 
 	WriteHTML("<TR>");
-	WriteHTML("<TD COLSPAN='3'>");
+	WriteHTML("<TD COLSPAN='3' CLASS='addform'>");
 	WriteHTML("<FORM METHOD='GET' NAME='FORM'>");
 	WriteHTML("<INPUT TYPE='TEXT' NAME='Name' VALUE=''>");
 	WriteHTML("<INPUT TYPE='HIDDEN' NAME='Region' Value='"+region_name+"'>");
@@ -162,6 +162,11 @@ function ShowGroupInfo(group_name)
 	WriteHTML("<TR>");
 	WriteHTML("<TD COLSPAN='3' CLASS='header'>Entries in Spawn Group '"+group_name+"'</TD>");
 	WriteHTML("</TR>");
+	WriteHTML("<TR>");
+	WriteHTML("<TD CLASS='delete'>Delete</TD>");
+	WriteHTML("<TD CLASS='edit'>Edit</TD>");
+	WriteHTML("<TD CLASS='normal'>Entry Name</TD>");
+	WriteHTML("</TR>");
 
 	var spawn_group := SS_GeTEntriesInGroup(group_name);
 	foreach entry in (spawn_group.Keys())
@@ -175,7 +180,7 @@ function ShowGroupInfo(group_name)
 	endforeach
 
 	WriteHTML("<TR>");
-	WriteHTML("<TD COLSPAN='3'>");
+	WriteHTML("<TD COLSPAN='3' CLASS='addform'>");
 	WriteHTML("<FORM METHOD='GET' NAME='FORM'>");
 	WriteHTML("<INPUT TYPE='TEXT' NAME='Name' VALUE=''>");
 	WriteHTML("<INPUT TYPE='HIDDEN' NAME='Group' Value='"+group_name+"'>");
@@ -215,10 +220,11 @@ function WriteStyleInfo()
 	
 	WriteHTML("table{border-collapse: collapse}");
 	WriteHTML("td{border-style:solid; border-width:1; border-color:#000000; padding:2}");
-	WriteHTML("td.header{width: 300; text-align:center; font-weight:bold; color:#000000; background-color:808080; column-span:2}");
+	WriteHTML("td.header{width: 400; text-align:center; font-weight:bold; color:#000000; background-color:808080; column-span:2}");
 	WriteHTML("td.normal{color: #000000; background-color: #C0C0C0}");
 	WriteHTML("td.delete{width:50; text-align:center; color: #FFFFFF; background-color: DARKRED}");
 	WriteHTML("td.edit{width:30; text-align:center; color: #FFFFFF; background-color: DARKGREEN}");
+	WriteHTML("td.addform{text-align:center}");
 	
 	WriteHTML("input.delete{color: #FFFFFF; background-color: DARKRED; border-style:none; padding:1}");
 	WriteHTML("input.edit{color: #FFFFFF; background-color: DARKGREEN; border-style:none; padding:1}");
