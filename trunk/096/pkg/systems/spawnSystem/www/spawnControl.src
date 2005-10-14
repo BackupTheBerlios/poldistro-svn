@@ -10,9 +10,9 @@ include ":spawnsystem:report";
 unload_scripts("");
 
 program www_SpawnControl()
-	var realm_name := QueryParam("Realm");
-	var region_name := QueryParam("Region");
-	var group_name := QueryParam("Group");
+	var realm_name := QueryParam("RealmName");
+	var region_name := QueryParam("RegionName");
+	var group_name := QueryParam("GroupName");
 
 	WriteHTML("<HTML>");
 	WriteHTML("<HEAD>");
@@ -22,7 +22,7 @@ program www_SpawnControl()
 	WriteHTML("</HEAD>");
 
 	if ( realm_name )
-		WriteHTML("<B>*</B> "+MakeAHref("")+"Realm List</A>");
+		WriteHTML("<B>*</B> "+MakeAHref("")+"Index</A>");
 		if ( region_name )
 			WriteHTML("<B>»</B> "+MakeAHref(realm_name)+realm_name+"</A>");
 			if ( group_name );
@@ -38,8 +38,9 @@ program www_SpawnControl()
 			ShowRegionsInRealm(realm_name);
 		endif
 	else
-		WriteHTML("<B>*</B> Realm List");
-		ListRealms();
+		WriteHTML("<B>*</B> Index");
+		ShowRealmList();
+		ShowGroupList();
 	endif
 
 	WriteHTML("</HTML>");
@@ -47,7 +48,7 @@ program www_SpawnControl()
 	return 1;
 endprogram
 
-function ListRealms()
+function ShowRealmList()
 	WriteHTML("<BR><BR><TABLE>");
 	WriteHTML("<TR>");
 	WriteHTML("<TD CLASS='header' COLSPAN='2'>Realms List</TD>");
@@ -73,8 +74,45 @@ function ListRealms()
 	WriteHTML("<TR>");
 	WriteHTML("<TD COLSPAN='2' CLASS='addform'>");
 	WriteHTML("<FORM METHOD='GET' NAME='FORM'>");
-	WriteHTML("<INPUT TYPE='TEXT' NAME='Name' VALUE=''>");
+	WriteHTML("<INPUT TYPE='TEXT' NAME='RealmName' VALUE=''>");
 	WriteHTML("<INPUT TYPE='SUBMIT' Name='AddRealm' VALUE='Add Realm'>");
+	WriteHTML("</FORM>");
+	WriteHTML("</TD>");
+	WriteHTML("</TR>");
+
+	WriteHTML("</TABLE>");
+
+	return 1;
+endfunction
+
+function ShowGroupList()
+	WriteHTML("<BR><BR><TABLE>");
+	WriteHTML("<TR>");
+	WriteHTML("<TD CLASS='header' COLSPAN='3'>Spawn Group List</TD>");
+	WriteHTML("</TR>");
+	WriteHTML("<TR>");
+	WriteHTML("<TD CLASS='delete'>Delete</TD>");
+	WriteHTML("<TD CLASS='edit'>Edit</TD>");
+	WriteHTML("<TD CLASS='normal'>Group Name</TD>");
+	WriteHTML("</TR>");
+
+	foreach group_name in SS_GetGroupNames()
+		WriteHTML("<TR>");
+		WriteHTMLRaw("<TD CLASS='delete'><INPUT TYPE='SUBMIT' NAME='DELETE' VALUE='Delete' CLASS='delete'></TD>");
+		WriteHTMLRaw("<TD CLASS='edit'><INPUT TYPE='SUBMIT' NAME='DELETE' VALUE='Edit' CLASS='edit'></TD>");
+		WriteHTMLRaw("<TD CLASS='normal'>");
+		var group_link := MakeAHref("", "", group_name);
+		WriteHTML(group_link+group_name+"</A></TD>");
+		WriteHTML("</TR>");
+		sleepms(2);
+	endforeach
+
+	WriteHTML("<TR>");
+	WriteHTML("<TD COLSPAN='3' CLASS='addform'>");
+	WriteHTML("<FORM METHOD='GET' NAME='FORM'>");
+	WriteHTML("<INPUT TYPE='TEXT' NAME='GroupName' VALUE=''>");
+	WriteHTML("<INPUT TYPE='SUBMIT' Name='AddGroup' VALUE='Add Group'>");
+	WriteHTML("</FORM>");
 	WriteHTML("</TD>");
 	WriteHTML("</TR>");
 
@@ -84,6 +122,7 @@ function ListRealms()
 endfunction
 
 function ShowRegionsInRealm(realm_name)
+	
 	WriteHTML("<BR><BR><TABLE>");
 	WriteHTML("<TR>");
 	WriteHTML("<TD COLSPAN='3' CLASS='header'>Spawn Regions in Realm '"+realm_name+"'</TD>");
@@ -109,28 +148,37 @@ function ShowRegionsInRealm(realm_name)
 	WriteHTML("<TR>");
 	WriteHTML("<TD COLSPAN='3' CLASS='addform'>");
 	WriteHTML("<FORM METHOD='GET' NAME='FORM'>");
-	WriteHTML("<INPUT TYPE='TEXT' NAME='Name' VALUE=''>");
-	WriteHTML("<INPUT TYPE='HIDDEN' NAME='Realm' Value='"+realm_name+"'>");
+	WriteHTML("<INPUT TYPE='HIDDEN' NAME='RealmName' VALUE='"+realm_name+"'");
+	WriteHTML("<INPUT TYPE='TEXT' NAME='RegionName' VALUE=''>");
 	WriteHTML("<INPUT TYPE='SUBMIT' Name='AddRegion' VALUE='Add Region'>");
+	WriteHTML("</FORM>");
 	WriteHTML("</TD>");
 	WriteHTML("</TR>");
 
 	WriteHTML("</TABLE>");
-
+	
 	return 1;
 endfunction
 
 function ShowRegionInfo(realm_name, region_name)
 	WriteHTML("<BR><BR><TABLE>");
 	WriteHTML("<TR>");
-	WriteHTML("<TD COLSPAN='3' CLASS='header'>Spawn Groups in Region '"+region_name+"'</TD>");
+	WriteHTML("<TD COLSPAN='3' CLASS='header'>Spawn Region '"+region_name+"'</TD>");
 	WriteHTML("</TR>");
+	
 	WriteHTML("<TR>");
-	WriteHTML("<TD CLASS='delete'>Delete</TD>");
+	WriteHTML("<TD CLASS='delete'>&nbsp;</TD>");
 	WriteHTML("<TD CLASS='edit'>Edit</TD>");
+	var coords := SS_GetRegionCoordinates(region_name);
+	coords := coords.x1+" "+coords.y1+" : "+coords.x2+" "+coords.y2;
+	WriteHTML("<TD CLASS='normal'>Coordinates: "+coords+"</TD>");
+	WriteHTML("</TR>");
+	
+	WriteHTML("<TR>");
+	WriteHTML("<TD CLASS='delete'>&nbsp;</TD>");
+	WriteHTML("<TD CLASS='edit'>&nbsp;</TD>");
 	WriteHTML("<TD CLASS='normal'>Group Name</TD>");
 	WriteHTML("</TR>");
-
 	var spawn_regions := SS_GetGroupsInRegion(region_name);
 	foreach group_name in (spawn_regions.Keys())
 		WriteHTML("<TR>");
@@ -146,9 +194,11 @@ function ShowRegionInfo(realm_name, region_name)
 	WriteHTML("<TR>");
 	WriteHTML("<TD COLSPAN='3' CLASS='addform'>");
 	WriteHTML("<FORM METHOD='GET' NAME='FORM'>");
-	WriteHTML("<INPUT TYPE='TEXT' NAME='Name' VALUE=''>");
-	WriteHTML("<INPUT TYPE='HIDDEN' NAME='Region' Value='"+region_name+"'>");
-	WriteHTML("<INPUT TYPE='SUBMIT' Name='AddRegion' VALUE='Add Group'>");
+	WriteHTML("<INPUT TYPE='HIDDEN' NAME='RealmName' Value='"+realm_name+"'>");
+	WriteHTML("<INPUT TYPE='HIDDEN' NAME='RegionName' Value='"+region_name+"'>");
+	WriteHTML("<INPUT TYPE='TEXT' NAME='GroupName' VALUE=''>");
+	WriteHTML("<INPUT TYPE='SUBMIT' Name='AddGroup' VALUE='Add Group'>");
+	WriteHTML("</FORM>");
 	WriteHTML("</TD>");
 	WriteHTML("</TR>");
 
@@ -183,8 +233,9 @@ function ShowGroupInfo(group_name)
 	WriteHTML("<TD COLSPAN='3' CLASS='addform'>");
 	WriteHTML("<FORM METHOD='GET' NAME='FORM'>");
 	WriteHTML("<INPUT TYPE='TEXT' NAME='Name' VALUE=''>");
-	WriteHTML("<INPUT TYPE='HIDDEN' NAME='Group' Value='"+group_name+"'>");
-	WriteHTML("<INPUT TYPE='SUBMIT' Name='AddRegion' VALUE='Add Entry'>");
+	WriteHTML("<INPUT TYPE='HIDDEN' NAME='GroupName' Value='"+group_name+"'>");
+	WriteHTML("<INPUT TYPE='SUBMIT' Name='AddEntry' VALUE='Add Entry'>");
+	WriteHTML("</FORM>");
 	WriteHTML("</TD>");
 	WriteHTML("</TR>");
 
@@ -194,15 +245,23 @@ function ShowGroupInfo(group_name)
 endfunction
 
 function MakeAHref(realm_name, region_name:="", group_name:="")
-	var link_text := "<A HREF=?Realm="+realm_name;
+	var link_text := "<A HREF=?";
+	if ( realm_name )
+		link_text := link_text+"RealmName="+realm_name+"&";
+	endif
 	if ( region_name )
-		link_text := link_text+"&Region="+region_name;
+		link_text := link_text+"RegionName="+region_name+"&";
 	endif
 	if ( group_name )
-		link_text := link_text+"&Group="+group_name;
+		link_text := link_text+"GroupName="+group_name+"&";
 	endif
+	var length := Len(link_text);
+	if ( link_text[length] == "&" )
+		link_text[length] := "";
+	endif
+		
 	link_text := link_text+">";
-
+	
 	return link_text;
 endfunction
 
@@ -221,12 +280,12 @@ function WriteStyleInfo()
 	WriteHTML("table{border-collapse: collapse}");
 	WriteHTML("td{border-style:solid; border-width:1; border-color:#000000; padding:2}");
 	WriteHTML("td.header{width: 400; text-align:center; font-weight:bold; color:#000000; background-color:808080; column-span:2}");
-	WriteHTML("td.normal{color: #000000; background-color: #C0C0C0}");
+	WriteHTML("td.normal{color: #000000; background-color: #C0C0C0; padding-left:3}");
 	WriteHTML("td.delete{width:50; text-align:center; color: #FFFFFF; background-color: DARKRED}");
 	WriteHTML("td.edit{width:30; text-align:center; color: #FFFFFF; background-color: DARKGREEN}");
 	WriteHTML("td.addform{text-align:center}");
 	
-	WriteHTML("input.delete{color: #FFFFFF; background-color: DARKRED; border-style:none; padding:1}");
-	WriteHTML("input.edit{color: #FFFFFF; background-color: DARKGREEN; border-style:none; padding:1}");
+	WriteHTML("input.delete{color: #FFFFFF; background-color: DARKRED; border-style:dotted; border-width:1; padding:0}");
+	WriteHTML("input.edit{color: #FFFFFF; background-color: DARKGREEN; border-style:dotted; border-width:1; padding:0}");
 	WriteHTML("</STYLE>");
 endfunction
