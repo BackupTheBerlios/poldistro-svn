@@ -87,7 +87,7 @@ endfunction
 function figureAbilityTotal(peacee)
 
 	var ability_total := 0;
-	var pTemplate := NPC_GetNPCConfig(peacee.template);
+	var pTemplate := NPC_GetNPCConfig(peacee.npctemplate);
 	foreach ability in (Splitwords(pTemplate.Abilities))
 		// var = var used to stop unused var report in compile.
 		ability := ability;
@@ -105,7 +105,7 @@ function isBardable(character, thetarget, bard_skill, bard_difficulty)
 		return 0;
 	endif
 
-	var pTemplate := NPC_GetNPCConfig(thetarget.template);
+	var pTemplate := NPC_GetNPCConfig(thetarget.npctemplate);
 	var ifCanBard := 1;
 
 	case(bard_skill)
