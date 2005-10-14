@@ -22,7 +22,7 @@ program www_SpawnControl()
 	WriteHTML("</HEAD>");
 
 	if ( realm_name )
-		WriteHTML(" "+MakeAHref("")+"Realm List</A>");
+		WriteHTML("<B>*</B> "+MakeAHref("")+"Realm List</A>");
 		if ( region_name )
 			WriteHTML("<B>»</B> "+MakeAHref(realm_name)+realm_name+"</A>");
 			if ( group_name );
@@ -38,6 +38,7 @@ program www_SpawnControl()
 			ShowRegionsInRealm(realm_name);
 		endif
 	else
+		WriteHTML("<B>*</B> Realm List");
 		ListRealms();
 	endif
 
@@ -49,7 +50,7 @@ endprogram
 function ListRealms()
 	WriteHTML("<BR><BR><TABLE>");
 	WriteHTML("<TR>");
-	WriteHTML("<TD COLSPAN='2' CLASS='header'>Realms List</TD>");
+	WriteHTML("<TD CLASS='header' COLSPAN='2'>Realms List</TD>");
 	WriteHTML("</TR>");
 	WriteHTML("<TR>");
 	WriteHTML("<TD CLASS='delete'>Delete</TD><TD CLASS='normal'>Realm Name</TD>");
@@ -58,7 +59,7 @@ function ListRealms()
 	var core_realms := Realms();
 	foreach realm_name in SS_GetRealmNames()
 		WriteHTML("<TR>");
-		WriteHTMLRaw("<TD CLASS='delete'>Delete</TD>");
+		WriteHTMLRaw("<TD CLASS='delete'><INPUT TYPE='SUBMIT' NAME='DELETE' VALUE='Delete' CLASS='delete'></TD>");
 		WriteHTMLRaw("<TD CLASS='normal'>");
 		if ( !core_realms.Exists(Lower(realm_name)) )
 			WriteHTMLRaw("<FONT COLOR='DARKRED'><B>");
@@ -85,12 +86,19 @@ endfunction
 function ShowRegionsInRealm(realm_name)
 	WriteHTML("<BR><BR><TABLE>");
 	WriteHTML("<TR>");
-	WriteHTML("<TD CLASS='header'>Spawn Regions in Realm '"+realm_name+"'</TD>");
+	WriteHTML("<TD COLSPAN='3' CLASS='header'>Spawn Regions in Realm '"+realm_name+"'</TD>");
+	WriteHTML("</TR>");
+	WriteHTML("<TR>");
+	WriteHTML("<TD CLASS='delete'>Delete</TD>");
+	WriteHTML("<TD CLASS='edit'>Edit</TD>");
+	WriteHTML("<TD CLASS='normal'>Region Name</TD>");
 	WriteHTML("</TR>");
 
 	var spawn_regions := SS_GetRegionsInRealm(realm_name);
 	foreach region_name in (spawn_regions.Keys())
 		WriteHTML("<TR>");
+		WriteHTML("<TD CLASS='delete'><INPUT TYPE='SUBMIT' NAME='DELETE' VALUE='Delete' CLASS='delete'></TD>");
+		WriteHTML("<TD CLASS='edit'><INPUT TYPE='SUBMIT' NAME='EDIT' VALUE='Edit' CLASS='edit'></TD>");
 		WriteHTMLRaw("<TD CLASS='normal'>");
 		var region_link := MakeAHref(realm_name, region_name);
 		WriteHTML(region_link+region_name+"</A></TD>");
@@ -99,7 +107,7 @@ function ShowRegionsInRealm(realm_name)
 	endforeach
 
 	WriteHTML("<TR>");
-	WriteHTML("<TD>");
+	WriteHTML("<TD COLSPAN='3'>");
 	WriteHTML("<FORM METHOD='GET' NAME='FORM'>");
 	WriteHTML("<INPUT TYPE='TEXT' NAME='Name' VALUE=''>");
 	WriteHTML("<INPUT TYPE='HIDDEN' NAME='Realm' Value='"+realm_name+"'>");
@@ -115,12 +123,19 @@ endfunction
 function ShowRegionInfo(realm_name, region_name)
 	WriteHTML("<BR><BR><TABLE>");
 	WriteHTML("<TR>");
-	WriteHTML("<TD CLASS='header'>Spawn Groups in Region '"+region_name+"'</TD>");
+	WriteHTML("<TD COLSPAN='3' CLASS='header'>Spawn Groups in Region '"+region_name+"'</TD>");
+	WriteHTML("</TR>");
+	WriteHTML("<TR>");
+	WriteHTML("<TD CLASS='delete'>Delete</TD>");
+	WriteHTML("<TD CLASS='edit'>Edit</TD>");
+	WriteHTML("<TD CLASS='normal'>Region Name</TD>");
 	WriteHTML("</TR>");
 
 	var spawn_regions := SS_GetGroupsInRegion(region_name);
 	foreach group_name in (spawn_regions.Keys())
 		WriteHTML("<TR>");
+		WriteHTML("<TD CLASS='delete'><INPUT TYPE='SUBMIT' NAME='DELETE' VALUE='Delete' CLASS='delete'></TD>");
+		WriteHTML("<TD CLASS='edit'><INPUT TYPE='SUBMIT' NAME='EDIT' VALUE='Edit' CLASS='edit'></TD>");
 		WriteHTMLRaw("<TD CLASS='normal'>");
 		var group_link := MakeAHref(realm_name, region_name, group_name);
 		WriteHTML(group_link+group_name+"</A></TD>");
@@ -129,7 +144,7 @@ function ShowRegionInfo(realm_name, region_name)
 	endforeach
 
 	WriteHTML("<TR>");
-	WriteHTML("<TD>");
+	WriteHTML("<TD COLSPAN='3'>");
 	WriteHTML("<FORM METHOD='GET' NAME='FORM'>");
 	WriteHTML("<INPUT TYPE='TEXT' NAME='Name' VALUE=''>");
 	WriteHTML("<INPUT TYPE='HIDDEN' NAME='Region' Value='"+region_name+"'>");
@@ -145,20 +160,22 @@ endfunction
 function ShowGroupInfo(group_name)
 	WriteHTML("<BR><BR><TABLE>");
 	WriteHTML("<TR>");
-	WriteHTML("<TD CLASS='header'>Entries in Spawn Group '"+group_name+"'</TD>");
+	WriteHTML("<TD COLSPAN='3' CLASS='header'>Entries in Spawn Group '"+group_name+"'</TD>");
 	WriteHTML("</TR>");
 
 	var spawn_group := SS_GeTEntriesInGroup(group_name);
 	foreach entry in (spawn_group.Keys())
 		WriteHTML("<TR>");
-		WriteHTMLRaw("<TD BGCOLOR='C0C0C0'>");
+		WriteHTML("<TD CLASS='delete'><INPUT TYPE='SUBMIT' NAME='DELETE' VALUE='Delete' CLASS='delete'></TD>");
+		WriteHTML("<TD CLASS='edit'><INPUT TYPE='SUBMIT' NAME='EDIT' VALUE='Edit' CLASS='edit'></TD>");
+		WriteHTMLRaw("<TD CLASS='normal'>");
 		WriteHTML(entry+"</A></TD>");
 		WriteHTML("</TR>");
 		sleepms(2);
 	endforeach
 
 	WriteHTML("<TR>");
-	WriteHTML("<TD>");
+	WriteHTML("<TD COLSPAN='3'>");
 	WriteHTML("<FORM METHOD='GET' NAME='FORM'>");
 	WriteHTML("<INPUT TYPE='TEXT' NAME='Name' VALUE=''>");
 	WriteHTML("<INPUT TYPE='HIDDEN' NAME='Group' Value='"+group_name+"'>");
@@ -191,15 +208,19 @@ endfunction
 
 function WriteStyleInfo()
 	WriteHTML("<STYLE TYPE='TEXT/CSS'>");
-	WriteHTMLRaw("body, td, th, table{");
+	WriteHTMLRaw("body, td, th, table, input{");
 	WriteHTMLRaw("font-family: Tahoma, Verdana, Trebuchet MS, Arial, MS Sans Serif, sans-serif;");
 	WriteHTMLRaw("font-size: 13px; color: #000000;");
 	WriteHTML("}");
 	
 	WriteHTML("table{border-collapse: collapse}");
 	WriteHTML("td{border-style:solid; border-width:1; border-color:#000000; padding:2}");
-	WriteHTML("td.header{text-align:center; font-weight:bold; color:#000000; background-color:808080}");
+	WriteHTML("td.header{width: 300; text-align:center; font-weight:bold; color:#000000; background-color:808080; column-span:2}");
 	WriteHTML("td.normal{color: #000000; background-color: #C0C0C0}");
-	WriteHTML("td.delete{color: #FFFFFF; background-color: DARKRED}");
+	WriteHTML("td.delete{width:50; text-align:center; color: #FFFFFF; background-color: DARKRED}");
+	WriteHTML("td.edit{width:30; text-align:center; color: #FFFFFF; background-color: DARKGREEN}");
+	
+	WriteHTML("input.delete{color: #FFFFFF; background-color: DARKRED; border-style:none; padding:1}");
+	WriteHTML("input.edit{color: #FFFFFF; background-color: DARKGREEN; border-style:none; padding:1}");
 	WriteHTML("</STYLE>");
 endfunction
