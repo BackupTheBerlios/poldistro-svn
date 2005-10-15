@@ -193,7 +193,7 @@ endfunction
 function SS_SetRegionCoordinates(region_name, x1, y1, x2, y2)
 	var region_elem := SS_GetRegionDataElem(region_name);
 	
-	var coords := struct{"x1":=x1, "y1":=y1, "x2":=x2, "y2":=y2};
+	var coords := struct{"x1":=CInt(x1), "y1":=CInt(y1), "x2":=CInt(x2), "y2":=CInt(y2)};
 		
 	return region_elem.SetProp("Coordinates", coords);
 endfunction
