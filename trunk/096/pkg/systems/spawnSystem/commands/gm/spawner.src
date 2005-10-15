@@ -8,6 +8,11 @@ include ":spawnsystem:include/regions";
 
 unload_scripts("");
 
+// Used for button ranges
+const REALM_START	:= 0xA000;
+const REGION_START	:= 0xB000;
+const GROUP_START	:= 0xC000;
+
 const START_ID		:= 0x1;
 const ADD_REALM_BTN	:= 0x5;
 const ADD_REGION_BTN	:= 0x6;
@@ -30,6 +35,12 @@ program SpawnerCMD(who)
 		if ( input )
 			if ( cur_menu == SHOW_REALMS_BTN )
 				input := BuildRealmListGump(who);
+			elseif ( cur_menu == SHOW_REGIONS_BTN )
+				if ( input >= REGION_START )
+					input := BuildRegionInfoGump(who, cur_realm, cur_region);
+				else
+					input := BuildRegionListGump(who, cur_realm);
+				endif
 			endif
 		endif
 		
@@ -37,6 +48,14 @@ program SpawnerCMD(who)
 		
 		if ( !input )
 			break;
+		elseif ( input >= REGION_START )
+			cur_menu := SHOW_REGIONS_BTN;
+			var region_list := SS_GetRegionsInRealm(cur_realm).keys();
+			cur_region := region_list[input-REGION_START];
+		elseif ( input >= REALM_START )
+			cur_menu := SHOW_REGIONS_BTN;
+			var realm_list := SS_GetRealmNames();
+			cur_realm := realm_list[input-REALM_START];
 		elseif ( input == SHOW_REALMS_BTN )
 			cur_menu := SHOW_REALMS_BTN;
 		endif
@@ -81,7 +100,7 @@ function BuildRealmListGump(who)
 	GFTextMid(gump, 145, 20, 485, 2100, "Realm List");
 	var y_pos := 50;
 	foreach realm_name in realm_list
-		GFAddButton(gump, 155, y_pos+3, 2117, 2118, GF_CLOSE_BTN, _realm_name_iter);
+		GFAddButton(gump, 155, y_pos+3, 2117, 2118, GF_CLOSE_BTN, (REALM_START+_realm_name_iter));
 		GFTextLine(gump, 175, y_pos, 2100, realm_name);
 		
 		y_pos := y_pos+20;
@@ -99,7 +118,7 @@ function BuildRegionListGump(who, realm_name)
 	GFTextMid(gump, 145, 20, 485, 2100, "Region List ["+realm_name+"]");
 	var y_pos := 50;
 	foreach region_name in (region_list)
-		GFAddButton(gump, 155, y_pos+3, 2117, 2118, GF_CLOSE_BTN, _region_name_iter);
+		GFAddButton(gump, 155, y_pos+3, 2117, 2118, GF_CLOSE_BTN, (REGION_START+_region_name_iter));
 		GFTextLine(gump, 175, y_pos, 2100, region_name);
 		
 		y_pos := y_pos+20;
@@ -108,7 +127,6 @@ function BuildRegionListGump(who, realm_name)
 	
 	var input := GFSendGump(who, gump);
 	return input[0];
-	
 endfunction
 
 function BuildRegionInfoGump(who, realm_name, region_name)
@@ -116,6 +134,10 @@ function BuildRegionInfoGump(who, realm_name, region_name)
 	var gump := BuildGumpTemplate(realm_name);
 	
 	GFTextMid(gump, 145, 20, 485, 2100, "Region Information ["+region_name+"]");
+	
+	var coords := SS_GetRegionCoordinates(region_name);
+	GFTextLine(gump, 145, 45, 2100, "Coordinates:");
+	GFTextEntry(gump, 230, 45, 200, 20, 2100, coords);
 	
 	var input := GFSendGump(who, gump);
 	return input[0];
