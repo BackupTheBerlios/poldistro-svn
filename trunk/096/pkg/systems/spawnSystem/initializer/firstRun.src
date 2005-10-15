@@ -78,7 +78,7 @@ function SetupRegion(region_name, realm_name, start_cfg)
 	
 	SS_AddRegion(region_name, realm_name);
 	var coords := SplitWords(region_info.Coordinates);
-	SS_SetRegionCoordinates(region_name, coords[1], coords[2], coords[3], coords[4]);
+	SS_SetRegionCoordinates(region_name, CInt(coords[1]), CInt(coords[2]), CInt(coords[3]), CInt(coords[4]));
 
 	foreach group_name in (GetConfigStringArray(region_info, "Group"))
 		group_name := SplitWords(group_name);
