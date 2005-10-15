@@ -58,9 +58,10 @@ function ShowRealmList()
 	WriteHTML("</TR>");
 
 	var core_realms := Realms();
+	WriteHTML("<FORM METHOD='GET'>");
 	foreach realm_name in SS_GetRealmNames()
 		WriteHTML("<TR>");
-		WriteHTMLRaw("<TD CLASS='delete'><INPUT TYPE='SUBMIT' NAME='DELETE' VALUE='Delete' CLASS='delete'></TD>");
+		WriteHTMLRaw("<TD CLASS='delete'><INPUT TYPE='SUBMIT' NAME='Delete' VALUE='"+realm_name+"' CLASS='delete'></TD>");
 		WriteHTMLRaw("<TD CLASS='normal'>");
 		if ( !core_realms.Exists(Lower(realm_name)) )
 			WriteHTMLRaw("<FONT COLOR='DARKRED'><B>");
@@ -70,6 +71,7 @@ function ShowRealmList()
 		WriteHTML("</TR>");
 		sleepms(2);
 	endforeach
+	WriteHTML("</FORM>");
 
 	WriteHTML("<TR>");
 	WriteHTML("<TD COLSPAN='2' CLASS='addform'>");
