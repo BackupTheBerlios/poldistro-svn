@@ -16,7 +16,7 @@ function MoveObjectToLocation(object, x, y, z, realm, flags:=MOVEITEM_NORMAL)
 	realm := Lower(realm);
 	
 	if ( realm != object.realm )
-		return MoveObjectToRealm(object, realm,.x, y, z, flags);
+		return MoveObjectToRealm(object, realm, x, y, z, flags);
 	else
 		if ( object.IsA(POLCLASS_MOBILE) )
 			return MoveCharacterToLocation(object, x, y, z, flags);
