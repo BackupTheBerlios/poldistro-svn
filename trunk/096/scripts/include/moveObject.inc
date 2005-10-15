@@ -13,6 +13,8 @@ use uo;
 
 
 function MoveObjectToLocation(object, x, y, z, realm, flags:=MOVEITEM_NORMAL)
+	realm := Lower(realm);
+	
 	if ( realm != object.realm )
 		return MoveObjectToRealm(object, x, y, z, realm, flags);
 	else
@@ -26,4 +28,4 @@ function MoveObjectToLocation(object, x, y, z, realm, flags:=MOVEITEM_NORMAL)
 	// Shouldn't ever reach this spot.
 	return 0;
 endfunction
-	
+
