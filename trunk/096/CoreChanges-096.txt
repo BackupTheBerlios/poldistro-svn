@@ -1,13 +1,15 @@
 -- POL096 --
+10-13 Shinigami
+        Added : Linux: Core will check libc version and print Warning if libc is to old (< 2.3.2)
+
 10-07 Austin
-        Added : scripts/misc/dblclickother - Runs when a player double clicks another player or npc.
+	Added : scripts/misc/dblclickother - Runs when a player double clicks another player or npc.
                 Will not run if the npc has the double click event enabled.
                 Program arguments are (who, mobile_clicked)
         Added : servspecopt.cfg - 'DoubleClickWait'. (Default is 0)
                 Time in seconds that must pass before a player can double click something again.
         Added : mobile.GetCorpse() - Returns an item reference to the most recent corpse made.
- 
-10-03 Austin
+        10-03 Austin
         Added : corpse.ownerserial - Returns the serial of the npc / player that died.
 
 10-02 Shinigami
