@@ -5,6 +5,14 @@
  *
  * Will show all realms, and their dimensions.
  *
+ * Realms() dictionary
+ * "realm_name" -> 
+ * "width"
+ * "height"
+ * "mapid"
+ * "toplevel_item_count"
+ * "mobile_count"
+ *
  */
  
 use uo;
@@ -18,18 +26,24 @@ program textcmd_Realms(who)
 	var realm_list := Realms();
 	var gump := GFCreateGump();
 	
-	GFResizePic(gump, 0, 0, GFCfgConst("Defaults", "BackGround"), 310, 420);
-	GFResizePic(gump, 10, 10, GFCfgConst("Defaults", "ForeGround"), 290, 400);
+	GFResizePic(gump, 0, 0, GFCfgConst("Defaults", "BackGround"), 435, 420);
+	GFResizePic(gump, 10, 10, GFCfgConst("Defaults", "ForeGround"), 415, 400);
 	
 	GFTextLine(gump, 20, 15, 2100, "Realm Name");
-	GFTextLine(gump, 180, 15, 2100, "Height");
-	GFTextLine(gump, 240, 15, 2100, "Width");
+	GFTextLine(gump, 150, 15, 2100, "Height");
+	GFTextLine(gump, 200, 15, 2100, "Width");
+	GFTextLine(gump, 245, 15, 2100, "MapID");
+	GFTextLine(gump, 300, 15, 2100, "TLI");
+	GFTextLine(gump, 340, 15, 2100, "Mobile Count");
 	
 	var y_pos := 40;
 	foreach realm in realm_list
 		GFTextLine(gump, 20, y_pos, 2100, _realm_iter);
-		GFTextLine(gump, 180, y_pos, 2100, realm.height);
-		GFTextLine(gump, 240, y_pos, 2100, realm.width);
+		GFTextLine(gump, 150, y_pos, 2100, realm.height);
+		GFTextLine(gump, 200, y_pos, 2100, realm.width);
+		GFTextLine(gump, 256, y_pos, 2100, realm.mapid);
+		GFTextLine(gump, 290, y_pos, 2100, realm.toplevel_item_count);
+		GFTextLine(gump, 350, y_pos, 2100, realm.mobile_count);
 		
 		sleepms(2);
 		y_pos := y_pos+20;
