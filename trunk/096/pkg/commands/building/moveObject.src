@@ -13,6 +13,9 @@ program textcmd_MoveObject(who)
 	if ( !targ )
 		SendSysMessage(who, "Cancelled.");
 		return 0;
+	elseif ( targ.multi )
+		SendSysMessage(who, "Changing "+targ+" to its multi "+targ.multi);
+		targ := targ.multi;
 	endif
 	
 	SendSysMessage(who, "Place where?");
@@ -22,7 +25,7 @@ program textcmd_MoveObject(who)
 		return 0;
 	endif
 	
-	var result := MoveObjectToLocation(targ, coords.x, coords.y, coords.z, targ.realm, MOVEITEM_FORCELOCATION);
+	var result := MoveObjectToLocation(targ, coords.x, coords.y, coords.z, who.realm, MOVEITEM_FORCELOCATION);
 		
 	SendSysMessage(who, "Result: "+result);
 endprogram
