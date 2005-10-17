@@ -18,7 +18,7 @@ program textcmd_MakeMulti(who, text)
 		return 0;
 	endif
 	
-	var multi := CreateMultiAtLocation(targ.x, targ.y, targ.z, text, CRMULTI_IGNORE_ALL);
+	var multi := CreateMultiAtLocation(targ.x, targ.y, targ.z, text, CRMULTI_IGNORE_ALL, who.realm);
 	if ( multi.errortext )
 		SendSysMessage(who, "Error:"+multi.errortext);
 	endif
