@@ -1,3 +1,7 @@
+/* $Id$
+*
+*/
+
 /*===============================================================
 * Current Version
 * regenRates.src
@@ -41,7 +45,7 @@ endfunction
 // *****
 exported function GetManaRegenRate(mobile)
 	var base_regen := CInt(AP_GetSettingsCfgElem("Regen").Mana) * 100;
-	
+
 	return base_regen + AP_GetVitalRegenRateMod(mobile, "mana");
 endfunction
 
@@ -59,7 +63,7 @@ endfunction
 // *****
 exported function GetStaminaRegenRate(mobile)
 	var base_regen := CInt(AP_GetSettingsCfgElem("Regen").Stamina) * 100;
-	
+
 	return base_regen + AP_GetVitalRegenRateMod(mobile, "stamina");
 endfunction
 
@@ -84,8 +88,9 @@ function GetNPCVitalSetting(mobile, vital)
 
 	// CProp used if NPC had dice settings - so they dont change over and over.
 	var vital_settings := GetObjProperty(mobile, "%NPC_Vitals%");
+
 	if ( vital_settings.Exists(vital) )
-		value := vital_settings[vital];
+		value := CInt(vital_settings[vital]);
 	else
 		// No prior setup took place - get information from the npcdesc.cfg
 		var npc_cfg := NPC_GetNPCConfig(mobile.npctemplate);
@@ -100,7 +105,7 @@ function GetNPCVitalSetting(mobile, vital)
 			if ( Lower(TypeOf(vital_settings)) != "dictionary" )
 				vital_settings := dictionary;
 			endif
-			vital_settings[vital] := value;
+			vital_settings[vital] := CInt(value);
 			SetObjProperty(mobile, "%NPC_Vitals%", vital_settings);
 		else
 			value := CInt(value);
