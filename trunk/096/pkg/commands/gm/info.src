@@ -1,0 +1,161 @@
+/*
+ * $Id$
+ *
+ * Purpose
+ *
+ * Presents information about a mobile.
+ *
+ */
+
+use uo;
+use os;
+
+include ":attributes:attributes";
+include ":gumps:gumps";
+include ":gumps:gumpprompt";
+include ":gumps:requestgump";
+include ":gumps:yesno";
+include ":containers:storageAreas";
+
+unload_scripts("");
+
+var priv_names := array
+{
+	"ignoredoors", "seeinvisitems", "seehidden", "seeghosts",
+	"renameany", "moveany", "losany", "invul", "hearghosts",
+	"dblclickany", "clotheany", "freemove"
+};
+
+
+program textcmd_Info(who, serial)
+	var targ := who;;
+	/*if ( serial )
+		targ := SystemFindObjectBySerial(CInt(serial));
+	else
+		targ := Target(who);
+	endif
+	if ( !targ.IsA(POLCLASS_MOBILE) )
+		SendSysMessage(who, "Cancelled.");
+		return 0;
+	endif
+	*/
+	
+	ClientGump(who, targ);
+endprogram
+
+function GumpTemplate(targ)
+	var gump := GFCreateGump();
+	
+	GFResizePic(gump, 0, 0, GFCfgConst("Defaults", "BackGround"), 500, 480);
+	
+	GFResizePic(gump, 15, 15, GFCfgConst("Defaults", "ForeGround"), 470, 35);
+	GFTextLine(gump, 25, 22, 2100, "Info on "+targ.name);
+	
+	if ( targ.npctemplate )
+		GFTextRight(gump, 475, 22, 2100, "[NPC]");
+	elseif ( targ.connected )
+		GFTextRight(gump, 475, 22, 2100, "[Player]");
+	else
+		GFTextRight(gump, 475, 22, 2100, "[Offline Player]");
+	endif
+	
+	GFResizePic(gump, 15, 55, GFCfgConst("Defaults", "ForeGround"), 140, 410);
+	GFAddButton(gump, 20, 63, 2117, 2118, GF_CLOSE_BTN, 1);
+	GFTextLine(gump, 40, 60, 2100, "General");
+	
+	GFAddButton(gump, 20, 83, 2117, 2118, GF_CLOSE_BTN, 1);
+	GFTextLine(gump, 40, 80, 2100, "Client");
+	
+	GFAddButton(gump, 20, 103, 2117, 2118, GF_CLOSE_BTN, 1);
+	GFTextLine(gump, 40, 100, 2100, "Combat");
+	
+	GFAddButton(gump, 20, 123, 2117, 2118, GF_CLOSE_BTN, 1);
+	GFTextLine(gump, 40, 120, 2100, "Script");
+	
+	GFAddButton(gump, 20, 143, 2117, 2118, GF_CLOSE_BTN, 1);
+	GFTextLine(gump, 40, 140, 2100, "Reputation");
+	
+	GFAddButton(gump, 20, 163, 2117, 2118, GF_CLOSE_BTN, 1);
+	GFTextLine(gump, 40, 160, 2100, "Properties");
+	
+	GFAddButton(gump, 20, 183, 2117, 2118, GF_CLOSE_BTN, 1);
+	GFTextLine(gump, 40, 180, 2100, "Privileges");
+	
+	GFAddButton(gump, 20, 203, 2117, 2118, GF_CLOSE_BTN, 1);
+	GFTextLine(gump, 40, 200, 2100, "Storage");	
+
+	GFAddButton(gump, 20, 223, 2117, 2118, GF_CLOSE_BTN, 1);
+	GFTextLine(gump, 40, 220, 2100, "Miscellaneous");
+
+	return gump;
+endfunction
+
+function GeneralGump(who, targ)
+	var gump := GumpTemplate(targ);
+	
+	GFResizePic(gump, 160, 55, GFCfgConst("Defaults", "ForeGround"), 325, 95);
+	
+	GFAddButton(gump, 165, 66, 2117, 2118, GF_DUMMY_BTN);
+	GFTextLine(gump, 185, 63, 2100, "Title Prefix");
+	GFTextRight(gump, 475, 63, 2100, targ.title_prefix);
+	
+	GFAddButton(gump, 165, 86, 2117, 2118, GF_DUMMY_BTN);
+	GFTextLine(gump, 185, 83, 2100, "Name");
+	GFTextRight(gump, 475, 83, 2100, targ.name);
+	
+	GFAddButton(gump, 165, 106, 2117, 2118, GF_DUMMY_BTN);
+	GFTextLine(gump, 185, 103, 2100, "Title Suffix");
+	GFTextRight(gump, 475, 103, 2100, targ.title_suffix);
+	
+	GFAddButton(gump, 165, 126, 2117, 2118, GF_DUMMY_BTN);
+	GFTextLine(gump, 185, 123, 2100, "Tile Race");
+	GFTextRight(gump, 475, 123, 2100, targ.title_race);
+	
+	return gump;
+endfunction
+
+function ClientGump(who, targ)
+	var gump := GumpTemplate(targ);
+	
+	GFResizePic(gump, 160, 55, GFCfgConst("Defaults", "ForeGround"), 325, 75);
+	GFTextLine(gump, 185, 63, 2100, "Connected");
+	GFTextRight(gump, 475, 63, 2100, CStr(targ.connected));
+	GFTextLine(gump, 185, 83, 2100, "IP Address");
+	GFTextRight(gump, 475, 83, 2100, CStr(targ.ip));
+	GFTextLine(gump, 185, 103, 2100, "Client Version");
+	GFTextRight(gump, 475, 103, 2100, targ.clientversion);
+	
+	GFResizePic(gump, 160, 135, GFCfgConst("Defaults", "ForeGround"), 325, 75);
+	GFTextLine(gump, 185, 143, 2100, "Account Name");
+	GFTextRight(gump, 475, 143, 2100, CStr(targ.acctname));
+	GFTextLine(gump, 185, 163, 2100, "Account Enabled");
+	GFTextRight(gump, 475, 163, 2100, CStr((targ.acct).enabled));
+	GFTextLine(gump, 185, 183, 2100, "Account Banned");
+	GFTextRight(gump, 475, 183, 2100, CStr((targ.acct).banned));
+	
+	GFResizePic(gump, 163, 215, GFCfgConst("Backgrounds", "GOLDTRIM"), 315, 245);
+	var client_info := targ.clientinfo;
+	var info_string := "<U>Client Info</U><BR>";
+	foreach key in ( (client_info).keys() )
+		info_string := info_string + key +" <B>:</B> "+client_info[key]+"<BR>";
+		sleepms(2);
+	endforeach
+	
+	GFHTMLArea(gump, 170, 222, 323, 230, info_string, 0, 1);
+	GFSendGump(who, gump);
+endfunction
+
+function PropertyGump(who, targ)
+	var gump := GumpTemplate(targ);
+	
+	GFResizePic(gump, 160, 55, GFCfgConst("Defaults", "ForeGround"), 325, 95);
+	GFTextLine(gump, 185, 63, 2100, "X"); 
+	GFTextRight(gump, 475, 63, 2100, CStr(targ.x));
+	GFTextLine(gump, 185, 83, 2100, "Y"); 
+	GFTextRight(gump, 475, 83, 2100, CStr(targ.y));
+	GFTextLine(gump, 185, 103, 2100, "Z"); 
+	GFTextRight(gump, 475, 103, 2100, CStr(targ.z));
+	GFTextLine(gump, 185, 123, 2100, "Realm"); 
+	GFTextRight(gump, 475, 123, 2100, targ.realm);
+	return gump;
+endfunction
