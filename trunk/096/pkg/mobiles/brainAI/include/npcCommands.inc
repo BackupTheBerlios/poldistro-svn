@@ -373,7 +373,7 @@ endfunction
 function AI_Turn(npc, object, direction:=NETURN_TOWARD, no_wake:=WAKEUP)
 	var ev		:= struct;
 	ev.+type	:= NPCEVENT_TURN;
-	ev.+source	:= turn_to;
+	ev.+source	:= object;
 	ev.+direction	:= direction;
 	ev.+WakeUp	:= no_wake;
 	ev.+process	:= GetProcess(GetPid());
