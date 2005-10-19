@@ -90,7 +90,7 @@ endfunction
 function GetNerveProcess(mobile, nerve_name)
 	var nerve_dict := LoadNerves(mobile);
 	
-	if ( nerve_dict.Existsnerve_name) )
+	if ( nerve_dict.Exists(nerve_name) )
 		return GetProcess(CInt(nerve_dict[nerve_name].pid));
 	else
 		return error{"errortext" := "Error::GetNerveProcess() - Invalid nerve name  ["+nerve_name+"]"};
@@ -139,7 +139,7 @@ endfunction
 function GetNerveFlags(mobile, nerve_name)
 	var nerve_dict := LoadNerves(mobile);
 	
-	if ( nerve_dict.Existsnerve_name) )
+	if ( nerve_dict.Exists(nerve_name) )
 		return GetProcess(CInt(nerve_dict[nerve_name].flags));
 	else
 		return error{"errortext" := "Error::GetNerveFlags() - Invalid nerve name  ["+nerve_name+"]"};
@@ -187,7 +187,7 @@ function StartNerve(mobile, nerve_name, nerve_script, data:=array, flags:=NF_NO_
 		var nerve_dict := LoadNerves(mobile);
 		
 		//Before setting the new nerve, check if one is already running.
-		if ( nerve_dict.Existsnerve_name) )
+		if ( nerve_dict.Exists(nerve_name) )
 			//Stop the old nerve, before storing the new one.
 			StopNerve(mobile, nerve_name);
 		endif
@@ -220,7 +220,7 @@ endfunction
 function StopNerve(mobile, nerve_name)
 	var nerve_dict := LoadNerves(mobile);
 	
-	if ( nerve_dict.Existsnerve_name) )
+	if ( nerve_dict.Exists(nerve_name) )
 		GetNerveProcess(mobile, nerve_name).kill();
 		nerve_dict.Erase(nerve_name);
 
