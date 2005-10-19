@@ -42,7 +42,7 @@ program textcmd_Info(who, serial)
 	endif
 	
 
-	var gump := ScriptGump(who, targ);
+	var gump := RepSysGump(who, targ);
 	GFSendGump(who, gump);
 endprogram
 
@@ -236,6 +236,30 @@ function ScriptGump(who, targ)
 	GFTextLine(gump, 175, 180, 2100, "Master Serial");
 	GFTextRight(gump, 475, 180, 2100, Hex(CInt((targ.master).serial)));
 		
+	return gump;
+endfunction
+
+function RepSysGump(who, targ)
+	var gump := GumpTemplate(targ);
+
+	GFResizePic(gump, 160, 55, GFCfgConst("Defaults", "ForeGround"), 325, 55);
+	GFAddButton(gump, 165, 63, 2117, 2118, GF_DUMMY_BTN);
+	GFTextLine(gump, 185, 60, 2100, "Criminal");
+	GFTextRight(gump, 475, 60, 2100, targ.criminal);
+	GFAddButton(gump, 165, 83, 2117, 2118, GF_DUMMY_BTN);
+	GFTextLine(gump, 185, 80, 2100, "Murderer");
+	GFTextRight(gump, 475, 80, 2100, targ.murderer);
+	
+	GFResizePic(gump, 163, 115, GFCfgConst("Backgrounds", "GOLDTRIM"), 315, 245);
+	var client_info := targ.clientinfo;
+	var info_string := "<U>Reportables</U><BR>";
+	foreach entry in ( targ.reportables )
+		info_string := info_string + "<B>o</B> "+ entry + "<BR>";
+		sleepms(2);
+	endforeach
+
+	GFHTMLArea(gump, 170, 122, 303, 231, info_string, 0, 1);
+
 	return gump;
 endfunction
 
