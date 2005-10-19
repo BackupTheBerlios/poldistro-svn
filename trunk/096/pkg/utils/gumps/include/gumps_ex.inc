@@ -184,8 +184,8 @@ endfunction
  *
  */
 function GFTextMid(byref gump, x, y, width, color, text)
-	var x_pos := GFTextCoords(ALIGN_CENTER, text, x, width);
-	return GFTextLine(gump, x_pos, y, color, text);
+	var x_pos := GFTextCoords(ALIGN_CENTER, text, x, CStr(width));
+	return GFTextLine(gump, x_pos, y, color, CStr(text));
 endfunction
 
 
@@ -207,8 +207,8 @@ endfunction
  *
  */
 function GFTextRight(byref gump, x, y, color, text)
-	var x_pos := GFTextCoords(ALIGN_RIGHT, text, x);
-	return GFTextLine(gump, x_pos, y, color, text);
+	var x_pos := GFTextCoords(ALIGN_RIGHT, CStr(text), x);
+	return GFTextLine(gump, x_pos, y, color, CStr(text));
 endfunction
 
 
