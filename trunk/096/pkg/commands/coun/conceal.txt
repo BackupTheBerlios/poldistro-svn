@@ -1,0 +1,4 @@
+"<b>conceal</b>" command, let's you conceal yourself or target another mobile.
+ie:
+	.conceal me
+	.conceal (Brings up a Target Cursor).
