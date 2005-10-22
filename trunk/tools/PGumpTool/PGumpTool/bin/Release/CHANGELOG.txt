@@ -1,0 +1,7 @@
+v0.2
+	Code Cleanup.
+	Redesign of FontInput, GumpChooser, MainForm.
+	Added AboutForm.
+	Support for windows themes.
+	Extended GumpViewer.
+	Various menu/etc additions.

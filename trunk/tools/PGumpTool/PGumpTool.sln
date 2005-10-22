@@ -1,0 +1,21 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PGumpTool", "PGumpTool\PGumpTool.csproj", "{CFD5DC26-5CFB-4DFF-B2D7-A35969D7BDF2}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{CFD5DC26-5CFB-4DFF-B2D7-A35969D7BDF2}.Debug.ActiveCfg = Debug|.NET
+		{CFD5DC26-5CFB-4DFF-B2D7-A35969D7BDF2}.Debug.Build.0 = Debug|.NET
+		{CFD5DC26-5CFB-4DFF-B2D7-A35969D7BDF2}.Release.ActiveCfg = Release|.NET
+		{CFD5DC26-5CFB-4DFF-B2D7-A35969D7BDF2}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal
