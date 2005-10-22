@@ -1,42 +1,40 @@
 // $Id$
 
-use uo;
-use util;
-use os;
-
-include "include/client";
-include "include/attributes";
+include ":attributes:attributeConstants";
+include ":attributes:attributes";
+include ":attributes:skillCheck";
 include "include/objtype";
 include "include/canAccess";
 
 program UseWood( who, wood )
+
 	EraseObjProperty(who, "IsMeditating");
 	EraseObjProperty(who, "HealTimer");
-	if(!can_access(who, wood))
-		return;
+	if( !can_access(who, wood) )
+		return 0;
 	endif
-	if(wood.movable == 0)
+	if( wood.movable == 0 )
 		SendSysMessage(who, "You cannot light that.");
-		return;
+		return 0;
 	endif
 	var camptimer := GetObjProperty(who, "CampTimer");
-	if(camptimer)
-		if(camptimer > ReadGameClock())
+	if( camptimer )
+		if( camptimer > ReadGameClock() )
 			SendSysMessage(who, "You must wait a few moments to camp again.");
-			return;
+			return 0;
 		endif
 	endif
 	SetObjProperty(who, "CampTimer", ReadGameClock() + 5);
-	if(not Accessible(who, wood))
+	if( !Accessible(who, wood) )
 		PrintTextAbovePrivate( wood, "You can't reach that!", who );
-		return;
+		return 0;
 	endif
-	if(wood.container)
+	if( wood.container )
 		PrintTextAbovePrivate( wood, "Put that on the ground first!", who );
-		return;
+		return 0;
 	endif
 
-	if(CheckSkill(who, SKILLID_CAMPING, -1, 50))
+	if( SkillCheck(who, ATTRIBUTE_CAMPING, -1) > 0 )
 		var x := wood.x;
 		var y := wood.y;
 		var z := wood.z;
@@ -53,4 +51,5 @@ program UseWood( who, wood )
 	else
 		PrintTextAbovePrivate( wood, "You couldn't manage to start the fire.", who );
 	endif
+
 endprogram
