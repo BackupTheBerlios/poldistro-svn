@@ -11,6 +11,7 @@ enum LOCALE_ENGLISH
 	MSG_NO_MOB			:= "That is not a mobile.",
 	MSG_NO_PARAM			:= "No parameter specified.",
 	MSG_INVALID_PARAM		:= "Invalid parameter.",
+	MSG_TARGET			:= "Target a mobile or an object.",
 	MSG_TARGET_OBJ			:= "Target an object.",
 	MSG_TARGET_MOB			:= "Target a mobile.",
 	MSG_TARGET_CHAR			:= "Target a character.",
