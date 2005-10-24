@@ -1,16 +1,19 @@
+/* $Id$
+ *
+ */
 use uo;
 
 include "include/messages";
 include "include/localization";
 
 
-program command_reveal(who, text)
+program command_reveal(who, params)
 	var mobile;
 
-	if (!text)
-		SendMessage(who, MSG_TARGET_MOB, {}, MSG_COMMAND);
+	if (!params)
+		SendMessage(who, MSG_TARGET_MOB, array{}, MSG_COMMAND);
 		if ((mobile := Target(who, TGTOPT_NOCHECK_LOS) == 0))
-			SendMessage(who, MSG_CANCELLED, {}, MSG_COMMAND);
+			SendMessage(who, MSG_CANCELLED, array{}, MSG_COMMAND);
 		else
 			if (!mobile.isA(POLCLASS_MOBILE))
 				SendMessage(who, MSG_NO_MOB, {}, MSG_COMMAND);
@@ -19,19 +22,19 @@ program command_reveal(who, text)
 					SendSysMessage(who, "Mobile is not concealed.");
 				else
 					mobile.concealed := 0;
-					SendMessage(who, MSG_DONE, {}, MSG_COMMAND);
+					SendMessage(who, MSG_DONE, array{}, MSG_COMMAND);
 				endif
 			endif
 		endif
-	elseif (text == "me")
+	elseif (params == "me")
 		if (who.concealed == 0)
 			SendSysMessage(who, "You are not concealed.");
 		else
 			who.concealed := 0;
-			SendMessage(who, MSG_DONE, {}, MSG_COMMAND);
+			SendMessage(who, MSG_DONE, array{}, MSG_COMMAND);
 		endif
 	else
-		//TODO
+		SendMessage(who, MSG_USE_HELP, array{}, MSG_COMMAND);
 	endif
 
 	return;

@@ -1,8 +1,6 @@
-/*
- * $Id$
+/* $Id$
  *
  * Purpose
- *
  * Will show all realms, and their dimensions.
  *
  * Realms() dictionary
@@ -14,12 +12,12 @@
  * "mobile_count"
  *
  */
- 
 use uo;
 use polsys;
 
 include ":gumps:gumps";
 include ":gumps:gumps_ex";
+
 
 program textcmd_Realms(who)
 	

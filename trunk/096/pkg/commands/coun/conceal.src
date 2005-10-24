@@ -14,18 +14,18 @@ program command_conceal(who, params)
 	var mobile;
 
 	if (!params)
-		SendMessage(who, MSG_TARGET_MOB, {}, MSG_COMMAND);
+		SendMessage(who, MSG_TARGET_MOB, array{}, MSG_COMMAND);
 		if ((mobile := Target(who, TGTOPT_NOCHECK_LOS)) == 0)
-			SendMessage(who, MSG_CANCELLED, {}, MSG_COMMAND);
+			SendMessage(who, MSG_CANCELLED, array{}, MSG_COMMAND);
 		else
 			if (!mobile.isA(POLCLASS_MOBILE))
-				SendMessage(who, MSG_NO_MOB, {}, MSG_COMMAND);
+				SendMessage(who, MSG_NO_MOB, array{}, MSG_COMMAND);
 			else
 				if (mobile.concealed == 1)
 					SendSysMessage(who, "Mobile is already concealed.");
 				else
 					mobile.concealed := 1;
-					SendMessage(who, MSG_DONE, {}, MSG_COMMAND);
+					SendMessage(who, MSG_DONE, array{}, MSG_COMMAND);
 				endif
 			endif
 		endif
@@ -34,7 +34,7 @@ program command_conceal(who, params)
 			SendSysMessage(who, "You are already concealed.");
 		else
 			who.concealed := 1;
-			SendMessage(who, MSG_DONE, {}, MSG_COMMAND);
+			SendMessage(who, MSG_DONE, array{}, MSG_COMMAND);
 		endif
 	else
 		SendMessage(who, MSG_USE_HELP, array{"conceal"}, MSG_COMMAND);

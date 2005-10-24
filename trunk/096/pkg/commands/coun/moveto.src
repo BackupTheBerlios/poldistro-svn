@@ -1,8 +1,5 @@
 /* $Id$
  *
- * Purpose
- * A command that allows you to move an object/mobile to someplace else or to yourself.
- *
  * TODO
  * replace /coun/fetch.src; /gm/moveitem.src; /gm/movetocont.src;
  *
@@ -29,10 +26,8 @@ program command_moveto(who, params)
 	elseif (params == "me")
 		//
 	else
-		//check constant
-		SendMessage(who, MSG_HELP, array{}, MSG_COMMAND);
+		SendMessage(who, MSG_USE_HELP, array{}, MSG_COMMAND);
 	endif
 
 	return;
 endprogram
-

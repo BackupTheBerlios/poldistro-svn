@@ -1,4 +1,5 @@
-"<b>conceal</b>" command, let's you conceal yourself or target another mobile.
-ie:
-	.conceal me
-	.conceal (Brings up a Target Cursor).
+<b>Syntax:</b>
+.conceal [me]
+
+<b>Purpose:</b>
+Let's you conceal yourself or target another mobile.
