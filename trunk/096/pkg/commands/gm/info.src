@@ -42,7 +42,7 @@ program textcmd_Info(who, serial)
 	endif
 	
 
-	var gump := RepSysGump(who, targ);
+	var gump := PropertiesGump(who, targ);
 	GFSendGump(who, gump);
 endprogram
 
@@ -82,13 +82,16 @@ function GumpTemplate(targ)
 	GFTextLine(gump, 40, 160, 2100, "Properties");
 
 	GFAddButton(gump, 20, 183, 2117, 2118, GF_CLOSE_BTN, 1);
-	GFTextLine(gump, 40, 180, 2100, "Privileges");
+	GFTextLine(gump, 40, 180, 2100, "Attributes");
 
 	GFAddButton(gump, 20, 203, 2117, 2118, GF_CLOSE_BTN, 1);
-	GFTextLine(gump, 40, 200, 2100, "Storage");
+	GFTextLine(gump, 40, 200, 2100, "Privileges");
 
 	GFAddButton(gump, 20, 223, 2117, 2118, GF_CLOSE_BTN, 1);
-	GFTextLine(gump, 40, 220, 2100, "Miscellaneous");
+	GFTextLine(gump, 40, 220, 2100, "Storage");
+	
+	GFAddButton(gump, 20, 243, 2117, 2118, GF_CLOSE_BTN, 1);
+	GFTextLine(gump, 40, 240, 2100, "Miscellaneous");
 
 	return gump;
 endfunction
