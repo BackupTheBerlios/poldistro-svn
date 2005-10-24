@@ -1,7 +1,6 @@
 use uo;
 use os;
 
-include "include/moveObject";
 include ":gumps:include/gumps";
 include ":gumps:include/gumps_ex";
 include ":gumps:include/gumpprompt";
