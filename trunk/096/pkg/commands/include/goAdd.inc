@@ -135,19 +135,10 @@ endfunction
 
 function Go_LocationCopyGump(public:=1)
 
-	var gump := GFCreateGump();
-	GFResizePic(gump, 0, 0, BKGND_SILVERTRIM, 400, 520);
-	GFResizePic(gump, 15, 15, BKGND_DARK_STONE, 370, 35);
-	if( public )
-		GFHTMLArea(gump,  15, 20, 370, 20, "<basefont color=#7FFFD4><center>Go To Locations (Public)</center>");
-	else
-		GFHTMLArea(gump,  15, 20, 370, 20, "<basefont color=#7FFFD4><center>Go To Locations (Private)</center>");
-	endif
-	GFResizePic(gump, 15, 55, BKGND_DARK_STONE, 370, 410);
+	var gump := Go_GumpHeader(public);
 	GFHTMLArea(gump,  25, 60, 150, 20, "<basefont color=#7FFFD4>Name");
 	GFHTMLArea(gump, 175, 60, 150, 20, "<basefont color=#7FFFD4>Realm");
 	GFHTMLArea(gump, 295, 60, 150, 20, "<basefont color=#7FFFD4>Copy");
-	GFResizePic(gump, 15, 470, BKGND_DARK_STONE, 370, 35);
 
 	GFPage(gump, 1);
 
@@ -166,8 +157,8 @@ function Go_LocationCopyGump(public:=1)
 			counter := counter + 1;
 			line_num := line_num+1;
 			y_loc := y_loc + 20;
-			if ( line_num >= 18 && line_num < num_keys )
-				GFAddButton(gump, 370, 435, 2706, 2707, GF_PAGE_BTN, page_num+1);
+			if ( line_num >= 17 && line_num < num_keys )
+				GFAddButton(gump, 370, 405, 2706, 2707, GF_PAGE_BTN, page_num+1);
 				page_num := page_num + 1;
 				GFPage(gump, page_num);
 				GFAddButton(gump, 370,  85, 2704, 2705, GF_PAGE_BTN, page_num-1);
@@ -186,8 +177,8 @@ function Go_LocationCopyGump(public:=1)
 			counter := counter + 1;
 			line_num := line_num+1;
 			y_loc := y_loc + 20;
-			if ( line_num >= 18 && line_num < num_keys )
-				GFAddButton(gump, 370, 435, 2706, 2707, GF_PAGE_BTN, page_num+1);
+			if ( line_num >= 17 && line_num < num_keys )
+				GFAddButton(gump, 370, 405, 2706, 2707, GF_PAGE_BTN, page_num+1);
 				page_num := page_num + 1;
 				GFPage(gump, page_num);
 				GFAddButton(gump, 370,  85, 2704, 2705, GF_PAGE_BTN, page_num-1);

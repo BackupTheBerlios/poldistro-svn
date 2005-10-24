@@ -6,6 +6,24 @@ var BKGND_SILVERTRIM := GFCfgConst("Defaults", "BackGround");
 var BKGND_DARK_STONE := GFCfgConst("Defaults", "ForeGround");
 
 
+function Go_GumpHeader(public:=1)
+
+	var headerGump := GFCreateGump();
+	GFResizePic(headerGump, 0, 0, BKGND_SILVERTRIM, 400, 490);
+	GFResizePic(headerGump, 15, 15, BKGND_DARK_STONE, 370, 35);
+	if( public )
+		GFHTMLArea(headerGump,  15, 20, 370, 20, "<basefont color=#7FFFD4><center>Go To Locations (Public)</center>");
+	else
+		GFHTMLArea(headerGump,  15, 20, 370, 20, "<basefont color=#7FFFD4><center>Go To Locations (Private)</center>");
+	endif
+        GFResizePic(headerGump, 15, 55, BKGND_DARK_STONE, 370, 380);
+        GFResizePic(headerGump, 15, 440, BKGND_DARK_STONE, 370, 35);
+
+	return headerGump;
+
+endfunction
+
+
 function Go_LocationIndex(who, gump_Type:="base_Distro")
 
         var gump := Go_RetrieveGump("LocationIndex", gump_Type);
@@ -98,38 +116,29 @@ endfunction
 
 function Go_LocationIndexGump(public:=1)
 
-	var gump := GFCreateGump();
-	GFResizePic(gump, 0, 0, BKGND_SILVERTRIM, 400, 520);
-	GFResizePic(gump, 15, 15, BKGND_DARK_STONE, 370, 35);
-	if( public )
-		GFHTMLArea(gump,  15, 20, 370, 20, "<basefont color=#7FFFD4><center>Go To Locations (Public)</center>");
-	else
-		GFHTMLArea(gump,  15, 20, 370, 20, "<basefont color=#7FFFD4><center>Go To Locations (Private)</center>");
-	endif
-	GFResizePic(gump, 15, 55, BKGND_DARK_STONE, 370, 410);
+	var gump := Go_GumpHeader(public);
 	GFHTMLArea(gump,  25, 60, 150, 20, "<basefont color=#7FFFD4>Name");
 	GFHTMLArea(gump, 175, 60, 150, 20, "<basefont color=#7FFFD4>Realm");
 	GFHTMLArea(gump, 295, 60, 150, 20, "<basefont color=#7FFFD4>Send");
 	GFHTMLArea(gump, 345, 60, 150, 20, "<basefont color=#7FFFD4>Goto");
-	GFResizePic(gump, 15, 470, BKGND_DARK_STONE, 370, 35);
 	if( public )
-		GFAddButton(gump, 25, 477, 4008, 4010, GF_CLOSE_BTN, ADD_NEW_PUBLIC);
-		GFHTMLArea(gump,  57, 480, 30, 20, "<basefont color=#7FFFD4>Add");
-		GFAddButton(gump, 100, 477, 4005, 4007, GF_CLOSE_BTN, COPY_PUBLIC_ITEM);
-		GFHTMLArea(gump,  132, 480, 30, 20, "<basefont color=#7FFFD4>Copy");
-		GFAddButton(gump, 175, 477, 4008, 4010, GF_CLOSE_BTN, EDIT_PUBLIC_ITEM);
-		GFHTMLArea(gump,  207, 480, 30, 20, "<basefont color=#7FFFD4>Edit");
-		GFAddButton(gump, 250, 477, 4008, 4010, GF_CLOSE_BTN, SHOW_PRIVATE_INDEX);
-		GFHTMLArea(gump,  282, 480, 100, 20, "<basefont color=#7FFFD4>Public Menu");
+		GFAddButton(gump, 25, 447, 4008, 4010, GF_CLOSE_BTN, ADD_NEW_PUBLIC);
+		GFHTMLArea(gump,  57, 450, 30, 20, "<basefont color=#7FFFD4>Add");
+		GFAddButton(gump, 100, 447, 4005, 4007, GF_CLOSE_BTN, COPY_PUBLIC_ITEM);
+		GFHTMLArea(gump,  132, 450, 30, 20, "<basefont color=#7FFFD4>Copy");
+		GFAddButton(gump, 175, 447, 4008, 4010, GF_CLOSE_BTN, EDIT_PUBLIC_ITEM);
+		GFHTMLArea(gump,  207, 450, 30, 20, "<basefont color=#7FFFD4>Edit");
+		GFAddButton(gump, 250, 447, 4008, 4010, GF_CLOSE_BTN, SHOW_PRIVATE_INDEX);
+		GFHTMLArea(gump,  282, 450, 100, 20, "<basefont color=#7FFFD4>Private Menu");
 	else
-		GFAddButton(gump, 25, 477, 4008, 4010, GF_CLOSE_BTN, ADD_NEW_PRIVATE);
-		GFHTMLArea(gump,  57, 480, 30, 20, "<basefont color=#7FFFD4>Add");
-		GFAddButton(gump, 100, 477, 4005, 4007, GF_CLOSE_BTN, COPY_PRIVATE_ITEM);
-		GFHTMLArea(gump,  132, 480, 30, 20, "<basefont color=#7FFFD4>Copy");
-		GFAddButton(gump, 175, 477, 4008, 4010, GF_CLOSE_BTN, EDIT_PRIVATE_ITEM);
-		GFHTMLArea(gump,  207, 480, 30, 20, "<basefont color=#7FFFD4>Edit");
-		GFAddButton(gump, 250, 477, 4008, 4010, GF_CLOSE_BTN, SHOW_PUBLIC_INDEX);
-		GFHTMLArea(gump,  282, 480, 100, 20, "<basefont color=#7FFFD4>Public Menu");
+		GFAddButton(gump, 25, 447, 4008, 4010, GF_CLOSE_BTN, ADD_NEW_PRIVATE);
+		GFHTMLArea(gump,  57, 450, 30, 20, "<basefont color=#7FFFD4>Add");
+		GFAddButton(gump, 100, 447, 4005, 4007, GF_CLOSE_BTN, COPY_PRIVATE_ITEM);
+		GFHTMLArea(gump,  132, 450, 30, 20, "<basefont color=#7FFFD4>Copy");
+		GFAddButton(gump, 175, 447, 4008, 4010, GF_CLOSE_BTN, EDIT_PRIVATE_ITEM);
+		GFHTMLArea(gump,  207, 450, 30, 20, "<basefont color=#7FFFD4>Edit");
+		GFAddButton(gump, 250, 447, 4008, 4010, GF_CLOSE_BTN, SHOW_PUBLIC_INDEX);
+		GFHTMLArea(gump,  282, 450, 100, 20, "<basefont color=#7FFFD4>Public Menu");
 	endif
 
 	GFPage(gump, 1);
@@ -150,8 +159,8 @@ function Go_LocationIndexGump(public:=1)
 			counter := counter + 1;
 			line_num := line_num+1;
 			y_loc := y_loc + 20;
-			if ( line_num >= 18 && line_num < num_keys )
-				GFAddButton(gump, 370, 435, 2706, 2707, GF_PAGE_BTN, page_num+1);
+			if ( line_num >= 17 && line_num < num_keys )
+				GFAddButton(gump, 370, 405, 2706, 2707, GF_PAGE_BTN, page_num+1);
 				page_num := page_num + 1;
 				GFPage(gump, page_num);
 				GFAddButton(gump, 370,  85, 2704, 2705, GF_PAGE_BTN, page_num-1);
@@ -171,8 +180,8 @@ function Go_LocationIndexGump(public:=1)
 			counter := counter + 1;
 			line_num := line_num+1;
 			y_loc := y_loc + 20;
-			if ( line_num >= 18 && line_num < num_keys )
-				GFAddButton(gump, 370, 435, 2706, 2707, GF_PAGE_BTN, page_num+1);
+			if ( line_num >= 17 && line_num < num_keys )
+				GFAddButton(gump, 370, 405, 2706, 2707, GF_PAGE_BTN, page_num+1);
 				page_num := page_num + 1;
 				GFPage(gump, page_num);
 				GFAddButton(gump, 370,  85, 2704, 2705, GF_PAGE_BTN, page_num-1);
