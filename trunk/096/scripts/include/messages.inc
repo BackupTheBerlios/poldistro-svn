@@ -1,4 +1,4 @@
-/* $$
+/* $Id$
  *
  * Purpose
  * Provide various functions and constants for system messages.
@@ -8,7 +8,8 @@ use uo;
 use polsys;
 use basic;
 
-include ":gumps:include/gumps";
+include ":gumps:gumps";
+include ":gumps:gumps_ex";
 include "include/localization";
 include "include/packets";
 include "include/client";
@@ -21,6 +22,8 @@ enum MSG_TYPE
 	MSG_SKILL	:= 4
 endenum
 
+var BKGND_SILVERTRIM := GFCfgConst("Defaults", "BackGround");
+var BKGND_DARK_STONE := GFCfgConst("Defaults", "ForeGround");
 
 /*
  * SendMessage(who, id, type)
@@ -86,7 +89,7 @@ endfunction
  * SendHTMLMessage(who, text)
  *
  * Author: Folko
- * Last-Edit: Melanius
+ * Last-Edit: MuadDib
  *
  * Purpose
  * Sends a HTML gump containing the text to the character.
@@ -100,10 +103,11 @@ endfunction
  *
  */
 function SendHTMLMessage(who, text)
-	var msgGump := GFCreateGump(100, 100, 500, 200);
-	GFAddAlphaRegion(msgGump, 0, 0, 500, 200);
+	var msgGump := GFCreateGump(100, 100, 510, 230);
+	GFAddAlphaRegion(msgGump, 0, 0, 510, 230);
 	GFPage(msgGump, 0);
-	GFHTMLArea(msgGump, 0, 0, 500, 200, text, 1, 1);
+	GFResizePic(msgGump, 0, 0, BKGND_SILVERTRIM, 510, 230);
+	GFHTMLArea(msgGump, 10, 10, 490, 210, text, 1, 1);
 	GFSendGump(who, msgGump);
 
 	return;
