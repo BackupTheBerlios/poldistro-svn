@@ -1,31 +1,35 @@
+/* $Id$
+ *
+ */
+
 use uo;
 
-program textcmd_copylook(who)
+program command_CopyLook(who)
 
-	SendSysMessage(who, "Select target.");
+	SendSysMessage(who, "Select mobile to be changed.");
 	var newlook := Target(who);
+
 	if (!newlook.isA(POLCLASS_MOBILE))
 		SendSysMessage(who, "Aborted.");
-		return;
+		return 0;
 	endif
 
-	SendSysMessage(who, "Select NPC to copy.");
+	SendSysMessage(who, "Select mobile to copy.");
 	var oldlook := Target(who);
 	if (!oldlook.isA(POLCLASS_MOBILE))
 		SendSysMessage(who, "Aborted.");
-		return;
+		return 0;
 	endif
 
 	var mypack := GetEquipmentByLayer(newlook, 0x15);
 	if (!mypack)
-		mypack := CreateItemAtLocation(newlook.x, newlook.y, newlook.z, 0xe75, 1, who.realm);
+		mypack := CreateItemAtLocation(newlook.x, newlook.y, newlook.z, 0xe75, 1, newlook.realm);
 	else
 		MoveItemToLocation(mypack, newlook.x, newlook.y, newlook.z, MOVEITEM_FORCELOCATION);
 	endif
 
 	var itemlist := ListEquippedItems(newlook);
 	var y;
-
 
 	foreach x in itemlist
 		MoveItemToContainer(x, mypack);
