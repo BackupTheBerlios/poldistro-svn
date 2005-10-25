@@ -57,6 +57,8 @@ exported function HandleWarRequest( who, byref packet )
 		return 1;
 	endif
 
+	return 0;
+
 endfunction
 
 
