@@ -71,7 +71,7 @@ function ProcessWarMode(who)
 
 	// Used to stop ecompile error messages for unused variables
 	who := who;
-	if( CInt(GetObjProperty(who, "#Peaced")) > 0 )
+	if( CInt(GetObjProperty(who, "#Peaced")) > ReadGameClock() )
 		return 0;
 	endif
 	return 1;
