@@ -1,0 +1,77 @@
+/* $Id$
+ *
+ */
+////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//  name:    Request War Mode Packet Hook
+//  version: 1.0
+//  author:  MuadDib
+//
+//  Purpose: This can allow you to disable entering war mode based on criteria set forth in this
+//           hook. Like for example, if they are in town, cannot enter war mode, or in certain
+//           areas, if they are mounted, whatever you like.
+//
+// Const settings:
+// BYTE_FLAG = 1  Position in the packet for the Status Flag. Can be 0x0 (in peace mode) or
+//                0x1 (in war mode, trying to leave war mode).
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////
+use uo;
+use polsys;
+
+include "include/client";
+
+CONST BYTE_FLAG := 1;
+
+program requestWar()
+	Print( "LSD: Hooking Request War Mode Change..." );
+	return 1;
+endprogram
+
+
+exported function HandleWarRequest( who, byref packet )
+
+	// Let's see which mode the are requesting.
+	var flag := CInt(packet.GetInt8(BYTE_FLAG));
+	var allowWar := 1;
+
+	case(flag)
+		// Requesting Peace Mode. Should never block this in my opinion.
+		0: return 0;
+		// Let's call the function that will decide to block entering
+		// war mode or not.
+		1: allowWar := ProcessWarMode(who);
+		default: return 0;
+	endcase
+
+	// If allowWar is 1 or higher, allow the core to handle this
+	// packet. Else, create a denial packet, send it, and then block
+	// the request from the core.
+	if(allowWar)
+		return 0;
+	else
+		var denyPacket := CreatePacket(0x72, 5);
+		denyPacket.SetInt8(BYTE_FLAG, 0);
+		denyPacket.SetInt8(3, 0x32);
+		denyPacket.SendPacket(who);
+		return 1;
+	endif
+
+endfunction
+
+
+// By returning 1 in this function, it means "Allow them to
+// enter war mode". If you return 0, it will BLOCK and deny them
+// entering war mode. The packet will NOT be sent to the core to
+// let the core decide if they can, and they will be sent a packet
+// to let the client know it was not allowed.
+function ProcessWarMode(who)
+
+	// Used to stop ecompile error messages for unused variables
+	who := who;
+	if( CInt(GetObjProperty(who, "#Peaced")) > 0 )
+		return 0;
+	endif
+	return 1;
+
+endfunction

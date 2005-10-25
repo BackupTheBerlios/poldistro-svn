@@ -82,6 +82,9 @@ function calmDown( who, peacee )
 				ev.+ length;
 				ev.length := peace_length_ranged;
 				SendEvent(thetarg, ev);
+			elseif( thetarg.acctname )
+				SetObjProperty(thetarg, "#Peaced", ReadGameClock()+5);
+				thetarg.SetWarMode(0);
 			endif
 		endforeach
 	elseif( peacee.npctemplate )
