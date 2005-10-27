@@ -33,7 +33,7 @@ function NPC_ParseTemplateName(template_name)
 	if ( template_name.IsA(POLCLASS_NPC) )
 		template_name := template_name.npctemplate;
 	endif
-	
+
 	//Find positions of ":" characters
 	var colon_a := Find(template_name, ":", 1);
 	var colon_b := Find(template_name, ":", 2);
@@ -52,7 +52,7 @@ function NPC_ParseTemplateName(template_name)
 	return parsed;
 endfunction
 
-/* 
+/*
  * NPC_GetNPCConfig(template)
  *
  * Purpose
@@ -69,17 +69,17 @@ function NPC_GetNPCConfig(template)
 	if ( !template.package )
 		template := NPC_ParseTemplateName(template);
 	endif
-	
+
 	var npc_cfg := ReadConfigFile(":"+template.package+":npcdesc");
 	if ( npc_cfg.errortext )
 		return error{"errortext":="Error::NPC_GetNPCConfig() - Could not open :"+template.package+":npcdesc ->"+npc_cfg.errortext};
 	endif
-	
+
 	var cfg_elem := npc_cfg[template.template];
 	if ( cfg_elem.errortext )
 		return error{"errortext":="Error::NPC_GetNPCConfig() - Could not find elem ["+template.template+"] ->"+cfg_elem.errortext};
 	endif
-	
+
 	return cfg_elem;
 endfunction
 
@@ -88,7 +88,7 @@ endfunction
  *
  * Purpose
  * Retrieves a list of all npc templates in the shard's npcdesc.cfg files
- * 
+ *
  * Parameters
  *
  * Return value
@@ -101,7 +101,7 @@ function NPC_GetAllTemplateNames()
 	foreach package in (Packages())
 		if ( package.npcdesc )
 			var pkg_name := ":"+package.name+":";
-			foreach template_name in (GetConfigStringKeys(ReadConfigFile(pkg_name+"npcdesc")))
+			foreach template_name in (GetConfigStringKeys(ReadConfigFile(pkg_name+"::npcdesc")))
 				elem_names.Append(pkg_name+template_name);
 				sleepms(2);
 			endforeach
