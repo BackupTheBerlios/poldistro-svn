@@ -36,7 +36,7 @@ function RandomName(character)
 endfunction
 
 function AssignName( character, index )
-    var cfg := ReadConfigFile( "names" );
+    var cfg := ReadConfigFile( "::names" );
     var elem := FindConfigElem( cfg, index );
     var number := GetConfigInt( elem, "Count" );
     var dice_str := "1d" + CStr(number);
