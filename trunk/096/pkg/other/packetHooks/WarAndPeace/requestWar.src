@@ -24,7 +24,7 @@ include "include/client";
 CONST BYTE_FLAG := 1;
 
 program requestWar()
-	Print( "LSD: Hooking Request War Mode Change..." );
+	Print( "INSTALLING: Request War Mode Change PH..." );
 	return 1;
 endprogram
 

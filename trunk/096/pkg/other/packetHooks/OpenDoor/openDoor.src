@@ -21,7 +21,7 @@ use uo;
 use os;
 
 program openDoor()
-	Print( "LSD: Hooking OpenDoor Action Macro..." );
+	Print( "INSTALLING: OpenDoor Action Macro PH..." );
 	return 1;
 endprogram
 

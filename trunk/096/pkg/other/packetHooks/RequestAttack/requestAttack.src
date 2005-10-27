@@ -20,7 +20,7 @@ use polsys;
 CONST BYTE_DEFENDER := 1;
 
 program requestAttack()
-	Print( "LSD: Hooking Request Attack..." );
+	Print( "INSTALLING: Request Attack PH..." );
 	return 1;
 endprogram
 

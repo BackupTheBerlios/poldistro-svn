@@ -4,7 +4,7 @@
 use os;
 
 program charprofile()
-	Print( "Hooking Character Profile..." );
+	Print( "INSTALLING: Character Profile PH..." );
 	return 1;
 endprogram
 
