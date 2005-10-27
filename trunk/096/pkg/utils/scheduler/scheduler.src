@@ -23,7 +23,7 @@ program StartScheduler()
 	print("Starting script scheduler...");
 	foreach pkg in Packages()
 		cfg := ReadConfigFile(":" + pkg.name + ":autoload");
-		if (cfg)
+		if( TypeOf(cfg) == "ConfigFileRef" )
 			Process(pkg, cfg, glob_desc);
 		endif
 	endforeach
