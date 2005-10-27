@@ -8,7 +8,8 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 use uo;
-use basic;
+//use basic;
+use cfgfile;
 
 program flip (me)
 
@@ -34,79 +35,14 @@ program flip (me)
 		endif
 	endif
 
+	var flipConfig  := ReadConfigFile(":commands:config/flip");
+	var flipGraphic := flipConfig[CInt(furniture.graphic)].ChangeTo;
 
-	case (furniture.graphic)
-		0xa97: furniture.graphic := 0xa9a;;	// bookshelves
-		0xa9a: furniture.graphic := 0xa97;
-		0xa98: furniture.graphic := 0xa99;
-		0xa99: furniture.graphic := 0xa98;
-		0xa9b: furniture.graphic := 0xa9c;
-		0xa9c: furniture.graphic := 0xa9b;
-		0xa9d: furniture.graphic := 0xa9e;
-		0xa9e: furniture.graphic := 0xa9d;
-		0xe3c: furniture.graphic := 0xe3d;	// Large crate
-		0xe3d: furniture.graphic := 0xe3c;
-		0xe3e: furniture.graphic := 0xe3f;	// Medium crate
-		0xe3f: furniture.graphic := 0xe3e;
-		0x9a9: furniture.graphic := 0xe7e;	// Small crate
-		0xe7e: furniture.graphic := 0x9a9;
-		0x9a8: furniture.graphic := 0xe80;	// Metal box
-		0xe80: furniture.graphic := 0x9a8;
-		0x9aa: furniture.graphic := 0xe7d;	// Wooden box
-		0xe7d: furniture.graphic := 0x9aa;
-		0x9ab: furniture.graphic := 0xe7c;	// Metal chest, plain
-		0xe7c: furniture.graphic := 0x9ab;
-		0xe40: furniture.graphic := 0xe41;	// Metal chest, gold lining
-		0xe41: furniture.graphic := 0xe40;
-		0xe42: furniture.graphic := 0xe43;	// Wooden chest
-		0xe43: furniture.graphic := 0xe42;
-		0x9b2: furniture.graphic := 0xe75;	// Backpack
-		0xe75: furniture.graphic := 0x9b2;
-		0x9b0: furniture.graphic := 0xe79;	// Beltpouch
-		0xe79: furniture.graphic := 0x9b0;
-		0xb7d: furniture.graphic := 0xb90;	// Plank table
-		0xb90: furniture.graphic := 0xb7d;
-		0xb7c: furniture.graphic := 0xb8f;	// fancy table
-		0xb8f: furniture.graphic := 0xb7c;
-		0xb2c: furniture.graphic := 0xb2d;	// Bench
-		0xb2d: furniture.graphic := 0xb2c;
-		0xb5b: furniture.graphic := 0xb5a;	// Poor chair
-		0xb5a: furniture.graphic := 0xb5c;
-		0xb5c: furniture.graphic := 0xb5d;
-		0xb5d: furniture.graphic := 0xb5b;
-		0xb57: furniture.graphic := 0xb56;	// Chair
-		0xb56: furniture.graphic := 0xb58;
-		0xb58: furniture.graphic := 0xb59;
-		0xb59: furniture.graphic := 0xb57;
-		0xb4f: furniture.graphic := 0xb4e;	// Fancy Chair
-		0xb4e: furniture.graphic := 0xb50;
-		0xb50: furniture.graphic := 0xb51;
-		0xb51: furniture.graphic := 0xb4f;
-		0xb2e: furniture.graphic := 0xb2f;	// Throne
-		0xb2f: furniture.graphic := 0xb30;
-		0xb30: furniture.graphic := 0xb31;
-		0xb31: furniture.graphic := 0xb2e;
-		0xb32: furniture.graphic := 0xb33;	// Magician's Throne
-		0xb33: furniture.graphic := 0xb32;
-		0xa4f: furniture.graphic := 0xa53;	// Armoire
-		0xa53: furniture.graphic := 0xa4f;
-		0xa4d: furniture.graphic := 0xa51;	// Cherry wood armoire
-		0xa51: furniture.graphic := 0xa4d;
-		0xa2c: furniture.graphic := 0xa34;	// Dressor
-		0xa34: furniture.graphic := 0xa2c;
-		0xa30: furniture.graphic := 0xa38;	// Dressor, bright handles
-		0xa38: furniture.graphic := 0xa30;
-		0xec6: furniture.graphic := 0xec7;	// Dress form
-		0xec7: furniture.graphic := 0xec6;
-		0xeb6: furniture.graphic := 0xeb8;	// Short music stand
-		0xeb8: furniture.graphic := 0xeb6;
-		0xebb: furniture.graphic := 0xebc;	// Tall music stand
-		0xebc: furniture.graphic := 0xebb;
-		0xf66: furniture.graphic := 0xf68;	// Easel
-		0xf68: furniture.graphic := 0xf66;
-        default:
-            SendSysMessage(me, "That item cannot be reoriented.");
-    endcase
+	if( !flipGraphic )
+		SendSysMessage(me, "That item cannot be re-orientated.");
+		return 0;
+	endif
 
+	furniture.graphic := flipGraphic;
 
 endprogram
