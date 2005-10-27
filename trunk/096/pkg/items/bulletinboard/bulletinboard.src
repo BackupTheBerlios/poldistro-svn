@@ -16,7 +16,7 @@
 // History
 // Feb. 13, 2003 - Austin
 // A lot of code cleanup.
-// Reading posts now uses the new gumps.inc function GFHTMLArea()
+// Reading posts now uses the new gumps.inc function OldGFHTMLArea()
 //
 // Sep. 04, 2001 - Austin
 // Package is created.
@@ -40,30 +40,30 @@ program BulletinBoard(who, board)
 		board_data_file := DFOpenDataFile("MessageBoards", DF_CREATE);
 		board_elem := DFFindElement(board_data_file, hex(board.serial), DF_CREATE);
 
-		GFInitGump();
+		OldGFInitGump();
 
-		GFButtonPage(40, 195, 0x1B6B, 0x1B6B, 500);
-		GFGumpPic(20, 20, 0x87A);
-		GFTextMid(260, 57, 0, GF_STDCOLOR, "Message Board");
+		OldGFButtonPage(40, 195, 0x1B6B, 0x1B6B, 500);
+		OldGFGumpPic(20, 20, 0x87A);
+		OldGFTextMid(260, 57, 0, GF_STDCOLOR, "Message Board");
 
 		BoardIndex(board);
 
 		var subject := "", msg_lines := array;
 		NewPost(who, subject, msg_lines);
 
-		input := GFSendGump(who);
+		input := OldGFSendGump(who);
 		if ( !GetObjProperty(who, "#Online") )
 			//If the player goes offline, terminate the script.
 			exit;
 		endif
 
 		if ( input[ADD_POST_BTN] )
-			subject := GFExtractData(subject.keyid, input);
+			subject := OldGFExtractData(subject.keyid, input);
 
 			//Take the 'lines' from the post and put them into 1 string.
 			var msg_string := "";
 			foreach line in msg_lines
-				line := GFExtractData(line.keyid, input);
+				line := OldGFExtractData(line.keyid, input);
 				if ( line )
 					msg_string := msg_string+" "+line;
 				endif
@@ -106,12 +106,12 @@ function BoardIndex(board)
 			var subject := board_elem.GetProp(postnum).Subject;
 			var message := board_elem.GetProp(postnum).Message;
 
-			GFPage(page_num);
-			GFButtonPage(135, y_pos+3, 0xFC1, 0xFC1, post_page_num);
-			GFTextLine(155, y_pos, GF_STDCOLOR, subject);
+			OldGFPage(page_num);
+			OldGFButtonPage(135, y_pos+3, 0xFC1, 0xFC1, post_page_num);
+			OldGFTextLine(155, y_pos, GF_STDCOLOR, subject);
 			y_pos := y_pos+20;
 
-			GFPage(post_page_num);
+			OldGFPage(post_page_num);
 
 			var msg := "<basefont color=#111111>"
 				+"From: "+name+"<br>"
@@ -126,27 +126,27 @@ function BoardIndex(board)
 			else
 				msg := msg+" "+message;
 			endif
-			GFHTMLArea(130, 180, 263, 160, 0, 1, msg);
+			OldGFHTMLArea(130, 180, 263, 160, 0, 1, msg);
 
 			post_page_num := post_page_num+1;
 
-			GFButtonPage(135, 367, 0x15E3, 0x15E7, page_num);
-			GFTextLine(155, 365, GF_STDCOLOR, "Index");
+			OldGFButtonPage(135, 367, 0x15E3, 0x15E7, page_num);
+			OldGFTextLine(155, 365, GF_STDCOLOR, "Index");
 
-			GFTextLine(350, 364, GF_STDCOLOR, "Delete");
-			GFButtonID(395, 367, 2117, 2118, 1, (CInt(postnum)+DELETE_BTN));
+			OldGFTextLine(350, 364, GF_STDCOLOR, "Delete");
+			OldGFButtonID(395, 367, 2117, 2118, 1, (CInt(postnum)+DELETE_BTN));
 
 			counter := counter+1;
 			total := total+1;
 
 			if ( counter > 8 && total < (prop_list.size()-1) )
-				GFPage(page_num);
+				OldGFPage(page_num);
 				//Down arrow
-				GFButtonPage(377, 336, 0xFC, 0xFD, page_num+1);
+				OldGFButtonPage(377, 336, 0xFC, 0xFD, page_num+1);
 				page_num := page_num+1;
-				GFPage(page_num);
+				OldGFPage(page_num);
 				//Up arrow
-				GFButtonPage(377, 160, 0xFA, 0xFB, page_num-1);
+				OldGFButtonPage(377, 160, 0xFA, 0xFB, page_num-1);
 				y_pos := 180;
 				counter := 1;
 			endif
@@ -156,26 +156,26 @@ function BoardIndex(board)
 endfunction
 
 function NewPost(who, byref subject, byref msg_lines)
-	GFPage(500);
+	OldGFPage(500);
 
-	GFTextLine(130, 180, GF_STDCOLOR, "From: " + who.name);
-	GFTextLine(130, 200, GF_STDCOLOR, "Subject: ");
-	subject := GFTextEntry(193, 200, 105, 20, GF_STDCOLOR, "New Message");
+	OldGFTextLine(130, 180, GF_STDCOLOR, "From: " + who.name);
+	OldGFTextLine(130, 200, GF_STDCOLOR, "Subject: ");
+	subject := OldGFTextEntry(193, 200, 105, 20, GF_STDCOLOR, "New Message");
 
-	GFTextLine(130, 230, GF_STDCOLOR, "Message:");
+	OldGFTextLine(130, 230, GF_STDCOLOR, "Message:");
 
 	var i;
 	var y_pos := 250;
 	//Five message lines.
 	for (i:=0; i < 5; i:=i+1)
-		msg_lines.append(GFTextEntry(130, y_pos, 255, 20, GF_STDCOLOR));
+		msg_lines.append(OldGFTextEntry(130, y_pos, 255, 20, GF_STDCOLOR));
 		y_pos := y_pos+20;
 	endfor
 
-	GFButtonPage(135, 367, 0x15E3, 0x15E7, 1);
-	GFTextLine(155, 365, GF_STDCOLOR, "Index");
+	OldGFButtonPage(135, 367, 0x15E3, 0x15E7, 1);
+	OldGFTextLine(155, 365, GF_STDCOLOR, "Index");
 
-	GFTextLine(355, 364, GF_STDCOLOR, "Post");
-	GFButtonID(395, 367, 2117, 2118, 1, ADD_POST_BTN);
+	OldGFTextLine(355, 364, GF_STDCOLOR, "Post");
+	OldGFButtonID(395, 367, 2117, 2118, 1, ADD_POST_BTN);
 endfunction
 

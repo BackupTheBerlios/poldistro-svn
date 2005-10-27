@@ -40,7 +40,7 @@ program command_tile(who, params)
 	SendSysMessage( who, "Select coordinate #2" );
 	var coordstructtwo := TargetCoordinates( who );
 
-	if ((!coordstructonu) || (!coordstructtwo)) // check that we got two valid coordstructs.
+	if( (!coordstructone) || (!coordstructtwo)) // check that we got two valid coordstructs.
 		SendSysMessage( who, "Missing coordinate. Aborting." );
 		return;
 	endif

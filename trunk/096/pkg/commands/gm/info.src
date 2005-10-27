@@ -29,7 +29,9 @@ var priv_names := array
 
 
 program textcmd_Info(who, serial)
-	var targ := who;;
+
+	var targ := who;
+
 	if ( serial )
 		targ := SystemFindObjectBySerial(CInt(serial));
 	else
@@ -40,13 +42,32 @@ program textcmd_Info(who, serial)
 		//return 0;
 		targ := who;
 	endif
-	
 
-	var gump := PropertiesGump(who, targ);
+	var gump := PropertyGump(who, targ);
 	GFSendGump(who, gump);
+
 endprogram
 
+
+function PropertyGump(who, targ)
+	var gump := GumpTemplate(targ);
+
+	GFResizePic(gump, 160, 55, GFCfgConst("Defaults", "ForeGround"), 325, 95);
+	GFTextLine(gump, 185, 60, 2100, "X");
+	GFTextRight(gump, 475, 60, 2100, targ.x);
+	GFTextLine(gump, 185, 80, 2100, "Y");
+	GFTextRight(gump, 475, 80, 2100, targ.y);
+	GFTextLine(gump, 185, 100, 2100, "Z");
+	GFTextRight(gump, 475, 100, 2100, targ.z);
+	GFTextLine(gump, 185, 120, 2100, "Realm");
+	GFTextRight(gump, 475, 120, 2100, targ.realm);
+
+	return gump;
+endfunction
+
+
 function GumpTemplate(targ)
+
 	var gump := GFCreateGump();
 
 	GFResizePic(gump, 0, 0, GFCfgConst("Defaults", "BackGround"), 500, 480);
@@ -89,7 +110,7 @@ function GumpTemplate(targ)
 
 	GFAddButton(gump, 20, 223, 2117, 2118, GF_CLOSE_BTN, 1);
 	GFTextLine(gump, 40, 220, 2100, "Storage");
-	
+
 	GFAddButton(gump, 20, 243, 2117, 2118, GF_CLOSE_BTN, 1);
 	GFTextLine(gump, 40, 240, 2100, "Miscellaneous");
 
@@ -166,14 +187,14 @@ function CombatGump(who, targ)
 	GFAddButton(gump, 165, 103, 2117, 2118, GF_DUMMY_BTN);
 	GFTextLine(gump, 185, 100, 2100, "AR Mod");
 	GFTextRight(gump, 475, 100, 2100, targ.ar_mod);
-	
+
 	GFAddButton(gump, 165, 123, 2117, 2118, GF_DUMMY_BTN);
 	GFTextLine(gump, 185, 120, 2100, "Attack Speed Mod");
 	GFTextRight(gump, 475, 120, 2100, targ.delay_mod);
 
 	GFResizePic(gump, 160, 155, GFCfgConst("Defaults", "ForeGround"), 325, 195);
 	GFTextLine(gump, 170, 160, 2100, "Weapon Information");
-	
+
 	var weapon := targ.weapon;
 	var wpn_name, wpn_speed, wpn_dice;
 	if ( targ.IsA(POLCLASS_NPC) && ((targ.weapon).objtype == 0xF020) )
@@ -200,14 +221,14 @@ function CombatGump(who, targ)
 	Z := Z+CInt((targ.weapon).dmg_mod);
 	// (x*((1+y)/2))+z average formula
 	var average := (X*((1+Y)/2))+Z;
-	
+
 	GFTextLine(gump, 185, 180, 2100, "Weapon Name");
-	GFTextRight(gump, 475, 180, 2100, wpn_name);	
+	GFTextRight(gump, 475, 180, 2100, wpn_name);
 	GFTextLine(gump, 185, 200, 2100, "Weapon Serial");
 	GFTextRight(gump, 475, 200, 2100, Hex(weapon.serial));
 	GFTextLine(gump, 185, 220, 2100, "Weapon Objtype");
 	GFTextRight(gump, 475, 220, 2100, Hex(weapon.objtype));
-	
+
 	GFTextLine(gump, 185, 260, 2100, "Weapon Speed");
 	GFTextRight(gump, 475, 260, 2100, CInt(wpn_speed));
 	GFTextLine(gump, 185, 280, 2100, "Damage Modifier");
@@ -216,7 +237,7 @@ function CombatGump(who, targ)
 	GFTextRight(gump, 475, 300, 2100, wpn_dice);
 	GFTextLine(gump, 185, 320, 2100, "Average Damage");
 	GFTextRight(gump, 475, 320, 2100, average);
-	
+
 	return gump;
 endfunction
 
@@ -228,7 +249,7 @@ function ScriptGump(who, targ)
 	GFTextRight(gump, 475, 60, 2100, GetScriptName((targ.attached).name));
 	GFTextLine(gump, 175, 80, 2100, "Attached PID");
 	GFTextRight(gump, 475, 80, 2100, CInt((targ.attached).pid));
-	
+
 	GFResizePic(gump, 160, 115, GFCfgConst("Defaults", "ForeGround"), 325, 95);
 	GFTextLine(gump, 175, 120, 2100, "AI Script");
 	GFTextRight(gump, 475, 120, 2100, GetScriptName(targ.script));
@@ -238,7 +259,7 @@ function ScriptGump(who, targ)
 	GFTextRight(gump, 475, 160, 2100, Hex(CInt(targ.eventmask)));
 	GFTextLine(gump, 175, 180, 2100, "Master Serial");
 	GFTextRight(gump, 475, 180, 2100, Hex(CInt((targ.master).serial)));
-		
+
 	return gump;
 endfunction
 
@@ -252,7 +273,7 @@ function RepSysGump(who, targ)
 	GFAddButton(gump, 165, 83, 2117, 2118, GF_DUMMY_BTN);
 	GFTextLine(gump, 185, 80, 2100, "Murderer");
 	GFTextRight(gump, 475, 80, 2100, targ.murderer);
-	
+
 	GFResizePic(gump, 163, 115, GFCfgConst("Backgrounds", "GOLDTRIM"), 315, 245);
 	var client_info := targ.clientinfo;
 	var info_string := "<U>Reportables</U><BR>";
@@ -266,33 +287,17 @@ function RepSysGump(who, targ)
 	return gump;
 endfunction
 
-function PropertyGump(who, targ)
-	var gump := GumpTemplate(targ);
-
-	GFResizePic(gump, 160, 55, GFCfgConst("Defaults", "ForeGround"), 325, 95);
-	GFTextLine(gump, 185, 60, 2100, "X");
-	GFTextRight(gump, 475, 60, 2100, targ.x);
-	GFTextLine(gump, 185, 80, 2100, "Y");
-	GFTextRight(gump, 475, 80, 2100, targ.y);
-	GFTextLine(gump, 185, 100, 2100, "Z");
-	GFTextRight(gump, 475, 100, 2100, targ.z);
-	GFTextLine(gump, 185, 120, 2100, "Realm");
-	GFTextRight(gump, 475, 120, 2100, targ.realm);
-
-	return gump;
-endfunction
-
 function GetScriptName(path)
 	if ( !path )
 		return "None";
 	endif
-	
+
 	while ( path["/"] )
 		// Breaks it down to just the file name.
 		var pos := Find(path, "/", 1);
 		path[1, pos] := "";
 		sleepms(2);
 	endwhile
-	
+
 	return path;
 endfunction
