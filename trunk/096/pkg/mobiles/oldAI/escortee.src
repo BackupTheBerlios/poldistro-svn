@@ -40,7 +40,7 @@ var will_cast;
 var will_breathe;
 var flee_point;
 
-var npccfg := ReadConfigFile("npcdesc");
+var npccfg := ReadConfigFile("::npcdesc");
 var speechelem := FindConfigElem(npccfg, me.npctemplate);
 spells := GetConfigStringArray(speechelem, "spell");
 cast_pct := speechelem.cast_pct;

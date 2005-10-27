@@ -24,7 +24,7 @@ me.hidden := 1;
 var inv_fs, inv_pb, inv_1c, inv_rs;
 var merchant_type := GetObjProperty(me,"MerchantType");
 var equipt        := GetObjProperty(me, "Equipt");
-var npccfg        := ReadConfigFile("npcdesc");
+var npccfg        := ReadConfigFile("::npcdesc");
 
 set_priority(50);
 

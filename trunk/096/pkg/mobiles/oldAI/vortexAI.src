@@ -16,7 +16,7 @@ include ":oldAI:setup/setup";
 include ":oldAI:main/sleepMode";
 
 const HALT_THRESHOLD := 8;
-var npccfgfile := ReadConfigFile( "npcdesc" );
+var npccfgfile := ReadConfigFile( "::npcdesc" );
 var idlesnd1 := CInt(npccfgfile[me.npctemplate].idlesound1);
 var idlesnd2 := CInt(npccfgfile[me.npctemplate].idlesound2);
 var masterserial := GetObjProperty(me, "master");

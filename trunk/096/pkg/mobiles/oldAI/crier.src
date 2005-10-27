@@ -19,7 +19,7 @@ include ":oldAI:main/sleepMode";
 include ":oldAI:setup/crierSetup";
 include ":begging:begging";
 
-var npccfgfile := ReadConfigFile( "npcdesc" );
+var npccfgfile := ReadConfigFile( "::npcdesc" );
 var idlesnd1 := CInt(npccfgfile[me.npctemplate].idlesound1);
 var idlesnd2 := CInt(npccfgfile[me.npctemplate].idlesound2);
 

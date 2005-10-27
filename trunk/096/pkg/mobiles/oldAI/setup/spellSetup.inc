@@ -12,7 +12,7 @@ var summons := 3;
 var will_cast;
 var flee_point;
 
-var pncfg := ReadConfigFile("npcdesc");
+var pncfg := ReadConfigFile("::npcdesc");
 var speechelem := pncfg[me.npctemplate];
 speech := GetConfigString(speechelem, "speech");
 cast_pct := speechelem.cast_pct;

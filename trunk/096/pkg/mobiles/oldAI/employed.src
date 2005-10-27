@@ -18,7 +18,7 @@ const  HALT_THRESHOLD := 15;
 const  SYSEVENT_ALL_GUARD_CMD := 0x13;
 
 var me := Self();
-var npccfgfile := ReadConfigFile("npcdesc");
+var npccfgfile := ReadConfigFile("::npcdesc");
 var dmgsound   := npccfgfile[me.npctemplate].dmgsound;
 var hit        := npccfgfile[me.npctemplate].attackhitsound;
 var idlesnd1   := npccfgfile[me.npctemplate].idlesound1;
@@ -59,7 +59,7 @@ program employed()
     mypack := CreateItemAtLocation(1, 1, 0, 0xe75,1, me.realm);
     EquipItem(me, mypack);
   endif
-  var npccfg := ReadConfigFile("npcdesc");
+  var npccfg := ReadConfigFile("::npcdesc");
   if(GetObjProperty(me, "MerchantType") == "Mage")
     caster := 1;
     spells := GetConfigStringArray(npccfg[me.npctemplate], "spell");

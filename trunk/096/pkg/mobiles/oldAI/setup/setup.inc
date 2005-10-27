@@ -23,7 +23,7 @@ var flee_point;
 
 	drop_anchor();
 
-var npccfg := ReadConfigFile("npcdesc");
+var npccfg := ReadConfigFile("::npcdesc");
 var speechelem := npccfg[me.npctemplate];
 speech := GetConfigString(speechelem, "speech");
 spells := GetConfigStringArray( speechelem, "spell" );

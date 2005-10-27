@@ -24,7 +24,7 @@ include ":oldAI:main/sleepMode";
 const HALT_THRESHOLD := 8; // how close before he attacks?
 var LAST_BREATH := ReadGameClock();
 
-var npcfgfile := ReadConfigFile( "npcdesc" );
+var npcfgfile := ReadConfigFile( "::npcdesc" );
 var idlesnd1 := CInt(npcfgfile[me.npctemplate].idlesound1);
 var idlesnd2 := CInt(npcfgfile[me.npctemplate].idlesound2);
 

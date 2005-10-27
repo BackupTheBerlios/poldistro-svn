@@ -24,7 +24,7 @@ drop_anchor();
 if( me.name["<random>"] )
   SetName( me, RandomName( me ) );
 endif
-var npccfg := ReadConfigFile("npcdesc");
+var npccfg := ReadConfigFile("::npcdesc");
 var speechelem := npccfg[me.npctemplate];
 speech := GetConfigString(speechelem, "speech");
 spells := GetConfigStringArray( speechelem, "spell" );

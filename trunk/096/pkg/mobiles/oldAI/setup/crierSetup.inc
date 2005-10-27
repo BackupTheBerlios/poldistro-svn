@@ -2,7 +2,7 @@ var me := Self();
 var equipt := GetObjProperty(me, "Equipt");
 
 drop_anchor();
-var npccfg := ReadConfigFile("npcdesc");
+var npccfg := ReadConfigFile("::npcdesc");
 var speechelem := npccfg[me.npctemplate];
 var speech := GetConfigString(speechelem, "speech");
 var saywords := speechelem.saywords;

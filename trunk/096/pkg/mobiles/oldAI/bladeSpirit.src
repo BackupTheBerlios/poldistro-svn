@@ -17,7 +17,7 @@ include ":npcutils:animal";
 
 
 const HALT_THRESHOLD := 10;
-var npccfgfile := ReadConfigFile("npcdesc");
+var npccfgfile := ReadConfigFile("::npcdesc");
 var idlesnd1 := CInt(npccfgfile[me.npctemplate].idlesound1);
 var idlesnd2 := CInt(npccfgfile[me.npctemplate].idlesound2);
 var masterserial := GetObjProperty(me, "master");

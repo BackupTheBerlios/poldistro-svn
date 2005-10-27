@@ -23,7 +23,7 @@ include ":oldAI:main/sleepMode";
 include ":oldAI:main/closeDistance";
 
 const HALT_THRESHOLD := 15;
-var npccfgfile     := ReadConfigFile( "npcdesc" );
+var npccfgfile     := ReadConfigFile( "::npcdesc" );
 var LAST_BREATH    := ReadGameClock();
 var FLAME_STRENGTH := npccfgfile[me.npctemplate].flamestrength;
 var idlesnd1       := CInt(npccfgfile[me.npctemplate].idlesound1);

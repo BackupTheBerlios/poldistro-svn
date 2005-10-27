@@ -22,7 +22,7 @@ const REACT_THRESHOLD := 3;
 
 var speech := 99;
 var me:= Self();
-var npccfgfile := ReadConfigFile( "npcdesc" );
+var npccfgfile := ReadConfigFile( "::npcdesc" );
 var idlesnd1 := CInt(npccfgfile[me.npctemplate].idlesound1);
 var idlesnd2 := CInt(npccfgfile[me.npctemplate].idlesound2);
 var dmgsound := npccfgfile[me.npctemplate].damagedsound;

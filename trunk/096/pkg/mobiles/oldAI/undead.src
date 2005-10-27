@@ -15,7 +15,7 @@ include ":npcutils:anchors";
 
 const HALT_THRESHOLD := 8; // how close before he attacks?
 var me := Self();
-var npccfgfile := ReadConfigFile( "npcdesc" );
+var npccfgfile := ReadConfigFile( "::npcdesc" );
 var idlesnd1 := CInt(npccfgfile[me.npctemplate].idlesound1);
 var idlesnd2 := CInt(npccfgfile[me.npctemplate].idlesound2);
 
