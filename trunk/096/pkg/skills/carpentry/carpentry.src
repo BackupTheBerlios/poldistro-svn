@@ -1,993 +1,234 @@
+/* $Id$
+ *
+ */
 use cfgfile;
+use polsys;
 use util;
 
-include ":gumps:include/old/old-gumps";
-include "include/attributes";
-include "include/dist";
-include "util/repair";
-include "include/client";
-include "include/objtype";
-include "include/client";
-include "include/objtype";
+include ":attributes:attributeConstants";
+include ":attributes:attributes";
+include ":attributes:skillCheck";
+include ":crafting:crafting";
+include ":crafting:craftingRepair";
+include ":crafting:toolWear";
 include "include/canAccess";
-include "util/key";
-include "include/toolWear";
-include "include/noto";
 
-// These entries are unnecessary?  - HellRazor 19 Nov 02
-// var itemcfg   := ReadConfigFile(":combat:itemdesc");
-// var smith_cfg := ReadConfigFile("blacksmithy");
-GFref.x := 50;
-GFref.y := 50;
-var O := 501;
+CONST CARP_WOOD_SOUND := 0x23e;
 
-program carpentry(who, tool)
-  EraseObjProperty(who, "IsMeditating");
-  EraseObjProperty(who, "HealTimer");
-  if(!can_access(who, tool))
-    return;
-  endif
-  if((!Accessible(who,tool)) || (Distance(who, tool) > 1))
-    return 0;
-  endif
-  if(!ReserveItem(tool))
-    return;
-  endif
-  OldGFInitGump(0, 0);
-  OldGFNoDispose();
-  OldGFNoClose();
-  OldGFPage(0);
-  OldGFResizePic(0, 60, 2600, 500, 400);
-  OldGFGumpPic( 20, 120, 5100);
-  OldGFGumpPic( 28, 120, 5101);
-  OldGFGumpPic(118, 120, 5101);
-  OldGFGumpPic(208, 120, 5101);
-  OldGFGumpPic(298, 120, 5101);
-  OldGFGumpPic(370, 120, 5101);
-  OldGFGumpPic(460, 120, 5102);
-  OldGFGumpPic( 20, 128, 5103);
-  OldGFGumpPic( 28, 128, 5104);
-  OldGFGumpPic(118, 128, 5104);
-  OldGFGumpPic(208, 128, 5104);
-  OldGFGumpPic(298, 128, 5104);
-  OldGFGumpPic(370, 128, 5104);
-  OldGFGumpPic(460, 128, 5105);
-  OldGFGumpPic( 20, 136, 5058);
-  OldGFGumpPic(118, 136, 5058);
-  OldGFGumpPic(232, 136, 5058);
-  OldGFGumpPic(350, 136, 5058);
-  OldGFGumpPic( 20, 136, 5106);
-  OldGFGumpPic( 28, 136, 5107);
-  OldGFGumpPic(118, 136, 5107);
-  OldGFGumpPic(208, 136, 5107);
-  OldGFGumpPic(298, 136, 5107);
-  OldGFGumpPic(370, 136, 5107);
-  OldGFGumpPic(460, 136, 5108);
-  OldGFGumpPic( 28, 278, 5104);
-  OldGFGumpPic(118, 278, 5104);
-  OldGFGumpPic(208, 278, 5104);
-  OldGFGumpPic(298, 278, 5104);
-  OldGFGumpPic(368, 278, 5104);
-  OldGFGumpPic( 20, 278, 5103);
-  OldGFGumpPic(460, 278, 5105);
-  OldGFGumpPic( 20, 226, 5058);
-  OldGFGumpPic(118, 226, 5058);
-  OldGFGumpPic(232, 226, 5058);
-  OldGFGumpPic(350, 226, 5058);
-  OldGFGumpPic( 20, 366, 5106);
-  OldGFGumpPic( 28, 366, 5107);
-  OldGFGumpPic(118, 366, 5107);
-  OldGFGumpPic(208, 366, 5107);
-  OldGFGumpPic(298, 366, 5107);
-  OldGFGumpPic(370, 366, 5107);
-  OldGFGumpPic(460, 366, 5108);
-  OldGFGumpPic( 20, 350, 5100);
-  OldGFGumpPic( 28, 350, 5101);
-  OldGFGumpPic(118, 350, 5101);
-  OldGFGumpPic(208, 350, 5101);
-  OldGFGumpPic(298, 350, 5101);
-  OldGFGumpPic(370, 350, 5101);
-  OldGFGumpPic(460, 350, 5102);
-  OldGFTextLine(110,  80, 900, "CARPENTRY SELECTION MENU");
-  OldGFTextLine( 30, 121,   0, "Materials");
-  OldGFTextLine(160, 121,   0, "Tables");
-  OldGFTextLine(260, 121,   0, "Chairs");
-  OldGFTextLine(350, 121,   0, "Instruments");
-  OldGFTextLine( 30, 351,   0, "Shelves");
-  OldGFTextLine(140, 351,   0, "Containers");
-  OldGFTextLine(265, 351,   0, "Misc");
-  OldGFTextLine(365, 351,   0, "add-ons");
-  OldGFTextLine( 90, 380, 900, "Make Last");
-  var lastitm := OldGFButtonID( 70, 384,   3, 4, 99);
-  var close   := OldGFButtonID(410, 380, 242, 241, 1);
-  OldGFButtonPage(110, 123, 5209, 5209,  2);
-  OldGFButtonPage(210, 123, 5209, 5209,  3);
-  OldGFButtonPage(310, 123, 5209, 5209,  4);
-  OldGFButtonPage(440, 123, 5209, 5209,  5);
-  OldGFButtonPage( 90, 353, 5209, 5209,  6);
-  OldGFButtonPage(220, 353, 5209, 5209,  7);
-  OldGFButtonPage(320, 353, 5209, 5209,  8);
-  OldGFButtonPage(430, 353, 5209, 5209,  9);
-  OldGFTextLine(  300, 420, 900, "How Many?");
-  OldGFGumpPic(390, 417, 2443);
-  var sa := GetObjProperty(who, "#CarpAmt");
-  if(!sa)
-    sa := 1;
-  endif
-  var ct := OldGFTextEntry(400, 420, 100, 30, 0, sa);
-  ComposeSubMenu(who);
-  var res := OldGFSendGump(who);
-  if((res[0] == 999) || (res[close.keyid]))
-    SendSysMessage(who, "Cancelled");
-    return;
-  endif
-  var amt := CInt(SplitWords(res[ct.keyid])[2]);
-  if(!amt)
-    amt := 1;
-  elseif(amt > 10)
-    SendSysMessage(who, "You can only make up to 10 at a time.");
-    return;
-  endif
-  SetObjProperty(who, "#CarpAmt", amt);
-  var cont := tool.container;
-  if((!cont) || (cont.isa(POLCLASS_MOBILE)))
-    cont := who.backpack;
-  endif
-  var the_objtype := res[0];
-  if(res[lastitm.keyid])
-    the_objtype := GetObjProperty(who, "LastCarpentryItem");
-    if(!the_objtype)
-      SendSysMessage(who, "You have never woodworked before.");
-      return;
-    endif
-  endif
-  SetObjProperty(who, "LastCarpentryItem", the_objtype);
-  if(makewooditems(who, tool, the_objtype, amt, cont) == 1)
-    var chk := 0;
-    SendSysMessage(who, "Target the wood you wish to work with.");
-    var item1 := Target(who);
-    if(!item1)
-      SendSysMessage(who, "Cancelled.");
-      return;
-    endif
-    var x := who.x;
-    var y := who.y;
-    var cfg := ReadConfigFile( "carpentry" );
-    var material2obj := cfg[the_objtype]."material2obj";
-    var item2 := 0;
-    if(material2obj)
-      var holder := "";
-      if(material2obj == "cloth")
-        holder := "fabric";
-      else
-        holder := "ingots";
-      endif
-      SendSysMessage(who, "Target the " + holder + " you wish to use.");
-      item2 := Target(who);
-      if(!item2)
-        SendSysMessage(who, "Cancelled.");
-        return;
-      endif
-    endif
-    var totalcloth := item2.amount * 50;
-    if((item2.objtype >= UOBJ_BOLT_START) && (item2.objtype <= UOBJ_BOLT_END))
-      totalcloth := item2.amount * 50;
-      if(item2.container)
-        var bag := item2.container;
-        var counter := 1;
-        MoveItemToLocation(item2, 1, 1, 0, MOVEITEM_FORCELOCATION);
-        var holder := CreateItemInContainer(who.backpack, 0x1766, 50);
-        if(holder)
-          while(counter < item2.amount)
-            if(CreateItemInContainer(who.backpack, 0x1766, 50))
-              counter := counter + 1;
-            else
-              counter := item2.amount;
-              DestroyItem(holder);
-              MoveItemToContainer(item2, bag);
-              item2 := 0;
-              break;
-            endif
-          endwhile
-          if(holder)
-            DestroyItem(item2);
-            item2 := holder;
-          endif
-        else
-          MoveItemToContainer(item2, bag);
-          item2 := 0;
-        endif
-      else
-        var x := item2.x;
-        var y := item2.y;
-        var z := item2.z;
-        if(MoveItemToLocation(item2, 1, 1, 0, MOVEITEM_FORCELOCATION))
-          var temppack := CreateItemAtLocation(1, 1, 0, 0xe40, 1, who.realm);
-          var holder := CreateItemInContainer(temppack, 0x1766, totalcloth);
-          if(MoveItemToLocation(holder, x, y, z, MOVEITEM_NORMAL))
-            DestroyItem(item2);
-            item2 := holder;
-          else
-            MoveItemToLocation(item2, x, y, z, MOVEITEM_FORCELOCATION);
-            DestroyItem(holder);
-            item2 := 0;
-          endif
-          DestroyItem(temppack);
-        else
-          item2 := 0;
-        endif
-      endif
-      if(item2 == 0)
-        SendSysMessage(who, "Your backpack was too full.");
-        return;
-      endif
-    endif
-    while(chk < amt)
-      if((who.x != x) || (who.y != y))
-        SendSysMessage(who, "You stop what you are doing.");
-        break;
-      endif
-      if(!tool)
-        break;
-      endif
-      if(MakeCarpentryItems(who, tool, the_objtype, cont, item1, item2) == 1)
-        chk := chk + 1;
-      else
-        break;
-      endif
-    endwhile
-  endif
+var item_config     := ReadConfigFile(":*:itemdesc");
+var craft_config    := ReadConfigFile(":carpentry:carpentry");
+
+program use_carptool(who, tool)
+
+	if(!can_access(who, tool))
+		return 0;
+	endif
+	if( (!tool.movable) or !ReserveItem(tool) )
+		SendSysMessage(who, "You cannot use that");
+		return 0;
+	endif
+	if( !(tool in EnumerateItemsInContainer(who.backpack)) )
+		SendSysMessage(who, "That item is not in your backpack.");
+		return 0;
+	endif
+
+	EraseObjProperty(who, "IsMeditating");
+	EraseObjProperty(who, "HealTimer");
+
+	var rinfo := sendCraftGump(who, "Carpentry");
+
+	// OK was pressed, close it on out
+	if(rinfo == 0)
+		return 0;
+	endif
+
+	var the_objtype := rinfo[1];
+	var amt         := rinfo[2];
+	var repairit    := rinfo[3];
+
+	if(repairit)
+		repair_this(who, craft_skill);
+		return 0;
+	endif
+
+	if(craft_config[Hex(the_objtype)].assemble == 1)
+		AssembleParts(who, tool, the_objtype, amt);
+	else
+		CarpentryItems(who, tool, the_objtype, amt);
+	endif
+
 endprogram
 
-function MakeCarpentryItems(who, tool, objtype, cont, item1, item2)
-  EraseObjProperty(who, "IsMeditating");
-  EraseObjProperty(who, "HealTimer");
-  var itemname, theitem;
-  var elm, exchk, skill, name, skill2, skillid, material, material2, material2obj;
-  var carpentryskill := CInt(GetEffectiveSkill(who, SKILLID_CARPENTRY));
-  var cfg := ReadConfigFile( "carpentry" );
-  case(objtype)
-    0x0faf: objtype := 0xb000;
-    0x0fb1: objtype := 0xb001;
-    0x1070: objtype := 0xb002;
-    0x1ec0: objtype := 0xb003;
-    0x1019: objtype := 0xb004;
-    0x0fea: objtype := 0xb005;
-    0x1216: objtype := 0xb006;
-    0x197a: objtype := 0xb007;
-    0x105f: objtype := 0xb008;
-    0x0a81: objtype := 0xb009;
-    0x0b42: objtype := 0xb00a;
-    0x1920: objtype := 0xb00b;
-    0x092b: objtype := 0xb00c;
-    0x0461: objtype := 0xb00d;
-  endcase
-  elm          := FindConfigElem(cfg, objtype);
-  skill        := elm.skill;
-  name         := elm.Name;
-  exchk        := elm.exchk;
-  skillid      := elm.skillID;
-  skill2       := Cint(elm.skill2);
-  material     := elm.material;
-  material2    := CInt(elm.material2);
-  material2obj := elm.material2obj;
-  var modpts := 0;
-  if(carpentryskill >=  skill)
-    modpts := (carpentryskill - (skill - 10));
-  endif
-  var ok2:=0;
-  if(!material2)
-    ok2 := 1;
-  endif
-  if(!skillid)
-    ok2:=1;
-  endif
-  if(!can_access(who, item1))
-    return 0;
-  endif
-  if((!Accessible(who, item1)) || (Distance(who, item1) > 2) || (!ReserveItem(item1)))
-    SendSysMessage(who, "You cannot use that.");
-    return 0;
-  endif
-  if((item1.objtype != 0x1bdd) && (item1.objtype != 0x1bd7))
-    SendSysMessage(who, "You can only work with wood.");
-    return 0;
-  endif
-  if(material > item1.amount)
-    SendSysMessage(who, "You don't have enough wood to make that.");
-    return 0;
-  endif
-  if(material2)
-    if(item2.objtype in  gettypes(material2obj))
-      if(item2.amount >= material2)
-        if(!ReserveItem(item2))
-          SendSysMessage(who, "You cannot use that.");
-          return 0;
-        endif
-      else
-        SendSysMessage(who, "You don't have enough of that material.");
-        return 0;
-      endif
-    else
-      SendSysMessage(who, "That's not the correct material.");
-      return 0;
-    endif
-    if(!can_access(who, item2))
-      return 0;
-    endif
-    if((!Accessible(who, item2)) || (Distance(who, item2) > 2) || (!ReserveItem(item2)))
-      SendSysMessage(who, "You cannot use that.");
-      return 0;
-    endif
-  endif
-  PlaySoundEffect(who, 0x23e);
-  sleep(2);
-  PlaySoundEffect(who, 0x23e);
-  sleep(2);
-  PlaySoundEffect(who, 0x23e);
-  sleep(2);
-  var chk := 0;
-  if(CheckSkill(who, SKILLID_CARPENTRY, skill, (skill * 2)))
-    if(skillid)
-      if(CheckSkill(who, skillid, CInt(skill2), (skill2 * 2)))
-        if(SubtractAmount(item1, material) && SubtractAmount(item2, material2))
-          theitem := CreateItemInContainer(cont, objtype, 1);
-          if(theitem)
-            CheckToolWear (who, tool, SKILLID_CARPENTRY);
-            chk := 1;
-          endif
-        endif
-      endif
-    else
-      if(SubtractAmount(item1, material))
-        theitem := CreateItemInContainer(cont, objtype, 1);
-        if(theitem)
-          CheckToolWear (who, tool, SKILLID_CARPENTRY);
-          chk := 1;
-        endif
-      endif
-    endif
-  endif
-  if(chk == 0)
-    SubtractAmount(item1, (material / 2));
-    if(material2)
-      SubtractAmount(item2, CInt(material2 / 2));
-    endif
-    SendSysMessage( who, "You destroy some materials.");
-    return 1;
-  endif
-  theitem.movable := 1;
-  var rint := RandomInt(100);
-  if(modpts >= rint)
-    ExceptionalFameMod(who, carpentryskill, skill, skill);
-    if(exchk)
-      theitem.quality := 1.2;
-      theitem.hp := theitem.maxhp;
-      SetObjProperty(theitem, "Exceptional", 1);
-      SetObjProperty(theitem, "type","c");
-      itemname:="an exceptional " + name;
-      if(carpentryskill >= 99)
-        itemname := itemname + " [crafted by " + who.name + "]";
-      endif
-      SetName(theitem, itemname);
-      SendSysMessage(who, "You make an exceptional item and put it in your pack.");
-    endif
-  else
-    var fq :=  RandomInt(GetEffectiveSkill(who, SKILLID_CARPENTRY));
-    if(skill > 20)
-      skill := skill - 20;
-    else
-      skill := 3;
-    endif
-    if((fq < skill) and (exchk))
-      SendSysMessage( who, "You create the item, but its quality is below average." );
-      var val := RandomInt(2) + 1;
-      case(val)
-        1: theitem.quality := 0.7;
-        2: theitem.quality := 0.8;
-        3: theitem.quality := 0.9;
-      endcase
-      theitem.hp := theitem.maxhp;
-    else
-      SendSysMessage( who, "You make the item and put it in your pack." );
-    endif
-  endif
-  if((theitem.objtype in array( UOBJ_CHEST, UOBJ_BOX, 0x0e77, 0x0e3c, 0x0e3f, 0x09a9, 0x0e43, 0x0e42, 0x0e80, 0x09aa )) || (cfg[theitem.objtype].lockable))
-    var tinker:= CheckSkill(who, SKILLID_TINKERING, 40, 40);
-    if(tinker)
-      SetObjProperty(theitem, "lockable","1");
-      var lockid := AllocLockId();
-      var thekey := CreateItemInContainer(theitem, UOBJ_COPPER_KEY, 1 );
-      SetObjProperty(thekey, "lockid",lockid);
-      SetObjProperty(theitem,"lockid",lockid);
-      SetObjProperty(theitem,"LockPickDiff", GetEffectiveSkill(who, SKILLID_TINKERING));
-      SendSysMessage(who, "You put the key inside the container.");
-    endif
-  endif
-  return 1;
+function AssembleParts(who, tool, objtype, amt)
+
+	case(objtype)
+		0x1bd7:		CreateBoards(who, tool, objtype); return 1;
+		default:	CraftAssembly(who, craft_skill, tool, objtype, amt); return 1;
+	endcase
+
 endfunction
 
-function ComposeSubMenu(who)
-  var num := 2;
-  var skill := (GetEffectiveSkill(who, SKILLID_CARPENTRY) + 20);
-  var skill2;
-  var color := 0;
-  var cfg := ReadConfigFile(":carpentry:carpentry");
-  while(num < 10)
-    case(num)
-       2: OldGFPage(2);        // Page 2 (building materials)
-          if(skill >= CInt(cfg[0x1bd7]."skill"))
-            color := 900;
-            OldGFButtonIDC(150, 200, 210, 211, 1, 7127);
-          endif
-          OldGFTextLine(120, 175, color, "boards");
-          OldGFTilePic( 100, 200, 7127);
-          color := 0;
-          if(skill >= CInt(cfg[0x1db8]."skill"))
-            color := 900;
-            OldGFButtonIDC(300, 200, 210, 211, 1, 7608);
-          endif
-          OldGFTextLine(250, 175, color, "barrel lid");
-          OldGFTilePic( 250, 200, 7608);
-         color := 0;
-          if(skill >= CInt(cfg[0x1eb2]."skill"))
-            color := 900;
-            OldGFButtonIDC(150, 295, 210, 211, 1, 7858);
-          endif
-          OldGFTextLine( 90, 270, color, "barrel staves");
-          OldGFTilePic( 100, 295, 7858);
-          color := 0;
-       3: OldGFPage(3);        // Page 3 (tables)
-          if(skill >= CInt(cfg[0xb3a]."skill"))
-            color := 900;
-            OldGFButtonIDC(150, 200, 210, 211, 1, 2874);
-          endif
-          OldGFTextLine( 90, 175, color, "small table");
-          OldGFTilePic( 100, 200, 2874);
-          color := 0;
-          if(skill >= CInt(cfg[0x0b3f]."skill"))
-            color := 900;
-            OldGFButtonIDC(300, 200, 210, 211, 1, 2879);
-          endif
-          OldGFTextLine(260, 175, color, "large counter");
-          OldGFTilePic( 250, 195, 2879);
-          color := 0;
-          if(skill >= CInt(cfg[0x0b7d]."skill"))
-            color := 900;
-            OldGFButtonIDC(150, 285, 210, 211, 1, 2941);
-          endif
-          OldGFTextLine(100, 260, color, "yew table");
-          OldGFTilePic(  75, 280, 2941);
-          color := 0;
-          if(skill >= CInt(cfg[0x0b7c]."skill"))
-            color := 900;
-            OldGFButtonIDC(300, 285, 210, 211, 1, 2940);
-          endif
-          OldGFTextLine(260, 260, color, "table");
-          OldGFTilePic( 210, 280, 2940);
-          color := 0;
-       4: OldGFPage(4);        // Page 4 (chairs)
-          if(skill >= CInt(cfg[0x0a2a]."skill"))
-            color := 900;
-            OldGFButtonIDC(110, 185, 210, 211, 1, 2602);
-          endif
-          OldGFTextLine( 65, 160, color, "stool");
-          OldGFTilePic(  60, 185, 2602);
-          color := 0;
-          if(skill >= CInt(cfg[0x0b2c]."skill"))
-            color := 900;
-            OldGFButtonIDC(210, 185, 210, 211, 1, 2860);
-          endif
-          OldGFTextLine(160, 160, color, "bench");
-          OldGFTilePic( 160, 185, 2860);
-          color := 0;
-          if(skill >= CInt(cfg[0x0b2e]."skill"))
-            color := 900;
-            OldGFButtonIDC(310, 185, 210, 211, 1, 2862);
-          endif
-          OldGFTextLine(255, 160, color, "wood throne");
-          OldGFTilePic( 260, 185, 2862);
-          color := 0;
-          if(skill >= CInt(cfg[0x0b32]."skill"))
-            color := 900;
-            OldGFButtonIDC(410, 185, 210, 211, 1, 2866);
-          endif
-          OldGFTextLine(370, 160, color, "throne");
-          OldGFTilePic( 345, 185, 2866);
-          color := 0;
-          if(skill >= CInt(cfg[0x0b4f]."skill"))
-            color := 900;
-            OldGFButtonIDC(110, 280, 210, 211, 1, 2895);
-          endif
-          OldGFTextLine( 60, 255, color, "fancy chair");
-          OldGFTilePic(  45, 275, 2895);
-          color := 0;
-          if(skill >= CInt(cfg[0x0b57]."skill"))
-            color := 900;
-            OldGFButtonIDC(210, 280, 210, 211, 1, 2903);
-          endif
-          OldGFTextLine(160, 255, color, "wood chair");
-          OldGFTilePic( 170, 280, 2903);
-          color := 0;
-          if(skill >= CInt(cfg[0x0b5b]."skill"))
-            color := 900;
-            OldGFButtonIDC(310, 280, 210, 211, 1, 2907);
-          endif
-          OldGFTextLine(260, 255, color, "poor chair");
-          OldGFTilePic( 275, 280, 2907);
-          color := 0;
-       5: OldGFPage(5);        // Page 5 (instruments)
-          if(skill >= CInt(cfg[0x0eb1]."skill"))
-            color := 900;
-            OldGFButtonIDC(110, 200, 210, 211, 1, 3761);
-          endif
-          OldGFTextLine( 65, 175, color, "standing harp");
-          OldGFTilePic(  45, 200, 3761);
-          color := 0;
-          if(skill >= CInt(cfg[0x0eb2]."skill"))
-            color := 900;
-            OldGFButtonIDC(210, 200, 210, 211, 1, 3762);
-          endif
-          OldGFTextLine(180, 175, color, "lap harp");
-          OldGFTilePic( 160, 200, 3762);
-          color := 0;
-          if(skill >= CInt(cfg[0x0eb3]."skill"))
-            color := 900;
-            OldGFButtonIDC(310, 200, 210, 211, 1, 3763);
-          endif
-          OldGFTextLine(285, 175, color, "lute");
-          OldGFTilePic( 260, 200, 3763);
-          color := 0;
-          if(skill >= CInt(cfg[0x0e9c]."skill"))
-            color := 900;
-            OldGFButtonIDC(410, 200, 210, 211, 1, 3740);
-          endif
-          OldGFTextLine(370, 175, color, "drum");
-          OldGFTilePic( 360, 200, 3740);
-          color := 0;
-          if(skill >= CInt(cfg[0x0e9d]."skill"))
-            color := 900;
-            OldGFButtonIDC(110, 295, 210, 211, 1, 3741);
-          endif
-          OldGFTextLine( 65, 270, color, "tambourine");
-          OldGFTilePic(  60, 295, 3741);
-          color := 0;
-          if(skill >= CInt(cfg[0x0e9d]."skill"))
-            color := 900;
-           OldGFButtonIDC(210, 295, 210, 211, 1, 3742);
-          endif
-          OldGFTextLine(160, 270, color, "tasseled tambourine");
-          OldGFTilePic( 160, 295, 3742);
-          color := 0;
-       6: OldGFPage(6);        //Page 6 (large furniture)
-          if(skill >= CInt(cfg[0x0a34]."skill"))
-            color := 900;
-            OldGFButtonIDC( 70, 175, 210, 211, 1, 2612);
-          endif
-          OldGFTextLine( 20, 150, color, "oak dresser");
-          OldGFTilePic(  25, 175, 2612);
-          color := 0;
-          if(skill >= CInt(cfg[0x0a38]."skill"))
-            color := 900;
-            OldGFButtonIDC( 70, 275, 210, 211, 1, 2616);
-          endif
-          OldGFTextLine( 20, 250, color, "cherry dresser");
-          OldGFTilePic(  20, 275, 2616);
-          color := 0;
-          if(skill >= CInt(cfg[0x0a53]."skill"))
-            color := 900;
-            OldGFButtonIDC(200, 200, 210, 211, 1, 2643);
-          endif
-          OldGFTextLine(150, 175, color, "oak armoir");
-          OldGFTilePic( 150, 200, 2643);
-          color := 0;
-          if(skill >= CInt(cfg[0x0a51]."skill"))
-            color := 900;
-            OldGFButtonIDC(300, 200, 210, 211, 1, 2641);
-          endif
-          OldGFTextLine(250, 175, color, "cherry armoir");
-          OldGFTilePic( 250, 200, 2641);
-          color := 0;
-          if(skill >= CInt(cfg[0x0a9d]."skill"))
-            color := 900;
-            OldGFButtonIDC(400, 200, 210, 211, 1, 2717);
-          endif
-          OldGFTextLine(360, 175, color, "bookshelf");
-          OldGFTilePic( 350, 200, 2717);
-          color := 0;
-       7: OldGFPage(7);        //Page 7 (Containers)
-          if(skill >= CInt(cfg[0x0e7f]."skill"))
-            color := 900;
-            OldGFButtonIDC(110, 200, 210, 211, 1, 3711);
-          endif
-          OldGFTextLine( 65, 175, color, "open keg");
-          OldGFTilePic(  60, 200, 3711);
-          color := 0;
-          if(skill >= CInt(cfg[0x09aa]."skill"))
-            color := 900;
-            OldGFButtonIDC(210, 200, 210, 211, 1, 2474);
-          endif
-          OldGFTextLine(160, 175, color, "small box");
-          OldGFTilePic( 160, 200, 2474);
-          color := 0;
-          if(skill >= CInt(cfg[0x0e77]."skill"))
-            color := 900;
-            OldGFButtonIDC(310, 200, 210, 211, 1, 3703);
-          endif
-          OldGFTextLine(275, 175, color, "barrel");
-          OldGFTilePic( 260, 200, 3703);
-          color := 0;
-          if(skill >= CInt(cfg[0x0e43]."skill"))
-            color := 900;
-            OldGFButtonIDC(410, 200, 210, 211, 1, 3651);
-          endif
-          OldGFTextLine(360, 175, color, "wooden chest");
-          OldGFTilePic( 360, 200, 3651);
-          color := 0;
-          if(skill >= CInt(cfg[0x09a9]."skill"))
-            color := 900;
-            OldGFButtonIDC(110, 295, 210, 211, 1, 2473);
-          endif
-          OldGFTextLine( 65, 270, color, "small crate");
-          OldGFTilePic(  60, 295, 2473);
-          color := 0;
-          if(skill >= CInt(cfg[0x0e3f]."skill"))
-            color := 900;
-           OldGFButtonIDC(210, 295, 210, 211, 1, 3647);
-          endif
-          OldGFTextLine(160, 270, color, "medium crate");
-          OldGFTilePic( 160, 295, 3647);
-          color := 0;
-          if(skill >= CInt(cfg[0x0e3c]."skill"))
-            color := 900;
-            OldGFButtonIDC(310, 295, 210, 211, 1, 3644);
-          endif
-          OldGFTextLine(260, 270, color, "large crate");
-          OldGFTilePic( 260, 295, 3644);
-          color := 0;
-       8: OldGFPage(8);        //Page 8 (miscellaneous)
-          if(skill >= CInt(cfg[0x0dc0]."skill"))
-            color := 900;
-            OldGFButtonIDC(100, 200, 210, 211, 1, 3520);
-          endif
-          OldGFTextLine( 50, 175, color, "fishing pole");
-          OldGFTilePic(  45, 200, 3520);
-          color := 0;
-          if(skill >= CInt(cfg[0x13f9]."skill"))
-            color := 900;
-            OldGFButtonIDC(210, 200, 210, 211, 1, 5113);
-          endif
-          OldGFTextLine(145, 175, color, "gnarled staff");
-          OldGFTilePic( 160, 200, 5113);
-          color := 0;
-          if(skill >= CInt(cfg[0x0e81]."skill"))
-            color := 900;
-            OldGFButtonIDC(310, 200, 210, 211, 1, 3713);
-          endif
-          OldGFTextLine(245, 175, color, "shepherd's crook");
-          OldGFTilePic( 260, 200, 3713);
-          color := 0;
-          if(skill >= CInt(cfg[0x0e8a]."skill"))
-            color := 900;
-            OldGFButtonIDC(410, 200, 210, 211, 1, 3722);
-          endif
-          OldGFTextLine(365, 175, color, "quarter staff");
-          OldGFTilePic( 360, 200, 3722);
-          color := 0;
-          if(skill >= CInt(cfg[0x0ec6]."skill"))
-            color := 900;
-            OldGFButtonIDC(110, 295, 210, 211, 1, 3782);
-          endif
-          OldGFTextLine( 65, 270, color, "dress form");
-          OldGFTilePic(  80, 295, 3782);
-          color := 0;
-          if(skill >= CInt(cfg[0x0f64]."skill"))
-            color := 900;
-            OldGFButtonIDC(210, 295, 210, 211, 1, 3940);
-          endif
-          OldGFTextLine(185, 270, color, "torch");
-          OldGFTilePic( 160, 295, 3940);
-          color := 0;
-          if(skill >= CInt(cfg[0x13b3]."skill"))
-            color := 900;
-            OldGFButtonIDC(310, 295, 210, 211, 1, 5043);
-          endif
-          OldGFTextLine(285, 270, color, "club");
-          OldGFTilePic( 270, 295, 5043);
-          color := 0;
-          if(skill >= CInt(cfg[0x1b7a]."skill"))
-            color := 900;
-            OldGFButtonIDC(410, 295, 210, 211, 1, 7034);
-          endif
-          OldGFTextLine(360, 270, color, "wooden shield");
-          OldGFTilePic( 360, 295, 7034);
-          color := 0;
-       9: OldGFPage(9);        //Page 9 (add-ons)
-          skill2 := GetEffectiveSkill(who, CInt(cfg[0xb002]."skillID"));
-          if((skill >= CInt(cfg[0xb002]."skill")) && (skill2 >= CInt(cfg[0xb002]."skill2")))
-            color := 900;
-            OldGFButtonIDC( 20, 175, 210, 211, 1, 45058);
-          endif
-          OldGFTextLine( 45, 175, color, "training dummy deed");
-          color := 0;
-          skill2 := GetEffectiveSkill(who, CInt(cfg[0xb003]."skillID"));
-          if((skill >= CInt(cfg[0xb003]."skill")) && (skill2 >= CInt(cfg[0xb003]."skill2")))
-            color := 900;
-            OldGFButtonIDC( 20, 200, 210, 211, 1, 45059);
-          endif
-          OldGFTextLine( 45, 200, color, "pickpocket dip deed");
-          color := 0;
-          skill2 := GetEffectiveSkill(who, CInt(cfg[0xb004]."skillID"));
-          if((skill >= CInt(cfg[0xb004]."skill")) && (skill2 >= CInt(cfg[0xb004]."skill2")))
-            color := 900;
-            OldGFButtonIDC( 20, 225, 210, 211, 1, 45060);
-          endif
-          OldGFTextLine( 45, 225, color, "spinning wheel deed");
-          color := 0;
-          skill2 := GetEffectiveSkill(who, CInt(cfg[0xb008]."skillID"));
-          if((skill >= CInt(cfg[0xb008]."skill")) && (skill2 >= CInt(cfg[0xb008]."skill2")))
-            color := 900;
-            OldGFButtonIDC( 20, 250, 210, 211, 1, 45064);
-          endif
-          OldGFTextLine( 45, 250, color, "loom deed");
-          color := 0;
-          skill2 := GetEffectiveSkill(who, CInt(cfg[0xb009]."skillID"));
-          if((skill >= CInt(cfg[0xb009]."skill")) && (skill2 >= CInt(cfg[0xb009]."skill2")))
-            color := 900;
-            OldGFButtonIDC( 20, 275, 210, 211, 1, 45065);
-          endif
-          OldGFTextLine( 45, 275, color, "large bed deed");
-          color := 0;
-          skill2 := GetEffectiveSkill(who, CInt(cfg[0xb006]."skillID"));
-          if((skill >= CInt(cfg[0xb006]."skill")) && (skill2 >= CInt(cfg[0xb006]."skill2")))
-            color := 900;
-            OldGFButtonIDC( 20, 300, 210, 211, 1, 45062);
-          endif
-          OldGFTextLine( 45, 300, color, "abbatoir deed");
-          color := 0;
-          skill2 := GetEffectiveSkill(who, CInt(cfg[0xb005]."skillID"));
-          if((skill >= CInt(cfg[0xb005]."skill")) && (skill2 >= CInt(cfg[0xb005]."skill2")))
-            color := 900;
-            OldGFButtonIDC( 20, 325, 210, 211, 1, 45061);
-          endif
-          OldGFTextLine( 45, 325, color, "pentagram deed");
-          color := 0;
-          skill2 := GetEffectiveSkill(who, CInt(cfg[0xb00a]."skillID"));
-          if((skill >= CInt(cfg[0xb00a]."skill")) && (skill2 >= CInt(cfg[0xb00a]."skill2")))
-            color := 900;
-            OldGFButtonIDC(260, 175, 210, 211, 1, 45066);
-          endif
-          OldGFTextLine(285, 175, color, "water trough deed");
-          color := 0;
-          skill2 := GetEffectiveSkill(who, CInt(cfg[0xb00b]."skillID"));
-          if((skill >= CInt(cfg[0xb00b]."skill")) && (skill2 >= CInt(cfg[0xb00b]."skill2")))
-            color := 900;
-            OldGFButtonIDC(260, 200, 210, 211, 1, 45067);
-          endif
-          OldGFTextLine(285, 200, color, "mill deed");
-          color := 0;
-          skill2 := GetEffectiveSkill(who, CInt(cfg[0xb00c]."skillID"));
-          if((skill >= CInt(cfg[0xb00c]."skill")) && (skill2 >= CInt(cfg[0xb00c]."skill2")))
-            color := 900;
-            OldGFButtonIDC(260, 225, 210, 211, 1, 45068);
-          endif
-          OldGFTextLine(285, 225, color, "stone oven deed");
-          color := 0;
-          skill2 := GetEffectiveSkill(who, CInt(cfg[0xb000]."skillID"));
-          if((skill >= CInt(cfg[0xb000]."skill")) && (skill2 >= CInt(cfg[0xb000]."skill2")))
-            color := 900;
-            OldGFButtonIDC(260, 250, 210, 211, 1, 45056);
-          endif
-          OldGFTextLine(285, 250, color, "anvil deed");
-          color := 0;
-          skill2 := GetEffectiveSkill(who, CInt(cfg[0xb001]."skillID"));
-          if((skill >= CInt(cfg[0xb001]."skill")) && (skill2 >= CInt(cfg[0xb001]."skill2")))
-            color := 900;
-            OldGFButtonIDC(260, 275, 210, 211, 1, 45057);
-          endif
-          OldGFTextLine(285, 275, color, "small forge deed");
-          color := 0;
-          skill2 := GetEffectiveSkill(who, CInt(cfg[0xb007]."skillID"));
-          if((skill >= CInt(cfg[0xb007]."skill")) && (skill2 >= CInt(cfg[0xb007]."skill2")))
-            color := 900;
-            OldGFButtonIDC(260, 300, 210, 211, 1, 45063);
-          endif
-          OldGFTextLine(285, 300, color, "large forge deed");
-          color := 0;
-          skill2 := GetEffectiveSkill(who, CInt(cfg[0xb011]."skillID"));
-          if((skill >= CInt(cfg[0xb011]."skill")) && (skill2 >= CInt(cfg[0xb011]."skill2")))
-            color := 900;
-            OldGFButtonIDC(260, 325, 210, 211, 1, 45073);
-          endif
-          OldGFTextLine(285, 325, color, "small bed deed");
-    endcase
-    num := num + 1;
-  endwhile
-  return;
+function CreateBoards(who, tool, objtype)
+
+	// Wood is sent for the ResourceList entry type.
+	var itemchk := MaterialSelection(who, craft_skill, lower("Wood"));
+	if( !itemchk )
+		return 0;
+	endif
+	var item1 := itemchk[1];
+	var item1objtype := itemchk[2];
+	var ptmod := itemchk[3];
+
+	if( CInt(item1.objtype) == CInt(objtype) )
+		return 0;
+	endif
+
+	sleep(2);
+	var theitem := 0, chk := 0;
+	if( SkillCheck(who, craft_skill, 0, (ptmod/2)) > 0 )
+		var amt := item1.amount;
+		if( SubtractAmount(item1, 1) )
+			var ret := GetItemDescriptor(0x1bd7);
+			ret.Color := resource_config[item1objtype].Color;
+			ret.CProps.insert("boards", item1objtype); //assuming the existing stack have this color and cprop
+			theitem := CreateItemInBackpack(who, ret, 1);
+			if( theitem )
+				set_critical(1);
+				SubtractAmount(item1, (amt - 1));
+				if( resource_config[item1objtype].Name != "plain" )
+					var tempname := (resource_config[item1objtype].Name) + " " + "board";
+					SetName(theitem, tempname);
+				endif
+				AddAmount(theitem, (amt - 1));
+				set_critical(0);
+				CheckToolWear (who, tool, craft_skill);
+				chk := 1;
+			endif
+		endif
+	endif
+	if( chk == 0 )
+		SendSysMessage(who, "You don't have enough room in your backpack!");
+		return 0;
+	endif
+
 endfunction
 
-function OldGFButtonIDC(x, y, release, press, close, retval)
-  close := close;
-  var line := "button " + CStr(GFref.x + CInt(x)) + " " + CStr(GFref.y + CInt(y));
-  line := line + " " + CStr(CInt(release)) + " " + CStr(CInt(press)) + " ";
-  line := line + "1 0 ";
-  line := line + CStr(retval);
-  GFlayout.append( line );
-  return XGFRetVal( GFlayout.size(), -1, GFbutid - 1 );
-endfunction
+function CarpentryItems(who, tool, objtype, amt)
 
-function makewooditems(who, tool, objtype, lop, cont)
-  var theitem;
-  var cfg := ReadConfigFile( "carpentry" );
-  var skill := cfg[objtype]."skill";
-  var carpentryskill := CInt(GetEffectiveSkill(who, SKILLID_CARPENTRY));
-  var modpts := 0;
-  if(carpentryskill >= skill)
-    modpts := (carpentryskill - (skill - 10));
-  endif
-  var counter := 0, chk := 0;
-  if(objtype == 0xe7f)
-    var stavearray, stavecounter, lidcounter, hoopcounter, hoop, lid, checker;
-    var x := who.x;
-    var y := who.y;
-    while(counter < lop)
-      if((who.x != x) || (who.y != y))
-        SendSysMessage(who, "You stop what you are doing.");
-        break;
-      endif
-      if(chk == 1)
-        break;
-      endif
-      stavearray := {};
-      stavecounter := 0;
-      lidcounter := 0;
-      hoopcounter := 0;
-      hoop := 0;
-      lid := 0;
-      foreach thing in EnumerateItemsInContainer(who.backpack)
-        if(thing.objtype == 0x1eb2)
-          if(stavecounter < 3)
-            if(ReserveItem(thing))
-              stavearray.append(thing);
-              stavecounter := stavecounter + 1;
-            endif
-          endif
-        elseif(thing.objtype == 0x1db8)
-          if(lidcounter == 0)
-            if(ReserveItem(thing))
-              lid := thing;
-              lidcounter := lidcounter + 1;
-            endif
-          endif
-        elseif(thing.objtype == 0x10e1)
-          if(hoopcounter == 0)
-            if(ReserveItem(thing))
-              hoop := thing;
-              hoopcounter := hoopcounter + 1;
-            endif
-          endif
-        endif
-        if((stavecounter == 3) && (hoopcounter == 1) && (lidcounter == 1))
-          break;
-        endif
-      endforeach
-      if((stavecounter < 3) || (hoopcounter == 0) || (lidcounter == 0))
-        SendSysMessage(who, "You do not have all the required pieces.");
-        chk := 1;
-      else
-        PlaySoundEffect(who, 0x23e);
-        sleep(2);
-        PlaySoundEffect(who, 0x23e);
-        sleep(2);
-        PlaySoundEffect(who, 0x23e);
-        sleep(2);
-        if(CheckSkill(who, SKILLID_CARPENTRY, CInt(skill), CInt(skill*4)))
-          checker := 0;
-          foreach thing in stavearray
-            if(!DestroyItem(thing))
-              checker := 1;
-              break;
-            endif
-          endforeach
-          if(!DestroyItem(hoop))
-            checker := 1;
-          endif
-          if(!DestroyItem(lid))
-            checker := 1;
-          endif
-          if(checker == 1)
-            SendSysMessage(who, "Error: could not find all the parts.");
-            return 0;
-          endif
-          theitem := CreateItemInContainer(cont, 0xe7f, 1);
-          if(!theitem)
-            SendSysMessage(who, "Error: could not create barrel.");
-            return 0;
-          endif
-          var rint := RandomInt(100);
-          if(modpts >= rint)
-            ExceptionalFameMod(who, carpentryskill, skill, skill);
-          endif
-          CheckToolWear (who, tool, SKILLID_CARPENTRY);
-          theitem.movable := 1;
-          SendSysMessage( who, "You make the item and put it in your pack.");
-        endif
-      endif
-      counter := counter + 1;
-    endwhile
-    return 0;
-  endif
-  if(objtype == 0x1bd7)
-    SendSysMessage(who, "Target the material you wish to work with.");
-    var item1 := Target(who);
-    if(!item1)
-      SendSysMessage(who, "Cancelled");
-      return 0;
-    endif
-    if(!can_access(who, item1))
-      return 0;
-    endif
-    if((!Accessible(who, item1)) || (Distance(who, item1) > 2) || (!ReserveItem(item1)))
-      SendSysMessage(who, "You cannot use that.");
-      return 0;
-    endif
-    if((item1.objtype != 0x1bdd) && (item1.objtype != 0x1bd7))
-      SendSysMessage(who, "You can only work with wood.");
-      return 0;
-    endif
-    if(item1.objtype != 0x1bdd)
-      SendSysMessage(who, "Only logs can be made into boards.");
-      return 0;
-    endif
-    PlaySoundEffect(who, 0x23e);
-    sleep(2);
-    PlaySoundEffect(who, 0x23e);
-    sleep(2);
-    PlaySoundEffect(who, 0x23e);
-    sleep(2);
-    var chk := 0;
-    if(CheckSkill(who, SKILLID_CARPENTRY, CInt(skill), 0))
-      var amt := item1.amount;
-      if(SubtractAmount(item1, amt))
-        theitem := CreateItemInContainer(cont, objtype, amt);
-        if(theitem)
-          AwardRawSkillPoints(who, SKILLID_CARPENTRY, getpoints(who, GetEffectiveSkill(who, SKILLID_CARPENTRY), (skill * 4)));
-          CheckToolWear (who, tool, SKILLID_CARPENTRY);
-          chk := 1;
-        endif
-      endif
-    endif
-    if(chk == 0)
-      SendSysMessage( who, "You destroy some materials.");
-      return 0;
-    endif
-    return 0;
-  endif
-  return 1;
-endfunction
+	// Wood is sent for the ResourceList entry type, boards is to check for the
+	// boards cprop on the material. Boards cprop is made when logs are cut into
+	// boards on them, so if you have colored logs it can get the original log
+	// type from there to use as the resource type.
+	var itemchk := MaterialSelection(who, craft_skill, lower("Wood"), "boards");
+	if( !itemchk )
+		return 0;
+	endif
+	var item1 := itemchk[1];
+	var item1objtype := itemchk[2];
+	var ptmod := itemchk[3];
 
-function gettypes(type)
-  case(type)
-    "wood":  return array(0xbd7, 0xbd2);
-    "metal": return array(0x6309, 0x630a, 0x630b, 0x630c, 0x630d, 0x630e, 0x630f, 0x6310, 0x6311);
-    "cloth": return array(0x1766);
-  endcase
-endfunction
+	var x := who.x, y := who.y, item2 := 0;
+	var material2obj := craft_config[objtype].material2obj;
+	if( TypeOf(material2obj) == "String" )
+		var holder := material2obj;
+		// Let's now select the secondary material. Chk is not passed, as currently
+		// ingots do not hold a cprop to know which type they was originally like boards
+		// or cut leather.
+		itemchk := MaterialSelection(who, craft_skill, lower(holder));
+		if( !itemchk )
+			return 0;
+		endif
+		item2 := itemchk[1];
+		ptmod := ptmod + CInt(itemchk[3]);
+	endif
 
-function getpoints(who, diff, pts)
-  var skill := GetEffectiveSkill(who, SKILLID_CARPENTRY);
-  if(skill > (diff - 20))
-    if((skill - diff) <= 5)
-      pts := pts;
-    elseif((skill - diff) <= 10)
-      pts := (pts * 3) / 4;
-    elseif((skill - diff) <= 15)
-      pts := pts / 2;
-    elseif((skill - diff) <= 15)
-      pts := pts / 4;
-    else
-      pts := 0;
-    endif
-  endif
-  return pts;
+	var theitem, chk := 0;
+	var itemname  := craft_config[objtype].name;
+	var material  := Cint(craft_config[objtype].material);
+	var material2 := Cint(craft_config[objtype].material2);
+	var reqd      := Cint(craft_config[objtype].skill);
+	var skillid2  := craft_config[objtype].skillID;
+	var skill2    := Cint(craft_config[objtype].skill2);
+	var diff      := Cint(craft_config[objtype].difficulty);
+	var pts       := Cint(craft_config[objtype].points);
+	pts           := CInt(pts + ptmod);
+
+	var counter := 0;
+
+	while(counter < amt)
+		if((who.x != x) || (who.y != y))
+			SendSysMessage(who, "You stop woodworking.");
+			break;
+		endif
+		if( !tool )
+			break;
+		endif
+		sleep(2);
+		if( GetAmount(item1) >= material )
+			if( item2 != 0 && GetAmount(item2) < material2 )
+				SendSysMessage(who, "You do not have enough materials.");
+				return 0;
+			endif
+			if( CraftCheckSkill(who, craft_skill, diff, pts) > 0 )
+				if( skillid2 )
+					if( (skill2 <= AP_GetSkill(who, skillid2)) )
+						theitem := CreateCraftItem(who, craft_skill, item1, item1objtype, objtype, material, itemname, reqd);
+					else
+						chk := -2;
+					endif
+				else
+					theitem := CreateCraftItem(who, craft_skill, item1, item1objtype, objtype, material, itemname, reqd);
+					if( theitem && theitem != 0 && !theitem.errortext )
+						if( item2 != 0 )
+							if( !SubtractAmount(item2, material2) )
+								DestroyItem(theitem);
+								chk := -1;
+							endif
+						else
+							CheckToolWear (who, tool, craft_skill);
+							chk := 1;
+						endif
+					else
+						chk := 0;
+					endif
+				endif
+			endif
+		endif
+		if( chk == 0 )
+			SubtractAmount(item1, (material / 2));
+			if( material2 )
+				if( !SubtractAmount(item2, CInt(material2 / 2)) )
+					SendSysMessage(who, "You do not have enough materials.");
+					return 0;
+				endif
+			endif
+			SendSysMessage(who, "You failed to create the item, and some of your materials are lost.");
+			counter := counter + 1;
+			continue;
+		endif
+		if( chk == -1 )
+			SendSysMessage(who, "You do not have enough materials.");
+			return 0;
+		endif
+		if( chk == -2 )
+			SendSysMessage(who, "You do not have the required skill.");
+			return 0;
+		endif
+		theitem.movable := 1;
+		if( craft_config[theitem.objtype].lockable )
+			if( SkillCheck(who, ATTRIBUTE_TINKERING, 40, 40) > 0 )
+				SetObjProperty(theitem, "lockable","1");
+				var lockid := AllocLockId();
+				var thekey := CreateItemInContainer(theitem, UOBJ_COPPER_KEY, 1 );
+				SetObjProperty(thekey, "lockid",lockid);
+				SetObjProperty(theitem,"lockid",lockid);
+				SetObjProperty(theitem,"LockPickDiff", AP_GetSkill(who, ATTRIBUTE_TINKERING));
+				SendSysMessage(who, "Your tinker skill was sufficient to make the item lockable.");
+			endif
+		endif
+		counter := counter + 1;
+	endwhile
+
+	return 1;
+
 endfunction

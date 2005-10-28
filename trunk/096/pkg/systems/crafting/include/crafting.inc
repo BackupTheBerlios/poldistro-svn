@@ -40,7 +40,7 @@
 use polsys;
 use datafile;
 
-include "include/objtype";
+include "util/key";
 include ":crafting:include/craftGumps";
 include ":crafting:include/craftingSkill";
 include ":gumps:include/gumps";

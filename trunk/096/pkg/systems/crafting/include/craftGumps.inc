@@ -322,13 +322,16 @@ function GFCraftInfoPage(who, objtype, skill_config)
 	if(!skillreqb || skillreqb.errortext)
 		skillreqb  := 0;
 	endif
-
 	// Set up skill 2 if one required
 	var aid_skill := elem.skillID;
 	// Get their xxx.x skill amount
 	var temp1 := CDbl(AP_GetSkill(who, craft_skill));
 	// Get their xxx.x skill amount of the secondary skill entry
-	var temp2 := CDbl(AP_GetSkill(who, craft_config[objtype].skillID));
+	var temp2 := 0;
+	if( TypeOf(craft_config[objtype].skillID) == "String" )
+		temp2 := CDbl(AP_GetSkill(who, craft_config[objtype].skillID));
+	endif
+
 	// If there was no secondary skill in the cfg entry, set it to main skill
 	if(temp2 == error)
 		temp2 := temp1;
@@ -451,7 +454,7 @@ function GFCraftInfoPage(who, objtype, skill_config)
 	// Material Required
 	GFHTMLArea(gump, 170, 219, 300, 80, ("<basefont color=#ffffff>" + matname));
 	if(material != 0)
-		GFHTMLArea(gump, 430, 219, 10, 80, ("<basefont color=#ffffff>" + material));
+		GFHTMLArea(gump, 430, 219, 20, 80, ("<basefont color=#ffffff>" + material));
 	endif
 	// Success Chance % text
 	GFTextLine(gump, 170, 80, 1153, "Success Chance:");

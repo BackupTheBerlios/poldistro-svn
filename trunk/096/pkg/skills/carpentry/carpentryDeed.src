@@ -5,7 +5,7 @@ use cfgfile;
 include "util/key";
 include "include/attributes";
 include "include/objtype";
-include ":gumps:yesno";
+include "include/yesNo";
 
 const UOBJECT_DOORS_START   := 0x0675;
 const UOBJECT_DOORS_END     := 0x06f4;
@@ -97,7 +97,7 @@ program place_deed(who, deed)
       x_mod := 0 - x_mod;
       y_mod := 0 - y_mod;
     endif
-    var the_item := CreateItemAtLocation(1, 1, 0, obj, 1, who.realm);
+    var the_item := CreateItemAtLocation(5886, 1179, 0, obj, 1);
     the_item.movable := 1;
     the_item.graphic := 1;
     if(!MoveItemToLocation(the_item, start.x + x_mod, start.y + y_mod, start.z, MOVEITEM_NORMAL))
@@ -150,13 +150,14 @@ program place_deed(who, deed)
     SendSysMessage(who, "Could not build that there");
     return;
   elseif(failed == 2)
-    SendSysMessage(who, "You may only place this in a house you own.");
+    SendSysMessage(who, "You may only place this in a house you own");
     return;
   endif
   foreach thing in created
     thing.graphic := thing.objtype;
   endforeach
   var deed_objtype := deed.objtype;
+  var deed_color := deed.color;
   if(YesNo(who, "Placed well?"))
     if(DestroyItem(deed))
       var the_serials := {};
@@ -168,6 +169,7 @@ program place_deed(who, deed)
           SetObjProperty(part, "DeedOwnerSerial", who.serial);
           SetObjProperty(part, "ItemsCreatedSerials", the_serials);
           SetObjProperty(part, "FromDeed", deed_objtype);
+          SetObjProperty(part, "DeedColor", deed_color);
         endif
       endforeach
     endif
