@@ -473,7 +473,7 @@ function GFCraftInfoPage(who, objtype, skill_config)
 
 	if((skillreqb > 0) && (skillreqb != error))
 		// Skill 2 name
-		GFHTMLArea(gump, 170, 152, 150, 20, ("<basefont color=#ffffff>"+aid_skill + " required"));
+		GFHTMLArea(gump, 170, 152, 150, 20, ("<basefont color=#ffffff>"+lower(aid_skill)+" required"));
 		GFHTMLArea(gump, 430, 152, 150, 20, ("<basefont color=#ffffff>"+skillreqb));
 	endif
 
