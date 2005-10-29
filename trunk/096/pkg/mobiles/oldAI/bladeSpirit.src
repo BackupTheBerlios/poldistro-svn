@@ -23,7 +23,7 @@ var idlesnd2 := CInt(npccfgfile[me.npctemplate].idlesound2);
 var masterserial := GetObjProperty(me, "master");
 
 program KillPlayers()
-  var master;
+
   foreach char in EnumerateOnlineCharacters()
     if(char.serial == masterserial)
       master := char;
@@ -85,7 +85,7 @@ function Fight(opponent)
     opponent := 0;
 	return;
   endif
-  var oldprio := set_priority(50);
+  set_priority(50);
   SetOpponent(opponent);
   prepare_for_fight(opponent);
   var loops := 0;
@@ -121,11 +121,13 @@ function Fight(opponent)
 endfunction
 
 function prepare_for_fight(opponent)
+  opponent := opponent;
   DisableMainEvents();
   EnableCombatEvents();
 endfunction
 
 function in_combat_event_loop(opponent, loops)
+  loops := loops;
   if(Distance(me,opponent) < 2)
     var dmg := RandomInt(CInt(GetStrength(opponent) / 25));
     dmg := dmg * 2;

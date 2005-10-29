@@ -66,6 +66,7 @@ set_priority(50);
   const loops := 0;
   while (1)
     var ev;
+    var res := 0;
     ev := os::wait_for_event(120);
     if(ev)
       case (ev.type)
@@ -82,7 +83,7 @@ set_priority(50);
                                   else
                                     if(ev.text["buy"])
                                       TurnToward(ev.source);
-                                      var res := SendBuyWindow(ev.source, inv_fs, Self(), inv_pb);
+                                      res := SendBuyWindow(ev.source, inv_fs, Self(), inv_pb);
                                       foreach thing in ListRootItemsInContainer((ev.source).backpack)
                                         EraseObjProperty(thing, "ClearRestock");
                                       endforeach
@@ -90,7 +91,7 @@ set_priority(50);
                                       if(GetObjProperty(me, "MyGold") >= 1000)
                                         TurnToward(ev.source);
                                         ModifyPCSellList(merchant_type, (ev.source).backpack);
-                                        var res := SendSellWindow(ev.source, Self(), inv_fs, inv_pb, inv_1c);
+                                        res := SendSellWindow(ev.source, Self(), inv_fs, inv_pb, inv_1c);
                                         if(res)
                                           PrintTextAbovePrivate(Self(), "You don't have anything I would be interested in.", ev.source);
                                         else
@@ -146,7 +147,7 @@ endfunction
 
 function Lookiehere(who)
   var mobiles := ListMobilesNearLocation(who.x, who.y, who.z, 15, who.realm);
-  var guard, num, i, hogcall, guardzone, element, range, timer, elem;
+  var num, hogcall, guardzone, element, range, timer, elem;
   var cfgfile := ReadConfigFile("::gzone");
   var entries := GetConfigStringKeys(cfgfile);
   foreach listing in entries

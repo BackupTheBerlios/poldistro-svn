@@ -13,6 +13,7 @@ endif
 start_script(":npcutils:NPCKeeper", me);
 if(!me.backpack)
   var newbackpack := CreateItemAtLocation(me.x, me.y, me.z, 0xe75,1, me.realm);
+  newbackpack := newbackpack;
   var myhome := { };
   myhome[1] := me.x;
   myhome[2] := me.y;

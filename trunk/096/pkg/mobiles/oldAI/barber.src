@@ -64,7 +64,7 @@ program barber()
 	while(1)
 	ev := os::wait_for_event(120);
 	// Used to fix unused var report by ecompile: res;
-	var res;
+	var res := 0;
 	if(ev)
 		case(ev.type)
 			EVID_NODE:
