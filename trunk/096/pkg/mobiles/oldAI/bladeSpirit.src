@@ -21,6 +21,8 @@ var npccfgfile := ReadConfigFile("::npcdesc");
 var idlesnd1 := CInt(npccfgfile[me.npctemplate].idlesound1);
 var idlesnd2 := CInt(npccfgfile[me.npctemplate].idlesound2);
 var masterserial := GetObjProperty(me, "master");
+var ev := 0;
+var waittime := 0;
 
 program KillPlayers()
 
@@ -48,7 +50,6 @@ program KillPlayers()
 endprogram
 
 function main_AI_loop()
-  var ev;
   var wanders := 0;
   EnableMainEvents();
   look_around();
@@ -89,8 +90,7 @@ function Fight(opponent)
   SetOpponent(opponent);
   prepare_for_fight(opponent);
   var loops := 0;
-  var ev;
-  var waittime := 0;
+  waittime := 0;
   while((opponent) && not (opponent.dead || opponent.hidden || opponent.concealed) && (dist(me,opponent) < 20) )
 	if(!CloseDistance(opponent))
 	  loops := loops + 1;
@@ -199,7 +199,7 @@ function herding(ev)
   var ly := holder[2];
   var loops := 0;
   var opponent;
-  var waittime := 0;
+  waittime := 0;
   while(1)
 	if(!CloseIn(me, lx, ly))
 	  loops := loops + 1;

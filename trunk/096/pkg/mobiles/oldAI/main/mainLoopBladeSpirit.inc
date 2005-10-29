@@ -1,5 +1,4 @@
 function main_AI_loop()
-  var ev;
   var wanders := 0;
   EnableMainEvents();
   look_around();
