@@ -49,7 +49,7 @@ function MerchantTrain(me, who, text)
         if(npclevel == 0)
           npclevel := RandomInt(12) + 22;
           SetBaseSkill(me, holder, npclevel);
-          var npclevel := GetEffectiveSkill(me, holder);
+          npclevel := GetEffectiveSkill(me, holder);
         endif
         if(npclevel > maxskilltotrain)
           npclevel := maxskilltotrain;

@@ -63,6 +63,8 @@ program barber()
 	var ev;
 	while(1)
 	ev := os::wait_for_event(120);
+	// Used to fix unused var report by ecompile: res;
+	var res;
 	if(ev)
 		case(ev.type)
 			EVID_NODE:
@@ -72,13 +74,13 @@ program barber()
 				else
 					if (txt["buy"])
 						TurnToward(ev.source);
-						var res := SendBuyWindow(ev.source, inv_fs, Self(), inv_pb);
+						res := SendBuyWindow(ev.source, inv_fs, Self(), inv_pb);
 					elseif (txt["sell"])
 						if (GetObjProperty(inv_rs, "MyGold") >= 1000)
 							TurnToward(ev.source);
 							var count := ModifyPCSellList(merchant_type, (ev.source).backpack);
 							if (count >= 1)
-								var res := SendSellWindow(ev.source, Self(), inv_fs, inv_pb, inv_1c);
+								res := SendSellWindow(ev.source, Self(), inv_fs, inv_pb, inv_1c);
 							else
 								PrintTextAbovePrivate(Self(), "You don't have anything I would be interested in.", ev.source);
 							endif
