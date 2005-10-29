@@ -1,5 +1,4 @@
 function main_AI_loop()
-  var ev;
   var wanders := 60;
   var hatelist := "animal cat barker tamed chicken sheep bird";
   EnableMainEvents();
@@ -63,12 +62,12 @@ function DisableMainEvents()
 endfunction
 
 function get_help( opponent)
-  var ev := struct;
-  ev.+type := EVID_ALL_ATTACK_CMD;
-  ev.+source := opponent;
+  var newev := struct;
+  newev.+type := EVID_ALL_ATTACK_CMD;
+  newev.+source := opponent;
   foreach critter in ListMobilesNearLocation( me.x, me.y, me.z, HALT_THRESHOLD, me.realm)
     if((critter.npctemplate == me.npctemplate) &&(critter.script != "tamed") &&(!critter.warmode))
-      SendEvent(critter, ev);
+      SendEvent(critter, newev);
     endif
   endforeach
 endfunction
@@ -79,7 +78,7 @@ function herding(ev)
   var ly := holder[2];
   var loops := 0;
   var opponent;
-  var waittime := 0;
+  waittime := 0;
   while(1)
 	if(!CloseIn(me, lx, ly))
 	  loops := loops + 1;

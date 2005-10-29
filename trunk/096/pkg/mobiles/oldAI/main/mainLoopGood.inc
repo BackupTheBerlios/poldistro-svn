@@ -1,5 +1,4 @@
 function main_AI_loop(next_wander := 0)
-  var ev;
   var wanders := 60;
   /*var next_loot := ReadGameClock() + 20;*/  // variable unused in this AI type
   EnableMainEvents();

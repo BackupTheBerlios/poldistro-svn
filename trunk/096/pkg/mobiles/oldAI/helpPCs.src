@@ -14,7 +14,7 @@ include ":npcutils:speech";
 include ":npcutils:anchors";
 include ":oldAI:main/mainLoopGood";
 include ":oldAI:combat/fight";
-include ":oldAI:combat/warriorCombatEvent";
+include ":oldAI:combat/warriorcombatevent";
 include ":oldAI:setup/setup";
 include ":oldAI:main/loot";
 include ":oldAI:main/sleepMode";
@@ -24,6 +24,8 @@ const HALT_THRESHOLD := 8; // how close before he attacks?
 var npccfgfile := ReadConfigFile( "::npcdesc" );
 var idlesnd1 := CInt(npccfgfile[me.npctemplate].idlesound1);
 var idlesnd2 := CInt(npccfgfile[me.npctemplate].idlesound2);
+var waittime := 0;
+var ev := 0;
 
 program HelpPlayers()
   SetWarMode( 0 );
@@ -45,7 +47,7 @@ function herding(ev)
   var ly := holder[2];
   var loops := 0;
   var opponent;
-  var waittime := 0;
+  waittime := 0;
   while(1)
 	if(!CloseIn(me, lx, ly))
 	  loops := loops + 1;

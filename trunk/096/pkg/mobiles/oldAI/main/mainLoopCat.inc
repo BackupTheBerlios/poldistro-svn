@@ -1,5 +1,4 @@
 function main_AI_loop()
-  var ev;
   var wanders := 60;
   var hatelist := "bird eagle rat chicken";
   EnableMainEvents();
@@ -55,7 +54,6 @@ function herding(ev)
   var ly := holder[2];
   var loops := 0;
   var opponent;
-  var waittime := 0;
   while(1)
 	if(!CloseIn(me, lx, ly))
 	  loops := loops + 1;

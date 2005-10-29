@@ -17,6 +17,7 @@ function process_combat_event(opponent)
 endfunction
 
 function process_flee_event(opponent)
+  opponent := opponent;
   return 0;
 endfunction
 
@@ -38,6 +39,7 @@ function post_combat()
 endfunction
 
 function prepare_for_fight(opponent)
+  opponent := opponent;
   DisableMainEvents();
   EnableCombatEvents();
 endfunction
@@ -65,6 +67,7 @@ function do_damage(evsource)
 endfunction
 
 function CanEat(character, item)
+  character := character;
   if ( ( item.objtype >= 0x2030 ) && (item.objtype <= 0x2060) )
     return 0;
   endif

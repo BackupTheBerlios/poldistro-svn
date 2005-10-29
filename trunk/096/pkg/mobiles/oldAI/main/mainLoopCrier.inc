@@ -1,5 +1,4 @@
 function main_AI_loop()
-  var ev;
   var wanders := 60;
   var next_wander := ReadGameClock();
   EnableMainEvents();

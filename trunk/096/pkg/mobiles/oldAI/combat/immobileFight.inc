@@ -4,13 +4,12 @@ function Fight(opponent)
     opponent := 0;
 	return;
   endif
-  var oldprio := set_priority(50);
+  set_priority(50);
   SetOpponent(opponent);
   prepare_for_fight(opponent);
   TurnToward(opponent);
   var loops := 0;
-  var ev;
-  var waittime := 0;
+  waittime := 0;
   while((opponent) && not (opponent.dead || opponent.hidden || opponent.concealed) && (dist(me,opponent) < 20) )
 	if(!CloseDistance(opponent))
 	  loops := loops + 1;

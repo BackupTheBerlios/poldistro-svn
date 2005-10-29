@@ -7,6 +7,7 @@ function process_combat_event(opponent)
 endfunction
 
 function process_flee_event(opponent)
+  opponent := opponent;
   return 0;
 endfunction
 
@@ -18,7 +19,7 @@ function spellattack(opponent);
     PerformAction(me,0x0c);
     sleep(1);
     PlaySoundEffect(me, 0x16b);
-    sleep(1);    
+    sleep(1);
     var base := Cint(((FLAME_STRENGTH * GetHp(me)) / GetMaxHp(me)) / 2);
     var dmg :=  RandomInt(base) + base;
     PlayMovingEffect(me, opponent, 0x36d4, 10, 1, 1);
@@ -35,6 +36,7 @@ function in_combat_event_loop(opponent, loops)
 endfunction
 
 function prepare_for_fight(opponent)
+  opponent := opponent;
   DisableMainEvents();
   EnableCombatEvents();
 endfunction

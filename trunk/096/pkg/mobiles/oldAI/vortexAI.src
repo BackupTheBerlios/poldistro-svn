@@ -20,9 +20,10 @@ var npccfgfile := ReadConfigFile( "::npcdesc" );
 var idlesnd1 := CInt(npccfgfile[me.npctemplate].idlesound1);
 var idlesnd2 := CInt(npccfgfile[me.npctemplate].idlesound2);
 var masterserial := GetObjProperty(me, "master");
+var waittime := 0;
+var ev := 0;
 
 program KillPlayers()
-  var master;
   foreach char in EnumerateOnlineCharacters()
     if(char.serial == masterserial)
       master := char;
@@ -47,7 +48,6 @@ function CloseDistance(opponent)
 endfunction
 
 function main_AI_loop()
-  var ev;
   var wanders := 0;
   EnableMainEvents();
   look_around();
@@ -78,13 +78,12 @@ function Fight(opponent)
     opponent := 0;
 	return;
   endif
-  var oldprio := set_priority(50);
+  set_priority(50);
   SetOpponent(opponent);
   prepare_for_fight(opponent);
   TurnToward(opponent);
   var loops := 0;
-  var ev;
-  var waittime := 0;
+  waittime := 0;
   while((opponent) && (!opponent.dead) && (!opponent.hidden) && (!opponent.concealed) && (dist(me,opponent) < 20))
 	if(!CloseDistance(opponent))
 	  loops := loops + 1;
@@ -148,7 +147,7 @@ function herding(ev)
   var ly := holder[2];
   var loops := 0;
   var opponent;
-  var waittime := 0;
+  waittime := 0;
   while(1)
 	if(!CloseIn(me, lx, ly))
 	  loops := loops + 1;

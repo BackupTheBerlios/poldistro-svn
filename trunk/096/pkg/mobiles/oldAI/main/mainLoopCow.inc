@@ -1,5 +1,5 @@
 function main_AI_loop()
-  var ev;
+
   var wanders := 0;
   EnableMainEvents();
   EnableEvents(SYSEVENT_DOUBLECLICKED);
@@ -30,7 +30,7 @@ function main_AI_loop()
 endfunction
 
 function RunLikeHell(opponent)
-  var ev;
+
   while((opponent)&& not(opponent.dead || opponent.hidden || opponent.concealed)&&(dist(me,opponent)< 25))
     WalkAwayFrom(opponent);
     repeat
@@ -61,7 +61,7 @@ function herding(ev)
   var ly := holder[2];
   var loops := 0;
   var opponent;
-  var waittime := 0;
+
   while(1)
 	if(!CloseIn(me, lx, ly))
 	  loops := loops + 1;

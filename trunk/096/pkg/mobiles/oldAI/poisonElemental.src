@@ -27,6 +27,8 @@ var LAST_BREATH := ReadGameClock();
 var npcfgfile := ReadConfigFile( "::npcdesc" );
 var idlesnd1 := CInt(npcfgfile[me.npctemplate].idlesound1);
 var idlesnd2 := CInt(npcfgfile[me.npctemplate].idlesound2);
+var waittime := 0;
+var ev := 0;
 
 program KillPlayers()
   if (GetObjProperty(me, "frozen"))
@@ -89,6 +91,7 @@ function spellattack(opponent)
 endfunction
 
 function prepare_for_fight(opponent)
+  opponent := opponent;
   if(!CInt(GetObjProperty(me, "mr")))
 	CastSpell(me,me,"reflect");
   endif

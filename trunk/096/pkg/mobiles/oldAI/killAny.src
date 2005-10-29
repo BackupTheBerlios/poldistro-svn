@@ -40,6 +40,8 @@ const HALT_THRESHOLD := 10; // how close before he attacks?
 var npccfgfile := ReadConfigFile( "::npcdesc" );
 var idlesnd1 := CInt(npccfgfile[me.npctemplate].idlesound1);
 var idlesnd2 := CInt(npccfgfile[me.npctemplate].idlesound2);
+var waittime := 0;
+var ev := 0;
 
 program KillPlayers()
 

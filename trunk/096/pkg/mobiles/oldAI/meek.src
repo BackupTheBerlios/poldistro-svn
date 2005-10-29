@@ -40,6 +40,8 @@ const HALT_THRESHOLD := 5; // how close before he attacks?
 var npccfgfile := ReadConfigFile( "::npcdesc" );
 var idlesnd1 := CInt(npccfgfile[me.npctemplate].idlesound1);
 var idlesnd2 := CInt(npccfgfile[me.npctemplate].idlesound2);
+var waittime := 0;
+var ev := 0;
 
 program KillPlayers()
 
@@ -71,7 +73,7 @@ function Run( opponent )
 
     EnableEvents( SYSEVENT_DISENGAGED );
 
-    var waittime;
+    waittime := 0;
     var loops := 0;
 
     outer:
@@ -83,7 +85,7 @@ function Run( opponent )
 		break outer;
 	endif
 
-        var ev := wait_for_event( waittime );
+        ev := wait_for_event( waittime );
         case (ev.type)
             SYSEVENT_DISENGAGED:
                 if (ev.source.serial == opponent.serial)

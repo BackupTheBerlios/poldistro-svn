@@ -60,6 +60,7 @@ function in_combat_event_loop(opponent, loops)
 endfunction
 
 function prepare_for_fight(opponent)
+  opponent := opponent;
   if (!CInt(GetObjProperty(me, "mr")))
 	CastSpell(me,me,"reflect");
   endif

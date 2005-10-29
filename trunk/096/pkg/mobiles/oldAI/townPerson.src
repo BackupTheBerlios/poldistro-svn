@@ -10,7 +10,7 @@ include ":npcutils:speech";
 include ":npcutils:anchors";
 include "include/dist";
 include ":oldAI:main/mainLoopGood";
-include ":oldAI:combat/warriorCombatEvent";
+include ":oldAI:combat/warriorcombatevent";
 include ":oldAI:combat/fight";
 include ":oldAI:main/loot";
 include ":npcutils:vetement";
@@ -22,6 +22,8 @@ include "include/skillLists";
 include ":begging:begging";
 
 const HALT_THRESHOLD := 2;
+var waittime := 0;
+var ev := 0;
 
 program CastleGuard()
   drop_anchor();
@@ -33,7 +35,6 @@ program CastleGuard()
   endif
   SetWarMode( 0 );
   set_priority(10);
-  var ev;
   var looter := GetObjProperty( me, "looter");
   var next_wander := ReadGameClock() + 10;
   var txt;
@@ -191,11 +192,14 @@ function TrainSkill(me, who, item)
 endfunction
 
 function GoldForSkillGain( npc_skill, pc_skill, skillid )
+  skillid := skillid;
   var maxskill := npc_skill - pc_skill;
   return maxskill*10;
 endfunction
 
 function SkillGainForGold(npc_level, pc_level, trainskillid, goldreceived)
+  npc_level := npc_level;
+  trainskillid := trainskillid;
   return (goldreceived/10) + pc_level;
 endfunction
 
@@ -205,7 +209,7 @@ function herding(ev)
   var ly := holder[2];
   var loops := 0;
   var opponent;
-  var waittime := 0;
+  waittime := 0;
   while(1)
 	if(!CloseIn(me, lx, ly))
 	  loops := loops + 1;

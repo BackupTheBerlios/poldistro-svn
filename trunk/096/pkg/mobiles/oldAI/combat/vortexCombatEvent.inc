@@ -12,7 +12,7 @@ function process_combat_event(opponent)
 endfunction
 
 function prepare_for_fight(opponent)
-
+	opponent := opponent;
 	DisableMainEvents();
 	EnableCombatEvents();
 

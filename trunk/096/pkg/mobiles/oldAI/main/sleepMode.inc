@@ -19,7 +19,6 @@ function sleepmode()
   EnableEvents(SYSEVENT_ENTEREDAREA,18);
   EnableEvents(SYSEVENT_ENGAGED);
   EnableEvents(SYSEVENT_DAMAGED);
-  var ev;
   while (1)
     ev := os::wait_for_event(30);
     repeat

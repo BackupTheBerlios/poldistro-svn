@@ -149,7 +149,7 @@ function Fight(opponent)
   PlaySoundEffect(me, 0x01ff);
   PrintTextAbove(me, "Thou shalt regret thine actions, swine!");
   SetObjProperty(opponent, "guardkill", 1);
-  var oldprio := set_priority(50);
+  set_priority(50);
   if(tries >= 5)
     PerformAction(me, 13);
     ApplyRawDamage(opponent, GetHP(opponent) + 10);
@@ -230,6 +230,7 @@ function cleareventque()
 endfunction
 
 function prepare_for_fight(opponent)
+  opponent := opponent;
   DisableMainEvents();
   EnableCombatEvents();
 endfunction
@@ -256,6 +257,7 @@ function DisableCombatEvents()
 endfunction
 
 function in_combat_event_loop(opponent, loops)
+  opponent := opponent;
   var allpoisons := GetAllPoisons(me);
   if(allpoisons.size() > 0)
     sleep(1);

@@ -9,6 +9,7 @@ function process_combat_event(opponent)
 endfunction
 
 function process_flee_event(opponent)
+  opponent := opponent;
   return 0;
 endfunction
 
@@ -39,7 +40,7 @@ function post_combat()
 endfunction
 
 function prepare_for_fight(opponent)
-
+	opponent := opponent;
 	DisableMainEvents();
 	EnableCombatEvents();
 
