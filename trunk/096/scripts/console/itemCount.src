@@ -1,8 +1,13 @@
+/* $Id$
+ *
+ */
 use uo;
 
 program console_itemcount(cmd)
+
 	cmd := cmd;
 	print("System Message: Current # of Toplevel Items - " + polcore().itemcount);
 
-	return;
+	return 1;
+
 endprogram

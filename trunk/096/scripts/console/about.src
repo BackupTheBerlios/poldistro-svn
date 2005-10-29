@@ -1,9 +1,12 @@
+/* $Id$
+ *
+ */
 use uo;
 
 include "include/clock";
 
-
 program console_about(cmd)
+
 	cmd := cmd;
 	var system := polcore();
 
@@ -12,5 +15,6 @@ program console_about(cmd)
 	print("    Designer:    Syzygy [syzygy@pobox.com]");
 	print("    Updated:     " + system.compiledate + " " + system.compiletime);
 
-	return;
+	return 1;
+
 endprogram

@@ -1,8 +1,13 @@
+/* $Id$
+ *
+ */
 use polsys;
 
 program console_reloadConfig()
-	print("System Message: Reloading configuration.");      
+
+	print("System Message: Reloading configuration.");
 	ReloadConfiguration();
 
-	return;
+	return 1;
+
 endprogram

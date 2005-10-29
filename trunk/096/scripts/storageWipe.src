@@ -3,7 +3,8 @@ use uo;
 
 program storagewipe()
 
-	set_critical(0);//without list line it runs fast, goes RunAway, makes megalag.
+	// without list line it runs fast, goes RunAway, makes megalag.
+	set_critical(0);
 
 	var endnum, npctest;
 	var startnum := CInt( GetGlobalProperty("storagestart") );
@@ -33,7 +34,8 @@ program storagewipe()
 	var mercs := 0;
 	var i;
 	for (i := startnum; i < endnum; i:= i + 1)
-		sleepms(250);//without list line it runs fast, goes RunAway, makes megalag.
+		//without list line it runs fast, goes RunAway, makes megalag.
+		sleepms(250);
 		if (!SystemFindObjectBySerial(i))
 			inv_fs := i + " FS";
 			inv_pb := i + " PB";

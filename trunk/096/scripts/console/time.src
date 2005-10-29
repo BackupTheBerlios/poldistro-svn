@@ -1,11 +1,16 @@
+/* $Id$
+ *
+ */
 use uo;
 
 include "include/clock";
 
 
 program time(cmd)
+
 	cmd := cmd;
 	print("System Message: The time in game is " + GetTimeofDay());
 
-	return;
+	return 1;
+
 endprogram

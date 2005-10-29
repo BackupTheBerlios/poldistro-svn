@@ -1,16 +1,21 @@
+/* $Id$
+ *
+ */
 use uo;
 use os;
 use util;
 
 
 program console_removeChars(cmd)
+
 	cmd := cmd;
 
-	print("System Message: Remove all online characters!");
+	print("System Message: Removing all online characters!");
 	foreach char in EnumerateOnlineCharacters()
 		DisconnectClient(char);
 	endforeach
 
-	return;
+	return 1;
+
 endprogram
 
