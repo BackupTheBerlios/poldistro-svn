@@ -71,7 +71,6 @@ program use_picktool(who, tool)
 	  return;
 	endif
 	var info := GetMapInfo(use_on.x, use_on.y, who.realm);
-    var type;
     if(is_minable(info.landtile, use_on.objtype))
       var checker := 0;
       startx := who.x;
@@ -112,10 +111,12 @@ program use_picktool(who, tool)
     if(themap == 0)
       SendSysMessage(who, "Target a location to dig.");
       var dig := TargetCoordinates( who );
-      PerformAction(who, 0x0b);
-      PlaySoundEffect(who, 0x126);
-      sleep(1);
-      SendSysMessage(who,"You dig and dig, but do not find any treasure.");
+      if( dig )
+        PerformAction(who, 0x0b);
+        PlaySoundEffect(who, 0x126);
+        sleep(1);
+        SendSysMessage(who,"You dig and dig, but do not find any treasure.");
+      endif
       return;
     endif
     if(GetObjProperty(map, "Solved"))
@@ -150,8 +151,8 @@ program use_picktool(who, tool)
 	PlaySoundEffect(who, 0x126);
     var range := GetRange( who );
     var distn := coordist( dig.x, dig.y, chestx, chesty );
-    var dirns := "None";
-    var direw := "None";
+//    var dirns := "None";
+//    var direw := "None";
     var maxrange := 20;
     var mobiles := ListMobilesNearLocation(dig.x, dig.y, dig.z, 0, who.realm);
     if(distn > maxrange)
@@ -267,12 +268,12 @@ program use_picktool(who, tool)
       var num := GetConfigInt( elem, "num" );
       var limit := RandomDiceRoll( total );
       var rand;
-      var template;
+      var mTemplate;
       i := 1;
       for( i := 1; i <= limit; i := i + 1 )
         rand := RandomInt( num ) + 1;
-        template := GetConfigString( elem, ("creature" + rand) );
-        CreateGuardian( chest, template );
+        mTemplate := GetConfigString( elem, ("creature" + rand) );
+        CreateGuardian( chest, mTemplate );
       endfor
       UnloadConfigFile(":treasuremap:guardians");
       SendSysMessage( who, "You unleash the treasure's guardians!" );
