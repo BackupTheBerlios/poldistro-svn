@@ -1,13 +1,16 @@
+/* $Id$
+ *
+ */
 function ICP_ScriptsGump(pkg_name)
 	var pkg_elem := DFFindElement(pkg_info, pkg_name);
 	var script_list := pkg_elem.GetProp("Scripts");
 	if ( !script_list )
 		script_list := array{};
 	endif
-	
+
 	var gump := GFCreateGump();
 	ICP_GumpHeader(gump, SCRIPTS_BTN);
-	
+
 	var y_pos := 80;
 	var counter := 0;
 	var btn_num := 0;
@@ -23,18 +26,20 @@ function ICP_ScriptsGump(pkg_name)
 	else
 		GFTextMid(gump, 0, 250, 500, 2100, "There are no scripts listed for this package.");
 	endif
-	
+
 	return gump;
 endfunction
 
 function ICP_AddScriptLine(byref gump, script, btn_num, byref y_pos, byref counter, byref page_num)
 	var temp := ICP_ParseScript(script);
-	var cmd_level := temp.cmdlevel;
+//	cmd_level commented out to fix unused variable.
+//	Left in place, in case needed at a later date.
+//	var cmd_level := temp.cmdlevel;
 	var path := temp.script_path;
 
 	GFTextLine(gump, 45, y_pos, 2100, path);
 	GFAddButton(gump, 25, y_pos+3, 2117, 2118, GF_CLOSE_BTN, btn_num);
-		
+
 	//Check if we need to set it up to make a new page
 	if ( counter >= 16 )
 		//Down arrow
@@ -53,7 +58,7 @@ function ICP_StartScript(who, input, pkg_elem)
 	var script_list := pkg_elem.GetProp("Scripts");
 	var script_line := script_list[input];
 	var temp := ICP_ParseScript(script_line);
-	
+
 	if ( CInt(temp.cmdlevel) > who.cmdlevel )
 		GumpPrompt(who, "Command level is not high enough to start script.");
 		return 0;
@@ -64,7 +69,7 @@ function ICP_StartScript(who, input, pkg_elem)
 		else
 			GumpPrompt(who, "Started [P] "+temp.script_path);
 		endif
-		
+
 		return script;
 	endif
 endfunction

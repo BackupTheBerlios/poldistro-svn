@@ -1,3 +1,6 @@
+/* $Id$
+ *
+ */
 function ICP_PackagePanels(who, pkg_name)
 	var info_elem := DFFindElement(pkg_info, pkg_name);
 	if ( !info_elem )
@@ -20,7 +23,7 @@ function ICP_PackagePanels(who, pkg_name)
 
 		input := GFSendGump(who, gump);
 		input := input[0];
-		
+
 		if ( !input )
 			break;
 		elseif ( input == BACK_BTN )
@@ -36,6 +39,8 @@ function ICP_PackagePanels(who, pkg_name)
 endfunction
 
 function ICP_PkgPanelInput(who, pkg_name, cur_menu, info_elem, input)
+	// Used to fix unused var report in ecompile: pkg_name;
+	pkg_name := pkg_name;
 	if ( cur_menu == SCRIPTS_BTN )
 		ICP_StartScript(who, input, info_elem);
 		return 1;
@@ -52,6 +57,7 @@ function ICP_PkgPanelInput(who, pkg_name, cur_menu, info_elem, input)
 endfunction
 
 function ICP_GetPkgGump(who, pkg_name, btn_number)
+	// Used to fix unused var report in ecompile: who;
 	var gump := 0;
 	if ( btn_number == GENERAL_BTN )
 		gump := ICP_RetrieveGump(pkg_name, "general");

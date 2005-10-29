@@ -1,13 +1,16 @@
+/* $Id$
+ *
+ */
 function ICP_CommandsGump(pkg_name)
 	var pkg_elem := DFFindElement(pkg_info, pkg_name);
 	var cmd_list := pkg_elem.GetProp("TextCommands");
 	if ( !cmd_list )
 		cmd_list := array{};
 	endif
-	
+
 	var gump := GFCreateGump();
 	ICP_GumpHeader(gump, COMMANDS_BTN);
-	
+
 	var y_pos := 80;
 	var counter := 0;
 	var btn_num := 0;
@@ -23,19 +26,21 @@ function ICP_CommandsGump(pkg_name)
 	else
 		GFTextMid(gump, 0, 250, 500, 2100, "There are no text commands listed for this package.");
 	endif
-	
+
 	return gump;
 endfunction
 
 function ICP_AddCmdLine(byref gump, script, btn_num, byref y_pos, byref counter, byref page_num)
 	var temp := ICP_ParseScript(script);
-	var cmd_level := temp.cmdlevel;
+//	cmd_level commented out to fix unused variable.
+//	Left in place, in case needed at a later date.
+//	var cmd_level := temp.cmdlevel;
 	var path := temp.script_path;
 	var cmd_name := ICP_CommandName(path);
 
 	GFAddButton(gump, 25, y_pos+3, 2117, 2118, GF_CLOSE_BTN, btn_num);
 	GFTextLine(gump, 45, y_pos, 2100, path+"  (."+cmd_name+")");
-			
+
 	//Check if we need to set it up to make a new page
 	if ( counter >= 16 )
 		//Down arrow
@@ -55,14 +60,14 @@ function ICP_CommandName(path)
 		while ( path[":"] )
 			var slash_pos := Find(path, ":", 1);
 			path := path[slash_pos+1, Len(path)];
-		
+
 			sleepms(2);
 		endwhile
 	else
 		while ( path["/"] )
 			var slash_pos := Find(path, "/", 1);
 			path := path[slash_pos+1, Len(path)];
-		
+
 			sleepms(2);
 		endwhile
 	endif
@@ -73,7 +78,7 @@ function ICP_StartCommand(who, input, pkg_elem)
 	var script_list := pkg_elem.GetProp("TextCommands");
 	var script_line := script_list[input];
 	var temp := ICP_ParseScript(script_line);
-	
+
 	if ( CInt(temp.cmdlevel) > who.cmdlevel )
 		GumpPrompt(who, "Command level is not high enough to use command.");
 		return 0;
@@ -84,7 +89,7 @@ function ICP_StartCommand(who, input, pkg_elem)
 		else
 			GumpPrompt(who, "Started [P] "+temp.script_path);
 		endif
-		
+
 		return script;
 	endif
 endfunction
