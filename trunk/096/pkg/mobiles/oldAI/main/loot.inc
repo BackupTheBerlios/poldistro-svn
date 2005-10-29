@@ -11,6 +11,7 @@ function grabloot()
     return;
   endif
   var numitems := 0;
+  numitems := numitems;
   var mypack := 0;
   if(!GetObjProperty(me, "serial"))
     SetObjProperty(me, "serial", me.serial);
@@ -72,4 +73,4 @@ function RunToIt(me,item)
     endif
     look_around();
   endfor
-endfunction 
+endfunction

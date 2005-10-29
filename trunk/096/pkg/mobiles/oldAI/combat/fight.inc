@@ -9,8 +9,7 @@ function Fight(opponent)
   prepare_for_fight(opponent);
   TurnToward(opponent);
   var loops := 0;
-  var ev;
-  var waittime := 0;
+
   while((opponent) && (!opponent.dead) && (!opponent.hidden) && (!opponent.concealed) && (dist(me,opponent) < 20))
 	if(!CloseDistance(opponent))
 	  loops := loops + 1;
@@ -79,7 +78,6 @@ function flee(opponent)
     SetObjProperty(me,"#flees", numflees);
     var runs := 0;
     var chk := 0;
-    var ev;
     while((Distance(me, opponent) < 15) && (runs < 50) && (CheckLineOfSight(me, opponent)))
       ev := wait_for_event(1);
       chk := process_flee_event(opponent);

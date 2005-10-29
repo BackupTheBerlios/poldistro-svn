@@ -64,8 +64,6 @@ program CastleGuard()
   endif
   SetWarMode( 0 );
   set_priority(10);
-  var ph := SplitWords(me.name);
-  var myname := lower(ph[1]);
   var destination := GetObjProperty(me, "Dest");
   SetObjProperty(me, "Waiting", 1);
   waittime := 120;
@@ -216,7 +214,6 @@ function herding(ev)
   var ly := holder[2];
   var loops := 0;
   var opponent;
-  var waittime := 0;
   while(1)
 	if(!CloseIn(me, lx, ly))
 	  loops := loops + 1;
