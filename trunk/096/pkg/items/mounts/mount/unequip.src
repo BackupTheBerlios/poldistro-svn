@@ -1,5 +1,15 @@
+/* $Id$
+ *
+ */
 use uo;
 
 program UnequipScript(mobile, item, start_up)
+
+	// Next 3 vars, used to fux unused var report by ecompile
+	mobile := mobile;
+	item := item;
+	start_up := start_up;
+
 	return 1;
+
 endprogram

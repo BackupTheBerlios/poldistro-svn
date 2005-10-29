@@ -200,6 +200,8 @@ endfunction
 function CP_GetStorageAreaNames()
 	var name_list := array;
 	foreach storage_area in (StorageAreas())
+		// Used to fix unused var report by ecompile: storage_area;
+		storage_area := storage_area;
 		name_list.Append(_storage_area_iter);
 		sleepms(2);
 	endforeach

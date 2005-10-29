@@ -51,7 +51,8 @@ endprogram
 
 function PropertyGump(who, targ)
 	var gump := GumpTemplate(targ);
-
+	// Used to fix unused var report by ecompile: who;
+	who := who;
 	GFResizePic(gump, 160, 55, GFCfgConst("Defaults", "ForeGround"), 325, 95);
 	GFTextLine(gump, 185, 60, 2100, "X");
 	GFTextRight(gump, 475, 60, 2100, targ.x);

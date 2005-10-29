@@ -58,6 +58,7 @@ endfunction
 
 function ICP_GetPkgGump(who, pkg_name, btn_number)
 	// Used to fix unused var report in ecompile: who;
+	who := who;
 	var gump := 0;
 	if ( btn_number == GENERAL_BTN )
 		gump := ICP_RetrieveGump(pkg_name, "general");

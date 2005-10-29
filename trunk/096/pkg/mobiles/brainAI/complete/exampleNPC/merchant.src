@@ -1,3 +1,6 @@
+/* $Id$
+ *
+ */
 use uo;
 use os;
 
@@ -12,7 +15,7 @@ program BrainNerve(params)
 	//var settings	:= params[4];
 	//var scripts	:= params[5];
 	params := 0; // Not needed anymore.
-	
+
 	while ( npc )
 		if ( event )
 			case ( event.type )
@@ -25,23 +28,32 @@ program BrainNerve(params)
 				default:
 					break;
 			endcase
-			
+
 			event := 0;
 		endif
-		
+
 		sleepms(5);
 		event := wait_for_event(900000);
 	endwhile
 endprogram
 
 function SoldEvent(npc, event)
+
+	// Used to fix unused var report by ecompile: event;
+	event := event;
+
 	AI_Speak(npc, "Thank you for shopping at the quick-e-mart. Come again!");
-	
+
 	return 1;
 endfunction
 
 function BoughtEvent(npc, event)
+
+	// Used to fix unused var report by ecompile: event;
+	event := event;
+
 	AI_Speak(npc, "Ill buy low, and sell high!");
-	
+
 	return 1;
+
 endfunction
