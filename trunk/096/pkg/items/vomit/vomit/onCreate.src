@@ -12,8 +12,9 @@ program OnCreate(vomit)
 	var max_color := CInt(color_elem.MaxColor);
 	
 	if ( graphics.size() > 0 )
-		vomit.graphic := graphics[RandomInt(graphics.size())+1];
+		vomit.graphic := CInt(graphics[RandomInt(graphics.size())+1]);
 	endif
+	
 	var color := RandomInt(max_color - min_color);
 	color := color+min_color;
 	vomit.color := color;
