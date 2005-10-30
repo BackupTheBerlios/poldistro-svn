@@ -1,0 +1,74 @@
+/* $Id$
+ *
+ * Purpose
+ * Provide constant look to all .html docs
+ * Melanius ownz Nitsa!
+ *
+ */
+
+body {
+	background: #FFFFFF;
+	color: #000000;
+	font: 9pt, verdana, sans-serif;
+}
+
+#container {
+	margin: 1em;
+}
+
+#header {
+	text-align: right;
+}
+
+#menu {
+	background: #E7E7E7;
+	border: 1px solid #969696;
+	padding: 1em;
+}
+
+#menu ul {
+	list-style-type: none;
+	margin-left: .1em;
+	margin-bottom: 3em;
+	padding: .1em;
+}
+#menu li.header {
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+
+#content {
+	background: #e7e7e7;
+	border: 1px solid #969696;
+	margin: 3em 1em 1em 1em;
+	padding: 1em;
+}
+
+#content p {
+	text-indent: 1em;
+}
+
+#content hr {
+	margin-bottom: 2em;
+}
+
+#content a:link {
+	font-weight: bold;
+	text-decoration: none;
+}
+#content a:visited {
+	font-weight: bold;
+	text-decoration: none;
+}
+#content a:hover {
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+
+#footer {
+	text-align: center;
+	padding: 1em;
+}
+
