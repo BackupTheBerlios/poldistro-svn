@@ -9,6 +9,7 @@
 ===============================================================*/
 
 use uo;
+use os;
 use polsys;
 use cfgfile;
 
@@ -101,7 +102,7 @@ function NPC_GetAllTemplateNames()
 	foreach package in (Packages())
 		if ( package.npcdesc )
 			var pkg_name := ":"+package.name+":";
-			foreach template_name in (GetConfigStringKeys(ReadConfigFile(pkg_name+"::npcdesc")))
+			foreach template_name in (GetConfigStringKeys(ReadConfigFile(pkg_name+"npcdesc")))
 				elem_names.Append(pkg_name+template_name);
 				sleepms(2);
 			endforeach
