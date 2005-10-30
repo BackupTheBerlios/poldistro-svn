@@ -265,7 +265,7 @@ function GFResizePic(byref gump, x, y, gump_id, width, height)
 		height := gump.base.width;
 	endif
 
-	(gump.layout).append("ResizePic " + CStr(gump.base.x + CInt(x)) + " " + CStr(gump.base.y + CInt(y)) + " "
+	(gump.layout).append("ResizePic " + CStr(CInt(x)) + " " + CStr(CInt(y)) + " "
 				+ CStr(CInt(gump_id)) + " " + CStr(width) + " " + CStr(height));
 	return 1;
 endfunction
@@ -289,7 +289,7 @@ endfunction
  *
  */
  function GFAddAlphaRegion(byref gump, x, y, width, height)
-	(gump.layout).append("CheckerTrans " + CStr(gump.base.x + CInt(x)) + " " + CStr(gump.base.y + CInt(y)) + " "
+	(gump.layout).append("CheckerTrans " + CStr(CInt(x)) + " " + CStr(CInt(y)) + " "
 				+ CStr(CInt(width)) + " " + CStr(CInt(height)));
 	return 1;
  endfunction
@@ -320,7 +320,7 @@ endfunction
  *
  */
 function GFAddButton(byref gump, x, y, off_id, on_id, btn_type:=GF_PAGE_BTN, btn_value:=0)
-	var line := "Button " + CStr(gump.base.x + x) + " " + CStr(gump.base.y + y) + " " + CStr(off_id) + " " + CStr(on_id);
+	var line := "Button " + CStr(x) + " " + CStr(y) + " " + CStr(off_id) + " " + CStr(on_id);
 
 	btn_value := CInt(btn_value);
 	if ( btn_value < 1 ) // Catch errors (0) and invalid (negative) values
@@ -382,7 +382,7 @@ function GFCheckBox(byref gump, x, y, unc_id, che_id, status:=0, btn_value:=0)
 		btn_value := gump.data_id;
 	endif
 
-	(gump.layout).append("CheckBox " + CStr(gump.base.x + CInt(x)) + " " + CStr(gump.base.y + CInt(y)) + " "
+	(gump.layout).append("CheckBox " + CStr(CInt(x)) + " " + CStr(CInt(y)) + " "
 				+ CStr(CInt(unc_id)) + " " + CStr(CInt(che_id)) + " "
 				+ CStr(CInt(status)) + " " + CStr(btn_value));
 
@@ -439,7 +439,7 @@ function GFHTMLArea(byref gump, x, y, width, height, text, background:=0, scroll
 	gump.data.append(""+CStr(text));
 	var index := gump.data.size()-1;
 
-	(gump.layout).append("HTMLGump " + CStr(gump.base.x + CInt(x)) + " " + CStr(gump.base.y + CInt(y)) + " "
+	(gump.layout).append("HTMLGump " + CStr(CInt(x)) + " " + CStr(CInt(y)) + " "
 				+ CStr(CInt(width)) + " " + CStr(CInt(height)) + " " + CStr(index) + " "
 				+ CStr(CInt(background)) + " " + CStr(CInt(scrollbar)));
 	return (index);
@@ -470,11 +470,11 @@ endfunction
  */
 function GFAddHTMLLocalized(byref gump, x, y, width, height, cliloc, background:=0, scrollbar:=0, hue:=0)
 	if(hue == 0)
-		(gump.layout).append("XMFHTMLGump " + CStr(gump.base.x + CInt(x)) + " " + CStr(gump.base.y + CInt(y)) + " "
+		(gump.layout).append("XMFHTMLGump " + CStr(CInt(x)) + " " + CStr(CInt(y)) + " "
 					+ CStr(CInt(width)) + " " + CStr(CInt(height)) + " " + CStr(cliloc) + " "
 					+ CStr(CInt(background)) + " " + CStr(CInt(scrollbar)));
 	else
-		(gump.layout).append("XMFHTMLGumpColor " + CStr(gump.base.x + CInt(x)) + " " + CStr(gump.base.y + CInt(y)) + " "
+		(gump.layout).append("XMFHTMLGumpColor " + CStr(CInt(x)) + " " + CStr(CInt(y)) + " "
 					+ CStr(CInt(width)) + " " + CStr(CInt(height)) + " " + CStr(CInt(cliloc)) + " "
 					+ CStr(CInt(background)) + " " + CStr(CInt(scrollbar)) + " " + CStr(CInt(hue)));
 	endif
@@ -503,7 +503,7 @@ endfunction
  *
  */
 function GFGumpPic(byref gump, x, y, gump_id, hue := 0)
-	var text := "GumpPic " + CStr(gump.base.x + CInt(x)) + " " + CStr(gump.base.y + CInt(y)) + " " + CStr(CInt(gump_id));
+	var text := "GumpPic " + CStr(CInt(x)) + " " + CStr(CInt(y)) + " " + CStr(CInt(gump_id));
 
 	hue := CInt(hue);
 	if ( hue )
@@ -536,7 +536,7 @@ endfunction
  *
  */
 function GFTilePic(byref gump, x, y, tile_id, hue := 0)
-	var text := "TilePic " + CStr(gump.base.x + CInt(x)) + " " + CStr(gump.base.y + CInt(y)) + " " + CStr(CInt(tile_id));
+	var text := "TilePic " + CStr(CInt(x)) + " " + CStr(CInt(y)) + " " + CStr(CInt(tile_id));
 
 	hue := CInt(hue);
 	if ( hue )
@@ -568,7 +568,7 @@ endfunction
 function GFTextLine(byref gump, x, y, hue:=0, text:="")
 	gump.data.append(""+CStr(text));
 	var index := gump.data.size()-1;
-	(gump.layout).append("Text " + CStr(gump.base.x + CInt(x)) + " " + CStr(gump.base.y + CInt(y)) + " "
+	(gump.layout).append("Text " + CStr(CInt(x)) + " " + CStr(CInt(y)) + " "
 				+ CStr(CInt(hue)) + " " + CStr(index));
 
 	return (index);
@@ -599,7 +599,7 @@ function GFTextCrop(byref gump, x, y, width, height, hue:=0, text:="")
 	gump.data.append(""+CStr(text));
 	var index := gump.data.size()-1;
 
-	(gump.layout).append("CroppedText " + CStr(gump.base.x + CInt(x)) + " " + CStr(gump.base.y + CInt(y)) + " "
+	(gump.layout).append("CroppedText " + CStr(CInt(x)) + " " + CStr(CInt(y)) + " "
 				+ CStr(CInt(width)) + " " + CStr(CInt(height)) + " " + CStr(CInt(hue)) + " " + CStr(index));
 
 	return (index);
@@ -645,7 +645,7 @@ function GFRadioButton(byref gump, x, y, unp_id, pres_id, status:=0, btn_value:=
 		btn_value := gump.data_id;
 	endif
 
-	(gump.layout).append("Radio " + CStr(gump.base.x + CInt(x)) + " " + CStr(gump.base.y + CInt(y)) + " "
+	(gump.layout).append("Radio " + CStr(CInt(x)) + " " + CStr(CInt(y)) + " "
 				+ CStr(CInt(unp_id)) + " " + CStr(CInt(pres_id)) + " "
 				+ CStr(CInt(status)) + " " + CStr(btn_value));
 	return (btn_value);
@@ -686,7 +686,7 @@ function GFTextEntry(byref gump, x, y, width, height, txt_color, ini_text:="", t
 		txt_id := gump.data_id;
 	endif
 
-	(gump.layout).append("TextEntry " + CStr(gump.base.x + CInt(x)) + " " + CStr(gump.base.y + CInt(y)) + " "
+	(gump.layout).append("TextEntry " + CStr(CInt(x)) + " " + CStr(CInt(y)) + " "
 				+ CStr(CInt(width)) + " " + CStr(CInt(height)) + " "
 				+ Cstr(CInt(txt_color)) + " " + CStr(txt_id) + " " + CStr(index));
 
@@ -709,7 +709,7 @@ endfunction
  *
  */
 function GFSendGump(who, byref gump)
-	var ret_val := SendDialogGump(who, gump.layout, gump.data);
+	var ret_val := SendDialogGump(who, gump.layout, gump.data, gump.base.x, gump.base.y);
 	if ( ret_val.errortext )
 		//Sometimes comes up when the gump has too much information.
 		SendSysMessage(who, "Error - Unable to display gump.");
