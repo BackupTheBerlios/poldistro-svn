@@ -6,7 +6,7 @@ include ":poisonwatcher:poisons";
 program Logon(who)
 	SetObjProperty(who, "#Online", 1);
 	
-	if (!GetScript(who))
+	if ( !PW_GetScript(who) )
 		start_script("poisonwatcher", {who});
 	endif
 
