@@ -3,113 +3,138 @@ use os;
 use util;
 use cfgfile;
 
-include ":timers:timers";
+include ":timedscripts:timedScripts";
 
 program TimerControl(mobile)
 	if ( !mobile.IsA(POLCLASS_MOBILE) )
 		mobile := mobile[1];
 	endif
 	
-	 // Keep making sure the mobile has this!
-	SetObjProperty(who, "#TimerControlPID", GetPid());
+	// Keep making sure the mobile has this.
+	SetObjProperty(mobile, "#TimerControlPID", GetPid());
 	
 	var num_poisons := 0;
-	var timers := dictionary;
-	
-	StartUp(mobile, timers, num_poisons);
+	var timer_list := dictionary;
+	StartUp(mobile, timer_list, num_poisons);
 	
 endprogram
 
-function StartUp(mobile, byref timers, byref num_poisons)
-	//This thing just started. Take in any timers in the dictionary and start the scripts.
-	var temp_list := GetObjProperty(mobile, "%TimerScripts%");
-	EraseObjProperty(mobile, "%TimerScripts%");
-
-	if( !templist )
-		// No timer scripts existed - initialize timers as a dict and continue.
-		templist := dictionary;
-		return 1;
-	endif
-
+function StartUp(mobile, byref timer_list, byref num_poisons)
+	// The controller just started. 
+	// Take in any timers in the dictionary and start the scripts.
+	var temp_list := TS_GetTimerList(mobile); // Will initialize dictionary.
+	
 	foreach timer in (temp_list)
 		var event := struct;
 		event.+name := _timer_iter;
 		event.+amount := timer.duration;
 		event.+level := timer.level;
 
-		AddTimer(who, event, timers, num_poisons);
+		AddTimer(mobile, event, timer_list, num_poisons);
 		sleepms(2);
 	endforeach
+	
+	return 1;
 endfunction
 
-function AddTimer(who, byref event, byref timers, byref num_poisons)
-	// Check if a timer exists. 
-	// If it does, increase its duration.
+function AddTimer(mobile, byref event, byref timer_list, byref num_poisons)
+	// Check if a poison exists. If it does, increase its duration.
 	// If it does not exist, add it to the list on the mobile. 
-	// Start the necessary script and store the name, duration, end time, and sub-script pid.
+	// Start the necessary script and store the name, duration and sub-script pid.
 	
-	if( !PW_CfgInfo(event.name) )
-		SendSysMessage(who, "Debug: You were infected with a poison not in poisons.cfg Poison Name -> [" + event.name + "] please page and report this.");
-		return;
+	if( !TS_GetCfgElem(event.name) )
+		SysLog("Error::AddTimer() - "+event.name+" not found in timedScripts.cfg");
+		return 0;
+	endif
+	
+	if ( !timer_list.Exists(event.name) )
+		return AddNewTimer(mobile, event, timer_list, num_poisons);
+	else
+		return AddExistingTimer(mobile, event, timer_list, num_poisons);
+	endif
+endfunction
+
+function AddNewTimer(mobile, byref event, byref timer_list, byref num_poisons)
+	var elem_info := TS_GetCfgElem(event.name);
+	
+	var script := start_script(elem_info.Script, {mobile, event.attacker, event.level});
+	if( script.errortext )
+		SysLog("Error::AddNewTimer() - Unable to start script ["+elem_info.Script+"] ->"+script.errortext);
+		return 0;
+	endif
+	
+	var maxdur := CInt(elem_info.MaxDuration);
+	event.amount := CInt(event.amount);
+	if ( maxdur > 0 )
+		if ( event.amount > maxdur )
+			event.amount := maxdur;
+		endif
 	endif
 
-	var cumulative := PW_CfgInfo(event.name).Cumulative;
-	if( !poisons.Exists(event.name) )
-		var script := PW_CfgInfo(event.name).Script;
-		script := start_script(script, {who, event.attacker, event.level});
+	timer_list[event.name] := struct;
+	// .endtime is used instead of .duration now to ensure more accurate time keeping.
+	timer_list[event.name].+endtime := ReadGameClock()+event.amount;
+	timer_list[event.name].+pid := script.pid;
+	timer_list[event.name].+level := CInt(event.level);
+	
+	if( elem_info.IndicatePoison )
+		num_poisons := num_poisons+1;
+	endif
+	
+	return 1;
+endfunction
 
-		if( script.errortext )
-			SendSysMessage(who, "Debug - Poison Script Add_Poison(): " + script.errortext);
-			return;
-		endif
-
-		poisons[event.name] := struct;
-		poisons[event.name].+duration := event.amount;
-		poisons[event.name].+pid := script.pid;
-		poisons[event.name].+level := event.level;
-		
-		var maxdur := CInt(PW_CfgInfo(event.name).MaxDuration);
-		if ( maxdur < poisons[event.name].duration )
-			poisons[event.name].duration := maxdur;
-		endif
-
-		if( PW_CfgInfo(event.name).IndicatePoison )
-			num_poisons := num_poisons+1;
-		endif
-	else
-		var lvl := poisons[event.name].level;
-		var amt := CInt(event.amount);
-		if (cumulative)
-			if ((event.level) && lvl)
-				amt := amt * ((event.level*1.0) / poisons[event.name].level);
-				if (lvl >= event.level)
-					poisons[event.name].duration := poisons[event.name].duration + amt;
-				else
-					KillPoison(poisons[event.name].pid, poisons, event.name);
-					event.amt := amt;
-					Add_Poison(who, event, poisons, num_poisons);
-				endif
+function AddExistingTimer(mobile, byref event, byref timer_list, byref num_poisons)
+	var elem_info := TS_GetCfgElem(event.name);
+	
+	var level := CInt(timer_list[event.name].level);
+	var amt := CInt(event.amount);
+	
+	var end_time := timer_list[event.name].endtime;
+	var duration := end_time - ReadGameClock();
+	
+	event.amount := CInt(event.amount);
+	if ( elem_info.Cumulative )
+		if ( (event.level) && level )
+			amt := CInt(CDbl(amt) * (CDbl(event.level) / CDbl(timer_list[event.name].level)));
+			if ( level >= event.level )
+				duration := duration + amt;
+				timer_list[event.name].endtime := ReadGameClock()+duration;
 			else
-				poisons[event.name].duration := poisons[event.name].duration + amt;
+				StopTimedScript(timer_list[event.name].pid, timer_list, event.name);
+				event.amount := amt;
+				AddTimer(mobile, event, timer_list, num_poisons);
 			endif
 		else
-			if ((event.level) && lvl)
-				if ((lvl == event.level) && (amt > poisons[event.name].duration))
-					poisons[event.name].duration := amt;
-				elseif (event.level > lvl)
-					KillPoison(poisons[event.name].pid, poisons, event.name);
-					event.amt := amt;
-					Add_Poison(who, event, poisons, num_poisons);
-				endif					
-			else
-				if (amt > poisons[event.name].duration)
-					poisons[event.name].duration := amt;
-				endif
+			timer_list[event.name].endtime := (duration+amt)+ReadGameClock();
+		endif
+	else
+		if ( (event.level) && level )
+			if ( (level == event.level) && (amt > timer_list[event.name].duration) )
+				timer_list[event.name].duration := amt;
+			elseif ( event.level > level )
+				StopTimedScript(timer_list[event.name].pid, timer_list, event.name);
+				event.amt := amt;
+				AddTimer(mobile, event, timer_list, num_poisons);
+			endif					
+		else
+			if ( amt > timer_list[event.name].duration )
+				timer_list[event.name].duration := amt;
 			endif
 		endif
-		var maxdur := PW_CfgInfo(event.name).MaxDuration;
-		if (maxdur < poisons[event.name].duration)
-			poisons[event.name].duration := maxdur;
-		endif
 	endif
+	var maxdur := elem_info.MaxDuration;
+	if ( maxdur < timer_list[event.name].duration )
+		timer_list[event.name].duration := maxdur;
+	endif
+	
+	return 1;
+endfunction
+
+function StopTimedScript(byref pid, byref timer_list, timer_name)
+	var script := GetProcess(pid);
+	script.kill();
+	timer_list.Erase(timer_name);
+	
+	return 1;
 endfunction
