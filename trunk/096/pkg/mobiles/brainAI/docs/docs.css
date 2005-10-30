@@ -21,7 +21,7 @@ body {
 }
 
 #menu {
-	background: #E7E7E7;
+	background: #ededed;
 	border: 1px solid #969696;
 	padding: 1em;
 }
@@ -39,7 +39,7 @@ body {
 
 
 #content {
-	background: #e7e7e7;
+	background: #ededed;
 	border: 1px solid #969696;
 	margin: 3em 1em 1em 1em;
 	padding: 1em;
@@ -67,7 +67,7 @@ body {
 }
 
 #table {
-	background: #E2E2E2;
+	background: #bcbcbc;
 	border: 1px solid #969696;
 }
 #table p {
@@ -81,7 +81,7 @@ body {
 	padding: .5em;
 }
 #table pre {
-	margin: 0em 0em 2em 0em;
+	margin: 0em 0em 3em 0em;
 	padding: .5em;
 }
 
