@@ -1,11 +1,14 @@
-use os;
-use cfgfile;
 use uo;
+use cfgfile;
+use os;
 
-const EVENT_ADD_POISON			:= 0x1;
-const EVENT_CURE_POISON			:= 0x2;
-const EVENT_CURE_SPECIFIC_POISON	:= 0x3;
-const EVENT_DEAD			:= 0x4;
+// Event flags
+const EVENT_ADD_TIMER			:= 0x1;
+const EVENT_CURE_TIMER			:= 0x2;
+const EVENT_CURE_SPECIFIC_TIMER		:= 0x4;
+const EVENT_DEAD			:= 0x8;
+const EVENT_LOGOUT			:= 0x10;
+
 
 
 //
@@ -14,12 +17,14 @@ const EVENT_DEAD			:= 0x4;
 // running on the targetted mobile that are of the type
 // passed.
 //
-function ListPoisonsByType(mobile, the_type)
-	var p_list := array;
-	var temp_list := GetObjProperty(mobile, "Poisons");
-	foreach poison_name in (temp_list.keys())
-		if (Lower(PW_CfgInfo(poison_name).Type) == Lower(the_type))
-			p_list.append(poison_name);
+function ListTimersByType(mobile, type_name)
+	var p_list := array{};
+	var temp_list := GetObjProperty(mobile, "#TimerScripts");
+	
+	type_name := Lower(type_name);
+	foreach timer_name in (temp_list.keys())
+		if ( Lower(PW_CfgInfo(timer_name).Type) == type_name )
+			p_list.Append(timer_name);
 		endif
 		sleepms(2);
 	endforeach
@@ -35,7 +40,7 @@ endfunction
 //
 function GetAllPoisons(mobile)
 	var p_list := array;
-	var temp_list := GetObjProperty(mobile, "Poisons");
+	var temp_list := GetObjProperty(mobile, "#TimerScripts");
 	
 	foreach poison_name in (temp_list.keys())
 		p_list.append(poison_name);
@@ -53,23 +58,15 @@ endfunction
 // from food or a potion.
 // Level applies if the poison comes in levels, as the default poison does.
 //
-function AddPoison(mobile, poison_name, amount, attacker, level := 1)
+function AddPoison(mobile, poison_name, duration, attacker := 0, level := 1)
 	var event := struct;
-	event.+ type;
-	event.+ name;
-	event.+ amount;
-	event.+ level;
-	event.+ attacker;
+	event.+ type := EVENT_ADD_TIMER;
+	event.+ name := poison_name;
+	event.+ amount := duration;
+	event.+ attacker := attacker;
+	event.+ level := CInt(level);
 
-	event.type := EVENT_ADD_POISON;
-	event.name := poison_name;
-	event.amount := amount;
-	event.attacker := attacker;
-	event.level := level;
-
-	PW_GetScript(mobile).SendEvent(event);
-
-	return;
+	return PW_GetScript(mobile).SendEvent(event);
 endfunction
 
 
@@ -92,7 +89,7 @@ function CurePoison(mobile, amount, poisontype := "", level := 1)
 	event.+ poisontype;
 	event.+ level;
 
-	event.type := EVENT_CURE_POISON;
+	event.type := EVENT_CURE_TIMER;
 	event.amount := amount;
 	event.poisontype := poisontype;
 	event.level := level;
@@ -115,7 +112,7 @@ function CureSpecific(mobile, poison_name, amount, level := 1)
 	event.+ amount;
 	event.+ level;
 
-	event.type := EVENT_CURE_SPECIFIC_POISON;
+	event.type := EVENT_CURE_SPECIFIC_TIMER;
 	event.name := poison_name;
 	event.amount := amount;
 	event.level := level;
@@ -154,7 +151,7 @@ endfunction
 // PW_CfgInfo(poison_name)
 // Returns config information about the poison name passed.
 //
-function PW_CfgInfo(poison_name)
+function TC_CfgInfo(poison_name)
 	var cfg_file := ReadConfigFile(":poisonwatcher:config/poisons");
 	if ( cfg_file.errortext )
 		SysLog("Error::PW_CfgInfo() - Unable to open poisons.cfg -> "+cfg_file.errortext);

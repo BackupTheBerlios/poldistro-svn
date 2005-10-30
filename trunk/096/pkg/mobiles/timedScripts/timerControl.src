@@ -1,0 +1,115 @@
+use uo;
+use os;
+use util;
+use cfgfile;
+
+include ":timers:timers";
+
+program TimerControl(mobile)
+	if ( !mobile.IsA(POLCLASS_MOBILE) )
+		mobile := mobile[1];
+	endif
+	
+	 // Keep making sure the mobile has this!
+	SetObjProperty(who, "#TimerControlPID", GetPid());
+	
+	var num_poisons := 0;
+	var timers := dictionary;
+	
+	StartUp(mobile, timers, num_poisons);
+	
+endprogram
+
+function StartUp(mobile, byref timers, byref num_poisons)
+	//This thing just started. Take in any timers in the dictionary and start the scripts.
+	var temp_list := GetObjProperty(mobile, "%TimerScripts%");
+	EraseObjProperty(mobile, "%TimerScripts%");
+
+	if( !templist )
+		// No timer scripts existed - initialize timers as a dict and continue.
+		templist := dictionary;
+		return 1;
+	endif
+
+	foreach timer in (temp_list)
+		var event := struct;
+		event.+name := _timer_iter;
+		event.+amount := timer.duration;
+		event.+level := timer.level;
+
+		AddTimer(who, event, timers, num_poisons);
+		sleepms(2);
+	endforeach
+endfunction
+
+function AddTimer(who, byref event, byref timers, byref num_poisons)
+	// Check if a timer exists. 
+	// If it does, increase its duration.
+	// If it does not exist, add it to the list on the mobile. 
+	// Start the necessary script and store the name, duration, end time, and sub-script pid.
+	
+	if( !PW_CfgInfo(event.name) )
+		SendSysMessage(who, "Debug: You were infected with a poison not in poisons.cfg Poison Name -> [" + event.name + "] please page and report this.");
+		return;
+	endif
+
+	var cumulative := PW_CfgInfo(event.name).Cumulative;
+	if( !poisons.Exists(event.name) )
+		var script := PW_CfgInfo(event.name).Script;
+		script := start_script(script, {who, event.attacker, event.level});
+
+		if( script.errortext )
+			SendSysMessage(who, "Debug - Poison Script Add_Poison(): " + script.errortext);
+			return;
+		endif
+
+		poisons[event.name] := struct;
+		poisons[event.name].+duration := event.amount;
+		poisons[event.name].+pid := script.pid;
+		poisons[event.name].+level := event.level;
+		
+		var maxdur := CInt(PW_CfgInfo(event.name).MaxDuration);
+		if ( maxdur < poisons[event.name].duration )
+			poisons[event.name].duration := maxdur;
+		endif
+
+		if( PW_CfgInfo(event.name).IndicatePoison )
+			num_poisons := num_poisons+1;
+		endif
+	else
+		var lvl := poisons[event.name].level;
+		var amt := CInt(event.amount);
+		if (cumulative)
+			if ((event.level) && lvl)
+				amt := amt * ((event.level*1.0) / poisons[event.name].level);
+				if (lvl >= event.level)
+					poisons[event.name].duration := poisons[event.name].duration + amt;
+				else
+					KillPoison(poisons[event.name].pid, poisons, event.name);
+					event.amt := amt;
+					Add_Poison(who, event, poisons, num_poisons);
+				endif
+			else
+				poisons[event.name].duration := poisons[event.name].duration + amt;
+			endif
+		else
+			if ((event.level) && lvl)
+				if ((lvl == event.level) && (amt > poisons[event.name].duration))
+					poisons[event.name].duration := amt;
+				elseif (event.level > lvl)
+					KillPoison(poisons[event.name].pid, poisons, event.name);
+					event.amt := amt;
+					Add_Poison(who, event, poisons, num_poisons);
+				endif					
+			else
+				if (amt > poisons[event.name].duration)
+					poisons[event.name].duration := amt;
+				endif
+			endif
+		endif
+		var maxdur := PW_CfgInfo(event.name).MaxDuration;
+		if (maxdur < poisons[event.name].duration)
+			poisons[event.name].duration := maxdur;
+		endif
+	endif
+endfunction
