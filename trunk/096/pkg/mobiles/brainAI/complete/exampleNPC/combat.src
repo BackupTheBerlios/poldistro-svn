@@ -30,9 +30,9 @@ program BrainNerve(params)
 			AI_WarMode(npc, 0);
 			AI_Move(npc, opponent, NEMOVE_AWAY, NEMOVE_RUN, WAKEUP, 100);
 		elseif ( DoneFighting(npc, opponent, dist) )
-			if ( scripts.Exists("WonFight") )
+			if ( scripts.Exists("EndFight") )
 				params := array{opponent, settings, scripts};
-				AI_StartNerve(npc, "WonFight", scripts["WonFight"].script, params);
+				AI_StartNerve(npc, "EndFight", scripts["EndFight"].script, params);
 			else
 				AI_WarMode(npc, 0);
 			endif
