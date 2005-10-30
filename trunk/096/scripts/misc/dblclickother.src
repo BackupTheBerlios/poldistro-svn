@@ -9,22 +9,21 @@ use os;
 use npc;
 
 program core_dblClickSelf(who, clicked)
-	PrintTextAbove(who, "I clicked.");
-	PrintTextAbove(clicked, "I got clicked.");
-	
 	if ( HasPDGraphic(clicked) )
-		OPenPaperDoll(who, clicked);
+		return OPenPaperDoll(who, clicked);
 	endif
+	
+	return 0;
 endprogram
 
 function HasPDGraphic(clicked)
-	if ( clicked.graphic == 401 ) // Male
-		return 1;
-	elseif ( clicked.graphic == 402 ) // Female
-		return 1;
-	elseif ( clicked.graphic == 403 ) // Ghost
-		return 1;
-	endif
+	case ( clicked.graphic )
+		400:	return 1; break; // Male
+		401:	return 1; break; // Female
+		402:	return 1; break; // Male ghost
+		403:	return 1; break; // Female ghost
+		987:	return 1; break; // GM robe
+	endcase
 	
 	return 0;
 endfunction
