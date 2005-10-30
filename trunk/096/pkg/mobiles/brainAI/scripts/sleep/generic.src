@@ -1,0 +1,44 @@
+use uo;
+use os;
+use util;
+
+include ":brainAI:npcNerves";
+include ":brainAI:npcCommands";
+
+program BrainNerve(params)
+	var npc		:= params[1];
+	var nerve_name	:= params[2];
+	var settings	:= params[3];
+	//var scripts	:= params[4];
+	params := 0; // Not needed anymore.
+	
+	// Shut down appropriate nerves.
+	foreach nerve in (LoadNerves(npc))
+		if ( nerve.flags & NF_CONTINUE_ON_SLEEP )
+			continue;
+		elseif ( _nerve_iter != nerve_name )
+			StopNerve(npc, _nerve_iter);
+		endif
+		sleepms(2);
+	endforeach
+	
+	while ( npc )
+		Sleep(30+RandomInt(10));
+		
+		if ( settings["idle_sound"] )
+			if ( settings["idle_sound"].size() > 0 )
+				var sounds := settings["idle_sound"];
+				PlaySoundEffect(npc, sounds[RandomInt(sounds.size())+1]);
+			else
+				PlaySoundEffect(npc, settings["idle_sound"]);
+			endif
+		endif
+		
+		sleep(20+RandomInt(10));
+		
+		npc.facing := RandomInt(8);
+		AI_Wander(npc, NOWAKE);
+		
+		AI_ClearThoughts(npc, CLR_NERVE);
+	endwhile
+endprogram
