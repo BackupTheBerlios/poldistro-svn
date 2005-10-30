@@ -14,6 +14,9 @@ use os;
 include ":gumps:gumps";
 include ":gumps:gumps_ex";
 
+const CANCEL_BTN_OFF	:= 0x0;
+const CANCEL_BTN_ON	:= 0x1;
+
 /* 
  * RequestGump(mobile, question, option, pre_val, cancel_btn)
  *
@@ -33,7 +36,7 @@ include ":gumps:gumps_ex";
  * Returns 0 or the text that was entered.
  *
  */
-function RequestGump(mobile, question, option := "", pre_val := "", cancel_btn:=0)
+function RequestGump(mobile, question, option := "", pre_val := "", cancel_btn:=CANCEL_BTN_OFF)
 	
 	if ( !pre_val || pre_val == error )
 		pre_val := "";
