@@ -12,6 +12,25 @@ exported function GetOwner(corpse)
 	return SystemFindObjectBySerial(corpse.ownerserial);
 endfunction
 
+exported function NPCTemplate(corpse)
+	var template := GetObjProperty(corpse, "npctemplate");
+	if ( template )
+		return template;
+	else
+		return error{"errortext":="Corpse did not belong to an npc."};
+	endif
+endfunction
+
+exported function IsPlayerCorpse(corpse)
+	var owner := GetOwner(corpse);
+	
+	if ( owner )
+		return owner;
+	else
+		return error{"errortext":="Corpse does not have an owner."};
+	endif
+endfunction
+
 exported function SetSkinned(corpse, skinner)
 	var serial;
 
