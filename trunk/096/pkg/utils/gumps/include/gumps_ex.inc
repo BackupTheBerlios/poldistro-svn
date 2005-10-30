@@ -157,6 +157,8 @@ endfunction
  *	
  */
 function GFTextCoords(type:=ALIGN_CENTER, gump_text, x_pos, width:=0)
+	x_pos := CInt(x_pos);
+	width := CInt(width);
 	if ( type == ALIGN_CENTER )
 		return CInt(x_pos+CInt((width-GFTextWidth(gump_text))/2));
 	elseif ( type == ALIGN_RIGHT )
