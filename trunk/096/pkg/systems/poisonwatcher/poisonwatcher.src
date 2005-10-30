@@ -320,6 +320,10 @@ endfunction
 function ShouldRun( who, byref poison_keys )
 	if ( Events_Waiting() >= 1 )
 		return 1;
+	elseif ( who.IsA(POLCLASS_NPC) )
+		if ( poison_keys.size() > 0 )
+			return 1;
+		endif
 	elseif( who.connected )
 		if( poison_keys.size() > 0 )
 			return 1;
