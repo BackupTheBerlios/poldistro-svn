@@ -66,6 +66,25 @@ body {
 	text-decoration: underline;
 }
 
+#table {
+	background: #E2E2E2;
+	border: 1px solid #969696;
+}
+#table p {
+	text-indent: .5em;
+}
+#table h3 {
+	font: 11pt bold verdana, sans-serif;
+	background: #777777;
+	font-weight: bold;
+	margin: 0em;
+	padding: .5em;
+}
+#table pre {
+	margin: 0em 0em 2em 0em;
+	padding: .5em;
+}
+
 
 #footer {
 	text-align: center;
