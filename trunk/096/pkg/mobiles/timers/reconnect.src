@@ -1,0 +1,14 @@
+use uo;
+use os;
+
+include ":poisonwatcher:poisons";
+
+
+program reconnect(who)
+	if ( !PW_GetScript(who) )
+		return start_script("poisonwatcher", {who});
+	endif
+
+	return 0;
+endprogram
+
