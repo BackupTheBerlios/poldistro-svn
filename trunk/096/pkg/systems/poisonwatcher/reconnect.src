@@ -5,12 +5,10 @@ include ":poisonwatcher:poisons";
 
 
 program reconnect(who)
-	SetObjProperty(who, "#Online", 1);
-
 	if ( !PW_GetScript(who) )
-		start_script("poisonwatcher", {who});
+		return start_script("poisonwatcher", {who});
 	endif
 
-	return;
+	return 0;
 endprogram
 
