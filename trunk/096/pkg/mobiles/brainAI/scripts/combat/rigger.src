@@ -18,7 +18,7 @@ program BrainNerve(params)
 
 	//Store it here so it does not have to do the math over and over.
 	var flee_level := AP_GetVitalMaximumValue(npc, "Hits") * (CDbl(settings["FleeLevel"])/100.0);
-
+	
 	var opponent := event.source;
 	var flee_mode := 0;
 
