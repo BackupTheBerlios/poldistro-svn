@@ -1,30 +1,33 @@
 use uo;
 
-include ":poisonwatcher:poisons";
-
+include ":timedscripts:timedScripts";
 
 program cmd_AddPoison(who, text)
 	text := SplitWords(text);
 	
-	var p_name := text[1];
-	var amount := CInt(text[2]);
-	var level := CInt(text[3]);
+	var timer_name	:= text[1];
+	var duration	:= CInt(text[2]);
+	var level	:= CInt(text[3]);
 
-	if (!level)
+	if ( !level )
 		level := 1;
 	endif
 	
-	if (!p_name || !amount)
-		SendSysMessage(who, "Syntax: .givepoison <poison name> <amount> (<level>)");
+	if ( !timer_name || !duration )
+		SendSysMessage(who, "Syntax: .addTimer <timer name> <duration> (level)");
 		return;
 	endif
 	
-	SendSysMessage(who, "Who do you want to infect?");
+	SendSysMessage(who, "Target mobile to add timer to.");
 	var targ := target(who);
 	
-	if (targ.IsA(POLCLASS_MOBILE))
-		AddPoison(targ, p_name, amount, who, level);
+	if ( !targ.IsA(POLCLASS_MOBILE) )
+		SendSysMessage(who, "Cancelled.");
+		return 0;
 	endif
+	
+	TS_StartTimer(targ, timer_name, duration, level);
+	SendSysMessage(who, "Done.");
 
-	return;
+	return 1;
 endprogram

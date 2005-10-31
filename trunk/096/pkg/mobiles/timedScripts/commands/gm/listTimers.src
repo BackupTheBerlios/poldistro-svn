@@ -1,24 +1,24 @@
 use uo;
 use os;
 
-include ":poisonwatcher:poisons";
+include ":timedscripts:timedScripts";
 
-
-program Lister(who, type)
-	if (!type)
-		type := "P";
-	endif
+program textcmd_ListTimers(who, type)
 	
-	SendSysMessage(who, "Select the mobile to list poisons on.");
+	SendSysMessage(who, "Select the mobile to list timers on.");
+	
 	var targ := target(who);
 	
-	if (!targ.IsA(POLCLASS_MOBILE))
+	if ( !targ.IsA(POLCLASS_MOBILE) )
 		SendSysMessage(who, "Cancelled");
-		return;
+		return 0;
 	endif
 	
-	foreach poison_name in GetAllPoisons(targ);
-		SendSysMessage(who, "->"+poison_name);
+	foreach timer_name in ( TS_GetTimerNames(targ, type) )
+		SendSysMessage(who, "->"+timer_name);
 		sleepms(2);
 	endforeach
+	
+	SendSysMessage(who, "Done.");
+	return 1;
 endprogram

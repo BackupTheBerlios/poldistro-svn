@@ -1,27 +1,27 @@
 use uo;
 
-include ":poisonwatcher:poisons";
+include ":timedscripts:timedScripts";
 
-program cmd_CureSpecific(who, text)
+program textcmd_LowerTimer(who, text)
 	text := SplitWords(text);
 	
-	var p_name := text[1];
-	var amount := CInt(text[2]);
-	var level := CInt(text[3]);
+	var timer_name	:= text[1];
+	var amount	:= CInt(text[2]);
 	
-	if (!p_name || !amount)
-		SendSysMessage(who, "Syntax: .curespecific <poison name> <amount>");
-		return;
+	if ( !timer_name || amount )
+		SendSysMessage(who, "Syntax: .lowerTimer <timer name> <amount>");
+		return 0;
 	endif
 
-	if (!level)
-		level := 1;
-	endif
-	
-	SendSysMessage(who, "Who do you want to cure?");
+	SendSysMessage(who, "Select a mobile to lower the timer on.");
 	var targ := target(who);
 	
-	if (targ.IsA(POLCLASS_MOBILE))
-		CureSpecific(targ, p_name, amount, level);
+	if ( targ.IsA(POLCLASS_MOBILE) )
+		SendSysMessage(who, "Cancelled.");
+		return 0;
 	endif
+	
+	TS_LowerDuration(targ, timer_name, amount);
+	SendSysMessage(who, "Done.");
+	return 1;
 endprogram
