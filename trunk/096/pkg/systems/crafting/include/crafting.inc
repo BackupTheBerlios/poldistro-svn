@@ -360,6 +360,52 @@ function CraftAssembly(who, craft_skill, tool, objtype, amt)
 
 endfunction
 
+
+function CreateCraftedMap(who, craft_skill, use_on, objtype, amount, itemname, reqd)
+
+	var craft_sound  := menu_config[craft_skill].CraftSound;
+	var craft_loops  := menu_config[craft_skill].CraftLoops;
+	var craft_delay  := menu_config[craft_skill].CraftDelay;
+	var craft_action := menu_config[craft_skill].CraftAnim;
+	playCraftWork(who, craft_sound, craft_loops, craft_delay, craft_action);
+
+	var theitem := CreateItemInBackpack(who, objtype, 1);
+	if(theitem)
+		if( !SubtractAmount(use_on, amount) )
+			SendSysMessage(who, "You don't have enough materials in your backpack!");
+			DestroyItem(theitem);
+			return -1;
+		endif
+		var rint := randomint(AP_GetSkill(who, craft_skill));
+		if(reqd >= 23)
+			reqd := reqd - 20;
+		else
+			reqd := 3;
+		endif
+		if(rint < reqd)
+			SendSysMessage(who, "You were barely able to make this item.  Its quality is below average.");
+		else
+			SendSysMessage(who, "You create the item and put it in your backpack.");
+		endif
+		var word := "";
+		if((itemname[1] == "a") || (itemname[1] == "e") || (itemname[1] == "i") || (itemname[1] == "o") || (itemname[1] == "u"))
+			word := "an ";
+		else
+			word := "a ";
+		endif
+		itemname := "" + word + itemname;
+		itemname := itemname - "plain ";
+		SetName(theitem, itemname);
+	else
+		SendSysMessage(who, "You don't have enough room in your backpack!");
+		return 0;
+	endif
+
+	return theitem;
+
+endfunction
+
+
 //
 //  TruncatePlural()
 //

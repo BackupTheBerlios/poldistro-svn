@@ -101,6 +101,14 @@ function Carve_Corpse(who, cadaver)
 				i := i + 1;
 			endforeach
 			SendSysMessage(who, "You place the items on the corpse.");
+			// The do/dowhile loop used here, is done to ensure that the loop
+			// runs at least once. do/dowhile runs as a Post-Condition loop,
+			// checking AFTER the loop. A while/endwhile loop is known as a
+			// Pre-Condition loop, checking before it runs the loop.
+			var orig_facing := cadaver.facing;
+			do
+				cadaver.facing := RandomInt(7) + 1;
+			dowhile( orig_facing == cadaver.facing );
 			var theblood := CreateItemAtLocation(cadaver.x, cadaver.y, cadaver.z, UOBJ_BLOOD, 1, cadaver.realm);
 			sleep(30);
 			DestroyItem(cadaver);

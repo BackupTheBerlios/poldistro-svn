@@ -24,7 +24,7 @@ program use_SmithTool(who, tool)
 		return 0;
 	endif
 	if(!tool in ListEquippedItems(who))
-		if(tool.container.serial != who.backpack.serial)
+		if( !(tool in EnumerateItemsInContainer(who.backpack)) )
 			SendSysMessage(who, "That item is not in your backpack nor equipped.");
 			return 0;
 		endif

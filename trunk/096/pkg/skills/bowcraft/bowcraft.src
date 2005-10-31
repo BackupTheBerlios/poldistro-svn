@@ -23,7 +23,7 @@ program use_FletchTool(who, tool)
 		SendSysMessage(who, "You cannot use that");
 		return 0;
 	endif
-	if(tool.container.serial != who.backpack.serial)
+	if( !(tool in EnumerateItemsInContainer(who.backpack)) )
 		SendSysMessage(who, "That item is not in your backpack.");
 		return 0;
 	endif
