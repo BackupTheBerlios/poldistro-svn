@@ -215,26 +215,6 @@ function AddExistingTimer(mobile, byref event, byref timer_list, byref num_poiso
 	return 1;
 endfunction
 
-function CureTimer(mobile, byref event, byref timer_list, byref num_poisons)
-	//Run through all curable poisons, and keep curing until it runs out of curing power.
-
-	var cure_type := Lower(event.curetype);
-	foreach timer in ( timer_list )
-		var elem_info := TS_GetCfgElem(_timer_iter);
-		if ( !elem_info.NoCure ) // Its curable
-			if ( !cure_type || cure_type == Lower(elem_info.Type) )
-				event.name := _timer_iter;
-				LowerDuration(mobile, event, timer_list, num_poisons);
-			endif
-
-			if( event.amount <= 0 ) // All out of cure power
-				break;
-			endif
-			sleepms(2);
-		endif
-	endforeach
-endfunction
-
 function LowerDuration(mobile, byref event, byref timer_list, byref num_poisons)
 	return 1;
 endfunction
