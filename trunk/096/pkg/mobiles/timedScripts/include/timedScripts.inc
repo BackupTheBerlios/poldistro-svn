@@ -152,3 +152,36 @@ function TS_SaveTimerList(mobile, byref timer_list)
 	return SetObjProperty(mobile, "%TimerList%", timer_list);
 endfunction
 
+/* 
+ * TS_GetTimerNames(mobile, type:="")
+ *
+ * Purpose
+ * Retrieves a list of names of timed scripts running on a mobile.
+ * 
+ * Parameters
+ * mobile:	Mobile to get the list from.
+ * type:	Optional parameter - Will only list timers of a certain type.
+ *		If left unset, all will be retuned.
+ *
+ * Return value
+ * Array of strings
+ *
+ */
+function TS_GetTimerNames(mobile, type:="")
+	type := Lower(type);
+	var timer_list := TS_GetTimerList(mobile);
+	var name_list := array{};
+	
+	foreach timer_name in ( timer_list.keys() )
+		if ( type )
+			var elem_info := TS_GetCfgElem(timer_name);
+			if ( Lower(elem_info.Type) == type )
+				name_list.Append(type);
+			endif
+		else
+			name_list.Append(type);
+		endif
+		sleepms(2);
+	endforeach
+endfunction
+
