@@ -43,19 +43,20 @@ program create_encodeMap( mapitem )
 			return 1;
 		endif
 	endforeach
+	return 1;
 
 endprogram
 
 
 function makethemap( map, mapdef )
 
-	map.name := "map of " + mapdef[2];
-	map.xwest := hex(mapdef[3]);
-	map.ynorth := hex(mapdef[4]);
-	map.xeast := hex(mapdef[5]);
-	map.ysouth := hex(mapdef[6]);
-	map.gumpwidth := hex(mapdef[7]);
-	map.gumpheight := hex(mapdef[8]);
+	map.name := "Nice Map of " + mapdef[2];
+	map.xwest := CInt(mapdef[3]);
+	map.ynorth := CInt(mapdef[4]);
+	map.xeast := CInt(mapdef[5]);
+	map.ysouth := CInt(mapdef[6]);
+	map.gumpwidth := CInt(mapdef[7]);
+	map.gumpheight := CInt(mapdef[8]);
 
 	return 1;
 

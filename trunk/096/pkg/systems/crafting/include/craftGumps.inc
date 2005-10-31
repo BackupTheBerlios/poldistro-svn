@@ -365,6 +365,10 @@ function GFCraftInfoPage(who, objtype, skill_config)
 	// Get the material type required to craft the item.
 	var matname   := lower(elem.type);
 
+	if( TypeOf(elem.mtype) == "String" )
+		matname := elem.mtype;
+	endif
+
 	// Get the materials amount required to craft the item
 	var material  := elem.material;
 
