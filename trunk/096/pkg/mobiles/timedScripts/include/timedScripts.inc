@@ -284,6 +284,7 @@ endfunction
  * mobile:	Mobile to lower the timed script on.
  * timer_name:	Name of the timer (elem name from timedScripts.cfg).
  * duration:	Number of seconds lower the run time of the timer.
+ *		-1 will stop it completely.
  *
  * Return value
  * Returns 1 on success.
