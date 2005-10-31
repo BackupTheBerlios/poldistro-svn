@@ -62,7 +62,7 @@ function MakeBleed(object, blood_color:=0)
 		endif
 	endif
 	
-	var blood := CreateItemAtLocation(object.x, object.y, object.z, "blood", 1);
+	var blood := CreateItemAtLocation(object.x, object.y, object.z, "blood", 1, object.realm);
 	blood.color := blood_color;
 	return blood;
 endfunction
