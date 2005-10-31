@@ -1,13 +1,16 @@
+/*
+ * $Id$
+ *
+ */
+ 
 use uo;
 use os;
 
-include ":poisonwatcher:poisons";
+include ":timedscripts:timedScripts";
 
 
 program reconnect(who)
-	if ( !PW_GetScript(who) )
-		return start_script("poisonwatcher", {who});
-	endif
+	TS_StartController(who);
 
 	return 0;
 endprogram

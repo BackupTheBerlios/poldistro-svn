@@ -109,9 +109,14 @@ endfunction
  *
  * Return value
  * Returns a script reference.
+ * Returns error on failure.
  *
  */
 function TS_StartController(mobile)
+	if ( TS_GetControllerProcess(mobile, NOSTART_CONTROLLER) )
+		return error{"errortext":="Error::TS_StartController() - Controller is already running."};
+	endif
+	
 	var script := start_script(":timedscripts:timerControl", mobile);
 	if ( script.errortext )
 		SysLog("Error::TS_StartController() ->"+script.errortext);
