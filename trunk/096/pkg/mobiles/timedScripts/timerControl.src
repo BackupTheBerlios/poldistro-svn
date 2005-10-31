@@ -22,27 +22,26 @@ program TimerControl(mobile)
 		 * 1. Mobile was an NPC and died.
 		 * 2. Was a player character but got deleted.
 		 */
-		if ( ReadGameClock()%30 == 0 )
-			SaveState(mobile, timer_list);
-		endif
-			
+		mobile.SetPoisoned((num_poisons > 0));	
 		 
-		var event := 0;
+		var event;
 		if ( timer_list.size() > 0 )
 			event := wait_for_event(1);
 		else // sleep-mode
 			event := wait_for_event(900000);
 		endif
-		
-		mobile.SetPoisoned(num_poisons);
-		
+				
 		if( event.type == EVENT_ADD_TIMER )
+			SendSysMessage(mobile, "** ADD TIMER **");
 			AddTimer(mobile, event, timer_list, num_poisons);
 		elseif( event.type == EVENT_LOWER_TIMER )
+			SendSysMessage(mobile, "** LOWER TIMER **");
 			LowerDuration(mobile, event, timer_list, num_poisons);
 		elseif( event.type == EVENT_DEAD )
+			SendSysMessage(mobile, "** DEAD **");
 			Death(mobile, timer_list, num_poisons);
 		elseif ( event.type == EVENT_LOGOFF )
+			SendSysMessage(mobile, "** LOG OFF **");
 			LogOff(mobile, timer_list);
 			break;
 		endif
@@ -57,14 +56,17 @@ function SaveState(mobile, byref timer_list)
 	var save_dict := dictionary;
 	// Need a new dictionary to save the remaining time
 	// Example ( timer.endtime - ReadGameClock() ) == duration
+	
 	foreach timer in (timer_list)
-		var duration := timer.endtime - ReadGameClock();
-		timer.+duration := duration;
-		timer.Erase("endtime");
-		save_dict[_timer_iter] := timer;
+		var save_timer := struct;
+		save_timer.+name := _timer_iter;
+		save_timer.+duration := timer.endtime - ReadGameClock();
+		save_timer.+level := timer.level;
+		
+		save_dict[_timer_iter] := save_timer;
 	endforeach
 	
-	TS_SaveTimerList(mobile, timer_list);
+	TS_SaveTimerList(mobile, save_dict);
 	
 	return 1;
 endfunction	
@@ -151,11 +153,13 @@ function AddNewTimer(mobile, byref event, byref timer_list, byref num_poisons)
 		endif
 	endif
 
-	timer_list[event.name] := struct;
+	var timer := struct;
 	// .endtime is used instead of .duration now to ensure more accurate time keeping.
-	timer_list[event.name].+endtime := ReadGameClock()+event.amount;
-	timer_list[event.name].+pid := script.pid;
-	timer_list[event.name].+level := CInt(event.level);
+	timer.+endtime := event.amount + ReadGameClock();
+	timer.+pid := script.pid;
+	timer.+level := CInt(event.level);
+	
+	timer_list.Insert(event.name, timer);
 	
 	if( elem_info.IndicatePoison )
 		num_poisons := num_poisons+1;
@@ -214,7 +218,7 @@ function AddExistingTimer(mobile, byref event, byref timer_list, byref num_poiso
 		endif
 	endif
 	
-	timer_list[event.name].endtime := ReadGameClock()+duration;
+	timer_list[event.name].endtime := duration+ReadGameClock();
 	
 	return 1;
 endfunction
@@ -232,7 +236,7 @@ function CheckTimerStatus(mobile, byref timer_list, byref num_poisons)
 				continue;
 			endif
 		endif
-		if ( timer.endtime > ReadGameClock() )
+		if ( ReadGameClock() >= timer.endtime )
 			var event := struct;
 			event.+name := _timer_iter;
 			event.+amount := -1;
@@ -285,7 +289,7 @@ function Death(mobile, byref timer_list, byref num_poisons)
 	return 1;
 endfunction
 
-function EndTimedScript(mobile, timer_name, byref num_poisons)
+function EndTimedScript(mobile, byref timer_name, byref num_poisons)
 	var elem_info := TS_GetCfgElem(timer_name);
 	
 	if( elem_info.IndicatePoison )
@@ -304,9 +308,9 @@ function EndTimedScript(mobile, timer_name, byref num_poisons)
 	endif
 endfunction
 
-function KillTimedScript(mobile, byref pid, byref timer_list, timer_name)
+function KillTimedScript(mobile, byref pid, byref timer_list, byref timer_name)
 	var script := GetProcess(pid);
-	script.kill();
+	script.Kill();
 	timer_list.Erase(timer_name);
 	
 	SaveState(mobile, timer_list);

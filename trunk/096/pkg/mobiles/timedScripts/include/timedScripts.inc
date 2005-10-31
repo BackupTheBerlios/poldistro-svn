@@ -10,9 +10,8 @@ use os;
 // Event flags
 const EVENT_ADD_TIMER			:= 0x1;
 const EVENT_LOWER_TIMER			:= 0x2;
-const EVENT_CURE_SPECIFIC_TIMER		:= 0x4;
-const EVENT_DEAD			:= 0x8;
-const EVENT_LOGOFF			:= 0x10;
+const EVENT_DEAD			:= 0x4;
+const EVENT_LOGOFF			:= 0x8;
 
 // Constants
 const NOSTART_CONTROLLER		:= 0x0;
@@ -302,6 +301,6 @@ function TS_LowerDuration(mobile, timer_name, amount)
 	event.+name := CStr(timer_name);
 	event.+amount := CInt(amount);
 
-	var process := TS_GetControllerProcess(mobile, START_CONTROLLER);
+	var process := TS_GetControllerProcess(mobile);
 	return process.SendEvent(event);
 endfunction

@@ -10,11 +10,11 @@ program default_poison(params)
 	var attacker := params[2];
 	var level := CInt(params[3]);
 
-	if (!level)
+	if ( !level )
 		level := 1;
 	endif
 
-	if (attacker)
+	if ( attacker )
 		SetScriptController(attacker);
 	endif
 
@@ -66,25 +66,24 @@ program default_poison(params)
 
 	while(1)
 		PrintTextAbovePrivate(who, poisonedmsg, who);
-		foreach mob in ListMobilesInLineOfSight(who, 8)
-			if((mob.ip) and (mob != who))
-				PrintTextAbovePrivate(who, viewermsg, mob);
+		foreach mobile in ( ListMobilesInLineOfSight(who, 8) )
+			if( mobile.ip && mobile != who )
+				PrintTextAbovePrivate(who, viewermsg, mobile);
 			endif
+			sleepms(2);
 		endforeach		
-
-		var lasthitparms := {attacker.name, attacker.serial, "poison"};
-		SetObjProperty(who, "LastHit", lasthitparms );
+		
 		ApplyRawDamage(who, dmg);
 
 		Set_Critical(1);
-			var curr := CInt(AP_GetVital(who, "Stamina"));
-			if (curr >= stam)
-				AP_SetVital(who, "Stamina", (curr-stam));
-			else
-				AP_SetVital(who, "Stamina", 0);
-			endif
+		var curr := CInt(AP_GetVital(who, "Stamina"));
+		if ( curr >= stam )
+			AP_SetVital(who, "Stamina", (curr-stam));
+		else
+			AP_SetVital(who, "Stamina", 0);
+		endif
 		Set_Critical(0);
-		RecalcVitals(who);
+		
 		sleep(time);
 	endwhile
 

@@ -12,6 +12,6 @@ include ":timedscripts:timedScripts";
 program reconnect(who)
 	TS_StartController(who);
 
-	return 0;
+	return 1;
 endprogram
 

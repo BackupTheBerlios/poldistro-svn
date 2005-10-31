@@ -10,8 +10,11 @@ include ":timedscripts:timedScripts";
 
 
 program Logon(who)
-	TS_StartController(who);
+	var result := TS_StartController(who);
+	if ( result.errortext )
+		SendSysMessage(who, "->"+result.errortext);
+	endif
 
-	return 0;
+	return 1;
 endprogram
 
