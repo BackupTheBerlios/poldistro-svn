@@ -1,3 +1,6 @@
+include ":brainAI:npcUtil";
+include ":brainAI:npcError";
+
 /*
  * NPC_SetupNameOldAI(mobile, name_elem)
  *
