@@ -6,7 +6,7 @@ use os;
 include "include/startEqp";
 include "include/attributes";
 include ":npcutils:vetement";
-include ":brainAI:npcInit";
+include ":npcutils:names";
 include "include/client";
 
 var pncfg := ReadConfigFile(":*:npcdesc");
@@ -58,7 +58,7 @@ program npckeep(who)
     SetObjProperty(who, "Graphic", cint(who.graphic));
     // Removed randName functions and replaced with the new npcInit.inc
     // functions from the brainAI for compatibility.
-    NPC_SetupName(who);
+    NPC_SetupNameOldAI(who);
     SetName(who, who.name + ttitle);
     if(equipt)
       Habille(who, equipt);
@@ -103,7 +103,7 @@ program npckeep(who)
     SetObjProperty(who, "Graphic", cint(who.graphic));
     // Removed randName functions and replaced with the new npcInit.inc
     // functions from the brainAI for compatibility.
-    NPC_SetupName(who);
+    NPC_SetupNameOldAI(who);
     SetName(who, who.name + ttitle);
     pncfg := ReadConfigFile(":*:npcdesc");
     if(equipt)
@@ -139,7 +139,7 @@ program npckeep(who)
     if(who.name["<random>"])
       // Removed randName functions and replaced with the new npcInit.inc
       // functions from the brainAI for compatibility.
-      NPC_SetupName(who);
+      NPC_SetupNameOldAI(who);
       if(pncfg[who.npctemplate].title)
         var title := randomint(20);
         var ttitle := "";

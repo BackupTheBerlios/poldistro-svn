@@ -240,11 +240,6 @@ function NPC_SetupName(mobile, name_elem:=0)
 	endif
 
 	var npc_names := ReadConfigFile("::names");
-	case(mobile.graphic)
-		0x190: name_elem := name_elem + "_Male";
-		0x191: name_elem := name_elem + "_Female";
-		default: // Do nothing, it's not male or female
-	endcase
 	if ( !npc_names[name_elem] )
 		var temp := error;
 		temp.+errortext := "There is no elem ["+name_elem+"] in NAMES.CFG";

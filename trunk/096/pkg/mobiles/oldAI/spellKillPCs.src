@@ -7,7 +7,7 @@ include "include/client";
 include "include/eventID";
 include "include/attributes";
 include "include/sysEvent";
-include ":brainAI:npcInit";
+include ":npcutils:names";
 include ":npcutils:vetement";
 include ":npcutils:NPCUtil";
 include "include/objtype";

@@ -23,7 +23,7 @@ drop_anchor();
 
 // Removed randName functions and replaced with the new npcInit.inc
 // functions from the brainAI for compatibility.
-NPC_SetupName(me);
+NPC_SetupNameOldAI(me);
 
 var npccfg := ReadConfigFile("::npcdesc");
 var speechelem := npccfg[me.npctemplate];

@@ -5,7 +5,7 @@ use cfgfile;
 
 include "include/eventID";
 include "include/sysEvent";
-include ":brainAI:npcInit";
+include ":npcutils:names";
 include ":npcutils:NPCUtil";
 include "include/objtype";
 include "include/dist";

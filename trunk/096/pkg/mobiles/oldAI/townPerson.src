@@ -5,7 +5,7 @@ use uo;
 include "include/eventID";
 include "include/attributes";
 include "include/sysEvent";
-include ":brainAI:npcInit";
+include ":npcutils:names";
 include ":npcutils:speech";
 include ":npcutils:anchors";
 include "include/dist";

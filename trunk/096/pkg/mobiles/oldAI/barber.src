@@ -4,7 +4,7 @@ use uo;
 
 include "include/eventID";
 include "include/sysEvent";
-include ":brainAI:npcInit";
+include ":npcutils:names";
 include "include/utility";
 include "include/mrcSpawn";
 include ":npcutils:vetement";
