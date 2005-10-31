@@ -21,9 +21,10 @@ var flee_point;
 
 drop_anchor();
 
-if( me.name["<random>"] )
-  SetName( me, RandomName( me ) );
-endif
+// Removed randName functions and replaced with the new npcInit.inc
+// functions from the brainAI for compatibility.
+NPC_SetupName(me);
+
 var npccfg := ReadConfigFile("::npcdesc");
 var speechelem := npccfg[me.npctemplate];
 speech := GetConfigString(speechelem, "speech");

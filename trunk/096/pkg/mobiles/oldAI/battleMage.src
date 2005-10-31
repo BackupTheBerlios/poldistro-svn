@@ -7,7 +7,7 @@ include "include/client";
 include "include/attributes";
 include "include/eventID";
 include "include/sysEvent";
-include ":npcutils:randName";
+include ":brainAI:npcInit";
 include ":npcutils:vetement";
 include "include/dist";
 include ":npcutils:anchors";

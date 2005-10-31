@@ -20,7 +20,7 @@ const aggression  := 250;
 include "util/conflicts";
 include "include/eventID";
 include "include/sysEvent";
-include ":npcutils:randName";
+include ":brainAI:npcInit";
 include ":npcutils:vetement";
 
 

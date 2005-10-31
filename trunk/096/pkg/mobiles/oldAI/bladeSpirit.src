@@ -6,7 +6,7 @@ use cfgfile;
 include "include/eventID";
 include "include/attributes";
 include "include/sysEvent";
-include ":npcutils:randName";
+include ":brainAI:npcInit";
 include ":npcutils:NPCUtil";
 include "include/objtype";
 include ":npcutils:anchors";

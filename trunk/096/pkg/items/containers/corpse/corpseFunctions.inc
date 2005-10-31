@@ -1,3 +1,8 @@
+/* $Id$
+ *
+ */
+include ":blood:blood";
+
 
 function Carve_Corpse(who, cadaver)
 
@@ -46,7 +51,7 @@ function Carve_Corpse(who, cadaver)
 		partsarray.append(part);
 		part := CreateItemAtLocation(cadaver.x, cadaver.y, cadaver.z, 0x1d9f, 1, cadaver.realm);
 		partsarray.append(part);
-		var blood := CreateItemAtLocation(cadaver.x, cadaver.y, cadaver.z, 0x122a, 1, cadaver.realm);
+		var blood := MakeBleed(cadaver);
 		blood.movable := 0;
 		DestroyItem(cadaver);
 		sleep(40);
@@ -61,7 +66,7 @@ function Carve_Corpse(who, cadaver)
 		if(c_type == 223)
 			CreateItemInContainer(cadaver, 0x9f1, 2);
 			SendSysMessage(who, "You place the items on the corpse.");
-			var theblood := CreateItemAtLocation(cadaver.x, cadaver.y, cadaver.z, UOBJ_BLOOD, 1, cadaver.realm);
+			var theblood := MakeBleed(cadaver);
 			sleep(30);
 			DestroyItem(cadaver);
 			sleep(30);
@@ -72,7 +77,7 @@ function Carve_Corpse(who, cadaver)
 		var tmplate := GetObjProperty(cadaver, "npctemplate");
 		if(!tmplate)
 			SendSysMessage(who, "You cut the corpse, but fail to find anything useful.", 3, 40);
-			var theblood := CreateItemAtLocation(cadaver.x, cadaver.y, cadaver.z, UOBJ_BLOOD, 1, cadaver.realm);
+			var theblood := MakeBleed(cadaver);
 			sleep(30);
 			DestroyItem(cadaver);
 			sleep(30);
@@ -86,7 +91,7 @@ function Carve_Corpse(who, cadaver)
 			print("A: " + corpseamt);
 			if(!corpseitm)
 				print("error");
-				var theblood := CreateItemAtLocation(cadaver.x, cadaver.y, cadaver.z, UOBJ_BLOOD, 1, cadaver.realm);
+				var theblood := MakeBleed(cadaver);
 				sleep(30);
 				DestroyItem(cadaver);
 				sleep(30);
@@ -109,7 +114,7 @@ function Carve_Corpse(who, cadaver)
 			do
 				cadaver.facing := RandomInt(7) + 1;
 			dowhile( orig_facing == cadaver.facing );
-			var theblood := CreateItemAtLocation(cadaver.x, cadaver.y, cadaver.z, UOBJ_BLOOD, 1, cadaver.realm);
+			var theblood := MakeBleed(cadaver);
 			sleep(30);
 			DestroyItem(cadaver);
 			sleep(30);

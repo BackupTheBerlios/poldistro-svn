@@ -5,7 +5,7 @@ use uo;
 include ":npcutils:NPCCast";
 include "include/attributes";
 include ":npcutils:NPCBackpacks";
-include ":npcutils:randName";
+include ":brainAI:npcInit";
 include ":npcutils:vetement";
 include "include/eventID";
 include "include/sysEvent";

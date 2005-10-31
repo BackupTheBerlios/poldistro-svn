@@ -8,7 +8,7 @@ include "include/attributes";
 include "include/sysEvent";
 include ":npcutils:NPCBackpacks";
 include ":npcutils:NPCCast";
-include ":npcutils:randName";
+include ":brainAI:npcInit";
 include "include/dist";
 include ":poisonwatcher:poisons";
 

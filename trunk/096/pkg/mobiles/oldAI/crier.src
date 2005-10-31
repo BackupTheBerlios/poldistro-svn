@@ -7,7 +7,7 @@ const HALT_THRESHOLD := 8;
 
 include "include/eventID";
 include "include/sysEvent";
-include ":npcutils:randName";
+include ":brainAI:npcInit";
 include ":npcutils:NPCUtil";
 include "include/objtype";
 include "include/dist";

@@ -15,7 +15,7 @@ use uo;
 
 include "include/eventID";
 include "include/sysEvent";
-include ":npcutils:randName";
+include ":brainAI:npcInit";
 include ":npcutils:vetement";
 include ":npcutils:speech";
 include ":npcutils:anchors";
