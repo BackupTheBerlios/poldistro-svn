@@ -1,4 +1,18 @@
 -- POL096 --
+10-30 Austin
+        Changed : NPC.connected will now always return 1. Before it was 0.
+
+10-29 Austin
+        Added : polsys::GetCmdLevelName(number) - Will get a command level's name.
+        Added : polsys::GetCmdLevelNumber(name) - Will get the numeric value of a command level.
+        Added : polsys::GetPackageByName(name) - Will return a package reference.
+        Added : account.SetDefaultCmdLevel(number) - Will set the account's default command level.
+        Added : account.defaultcmdlevel - Will return a number for the accounts default command level.
+        Changed : If npc.ar is used and the NPC has no armor equipped, it will give its intrinsic armor value
+                  (NPCDESC.CFG AR entry). If it has armor equipped, it will work as it did before.
+        Changed : Added some error checking and reporting when "(something in array)" is used in a script.
+                  Hopefully this will fix the rare "in" crash or at the least, make it a little easier to find.
+
 10-17 Austin
         Added : Added uo::MoveObjectToLocation( object, x, y, z, realm := _DEFAULT_REALM, flags := MOVEOBJECT_NORMAL );
                 Function will replace MoveCharacterToLocation(), MoveItemToLocation(), and MoveObjectToRealm()
