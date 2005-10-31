@@ -22,6 +22,10 @@ program TimerControl(mobile)
 		 * 1. Mobile was an NPC and died.
 		 * 2. Was a player character but got deleted.
 		 */
+		if ( ReadGameClock()%30 == 0 )
+			SaveState(mobile, timer_list);
+		endif
+			
 		 
 		var event := 0;
 		if ( timer_list.size() > 0 )
@@ -34,16 +38,16 @@ program TimerControl(mobile)
 		
 		if( event.type == EVENT_ADD_TIMER )
 			AddTimer(mobile, event, timer_list, num_poisons);
-		elseif( event.type == EVENT_CURE_TIMER )
-			CureTimer(mobile, event, timer_list, num_poisons);
-		elseif( event.type == EVENT_CURE_SPECIFIC_TIMER )
-			//Cure_Specific(mobile, event, timer_list, num_poisons, 1);
+		elseif( event.type == EVENT_LOWER_TIMER )
+			LowerDuration(mobile, event, timer_list, num_poisons);
 		elseif( event.type == EVENT_DEAD )
-			//Cure_Death(mobile, timer_list, num_poisons);
+			Death(mobile, timer_list, num_poisons);
 		elseif ( event.type == EVENT_LOGOFF )
 			LogOff(mobile, timer_list);
 			break;
 		endif
+		
+		CheckTimerStatus(mobile, timer_list, num_poisons);
 	endwhile
 	
 	return 1;
@@ -215,23 +219,85 @@ function AddExistingTimer(mobile, byref event, byref timer_list, byref num_poiso
 	return 1;
 endfunction
 
+function CheckTimerStatus(mobile, byref timer_list, byref num_poisons)
+	foreach timer in ( timer_list )
+		var cfg_info := TS_GetCfgElem(_timer_iter);
+		if ( cfg_info.StopOnEnd )
+			if ( !GetProcess(timer.pid) )
+				var event := struct;
+				event.+name := _timer_iter;
+				event.+amount := -1;
+			
+				LowerDuration(mobile, event, timer_list, num_poisons);
+				continue;
+			endif
+		endif
+		if ( timer.endtime > ReadGameClock() )
+			var event := struct;
+			event.+name := _timer_iter;
+			event.+amount := -1;
+			
+			LowerDuration(mobile, event, timer_list, num_poisons);
+			continue;
+		endif
+	endforeach
+	
+	return 1;
+endfunction	
+
 function LowerDuration(mobile, byref event, byref timer_list, byref num_poisons)
+	var timer_info := timer_list[event.name];
+	
+	if ( event.amount == -1 )
+		EndTimedScript(mobile, event.name, num_poisons);
+		KillTimedScript(timer_info.pid, timer_list, event.name);
+		return 1;
+	endif
+	
+	var duration := timer_info.endtime - ReadGameClock();
+	duration := duration - event.amount;
+	
+	if ( duration <= 0 )
+		EndTimedScript(mobile, event.name, num_poisons);
+		KillTimedScript(timer_info.pid, timer_list, event.name);
+	endif
+	
+	return 1;
+endfunction
+
+function Death(mobile, byref timer_list, byref num_poisons)
+	set_critical(1);
+	foreach timer in ( timer_list )
+		timer := timer; // So the compiler does not issue warnings.
+		var elem_info := TS_GetCfgElem(_timer_iter);
+		if ( elem_info.ContinueOnDeath )
+			continue;
+		endif
+		
+		var event := struct;
+		event.+name := _timer_iter;
+		event.+amount := -1;
+		
+		LowerDuration(mobile, event, timer_list, num_poisons);
+	endforeach
+	set_critical(0);
+	
 	return 1;
 endfunction
 
 function EndTimedScript(mobile, timer_name, byref num_poisons)
-	var cfg_elem := TS_GetCfgElem(timer_name);
+	var elem_info := TS_GetCfgElem(timer_name);
 	
-	if( cfg_elem.IndicatePoison )
+	if( elem_info.IndicatePoison )
 		num_poisons := num_poisons-1;
 	endif
 
-	if( cfg_elem.EndMessage )
-		SendSysMessage(mobile, elem.EndMessage);
+	if( elem_info.EndMessage )
+		SendSysMessage(mobile, elem_info.EndMessage);
 	endif
 
-	if( PW_CfgInfo(poison_name).CureScript )
-		var script := start_script(elem_info.EndScript, {mobile});
+	if( elem_info.CureScript )
+		var script := start_script(elem_info.EndScript, mobile);
 		if( script.errortext )
 			SysLog("Error::EndTimedScript() - "+script.errortext);
 		endif
