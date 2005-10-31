@@ -13,7 +13,7 @@ include "include/dist";
 include ":npcutils:anchors";
 include ":npcutils:NPCBackpacks";
 include "include/skillLists";
-include ":poisonwatcher:poisons";
+include ":timedscripts:timedScripts";
 
 var flee_point := 0;
 var npccfg := ReadConfigFile("::npcdesc");
@@ -176,12 +176,12 @@ function post_combat()
   SetWarMode(0);
   SetOpponent(0);
   lookiehere();
-  var allpoisons := GetAllPoisons(me);
+  var allpoisons := TS_GetTimerNames(me, "P");
   if(allpoisons.size() > 0)
     sleep(1);
     PerformAction(me, 0x22);
     foreach poison in allpoisons
-      CureSpecific(me, poison, -1);
+      TS_LowerDuration(me, poison, -1);
     endforeach
     PlaySoundEffect(me, 0x31);
     sleep(1);

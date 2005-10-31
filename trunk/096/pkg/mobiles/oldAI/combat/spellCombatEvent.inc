@@ -1,10 +1,10 @@
 include "include/attributes";
-include ":poisonwatcher:poisons";
+include ":timedscripts:timedScripts";
 
 function process_combat_event(opponent)
   if((GetHp(me) < (GetMaxHP(me) / 2)) && (RandomInt(8) >= 5))
     CastSpell(me, me, "gheal");
-  elseif((ListPoisonsByType(me, "defaultPoison").size() > 0) && (RandomInt(8) >= 5))
+  elseif((TS_GetTimerNames(me, "P").size() > 0) && (RandomInt(8) >= 5))
     CastSpell(me, me, "cure");
   else
     spellattack(opponent);
@@ -19,7 +19,7 @@ function process_flee_event(opponent)
   if((GetHp(me) < (GetMaxHP(me) / 2)) && (RandomInt(8) >= 3))
     CastSpell(me, me, "gheal");
     return 0;
-  elseif((ListPoisonsByType(me, "defaultPoison").size() > 0) && (RandomInt(8) >= 3))
+  elseif((TS_GetTimerNames(me, "P").size() > 0) && (RandomInt(8) >= 3))
     CastSpell(me, me, "cure");
     return 0;
   else
@@ -52,7 +52,7 @@ function post_combat()
   if((GetHp(me) < (GetMaxHP(me) / 2)) && (RandomInt(4) >= 2))
     CastSpell(me, me, "gheal");
   endif
-  if(ListPoisonsByType(me, "defaultPoison").size() > 0)
+  if(TS_GetTimerNames(me, "P").size() > 0)
     CastSpell(me, me, "cure");
   endif
   DisableCombatEvents();

@@ -14,7 +14,7 @@ include ":npcutils:anchors";
 include ":npcutils:NPCBackpacks";
 include ":begging:begging";
 include ":npcutils:trainSkill";
-include ":poisonwatcher:poisons";
+include ":timedscripts:timedScripts";
 
 var flee_point := 0;
 var npccfg := ReadConfigFile("::npcdesc");
@@ -182,12 +182,12 @@ function post_combat()
   EnableMainEvents();
   SetWarMode(0);
   SetOpponent(0);
-  var allpoisons := GetAllPoisons(me);
+  var allpoisons := TS_GetTimerNames(me, "P");
   if(allpoisons.size() > 0)
     sleep(1);
     PerformAction(me, 0x22);
     foreach poison in allpoisons
-      CureSpecific(me, poison, -1);
+      TS_LowerDuration(me, poison, -1);
     endforeach
     PlaySoundEffect(me, 0x31);
     sleep(1);
@@ -258,12 +258,12 @@ endfunction
 
 function in_combat_event_loop(opponent, loops)
   opponent := opponent;
-  var allpoisons := GetAllPoisons(me);
+  var allpoisons := TS_GetTimerNames(me, "P");
   if(allpoisons.size() > 0)
     sleep(1);
     PerformAction(me, 0x22);
     foreach poison in allpoisons
-      CureSpecific(me, poison, -1);
+	TS_LowerDuration(me, poison, -1);
     endforeach
     PlaySoundEffect(me, 0x31);
     sleep(1);
