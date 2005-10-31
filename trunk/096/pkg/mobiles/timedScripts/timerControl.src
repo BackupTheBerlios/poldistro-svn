@@ -17,7 +17,53 @@ program TimerControl(mobile)
 	var timer_list := dictionary;
 	StartUp(mobile, timer_list, num_poisons);
 	
+	while ( mobile.IsA(POLCLASS_MOBILE) )
+		/* ^- Will terminate if:
+		 * 1. Mobile was an NPC and died.
+		 * 2. Was a player character but got deleted.
+		 */
+		 
+		var event := 0;
+		if ( timer_list.size() > 0 )
+			event := wait_for_event(1);
+		else // sleep-mode
+			event := wait_for_event(900000);
+		endif
+		
+		mobile.SetPoisoned(num_poisons);
+		
+		if( event.type == EVENT_ADD_TIMER )
+			AddTimer(mobile, event, timer_list, num_poisons);
+		elseif( event.type == EVENT_CURE_TIMER )
+			CureTimer(mobile, event, timer_list, num_poisons);
+		elseif( event.type == EVENT_CURE_SPECIFIC_TIMER )
+			//Cure_Specific(mobile, event, timer_list, num_poisons, 1);
+		elseif( event.type == EVENT_DEAD )
+			//Cure_Death(mobile, timer_list, num_poisons);
+		elseif ( event.type == EVENT_LOGOFF )
+			LogOff(mobile, timer_list);
+			break;
+		endif
+	endwhile
+	
+	return 1;
 endprogram
+
+function SaveState(mobile, byref timer_list)
+	var save_dict := dictionary;
+	// Need a new dictionary to save the remaining time
+	// Example ( timer.endtime - ReadGameClock() ) == duration
+	foreach timer in (timer_list)
+		var duration := timer.endtime - ReadGameClock();
+		timer.+duration := duration;
+		timer.Erase("endtime");
+		save_dict[_timer_iter] := timer;
+	endforeach
+	
+	TS_SaveTimerList(mobile, timer_list);
+	
+	return 1;
+endfunction	
 
 function StartUp(mobile, byref timer_list, byref num_poisons)
 	// The controller just started. 
@@ -37,6 +83,29 @@ function StartUp(mobile, byref timer_list, byref num_poisons)
 	return 1;
 endfunction
 
+function LogOff(mobile, byref timer_list)
+	//On Logout, save the status of timers. Then stop the scripts.
+	
+	Set_Critical(1);
+	SaveState(mobile, timer_list);
+	
+	foreach timer in ( timer_list )
+		timer := timer; // So the compiler doesn't warn.
+		var elem_info := TS_GetCfgElem(_timer_iter);
+		KillTimedScript(timer_list.pid, timer_list, _timer_iter);
+
+		if( elem_info.LogOffScript )
+			var script := start_script(elem_info.LogOffScript, {mobile});
+			if( script.errortext )
+				Print("Error::LogOff() - ["+elem_info.LogOffScript+"] "+script.errortext);
+			endif
+		endif
+	endforeach
+	Set_Critical(0);
+	
+	return 1;
+endfunction
+
 function AddTimer(mobile, byref event, byref timer_list, byref num_poisons)
 	// Check if a poison exists. If it does, increase its duration.
 	// If it does not exist, add it to the list on the mobile. 
@@ -47,11 +116,18 @@ function AddTimer(mobile, byref event, byref timer_list, byref num_poisons)
 		return 0;
 	endif
 	
+	var result := 0;
 	if ( !timer_list.Exists(event.name) )
-		return AddNewTimer(mobile, event, timer_list, num_poisons);
+		result := AddNewTimer(mobile, event, timer_list, num_poisons);
 	else
-		return AddExistingTimer(mobile, event, timer_list, num_poisons);
+		result := AddExistingTimer(mobile, event, timer_list, num_poisons);
 	endif
+	
+	if ( result )
+		SaveState(mobile, timer_list);
+	endif
+	
+	return 1;
 endfunction
 
 function AddNewTimer(mobile, byref event, byref timer_list, byref num_poisons)
@@ -98,40 +174,91 @@ function AddExistingTimer(mobile, byref event, byref timer_list, byref num_poiso
 		if ( (event.level) && level )
 			amt := CInt(CDbl(amt) * (CDbl(event.level) / CDbl(timer_list[event.name].level)));
 			if ( level >= event.level )
-				duration := duration + amt;
-				timer_list[event.name].endtime := ReadGameClock()+duration;
+				event.amount := duration + amt;
 			else
-				StopTimedScript(timer_list[event.name].pid, timer_list, event.name);
+				KillTimedScript(timer_list[event.name].pid, timer_list, event.name);
 				event.amount := amt;
 				AddTimer(mobile, event, timer_list, num_poisons);
+				return 1;
 			endif
 		else
-			timer_list[event.name].endtime := (duration+amt)+ReadGameClock();
+			event.amount := (duration + amt);
 		endif
 	else
 		if ( (event.level) && level )
-			if ( (level == event.level) && (amt > timer_list[event.name].duration) )
-				timer_list[event.name].duration := amt;
+			if ( (level == event.level) && (amt > duration) )
+				event.amount := amt;
 			elseif ( event.level > level )
-				StopTimedScript(timer_list[event.name].pid, timer_list, event.name);
-				event.amt := amt;
+				KillTimedScript(timer_list[event.name].pid, timer_list, event.name);
+				event.amount := amt;
 				AddTimer(mobile, event, timer_list, num_poisons);
+				return 1;
 			endif					
 		else
-			if ( amt > timer_list[event.name].duration )
-				timer_list[event.name].duration := amt;
+			if ( amt > duration )
+				event.amount := amt;
 			endif
 		endif
 	endif
-	var maxdur := elem_info.MaxDuration;
-	if ( maxdur < timer_list[event.name].duration )
-		timer_list[event.name].duration := maxdur;
+	
+	var maxdur := CInt(elem_info.MaxDuration);
+	if ( maxdur > 0 )
+		if ( (duration+event.amount) > maxdur )
+			duration := maxdur;
+		else
+			duration := duration+event.amount;
+		endif
 	endif
+	
+	timer_list[event.name].endtime := ReadGameClock()+duration;
 	
 	return 1;
 endfunction
 
-function StopTimedScript(byref pid, byref timer_list, timer_name)
+function CureTimer(mobile, byref event, byref timer_list, byref num_poisons)
+	//Run through all curable poisons, and keep curing until it runs out of curing power.
+
+	var cure_type := Lower(event.curetype);
+	foreach timer in ( timer_list )
+		var elem_info := TS_GetCfgElem(_timer_iter);
+		if ( !elem_info.NoCure ) // Its curable
+			if ( !cure_type || cure_type == Lower(elem_info.Type) )
+				event.name := _timer_iter;
+				LowerDuration(mobile, event, timer_list, num_poisons);
+			endif
+
+			if( event.amount <= 0 ) // All out of cure power
+				break;
+			endif
+			sleepms(2);
+		endif
+	endforeach
+endfunction
+
+function LowerDuration(mobile, byref event, byref timer_list, byref num_poisons)
+	return 1;
+endfunction
+
+function EndTimedScript(mobile, timer_name, byref num_poisons)
+	var cfg_elem := TS_GetCfgElem(timer_name);
+	
+	if( cfg_elem.IndicatePoison )
+		num_poisons := num_poisons-1;
+	endif
+
+	if( cfg_elem.EndMessage )
+		SendSysMessage(mobile, elem.EndMessage);
+	endif
+
+	if( PW_CfgInfo(poison_name).CureScript )
+		var script := start_script(elem_info.EndScript, {mobile});
+		if( script.errortext )
+			SysLog("Error::EndTimedScript() - "+script.errortext);
+		endif
+	endif
+endfunction
+
+function KillTimedScript(byref pid, byref timer_list, timer_name)
 	var script := GetProcess(pid);
 	script.kill();
 	timer_list.Erase(timer_name);

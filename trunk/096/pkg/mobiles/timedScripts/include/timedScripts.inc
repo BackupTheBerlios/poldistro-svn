@@ -7,7 +7,11 @@ const EVENT_ADD_TIMER			:= 0x1;
 const EVENT_CURE_TIMER			:= 0x2;
 const EVENT_CURE_SPECIFIC_TIMER		:= 0x4;
 const EVENT_DEAD			:= 0x8;
-const EVENT_LOGOUT			:= 0x10;
+const EVENT_LOGOFF			:= 0x10;
+
+// Constants
+const NOSTART_CONTROLLER		:= 0x0;
+const START_CONTROLLER			:= 0x1;
 
 /*
  * TS_GetCfgFile()
@@ -61,22 +65,54 @@ function TS_GetCfgElem(elem_name, byref cfg_file:=0)
 endfunction
 
 /* 
- * TS_GetControllerProcess(mobile)
+ * TS_GetControllerProcess(mobile, start)
  *
  * Purpose
  * Retrieves a script reference to the timer controller for a mobile.
  *
  * Parameters
  * mobile:	Mobile to get the timer controll process for.
+ * start:	Optional parameter. Default is NOSTART_CONTROLLER.
+ *		NOSTART_CONTROLLER - Will only try to get a reference to the script.
+ *		START_CONTROLLER - Will start the controller if it is not running.
  *
  * Return value
  * Returns a script reference.
  * Returns an error the controller is not running.
  *
  */
-function TS_GetControllerProcess(mobile)
+function TS_GetControllerProcess(mobile, start:=NOSTART_CONTROLLER)
 	var pid := CInt(GetObjProperty(mobile, "#TimerControlPid"));
-	return GetProcess(pid);
+	var process := GetProcess(pid);
+	if ( !process )
+		if ( start )
+			process := TS_StartController(mobile);
+		endif
+	endif
+	
+	return process;
+endfunction
+
+/*
+ * TS_StartController(mobile)
+ *
+ * Purpose
+ * Starts the timer controller for a mobile.
+ *
+ * Parameters
+ * mobile:	Mobile to start the controller on.
+ *
+ * Return value
+ * Returns a script reference.
+ *
+ */
+function TS_StartController(mobile)
+	var script := start_script(":timedscripts:timerControl", mobile);
+	if ( script.errortext )
+		SysLog("Error::TS_StartController() ->"+script.errortext);
+	endif
+	
+	return script;
 endfunction
 
 /* 
