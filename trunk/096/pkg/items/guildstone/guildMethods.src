@@ -3,7 +3,6 @@ use os;
 use cfgfile;
 use util;
 
-include "include/attributes";
 include "include/canAccess";
 
 program Install()
