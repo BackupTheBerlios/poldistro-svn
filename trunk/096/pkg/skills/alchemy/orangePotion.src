@@ -4,7 +4,8 @@ use util;
 use cfgfile;
 include "drinkPotion";
 include "include/canAccess";
-include ":poisonwatcher:poisons";
+include ":timedscripts:timedScripts";
+include ":timedscripts:poisonUtil";
 
 program orangePotion (who, potion)
   EraseObjProperty(who, "IsMeditating");
@@ -26,9 +27,9 @@ program orangePotion (who, potion)
     0xdc16: potion_strength := 3;
   endcase
   empty_bottle(who, potion);
-  if( ListPoisonsByType(who, "DefaultPoison").size() > 0 )
+  if( TS_GetTimerNames(who, "P").size() > 0 )
     PlaySoundEffect(who, SOUND_EFFECT_CURE);
     PlayObjectCenteredEffect(who, EFFECT_SPARKLE, 10,10);
-    CurePoison(who, 120, "defaultPoison", potion_strength);
+    TS_CurePoison(who, 120, "P", potion_strength);
   endif
 endprogram
