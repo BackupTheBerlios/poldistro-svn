@@ -31,11 +31,15 @@ include ":attributes:attributes";
  *
  */
 function TS_CurePoison(mobile, cure_amount, cure_type:="", cure_level:=1)
+	cure_amount := CInt(cure_amount);
+	cure_level := CInt(cure_level);
+	
 	var poison_names := TS_GetTimerNames(mobile, cure_type);
 	
 	var num_cured := 0;
 	//Run through all curable poisons, and keep curing until it runs out of curing power.
 	foreach timer_name in ( poison_names )
+		SendSysMessage(mobile, "Found poison "+timer_name);
 		var elem_info := TS_GetCfgElem(timer_name);
 
 		if ( elem_info.NoCure ) // Incurable
@@ -46,16 +50,17 @@ function TS_CurePoison(mobile, cure_amount, cure_type:="", cure_level:=1)
 		cure_amount := CInt(cure_amount / CInt(elem_info.Virulence));
 		
 		if ( elem_info.AllOrNothingCure )
-			if ( (cure_level - 2) < timer_info.level )
+			if ( (timer_info.level - 2) > cure_level )
 				// If cure level is less than two levels lower than the poison 
 				// level, there is no chance to cure.
 				continue; 
 			endif
 			
 			var chance := CInt(timer_info.level / (cure_level * 0.01)); // cure_level % of timer_level.
-			if ( RandomInt(100)+1 <= chance )
+			var roll := RandomInt(100)+1;
+			if ( roll <= chance )
 				cure_amount := cure_amount - duration;
-				TS_LowerDuration(, timer_name, -1);
+				TS_LowerDuration(mobile, timer_name, -1);
 				num_cured := num_cured+1;
 			endif
 		else

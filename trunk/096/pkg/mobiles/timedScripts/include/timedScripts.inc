@@ -185,13 +185,15 @@ function TS_GetTimerNames(mobile, type:="")
 		if ( type )
 			var elem_info := TS_GetCfgElem(timer_name);
 			if ( Lower(elem_info.Type) == type )
-				name_list.Append(type);
+				name_list.Append(timer_name);
 			endif
 		else
-			name_list.Append(type);
+			name_list.Append(timer_name);
 		endif
 		sleepms(2);
 	endforeach
+	
+	return name_list;
 endfunction
 
 /*

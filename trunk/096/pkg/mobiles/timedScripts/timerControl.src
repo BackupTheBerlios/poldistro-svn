@@ -32,16 +32,12 @@ program TimerControl(mobile)
 		endif
 				
 		if( event.type == EVENT_ADD_TIMER )
-			SendSysMessage(mobile, "** ADD TIMER **");
 			AddTimer(mobile, event, timer_list, num_poisons);
 		elseif( event.type == EVENT_LOWER_TIMER )
-			SendSysMessage(mobile, "** LOWER TIMER **");
 			LowerDuration(mobile, event, timer_list, num_poisons);
 		elseif( event.type == EVENT_DEAD )
-			SendSysMessage(mobile, "** DEAD **");
 			Death(mobile, timer_list, num_poisons);
 		elseif ( event.type == EVENT_LOGOFF )
-			SendSysMessage(mobile, "** LOG OFF **");
 			LogOff(mobile, timer_list);
 			break;
 		endif
