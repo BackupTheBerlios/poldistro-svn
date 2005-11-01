@@ -241,8 +241,7 @@ function NPC_SetupName(mobile, name_elem:=0)
 
 	var npc_names := ReadConfigFile("::names");
 	if ( !npc_names[name_elem] )
-		var temp := error;
-		temp.+errortext := "There is no elem ["+name_elem+"] in NAMES.CFG";
+		var temp := error{"errortext" := "There is no elem ["+name_elem+"] in NAMES.CFG"};
 
 		NPC_ErrorSysLog(mobile, "Error::NPC_SetupName() - "+temp.errortext);
 		PrintTextAbove(mobile, temp.errortext);
