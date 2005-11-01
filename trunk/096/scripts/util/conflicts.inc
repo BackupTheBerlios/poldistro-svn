@@ -154,7 +154,7 @@ function co_fight()
    if ((badguy.dead) || (!badguy)  || (d > 10) )
       co_untarget();
       return;
-   elseif( GetHp(me) <= CInt( GetMaxHp(me) / 5 ) && d < 16)
+   elseif( AP_GetVital(me, "Hits") <= CInt( AP_GetVitalMaximumValue(me, "Hits") / 5 ) && d < 16)
       RunAwayFrom( badguy );
       TurnToward( badguy );
    elseif (d > 2)       
