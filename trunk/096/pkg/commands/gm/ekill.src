@@ -1,29 +1,27 @@
+/*
+ * $Id$
+ *
+ */
 use uo;
-use os;
-use util;
 
-include "include/client";
-include "include/attributes";
-include "include/spellAttack";
-include "include/spellRestrictions";
+include ":attributes:attributes";
 
-program cast_fireball( caster, effect, sound )
-
-  if (!effect)
-    SendSysMessage(caster, "This command plays a moving effect, then kills the target. Usage: ekill <effect>");
-    return;
-  endif
-
-  var tsound := CInt(sound);
-  var teffect := CInt(effect);
-
-  var cast_on := Target( caster );
-  if (!cast_on || cast_on.errortext || !cast_on.isA(POLCLASS_MOBILE))
-    return;
-  endif
-
-  PlaySoundEffect( cast_on, tsound  );
-  PlayMovingEffect( caster, cast_on, teffect, 5, 1 );
-  ApplyRawDamage( cast_on, GetMaxHp(cast_on) + 10  );
-
+program textcmd_eKill(who, text)
+	if ( !text )
+		SendSysMessage(who, "Syntax .ekill <tile number>");
+		return 0;
+	endif
+	
+	SendSysMessage(who, "Select a target to kill.");
+	var targ := Target(who);
+	
+	if ( !targ.IsA(POLCLASS_MOBILE) )
+		SendSysMessage(who, "Cancelled.");
+		return 0;
+	endif
+	
+	PlayMovingEffect(who, targ, CInt(text), 5, 1);
+	ApplyRawDamage(targ, AP_GetVitalMaximumValue(targ, "Hits"));
+	
+	return 1;
 endprogram

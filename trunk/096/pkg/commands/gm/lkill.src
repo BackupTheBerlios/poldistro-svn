@@ -1,20 +1,26 @@
-use os;
+/*
+ * $Id$
+ *
+ */
 use uo;
-use boat;
 
-include "include/attributes";
+include ":attributes:attributes";
 include "include/sound";
 
-
-program command_kill(who)
-	var mobile := Target(who, TGTOPT_NOCHECK_LOS);
-
-	PlayLightningBoltEffect(mobile);
-	PlaySoundEffect(mobile, SFX_SPELL_LIGHTNING);
-
-	RevokePrivilege(mobile, "invul");
-	SetObjProperty(mobile, "guardkill", 1);
-	ApplyRawDamage(mobile, GetMaxHp(mobile));
-
-	return;
+program textcmd_Kill(who)
+	SendSysMessage(who, "Select a target to kill.");
+	var targ := Target(who);
+	
+	if ( !targ.IsA(POLCLASS_MOBILE) )
+		SendSysMessage(who, "Cancelled.");
+		return 0;
+	endif
+	
+	targ.Disable("Invul");
+	SetObjProperty(targ, "GuardKill", 1);
+	PlayLightningBoltEffect(targ);
+	PlaySoundEffect(targ, SFX_SPELL_LIGHTNING);	
+	ApplyRawDamage(targ, AP_GetVitalMaximumValue(targ, "Hits"));
+	
+	return 1;
 endprogram
