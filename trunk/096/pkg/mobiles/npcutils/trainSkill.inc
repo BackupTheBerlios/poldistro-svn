@@ -1,4 +1,5 @@
 include "include/skillLists";
+include ":attributes:attributes_ex";
 
 var cost;
 
@@ -40,21 +41,22 @@ function MerchantTrain(me, who, text)
     foreach thing in getskilllist(me)
       if(lower(thing) == skill)
         var holder := FindSkillId(thing);
+        holder := AP_SkillIdToAttributeName(thing);
 
 // Since so many npcdesc.cfg entries have NPC's with 100 skill, set it lower
 // for the purpose of training.
 
-        var npclevel := GetEffectiveSkill(me, holder);
+        var npclevel := AP_GetSkill(me, holder);
 
-        if(npclevel == 0)
+        if( npclevel == 0 )
           npclevel := RandomInt(12) + 22;
-          SetBaseSkill(me, holder, npclevel);
-          npclevel := GetEffectiveSkill(me, holder);
+          AP_SetTrueSkill(me, holder, npclevel);
+          npclevel := AP_GetSkill(me, holder);
         endif
         if(npclevel > maxskilltotrain)
           npclevel := maxskilltotrain;
         endif
-        var pclevel := GetBaseSkill(who, holder);
+        var pclevel := AP_GetTrueSkill(who, holder);
         if((pclevel >= npclevel) || (pclevel > maxskilltotrain))
           PrintTextAbovePrivate(me, "I cannot teach thee anymore.", who);
           return;
