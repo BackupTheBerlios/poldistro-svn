@@ -107,14 +107,14 @@ function TrainSkill(me, who, item)
   var currentnpccost := 0;
   if((item.objtype == 0xeed) && (item.amount != 0))
     var trainmaxcost := GetObjProperty(who, "TrainMaxCost");
-    var attributeid := GetAttributeIDBySkillid(GetObjProperty(who, "TrainSkillID"));
+    var attributeid := AP_SkillIdToAttributeName(GetObjProperty(who, "TrainSkillID"));
     if((!trainmaxcost || !attributeid) && attributeid != 0)
       say("I don't know what this is for, but thanks!");
       DestroyItem(item);
       return;
     endif
     npc_level    := GetAttribute(me, attributeid);
-    pc_level     := GetBaseSkill(who, attributeid);
+    pc_level     := AP_GetTrueSkill(who, attributeid);
     pc_level     := GetAttributeBaseValue(who, attributeid) / 10;
     goldreceived := item.amount;
     variance     := npc_level - pc_level;
@@ -149,7 +149,6 @@ function TrainSkill(me, who, item)
       k.+type   := EVID_SKILLCAP;
       k.+base   := new_level;
       pid.sendevent(k);
-      DoRecalcVitals(who);
       DestroyItem(item);
       SendSysMessage(who, "Your skill increases.");
     else

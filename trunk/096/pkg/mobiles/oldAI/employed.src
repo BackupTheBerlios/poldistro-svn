@@ -70,38 +70,35 @@ program employed()
 endprogram
 
 function Adjustment(who, type)
-  if(type == "Mage")
-    ExpandStats(who, 100, 80, 100);
-    SetBaseSkillBaseValue(who, SKILLID_MAGERY,          1000);
-    SetBaseSkillBaseValue(who, SKILLID_EVALINT,         1000);
-    SetBaseSkillBaseValue(who, SKILLID_MAGICRESISTANCE, 900);
-    SetBaseSkillBaseValue(who, SKILLID_TACTICS,         700);
-    SetBaseSkillBaseValue(who, SKILLID_WRESTLING,       700);
-  elseif(type == "Thief")
-    ExpandStats(who, 80, 100, 25);
-    SetBaseSkillBaseValue(who, SKILLID_FENCING,         1000);
-    SetBaseSkillBaseValue(who, SKILLID_MAGICRESISTANCE, 60);
-    SetBaseSkillBaseValue(who, SKILLID_TACTICS,         80);
-    SetBaseSkillBaseValue(who, SKILLID_ANATOMY,         600);
-  elseif(type == "Paladin")
-    ExpandStats(who, 100, 100, 50);
-    SetBaseSkillBaseValue(who, SKILLID_MAGICRESISTANCE, 800);
-    SetBaseSkillBaseValue(who, SKILLID_TACTICS,         1000);
-    SetBaseSkillBaseValue(who, SKILLID_SWORDSMANSHIP,   1000);
-    SetBaseSkillBaseValue(who, SKILLID_MACEFIGHTING,    1000);
-    SetBaseSkillBaseValue(who, SKILLID_FENCING,         1000);
-    SetBaseSkillBaseValue(who, SKILLID_WRESTLING,       900);
-    SetBaseSkillBaseValue(who, SKILLID_ANATOMY,         1000);
-  elseif((type == "Fighter1") || (type == "Fighter2") || (type == "Fighter3") || (type == "Fighter4"))
-    ExpandStats(who, 90, 90, 20);
-    SetBaseSkillBaseValue(who, SKILLID_MAGICRESISTANCE, 600);
-    SetBaseSkillBaseValue(who, SKILLID_TACTICS,         900);
-    SetBaseSkillBaseValue(who, SKILLID_SWORDSMANSHIP,   900);
-    SetBaseSkillBaseValue(who, SKILLID_MACEFIGHTING,    900);
-    SetBaseSkillBaseValue(who, SKILLID_FENCING,         900);
-    SetBaseSkillBaseValue(who, SKILLID_WRESTLING,       900);
-    SetBaseSkillBaseValue(who, SKILLID_ANATOMY,         900);
-  endif
+if(type == "Mage")
+		AP_SetTrueSkill(who, "Magery", 100);
+		AP_SetTrueSkill(who, "EvaluatingIntelligence", 100);
+		AP_SetTrueSkill(who, "ResistingSpells", 90);
+		AP_SetTrueSkill(who, "Tactics", 70);
+		AP_SetTrueSkill(who, "Wrestling", 70);
+	elseif(type == "Thief")
+		AP_SetTrueSkill(who, "Fencing", 100);
+		AP_SetTrueSkill(who, "ResistingSpells", 60);
+		AP_SetTrueSkill(who, "Tactics", 80);
+		AP_SetTrueSkill(who, "Anatomy", 60);
+	elseif(type == "Paladin")
+		AP_SetTrueSkill(who, "ResistingSpells", 80);
+		AP_SetTrueSkill(who, "Tactics", 100);
+		AP_SetTrueSkill(who, "Swordsmanship", 100);
+		AP_SetTrueSkill(who, "MaceFighting", 100);
+		AP_SetTrueSkill(who, "Fencing", 100);
+		AP_SetTrueSkill(who, "Wrestling", 90);
+		AP_SetTrueSkill(who, "Anatomy", 100);
+		AP_SetTrueStat(who, "Strength", 80);
+	elseif((type == "Fighter1") || (type == "Fighter2") || (type == "Fighter3") || (type == "Fighter4"))
+		AP_SetTrueSkill(who, "ResistingSpells", 60);
+		AP_SetTrueSkill(who, "Tactics", 90);
+		AP_SetTrueSkill(who, "Swordsmanship", 90);
+		AP_SetTrueSkill(who, "MaceFighting", 90);
+		AP_SetTrueSkill(who, "Fencing", 90);
+		AP_SetTrueSkill(who, "Wrestling", 90);
+		AP_SetTrueSkill(who, "Anatomy", 90);
+	endif
 endfunction
 
 function ExpandStats(me, st, dx, it)
@@ -118,10 +115,10 @@ function ExpandStats(me, st, dx, it)
   if(dx)
     if(dx <= 210)
       SetBaseDexterity(me,dx);
-      SetDexterityMod(me, 0);
+      AP_SetStatMod(me, "Dexterity", 0);
     else
       SetBaseDexterity(me,210);
-      SetDexterityMod(me, dx - 210);
+      AP_SetStatMod(me, "Dexterity", dx - 210);
     endif
     SetStamina(me, dx);
   endif
@@ -133,7 +130,7 @@ function ExpandStats(me, st, dx, it)
       SetBaseIntelligence(me,210);
       SetIntelligenceMod(me, it - 210);
     endif
-    SetMana(me, it);
+    AP_SetVital(me, "Mana", it);
   endif
 endfunction
 
@@ -250,7 +247,7 @@ function ProcessSpeech(ev)
   elseif (evtext["all guard"])
     say("Who should I guard?");
 	var what := Target(master, TGTOPT_HELPFUL + TGTOPT_CHECK_LOS);
-	if(GetHp(what))
+	if(AP_GetVital(what, "Hits"))
       AllCommand(SYSEVENT_ALL_GUARD_CMD, what);
 	endif
   elseif(evtext[mename + " fetch"]  || (evtext[mename + " get"]))
@@ -268,14 +265,14 @@ endfunction
 
 function Fight(opponent)
   if(caster)
-    if(GetMana(me) < (GetIntelligence(me) / 2))
+    if(AP_GetVital(me, "Mana") < (AP_GetStat(me, "Intelligence") / 2))
       say("I must meditate first.");
       meditationloop();
       return;
     endif
   endif
   var oldfollowing := following;
-  SetDexterityMod(me, 0);
+  AP_SetStatMod(me, "Dexterity", 0);
   following := 0;
   if (opponent.serial == me.serial)
     return;
@@ -337,7 +334,7 @@ function Fight(opponent)
   SetWarMode(0);
   opponent := 0;
   if(caster)
-    if(GetMana(me) < (GetIntelligence(me) / 2))
+    if(AP_GetVital(me, "Mana") < (AP_GetStat(me, "Intelligence") / 2))
       say("I must meditate.");
       meditationloop();
       return;
@@ -354,8 +351,8 @@ function meditationloop()
   healparms[1] := "#MOB";
   healparms[2] := me;
   healparms[3] := me;
-  while(GetMana(me) < GetIntelligence(me))
-    SetMana(me, GetMana(me) + 2);
+  while(AP_GetVital(me, "Mana") < AP_GetStat(me, "Intelligence"))
+    AP_SetVital(me, "Mana", AP_GetVital(me, "Mana") + 2);
 	ev := wait_for_event(2);
 	case (ev.type)
       EVID_DAMAGED: if(TS_GetTimerNames(me, "P").size() > 1)
@@ -465,7 +462,7 @@ function Guard()
       return;
     endforeach
   endif
-  if( (!GetStrength(guarding)) || (guarding.dead) || (dist(me,guarding) > 15) )
+  if( (!AP_GetStat(guarding, "Strength")) || (guarding.dead) || (dist(me,guarding) > 15) )
     guarding := 0;
   endif
 endfunction
@@ -480,20 +477,20 @@ function Follow()
     if(d <= 2)
        waittime := 1;
     elseif(d > 6)
-      var ma := 200 - CInt(GetDexterity(me));
-      SetDexterityMod(me, CInt(GetDexterityMod(me)) + ma);
+      var ma := 200 - CInt(AP_GetStat(me, "Dexterity"));
+      AP_SetStatMod(me, "Dexterity", CInt(AP_GetStatMod(me, "Dexterity")) + ma);
       RunToward(escortee);
-      SetDexterityMod(me, CInt(GetDexterityMod(me)) - ma);
+      AP_SetStatMod(me, "Dexterity", CInt(AP_GetStatMod(me, "Dexterity")) - ma);
       waittime := 0;
     else
-      var ma := 200 - CInt(GetDexterity(me));
-      SetDexterityMod(me, CInt(GetDexterityMod(me)) + ma);
+      var ma := 200 - CInt(AP_GetStat(me, "Dexterity"));
+      AP_SetStatMod(me, "Dexterity", CInt(AP_GetStatMod(me, "Dexterity")) + ma);
       walktoward(escortee);
-      SetDexterityMod(me, CInt(GetDexterityMod(me)) - ma);
+      AP_SetStatMod(me, "Dexterity", CInt(AP_GetStatMod(me, "Dexterity")) - ma);
       waittime := 0;
     endif
   endif
-  if( (!GetStrength(escortee)) || (escortee.dead) || (dist(me,escortee) > 15) )
+  if( (!AP_GetStat(escortee, "Strength")) || (escortee.dead) || (dist(me,escortee) > 15) )
     guarding := 0;
   endif
   if(guarding)

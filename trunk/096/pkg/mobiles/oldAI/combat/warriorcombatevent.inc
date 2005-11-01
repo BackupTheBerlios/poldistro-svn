@@ -51,7 +51,7 @@ function ApplyHealing()
   if((GetObjProperty(me,"#nextheal") < ReadGameClock()) || !GetObjProperty(me,"#nextheal"))
     bandages := Cint(GetObjProperty(me, "bandages"));
     if(bandages)
-      SetHp(me, AP_GetVital(me, "Hits") + (RandomInt(AP_GetVitalMaximumValue(me, "Hits") - AP_GetVital(me, "Hits"))+1));
+      AP_SetVital(me, "Hits", AP_GetVital(me, "Hits") + (RandomInt(AP_GetVitalMaximumValue(me, "Hits") - AP_GetVital(me, "Hits"))+1));
       SetObjProperty(me,"#nextheal", ReadGameClock()+20);
       bandages := bandages - 1;
       if(bandages <= 0)

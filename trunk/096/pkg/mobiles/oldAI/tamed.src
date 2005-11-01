@@ -627,20 +627,20 @@ function Follow()
     if(GetObjProperty(me, "Pause"))
       waittime := 2;
     else
-      var ma := 200 - CInt(GetDexterity(me));
-      SetDexterityMod(me, CInt(GetDexterityMod(me))+ ma);
+      var ma := 200 - CInt(AP_GetStat(me, "Dexterity"));
+      SetDexterityMod(me, CInt(AP_GetStatMod(me, "Dexterity"))+ ma);
       RunToward(following);
-      SetDexterityMod(me, CInt(GetDexterityMod(me))- ma);
+      SetDexterityMod(me, CInt(AP_GetStatMod(me, "Dexterity"))- ma);
       waittime := 0;
     endif
   else
     if(GetObjProperty(me, "Pause"))
       waittime := 2;
     else
-      var ma := 200 - CInt(GetDexterity(me));
-      SetDexterityMod(me, CInt(GetDexterityMod(me))+ ma);
+      var ma := 200 - CInt(AP_GetStat(me, "Dexterity"));
+      SetDexterityMod(me, CInt(AP_GetStatMod(me, "Dexterity"))+ ma);
       walktoward(following);
-      SetDexterityMod(me, CInt(GetDexterityMod(me))- ma);
+      SetDexterityMod(me, CInt(AP_GetStatMod(me, "Dexterity"))- ma);
       waittime := 0;
     endif
   endif

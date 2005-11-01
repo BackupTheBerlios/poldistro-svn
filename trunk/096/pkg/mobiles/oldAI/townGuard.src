@@ -152,7 +152,7 @@ function Fight(opponent)
   set_priority(50);
   if(tries >= 5)
     PerformAction(me, 13);
-    ApplyRawDamage(opponent, GetHP(opponent) + 10);
+    ApplyRawDamage(opponent, AP_GetVital(opponent, "Hits") + 10);
     return;
   endif
   SetOpponent(opponent);
