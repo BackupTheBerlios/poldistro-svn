@@ -147,14 +147,14 @@ function MainAILoop()
     if(ReadGameClock() > CInt(GetObjProperty(me, "Timer")))
 	  Release();
     endif
-    mhp := GetHp(me);
+    mhp := AP_GetVital(me, "Hits");
     ev := os::wait_for_event(waittime);
     case (ev.type)
 	  SYSEVENT_SPEECH:     ProcessSpeech(ev);
 	  SYSEVENT_ENGAGED:    if(ev.source)
 	  	                     Fight(ev.source);
 	  	                   endif
-	  SYSEVENT_DAMAGED:        if(GetHp(me) < mhp)
+	  SYSEVENT_DAMAGED:        if(AP_GetVital(me, "Hits") < mhp)
                              PlaySoundEffect(me,dmgsound);
                            endif
                            if(ev.source)

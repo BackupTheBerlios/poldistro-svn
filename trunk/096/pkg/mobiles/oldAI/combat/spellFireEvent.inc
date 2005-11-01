@@ -2,21 +2,21 @@ include ":attributes:attributes";
 include ":timedscripts:timedScripts";
 
 function process_combat_event(opponent)
-  if((GetHp(me) < (GetMaxHP(me) / 2)) && (RandomInt(8) >= 5))
+  if((AP_GetVital(me, "Hits") < (AP_GetVitalMaximumValue(me, "Hits") / 2)) && (RandomInt(8) >= 5))
     CastSpell(me, me, "gheal");
   elseif((TS_GetTimerNames(me, "P").size() > 0) && (RandomInt(8) >= 5))
     CastSpell(me, me, "cure");
   else
     spellattack(opponent);
   endif
-  if(((GetHp(me) * 100) / GetMaxHp(me)) < flee_point)
+  if(((AP_GetVital(me, "Hits") * 100) / AP_GetVitalMaximumValue(me, "Hits")) < flee_point)
     EraseObjProperty(me,"#flees");
     flee(opponent);
   endif
 endfunction
 
 function process_flee_event(opponent)
-  if((GetHp(me) < (GetMaxHP(me) / 2)) && (RandomInt(8) >= 3))
+  if((AP_GetVital(me, "Hits") < (AP_GetVitalMaximumValue(me, "Hits") / 2)) && (RandomInt(8) >= 3))
     CastSpell(me, me, "gheal");
     return 0;
   elseif((TS_GetTimerNames(me, "P").size() > 0) && (RandomInt(8) >= 3))
@@ -26,7 +26,7 @@ function process_flee_event(opponent)
     spellattack(opponent);
     return 0;
   endif
-  if(((GetHp(me) * 100) / GetMaxHp(me)) >= flee_point)
+  if(((AP_GetVital(me, "Hits") * 100) / AP_GetVitalMaximumValue(me, "Hits")) >= flee_point)
     return 1;
   endif
 endfunction
@@ -40,7 +40,7 @@ function spellattack(opponent)
       PerformAction(me,0x0c);
       PlaySoundEffect(me, 0x16b);
       sleep(2);
-      var base := Cint(((FLAME_STRENGTH * GetHp(me)) / GetMaxHp(me)) / 2);
+      var base := Cint(((FLAME_STRENGTH * AP_GetVital(me, "Hits")) / AP_GetVitalMaximumValue(me, "Hits")) / 2);
       var dmg :=  RandomInt(base) + base;
       PlayMovingEffect(me, opponent, 0x36d4, 10, 1, 1);
       ApplyRawDamage(opponent, dmg);
@@ -69,7 +69,7 @@ function prepare_for_fight(opponent)
 endfunction
 
 function post_combat()
-  if ( GetHp(me) < (GetStrength(me)-10))
+  if ( AP_GetVital(me, "Hits") < (GetStrength(me)-10))
 	CastSpell(me,me,"gheal");
   endif
   if (TS_GetTimerNames(me, "P").size() > 0)

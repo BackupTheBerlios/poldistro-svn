@@ -105,7 +105,7 @@ program CastleGuard()
     elseif((ReadGameClock() > killtime) && (killtime != 0))
       MoveCharacterToLocation(me, 1, 1, 0, MOVECHAR_FORCELOCATION);
       SetObjProperty(me, "guardkill", 1);
-      ApplyRawDamage(me, GetHp(me) + 100);
+      ApplyRawDamage(me, AP_GetVital(me, "Hits") + 100);
       break;
     endif
     if(escortee)
@@ -168,7 +168,7 @@ function idleloop()
       next_wander := ReadGameClock() + 10;
     elseif((ReadGameClock() > killtime) && (killtime != 0))
       MoveCharacterToLocation(me, 1, 1, 0, MOVECHAR_FORCELOCATION);
-      ApplyRawDamage(me, GetHp(me) + 100);
+      ApplyRawDamage(me, AP_GetVital(me, "Hits") + 100);
       break;
     endif
   endwhile

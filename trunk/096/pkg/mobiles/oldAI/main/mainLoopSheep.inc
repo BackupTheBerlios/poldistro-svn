@@ -30,7 +30,7 @@ function main_AI_loop()
                                   PlayStationaryEffect(me.x, me.y, me.z, FX_EXPLODE_3, 7, 0x10,0,me.realm);
                                   sleepms(5);
                                   MoveCharacterToLocation(me,0,0,0,MOVECHAR_FORCELOCATION);
-                                  ApplyRawDamage(me, GetHp(me) + 3);
+                                  ApplyRawDamage(me, AP_GetVital(me, "Hits") + 3);
                                 endif
         SYSEVENT_ENGAGED:       RunLikeHell(ev.source);
         EVID_HERDING:           Herding(ev);

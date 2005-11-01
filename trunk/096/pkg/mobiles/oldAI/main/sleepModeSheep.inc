@@ -9,7 +9,7 @@ function sleepmode()
   if(GetObjProperty(me,"killme"))
     SetObjProperty(me, "guardkill", 1);
     MoveCharacterToLocation(me, 1, 1, 0, MOVECHAR_FORCELOCATION);
-    ApplyRawDamage(me, GetHp(me)+1);
+    ApplyRawDamage(me, AP_GetVital(me, "Hits")+1);
   endif
   EraseObjProperty(me,"#flees");
   DisableMainEvents();
@@ -34,7 +34,7 @@ function sleepmode()
                                 PlayStationaryEffect(me.x, me.y, me.z, FX_EXPLODE_3, 7, 0x10,0, me.realm);
                                 sleepms(5);
                                 MoveCharacterToLocation(me,0,0,0,MOVECHAR_FORCELOCATION);
-                                ApplyRawDamage(me, GetHp(me) + 3);
+                                ApplyRawDamage(me, AP_GetVital(me, "Hits") + 3);
                               endif
       SYSEVENT_ENGAGED:    if((!(ev.source).npctemplate) || (((ev.source).script == "employed") || ((ev.source).script == "tamed")))
                              if (me.hidden)

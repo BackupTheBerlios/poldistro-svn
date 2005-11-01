@@ -186,7 +186,7 @@ function post_combat()
     PlaySoundEffect(me, 0x31);
     sleep(1);
   endif
-  if(GetHp(me) < GetStrength(me))
+  if(AP_GetVital(me, "Hits") < GetStrength(me))
     sleep(1);
     PerformAction(me, 0x22);
     SetHp(me, me.strength);
@@ -257,7 +257,7 @@ function in_combat_event_loop(opponent, loops)
     PlaySoundEffect(me, 0x31);
     sleep(1);
   endif
-  if(GetHp(me) < (GetStrength(me) / 2))
+  if(AP_GetVital(me, "Hits") < (GetStrength(me) / 2))
     sleep(1);
     PerformAction(me, 0x22);
     SetHp(me, me.strength);

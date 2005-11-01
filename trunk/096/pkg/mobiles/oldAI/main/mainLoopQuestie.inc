@@ -24,19 +24,19 @@ function main_AI_loop()
 					if (!slave)
 						MoveCharacterToLocation(me,1,1,0,MOVECHAR_FORCELOCATION);
 						SetObjProperty(me,"guardkill",1);
-						ApplyRawDamage( me, GetMaxHp(me) + 3 );
+						ApplyRawDamage( me, AP_GetVitalMaximumValue(me, "Hits") + 3 );
 					endif
 				else
 					if (!master)
 						MoveCharacterToLocation(me,1, 1, 0,MOVECHAR_FORCELOCATION);
 						SetObjProperty(me,"guardkill",1);
-						ApplyRawDamage( me, GetMaxHp(me) + 3 );
+						ApplyRawDamage( me, AP_GetVitalMaximumValue(me, "Hits") + 3 );
 					endif
 				endif
 			else
 				MoveCharacterToLocation(me,1, 1, 0,MOVECHAR_FORCELOCATION);
 				SetObjProperty(me,"guardkill",1);
-				ApplyRawDamage( me, GetMaxHp(me) + 3 );
+				ApplyRawDamage( me, AP_GetVitalMaximumValue(me, "Hits") + 3 );
 			endif
 			endif
 			ev := sleepmode();

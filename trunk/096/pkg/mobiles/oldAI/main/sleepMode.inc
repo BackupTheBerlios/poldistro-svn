@@ -9,11 +9,11 @@ function sleepmode()
   if(GetObjProperty(me,"killme"))
     SetObjProperty(me, "guardkill", 1);
     MoveCharacterToLocation(me, 1, 1, 0, MOVECHAR_FORCELOCATION);
-    ApplyRawDamage(me, GetHp(me)+1);
+    ApplyRawDamage(me, AP_GetVital(me, "Hits")+1);
   endif
   EraseObjProperty(me,"#flees");
   DisableMainEvents();
-  if(GetEffectiveSkill(me, 21) > 0 )
+  if( AP_GetSkill(me, "Hiding") > 0 )
     me.hidden := 1;
   endif
   EnableEvents(SYSEVENT_ENTEREDAREA,18);

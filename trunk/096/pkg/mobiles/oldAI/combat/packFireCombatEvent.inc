@@ -1,7 +1,7 @@
 include ":attributes:attributes";
 function process_combat_event(opponent)
   spellattack(opponent);
-  if((GetHp(me) * 100/GetMaxHp(me)) < flee_point)
+  if((AP_GetVital(me, "Hits") * 100/AP_GetVitalMaximumValue(me, "Hits")) < flee_point)
 	EraseObjProperty(me,"#flees");
 	flee(opponent);
   endif
@@ -13,7 +13,7 @@ function spellattack(opponent);
   endif
   if(CheckLineOfSight(me, opponent))
     PerformAction(me,0x0c);
-    var dmg := ((RandomInt(9) + 1) + (GetHp(me) / 10));
+    var dmg := ((RandomInt(9) + 1) + (AP_GetVital(me, "Hits") / 10));
     PlaySoundEffect(me, 0x16b);
     sleep(2);
     PlayMovingEffect(me, opponent, 0x36d4, 10, 1, 1);

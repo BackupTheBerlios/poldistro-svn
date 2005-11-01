@@ -3,13 +3,13 @@ include "include/poisons";
 
 function process_combat_event(opponent)
   spellattack(opponent);
-  if ( GetHp(me) < (GetStrength(me)/2))
+  if ( AP_GetVital(me, "Hits") < (GetStrength(me)/2))
     CastSpell(me,me,"gheal");
     if (ListPoisonsByType(me, "defaultPoison").size() > 0)
       CastSpell(me,me,"cure");
     endif
   endif
-  if ((GetHp(me) * 100/GetMaxHp(me)) < flee_point)
+  if ((AP_GetVital(me, "Hits") * 100/AP_GetVitalMaximumValue(me, "Hits")) < flee_point)
     EraseObjProperty(me,"#flees");
     flee(opponent);
   endif

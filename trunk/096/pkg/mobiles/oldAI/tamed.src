@@ -55,7 +55,7 @@ program TamedAI()
   start_script(":taming:happyCounter", parms);
   master := SystemFindObjectBySerial(masterserial, SYSFIND_SEARCH_OFFLINE_MOBILES);
   if(!master)
-    ApplyRawDamage(me, GetHP(me)+ 1);
+    ApplyRawDamage(me, AP_GetVital(me, "Hits")+ 1);
     return;
   endif
   me.setmaster(master);
@@ -112,9 +112,9 @@ function MainAILoop()
   nextwatch := ReadGameClock();
   var mhp;
   EnableMainEvents();
-  while(GetHp(me)> 0)
+  while(AP_GetVital(me, "Hits")> 0)
     happiness := GetObjProperty(me,"happiness");
-    mhp := GetHp(me);
+    mhp := AP_GetVital(me, "Hits");
     if(GetObjProperty(me, "onhold"))
       HoldLoop("onhold");
     elseif(GetObjProperty(me, "stabled"))
@@ -129,7 +129,7 @@ function MainAILoop()
       case(ev.type)
         SYSEVENT_SPEECH:        ProcessSpeech(ev);
         SYSEVENT_ENGAGED:       Fight(ev.source);
-        SYSEVENT_DAMAGED:       if(GetHp(me)< mhp)
+        SYSEVENT_DAMAGED:       if(AP_GetVital(me, "Hits")< mhp)
                                   if(ev.source)
                                     Fight(ev.source);
                                   endif
@@ -402,7 +402,7 @@ function release()
     endif
     PlayStationaryEffect(me.x, me.y, me.z, FX_SMOKE, 0xa, 0xa, 0, me.realm);
     MoveCharacterToLocation(me,1, 1, 0,MOVECHAR_FORCELOCATION);
-    ApplyRawDamage(me, GetHp(me)+ 3);
+    ApplyRawDamage(me, AP_GetVital(me, "Hits")+ 3);
   else
     if(GetObjProperty(me,"mounted"))
       char := GetObjProperty(me,"mounted_on");
@@ -779,7 +779,7 @@ function AllCommand(evtype,what)
 endfunction
 
 function cast_meteor(opponent)
-  var base := Cint(((FLAME_STRENGTH * GetHp(me)) / GetMaxHp(me)) / 2);
+  var base := Cint(((FLAME_STRENGTH * AP_GetVital(me, "Hits")) / AP_GetVitalMaximumValue(me, "Hits")) / 2);
   var dmg :=  RandomInt(base) + base;
   PerformAction(me,0x0c);
   PlaysoundEffect(me, 0x16b);
@@ -794,7 +794,7 @@ function flee(opponent)
     if(numflees > 5)
       MoveCharacterToLocation(me,1,1,0,MOVECHAR_FORCELOCATION);
       SetObjProperty(me,"guardkill",1);
-      ApplyRawDamage(me, GetMaxHp(me)+ 3);
+      ApplyRawDamage(me, AP_GetVitalMaximumValue(me, "Hits")+ 3);
     else
       numflees := numflees + 1;
     endif

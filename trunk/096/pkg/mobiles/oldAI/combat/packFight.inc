@@ -93,7 +93,7 @@ function flee(opponent)
     if ( numflees > 10 )
       MoveCharacterToLocation(me,1,1,0,MOVECHAR_FORCELOCATION);
       SetObjProperty(me,"guardkill",1);
-      ApplyRawDamage( me, GetMaxHp(me) + 3 );
+      ApplyRawDamage( me, AP_GetVitalMaximumValue(me, "Hits") + 3 );
     else
       numflees := numflees + 1;
     endif
