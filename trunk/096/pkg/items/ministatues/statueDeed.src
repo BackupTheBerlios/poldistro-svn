@@ -1,0 +1,38 @@
+/* $Id$
+ *
+ */
+use uo;
+use cfgfile;
+use util;
+
+include "include/canAccess";
+
+program use_StatueDeed(who, deed)
+
+	if( !can_access(who, deed) )
+		return 0;
+	endif
+	if( !(deed in EnumerateItemsInContainer(who.backpack)) )
+		SendSysMessage(who, "That item is not in your backpack.");
+		return 0;
+	endif
+	if( !ReserveItem(deed) )
+		return 0;
+	endif
+
+	var statue_config := ReadConfigFile(":ministatues:miniStatues");
+	var elem_names := GetConfigStringKeys(statue_config);
+	var statue_elem := FindConfigElem( statue_config, elem_names[(RandomInt(elem_names.size())+1)]);
+
+	var mini_statue := CreateItemAtLocation(who.x, who.y, who.z, statue_elem.Graphic, 1, who.realm);
+
+	if( ReleaseItem(deed) )
+		if( DestroyItem(deed) )
+			MoveItemToContainer(mini_statue, who.backpack);
+		else
+			DestroyItem(mini_statue);
+		endif
+	endif
+	return 1;
+
+endprogram

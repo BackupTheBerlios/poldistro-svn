@@ -24,6 +24,7 @@ include ":brainAI:npcError";
 // NPC_GetDeathSound(mobile)
 // NPC_GetMissSound(mobile)
 // NPC_GetHitSound(mobile)
+// NPC_GetBarkSound(mobile)
 //
 /////////////////////////////////////////////////////////////////
 // * Internal/Private Function List *
@@ -161,5 +162,32 @@ function NPC_GetHitSound(mobile)
 	endif
 
 	return RandomInt(hit_sound_list.size())+1;
+
+endfunction
+
+
+/*
+ * NPC_GetBarkSound(mobile)
+ *
+ * Purpose
+ * Gets the packed array form of BarkSounds Prop from NPC Template.
+ *
+ * Parameters
+ * mobile:	Mobile to find the barking sound for.
+ *
+ * Return value
+ * Returns an integer that is the sound ID to be played.
+ *
+ */
+function NPC_GetBarkSound(mobile)
+	var mobile_template := NPC_GetNPCConfig(mobile);
+	var bark_sound_list := UnPack(mobile_template.BarkSounds);
+
+	if( TypeOf(bark_sound_list) != "Array" )
+		NPC_ErrorSysLog(mobile, "Invalid Bark Sound Setting");
+		return 0;
+	endif
+
+	return RandomInt(bark_sound_list.size())+1;
 
 endfunction
