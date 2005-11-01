@@ -1,4 +1,4 @@
-include "include/attributes";
+include ":attributes:attributes";
 include ":timedscripts:timedScripts";
 
 function process_combat_event(opponent)

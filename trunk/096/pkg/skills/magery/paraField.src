@@ -5,7 +5,7 @@ use util;
 include "include/fields";
 include "include/objtype";
 include "include/sound";
-include "include/attributes";
+include ":attributes:attributes";
 
 
 program spell_paraField(parms)

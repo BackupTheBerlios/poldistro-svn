@@ -14,7 +14,7 @@ include ":npcutils:anchors";
 include "include/findCity";
 include "include/dist";
 include ":begging:begging";
-include "include/attributes";
+include ":attributes:attributes";
 include ":npcutils:trainSkill";
 
 const MAX_SKILLS      := 48;

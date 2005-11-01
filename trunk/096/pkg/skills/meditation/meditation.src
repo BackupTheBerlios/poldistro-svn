@@ -5,7 +5,7 @@ use cfgfile;
 const sfx_meditation := 0xfa;
 
 include "include/client";
-include "include/attributes";
+include ":attributes:attributes";
 include ":timedscripts:timedScripts";
 
 program meditation( who )

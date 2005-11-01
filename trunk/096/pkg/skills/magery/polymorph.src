@@ -1,6 +1,6 @@
 use util;
 
-include "include/attributes";
+include ":attributes:attributes";
 
 
 program spell_polymorph( parms )

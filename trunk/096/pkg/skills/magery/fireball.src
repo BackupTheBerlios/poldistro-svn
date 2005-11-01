@@ -4,7 +4,7 @@ use cfgfile;
 include "include/magic";
 include "include/sound";
 include "include/tileEffects";
-include "include/attributes";
+include ":attributes:attributes";
 include ":magery:reflect";
 
 

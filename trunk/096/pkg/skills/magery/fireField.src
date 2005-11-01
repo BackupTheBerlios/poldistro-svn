@@ -1,5 +1,5 @@
 include "include/fields";
-include "include/attributes";
+include ":attributes:attributes";
 include "include/client";
 include "include/firewall";
 

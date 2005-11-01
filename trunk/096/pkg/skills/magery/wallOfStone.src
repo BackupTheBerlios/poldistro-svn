@@ -4,7 +4,7 @@ use util;
 
 include "include/fields";
 include "include/sound";
-include "include/attributes";
+include ":attributes:attributes";
 
 
 program spell_wallOfStone(parms)

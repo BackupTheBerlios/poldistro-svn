@@ -4,7 +4,7 @@ use cfgfile;
 use util;
 
 include "include/client";
-include "include/attributes";
+include ":attributes:attributes";
 
 var ct;
 var next_counter := 0;

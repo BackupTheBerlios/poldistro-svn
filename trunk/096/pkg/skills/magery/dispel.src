@@ -2,7 +2,7 @@ use uo;
 use cfgfile;
 
 include "include/eventID";
-include "include/attributes";
+include ":attributes:attributes";
 include "include/sound";
 include "include/tileEffects";
 include "include/spellAttack";

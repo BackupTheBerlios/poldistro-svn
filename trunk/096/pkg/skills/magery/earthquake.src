@@ -4,7 +4,7 @@ use util;
 include "include/client";
 include "include/sound";
 include "include/tileEffects";
-include "include/attributes";
+include ":attributes:attributes";
 include "include/spellAttack";
 include "include/magic";
 

@@ -3,7 +3,7 @@ use uo;
 use util;
 use cfgfile;
 include "drinkPotion";
-include "include/attributes";
+include ":attributes:attributes";
 include "include/canAccess";
 
 program redPotion (who, potion)

@@ -4,7 +4,7 @@ use cfgfile;
 
 include "include/sound";
 include "include/tileEffects";
-include "include/attributes";
+include ":attributes:attributes";
 include ":magery:reflect";
 
 const EVID_DISCHARGE := 0x123457;

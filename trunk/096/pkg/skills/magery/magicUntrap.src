@@ -6,7 +6,7 @@ use util;
 
 include "include/client";
 include "include/sound";
-include "include/attributes";
+include ":attributes:attributes";
 
 program spell_magicUntrap(parms)
 	var caster := parms.caster;

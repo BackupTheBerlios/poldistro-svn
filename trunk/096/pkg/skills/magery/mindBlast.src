@@ -5,7 +5,7 @@ include "include/magic";
 include "include/sound";
 include "include/tileEffects";
 include ":magery:reflect";
-include "include/attributes";
+include ":attributes:attributes";
 
 
 program spell_mindBlast( parms )

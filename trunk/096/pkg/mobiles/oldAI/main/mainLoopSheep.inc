@@ -1,6 +1,6 @@
 include "include/sound";
 include "include/tileEffects";
-include "include/attributes";
+include ":attributes:attributes";
 
 
 function main_AI_loop()

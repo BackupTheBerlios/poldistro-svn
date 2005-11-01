@@ -4,7 +4,7 @@ use os;
 use cfgfile;
 
 include "spellcastFunctions";
-include "include/attributes";
+include ":attributes:attributes";
 include "include/dist";
 
 program spellcast(who, spellid)

@@ -4,7 +4,7 @@ use util;
 use cfgfile;
 
 include "include/statMod";
-include "include/attributes";
+include ":attributes:attributes";
 include "include/sound";
 include "include/tileEffects";
 include "reflect";

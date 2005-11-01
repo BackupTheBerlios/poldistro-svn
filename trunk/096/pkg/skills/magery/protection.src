@@ -5,7 +5,7 @@ use cfgfile;
 include "include/statMod";
 include "include/sound";
 include "include/tileEffects";
-include "include/attributes";
+include ":attributes:attributes";
 
 program spell_protection(parms)
   var caster := parms.caster;

@@ -3,7 +3,7 @@ use os;
 
 include "include/client";
 include "include/sound";
-include "include/attributes";
+include ":attributes:attributes";
 
 
 function summon_creature( caster, circle := 8, npctemplate, cast_loc, gate)

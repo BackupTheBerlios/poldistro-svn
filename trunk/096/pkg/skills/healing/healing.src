@@ -8,7 +8,7 @@ include "include/dist";
 include "include/client";
 include "include/resurrection";
 include "include/canAccess";
-include "include/attributes";
+include ":attributes:attributes";
 include ":timedscripts:timedScripts";
 include ":timedscripts:poisonUtil";
 

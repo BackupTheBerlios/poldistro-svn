@@ -1,7 +1,7 @@
 use util;
 
 include "summon";
-include "include/attributes";
+include ":attributes:attributes";
 
 
 program spell_summonCreature( parms )

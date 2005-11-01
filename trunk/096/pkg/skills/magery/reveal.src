@@ -1,6 +1,6 @@
 use uo;
 
-include "include/attributes";
+include ":attributes:attributes";
 include "include/magic";
 include "include/sound";
 include "include/tileEffects";

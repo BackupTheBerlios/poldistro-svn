@@ -1,7 +1,7 @@
 use uo;
 use os;
 use util;
-include "include/attributes";
+include ":attributes:attributes";
 
 program exploder(parms)
   var potion := parms[1];

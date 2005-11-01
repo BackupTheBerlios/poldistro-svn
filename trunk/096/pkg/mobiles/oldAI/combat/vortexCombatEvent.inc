@@ -1,4 +1,4 @@
-include "include/attributes";
+include ":attributes:attributes";
 function process_combat_event(opponent)
   if(Distance(me,opponent) < 2)
     var dmg := RandomInt(CInt(GetIntelligence(opponent) / 10));

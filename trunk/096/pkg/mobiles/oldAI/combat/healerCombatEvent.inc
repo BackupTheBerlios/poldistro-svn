@@ -1,4 +1,4 @@
-include "include/attributes";
+include ":attributes:attributes";
 include "include/poisons";
 
 function process_combat_event(opponent)
