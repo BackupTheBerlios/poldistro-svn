@@ -350,10 +350,10 @@ endfunction
  */
 function TS_Death(mobile)
 	var event := struct;
-	if ( mobile.IsA(POLCLASS_NPC) )
-		event.+EVENT_NPC_DIED;
-	else
+	if ( mobile.IsA(POLCLASS_MOBILE) )
 		event.+type := EVENT_PLAYER_DIED;
+	elseif ( mobile.IsA(POLCLASS_CORPSE) )
+		event.+type := EVENT_NPC_DIED;
 	endif
 	
 	var process := TS_GetControllerProcess(mobile);

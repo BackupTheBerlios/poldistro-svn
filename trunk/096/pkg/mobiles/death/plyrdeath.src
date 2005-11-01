@@ -1,4 +1,4 @@
-/* $Id: chrdeath.src 402 2005-10-04 09:33:15Z panosl $
+/* $Id$
  *
  * Purpose
  * This script allows side effects to be triggered as a result of Player death,
@@ -13,12 +13,15 @@ use util;
 include "include/noto";
 include "include/reportMurder";
 include ":attributes:attributes";
+include ":timedscripts:timedScripts";
 include ":death:death";
 include ":mounts:mounts";
 
 program core_chrDeath(params)
 	var corpse := params[1];
 	var ghost := params[2];
+	
+	TS_Death(ghost);
 	
 	EraseObjProperty(ghost, "IsMeditating");
 	

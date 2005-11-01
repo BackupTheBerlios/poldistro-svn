@@ -1,4 +1,4 @@
-/* $Id: death.src 402 2005-10-04 09:33:15Z panosl $
+/* $Id$
  *
  * Purpose
  * This script allows side effects to be triggered as a result of NPC death, like unmounting
@@ -13,11 +13,14 @@ use cfgfile;
 
 include "include/noto";
 include ":containers:merchantUtil";
+include ":timedscripts:timedScripts";
 include ":death:death";
 include ":mounts:mounts";
 
 program core_npcDeath(params)
 	var corpse := params[1];
+	
+	TS_Death(corpse); // Will still get the PID from the corpse.
 	
 	var template := GetObjProperty(corpse, "npctemplate"); // Set by the core.
 	var npc_cfg := NPC_GetNPCConfig(template);
