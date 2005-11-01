@@ -4,7 +4,7 @@ use util;
 use os;
 
 include "include/canAccess";
-include ":poisonwatcher:poisons";
+include ":timedscripts:timedScripts";
 
 const SOUND_EFFECT_DRINK1 := 0x32;
 const ACTION_DRINK := 0x22;
@@ -25,7 +25,7 @@ program Drink_Booz( character, drink )
     var poison := CInt(GetObjProperty(drink, "poison_level"));
 
     if (poison > 0 )
-        AddPoison(character, "defaultPoison", 120, character, poison);
+        TS_StartTimer(character, "defaultPoison", 120, poison, character);
     endif
 
     SubtractAmount( drink, 1 );

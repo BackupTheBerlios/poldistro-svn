@@ -1,7 +1,7 @@
 use uo;
 
 include "include/sound";
-include ":poisonwatcher:poisons";
+include ":timedscripts:timedScripts";
 
 
 const FX_POISON_GAS := 0x113a;
@@ -16,7 +16,9 @@ program poisonTrapTriggered(parms)
 	PlaySoundEffect(who, SFX_232);
 	PrintTextAbovePrivate(who, message, who);
 	PlayStationaryEffect(item.x, item.y, item.z, FX_POISON_GAS, 10,10, 0, who.realm);
-	start_script(":spells:poisonDamage", {who, "", "poison trap", trapstrength});
+	
+	TS_StartTimer(who, "defaultPoison", 15, trapstrength);
+	
 	item.usescript := "";
 	EraseObjProperty(item, "trap_type");
 	EraseObjProperty(item, "trap_strength");

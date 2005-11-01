@@ -7,7 +7,7 @@ use cfgfile;
 
 include "include/canAccess";
 include "include/attributes";
-include ":poisonwatcher:poisons";
+include ":timedscripts:timedScripts";
 include "include/client";
 
 program eat(who, food)
@@ -84,7 +84,7 @@ program eat(who, food)
     endcase
     SendSysMessage(who, themsg);
     if (poison > 0)
-      AddPoison(who, "defaultPoison", 120, who, poison);
+      TS_StartTimer(who, "defaultPoison", 120, poison, who);
     endif
   endif
 endprogram

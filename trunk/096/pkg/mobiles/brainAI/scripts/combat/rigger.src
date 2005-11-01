@@ -6,7 +6,7 @@ use os;
 include ":brainAI:npcNerves";
 include ":brainAI:npcCommands";
 include ":attributes:attributes";
-include ":poisonwatcher:poisons";
+include ":timedscripts:timedScripts";
 
 program BrainNerve(params)
 	var npc		:= params[1];
@@ -89,7 +89,7 @@ function ShitToss(npc, opponent, byref dist)
 					AI_Turn(npc, opponent, NETURN_TOWARD);
 					PlayMovingEffect(npc, opponent, 3900, 10, 10);
 					PrintTextAbove(opponent, "*SPLAT!*");
-					AddPoison(opponent, "poostink", 30, npc);
+					TS_StartTimer(opponent, "poostink", 30);
 					SetObjProperty(npc, "#NextShoot", ReadGameClock()+30);
 				endif
 			endif

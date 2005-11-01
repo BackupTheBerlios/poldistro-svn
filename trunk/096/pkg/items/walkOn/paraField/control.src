@@ -7,7 +7,7 @@ use uo;
 use os;
 use util;
 
-include ":poisonwatcher:poisons";
+include ":timedscripts:timedScripts";
 
 program controlScript(field)
 	SetObjProperty(field, "#PID", GetPid());
@@ -51,7 +51,7 @@ function ParalyzeNearbyMobiles(field, duration)
 endfunction
 
 function ParalyzeMobile(mobile, duration)
-	AddPoison(mobile, "Paralyze", duration, 0);
+	TS_StartTimer(mobile, "Paralyze", duration);
 
 	return 1;
 endfunction

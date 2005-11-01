@@ -1,9 +1,6 @@
 use uo;
 use os;
 
-include "include/attributes";
-include ":poisonwatcher:poisons";
-
 program poisonScript(params)
 	var who := params[1];
 	
