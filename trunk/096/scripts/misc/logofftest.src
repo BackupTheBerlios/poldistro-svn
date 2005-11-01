@@ -10,8 +10,11 @@ use uo;
 include "include/eventID";
 include "include/innCheck";
 
+include ":timedscripts:timedScripts";
 
 program core_logoffTest(who)
+	TS_LogOff(who);
+	
 	if ((who.cmdlevel > 1) || (GetObjProperty(who,"justbanned")))
 		return 0;
 	endif
