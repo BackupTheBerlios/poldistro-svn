@@ -1,7 +1,9 @@
+use uo;
 use cfgfile;
 use os;
 use util;
-include "include/attributes";
+
+include ":attributes:attributes";
 
 var unique_items_created := {};
 var starteqp_cfg;
@@ -33,7 +35,7 @@ function MakeLoot(corpse, lootgroup)
       magicadjustment := 0;
     endif
   endif
-  if(GetHp(corpse))
+  if(AP_GetVital(corpse, "Hits"))
     foreach thing in ListEquippedItems(corpse)
       if(thing.objtype == 0xe75)
         corpse := thing;
