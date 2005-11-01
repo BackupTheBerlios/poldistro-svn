@@ -9,7 +9,7 @@ include ":brainAI:npcSounds";
 program BrainNerve(params)
 	var npc		:= params[1];
 	var nerve_name	:= params[2];
-	var settings	:= params[3];
+	//var settings	:= params[3];
 	//var scripts	:= params[4];
 	params := 0; // Not needed anymore.
 
