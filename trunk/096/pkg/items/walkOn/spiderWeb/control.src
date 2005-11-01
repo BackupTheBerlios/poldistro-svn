@@ -1,0 +1,12 @@
+/*
+ * $Id$
+ *
+ */
+
+use uo;
+use os;
+
+program RemoveWeb(web)
+	sleep(60);
+	DestroyItem(web);
+endprogram
