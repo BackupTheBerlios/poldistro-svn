@@ -2,7 +2,7 @@ use uo;
 use util;
 use math;
 
-include "include/attributes";
+include ":attributes:attributes";
 
 var nototitles :=
 {
@@ -31,7 +31,7 @@ function AdjustNoto(attacker, defender)
   if(defender.isA(POLCLASS_MOBILE))
     dkarma := dkarma / 100.0;
     dkchk := dkarma * 10;
-  elseif(!GetStrength(defender))
+  elseif(!AP_GetStat(defender, "Strength"))
     dkarma := dkarma * 10;
     dkchk := dkarma * 10;
     dkchk := 0 - dkchk;
@@ -39,7 +39,7 @@ function AdjustNoto(attacker, defender)
   if(defender.isA(POLCLASS_MOBILE))
     dfame := dfame / 100.0;
     dfchk := dfame * 10;
-  elseif(!GetStrength(defender))
+  elseif(!AP_GetStat(defender, "Strength"))
     dfchk := dfame * 100;
     dfame := dfame * 10;
   endif

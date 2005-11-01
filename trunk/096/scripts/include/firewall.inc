@@ -3,7 +3,6 @@ use util;
 use uo;
 
 include "include/client";
-include "include/attributes";
 include "include/fields";
 
 const SOUND_EFFECT_FIREFIELD:= 0x1de;
@@ -12,6 +11,7 @@ const UOBJ_FIREFIELD_EW := 0x3996;
 const SOUND_EFFECT_POISON := 0x247;
 const EFFECT_RED_SPARKLE := 0x374a;
 
+/*
 function DoFireField( caster )
 var thetarget;
 var x;
@@ -63,3 +63,4 @@ foreach fire in fires
     DestroyItem( fire );
 endforeach
 endfunction
+*/
