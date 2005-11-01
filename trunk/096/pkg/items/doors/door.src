@@ -3,7 +3,7 @@ use os;
 use cfgfile;
 
 include "doors";
-include "include/attributes";
+
 
 program use_door(chr, door)
   if(GetObjProperty(door, "#inuse"))
