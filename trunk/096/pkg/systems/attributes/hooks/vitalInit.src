@@ -77,6 +77,27 @@ exported function GetStaminaMaximumValue(mobile)
 endfunction
 
 // *****
+// Hunger Functions
+// Note: This vital is not linked to any attributes.
+// *****
+exported function GetHungerRegenRate(mobile)
+	var base_regen := CInt(AP_GetSettingsCfgElem("Regen").Hunger) * 100;
+
+	return base_regen + AP_GetVitalRegenRateMod(mobile, "Hunger");
+endfunction
+
+exported function GetHungerMaximumValue(mobile)
+	var vital_points := GetNPCVitalSetting(mobile, "HUNGER");
+	if ( !vital_points )
+		vital_points := 100*100; // '100' points.
+	endif
+
+	return vital_points;
+endfunction
+
+
+
+// *****
 // Private Function for NPC stuff
 // *****
 function GetNPCVitalSetting(mobile, vital)
