@@ -3,15 +3,14 @@ use os;
 
 include "include/client";
 include "include/sound";
-include "include/attributes";
 include "include/objtype";
 include "include/spellRestrictions";
-
+include ":attributes:attributes";
 
 function custom_recall(caster, parms, book)
   book := book; // stops ecompile "not used" warning
   caster.hidden := 0;
-  if(GetMana(caster) < 11)
+  if(AP_GetVital(caster, "Mana") < 11)
     caster.frozen :=1;
 	PerformAction(caster,ANIM_CAST_DIR);
     sleepms(1200);
@@ -63,7 +62,7 @@ endfunction
 function custom_gate(caster, parms, book)
   book := book; // stops ecompile "not used" warning
   caster.hidden := 0;
-  if(GetMana(caster) < 40)
+  if(AP_GetVital(caster, "Mana") < 40)
     caster.frozen :=1;
 	PerformAction(caster,ANIM_CAST_DIR);
     sleepms(1200);
