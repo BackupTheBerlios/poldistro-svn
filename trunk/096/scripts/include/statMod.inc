@@ -1,6 +1,7 @@
 use uo;
 use util;
-include "include/attributes";
+
+include ":attributes:attributes";
 
 function GetModAmount(magery)
   var mod_amount := CInt(RandomInt(3) +(magery/10));
@@ -34,9 +35,9 @@ endfunction
 function DoTempMod(who, stat, amt, duration)
   var mod;
   case(stat)
-    "str":  mod := "#ss";  SetStrengthMod(who, GetStrengthMod(who) + amt);
-    "dex":  mod := "#dd";  SetDexterityMod(who, GetDexterityMod(who) + amt);
-    "int":  mod := "#ii";  SetIntelligenceMod(who, GetIntelligenceMod(who) + amt);
+    "str":  mod := "#ss";  AP_SetStatMod(who, "Strength", AP_GetStatMod(who, "Strength") + amt);
+    "dex":  mod := "#dd";  AP_SetStatMod(who, "Dexterity", AP_GetStatMod(who, "Dexterity") + amt);
+    "int":  mod := "#ii";  AP_SetStatMod(who, "Intelligence", AP_GetStatMod(who, "Intelligence") + amt);
     "ar" :  mod := "#ar";  who.ar_mod           := who.ar_mod + amt;
 	"p"  :  mod := "#pp";  who.setParalyzed(1);
   endcase
