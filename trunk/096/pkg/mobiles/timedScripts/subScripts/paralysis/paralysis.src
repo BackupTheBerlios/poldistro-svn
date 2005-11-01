@@ -1,13 +1,18 @@
+/*
+ * $Id$
+ *
+ */
+ 
 use uo;
 use os;
 
 program poisonScript(params)
-	var who := params[1];
+	var mobile := params[1];
 	
-	PlaySoundEffect(who, 0x205);
-	SendSysMessage(who, "You are unable to move.");
-	while ( who )
-		who.paralyzed := 1;
+	PlaySoundEffect(mobile, 0x205);
+	SendSysMessage(mobile, "You are unable to move.");
+	while ( mobile )
+		mobile.paralyzed := 1;
 		sleepms(250);
 	endwhile
 	
