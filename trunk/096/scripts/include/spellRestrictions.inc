@@ -4,7 +4,6 @@ use cfgfile;
 use util;
 
 include "include/fields";
-include "include/attributes";
 include "include/client";
 include "include/tileEffects";
 include "include/sound";
@@ -138,7 +137,7 @@ function maincast(parms, delivery, circle, noto, id);
     endif
   endif
   var points := getpoints(circle, spellscroll, SKILLID_MAGERY);
-  AwardRawSkillPoints(caster, SKILLID_MAGERY, points);
+  //AwardRawSkillPoints(caster, SKILLID_MAGERY, points);
   var newparms := {};
   newparms[1] := caster;
   newparms[2] := cast_on;
@@ -241,9 +240,9 @@ function Resisted(circle, caster, cast_on, amt)
 	// called by: most spells
 	// returns: amount of damage not resisted?
 
-        var magery := CInt(GetEffectiveSkill(caster, SKILLID_MAGERY));
-        var evalint := CInt(GetEffectiveSkill(caster, SKILLID_EVALINT));
-        var resist := CInt(GetEffectiveSkill(cast_on, SKILLID_MAGICRESISTANCE));
+        var magery := CInt(AP_GetSkill(caster, SKILLID_MAGERY));
+        var evalint := CInt(AP_GetSkill(caster, SKILLID_EVALINT));
+        var resist := CInt(AP_GetSkill(cast_on, SKILLID_MAGICRESISTANCE));
         
         // chk1 relates to the resist ability.
         var chk1 := (resist / 5);
@@ -293,7 +292,7 @@ endfunction
 function CalcSpellDamage(circle, caster, cast_on)
   var die_string := circle+"d8";
   var dmg := RandomDiceRoll(die_string);
-  dmg := dmg + CInt(GetEffectiveSkill(caster, SKILLID_MAGERY)/10);
+  dmg := dmg + CInt(AP_GetSkill(caster, SKILLID_MAGERY)/10);
   if(dmg > (circle * 8))
     dmg := circle * 8;
   endif
@@ -316,7 +315,7 @@ function spellcast(me, circle, scroll, id)
   var val := SplitWords(spellcfg[id].val);
   var times := CInt(val[1]);
   var slp   := CInt(val[2]);
-  var mhp := GetHp(me);
+  var mhp := AP_GetVital(me, "Hits");
   var umana, diff;
   var n := 1;
   if(scroll == 0)
@@ -348,11 +347,11 @@ function spellcast(me, circle, scroll, id)
   else
     return 0;
   endif
-  if((mhp > GetHp(me)) && ((RandomInt(99)+1) > (GetEffectiveSkill(me, SKILLID_WRESTLING)/2)))
+  if((mhp > AP_GetVital(me, "Hits")) && ((RandomInt(99)+1) > (AP_GetSkill(me, SKILLID_WRESTLING)/2)))
     SendSysMessage(me,"You lost your concentration.", 3, 40);
     return 0;
   endif
-  if (umana > GetMana(me))
+  if (umana > AP_GetVital(me, "Mana"))
     me.frozen :=1;
     PerformAction(me,ANIM_CAST_DIR);
     sleepms(1200);
@@ -365,7 +364,7 @@ function spellcast(me, circle, scroll, id)
   if(can_cast(me))
     me.frozen :=1;
     for (n:=1; n<=times; n:=n+1)
-      if((mhp > GetHp(me)) && ((RandomInt(99)+1) > (GetEffectiveSkill(me, SKILLID_WRESTLING)/2)))
+      if((mhp > AP_GetVital(me, "Hits")) && ((RandomInt(99)+1) > (AP_GetSkill(me, SKILLID_WRESTLING)/2)))
         SendSysMessage(me,"You lost your concentration.", 3, 40);
         PlaySoundEffect(me,0x005d);
         PlayObjectCenteredEffect(me, 0x3735,0x0a, 0x1e);
@@ -380,7 +379,7 @@ function spellcast(me, circle, scroll, id)
     endif
     me.frozen :=0;
     if (CheckSkill(me,SKILLID_MAGERY, diff, 0))
-      if((mhp > GetHp(me)) && ((RandomInt(99)+1) > (GetEffectiveSkill(me, SKILLID_WRESTLING)/2)))
+      if((mhp > AP_GetVital(me, "Hits")) && ((RandomInt(99)+1) > (AP_GetSkill(me, SKILLID_WRESTLING)/2)))
         SendSysMessage(me,"You lost your concentration.", 3, 40);
         return 0;
       endif
@@ -430,9 +429,9 @@ function newusemana(who, circle, cast_on, delivery)
     7: umana := 40;
     8: umana := 50;
   endcase
-  var mana := GetMana(who);
+  var mana := AP_GetVital(who, "Mana");
   if(mana >= umana)
-    SetMana(who, Cint(mana - umana));
+    AP_SetVital(who, "Mana", Cint(mana - umana));
     return 1;
   else
     SendSysMessage(who,"You do not have enough mana to cast that.", 3, 40);
@@ -453,7 +452,7 @@ function mobspellcast(me, circle, scroll)
     7:   diff := 85;     points := 190;    umana :=  40;
     8:   diff := 95;     points := 210;    umana :=  50;
   endcase
-  if(umana > GetMana(me))
+  if(umana > AP_GetVital(me, "Mana"))
     return 0;
   endif
   if(can_cast(me))
@@ -491,7 +490,7 @@ function getpoints(c, scroll, skillid)
       8:   points := 180; diff := 100;
     endcase
   endif
-  var skill := GetEffectiveSkill(caster, skillid);
+  var skill := AP_GetSkill(caster, skillid);
   if(skill > (diff - 20))
     if((skill - diff) <= 5)
       points := points;
@@ -521,7 +520,7 @@ function getresistpoints(c, victim, skillid)
     7:   points := 160; diff := 86;
     8:   points := 180; diff := 100;
   endcase
-  var skill := GetEffectiveSkill(victim, skillid);
+  var skill := AP_GetSkill(victim, skillid);
   if(skill > (diff - 20))
     if((skill - diff) <= 5)
       points := points;
@@ -583,9 +582,9 @@ function usemana(who, circle, cast_on)
     9: umana :=  75;
    10: umana := 100;
   endcase
-  var mana := GetMana(who);
+  var mana := AP_GetVital(who, "Mana");
   if(mana >= umana)
-    var ms := SetMana(who, Cint(mana - umana));
+    var ms := AP_SetVital(who, "Mana", Cint(mana - umana));
     return 1;
   else
     SendSysMessage(who,"You do not have enough mana to cast that.", 3, 40);
