@@ -2,8 +2,8 @@ use uo;
 use cfgfile;
 use util;
 
+include ":attributes:attributes";
 include "include/client";
-include "include/attributes";
 include "include/objtype";
 include "include/canAccess";
 
@@ -32,8 +32,8 @@ program decode_map( who, map )
   endif
 endprogram
 
-function GetMaxMapLevel( who );
-  var skill := GetEffectiveSkill( who, SKILLID_CARTOGRAPHY );
+function GetMaxMapLevel( who )
+  var skill := AP_GetTrueSkill(who, "Cartography");
   if( skill >= 100 )
     return 5;
   elseif( skill >= 80 )
