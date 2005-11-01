@@ -13,7 +13,7 @@ use cfgfile;
 
 include "include/eventID";
 include "include/myUtil";
-include "include/attributes";
+include ":attributes:attributes";
 include ":combat:equip";
 include "include/noto";
 

@@ -1,6 +1,6 @@
 const EVID_DISCHARGE := 0x123457;
 
-include "include/attributes";
+include ":attributes:attributes";
 
 
 function Resisted(circle, caster, cast_on, amt)

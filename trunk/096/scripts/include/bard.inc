@@ -1,7 +1,7 @@
 use uo;
 
 include "include/client";
-include "include/attributes";
+include ":attributes:attributes";
 
 function play(character, theskill, item, skil)
   var success, fail;

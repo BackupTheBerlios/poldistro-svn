@@ -16,7 +16,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-include "include/attributes";
+include ":attributes:attributes";
 
 function repair_item(character, what, skillid )
   var maxhp;
