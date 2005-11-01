@@ -306,3 +306,51 @@ function TS_LowerDuration(mobile, timer_name, amount)
 	var process := TS_GetControllerProcess(mobile);
 	return process.SendEvent(event);
 endfunction
+
+/* 
+ * TS_LogOff(mobile)
+ *
+ * Purpose
+ * Informs the timer controller that a player logged out.
+ *
+ * Parameters
+ * mobile:	Mobile that logged off
+ *
+ * Return value
+ * Returns 1 on success
+ * Returns 0 on failure
+ *
+ */
+function TS_LogOff(mobile)
+	if ( mobile.IsA(POLCLASS_NPC) )
+		return error{"errortext":="NPCs can't log off."};
+	endif
+	
+	var event := struct;
+	event.+type := EVENT_LOGOFF;
+	
+	var process := TS_GetControllerProcess(mobile);
+	return process.SendEvent(event);
+endfunction
+
+/* 
+ * TS_Death(mobile)
+ *
+ * Purpose
+ * Informs the timer controller that a moble died.
+ *
+ * Parameters
+ * mobile:	Mobile that died.
+ *
+ * Return value
+ * Returns 1 on success
+ * Returns 0 on failure
+ *
+ */
+function TS_Death(mobile)
+	var event := struct;
+	event.+type := EVENT_DEAD;
+	
+	var process := TS_GetControllerProcess(mobile);
+	return process.SendEvent(event);
+endfunction
