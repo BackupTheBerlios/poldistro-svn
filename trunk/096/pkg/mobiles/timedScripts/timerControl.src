@@ -17,11 +17,7 @@ program TimerControl(mobile)
 	var timer_list := dictionary;
 	StartUp(mobile, timer_list, num_poisons);
 	
-	while ( mobile.IsA(POLCLASS_MOBILE) )
-		/* ^- Will terminate if:
-		 * 1. Mobile was an NPC and died.
-		 * 2. Was a player character but got deleted.
-		 */
+	while ( 1 )
 		mobile.SetPoisoned((num_poisons > 0));	
 		 
 		var event;
@@ -35,8 +31,11 @@ program TimerControl(mobile)
 			AddTimer(mobile, event, timer_list, num_poisons);
 		elseif( event.type == EVENT_LOWER_TIMER )
 			LowerDuration(mobile, event, timer_list, num_poisons);
-		elseif( event.type == EVENT_DEAD )
-			Death(mobile, timer_list, num_poisons);
+		elseif ( event.type == EVENT_NPC_DIED )
+			NPCDeath(timer_list);
+			break;
+		elseif( event.type == EVENT_PLAYER_DIED )
+			PlayerDeath(mobile, timer_list, num_poisons);
 		elseif ( event.type == EVENT_LOGOFF )
 			LogOff(mobile, timer_list);
 			break;
@@ -265,7 +264,16 @@ function LowerDuration(mobile, byref event, byref timer_list, byref num_poisons)
 	return 1;
 endfunction
 
-function Death(mobile, byref timer_list, byref num_poisons)
+function NPCDeath(byref timer_list)
+	foreach timer in ( timer_list )
+		GetProcess(timer.pid).Kill();
+		sleepms(2);
+	endforeach
+	
+	return 1;
+endfunction
+
+function PlayerDeath(mobile, byref timer_list, byref num_poisons)
 	set_critical(1);
 	foreach timer in ( timer_list )
 		timer := timer; // So the compiler does not issue warnings.

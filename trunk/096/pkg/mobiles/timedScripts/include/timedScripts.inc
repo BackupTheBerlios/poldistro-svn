@@ -10,8 +10,9 @@ use os;
 // Event flags
 const EVENT_ADD_TIMER			:= 0x1;
 const EVENT_LOWER_TIMER			:= 0x2;
-const EVENT_DEAD			:= 0x4;
-const EVENT_LOGOFF			:= 0x8;
+const EVENT_PLAYER_DIED			:= 0x4;
+const EVENT_NPC_DIED			:= 0x8;
+const EVENT_LOGOFF			:= 0x10;
 
 // Constants
 const NOSTART_CONTROLLER		:= 0x0;
@@ -349,7 +350,11 @@ endfunction
  */
 function TS_Death(mobile)
 	var event := struct;
-	event.+type := EVENT_DEAD;
+	if ( mobile.IsA(POLCLASS_NPC) )
+		event.+EVENT_NPC_DIED;
+	else
+		event.+type := EVENT_PLAYER_DIED;
+	endif
 	
 	var process := TS_GetControllerProcess(mobile);
 	return process.SendEvent(event);
