@@ -1,6 +1,8 @@
 var lastface;
 var nexttry;
 
+use math;
+
 function CloseDistance(opponent)
   var dst := 1;
   var d := Distance(me, opponent);

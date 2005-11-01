@@ -152,7 +152,7 @@ function MerchantTrain(me, who, text)
         myskill := 25 + RandomInt(10);
         SetObjProperty(me, thing, myskill);
       endif
-      pskill := GetEffectiveSkill(who, FindSkillId(thing));
+      pskill := AP_GetSkill(who, FindSkillId(thing));
       if(pskill < myskill)
         if(holder == "")
           holder := thing;
@@ -178,7 +178,7 @@ function MerchantTrain(me, who, text)
       if(lower(thing) == skill)
         npclevel := CInt(GetObjProperty(me, thing));
         holder := FindSkillId(thing);
-        pclevel := GetEffectiveSkill(who, holder);
+        pclevel := AP_GetSkill(who, holder);
         if(pclevel >= npclevel)
           say("I cannot teach thee anymore.");
           return;
@@ -216,7 +216,7 @@ function TrainSkill(me, who, item)
       return;
     endif
     npc_level    := CInt(GetObjProperty(me, trainskillname));
-    pc_level     := GetEffectiveSkill(who, trainskillid);
+    pc_level     := AP_GetSkill(who, trainskillid);
     goldreceived := item.amount;
     variance     := npc_level - pc_level;
     currentnpccost := GoldForSkillGain(npc_level, pc_level, trainskillid);
@@ -244,22 +244,24 @@ function TrainSkill(me, who, item)
         SetObjProperty( who, "TrainMaxCost", trainmaxcost-goldreceived );
       endif
       say("Let me show you how it's done.");
-      SetBaseSkillBaseValue(who, trainskillid, new_level);
+      AP_SetTrueSkill(who, trainskillid, new_level);
       var skillarray := GetObjProperty(who,"SkillArray");
       if(!skillarray)
         skillarray := {};
         skillarray.append(trainskillid);
+        /* Commented so itll compile
         foreach thing in GetSkillIds()
-          if(GetBaseSkill(who, thing) > 0)
+          if(AP_GetTrueSkill(who, thing) > 0)
             skillarray.append(thing);
           endif
         endforeach
+        */
         SetObjProperty(who,"SkillArray", skillarray);
       else
         var holder := {};
         holder.append(trainskillid);
         foreach thing in skillarray
-          if((thing != trainskillid) and (GetBaseSkill(who, thing) > 0))
+          if((thing != trainskillid) and (AP_GetTrueSkill(who, thing) > 0))
             holder.append(thing);
           endif
         endforeach

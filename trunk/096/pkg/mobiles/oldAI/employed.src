@@ -110,7 +110,7 @@ function ExpandStats(me, st, dx, it)
       SetBaseStrength(me,210);
       SetStrengthMod(me, st - 210);
     endif
-    SetHp(me, st);
+    AP_SetVital(me, "Hits", st);
   endif
   if(dx)
     if(dx <= 210)

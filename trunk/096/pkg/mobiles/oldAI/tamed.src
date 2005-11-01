@@ -189,7 +189,7 @@ endfunction
 function Fight(opponent)
   var oldfollowing := following;
   var flees := 0;
-  SetDexterityMod(me, 0);
+  AP_SetStatMod(me, "Dexterity", 0);
   following := 0;
   if(opponent == me)
     return;
@@ -323,10 +323,10 @@ function Transfer()
   endif
   //var npccfgfile := ReadConfigFile("::npcdesc"); // unneeded due to global 'npccfgfile'!!
   var tameskill  := CInt(npccfgfile[me.npctemplate].tameskill);
-  var mastaming  := GetEffectiveSkill(master, SKILLID_TAMING);
-  var maslore    := GetEffectiveSkill(master, SKILLID_ANIMALLORE)/5;
-  var tgttaming  := CInt(GetEffectiveSkill(whom, SKILLID_TAMING));
-  var tgtlore    := CInt(GetEffectiveSkill(whom, SKILLID_ANIMALLORE)/5);
+  var mastaming  := AP_GetSkill(master, "AnimalTaming");
+  var maslore    := AP_GetSkill(master, "AnimalLore")/5;
+  var tgttaming  := CInt(AP_GetSKill(whom, "AnimalTaming"));
+  var tgtlore    := CInt(AP_GetSkill(whom, "AnimalLore")/5);
   happiness := GetObjProperty(me, "happiness");
   if(tgttaming <(tameskill - 50))
     PlaySoundEffect(me, dmgsound);
@@ -424,7 +424,7 @@ function release()
     EraseObjProperty(me, "mounted");
     EraseObjProperty(me, "mounted_on");
     SetAnchor(me.x,me.y,10,1);
-    SetHpRegenRate(me ,(100)* 12);
+    AP_SetVitalRegenRateMod(me, "Hits", 100*12);
     RestartScript(me);
   endif
 endfunction
@@ -611,7 +611,7 @@ function Guard()
       return;
     endforeach
   endif
-  if((!GetStrength(guarding))||(guarding.dead)||(dist(me,guarding)> 15))
+  if((!AP_GetStat(guarding, "Strength"))||(guarding.dead)||(dist(me,guarding)> 15))
     guarding := 0;
   endif
 endfunction
@@ -628,9 +628,9 @@ function Follow()
       waittime := 2;
     else
       var ma := 200 - CInt(AP_GetStat(me, "Dexterity"));
-      SetDexterityMod(me, CInt(AP_GetStatMod(me, "Dexterity"))+ ma);
+      AP_SetStatMod(me, "Dexterity", CInt(AP_GetStatMod(me, "Dexterity"))+ ma);
       RunToward(following);
-      SetDexterityMod(me, CInt(AP_GetStatMod(me, "Dexterity"))- ma);
+      AP_SetStatMod(me, "Dexterity", CInt(AP_GetStatMod(me, "Dexterity"))- ma);
       waittime := 0;
     endif
   else
@@ -638,9 +638,9 @@ function Follow()
       waittime := 2;
     else
       var ma := 200 - CInt(AP_GetStat(me, "Dexterity"));
-      SetDexterityMod(me, CInt(AP_GetStatMod(me, "Dexterity"))+ ma);
+      AP_SetStatMod(me, "Dexterity", CInt(AP_GetStatMod(me, "Dexterity"))+ ma);
       walktoward(following);
-      SetDexterityMod(me, CInt(AP_GetStatMod(me, "Dexterity"))- ma);
+      AP_SetStatMod(me, "Dexterity", CInt(AP_GetStatMod(me, "Dexterity"))- ma);
       waittime := 0;
     endif
   endif
@@ -738,7 +738,7 @@ function ProcessSpeech(ev)
   elseif(evtext["all guard"])
     say("Who should I guard?");
 	var what := Target(master, TGTOPT_HELPFUL + TGTOPT_CHECK_LOS);
-	if(GetHp(what))
+	if(AP_GetVital(what, "Hits"))
       AllCommand(SYSEVENT_ALL_GUARD_CMD, what);
 	endif
   elseif(evtext[mename + " fetch"])
@@ -816,8 +816,8 @@ function obediencecheck()
   if(me.objtype in arry)
     return 1;
   endif
-  var maslore    := GetEffectiveSkill(master, SKILLID_ANIMALLORE)/5;
-  var mastaming  := CInt(GetEffectiveSkill(master, SKILLID_TAMING)+ maslore);
+  var maslore    := AP_GetSkill(master, "AnimalLore")/5;
+  var mastaming  := CInt(AP_GetSkill(master, "AnimalTaming")+ maslore);
   var checkvalue := CInt(mastaming - 20);
   happiness := GetObjProperty(me, "happiness");
   var happybonus := happiness/10;

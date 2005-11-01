@@ -3,7 +3,7 @@ include "include/poisons";
 
 function process_combat_event(opponent)
   spellattack(opponent);
-  if ( AP_GetVital(me, "Hits") < (GetStrength(me)/2))
+  if ( AP_GetVital(me, "Hits") < (AP_GetStat(me, "Strength")/2))
     CastSpell(me,me,"gheal");
     if (ListPoisonsByType(me, "defaultPoison").size() > 0)
       CastSpell(me,me,"cure");

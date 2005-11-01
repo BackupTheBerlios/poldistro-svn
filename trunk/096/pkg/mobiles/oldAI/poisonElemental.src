@@ -100,7 +100,7 @@ function prepare_for_fight(opponent)
 endfunction
 
 function post_combat()
-  if(AP_GetVital(me, "Hits") < (GetStrength(me)-10))
+  if(AP_GetVital(me, "Hits") < (AP_GetStat(me, "Strength")-10))
 	CastSpell(me,me,"gheal");
   endif
   DisableCombatEvents();

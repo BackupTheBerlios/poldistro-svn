@@ -112,7 +112,7 @@ function MerchantTrain(me, who, text)
     var pclevel;
     foreach thing in getskilllist(me)
       if(lower(thing) == skill)
-        pclevel := GetEffectiveSkill(who, thing);
+        pclevel := AP_GetSkill(who, thing);
         if(pclevel > npclevel)
           say("I cannot teach you anymore.");
           return;
@@ -144,9 +144,9 @@ function TrainSkill(me, who, item)
       DestroyItem(item);
       return;
     endif
-    if(GetEffectiveSkill(me, trainskillid))
+    if(AP_GetSkill(me, trainskillid))
       npc_level    := 33;
-      pc_level     := GetEffectiveSkill(who, trainskillid);
+      pc_level     := AP_GetSkill(who, trainskillid);
       goldreceived := item.amount;
       variance     := npc_level - pc_level;
       currentnpccost := GoldForSkillGain(npc_level, pc_level, trainskillid);
@@ -174,7 +174,7 @@ function TrainSkill(me, who, item)
           SetObjProperty( who, "TrainMaxCost", trainmaxcost-goldreceived );
         endif
         say("Let me show you how it's done.");
-        SetBaseSkillBaseValue(who, trainskillid, new_level);
+        AP_SetTrueSkill(who, trainskillid, new_level);
         DestroyItem(item);
         SendSysMessage(who, "Your skill increases.");
       else
