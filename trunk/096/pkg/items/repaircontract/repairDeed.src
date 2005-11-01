@@ -1,8 +1,8 @@
 use uo;
+use util;
 use cfgfile;
 
 include "include/canAccess";
-include "include/attributes";
 include "include/dist";
 
 program usescript_repairDeed(who, deed)
