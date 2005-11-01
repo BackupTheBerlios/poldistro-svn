@@ -9,7 +9,8 @@ use util;
 
 include "include/statMod";
 include "include/canAccess";
-include ":poisonwatcher:poisons";
+include ":timedscripts:timedScripts";
+include ":timedscripts:poisonUtil";
 
 program use_MagicFish(who, fish)
 
@@ -49,8 +50,8 @@ program use_MagicFish(who, fish)
 				10: if (CanMod(who, "int"))
 					DoTempMod(who, "int", miscprop1, miscprop2);
 				    endif
-				11:  if (ListPoisonsByType(who, "defaultPoison").size() > 0 )
-					CurePoison(who, 120, "defaultPoison",CInt(miscprop1));
+				11:  if (TS_GetTimerNames(who, "P").size() > 0 )
+					TS_CurePoison(who, 120, "P", CInt(miscprop1));
 				     endif
 				16: if (CanMod(who, "str"))
 					DoTempMod(who, "str", miscprop1, miscprop2);

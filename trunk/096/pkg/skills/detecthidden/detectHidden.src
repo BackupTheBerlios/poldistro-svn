@@ -21,7 +21,6 @@ include ":attributes:attributes";
 include ":attributes:skillCheck";
 include "include/sound";
 include "include/tileEffects";
-include ":poisonwatcher:poisons";
 
 CONST TRAP := "hiddentrap";
 CONST CRITICAL_FAILURE := 1;

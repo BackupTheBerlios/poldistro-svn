@@ -1,5 +1,5 @@
 include "include/attributes";
-include ":poisonwatcher:poisons";
+include ":timedscripts:timedScripts";
 use cfgfile;
 
 const POISON_SOUND := 0x247;
@@ -66,6 +66,6 @@ function do_poison(who, potion)
   if(who.cmdlevel > 1)
     return;
   endif
-  AddPoison(who, "defaultPoison", 120, who, level);
+  TS_StartTimer(who, "defaultPoison", 120, level, who);
 endfunction
 

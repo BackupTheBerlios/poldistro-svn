@@ -5,7 +5,8 @@ include "include/eventID";
 include "include/sound";
 include "include/tileEffects";
 include "include/attributes";
-include ":poisonwatcher:poisons";
+include ":timedscripts:timedScripts";
+include ":timedscripts:poisonUtil";
 
 program archCure(parms)
   var caster := parms.caster;
@@ -32,9 +33,9 @@ program archCure(parms)
           ApplyRawDamage(castOn, potency);
         endif
       endif
-      if (ListPoisonsByType(castOn, "defaultPoison").size() > 0)
-        CurePoison(castOn, 180, "defaultPoison", potency);
-        if (ListPoisonsByType(castOn, "defaultPoison").size() > 0)
+      if (TS_GetTimerNames(castOn, "P").size() > 0)
+        TS_CurePoison(castOn, 180, "P", potency);
+        if (TS_GetTimerNames(castOn, "P").size() > 0)
           SendSysMessage(caster, "You cure some poison.");  
           SendSysMessage(castOn, caster.name + " has partially cured you!");
         else

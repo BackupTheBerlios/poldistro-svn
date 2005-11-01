@@ -6,7 +6,7 @@ const sfx_meditation := 0xfa;
 
 include "include/client";
 include "include/attributes";
-include ":poisonwatcher:poisons";
+include ":timedscripts:timedScripts";
 
 program meditation( who )
   EraseObjProperty(who, "HealTimer");
@@ -18,7 +18,7 @@ program meditation( who )
    Detach();
    return;
   endif
-  if (ListPoisonsByType(who, "defaultPoison").size() > 0)
+  if (TS_GetTimerNames(who, "P").size() > 0)
     SendSysMessage( who, "You cannot meditate while poisoned." );
    Detach();
     return;
@@ -55,7 +55,7 @@ program meditation( who )
         SendSysMessage(who,"Regenerative forces cannot penetrate your armor.");
         EraseObjProperty(who, "IsMeditating");
         break;
-      elseif(ListPoisonsByType(who, "defaultPoison").size() > 0)
+      elseif(TS_GetTimerNames(who, "P").size() > 0)
         EraseObjProperty(who, "IsMeditating");
       break;
       elseif(GetMana(who) >= GetMaxMana(who))
