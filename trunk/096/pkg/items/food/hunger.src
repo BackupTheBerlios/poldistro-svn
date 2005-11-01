@@ -22,18 +22,18 @@ program Hunger(chr)
 		SetObjProperty(chr, "hunger", hunger);
 		
 		var regen := AP_GetVitalRegenRateMod(chr, "Hunger");
-		case (hunger)
-			0 : regen := regen - 200;
-			1 : regen := regen + 100;
-			2 : regen := regen + 0;
-			3 : regen := regen + 0;
-			4 : regen := regen + 0;
-			5 : regen := regen + 0;
-			6 : regen := regen + 0;
-			7 : regen := regen - 100;
-			8 : regen := regen - 400;
-			9 : regen := regen - 600;
-			10: regen := regen - 800;
+		case ( hunger )
+			0: regen := regen - 200; break;
+			1: regen := regen + 100; break;
+			2: regen := regen + 0; break;
+			3: regen := regen + 0; break;
+			4: regen := regen + 0; break;
+			5: regen := regen + 0; break;
+			6: regen := regen + 0; break;
+			7: regen := regen - 100; break;
+			8: regen := regen - 400; break;
+			9: regen := regen - 600; break;
+			10: regen := regen - 800; break;
 		endcase
 		AP_SetVitalRegenRateMod(chr, "Hunger", regen);
 		
