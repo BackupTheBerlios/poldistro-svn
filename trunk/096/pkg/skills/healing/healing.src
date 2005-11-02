@@ -36,7 +36,7 @@ program use_bandages(who, item)
 	elseif(!CheckLineOfSight(who,patient))
 		SendSysMessage(who,"You can't see your patient.");
 		return;
-	elseif((GetHp(patient) >= GetMaxHp(patient)) and (poisons.size() == 0))
+	elseif((AP_GetVital(patient, "Hits") >= AP_GetVitalMaximumValue(patient, "Hits")) and (poisons.size() == 0))
 		SendSysMessage(who,"Your patient is at full health.");
 		return;
 	endif
@@ -152,12 +152,12 @@ function heal(who, patient, counter)
 	
 	// Determine how many attempts are made to heal.
 	if(patient == who)
-		var dexcheck := (GetBaseDexterity(who) / 20);
+		var dexcheck := (AP_GetTrueStat(who, "Dexterity") / 20);
 		cycles := (15 - dexcheck);
 	else
-		if(GetDexterity(who) <= 33)
+		if(AP_GetStat(who, "Dexterity") <= 33)
 			cycles := 5;
-		elseif(GetDexterity(who) <= 67)
+		elseif(AP_GetStat(who, "Dexterity") <= 67)
 			cycles := 4;
 		else
 			cycles := 3;
@@ -169,7 +169,7 @@ function heal(who, patient, counter)
 	//	2- test for fumbles during the healing process and lower the amount of healing
 	// All healing occurs in the last pass of the loop.
 	while(counter <= cycles)
-		var chp := GetHP(who);
+		var chp := AP_GetVital(who, "Hits");
 		sleep(1);
 		if (counter%4 == 0)
 			SendSysMessage(patient, who.name + " continues to heal you.");
@@ -185,7 +185,7 @@ function heal(who, patient, counter)
 			SendSysMessage(who,"Your patient isn't close enough.");
 			SendSysMessage(patient, who.name + "has stopped healing you.");
 			break;
-		elseif(GetHP(patient) >= GetMaxHP(patient))
+		elseif(AP_GetVital(patient, "Hits") >= AP_GetVitalMaximumValue(patient, "Hits"))
 			SendSysMessage(who, "Your patient is at full health.");
 			SendSysMessage(patient, who.name + " has stopped healing you.");
 			break;
@@ -215,8 +215,8 @@ function heal(who, patient, counter)
 			break;
 		
 		// Testing to see if things are fumbled.  If they fumble too badly, 
-		elseif(GetHP(who) < chp)
-			if((RandomInt(basehealamt) + 1) >= GetDexterity(who))
+		elseif(AP_GetVital(who, "Hits") < chp)
+			if((RandomInt(basehealamt) + 1) >= AP_GetStat(who, "Dexterity"))
 				SendSysMessage(who, "Your fingers slip." );
 				if(count >= 5)
 					healamt := -1;
@@ -228,9 +228,9 @@ function heal(who, patient, counter)
 		
 		// The last cycle of the loop.  All actual healing is done here.
 		elseif(counter >= cycles)
-			var diff := 100 - Cint((GetHP(patient) * 100.0) / GetMaxHP(patient));
-			if((CheckSkill(who, SKILLID_HEALING, diff, 0)) and (healamt != -1))
-				var chkamt := Cint(GetMaxHP(patient) - GetHP(patient));
+			var diff := 100 - Cint((AP_GetVital(patient, "Hits") * 100.0) / AP_GetVitalMaximumValue(patient, "Hits"));
+			if((SkillCheck(who, "Healing", diff, 0) > 0) and (healamt != -1))
+				var chkamt := Cint(AP_GetVitalMaximumValue(patient, "Hits") - AP_GetVital(patient, "Hits"));
 				if(healamt > chkamt)
 					healamt := chkamt;
 					SendSysMessage(who, "You have healed your patient completely.");
@@ -240,7 +240,7 @@ function heal(who, patient, counter)
 					SendSysMessage(patient, who.name + " has healed you.");
 				endif
 				healdamage(patient, healamt);
-				AwardPoints(who, SKILLID_HEALING, (healamt * 2));
+				//AwardPoints(who, SKILLID_HEALING, (healamt * 2));
 				break;
 			else
 				// Throw 'em a bone.  No chance of gain, though.
@@ -260,19 +260,19 @@ function cure(who, patient, counter)
 	var cycles;
 	var count := 0;
 	if(patient == who)
-		var dexcheck := (GetBaseDexterity(who) / 33);
+		var dexcheck := (AP_GetTrueStat(who, "Dexterity") / 33);
 		cycles := (15 - dexcheck);
 	else
-		if(GetBaseDexterity(who) <= 33)
+		if(AP_GetTrueStat(who, "Dexterity") <= 33)
 			cycles := 5;
-		elseif(GetBaseDexterity(who) <= 67)
+		elseif(AP_GetTrueStat(who, "Dexterity") <= 67)
 			cycles := 4;
 		else
 			cycles := 3;
 		endif
 	endif
 	while(counter <= cycles)
-		var chp := GetHP(who);
+		var chp := AP_GetVital(who, "Hits");
 		sleep(1);
 		if(!GetObjProperty(who, "HealTimer"))
 			SendSysMessage(who, "You stop healing your patient.");
@@ -296,8 +296,8 @@ function cure(who, patient, counter)
 			endif
 			heal(who, patient, counter);
 			break;
-		elseif(GetHP(who) < chp)
-			if((RandomInt(100)+1) > GetBaseDexterity(who))
+		elseif(AP_GetVital(who, "Hits") < chp)
+			if((RandomInt(100)+1) > AP_GetTrueStat(who, "Dexterity"))
 				SendSysMessage( who, "Your fingers slip." );
 				healamt := (healamt - 1);
 				count := count + 1;
@@ -307,16 +307,16 @@ function cure(who, patient, counter)
 			endif
 		endif
 		if(counter >= cycles)
-			if(CheckSkill(who, SKILLID_HEALING, 48, 0))
+			if(SkillCheck(who, "Healing", 48, 0) > 0)
 				TS_CurePoison(patient, 120, "P", healamt);
 	if (TS_GetTimerNames(patient, "P").size() == 0)
 					SendSysMessage(who,"You have cured your patient completely.");
 					SendSysMessage(patient, who.name + " has cured you completely.");
-					AwardPoints(who, SKILLID_HEALING, (healamt * 100));
+					//AwardPoints(who, SKILLID_HEALING, (healamt * 100));
 	else
 		SendSysMessage(who, "You have helped but your patient is still poisoned.");
 		SendSysMessage(patient, who.name + " has tried to cure your poison.");
-		AwardPoints(who, SKILLID_HEALING, (CInt(healamt/2) * 100));
+		//AwardPoints(who, SKILLID_HEALING, (CInt(healamt/2) * 100));
 	endif
 				break;
 			else
@@ -332,7 +332,7 @@ function resurrect_pc(who, patient, counter)
 	SendSysMessage(who,"You start to resurrect " + patient.name + ".");
 	SendSysMessage(patient, who.name + " starts to resurrect you.");
 	while(counter <= 10)
-		var chp := GetHP(who);
+		var chp := AP_GetVital(who, "Hits");
 		sleep(1);
 		if(!GetObjProperty(who, "HealTimer"))
 			SendSysMessage(who, "You stop reviving your patient.");
@@ -344,8 +344,8 @@ function resurrect_pc(who, patient, counter)
 			SendSysMessage(who,"Your patient isn't close enough.");
 			SendSysMessage(patient, who.name + "has stopped healing you.");
 			break;
-		elseif(GetHP(who) < chp)
-			if((RandomInt(100)+1) > GetBaseDexterity(who))
+		elseif(AP_GetVital(who, "Hits") < chp)
+			if((RandomInt(100)+1) > AP_GetTrueStat(who, "Dexterity"))
 				SendSysMessage(who, "Your fingers slip.");
 				healamt := healamt + 5;
 			endif
@@ -358,8 +358,8 @@ function resurrect_pc(who, patient, counter)
 			break;
 		endif
 		if(counter >= 10)
-			if(CheckSkill(who, SKILLID_HEALING, healamt, 0))
-				AwardPoints(who, SKILLID_HEALING, 400);
+			if(SkillCheck(who, "Healing", healamt, 0) > 0)
+				//AwardPoints(who, SKILLID_HEALING, 400);
 				if(do_res(who, patient))
 					SendSysMessage(who, "You have resurrected " + patient.name + ".");
 				else
