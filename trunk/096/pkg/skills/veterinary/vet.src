@@ -18,15 +18,15 @@ program use_bandages (parms)
   var patient := parms[1];
   var who := parms[2];
   EraseObjProperty(who, "IsMeditating");
-  var sleeptime;
-  var anatomy:= GetEffectiveSkill(who, SKILLID_ANATOMY);
+  //var sleeptime;
+  var anatomy:= AP_GetSkill(who, ANATOMY);
   if(dist(who, patient) > 2)
     SendSysMessage(who, "Your patient is too far away.");
     return;
   elseif(!CheckLineOfSight(who,patient))
 	SendSysMessage(who,"You can't see your patient.");
 	return;
-  elseif((GetHp(patient) >= GetStrength(patient)) && (TS_GetTimerNames(patient, "P").size() == 0))
+  elseif((AP_GetVital(patient, HITS) >= AP_GetVitalMaximumValue(patient, HITS)) && (TS_GetTimerNames(patient, "P").size() == 0))
 	SendSysMessage(who,"Your patient is at full health!");
 	return;
   endif
@@ -63,8 +63,8 @@ function heal(who, patient)
   var wx:= who.x;
   var wy:= who.y;
   var chp;
-  var healing := (CInt(GetEffectiveSkill(who, SKILLID_VETERINARY)) / 2);
-  var anatomy := (CInt(GetEffectiveSkill(who, SKILLID_ANATOMY)) / 5);
+  var healing := (CInt(AP_GetSkill(who, VETERINARY)) / 2);
+  var anatomy := (CInt(AP_GetSkill(who, ANATOMY)) / 5);
   var healamt := healing + anatomy + 10;
   var counter := 0;
   var cycles;
@@ -88,7 +88,7 @@ function heal(who, patient)
       SendSysMessage(who, "You stop healing your patient to work on another.");
       break;
     endif
-    chp:=GetHp(who);
+    chp:=AP_GetVital(who, HITS);
     sleep(1);
     if(dist(who, patient) > 2)
       SendSysMessage(who,"Your patient isn't close enough.");
@@ -98,7 +98,7 @@ function heal(who, patient)
       SendSysMessage(who,"You stop healing your patient.");
       break;
     endif
-    if(GetHp(who) < chp)
+    if(AP_GetVital(who, HITS) < chp)
       if((RandomInt(100)+1) > who.dex)
         SendSysMessage( who, "Your fingers slip." );
         healamt := (healamt / 2);
@@ -109,19 +109,19 @@ function heal(who, patient)
       break;
     endif
     if(counter >= cycles)
-      if(CheckSkill(who, SKILLID_VETERINARY, -1, 0))
+      if(SkillCheck(who, VETERINARY, -1)>0)
         if(healamt <= 10)
           SendSysMessage(who,"You finish applying the bandages, but they barely help.");
         endif
-        if((patient.str - GetHp(patient)) > healamt)
+        if((patient.str - AP_GetVital(patient, HITS)) > healamt)
           HealDamage(patient, healamt);
-          AwardRawSkillPoints(who, SKILLID_VETERINARY, (healamt * 2));
+          //AwardRawSkillPoints(who, VETERINARY, (healamt * 2));
         else
-          healamt := GetStrength(patient) - GetHp(patient);
+          healamt := AP_GetVitalMaximumValue(patient, HITS) - AP_GetVital(patient, HITS);
           HealDamage(patient, healamt);
-          AwardRawSkillPoints(who, SKILLID_VETERINARY, (healamt * 2));
+          //AwardRawSkillPoints(who, VETERINARY, (healamt * 2));
         endif
-        if(GetHp(patient) == GetMaxHp(patient))
+        if(AP_GetVital(patient, HITS) == AP_GetVital(patient, HITS))
 		  SendSysMessage(who, "You have healed your patient completely.");
         else
 		  SendSysMessage(who, "You successfully heal " + patient.name+".");
@@ -139,8 +139,8 @@ function cure(who, patient)
   var wx:= who.x;
   var wy:= who.y;
   var chp;
-  var healing := (CInt(GetEffectiveSkill(who, SKILLID_VETERINARY)) / 2);
-  var anatomy := (CInt(GetEffectiveSkill(who, SKILLID_ANATOMY)) / 5);
+  var healing := (CInt(AP_GetSkill(who, VETERINARY)) / 2);
+  var anatomy := (CInt(AP_GetSkill(who, ANATOMY)) / 5);
   var healamt := healing + anatomy + 10;
   var counter := 0;
   var cycles;
@@ -164,7 +164,7 @@ function cure(who, patient)
       SendSysMessage(who, "You stop healing your patient to work on another.");
       break;
     endif
-    chp:=GetHp(who);
+    chp:=AP_GetVital(who, HITS);
     sleep(1);
     if(dist(who, patient) > 1)
       SendSysMessage(who,"Your patient isn't close enough.");
@@ -174,14 +174,14 @@ function cure(who, patient)
       SendSysMessage(who,"You stop healing your patient.");
       break;
     endif
-	if(GetHp(who) < chp)
+	if(AP_GetVital(who, HITS) < chp)
       if((RandomInt(100)+1) > who.dex)
 	    SendSysMessage( who, "Your fingers slip." );
         healamt := ((healamt * 3) / 4);
       endif
 	endif
     if(counter >= cycles)
-      if(CheckSkill(who, SKILLID_VETERINARY, 80, 0) && (CInt(GetEffectiveSkill(who, SKILLID_ANATOMY)) >= 61))
+      if(SkillCheck(who, VETERINARY, 80) > 0 && (CInt(AP_GetSkill(who, ANATOMY)) >= 61))
         if((RandomInt(100) + 1) < healamt);
          TS_CurePoison(patient,(healamt/40),"P");
           if (TS_GetTimerNames(patient, "P").size() > 0)

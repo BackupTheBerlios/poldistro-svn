@@ -13,7 +13,7 @@ program meditation( who )
   var XXX:=who.x;
   var YYY:=who.y;
   var chp;
-  if (GetMana(who) >= GetIntelligence(who))
+  if (AP_GetVital(who, MANA) >= AP_GetVitalMaximumValue(who, MANA))
    SendSysMessage( who, "Your mana is full." );
    Detach();
    return;
@@ -33,7 +33,7 @@ program meditation( who )
     SendSysMessage(who,"Regenerative forces cannot penetrate your armor.");
     return;
   endif
-  var diff := 100 - ((GetMana(who) * 100) / GetIntelligence(who));
+  var diff := 100 - ((AP_GetVital(who, MANA) * 100) / AP_GetVitalMaximumValue(who, MANA));
   diff := diff + CInt(loss / 100);
   if(diff < 0)
     diff := 0;
@@ -41,7 +41,7 @@ program meditation( who )
     diff := 120;
   endif
   var pts := diff * 2;
-  if(CheckSkill(who, 46, diff, pts))
+  if( SkillCheck(who, MEDITATION, diff) > 0 )
     SendSysMessage(who, "You start to meditate.");
     PlaySoundEffect(who, sfx_meditation);
     PrintTextAbove(who, "*Meditating*");;
@@ -58,16 +58,16 @@ program meditation( who )
       elseif(TS_GetTimerNames(who, "P").size() > 0)
         EraseObjProperty(who, "IsMeditating");
       break;
-      elseif(GetMana(who) >= GetMaxMana(who))
+      elseif(AP_GetVital(who, MANA) >= AP_GetVitalMaximumValue(who, MANA))
         EraseObjProperty(who, "IsMeditating");
-        SetMana(who, GetMaxMana(who));
+        AP_SetVital(who, MANA,  AP_GetVitalMaximumValue(who, MANA));
       break;
-     elseif(GetHp(who) < chp)
+     elseif(AP_GetVital(who, HITS) < chp)
         EraseObjProperty(who, "IsMeditating");
       break;
      endif
       sleep(1);
-      chp := GetHp(who);
+      chp := AP_GetVital(who, HITS);
     endwhile
     SendSysMessage(who, "You lose your concentration.");
     EraseObjProperty(who, "IsMeditating");

@@ -22,7 +22,7 @@ program do_tasteid(who)
     return;
   endif
   var content_descr := "";
-  if(CheckSkill(who, SKILLID_TASTEID, -1, CInt(GetEffectiveSkill(who, SKILLID_TASTEID))))
+  if(CheckSkill(who, TASTE_IDENTIFICATION, -1, CInt(AP_GetSkill(who, TASTE_IDENTIFICATION))))
     case(the_item.objtype)
       0xdc04: poison_descr := "a lesser poison.";
       0xdc05: poison_descr := "a regular poison.";

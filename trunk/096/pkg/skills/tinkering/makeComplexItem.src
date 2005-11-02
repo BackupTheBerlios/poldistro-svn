@@ -36,7 +36,7 @@ endprogram
 function make_complex_thing(who, desired_item, clicked_part, required_part)
     var skill     := tinker_cfg[desired_item].skill;
     var itemname  := tinker_cfg[desired_item].Name;
-    var thepoints := skill*2;
+    //var thepoints := skill*2;
     var canexceptional := tinker_cfg[desired_item].exch;
     SendSysMessage(who, "Select something to use that on.");
     var use_on := Target(who, "");
@@ -75,14 +75,14 @@ function make_complex_thing(who, desired_item, clicked_part, required_part)
       endif
     endif
     if(use_on.amount  >= 1)
-      if(CheckSkill(who, SKILLID_TINKERING, skill,  thepoints))
+      if( SkillCheck(who, TINKERING, skill) > 0 )
         set_critical(1);
         SubtractAmount(use_on, 1 );
         SubtractAmount(clicked_part, 1 );
         set_critical(0);
         var theitem := CreateItemInBackpack( who, desired_item, 1 );
         if (theitem)
-          if (canexceptional and (CheckSkill(who, SKILLID_TINKERING, 90, thepoints)))
+          if (canexceptional and (SkillCheck(who, TINKERING, 90) > 0))
             theitem.quality := 1.2;
             theitem.hp := theitem.maxhp;
             SendSysMessage(who, "You make an exceptional item and put it in your pack.");
@@ -105,11 +105,11 @@ function make_sextant(who, sextant_parts)
     var skill     := tinker_cfg[0x1057].skill;
     var itemname  := tinker_cfg[0x1057].Name;
     var thepoints := skill*2;
-    if(CheckSkill(who, SKILLID_TINKERING, skill,  thepoints))
+    if( SkillCheck(who, TINKERING, skill) > 0 )
       SubtractAmount(sextant_parts, 1 );
       var theitem := CreateItemInBackpack( who, 0x1057, 1 );
       if (theitem)
-        if (CheckSkill(who, SKILLID_TINKERING, 90, thepoints))
+        if ( SkillCheck(who, TINKERING, 90) > 0 )
           theitem.quality := 1.2;
           theitem.hp := theitem.maxhp;
           SendSysMessage(who, "You make an exceptional item and put it in your pack.");

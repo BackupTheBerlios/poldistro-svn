@@ -4,6 +4,7 @@ use os;
 include "include/client";
 include "include/objtype";
 include "include/canAccess";
+include ":attributes:attributes";
 
 program smelt_that_ore (who, ore)
   EraseObjProperty(who, "IsMeditating");
@@ -51,7 +52,7 @@ function SmeltOre(who, ore, ingot, difficulty)
       SendSysMessage(who,"That is too far away.");
       return;
     endif
-    if(CheckSkill(who, SKILLID_MINING, difficulty, ((difficulty / 2) + 10)))
+    if( SkillCheck(who, MINING, difficulty) > 0 )
       var ingots := CreateItemInBackpack(who, ingot, (GetAmount(ore) * 2));
       ReserveItem(ingots);
       if(ingots)

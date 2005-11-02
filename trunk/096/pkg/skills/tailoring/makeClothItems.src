@@ -246,22 +246,22 @@ function MakeClothItems(who, cloth, kit)
     endif
     totalcloth := mainclothused.amount;
     if(totalcloth >= material)
-      dif := (GetEffectiveSkill(who, SKILLID_TAILORING) - skill);
+      dif := (AP_GetSkill(who, TAILORING) - skill);
       if(dif < 5)
         dif := 5;
       elseif(dif > 40)
         dif := 50;
       endif
       makenoise(who);
-      if(CheckSkill(who, SKILLID_TAILORING, skill, skill*6))
+      if(CheckSkill(who, TAILORING, skill, skill*6))
         if(SubtractAmount(mainclothused, material))
           theitem := CreateItemInContainer(cont, objtype, 1);
-          CheckToolWear (who, kit, SKILLID_TAILORING);
+          CheckToolWear (who, kit, TAILORING);
           if(!theitem)
             counter := 100;
             SendSysMessage(who, "You have no more room in your backpack.");
           endif
-          hisskill := GetEffectiveSkill(who, SKILLID_TAILORING);
+          hisskill := AP_GetSkill(who, TAILORING);
           var modpts := 0;
           if(hisskill >=  skill)
             modpts := (hisskill - (skill - 10));
@@ -444,22 +444,22 @@ function MakeLeatherItems(who, cloth, kit)
     endif
     totalcloth := cloth.amount;
     if(totalcloth >= material)
-      dif := (GetEffectiveSkill(who, SKILLID_TAILORING) - skill);
+      dif := (AP_GetSkill(who, TAILORING) - skill);
       if(dif < 5)
         dif := 5;
       elseif(dif > 40)
         dif := 50;
       endif
       makenoise(who);
-      if(CheckSkill(who, SKILLID_TAILORING, skill, skill*6))
+      if(CheckSkill(who, TAILORING, skill, skill*6))
         if(SubtractAmount(cloth, material))
           theitem := CreateItemInContainer(cont, objtype, 1);
-          CheckToolWear (who, kit, SKILLID_TAILORING);
+          CheckToolWear (who, kit, TAILORING);
           if(!theitem)
             counter := 100;
             SendSysMessage(who, "You have no more room in your backpack.");
           endif
-          hisskill := GetEffectiveSkill(who, SKILLID_TAILORING);
+          hisskill := AP_GetSkill(who, TAILORING);
           var modpts := 0;
           if(hisskill >=  skill)
             modpts := (hisskill - (skill - 10));
@@ -522,7 +522,7 @@ endfunction
 
 function ComposeClothSubMenu(who)
   var num := 2;
-  var skill := (GetEffectiveSkill(who, SKILLID_TAILORING) + 20);
+  var skill := (AP_GetSkill(who, TAILORING) + 20);
   var color := 0;
   var cfg := ReadConfigFile(":tailoring:tailoring");
   while(num < 11)
@@ -722,7 +722,7 @@ endfunction
 
 function ComposeLeatherSubMenu(who)
   var num := 2;
-  var skill := (GetEffectiveSkill(who, SKILLID_TAILORING) + 20);
+  var skill := (AP_GetSkill(who, TAILORING) + 20);
   var color := 0;
   var cfg := ReadConfigFile(":tailoring:leather");
   while(num < 11)

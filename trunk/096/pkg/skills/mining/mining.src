@@ -286,7 +286,7 @@ program use_picktool(who, tool)
 endprogram
 
 function GetRange( who );
-  var skill := GetEffectiveSkill( who, SKILLID_MINING );
+  var skill := AP_GetSkill( who, MINING );
   if( skill >= 100 )
     return 5;
   elseif( skill >= 80 )
@@ -375,8 +375,8 @@ function GetOre(who, location, info, tool)
   var oretype := wait_for_event(10);
   var diff := 0;
   var objtype := 0;
-  var skill := GetEffectiveSkill(who, SKILLID_MINING);
-  var points := skill + 1;
+  var skill := AP_GetSkill(who, MINING);
+  //var points := skill + 1;
   var name;
   case(oretype)
     1: diff :=  -1;   objtype := 0x6300;   name := "iron";
@@ -404,7 +404,7 @@ function GetOre(who, location, info, tool)
       name := "iron";
     endif
   endif
-  if(CheckSkill(who, SKILLID_MINING, diffi, 10))
+  if( SkillCheck(who, MINING, diffi) > 0 )
   	var num := HarvestResource( "ore", location.x, location.y, 1, 1, who.realm);
     if(num == error)
       SendSysMessage(who,"There is no more ore here to mine.");
@@ -429,7 +429,7 @@ function GetOre(who, location, info, tool)
     else
 	  SendSysMessage(who, "You put some " + name + " ore in your backpack.");
     endif
-    AwardRawSkillPoints(who, SKILLID_MINING, points);
+    //AwardRawSkillPoints(who, SKILLID_MINING, points);
     var swings := GetObjProperty(tool,"swings");
     if(!swings)
       SetObjProperty(tool,"swings", 0);

@@ -43,7 +43,7 @@ program do_poisoning(who)
     endcase
     if(SubtractAmount(the_poison, 1))
       CreateItemInBackpack(who, 0xf0e, 1);
-      if(CheckSkill(who, SKILLID_POISONING, skill, point))
+      if( SkillCheck(who, POISONING, skill) > 0 )
         PlaySoundEffect(who, 0x248);
         SetObjProperty(the_item, "poison_level", stren);
         var skillmod := Cint(GetAttribute(who, "poisoning") / 20) + RandomInt(4);
@@ -57,7 +57,7 @@ program do_poisoning(who)
           SetObjProperty(the_item, "OnHit", hitscripts);
         endif
         SendSysMessage(who, "You have successfully applied the poison.");
-        var myskill := CInt(GetEffectiveSkill(who, SKILLID_POISONING));
+        var myskill := CInt(AP_GetSkill(who, POISONING));
         var modpts := 0;
         if(myskill >=  skill)
           modpts := (myskill - skill);

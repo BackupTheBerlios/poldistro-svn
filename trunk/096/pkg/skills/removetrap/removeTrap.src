@@ -8,7 +8,7 @@ include "include/client";
 include "include/sound";
 include "include/tileEffects";
 include "include/canAccess";
-
+include ":attributes:attributes";
 
 program removeTrap(who)
   EraseObjProperty(who, "IsMeditating");
@@ -24,7 +24,7 @@ program removeTrap(who)
     return;
   endif
      if( GetObjProperty(item,"trap_type") )
-        if( CheckSkill( who, SKILLID_REMOVETRAP, -1, thepoints ) )
+        if( SkillCheck( who, REMOVE_TRAP, -1) > 0 )
            EraseObjProperty( item, "trap_type" );
            EraseObjProperty( item, "trap_strength" );
            item.usescript := "";
@@ -59,7 +59,7 @@ program removeTrap(who)
           endif
         endif
       elseif( (GetObjProperty(item,"trapped") == 1) )
-        if( CheckSkill( who, SKILLID_REMOVETRAP, -1, 40 ) )
+        if( CheckSkill( who, REMOVE_TRAP, -1, 40 ) )
            DestroyItem( item );
 	       SendSysMessage( who, "You sucessfully removed the trap." );
         else

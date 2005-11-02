@@ -7,7 +7,7 @@ include "include/sound";
 include "include/tileEffects";
 include "include/client";
 include "include/canAccess";
-
+include ":attributes:attributes";
 
 program open_trapped_item(who, item)
   if(!item)
@@ -101,7 +101,7 @@ function Resist(cast_on, amt)
   if(cast_on.dead)
     return 0;
   endif
-  if(CheckSkill(cast_on, SKILLID_MAGICRESISTANCE, amt, (amt * 2)))
+  if( SkillCheck(cast_on, RESISTING_SPELLS, amt) > 0 )
     SendSysMessage(cast_on, "You feel yourself resisting magical energy!");
     PlaySoundEffect(cast_on, SFX_SPELL_WEAKEN);
     PlayObjectCenteredEffect(cast_on, FX_CURSE_EFFECT, 5,5);

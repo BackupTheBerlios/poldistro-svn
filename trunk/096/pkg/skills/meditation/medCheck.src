@@ -21,7 +21,7 @@ program medcheck(who)
     waittime := 0;
     loss := 0;
     if(GetObjProperty(who, "IsMeditating"))
-      skill:=CInt((GetEffectiveSkill(who,46)*100)/2);
+      skill:=CInt((AP_GetSkill(who, MEDITATION)*100)/2);
       loss := manaloss(who);
       if(loss == "nomed")
         loss := 7000;
@@ -32,7 +32,7 @@ program medcheck(who)
       endif
       sleepms(waittime);
     else
-      skill:= (CInt((GetEffectiveSkill(who,46)*100)/2) / 2);
+      skill:= (CInt((AP_GetSkill(who, MEDITATION)*100)/2) / 2);
       loss := manaloss(who);
       if(loss == "nomed")
         loss := 7000;
@@ -43,13 +43,13 @@ program medcheck(who)
       endif
       sleepms(waittime);
     endif
-    mana := GetMana(who);
-    gmm := GetMaxMana(who);
+    mana := AP_GetVital(who, MANA);
+    gmm := AP_GetVitalMaximumValue(who, MANA);
     if(mana < gmm)
-      SetMana(who, mana + 1);
+      AP_SetVital(who, MANA, mana + 1);
     endif
     if(mana > gmm)
-      SetMana(who, gmm);
+      AP_SetVital(who, MANA, gmm);
     endif
   endwhile
 endprogram

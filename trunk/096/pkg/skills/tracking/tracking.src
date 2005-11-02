@@ -13,10 +13,10 @@ program tracking(who)
   EraseObjProperty(who, "IsMeditating");
   EraseObjProperty(who, "HealTimer");
 //  UnloadConfigFile(":tracking:tracking");
-  if(CheckSkill(who, SKILLID_TRACKING, -1, (GetEffectiveSkill(who, SKILLID_TRACKING) + 30)))
+  if(SkillCheck(who, TRACKING, -1) >0)
     var tracker := ReadGameClock();
     SetObjProperty(who, "TrackingCounter", tracker);
-    var range := CInt((GetEffectiveSkill(who, SKILLID_TRACKING)/3));
+    var range := CInt((AP_GetSkill(who, TRACKING)/3));
     var nearby := ListMobilesNearLocation(who.x, who.y, who.z, range, who.realm);
     if(nearby.size() == 1 && nearby[1].serial == who.serial)
       SendSysMessage(who, "There don't seem to be any creatures nearby.");

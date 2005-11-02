@@ -118,8 +118,8 @@ program MakeTinkerItems(who, item)
   var close   := OldGFButtonID(410, 380, 242, 241, 1);
   if((trg.objtype == 0x1bd7) || (trg.objtype == 0x1bdd))
     OldGFTextLine(110,  80, 900, "WOOD SELECTION MENU");
-    var num := 2;
-    var skill := (GetEffectiveSkill(who, SKILLID_TINKERING) + 20);
+    //var num := 2;
+    var skill := (AP_GetSkill(who, TINKERING) + 20);
     var color := 0;
     if(skill >= Cint(tinker_cfg[4144]."skill"))
       color := 900;
@@ -218,7 +218,7 @@ endfunction
 
 function ComposeSubMenu(who)
   var num := 2;
-  var skill := (GetEffectiveSkill(who, SKILLID_TINKERING) + 20);
+  var skill := (AP_GetSkill(who, TINKERING) + 20);
   var color := 0;
   while(num < 9)
     case(num)
@@ -607,7 +607,7 @@ function make_something( who, item, what, use_on, ct)
   var itemname  := tinker_cfg[what].Name;
   var thepoints := CInt(skill * 2);
   var exchk     := tinker_cfg[what].exchk;
-  var myskill := CInt(GetEffectiveSkill(who, SKILLID_TINKERING));
+  var myskill := CInt(AP_GetSkill(who, TINKERING));
   var counter := 0;
   var x := who.x;
   var y := who.y;
@@ -630,13 +630,13 @@ function make_something( who, item, what, use_on, ct)
     sleep(2);
     PlaySoundEffect(who, 0x22d);
     sleep(2);
-    if(CheckSkill(who, SKILLID_TINKERING, skill, thepoints))
+    if( SkillCheck(who, TINKERING, skill) > 0 )
       if(!SubtractAmount(use_on, material))
         sendsysmessage(who, "Cancelled.");
         break;
       endif
       theitem := CreateItemInContainer(who.backpack, CInt(what), 1);
-      CheckToolWear (who, item, SKILLID_TINKERING);
+      CheckToolWear (who, item, TINKERING);
       theitem.movable := 1;
       var modpts := 0;
       if(myskill >=  skill)
@@ -648,7 +648,7 @@ function make_something( who, item, what, use_on, ct)
         if(exchk)
           theitem.quality := 1.2;
           theitem.hp := theitem.maxhp;
-          if(GetEffectiveSkill(who, SKILLID_TINKERING) >= 99)
+          if(AP_GetSkill(who, TINKERING) >= 99)
             SetName(theitem, "an exceptional " + itemname + " [crafted by " + who.name + "]");
           else
             SetName(theitem, "an exceptional " + itemname);
@@ -678,14 +678,14 @@ function make_something( who, item, what, use_on, ct)
       endif
       if((theitem.graphic in array(0x9a8, 0x9a9, 0x9aa, 0x9ab, 0xa2c, 0xa30, 0xa34, 0xa38, 0xa4d, 0xa4f,
         0xa51, 0xa53, 0xe3c, 0xe3d, 0xe3e, 0xe3f, 0xe40, 0xe41, 0xe42, 0xe43, 0xe7c, 0xe7d, 0xe7e, 0xe80)))
-        if(RandomInt(GetEffectiveSkill(who, SKILLID_TINKERING)) > 40)
+        if(RandomInt(AP_GetSkill(who, TINKERING)) > 40)
           SetObjProperty(theitem, "lockable", "1");
           lockid := AllocLockId();
           theitem.locked := 0;
           thekey := CreateItemInBackpack(who, UOBJ_COPPER_KEY, 1);
           SetObjProperty(thekey, "lockid", lockid);
           SetObjProperty(theitem,"lockid", lockid);
-          SetObjProperty(theitem,"LockPickDiff", (GetEffectiveSkill(who, SKILLID_TINKERING) + 10));
+          SetObjProperty(theitem,"LockPickDiff", (AP_GetSkill(who, TINKERING) + 10));
           SendSysMessage(who, "You will find the key in your backpack.");
         endif
       endif
@@ -700,7 +700,7 @@ endfunction
 function make_jewelry(who, item, stuff, what, ct)
   ct := Cint(ct);
   SetObjProperty(who, "LastTinkerItem", what);
-  var type      := tinker_cfg[what].type;
+  //var type      := tinker_cfg[what].type;
   var material  := tinker_cfg[what].material;
   var skill     := tinker_cfg[what].skill;
   var itemname  := tinker_cfg[what].Name;
@@ -731,7 +731,7 @@ function make_jewelry(who, item, stuff, what, ct)
     SendSysMessage(who, "You can't reach that!");
     return;
   endif
-  var myskill := CInt(GetEffectiveSkill(who, SKILLID_TINKERING));
+  var myskill := CInt(AP_GetSkill(who, TINKERING));
   while(counter < ct)
     if((who.x != x) || (who.y != y))
       SendSysMessage(who, "You stop tinkering.");
@@ -751,12 +751,12 @@ function make_jewelry(who, item, stuff, what, ct)
       if(!SubtractAmount(thegem, 1))
         break;
       endif
-      if(CheckSkill(who, SKILLID_TINKERING, skill, thepoints))
+      if( SkillCheck(who, TINKERING, skill) > 0 )
         if(!SubtractAmount(stuff, material))
           break;
         endif
         theitem := CreateItemInBackpack(who, CInt(what), 1);
-        CheckToolWear (who, item, SKILLID_TINKERING);
+        CheckToolWear (who, item, TINKERING);
         var modpts := 0;
         if(myskill >=  skill)
           modpts := (myskill - skill);
@@ -841,9 +841,9 @@ function dart_trap(who, item, ingot, ct)
     if(!SubtractAmount(ingot, 1))
       break;
     endif
-    var myskill := GetEffectiveSkill(who, SKILLID_TINKERING);
+    var myskill := AP_GetSkill(who, TINKERING);
     sleep(2);
-    if(CheckSkill(who, SKILLID_TINKERING, -1, Cint(myskill / 2)))
+    if( SkillCheck(who, TINKERING, -1) > 0 )
       var modpts := 10;
       var rint := RandomInt(100);
       if(modpts >= rint)
@@ -857,7 +857,7 @@ function dart_trap(who, item, ingot, ct)
       SendSysMessage(who, "You carefully place the trap on the container.");
       chest.usescript := ":tinkering:tinkerTraps";
       SetObjProperty(chest, "trapper", who.serial);
-      CheckToolWear (who, item, SKILLID_TINKERING);
+      CheckToolWear (who, item, TINKERING);
     else
       var results := RandomInt(9) + 1;
       if(results == 1)
@@ -921,7 +921,7 @@ function poison_trap(who, item, ingot, ct)
     if(!SubtractAmount(ingot, 1))
       break;
     endif
-    var myskill := CInt(GetEffectiveSkill(who, SKILLID_TINKERING));
+    var myskill := CInt(AP_GetSkill(who, TINKERING));
     if(myskill <= 20)
       strength := 1;
     elseif(myskill <= 40)
@@ -933,7 +933,7 @@ function poison_trap(who, item, ingot, ct)
     else
       strength := 5;
     endif
-    if(CheckSkill(who, SKILLID_TINKERING, -1, myskill))
+    if( SkillCheck(who, TINKERING, -1) > 0 )
       var modpts := 10;
       var rint := RandomInt(100);
       if(modpts >= rint)
@@ -952,7 +952,7 @@ function poison_trap(who, item, ingot, ct)
       SendSysMessage(who, "You carefully place the trap on the container.");
       chest.usescript := ":tinkering:tinkerTraps";
       SetObjProperty(chest, "trapper", who.serial);
-      CheckToolWear (who, item, SKILLID_TINKERING);
+      CheckToolWear (who, item, TINKERING);
     else
       results := RandomInt(9) + 1;
       if (results == 1)
@@ -1013,8 +1013,8 @@ function explosion_trap(who, item,  ingot, ct)
       return;
     endif
     SubtractAmount(ingot, 1);
-    var myskill := CInt(GetEffectiveSkill(who, SKILLID_TINKERING));
-    if (CheckSkill( who, SKILLID_TINKERING, -1, myskill*2 ))
+    var myskill := CInt(AP_GetSkill(who, TINKERING));
+    if (CheckSkill( who, TINKERING, -1, myskill*2 ))
       var modpts := 10;
       var rint := RandomInt(100);
       if(modpts >= rint)
@@ -1033,7 +1033,7 @@ function explosion_trap(who, item,  ingot, ct)
       SendSysMessage(who, "You carefully place the trap on the container.");
       chest.usescript := ":tinkering:tinkerTraps";
       SetObjProperty(chest, "trapper", who.serial);
-      CheckToolWear (who, item, SKILLID_TINKERING);
+      CheckToolWear (who, item, TINKERING);
     else
       results := RandomInt(9) + 1;
       if (results == 1)
