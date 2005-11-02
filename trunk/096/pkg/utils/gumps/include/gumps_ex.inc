@@ -113,9 +113,9 @@ function GFOptimizeGump(byref gump)
 			var page_num := l_entry[6, Len(l_entry)];
 			if ( !gump_pages.Exists(page_num) )
 				gump_pages[page_num] := array;
-				cur_page := page_num;
+				cur_page := CInt(page_num);
 			else
-				cur_page := page_num;
+				cur_page := CInt(page_num);
 				continue;
 			endif
 		endif
@@ -124,9 +124,11 @@ function GFOptimizeGump(byref gump)
 	endforeach
 	
 	//Put the gump back together again.
-	gump.layout := array; // Wipe it out
+	gump.layout := array{}; // Wipe it out
 	foreach page_array in (gump_pages)
+		 // Goes through the dictionary which contains each page's array.
 		foreach entry in (page_array)
+			// Goes through the array containing layout data for that page.
 			(gump.layout).Append(entry);
 			sleepms(2);
 		endforeach
