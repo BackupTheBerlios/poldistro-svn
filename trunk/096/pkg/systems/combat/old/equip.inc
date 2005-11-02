@@ -1,4 +1,6 @@
+use uo;
 
+include ":attributes:attributes";
 
 
 function HandleMods(who, item)
@@ -12,7 +14,7 @@ function HandleMods(who, item)
   endif
   if(penalty)
     SetObjProperty(item, "#equipped", who.serial);
-    SetDexterityMod(who, GetDexterityMod(who) - penalty);
+    AP_SetStatMod(who, DEXTERITY, AP_GetStatMod(who, DEXTERITY) - penalty);
   endif
   var type := GetObjProperty(item, "type");
   if(!type)
@@ -29,7 +31,7 @@ function HandleMods(who, item)
     "reflect":      val := reflect(who,item);
     "protection":   val := protection(who,item);
     "wizzohat":     val := wizzohat(who,item);
-    "strength":     val := strength(who,item);
+    "strength":     val := ModifyStrength(who,item);
     "invisibility": val := invisibility(who,item);
     default:        val := 1;
   endcase
@@ -37,7 +39,7 @@ function HandleMods(who, item)
   set_critical(0);
 endfunction
 
-function strength(who,item)
+function ModifyStrength(who,item)
   var gain := GetObjProperty(item, "gain");
   if(!gain)
     gain := 5;
@@ -49,9 +51,9 @@ function strength(who,item)
 endfunction
 
 function wizzohat(who,item)
-  SetIntelligenceMod(who, GetIntelligenceMod(who) + 10);
-  SetStrengthMod(who, GetStrengthMod(who) - 5);
-  SetDexterityMod(who, GetDexterityMod(who) - 5);
+  AP_SetStatMod(who, INTELLIGENCE,  AP_GetStatMod(who, INTELLIGENCE) + 10);
+  AP_SetStatMod(who, STRENGTH, AP_GetStatMod(who, STRENGTH) - 5);
+  AP_SetStatMod(who, DEXTERITY, AP_GetStatMod(who, DEXTERITY) - 5);
   SetObjProperty(item, "#equipped", who.serial);
   return 1;
 endfunction
@@ -64,11 +66,11 @@ function accuracy(who,item)
   var cfg := ReadConfigFile(":combat:itemdesc");
   var attrib := cfg[item.objtype].Attribute;
   case(attrib)
-    "Wrestling": ModifyAttributeTemporaryMod(who, ATTRIBUTEID_WRESTLING,     amt);
-    "Fencing":   ModifyAttributeTemporaryMod(who, ATTRIBUTEID_FENCING,       amt);
-    "Archery":   ModifyAttributeTemporaryMod(who, ATTRIBUTEID_ARCHERY,       amt);
-    "Swords":    ModifyAttributeTemporaryMod(who, ATTRIBUTEID_SWORDSMANSHIP, amt);
-    "Mace":      ModifyAttributeTemporaryMod(who, ATTRIBUTEID_MACEFIGHTING,  amt);
+    "Wrestling": AP_ModifySkillMod(who, WRESTLING,    amt);
+    "Fencing":  AP_ModifySkillMod(who, FENCING,      amt);
+    "Archery":   AP_ModifySkillMod(who, ARCHERY,      amt);
+    "Swords":   AP_ModifySkillMod(who, SWORDSMANSHIP, amt);
+    "Mace":      AP_ModifySkillMod(who, MACE_FIGHTING, amt);
   endcase
   SetObjProperty(item, "#equipped", who.serial);
   return 1;

@@ -15,7 +15,7 @@ program vortexHit(param)
 		return;
 	endif
 
-	var dmg := RandomInt(CInt(GetIntelligence(defender) / 10));
+	var dmg := RandomInt(CInt(AP_GetStat(defender, INTELLIGENCE) / 10));
 	
 	if(dmg > 40)
 		dmg := 12;

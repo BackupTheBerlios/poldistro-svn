@@ -23,10 +23,10 @@ program macehit(param)
     endif
   endif
   var sdr := RandomInt(3) + 3;
-  if(GetStamina(defender) >= sdr)
-    SetStamina(defender, GetStamina(defender) - sdr);
+  if(AP_GetVital(defender, STAMINA) >= sdr)
+    AP_SetVital(defender, STAMINA, AP_GetVital(defender, STAMINA) - sdr);
   else
-    SetStamina(defender, 0);
+    AP_SetVital(defender, STAMINA, 0);
   endif
 endprogram
 

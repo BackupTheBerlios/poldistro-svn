@@ -124,8 +124,9 @@ endfunction
  */
 function AP_ModifySkillMod(mobile, stat_name, points)
 	var orig_mod := AP_GetStatMod(mobile, stat_name);
-	var new_mod := CDbl(points)+orig_mod;
-	SetAttributeTemporaryMod(mobile, stat_name, CInt(CDbl(new_mod) * 10.0));
+	var new_mod := CDbl(points)+CDbl(orig_mod);
+	
+	AP_SetSkillMod(mobile, stat_name, new_mod);
 	
 	return orig_mod;
 endfunction

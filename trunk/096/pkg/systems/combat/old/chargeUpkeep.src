@@ -41,15 +41,15 @@ function ProcessMods(who, item);
     return;
   endif
   case(type)
-    "strength":     ModifyAttributeTemporaryMod(who, ATTRIBUTEID_STRENGTH, gain);
+    "strength":     AP_ModifyStatMod(who, STRENGTH, gain);
     "invisibility": who.hidden := 1;
     "sight":        who.setlightlevel(0, 70);
-    "protection":   ModifyAttributeTemporaryMod(who, ATTRIBUTEID_PARRY, gain);
+    "protection":   AP_ModifySkillMod(who, PARRY, gain);
     "reflect":      SetObjProperty(who, "mr", 2);
-    "bless":        ModifyAttributeTemporaryMod(who, ATTRIBUTEID_STRENGTH,     gain);
-                    ModifyAttributeTemporaryMod(who, ATTRIBUTEID_INTELLIGENCE, gain);
-                    ModifyAttributeTemporaryMod(who, ATTRIBUTEID_DEXTERITY,    gain);
-                    ModifyAttributeTemporaryMod(who, ATTRIBUTEID_PARRY,        (gain *3 ));
+    "bless":        AP_ModifySkillMod(who, STRENGTH,     gain);
+                    AP_ModifySkillMod(who, INTELLIGENCE, gain);
+                    AP_ModifySkillMod(who, DEXTERITY,    gain);
+                    AP_ModifySkillMod(who, PARRY,        (gain *3 ));
   endcase
   RecalcVitals(who);
   EraseObjProperty(item, "HoldMods");
@@ -117,15 +117,15 @@ function ProcessUnmods(who, item, mods)
     who := SystemFindObjectBySerial(who.serial, SYSFIND_SEARCH_OFFLINE_MOBILES);
   endif
   case(type)
-    "strength":     ModifyAttributeTemporaryMod(who, ATTRIBUTEID_STRENGTH, (0 - gain));
+    "strength":     AP_ModifyStatMod(who, STRENGTH, (0 - gain));
     "invisibility": who.hidden := 0;
     "sight":        who.setlightlevel(0, 1);
-    "protection":   ModifyAttributeTemporaryMod(who, ATTRIBUTEID_PARRY, (0 - gain));
+    "protection":   AP_ModifySkillMod(who, PARRY, (0 - gain));
     "reflect":      EraseObjProperty(who, "mr");
-    "bless":        ModifyAttributeTemporaryMod(who, ATTRIBUTEID_STRENGTH,     (0 - gain));
-                    ModifyAttributeTemporaryMod(who, ATTRIBUTEID_INTELLIGENCE, (0 - gain));
-                    ModifyAttributeTemporaryMod(who, ATTRIBUTEID_DEXTERITY,    (0 - gain));
-                    ModifyAttributeTemporaryMod(who, ATTRIBUTEID_PARRY,        (0 - (gain *3)));
+    "bless":        AP_ModifySkillMod(who, STRENGTH,     (0 - gain));
+                    AP_ModifySkillMod(who, INTELLIGENCE, (0 - gain));
+                    AP_ModifySkillMod(who, DEXTERITY,    (0 - gain));
+                    AP_ModifySkillMod(who, PARRY,        (0 - (gain *3)));
   endcase
   RecalcVitals(who);
   EraseObjProperty(item, "HoldMods");
