@@ -55,7 +55,7 @@ function DoBolt(who)
   SetObjProperty(mob, "guardkill", 1);
   PlayLightningBoltEffect( mob );
   PlaySoundEffect(who, SOUND_EFFECT_THUNDER);
-  ApplyRawDamage( mob, GetHp(mob) );;
+  ApplyRawDamage( mob, AP_GetVital(mob, HITS) );
 endfunction
 
 function DoThunder(who,list)

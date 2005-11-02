@@ -111,7 +111,7 @@ endprogram
 function ValidateSpawns()
   var chk := array;
   foreach thing in npclist
-    if(GetHP(thing))
+    if(AP_GetVital(thing, HITS))
       chk.append(thing);
     endif
   endforeach
@@ -126,7 +126,7 @@ endfunction
 function DespawnAll()
   var chk := array;
   foreach thing in npclist
-    var hp := GetHP(thing);
+    var hp := AP_GetVital(thing, HITS);
     if(hp)
       MoveCharacterToLocation(thing, 5279, 1184, 0, MOVECHAR_FORCELOCATION);
       ApplyRawDamage(thing, Cint(hp + 100));

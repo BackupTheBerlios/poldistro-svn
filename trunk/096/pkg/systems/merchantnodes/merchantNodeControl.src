@@ -181,7 +181,7 @@ function ValidateSpawns()
 		foreach thing in npclist
 			if(entry[2] == GetObjProperty(thing, "Anchor"))
 				var npc := thing;
-				if((entry[3] == 1) and (GetHP(npc)))
+				if((entry[3] == 1) and (AP_GetVital(npc, HITS)))
 					if(npc in chk)
 						// do nothing -- invalid entry --
 					else
@@ -190,7 +190,7 @@ function ValidateSpawns()
 				else
 					MoveCharacterToLocation(npc, 1, 1, 0, MOVECHAR_FORCELOCATION);
 					RevokePrivilege(npc, "invul");
-					ApplyRawDamage(npc, GetHP(npc) + 100);
+					ApplyRawDamage(npc, AP_GetVital(npc, HITS) + 100);
 				endif
 			endif
 			sleepms(2);
@@ -203,7 +203,7 @@ function ValidateSpawns()
 		else
 			MoveCharacterToLocation(npc, 1, 1, 0, MOVECHAR_FORCELOCATION);
 			RevokePrivilege(npc, "invul");
-			ApplyRawDamage(npc, GetHP(npc) + 100);
+			ApplyRawDamage(npc, AP_GetVital(npc, HITS) + 100);
 		endif
 		sleepms(2);
 	endforeach
@@ -218,7 +218,7 @@ endfunction
 function DespawnAll()
 	var chk := array;
 	foreach thing in npclist
-		var hp := GetHP(thing);
+		var hp := AP_GetVital(thing, HITS);
 		if(hp)
 			MoveCharacterToLocation(thing, 1, 1, 0, MOVECHAR_FORCELOCATION);
 			RevokePrivilege(thing, "invul");
