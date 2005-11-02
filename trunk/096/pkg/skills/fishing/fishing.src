@@ -13,6 +13,7 @@ include ":attributes:include/attributes";
 include ":crafting:toolWear";
 include "include/objtype";
 include "include/startEqp";
+include "include/sysEvent";
 
 program use_FishingPole(who, fishingpole)
 
@@ -176,7 +177,7 @@ function CriticalFailure(who, targetsquare)
 	if(it)
 		SendSysMessage(who, "Oops, that's not a fish!");
 		var ev := {};
-		ev.+type := EVID_ENGAGED;
+		ev.+type := SYSEVENT_ENGAGED;
 		ev.+source := who;
 		SendEvent(it, ev);
 	endif
