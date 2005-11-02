@@ -1,0 +1,44 @@
+/*
+ * $Id$
+ *
+ */
+use uo;
+use os;
+
+include ":datafile:datafile";
+include ":lumberjacking:settings";
+include ":lumberjacking:lumberJack";
+
+program GlobalControl()
+	var settings := LJ_GetSettingsCfgElem("Settings");
+	var cycle_wait := CInt(settings.RegenWait);
+	if ( cycle_wait < 1 )
+		cycle_wait := 1;
+	endif
+	cycle_wait := cycle_wait * 60;
+	
+	SetGlobalProperty("#TreeRegenPId", GetPid());
+	
+	set_priority(1);
+	while( 1 )
+		sleep(cycle_wait);
+		RegenWood(settings);
+	endwhile
+endprogram
+
+function RegenWood(settings)
+	Print("Running wood regeneration cycle...");
+	var data_file := LJ_GetDataFile();
+	
+	foreach elem_name in DFGetElemNames(data_file)
+		var data_elem := LJ_GetDataElem(elem_name);
+		
+		var amount := CInt(data_elem.GetProp("Amount"));
+		if ( amount < CInt(settings.MaxWood) )
+			amount := amount+1;
+			data_elem.SetProp("Amount", amount);
+		endif
+		
+		sleep(1);
+	endforeach
+endfunction
