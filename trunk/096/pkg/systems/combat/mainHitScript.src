@@ -215,42 +215,43 @@ function ParryCheck(attacker, defender, weapon, armor, byref basedamage, byref r
 		shield := GetEquipmentByLayer(defender, LAYER_HAND1);
 	endif
 	
-	if ( shield.IsA(POLCLASS_ARMOR) )
-		var parry_elem := CS_GetSettingsCfgElem("Parry");
-		var divisor := CDbl(parry_elem.ParryDivisor);
-		var roll := CDbl(parry_elem.ParryRoll);
-		var parry_chance := CDbl(AP_GetSkill(attacker, "Tactics")) / divisor;
-		
-		if ( RandomFloat(roll) < parry_chance )
-			//PerformAction(defender, ANIM_TWIST_DODGE);
-			SendSysMessage(defender, "You deflect some damage using your shield.");
-			var decrease := RandomInt(shield.ar)+1;
-			var new_dmg := rawdamage - decrease;
-			
-			if ( attacker.cmdlevel )
-				PrintTextAbovePrivate(defender, "Parry! Lowering damage from ["+rawdamage+"] to ["+new_dmg+"]", attacker);
-			endif
-			if ( defender.cmdlevel )
-				PrintTextAbovePrivate(defender, "Parry! Lowering damage from ["+rawdamage+"] to ["+new_dmg+"]", defender);
-			endif
-			
-			rawdamage := new_dmg;
-				
-			if ( rawdamage > CInt(0.15*shield.hp) )
-				SendSysMessage(defender, shield.desc+" takes some damage.");
-				shield.quality := shield.quality * CDbl(CS_GetSettingsCfgElem("Parry").WearRate);
-				if ( shield.quality <= 0.1 )
-					SendSysMessage(defender, shield.desc+" has been destroyed.");
-					MoveObjectToLocation(shield, 1, 1, 1, defender.realm, MOVEOBJECT_FORCELOCATION);
-					DestroyItem(shield);
-				elseif ( shield.hp > shield.maxhp )
-					shield.hp := shield.maxhp;
-				endif
-			endif
-			
-			return 1;
-		endif
+	if ( !shield.IsA(POLCLASS_ARMOR) )
+		return 0;
 	endif
 	
-	return 0;
+	var parry_elem := CS_GetSettingsCfgElem("Parry");
+	var divisor := CDbl(parry_elem.ParryDivisor);
+	var roll := CDbl(parry_elem.ParryRoll);
+	var parry_chance := CDbl(AP_GetSkill(attacker, "Tactics")) / divisor;
+	
+	if ( RandomFloat(roll) > parry_chance ) // Failed
+		return 0;
+	endif
+	
+	//PerformAction(defender, ANIM_TWIST_DODGE);
+	SendSysMessage(defender, "You deflect some damage using your shield.");
+	var decrease := RandomInt(shield.ar)+1;
+	var new_dmg := rawdamage - decrease;
+	
+	if ( attacker.cmdlevel )
+		PrintTextAbovePrivate(defender, "Parry! Lowering damage from ["+rawdamage+"] to ["+new_dmg+"]", attacker);
+	endif
+	if ( defender.cmdlevel )
+		PrintTextAbovePrivate(defender, "Parry! Lowering damage from ["+rawdamage+"] to ["+new_dmg+"]", defender);
+	endif
+	
+	rawdamage := new_dmg;
+		
+	if ( rawdamage > CInt(0.15*shield.hp) )
+		SendSysMessage(defender, shield.desc+" takes some damage.");
+		shield.quality := shield.quality * CDbl(CS_GetSettingsCfgElem("Parry").WearRate);
+		if ( shield.quality <= 0.1 )
+			SendSysMessage(defender, shield.desc+" has been destroyed.");
+			MoveObjectToLocation(shield, 1, 1, 1, defender.realm, MOVEOBJECT_FORCELOCATION);
+			DestroyItem(shield);
+		elseif ( shield.hp > shield.maxhp )
+			shield.hp := shield.maxhp;
+		endif
+	endif
+	return 1;
 endfunction
