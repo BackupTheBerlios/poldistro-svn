@@ -28,7 +28,11 @@ program use_StatueDeed(who, deed)
 
 	if( ReleaseItem(deed) )
 		if( DestroyItem(deed) )
+			SetName(mini_statue, statue_elem.Name);
+			mini_statue.graphic := statue_elem.Graphic;
+			mini_statue.usescript := ":ministatues:useStatue";
 			MoveItemToContainer(mini_statue, who.backpack);
+			SendSysMessage(who, "You have redeemed your ticket for a mini statue.");
 		else
 			DestroyItem(mini_statue);
 		endif
