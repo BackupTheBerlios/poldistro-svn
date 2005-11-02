@@ -96,10 +96,10 @@ function CreateRepairDeed(who, scroll, craft_skill)
 
   var type, title, color;
   case(CInt(craft_skill))
-     ATTRIBUTE_BLACKSMITHY: 		type := "Blacksmith"; color := CInt(2107);
-     ATTRIBUTE_BOWCRAP_T_FLETCHING: 	type := "Bowyer"; color := CInt(2116);
-     ATTRIBUTE_CARPENTRY: 		type := "Carpenter"; color := CInt(2113);
-     ATTRIBUTE_TAILORING: 		type := "Tailor"; color := CInt(2128);
+     BLACKSMITHY: 		type := "Blacksmith"; color := CInt(2107);
+     BOWCRAFT_FLETCHING: 	type := "Bowyer"; color := CInt(2116);
+     CARPENTRY: 		type := "Carpenter"; color := CInt(2113);
+     TAILORING: 		type := "Tailor"; color := CInt(2128);
   endcase
   var ramt := AP_GetSkill(who, craft_skill);
   if(ramt < 50)
@@ -138,7 +138,7 @@ function CreateRepairDeed(who, scroll, craft_skill)
 
 endfunction
 
-function repair_this(who, craft_skill := ATTRIBUTE_BLACKSMITHY)
+function repair_this(who, craft_skill := BLACKSMITHY)
   SendSysMessage(who, "Select item to repair.");
   var use_on := Target(who);
   if(!can_access(who, use_on))
@@ -154,16 +154,16 @@ function repair_this(who, craft_skill := ATTRIBUTE_BLACKSMITHY)
   endif
   if(CInt(use_on.objtype) == CInt(0xe34))
     case(CInt(craft_skill))
-       ATTRIBUTE_BLACKSMITHY:            CreateRepairDeed(who, use_on, craft_skill);
-       ATTRIBUTE_BOWCRAP_T_FLETCHING:    CreateRepairDeed(who, use_on, craft_skill);
-       ATTRIBUTE_CARPENTRY:   		 CreateRepairDeed(who, use_on, craft_skill);
-       ATTRIBUTE_TAILORING:   		 CreateRepairDeed(who, use_on, craft_skill);
+       BLACKSMITHY:            CreateRepairDeed(who, use_on, craft_skill);
+       BOWCRAFT_FLETCHING:    CreateRepairDeed(who, use_on, craft_skill);
+       CARPENTRY:   		 CreateRepairDeed(who, use_on, craft_skill);
+       TAILORING:   		 CreateRepairDeed(who, use_on, craft_skill);
     endcase
     return;
   endif
   var forge := 0;
   case(CInt(craft_skill))
-     ATTRIBUTE_BLACKSMITHY: forge := 1;
+     BLACKSMITHY: forge := 1;
   endcase
   if(!forge)
     if(is_weapon_armor(use_on.objtype))

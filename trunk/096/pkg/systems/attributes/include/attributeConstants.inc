@@ -12,13 +12,13 @@ enum VITALS
 	STAMINA			:= "Stamina"
 endenum
 
-enum ATTRIBUTE_STATS
+enum STATS
 	STRENGTH		:= "Strength",
 	DEXTERITY		:= "Dexterity",
 	INTELLIGENCE		:= "Intelligence"
 endenum
 
-enum ATTRIBUTE_SKILLS
+enum SKILLS
 	ALCHEMY			:= "Alchemy",
 	ANATOMY			:= "Anatomy",
 	ANIMAL_LORE		:= "AnimalLore",

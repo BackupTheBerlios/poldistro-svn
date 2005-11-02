@@ -24,8 +24,8 @@ function bardSkillCheck( character, instrument, bard_skill, bard_difficulty, awa
 	// Gets a dictionary for success/fail.
 	var soundCheck := bardSoundCheck(character, instrument, bard_skill);
 
-	SkillCheck(character, ATTRIBUTE_MUSICIANSHIP, 1);
-	if( (AP_GetSkill(character, ATTRIBUTE_MUSICIANSHIP) < 10) && (bard_skill != ATTRIBUTE_MUSICIANSHIP) )
+	SkillCheck(character, MUSICIANSHIP, 1);
+	if( (AP_GetSkill(character, MUSICIANSHIP) < 10) && (bard_skill != MUSICIANSHIP) )
 		SendSysMessage(character, "You are not skilled enough in the musical arts.");
 		return 0;
 	endif

@@ -47,15 +47,15 @@ program bard_provoke(who)
 
 	var barding_difficulty := -1;
 	if( thetarg.npctemplate )
-		barding_difficulty := figureBardDifficulty(who, thetarg, instrument, ATTRIBUTE_PROVOCATION);
+		barding_difficulty := figureBardDifficulty(who, thetarg, instrument, PROVOCATION);
 	endif
 
-	if ( !isBardable(who, thetarg, ATTRIBUTE_PROVOCATION, barding_difficulty) )
+	if ( !isBardable(who, thetarg, PROVOCATION, barding_difficulty) )
 		PrintTextAbovePrivate(thetarg, "You have no chance to provoke that creature!", who);
 		return 0;
 	endif
 
-	if( bardSkillCheck(who, instrument, ATTRIBUTE_PROVOCATION, barding_difficulty) )
+	if( bardSkillCheck(who, instrument, PROVOCATION, barding_difficulty) )
 		var ev := struct;
 		ev.+ type;
 		ev.+ source;
@@ -76,9 +76,9 @@ program bard_provoke(who)
 		endif
 		barding_difficulty := -1;
 		if( newtarg.npctemplate )
-			barding_difficulty := figureBardDifficulty(who, newtarg, instrument, ATTRIBUTE_PROVOCATION);
+			barding_difficulty := figureBardDifficulty(who, newtarg, instrument, PROVOCATION);
 		endif
-		if( bardSkillCheck(who, instrument, ATTRIBUTE_PROVOCATION, barding_difficulty, 0, ADV_DISABLE) )
+		if( bardSkillCheck(who, instrument, PROVOCATION, barding_difficulty, 0, ADV_DISABLE) )
 			SetObjProperty(who, "#LastMusic", Cint(ReadGameClock() + 3));
 			SendSysMessage(who, "You provoke " + thetarg.name + " to attack " + newtarg.name + ".");
 			ev.source := newtarg;
@@ -102,7 +102,7 @@ program bard_provoke(who)
 			if( barding_difficulty == -1 )
 				barding_difficulty := 50;
 			endif
-			if( RandomInt( barding_difficulty) > AP_GetSkill(who, ATTRIBUTE_PROVOCATION) )
+			if( RandomInt( barding_difficulty) > AP_GetSkill(who, PROVOCATION) )
 				ev.source := who;
 				if( thetarg.warmode )
 					ev.type := EVID_PEACEMADE;

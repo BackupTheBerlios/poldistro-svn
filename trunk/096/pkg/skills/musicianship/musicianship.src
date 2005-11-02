@@ -28,7 +28,7 @@ program skill_Musicianship(who, instrument)
 		return 0;
 	endif
 
-	if( !bardSkillCheck(who, instrument, ATTRIBUTE_MUSICIANSHIP, -1) )
+	if( !bardSkillCheck(who, instrument, MUSICIANSHIP, -1) )
 		SendSysMessage(who, "You fail in your attemp to play the instrument");
 	endif
 

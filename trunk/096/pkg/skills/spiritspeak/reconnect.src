@@ -5,7 +5,7 @@ include ":attributes:include/attributes";
 
 program spiritSpeak_OnReconnect(who)
 
-	var my_skill  := CInt(AP_GetSkill(who, ATTRIBUTE_SPIRIT_SPEAK));
+	var my_skill  := CInt(AP_GetSkill(who, SPIRIT_SPEAK));
 	if( my_skill >= 100 )
 		GrantPrivilege(who, "hearghosts");
 		who.enable("hearghosts");

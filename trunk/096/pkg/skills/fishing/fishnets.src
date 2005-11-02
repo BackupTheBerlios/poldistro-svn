@@ -63,7 +63,7 @@ program use_FishNets(who, fishnet)
 				5: CreateNpcFromTemplate( "waterelemental", targetsquare.x, targetsquare.y, targetsquare.z );
 				6: CreateNpcFromTemplate( "seaserpent", targetsquare.x, targetsquare.y, targetsquare.z );
 			endcase
-			var myskill := AP_GetSkill(who, ATTRIBUTE_FISHING);
+			var myskill := AP_GetSkill(who, FISHING);
 			if(myskill <= 50)
 				CreateNpcFromTemplate( "seaserpent", targetsquare.x, targetsquare.y, targetsquare.z );
 			elseif(myskill <= 75)

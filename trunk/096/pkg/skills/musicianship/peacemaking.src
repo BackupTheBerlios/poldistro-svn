@@ -43,15 +43,15 @@ program skill_Peacemaking(who)
 
 	var barding_difficulty := -1;
 	if( peacee.npctemplate )
-		barding_difficulty := figureBardDifficulty(who, peacee, instrument, ATTRIBUTE_PEACEMAKING);
+		barding_difficulty := figureBardDifficulty(who, peacee, instrument, PEACEMAKING);
 	endif
 
-	if ( !isBardable(who, peacee, ATTRIBUTE_PEACEMAKING, barding_difficulty) )
+	if ( !isBardable(who, peacee, PEACEMAKING, barding_difficulty) )
 		PrintTextAbovePrivate(peacee, "You have no chance to calm that creature!", who);
 		return 0;
 	endif
 
-	if( bardSkillCheck(who, instrument, ATTRIBUTE_PEACEMAKING, barding_difficulty) )
+	if( bardSkillCheck(who, instrument, PEACEMAKING, barding_difficulty) )
 		calmDown( who, peacee );
 	else
 		return 0;
@@ -64,8 +64,8 @@ endprogram
 
 function calmDown( who, peacee )
 
-	var peace_length_single := CInt(AP_GetSkill(who, ATTRIBUTE_PEACEMAKING) / 5);
-	var peace_length_ranged := CInt(AP_GetSkill(who, ATTRIBUTE_PEACEMAKING) / 20);
+	var peace_length_single := CInt(AP_GetSkill(who, PEACEMAKING) / 5);
+	var peace_length_ranged := CInt(AP_GetSkill(who, PEACEMAKING) / 20);
 
 	var ev := struct;
 	ev.+ type;

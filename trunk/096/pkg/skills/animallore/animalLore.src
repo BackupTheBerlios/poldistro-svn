@@ -32,7 +32,7 @@ program skill_animal_lore( who )
                 return 0;
         endif
 
-	if( SkillCheck(who, ATTRIBUTE_ANIMAL_LORE, -1) > 0 )
+	if( SkillCheck(who, ANIMAL_LORE, -1) > 0 )
                 // If the player succeeds, send the gump.
                 // Create the Gump
                 var al_Gump := AL_LoadGump(who, creature);
@@ -87,18 +87,18 @@ function AL_LoadGump(who, creature)
         var hits := ""+GetVital(creature, "Hits")/100+"/"+AP_GetVitalMaximumValue(creature, "Hits")+"";
         var stamina := ""+GetVital(creature, "Stamina")/100+"/"+AP_GetVitalMaximumValue(creature, "Stamina")+"";
         var mana := ""+GetVital(creature, "Mana")/100+"/"+AP_GetVitalMaximumValue(creature, "Mana")+"";
-        var str := ""+AP_GetStat(creature, ATTRIBUTE_STRENGTH)+"";
-        var dex := ""+AP_GetStat(creature, ATTRIBUTE_DEXTERITY)+"";
-        var int := ""+AP_GetStat(creature, ATTRIBUTE_INTELLIGENCE)+"";
+        var str := ""+AP_GetStat(creature, STRENGTH)+"";
+        var dex := ""+AP_GetStat(creature, DEXTERITY)+"";
+        var int := ""+AP_GetStat(creature, INTELLIGENCE)+"";
         var ar := ""+creature.ar+"";
-        var wrestStr := AP_GetSkill(creature, ATTRIBUTE_WRESTLING);
-        var tactStr := AP_GetSkill(creature, ATTRIBUTE_TACTICS);
-        var mrStr := CDbl(AP_GetSkill(creature, ATTRIBUTE_RESISTING_SPELLS));
-        var anatStr := AP_GetSkill(creature, ATTRIBUTE_ANATOMY);
-        var poisonStr := AP_GetSkill(creature, ATTRIBUTE_POISONING);
-        var mageryStr := AP_GetSkill(creature, ATTRIBUTE_MAGERY);
-        var eiStr := AP_GetSkill(creature, ATTRIBUTE_EVALUATING_INTELLIGENCE);
-        var medStr := AP_GetSkill(creature, ATTRIBUTE_MEDITATION);
+        var wrestStr := AP_GetSkill(creature, WRESTLING);
+        var tactStr := AP_GetSkill(creature, TACTICS);
+        var mrStr := CDbl(AP_GetSkill(creature, RESISTING_SPELLS));
+        var anatStr := AP_GetSkill(creature, ANATOMY);
+        var poisonStr := AP_GetSkill(creature, POISONING);
+        var mageryStr := AP_GetSkill(creature, MAGERY);
+        var eiStr := AP_GetSkill(creature, EVALUATING_INTELLIGENCE);
+        var medStr := AP_GetSkill(creature, MEDITATION);
 
         var cTemplate := NPC_GetNPCConfig(creature.npctemplate);
 

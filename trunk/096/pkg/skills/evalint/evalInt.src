@@ -45,10 +45,10 @@ program skill_EvaluatingIntelligence(who)
 			strFail := subject.name + "' mental abilities.";
 		endif
 	endif
-	if(SkillCheck(who, ATTRIBUTE_EVALUATING_INTELLIGENCE, -1) > 0)
+	if(SkillCheck(who, EVALUATING_INTELLIGENCE, -1) > 0)
 		PrintTextAbovePrivate(subject, strMsg + " looks " + intell + ".", who);
 		// player's evalint skill equal/greater than 76 can get mental strength info
-		var skill := AP_GetSkill(who, ATTRIBUTE_EVALUATING_INTELLIGENCE);
+		var skill := AP_GetSkill(who, EVALUATING_INTELLIGENCE);
 		if(skill >= 76)
 			PrintTextAbovePrivate(subject, strMsg + " is at " + mentalStrength + " mental strength.", who);
 		endif

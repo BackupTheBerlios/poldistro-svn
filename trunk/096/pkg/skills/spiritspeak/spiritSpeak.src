@@ -37,12 +37,12 @@ program skill_SpiritSpeak(who)
 	EraseObjProperty(who, "IsMeditating");
 	EraseObjProperty(who, "HealTimer");
 
-	var my_skill  := CInt(AP_GetSkill(who, ATTRIBUTE_SPIRIT_SPEAK));
+	var my_skill  := CInt(AP_GetSkill(who, SPIRIT_SPEAK));
 
 	PlaySoundEffect(who, SFX_SKILL_SPIRITSPEAK);
 
 
-  	if(SkillCheck(who, ATTRIBUTE_SPIRIT_SPEAK, -1) > 0)
+  	if(SkillCheck(who, SPIRIT_SPEAK, -1) > 0)
 		foreach corpse in ListItemsNearLocationOfType( who.x, who.y, who.z, SS_RANGE, 0x2006 )
 			channelFromCorpse(who, corpse, my_skill);
 		endforeach
@@ -51,7 +51,7 @@ program skill_SpiritSpeak(who)
   	  	elseif( AP_GetVital(who, "Mana") > 10 )
   	  		channelFromSelf(who);
 		endif
-		my_skill  := CInt(AP_GetSkill(who, ATTRIBUTE_SPIRIT_SPEAK));
+		my_skill  := CInt(AP_GetSkill(who, SPIRIT_SPEAK));
 		if( my_skill >= 100 )
 			GrantPrivilege(who, "hearghosts");
 			who.enable("hearghosts");

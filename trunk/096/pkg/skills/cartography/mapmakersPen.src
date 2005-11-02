@@ -31,7 +31,7 @@ program use_MapmakersPen(who, tool)
 	EraseObjProperty(who, "IsMeditating");
 	EraseObjProperty(who, "HealTimer");
 
-	var rinfo := sendCraftGump(who, ATTRIBUTE_CARTOGRAPHY);
+	var rinfo := sendCraftGump(who, CARTOGRAPHY);
 
 	// OK was pressed, close it on out
 	if(rinfo == 0)

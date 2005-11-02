@@ -143,9 +143,9 @@ endfunction
 function playHarp(theskill, iType:=1)
 
 	case(theskill)
-		ATTRIBUTE_DISCORDANCE:  return 0x393;
-		ATTRIBUTE_PEACEMAKING: return 0x394;
-		ATTRIBUTE_PROVOCATION: return 0x392;
+		DISCORDANCE:  return 0x393;
+		PEACEMAKING: return 0x394;
+		PROVOCATION: return 0x392;
 	endcase
 
 	// If skill wasn't one of the three above,
@@ -176,9 +176,9 @@ endfunction
 function playLute(theskill)
 
 	case(theskill)
-		ATTRIBUTE_DISCORDANCE:  return 0x40C;
-		ATTRIBUTE_PEACEMAKING: return 0x419;
-		ATTRIBUTE_PROVOCATION: return 0x404;
+		DISCORDANCE:  return 0x40C;
+		PEACEMAKING: return 0x419;
+		PROVOCATION: return 0x404;
 	endcase
 
 	// If skill wasn't one of the three above,
@@ -206,9 +206,9 @@ endfunction
 function playDrum(theskill)
 
 	case(theskill)
-		ATTRIBUTE_DISCORDANCE:  return 0x2E9;
-		ATTRIBUTE_PEACEMAKING: return 0x2EA;
-		ATTRIBUTE_PROVOCATION: return 0x2E8;
+		DISCORDANCE:  return 0x2E9;
+		PEACEMAKING: return 0x2EA;
+		PROVOCATION: return 0x2E8;
 	endcase
 
 	// If skill wasn't one of the three above,
@@ -236,9 +236,9 @@ endfunction
 function playTamb(theskill)
 
 	case(theskill)
-		ATTRIBUTE_DISCORDANCE:  return 0x4B7;
-		ATTRIBUTE_PEACEMAKING: return 0x4B8;
-		ATTRIBUTE_PROVOCATION: return 0x4B6;
+		DISCORDANCE:  return 0x4B7;
+		PEACEMAKING: return 0x4B8;
+		PROVOCATION: return 0x4B6;
 	endcase
 
 	// If skill wasn't one of the three above,

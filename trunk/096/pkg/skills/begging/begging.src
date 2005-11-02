@@ -74,7 +74,7 @@ program skill_Begging( who )
 		return 0;
 	endif
 
-	if( SkillCheck(who, ATTRIBUTE_BEGGING, -1) > 0 )
+	if( SkillCheck(who, BEGGING, -1) > 0 )
 		var gold;
 		case (wealth)
 			"upper":	gold := RandomDiceRoll("4d5");

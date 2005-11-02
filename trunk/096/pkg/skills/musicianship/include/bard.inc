@@ -56,13 +56,13 @@ function figureBardDifficulty(who, peacee, instrument, attribute)
 		print( "Debug Bard: Exceptional Check Passed");
 		barding_difficulty := barding_difficulty - 5;
 	endif
-	var musicianship := CInt(AP_GetSkill(who, ATTRIBUTE_MUSICIANSHIP));
+	var musicianship := CInt(AP_GetSkill(who, MUSICIANSHIP));
 	if( musicianship > 100 )
 		barding_difficulty := barding_difficulty - CInt((musicianship - 100) / 2);
 	endif
-	if( attribute == ATTRIBUTE_PROVOCATION )
+	if( attribute == PROVOCATION )
 		barding_difficulty := barding_difficulty - 5;
-	elseif( attribute == ATTRIBUTE_PEACEMAKING || attribute == ATTRIBUTE_DISCORDANCE )
+	elseif( attribute == PEACEMAKING || attribute == DISCORDANCE )
 		barding_difficulty := barding_difficulty - 10;
 	endif
 
@@ -109,9 +109,9 @@ function isBardable(character, thetarget, bard_skill, bard_difficulty)
 	var ifCanBard := 1;
 
 	case(bard_skill)
-		ATTRIBUTE_DISCORDANCE: ifCanBard := CInt(pTemplate.NoDiscord);
-		ATTRIBUTE_PEACEMAKING: ifCanBard := CInt(pTemplate.NoPeacmake);
-		ATTRIBUTE_PROVOCATION: ifCanBard := CInt(pTemplate.NoProvoke);
+		DISCORDANCE: ifCanBard := CInt(pTemplate.NoDiscord);
+		PEACEMAKING: ifCanBard := CInt(pTemplate.NoPeacmake);
+		PROVOCATION: ifCanBard := CInt(pTemplate.NoProvoke);
 	endcase
 
 	return ifCanBard;

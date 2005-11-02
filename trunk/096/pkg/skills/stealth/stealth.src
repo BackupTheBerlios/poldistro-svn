@@ -23,11 +23,11 @@ program skill_Stealth( who )
 	EraseObjProperty(who, "IsMeditating");
 	EraseObjProperty(who, "HealTimer");
 
-	if( AP_GetSkill(who, ATTRIBUTE_HIDING) < 80 )
+	if( AP_GetSkill(who, HIDING) < 80 )
 		PrintTextAbovePrivate( who, "You are not good enough at Hiding to do that.", who );
 		return 0;
 	endif
-	if( (!who.hidden) && (AP_GetSkill(who, ATTRIBUTE_STEALTH) < 80) )
+	if( (!who.hidden) && (AP_GetSkill(who, STEALTH) < 80) )
 		PrintTextAbovePrivate( who, "You must be hidden to use stealth", who );
 		return 0;
 	endif
@@ -38,8 +38,8 @@ program skill_Stealth( who )
 		return 0;
 	endif
 
-	var my_Skill := AP_GetSkill(who, ATTRIBUTE_STEALTH) / 10;
-	if(SkillCheck(who, ATTRIBUTE_STEALTH, -1) > 0)
+	var my_Skill := AP_GetSkill(who, STEALTH) / 10;
+	if(SkillCheck(who, STEALTH, -1) > 0)
 		if( !who.hidden )
 			// Used RSTC because it runs the script in critical mode, thus
 			// ensuring the hiding attempt completes before the stealth

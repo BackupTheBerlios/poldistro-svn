@@ -23,7 +23,7 @@ program skill_armslore(who)
 		SendSysMessage(who, "You can only use this skill on weapons or armor!");
 		return;
 	endif
-	if(SkillCheck(who, ATTRIBUTE_ARMS_LORE, -1) > 0)
+	if(SkillCheck(who, ARMS_LORE, -1) > 0)
 		var item_max_hp := the_item.maxhp;
 		var max_hp := item_max_hp;
 		var hp := the_item.hp;

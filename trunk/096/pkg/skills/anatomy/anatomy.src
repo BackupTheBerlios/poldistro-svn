@@ -49,10 +49,10 @@ program skill_Anatomy(who)
 		endif
 	endif
 
-	if( SkillCheck(who, ATTRIBUTE_ANATOMY, -1) > 0 )
+	if( SkillCheck(who, ANATOMY, -1) > 0 )
 		PrintTextAbovePrivate(subject, strMsg + " looks " + streng + " and " + dext + ".", who);
 		// player's anatomy skill equal/greater than 65 can get endurance info
-		var skill := AP_GetSkill(who, ATTRIBUTE_ANATOMY);
+		var skill := AP_GetSkill(who, ANATOMY);
 		if(skill >= 65)
 			PrintTextAbovePrivate(subject, strMsg + " is at " + endur + " endurance.", who);
 		endif
