@@ -11,7 +11,7 @@ use cfgfile;
  * CS_GetSettingsCfgFile(engine_name)
  *
  * Purpose
- * Reads in :attributes:configs/settings.cfg
+ * Reads in :combat:config/settings.cfg
  *
  * Parameters
  *

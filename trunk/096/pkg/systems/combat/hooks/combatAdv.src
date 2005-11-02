@@ -1,0 +1,22 @@
+/*
+ * $Id$
+ *
+ */
+use uo;
+
+program hook_startup()
+	print("INSTALLED: Combat Advancement hook... ok.");
+	return 1;
+endprogram
+
+//
+// NOTE: This function is called EVEN IF THE ATTACK DIDN'T SUCCEED!
+//
+exported function CombatAdvancement(attacker,defender)
+	// Eliminates compiler warnings
+	attacker := attacker;
+	defender := defender;
+	
+	// Advancement currently handled in mainHitScript
+	return 0;
+endfunction
