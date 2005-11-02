@@ -69,8 +69,8 @@ function Do_Chops(me, axe, tree)
     SendSysMessage(me,"You stop chopping.");
     return 1;
   endif
-  var points := CInt((GetEffectiveSkill(me, SKILLID_LUMBERJACKING) * 2) + 10);
-  if(CheckSkill(me, SKILLID_LUMBERJACKING, difficulty, points))
+  var points := CInt((AP_GetSkill(me, "Lumberjacking") * 2) + 10);
+  if(SkillCheck(me, "Lumberjacking", difficulty) > 0)
     var wood_amount := HarvestResource( "wood", tree.x, tree.y, 1, 10, me.realm );
     if(wood_amount == 0)
       SendSysMessage(me, "There's not enough wood here to chop.");
@@ -526,7 +526,7 @@ function CarveLogs(who, blade, logs)
       SendSysMessage(who, "I don't know how to make that.");
       return;
     endif
-    var myskill := CInt(GetEffectiveSkill(who, SKILLID_BOWCRAFT));
+    var myskill := CInt(AP_GetSkill(who, "BowcraftFletching"));
     var modpts := 0;
     if(myskill >=  difficulty)
       modpts := (myskill - difficulty);
@@ -544,7 +544,7 @@ endfunction
 
 function setquality(who, bow)
   var tname := TruncateArticle(bow.name);
-  if(CInt(GetEffectiveSkill(who, SKILLID_BOWCRAFT)) >= 99)
+  if(CInt(AP_GetSkill(who, "BowcraftFletching")) >= 99)
     bow.name := "an exceptional " + tname + " [crafted by " + who.name + "]";
   else
     bow.name := "an exceptional " + tname;
