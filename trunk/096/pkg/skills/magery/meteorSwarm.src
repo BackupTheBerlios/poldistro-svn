@@ -30,7 +30,7 @@ program spell_meteorSwarm( parms )
     endif
 	dmg := RandomDiceRoll("6d8");
 	send_attack(mobile,caster, 55);
-    if(GetHp(mobile) > 1)
+    if(AP_GetVital(mobile, HITS) > 1)
       if(castOn.npctemplate)
         dmg := dmg * 2;
       endif

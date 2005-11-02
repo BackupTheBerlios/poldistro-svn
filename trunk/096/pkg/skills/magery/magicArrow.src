@@ -23,7 +23,7 @@ program spell_magicArrow( parms )
 		PlaySoundEffect( castOn, SFX_SPELL_MAGIC_ARROW );
 		ApplyRawDamage( caster, Resisted(circle,caster,castOn,dmg) );
 	else
-		if (GetHp(castOn) >= 1)
+		if (AP_GetVital(castOn, HITS) >= 1)
 			SetObjProperty(castOn, "LastHit", {caster.name,caster.serial, "magic arrow" });
 			if (castOn.isA(POLCLASS_NPC))
 				dmg := dmg * 2;

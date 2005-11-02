@@ -27,16 +27,16 @@ program spell_manaVamp(parms)
     PlaySoundEffect(caster, SFX_SPELL_MANA_VAMPIRE);
     PlayObjectCenteredEffect(castOn, FX_GLOW, 7,0x10);
     var gain := 0;
-	if(diff > GetMana(castOn))
-	  gain := GetMana(castOn);
-	  SetMana(castOn, 0);
+	if(diff > AP_GetVital(castOn, MANA))
+	  gain := AP_GetVital(castOn, MANA);
+	  AP_SetVital(castOn, MANA, 0);
 	else
 	  gain := diff;
-	  SetMana(castOn, GetMana(castOn) - diff);
+	  AP_SetVital(castOn, MANA, AP_GetVital(castOn, MANA) - diff);
 	endif
-	SetMana(caster, GetMana(caster) + gain);
-	if(GetMana(caster) > GetMaxMana(caster))
-	  SetMana(caster, GetMaxMana(caster));
+	AP_SetVital(caster, MANA, AP_GetVital(caster, MANA) + gain);
+	if(AP_GetVital(caster, MANA) > AP_GetVitalMaximumValue(caster, MANA))
+	  AP_SetVital(caster, MANA, AP_GetVitalMaximumValue(caster, MANA));
 	endif
   endif
 

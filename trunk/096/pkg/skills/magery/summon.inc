@@ -31,10 +31,11 @@ function DoSummon( caster, circle, npctemplate, cast_loc )
   SetObjProperty(thecritter, "happiness",100);
   SetObjProperty(thecritter, "summoned",1);
   RestartScript(thecritter);
-  SetBaseSkillBaseValue( thecritter, SKILLID_MAGICRESISTANCE,  magery * 10  );
+  //SetBaseSkillBaseValue( thecritter, SKILLID_MAGICRESISTANCE,  magery * 10  );
+  AP_SetTrueSkill(thecritter, RESISTING_SPELLS, magery*10);
   sleep(duration);
   PlaySoundEffect( thecritter, SFX_SPELL_MANA_VAMPIRE );
   PlayStationaryEffect( thecritter.x, thecritter.y, thecritter.z, FX_SMOKE, 0xa, 0xa, 0, caster.realm );
   MoveCharacterToLocation(thecritter,0,0,0,MOVECHAR_FORCELOCATION);
-  ApplyRawDamage(thecritter, GetHp(thecritter) + 3);
+  ApplyRawDamage(thecritter, AP_GetVital(thecritter, HITS) + 3);
 endfunction

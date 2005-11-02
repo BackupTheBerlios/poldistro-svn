@@ -20,7 +20,7 @@ program spell_paraField(parms)
 		"EW" : fields:= CreateEastWestField(caster, UOBJ_PARAFIELD_EW, x, y, z, 5);
 	endcase
 	Detach();
-	var duration := CInt(GetEffectiveSkill( caster, SKILLID_MAGERY ) )/2;
+	var duration := CInt(AP_GetSkill(caster, MAGERY) )/2;
 	if (duration < 20)
 		duration := 20;
 	endif

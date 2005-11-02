@@ -20,7 +20,7 @@ program spell_wallOfStone(parms)
 	"EW" : fields:= CreateEastWestField(caster, 0x80, x, y, z, 5);
   endcase
   Detach();
-  duration := CInt(GetEffectiveSkill( caster, SKILLID_MAGERY ) )/2;
+  duration := CInt(AP_GetSkill(caster, MAGERY) )/2;
   if (duration < 20)
     duration := 20;
   endif

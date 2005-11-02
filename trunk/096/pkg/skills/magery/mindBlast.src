@@ -15,8 +15,8 @@ program spell_mindBlast( parms )
   var spellcfg := ReadConfigFile(":*:spells");
   var circle := spellcfg[spellid].circle;
 
-  var myInt := CInt(GetIntelligence(caster));
-  var hisInt := CInt(GetIntelligence(castOn));
+  var myInt := CInt(AP_GetStat(caster, INTELLIGENCE));
+  var hisInt := CInt(AP_GetStat(castOn, INTELLIGENCE));
   SetObjProperty(castOn, "LastHit", {caster.name,caster.serial, "mind blast" });
   var modif := myInt - hisInt;
   if(hisInt > myInt)

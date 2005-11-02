@@ -6,6 +6,7 @@ include "include/sound";
 include "include/tileEffects";
 include ":attributes:attributes";
 include ":magery:reflect";
+include ":timedscripts:timedScripts";
 
 const EVID_DISCHARGE := 0x123457;
 
@@ -60,8 +61,9 @@ program poison(parms)
     if(newamt > 0)
       SendSysMessage(castOn, "You have been poisoned by " + caster.name +"!");
       Detach();
-      passparms := {castOn, caster, "poison spell", newamt};
-      start_script(":magery:poisonDamage", passparms);
+      TS_StartTimer(castOn, "defaultPoison", 20, pLevel);
+      //passparms := {castOn, caster, "poison spell", newamt};
+      //start_script(":magery:poisonDamage", passparms);
       SetObjProperty(castOn, "LastHit", {caster.name, caster.serial, "poison spell" });
     else
       SendSysMessage(castOn, "You resist the spell completely.");
@@ -73,8 +75,8 @@ program poison(parms)
 endprogram
 
 function PoisonResist(caster, castOn, amt)
-  var diff := Cint(AP_GetSkill(caster, MAGERY) + Cint(GetEffectiveSkill(caster, SKILLID_EVALINT) / 10));
-  if(CheckSkill(castOn, SKILLID_MAGICRESISTANCE, diff, (diff * 2)))
+  var diff := Cint(AP_GetSkill(caster, MAGERY) + Cint(AP_GetSkill(caster, EVALUATING_INTELLIGENCE) / 10));
+  if( SkillCheck(castOn, RESISTING_SPELLS, diff) > 0 )
     SendSysMessage(castOn, "You feel yourself resisting magical energy!");
     PlaySoundEffect(castOn, SFX_SPELL_WEAKEN);
     PlayObjectCenteredEffect( castOn, FX_CURSE_EFFECT, 5,5);

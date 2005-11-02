@@ -17,7 +17,7 @@ program spell_fireField(parms)
 	endcase
 	PlaySoundEffect(caster, 0x20d);
 	Detach();
-	var duration := 20 + ( CInt(GetEffectiveSkill( caster, SKILLID_MAGERY ) ) / 3 );
+	var duration := 20 + ( CInt(AP_GetSkill(caster, MAGERY) ) / 3 );
 	sleep(duration);
 	foreach fieldpart in fields
 		DestroyItem(fieldpart);

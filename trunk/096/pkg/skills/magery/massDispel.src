@@ -32,10 +32,10 @@ program spell_massDispel(parms)
       PlayStationaryEffect( mobile.x, mobile.y, mobile.z, FX_HEAL_EFFECT, 0xa, 0xa,0 , caster.realm );
       var master := SystemFindObjectBySerial(CInt(GetObjProperty(mobile, "master")));
       if(master)
-        var resist := GetEffectiveSkill(master, SKILLID_MAGICRESISTANCE);
+        var resist := AP_GetSkill(master, RESISTING_SPELLS);
         if((RandomInt(99) + 1) < resist)
           MoveCharacterToLocation(mobile,0,0,0,MOVECHAR_FORCELOCATION);
-          ApplyRawDamage(mobile, GetMaxHp(mobile) + 3);
+          ApplyRawDamage(mobile, AP_GetVitalMaximumValue(mobile, HITS) + 3);
         endif
         send_attack(caster, mobile, 41);
     endif

@@ -29,8 +29,8 @@ endprogram
 
 function ParaResist(circle, caster, castOn, amt)
   var magery := CInt(AP_GetSkill(caster, MAGERY));
-  var evalint := CInt(GetEffectiveSkill(caster, SKILLID_EVALINT));
-  var resist := CInt(GetEffectiveSkill(castOn, SKILLID_MAGICRESISTANCE));
+  var evalint := CInt(AP_GetSkill(caster, EVALUATING_INTELLIGENCE));
+  var resist := CInt(AP_GetSkill(castOn, RESISTING_SPELLS));
   var chk1 := (resist / 5);
   var chk2 := resist - (((magery - 20) / 5) + (circle * 5));
   if(chk1 < 1)
@@ -45,7 +45,7 @@ function ParaResist(circle, caster, castOn, amt)
   else
     diff := chk2;
   endif
-  var points := getresistpoints(circle, castOn, SKILLID_MAGICRESISTANCE);
+  //var points := getresistpoints(circle, castOn, RESISTING_SPELLS);
   if(castOn.dead)
     return 0;
   endif
@@ -53,7 +53,7 @@ function ParaResist(circle, caster, castOn, amt)
 	SendSysMessage(castOn, "You feel yourself resisting magical energy!");
 	PlaySoundEffect(castOn, SFX_SPELL_WEAKEN);
 	PlayObjectCenteredEffect(castOn, FX_CURSE_EFFECT, 5,5);
-	AwardRawSkillPoints(castOn, SKILLID_MAGICRESISTANCE, points);
+	//AwardRawSkillPoints(castOn, RESISTING_SPELLS, points);
 	amt := 0;
 	return amt;
   endif

@@ -37,11 +37,11 @@ program spell_resurrect(parms)
       ev.type := EVID_ENGAGED;
       SendEvent(castOn, ev);
       PlayObjectCenteredEffect(castOn, 0x37b9,0x03, 0x0a);
-      if(CheckSkill(castOn,SKILLID_MAGICRESISTANCE, 70, 800))
+      if( SkillCheck(castOn, RESISTING_SPELLS, 70) > 0 )
         var dmg := CalcSpellDamage(circle,caster) + (RandomInt(20));
         ApplyRawDamage(castOn, dmg);
       else
-        ApplyRawDamage(castOn, GetHp(castOn) +1);
+        ApplyRawDamage(castOn, AP_GetVital(castOn, HITS) +1);
       endif
     endif
   else

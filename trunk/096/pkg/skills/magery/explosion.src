@@ -27,7 +27,7 @@ program spell_explosion(parms)
   send_attack(castOn,caster, 43);
   PlaySoundEffect( castOn, SFX_SPELL_EXPLOSION );
   PlayStationaryEffect( castOn.x,castOn.y,castOn.z, FX_EXPLODE_3, 7, 0x10, 0 , caster.realm );
-  if(GetHp(castOn) >= 1)
+  if(AP_GetVital(castOn, HITS) >= 1)
     if(castOn.npctemplate)
       dmg := dmg * 2;
     endif

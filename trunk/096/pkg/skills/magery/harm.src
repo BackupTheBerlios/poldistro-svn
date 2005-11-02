@@ -25,7 +25,7 @@ program spell_harm(parms)
 	endif
 	PlaySoundEffect(castOn, SFX_SPELL_HARM);
 	PlayObjectCenteredEffect( castOn, FX_GLOW_SPIKE, 0x0a,0x1e);
-	if(GetHp(castOn) >= 1)
+	if(AP_GetVital(castOn, HITS) >= 1)
 		if(castOn.npctemplate)
 			dmg := dmg * 2;
 		endif

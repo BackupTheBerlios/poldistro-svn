@@ -16,9 +16,9 @@ program spell_vortex( parms )
   SetObjProperty(thecritter, "summoned",1);
   SetObjProperty(thecritter, "master", caster.serial);
   Detach();
-  sleep( (GetEffectiveSkill( caster, SKILLID_MAGERY ) ) );
+  sleep( (AP_GetSkill(caster, MAGERY) ) );
   PlaySoundEffect( thecritter, SFX_SPELL_MANA_VAMPIRE );
   PlayStationaryEffect( thecritter.x, thecritter.y, thecritter.z, FX_SMOKE, 0xa, 0xa, 0, caster.realm );
   MoveCharacterToLocation(thecritter,0,0,0,MOVECHAR_FORCELOCATION);
-  ApplyRawDamage(thecritter, GetHp(thecritter) + 3);
+  ApplyRawDamage(thecritter, AP_GetVital(thecritter, HITS) + 3);
 endprogram

@@ -16,7 +16,7 @@ program spell_incognito(parms)
   PlaySoundEffect(caster, 0x1e1);
   Detach();
   set_critical(1);
-  sleep( 60 * CInt(GetEffectiveSkill( caster, SKILLID_MAGERY )/10 ) );
+  sleep( 60 * CInt(AP_GetSkill(caster, MAGERY)/10 ) );
   SetName( caster, GetObjProperty( caster, "realname" ) );
   EraseObjProperty( caster, "realname" );
 endprogram

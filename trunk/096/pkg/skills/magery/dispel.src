@@ -22,10 +22,10 @@ program dispel( parms )
     PlayStationaryEffect( castOn.x, castOn.y, castOn.z, FX_HEAL_EFFECT, 0xa, 0xa,0 , caster.realm );
     var master := SystemFindObjectBySerial(CInt(GetObjProperty(castOn, "master")));
     if(master)
-      var resist := GetEffectiveSkill(master, SKILLID_MAGICRESISTANCE);
+      var resist := AP_GetSkill(master, RESISTING_SPELLS);
       if((RandomInt(99) + 1) < resist)
         MoveCharacterToLocation(castOn,0,0,0,MOVECHAR_FORCELOCATION);
-        ApplyRawDamage(castOn, GetMaxHp(castOn) + 3);
+        ApplyRawDamage(castOn, AP_GetVitalMaximumValue(caston, HITS) + 3);
       endif
       send_attack(caster, castOn, 41);
     endif

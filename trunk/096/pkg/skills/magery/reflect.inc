@@ -1,3 +1,7 @@
+use uo;
+use os;
+
+include "include/eventID";
 include "include/sound";
 include "include/tileEffects";
 

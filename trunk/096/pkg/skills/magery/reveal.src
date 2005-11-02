@@ -8,7 +8,7 @@ include "include/tileEffects";
 
 program reveal(parms)
   var caster := parms.caster;
-  var range := ( GetEffectiveSkill( caster, SKILLID_MAGERY  )/10 ) - 5;
+  var range := ( AP_GetSkill( caster, MAGERY  )/10 ) - 5;
   if (range < 1)
 	range := 1;
   endif
@@ -33,8 +33,8 @@ endprogram
 
 
 function Found(finder, hider)
-  var magic_skill := Resisted(6, finder, hider, GetEffectiveSkill( finder, SKILLID_MAGERY ));
-  var resist := (GetEffectiveSkill( finder, SKILLID_MAGICRESISTANCE)/1.5);
+  var magic_skill := Resisted(6, finder, hider, AP_GetSkill( finder, MAGERY ));
+  var resist := (AP_GetSkill( finder,RESISTING_SPELLS)/1.5);
   if ( magic_skill > resist )
 	return 1;
   else

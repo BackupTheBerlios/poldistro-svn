@@ -6,8 +6,8 @@ include ":attributes:attributes";
 program spell_polymorph( parms )
   var caster := parms.caster;
   var magery     := CInt(AP_GetSkill(caster, MAGERY));
-  var meditation := CInt(GetEffectiveSkill(caster, SKILLID_MEDITATION));
-  var evalint    := CInt(GetEffectiveSkill(caster, SKILLID_EVALINT));
+  var meditation := CInt(AP_GetSkill(caster, MEDITATION));
+  var evalint    := CInt(AP_GetSkill(caster, EVALUATING_INTELLIGENCE));
   var critgroup;
   var thecreature;
   if (magery < 70)

@@ -24,7 +24,7 @@ program spell_fireball(parms)
     PlaySoundEffect(castOn, 0x15f);
     castOn := caster;
   endif
-  if (GetHp(castOn) >= 1)
+  if (AP_GetVital(castOn, HITS) >= 1)
     if(castOn.npctemplate)
       dmg := dmg * 2;
     endif
