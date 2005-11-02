@@ -1,3 +1,6 @@
+use uo;
+
+include ":attributes:attributes";
 
 function mobspellcast(me, circle)
   var diff, points, umana;
@@ -12,12 +15,12 @@ function mobspellcast(me, circle)
     7:   diff := 85;     points := 190;    umana :=  40;
     8:   diff := 95;     points := 210;    umana :=  50;
   endcase
-  if(umana > GetMana(me))
+  if(umana > AP_GetVital(me, MANA))
     return 0;
   endif
   if(CheckHands(me))
-    if(CheckSkill(me, SKILLID_MAGERY, (diff - 10), points))
-      SetMana(me, GetMana(me)-umana);
+    if( SkillCheck(me, MAGERY, (diff - 10)) > 0 )
+      AP_SetVital(me, MANA, AP_GetVital(me, MANA)-umana);
       return 1;
     else
       return 0;
@@ -48,7 +51,7 @@ endfunction
 // challenging it is to the caster
 // I'm not convinced all of it is necessary, but it was in the old system, so here it is.
 function getPointValue(caster, points, diff, skill)
-  skill := GetEffectiveSkill(caster, skill);
+  skill := AP_GetSkill(caster, skill);
   if (skill > (diff - 20))
     if ((skill - diff) <= 5)
       return points;

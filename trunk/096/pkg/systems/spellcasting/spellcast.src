@@ -28,11 +28,11 @@ program spellcast(who, spellid)
   var castSkill;
   var circlecfg := ReadConfigFile(":*:magiccircles");
   if (spellid < 101)
-    castSkill := SKILLID_MAGERY;
+    castSkill := MAGERY;
   elseif (spellid < 201)
-    castSkill := SKILLID_NECROMANCY;
+    castSkill := NECROMANCY;
   elseif (spellid < 301)
-    castSkill := SKILLID_CHIVALRY;
+    castSkill := CHIVALRY;
   endif   
   EraseObjProperty(who, "IsMeditating");
   EraseObjProperty(who, "HealTimer");
@@ -52,7 +52,7 @@ program spellcast(who, spellid)
 
   // Record starting conditions- if the caster is damaged or moves
   // we can choose to interrupt the spell
-  var starthp := GetHp(who);
+  var starthp := AP_GetVital(who, HITS);
   var startx := who.x;
   var starty := who.y;
   var startz := who.z;
@@ -61,9 +61,9 @@ program spellcast(who, spellid)
   var animation := spellcfg[spellid].Animation;
   
   if (!animation)
-    animation := ANIM_CAST_DIR;
+    //animation := ANIM_CAST_DIR;
   endif
-  if (requiredMana > GetMana(who))
+  if (requiredMana > AP_GetVital(who, MANA))
 //    who.frozen := 1;
 //    PerformAction(who,animation);
 //    sleepms(1200);
@@ -91,7 +91,7 @@ program spellcast(who, spellid)
   var n;
   PrintTextAbove(who, spellcfg[spellid].PowerWords);
   for (n := 1; n <= animReps; n := n+1)
-    if ((starthp > GetHp(who)) && ((RandomInt(99)+1) > (GetEffectiveSkill(who, SKILLID_WRESTLING)/2)))
+    if ((starthp > AP_GetVital(who, HITS)) && ((RandomInt(99)+1) > (AP_GetSkill(who, WRESTLING)/2)))
       SendSysMessage(who,"You lost your concentration.", 3, 40);
       // This costs you no mana or regs... should it?
       PlaySoundEffect(who,0x005d);
@@ -99,7 +99,7 @@ program spellcast(who, spellid)
       who.frozen :=0;
       return 0;
     endif
-    PerformAction(who,ANIM_CAST_DIR);
+    //PerformAction(who,ANIM_CAST_DIR);
     if (n < animReps)
       sleepms(750);
     endif
@@ -115,7 +115,7 @@ program spellcast(who, spellid)
   
   var diff := circlecfg[circle].Difficulty;
   if (CheckSkill(who,castSkill, diff, 0))
-    if((starthp > GetHp(who)) && ((RandomInt(99)+1) > (GetEffectiveSkill(who, SKILLID_WRESTLING)/2)))
+    if((starthp > AP_GetVital(who, HITS)) && ((RandomInt(99)+1) > (AP_GetSkill(who, WRESTLING)/2)))
       SendSysMessage(who,"You lost your concentration.", 3, 40);
       return 0;
     endif
@@ -134,7 +134,7 @@ program spellcast(who, spellid)
       return 0;
     endif
   endif
-  if (GetMana(who) < requiredMana)
+  if (AP_GetVital(who, MANA) < requiredMana)
     SendSysMessage(who, "You do not have sufficient mana to cast this spell.", 3, 40);
   endif
   
@@ -189,7 +189,7 @@ program spellcast(who, spellid)
   
   // Now we consume regs and mana, award points, and go home.
   set_critical(1);
-    if (requiredMana > GetMana(who))
+    if (requiredMana > AP_GetVital(who, MANA))
       SendSysMessage(who,"You do not have enough mana to cast that.", 3, 40);
       PlaySoundEffect(who,0x005d);
       PlayObjectCenteredEffect(who, 0x3735,0x0a, 0x1e);
@@ -205,14 +205,14 @@ program spellcast(who, spellid)
       endif
       ConsumeReagents(who, spellid);    
     endif
-    SetMana(who, GetMana(who) - requiredMana);
+    AP_SetVital(who, MANA, AP_GetVital(who, MANA) - requiredMana);
   set_critical(0);
   if (scroll)
     if (!subtractAmount(scroll, 1))
       return 0;
     endif
   endif
-  AwardRawSkillPoints(who, castSkill, getPointValue(who, (circlecfg[circle].PointValue), (spellcfg[spellid].Difficulty), castSkill));
+  //AwardRawSkillPoints(who, castSkill, getPointValue(who, (circlecfg[circle].PointValue), (spellcfg[spellid].Difficulty), castSkill));
   var parms := struct;
   parms.+caster;
   parms.+castOn;

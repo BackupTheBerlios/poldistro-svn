@@ -35,7 +35,7 @@ program poisonhit(param)
     duration := duration - 1;
     SetObjProperty(weapon, "d", duration);
     var level := GetObjProperty(weapon, "poison_level");
-    if(CheckSkill(attacker, SKILLID_POISONING, 20, 20))
+    if( SkillCheck(attacker, POISONING, 20) >0)
       foreach mobile in ListMobilesInLineOfSight(defender, 8)
         if(mobile != defender)
           PrintTextAbovePrivate(defender, defender.name + " has been poisoned!", mobile);
