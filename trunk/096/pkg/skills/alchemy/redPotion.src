@@ -20,13 +20,13 @@ program redPotion (who, potion)
     return;
   endif
   if(potion.objtype == 0xdc0f)
-	SetStamina(who, GetMaxStamina(who));
+	AP_SetVital(who, "Stamina", AP_GetVitalMaximumValue(who, "Stamina"));
   else
 	var heal_amount := RandomDiceRoll("5d6+3");
-    if((heal_amount + GetStamina(who))  > GetMaxStamina(who))
-	  heal_amount := GetMaxStamina(who) - GetStamina(who);
+    if((heal_amount + AP_GetVital(who, "Stamina"))  > AP_GetVitalMaximumValue(who, "Stamina"))
+	  heal_amount := AP_GetVitalMaximumValue(who, "Stamina") - AP_GetVital(who, "Stamina");
     endif
-	SetStamina(who, GetStamina(who) + heal_amount);
+	AP_SetVital(who, "Stamina", AP_GetVital(who, "Stamina") + heal_amount);
   endif
   empty_bottle(who, potion);
   PlayObjectCenteredEffect(who, EFFECT_SPARKLE, 10,10);
