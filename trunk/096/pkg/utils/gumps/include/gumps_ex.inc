@@ -110,12 +110,14 @@ function GFOptimizeGump(byref gump)
 	foreach entry in (gump.layout)
 		var l_entry := Lower(entry);
 		if ( l_entry[1, 5] == "page " )
-			var page_num := l_entry[6, Len(l_entry)];
+			//  12345   6
+			// "Page " "#"
+			var page_num := CInt(l_entry[6, Len(l_entry)]);
 			if ( !gump_pages.Exists(page_num) )
 				gump_pages[page_num] := array;
-				cur_page := CInt(page_num);
+				cur_page := page_num;
 			else
-				cur_page := CInt(page_num);
+				cur_page := page_num;
 				continue;
 			endif
 		endif
