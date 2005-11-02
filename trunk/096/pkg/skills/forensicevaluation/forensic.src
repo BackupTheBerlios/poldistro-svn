@@ -15,11 +15,11 @@ program forensic(who)
     SendSysMessage(who, "Targetting cancelled.");
     return;
   endif
-  var pts := GetEffectiveSkill(who, SKILLID_FORENSICS)*2;
+  var pts := AP_GetSkill(who, "ForensicEvaluation")*2;
   if(pts < 10)
     pts := 10;
   endif
-  if (CheckSkill(who, SKILLID_FORENSICS, -1, pts))
+  if (SkillCheck(who, "ForensicEvaluation", -1) > 0)
     var lastHit := array;
     var kname, kserial, kweapon, strmessage;
     lastHit := GetObjProperty(what, "LastHit");
