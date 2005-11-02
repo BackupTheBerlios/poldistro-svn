@@ -54,7 +54,7 @@ function sleepmode()
                              EnableMainEvents();
                              return ev;
                            endif
-      EVID_HERDING:        Herding(ev);
+      EVID_HERDING:        HerdingLoop(ev);
     endcase
     until(!(ev := os::wait_for_event(30)));
   endwhile

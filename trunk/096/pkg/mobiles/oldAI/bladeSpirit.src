@@ -193,7 +193,7 @@ function look_around()
   endif
 endfunction
 
-function herding(ev)
+function HerdingLoop(ev)
   var holder := ev.data;
   var lx := holder[1];
   var ly := holder[2];

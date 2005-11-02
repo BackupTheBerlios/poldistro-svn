@@ -44,7 +44,7 @@ function Fight(opponent)
 			            DisableCombatEvents();
 			            EnableMainEvents();
 			            return;
-      EVID_HERDING:     Herding(ev);
+      EVID_HERDING:     HerdingLoop(ev);
 	endcase
   endwhile
   post_combat();

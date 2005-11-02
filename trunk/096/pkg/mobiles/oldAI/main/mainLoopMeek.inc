@@ -34,7 +34,7 @@ function main_AI_loop()
           SYSEVENT_ENGAGED:    Run(ev.source);
           SYSEVENT_ITEM_GIVEN: next_wander := ReadGameClock()+60;
                                TakeItem(ev.source,ev.item);
-          EVID_HERDING:        Herding(ev);
+          EVID_HERDING:        HerdingLoop(ev);
         endcase
       until(!(ev := os::wait_for_event(1)));
     endif
@@ -57,7 +57,7 @@ function DisableMainEvents()
   DisableEvents(SYSEVENT_ITEM_GIVEN);
 endfunction
 
-function herding(ev)
+function HerdingLoop(ev)
   var holder := ev.data;
   var lx := holder[1];
   var ly := holder[2];

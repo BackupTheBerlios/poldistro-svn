@@ -33,7 +33,7 @@ function main_AI_loop()
                                   ApplyRawDamage(me, AP_GetVital(me, "Hits") + 3);
                                 endif
         SYSEVENT_ENGAGED:       RunLikeHell(ev.source);
-        EVID_HERDING:           Herding(ev);
+        EVID_HERDING:           HerdingLoop(ev);
       endcase
     endif
     if(ReadGameClock() > next_regrow)
@@ -81,7 +81,7 @@ function DisableMainEvents()
   DisableEvents(SYSEVENT_ENGAGED + SYSEVENT_DAMAGED);
 endfunction
 
-function herding(ev)
+function HerdingLoop(ev)
   var holder := ev.data;
   var lx := holder[1];
   var ly := holder[2];

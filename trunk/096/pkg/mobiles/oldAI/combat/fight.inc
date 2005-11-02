@@ -48,7 +48,7 @@ function Fight(opponent)
 			              DisableCombatEvents();
 			              EnableMainEvents();
 			              return;
-        EVID_HERDING:     Herding(ev);
+        EVID_HERDING:     HerdingLoop(ev);
 	  endcase
 	endif
   endwhile
@@ -89,7 +89,7 @@ function flee(opponent)
 			  		        SetOpponent(opponent);
 			              endif
         EVID_PEACEMADE:   chk := 1;
-        EVID_HERDING:     Herding(ev);
+        EVID_HERDING:     HerdingLoop(ev);
 	  endcase
 	  if(chk)
 	    break;

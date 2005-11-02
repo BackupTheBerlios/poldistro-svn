@@ -19,7 +19,7 @@ function main_AI_loop()
                                 endif
           SYSEVENT_DAMAGED:     Fight(ev.source);
           SYSEVENT_ENGAGED:     RunLikeHell(ev.source);
-          EVID_HERDING:           Herding(ev);
+          EVID_HERDING:           HerdingLoop(ev);
         endcase
       until(!(ev := os::wait_for_event(2)));
     endif
@@ -107,7 +107,7 @@ function bark()
   return noise;
 endfunction
 
-function herding(ev)
+function HerdingLoop(ev)
   var holder := ev.data;
   var lx := holder[1];
   var ly := holder[2];

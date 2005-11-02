@@ -33,7 +33,7 @@ function main_AI_loop()
         SYSEVENT_ENGAGED:       Fight(ev.source);
         EVID_ALL_ATTACK_CMD:    Fight(ev.source);
         SYSEVENT_DAMAGED:       Fight(ev.source);
-        EVID_HERDING:           Herding(ev);
+        EVID_HERDING:           HerdingLoop(ev);
       endcase
     endif
   endwhile
@@ -57,7 +57,7 @@ function DisableMainEvents()
   DisableEvents(SYSEVENT_ENGAGED + SYSEVENT_DAMAGED + SYSEVENT_ENTEREDAREA);
 endfunction
 
-function herding(ev)
+function HerdingLoop(ev)
   var holder := ev.data;
   var lx := holder[1];
   var ly := holder[2];
