@@ -15,7 +15,7 @@ program cure( parms )
   var npccfg := ReadConfigFile("::npcdesc");
   PlaySoundEffect(caster, SFX_SPELL_CURE);
   PlayObjectCenteredEffect( castOn, FX_BLESS_EFFECT, 10,10);
-  var potency := CInt(GetEffectiveSkill(caster, SKILLID_MAGERY) / 33) +1;
+  var potency := CInt(AP_GetSkill(caster, MAGERY) / 33) +1;
   if(castOn.isA(POLCLASS_NPC))
     var element := npccfg[castOn.npctemplate].elemental;
     if(element == "poison")

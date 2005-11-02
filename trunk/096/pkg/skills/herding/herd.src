@@ -45,8 +45,8 @@ program herd(who)
                 SendSysMessage(who, "You can't herd that!");
                 return;
         endif
-	var thepoints := 50;
-        if(CheckSkill(who, SKILLID_HERDING, herdskill, thepoints))
+	
+        if( SkillCheck(who, HERDING, herdskill) > 0 )
 
                 SendSysMessage(who, "Where do you want to move "+ npc.name +" to?");
                 var location := TargetCoordinates(who);

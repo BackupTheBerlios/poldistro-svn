@@ -13,7 +13,7 @@ program spell_invisibility(parms)
 	PlaySoundEffect(castOn, SFX_SPELL_INVISIBILITY);
 	castOn.hidden := 1;
 	Detach();
-	sleep(CInt(GetEffectiveSkill(caster, SKILLID_MAGERY)));
+	sleep(CInt(AP_GetSkill(caster, MAGERY)));
 	castOn.hidden := 0;
 
 	return;

@@ -12,7 +12,7 @@ program spell_greaterHeal(parms)
 	var caster := parms.caster;
 	var castOn := parms.castOn;
 	var healed := RandomDiceRoll("1d3");
-	healed := CInt(GetEffectiveSkill(caster, SKILLID_MAGERY)/2) + healed;
+	healed := CInt(AP_GetSkill(caster, MAGERY)/2) + healed;
 	SendSysMessage(caster, "You healed " + healed + " damage.");
 	if (castOn.isA(POLCLASS_NPC))
 		healed := healed * 2;

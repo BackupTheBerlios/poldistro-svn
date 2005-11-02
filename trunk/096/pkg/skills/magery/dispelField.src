@@ -9,7 +9,7 @@ include "include/tileEffects";
 program dispelField( parms )
   var caster := parms.caster;
   var castOn := parms.castOn;
-  var magery := GetEffectiveSkill(caster, SKILLID_MAGERY);
+  var magery := AP_GetSkill(caster, MAGERY);
   var therange := CInt(magery / 15 );
   var items := ListItemsNearLocation(castOn.x, castOn.y, castOn.z, therange, caster.realm);
   PlaySoundEffect( caster, SFX_SPELL_DISPEL );

@@ -26,7 +26,7 @@ program spell_weaken(parms)
   if(!CanMod(castOn, "str"))
 	return;
   endif
-  var magery := GetEffectiveSkill(caster, SKILLID_MAGERY);
+  var magery := AP_GetSkill(caster, MAGERY);
   var modAmount := Resisted(circle,caster,castOn,(GetModAmount( magery )));
   var duration := GetModDuration( magery );
   DoTempMod(castOn, "str", 0 - modAmount, duration);

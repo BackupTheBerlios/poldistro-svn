@@ -28,7 +28,7 @@ program spell_feeblemind(parms)
 	SendSysMessage(caster,"Already under the influence!");
 	return;
   endif
-  var magery := GetEffectiveSkill(caster, SKILLID_MAGERY);
+  var magery := AP_GetSkill(caster, MAGERY);
   var modAmount := Resisted(circle,caster,castOn,(GetModAmount( magery )));
   var duration := GetModDuration( magery );
   DoTempMod(castOn, "int", 0 - modAmount, duration);

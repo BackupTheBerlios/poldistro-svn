@@ -23,7 +23,7 @@ program spell_telekinesis(parms)
     endif
     PlaySoundEffect(castOn, 0x144);
     PlayObjectCenteredEffect(castOn, 0x37b9,0x03, 0x0a);
-    var dmg := RandomInt(GetEffectiveSkill(caster, SKILLID_MAGERY) / 10);
+    var dmg := RandomInt(AP_GetSkill(caster, MAGERY) / 10);
     ApplyRawDamage(castOn, Resisted(circle,caster,castOn,dmg));
     if((castOn.graphic  == 0x190) or (castOn.graphic == 0x191))
       PerformAction(castOn, 20);

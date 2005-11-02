@@ -13,7 +13,7 @@ program bless(parms)
   var castOn := parms.castOn;
   PlaySoundEffect(castOn, SFX_SPELL_BLESS);
   PlayObjectCenteredEffect( castOn, FX_BLESS_EFFECT, 10,10);
-  var magery := GetEffectiveSkill(caster, SKILLID_MAGERY);
+  var magery := AP_GetSkill(caster, MAGERY);
   var modAmount := GetModAmount(magery);
   var duration := GetModDuration(magery);
   if(CanMod(castOn, "str"))

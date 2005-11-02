@@ -17,7 +17,7 @@ program spell_paralyze( parms )
 	if (spell_reflect(castOn))
 		castOn := caster;
 	endif
-	var amt := 10 + RandomInt(CInt(GetEffectiveSkill(caster, SKILLID_MAGERY)/5));
+	var amt := 10 + RandomInt(CInt(AP_GetSkill(caster, MAGERY)/5));
 	var duration := ParaResist(2, caster, castOn, amt);
 	PlayStationaryEffect( castOn.x, castOn.y, castOn.z, FX_CURSE_EFFECT, 10, 0xa, 0, caster.realm );
 	PlaySoundEffect( castOn, SFX_SPELL_PARALYZE );
@@ -28,7 +28,7 @@ endprogram
 
 
 function ParaResist(circle, caster, castOn, amt)
-  var magery := CInt(GetEffectiveSkill(caster, SKILLID_MAGERY));
+  var magery := CInt(AP_GetSkill(caster, MAGERY));
   var evalint := CInt(GetEffectiveSkill(caster, SKILLID_EVALINT));
   var resist := CInt(GetEffectiveSkill(castOn, SKILLID_MAGICRESISTANCE));
   var chk1 := (resist / 5);

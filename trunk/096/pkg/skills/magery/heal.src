@@ -11,7 +11,7 @@ include "include/tileEffects";
 program spell_heal(parms)
   var caster := parms.caster;
   var castOn := parms.castOn;
-  var healed := CInt(GetEffectiveSkill(caster, SKILLID_MAGERY) / 20) + 5;
+  var healed := CInt(AP_GetSkill(caster, MAGERY) / 20) + 5;
   if(healed > 20)
 	healed := 20;
   endif

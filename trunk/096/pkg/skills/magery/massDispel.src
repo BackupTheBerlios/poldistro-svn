@@ -17,7 +17,7 @@ program spell_massDispel(parms)
   var circle := spellcfg[spellid].circle;
 
   var npccfg := ReadConfigFile("::npcdesc");
-  var magery := GetEffectiveSkill(caster, SKILLID_MAGERY);
+  var magery := AP_GetSkill(caster, MAGERY);
   var range := CInt(magery / 20);
   var targets := ListMobilesNearLocation( castOn.x, castOn.y, castOn.z, range, caster.realm );
   PlaySoundEffect( caster, 0x202 );

@@ -9,7 +9,7 @@ include ":attributes:attributes";
 
 function DoSummon( caster, circle, npctemplate, cast_loc )
   var thecritter;
-  var magery := GetEffectiveSkill(caster, SKILLID_MAGERY);
+  var magery := AP_GetSkill(caster, MAGERY);
   var duration := 20 + (magery * 2);
   var parms := {};
   parms .+ script := "tamed";

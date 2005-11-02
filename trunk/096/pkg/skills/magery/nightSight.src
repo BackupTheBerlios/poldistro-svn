@@ -15,7 +15,7 @@ program nightSight(parms, spellid)
 	var castOn := parms.castOn;
 
 	PlaySoundEffect(castOn, SFX_SPELL_NIGHT_SIGHT );
-	var magery := GetEffectiveSkill(caster, SKILLID_MAGERY);
+	var magery := AP_GetSkill(caster, MAGERY);
 	castOn.setlightlevel(0, magery * 60);
 	PlayObjectCenteredEffect(castOn, FX_BLESS_EFFECT, 10,10);
 

@@ -5,7 +5,7 @@ include ":attributes:attributes";
 
 program spell_polymorph( parms )
   var caster := parms.caster;
-  var magery     := CInt(GetEffectiveSkill(caster, SKILLID_MAGERY));
+  var magery     := CInt(AP_GetSkill(caster, MAGERY));
   var meditation := CInt(GetEffectiveSkill(caster, SKILLID_MEDITATION));
   var evalint    := CInt(GetEffectiveSkill(caster, SKILLID_EVALINT));
   var critgroup;

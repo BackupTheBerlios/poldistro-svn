@@ -24,7 +24,7 @@ program poison(parms)
   PlaySoundEffect(castOn, 0x206);
   PlayObjectCenteredEffect(castOn, FX_CURSE_EFFECT, 0x0a,0x1e);
   var pLevel :=  0;
-  var skil := GetEffectiveSkill(caster, SKILLID_MAGERY);
+  var skil := AP_GetSkill(caster, MAGERY);
   if(skil <= 50)
     pLevel := 1;
   elseif(skil <= 90)
@@ -73,7 +73,7 @@ program poison(parms)
 endprogram
 
 function PoisonResist(caster, castOn, amt)
-  var diff := Cint(GetEffectiveSkill(caster, SKILLID_MAGERY) + Cint(GetEffectiveSkill(caster, SKILLID_EVALINT) / 10));
+  var diff := Cint(AP_GetSkill(caster, MAGERY) + Cint(GetEffectiveSkill(caster, SKILLID_EVALINT) / 10));
   if(CheckSkill(castOn, SKILLID_MAGICRESISTANCE, diff, (diff * 2)))
     SendSysMessage(castOn, "You feel yourself resisting magical energy!");
     PlaySoundEffect(castOn, SFX_SPELL_WEAKEN);

@@ -13,7 +13,7 @@ program spell_magicTrap(parms)
 	var castOn := parms.castOn;
 
 	if ((castOn.isa(POLCLASS_DOOR)) || (castOn.objtype == 0xe79) || ((castOn.graphic<=0x9ab) &&(castOn.graphic>=0x9a8)) ||((castOn.graphic<=0xe43) &&(castOn.graphic>=0xe3c)) ||((castOn.graphic<=0xe80) &&(castOn.graphic>=0xe7c)))
-		var magery := GetEffectiveSkill(caster, SKILLID_MAGERY);
+		var magery := AP_GetSkill(caster, MAGERY);
 		var trapstr := CInt(magery/5);
 		if (findcity(castOn) != "no city")
 			caster.setCriminal(1);

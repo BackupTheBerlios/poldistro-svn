@@ -13,8 +13,8 @@ program archCure(parms)
   var castOn := parms.castOn;
   var npccfg := ReadConfigFile("::npcdesc");
   PlaySoundEffect(caster, SFX_SPELL_ARCH_CURE);
-  var magery := GetEffectiveSkill(caster, SKILLID_MAGERY);
-  var potency := CInt(GetEffectiveSkill( caster, SKILLID_MAGERY ) /33)+1;
+  var magery := AP_GetSkill(caster, MAGERY);
+  var potency := CInt(AP_GetSkill( caster, MAGERY ) /33)+1;
   foreach castOn in ListMobilesNearLocation( castOn.x, castOn.y, castOn.z, CInt(magery/15), caster.realm );
     if((CheckLineOfSight(castOn, caster)) and (castOn.cmdlevel < 2))
 	  PlayObjectCenteredEffect( castOn, FX_BLESS_EFFECT, 10,10);
