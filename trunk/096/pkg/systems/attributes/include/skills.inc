@@ -107,6 +107,31 @@ function AP_SetSkillMod(mobile, skill_name, points)
 endfunction
 
 /*
+ * AP_ModifySkillMod(mobile, skill_name, points)
+ *
+ * Purpose
+ * Modifies the modifier value for the skill.
+ * Example: 	AP_SetStatMod(mobile, "alchemy", -15.3)
+ *
+ * Parameters
+ * mobile:	Mobile reference to adjust the modifier points on.
+ * stat_name:	Name of the skill to adjust the modifier points on.
+ * points:	Number of points to adjust the modifier by.
+ *
+ * Return value
+ * Returns the previous value
+ *
+ */
+function AP_ModifySkillMod(mobile, stat_name, points)
+	var orig_mod := AP_GetStatMod(mobile, stat_name);
+	var new_mod := CDbl(points)+orig_mod;
+	SetAttributeTemporaryMod(mobile, stat_name, CInt(CDbl(new_mod) * 10.0));
+	
+	return orig_mod;
+endfunction
+
+
+/*
  * AP_SetSkillScript(attribute_name)
  *
  * Purpose

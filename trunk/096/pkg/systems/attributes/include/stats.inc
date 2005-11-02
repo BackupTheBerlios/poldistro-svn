@@ -107,6 +107,30 @@ function AP_SetStatMod(mobile, stat_name, points)
 endfunction
 
 /*
+ * AP_ModifyStatMod(mobile, stat_name, points)
+ *
+ * Purpose
+ * Modifies the modifier value for the stat.
+ * Example: 	AP_SetStatMod(mobile, "strength", -15.3)
+ *
+ * Parameters
+ * mobile:	Mobile reference to adjust the modifier points on.
+ * stat_name:	Name of the stat to adjust the modifier points on.
+ * points:	Number of points to adjust the modifier by.
+ *
+ * Return value
+ * Returns the previous value
+ *
+ */
+function AP_ModifyStatMod(mobile, stat_name, points)
+	var orig_mod := AP_GetStatMod(mobile, stat_name);
+	var new_mod := CDbl(points)+orig_mod;
+	SetAttributeTemporaryMod(mobile, stat_name, CInt(CDbl(new_mod) * 10.0));
+	
+	return orig_mod;
+endfunction
+
+/*
  * AP_GetStatCap(stat_name)
  *
  * Purpose
