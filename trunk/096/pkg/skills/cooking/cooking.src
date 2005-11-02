@@ -77,16 +77,16 @@ function cookit(who,item);
     endif
   endif
   if(!points)
-    points := GetEffectiveSkill(who, SKILLID_COOKING) * 2;
+    points := AP_GetSkill(who, "Cooking") * 2;
   endif
   if(skill_needed)
-    if(CheckSkill( who, SKILLID_COOKING, skill_needed, 0));
+    if( SkillCheck(who, "Cooking", skill_needed) > 0 )
       var amt := item.amount;
       if(DestroyItem(item))
         newitem := CreateItemInBackpack(who, product, amt);
         if(newitem)
 	      SendSysMessage(who, "You put the item in your pack.");
-	      AwardRawSkillPoints(who, SKILLID_COOKING, GetPoints(who, skill_needed, points));
+	      //AwardRawSkillPoints(who, SKILLID_COOKING, GetPoints(who, skill_needed, points));
 	    else
 	      SendSysMessage(who, "You dont have any room in your backpack.");
 	    endif
