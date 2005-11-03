@@ -59058,7 +59058,7 @@ NPC sheep
 	Stamina	25
 	CreatedAt	0
 	AR	3
-	script	:oldAI:sheep
+	script	:brainAI:brain
 }
 
 Item
@@ -59142,7 +59142,7 @@ NPC sheep
 	Stamina	25
 	CreatedAt	0
 	AR	3
-	script	:oldAI:sheep
+	script	:brainAI:brain
 }
 
 Item
@@ -59191,7 +59191,7 @@ NPC sheep
 	Stamina	25
 	CreatedAt	0
 	AR	3
-	script	:oldAI:sheep
+	script	:brainAI:brain
 }
 
 Item
@@ -59379,7 +59379,7 @@ NPC sheep
 	Stamina	25
 	CreatedAt	0
 	AR	3
-	script	:oldAI:sheep
+	script	:brainAI:brain
 }
 
 Item
@@ -59638,7 +59638,7 @@ NPC sheep
 	Stamina	25
 	CreatedAt	0
 	AR	3
-	script	:oldAI:sheep
+	script	:brainAI:brain
 }
 
 Item
@@ -59722,7 +59722,7 @@ NPC sheep
 	Stamina	25
 	CreatedAt	0
 	AR	3
-	script	:oldAI:sheep
+	script	:brainAI:brain
 }
 
 Item
@@ -60670,7 +60670,7 @@ NPC sheep
 	Stamina	25
 	CreatedAt	0
 	AR	3
-	script	:oldAI:sheep
+	script	:brainAI:brain
 }
 
 Item
@@ -60788,7 +60788,7 @@ NPC sheep
 	Stamina	25
 	CreatedAt	0
 	AR	3
-	script	:oldAI:sheep
+	script	:brainAI:brain
 }
 
 Item
@@ -60836,7 +60836,7 @@ NPC sheep
 	Stamina	25
 	CreatedAt	0
 	AR	3
-	script	:oldAI:sheep
+	script	:brainAI:brain
 }
 
 Item
@@ -60919,7 +60919,7 @@ NPC sheep
 	Stamina	25
 	CreatedAt	0
 	AR	3
-	script	:oldAI:sheep
+	script	:brainAI:brain
 }
 
 Item
@@ -60968,7 +60968,7 @@ NPC sheep
 	Stamina	25
 	CreatedAt	0
 	AR	3
-	script	:oldAI:sheep
+	script	:brainAI:brain
 }
 
 Item
@@ -61156,7 +61156,7 @@ NPC sheep
 	Stamina	25
 	CreatedAt	0
 	AR	3
-	script	:oldAI:sheep
+	script	:brainAI:brain
 }
 
 Item
@@ -61205,7 +61205,7 @@ NPC sheep
 	Stamina	25
 	CreatedAt	0
 	AR	3
-	script	:oldAI:sheep
+	script	:brainAI:brain
 }
 
 Item
@@ -61254,7 +61254,7 @@ NPC sheep
 	Stamina	25
 	CreatedAt	0
 	AR	3
-	script	:oldAI:sheep
+	script	:brainAI:brain
 }
 
 Item
@@ -61303,7 +61303,7 @@ NPC sheep
 	Stamina	25
 	CreatedAt	0
 	AR	3
-	script	:oldAI:sheep
+	script	:brainAI:brain
 }
 
 Item
@@ -64018,7 +64018,7 @@ NPC sheep
 	Stamina	25
 	CreatedAt	0
 	AR	3
-	script	:oldAI:sheep
+	script	:brainAI:brain
 }
 
 Item
@@ -64067,7 +64067,7 @@ NPC sheep
 	Stamina	25
 	CreatedAt	0
 	AR	3
-	script	:oldAI:sheep
+	script	:brainAI:brain
 }
 
 Item
