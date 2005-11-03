@@ -22935,24 +22935,6 @@ Item
 
 Item
 {
-	Serial	0x41a7226b
-	ObjType	0x888b
-	Graphic	0x1
-	X	852
-	Y	1688
-	Z	0
-	Revision	0
-	Realm	britannia
-	CProp	amount i2
-	CProp	chestarray a2:i1768589078i1768601218
-	CProp	duration i1800
-	CProp	level i1
-	CProp	range i3
-	DecayAt	3138356
-}
-
-Item
-{
 	Serial	0x6ae1231f
 	ObjType	0xe77
 	Graphic	0xe77
@@ -120357,24 +120339,6 @@ Item
 
 Item
 {
-	Serial	0x4a1ae91f
-	ObjType	0x888b
-	Graphic	0x1
-	X	2442
-	Y	1088
-	Z	28
-	Revision	0
-	Realm	britannia
-	CProp	amount i2
-	CProp	chestarray a2:i1768593806i1768651661
-	CProp	duration i1800
-	CProp	level i5
-	CProp	range i5
-	DecayAt	11138689
-}
-
-Item
-{
 	Name	Beware the dangers that lie within... this is your only warning
 	Serial	0x4a1ae92e
 	ObjType	0x1172
@@ -197752,24 +197716,6 @@ Item
 
 Item
 {
-	Serial	0x4a63d390
-	ObjType	0x888b
-	Graphic	0x1
-	X	5146
-	Y	619
-	Z	-50
-	Revision	0
-	Realm	britannia
-	CProp	amount i3
-	CProp	chestarray a3:i1768592748i1768604820i1768632834
-	CProp	duration i1800
-	CProp	level i1
-	CProp	range i6
-	DecayAt	11319498
-}
-
-Item
-{
 	Serial	0x6ae12325
 	ObjType	0xe42
 	Graphic	0xe42
@@ -198001,24 +197947,6 @@ Item
 	Z	0
 	Revision	0
 	Realm	britannia
-}
-
-Item
-{
-	Serial	0x4a6433ef
-	ObjType	0x888b
-	Graphic	0x1
-	X	5151
-	Y	743
-	Z	0
-	Revision	0
-	Realm	britannia
-	CProp	amount i2
-	CProp	chestarray a2:i1775951654i1776129615
-	CProp	duration i1800
-	CProp	level i3
-	CProp	range i3
-	DecayAt	11319694
 }
 
 Item
@@ -214327,23 +214255,6 @@ Item
 	DecayAt	2683643
 }
 
-Item
-{
-	Serial	0x41b36f1a
-	ObjType	0x888b
-	Graphic	0x1
-	X	5267
-	Y	691
-	Z	0
-	Revision	0
-	Realm	britannia
-	CProp	amount i5
-	CProp	chestarray a5:i1768590658i1768610455i1768652672i1768656512i1768656622
-	CProp	duration i1800
-	CProp	level i3
-	CProp	range i3
-	DecayAt	3395571
-}
 
 Item
 {
@@ -215937,24 +215848,6 @@ Item
 	Z	15
 	Revision	0
 	Realm	britannia
-}
-
-Item
-{
-	Serial	0x4a63d3b9
-	ObjType	0x888b
-	Graphic	0x1
-	X	5323
-	Y	571
-	Z	0
-	Revision	0
-	Realm	britannia
-	CProp	amount i4
-	CProp	chestarray a4:i1768589854i1768601408i1768629830i1768648578
-	CProp	duration i1800
-	CProp	level i2
-	CProp	range i3
-	DecayAt	11319561
 }
 
 Item
@@ -218744,24 +218637,6 @@ Item
 
 Item
 {
-	Serial	0x425d899e
-	ObjType	0x888b
-	Graphic	0x1
-	X	5423
-	Y	1853
-	Z	0
-	Revision	0
-	Realm	britannia
-	CProp	amount i2
-	CProp	chestarray a2:i1768589079i1768601170
-	CProp	duration i1800
-	CProp	level i2
-	CProp	range i2
-	DecayAt	5397614
-}
-
-Item
-{
 	Serial	0x6ae12321
 	ObjType	0xe40
 	Graphic	0xe40
@@ -218963,23 +218838,6 @@ Item
 	DecayAt	25191073
 }
 
-Item
-{
-	Serial	0x425d89cb
-	ObjType	0x888b
-	Graphic	0x1
-	X	5427
-	Y	1906
-	Z	0
-	Revision	0
-	Realm	britannia
-	CProp	amount i2
-	CProp	chestarray a2:i1768589080i1768605727
-	CProp	duration i1800
-	CProp	level i2
-	CProp	range i2
-	DecayAt	5397708
-}
 
 Item
 {
@@ -219951,24 +219809,6 @@ Item
 
 Item
 {
-	Serial	0x425d94e8
-	ObjType	0x888b
-	Graphic	0x1
-	X	5465
-	Y	1797
-	Z	0
-	Revision	0
-	Realm	britannia
-	CProp	amount i2
-	CProp	chestarray a2:i1768589081i1768633655
-	CProp	duration i1800
-	CProp	level i4
-	CProp	range i2
-	DecayAt	5401011
-}
-
-Item
-{
 	Serial	0x6ae12322
 	ObjType	0xe43
 	Graphic	0xe43
@@ -220506,24 +220346,6 @@ Item
 
 Item
 {
-	Serial	0x425d8b01
-	ObjType	0x888b
-	Graphic	0x1
-	X	5482
-	Y	1983
-	Z	1
-	Revision	0
-	Realm	britannia
-	CProp	amount i2
-	CProp	chestarray a2:i1768589082i1768601168
-	CProp	duration i1800
-	CProp	level i2
-	CProp	range i2
-	DecayAt	5398434
-}
-
-Item
-{
 	Serial	0x6ae12323
 	ObjType	0xe42
 	Graphic	0xe42
@@ -220615,24 +220437,6 @@ Item
 	Realm	britannia
 	Container	0x6ae12323
 	DecayAt	25191073
-}
-
-Item
-{
-	Serial	0x425d8a83
-	ObjType	0x888b
-	Graphic	0x1
-	X	5474
-	Y	2035
-	Z	0
-	Revision	0
-	Realm	britannia
-	CProp	amount i2
-	CProp	chestarray a2:i1768589083i1768601169
-	CProp	duration i1800
-	CProp	level i1
-	CProp	range i2
-	DecayAt	5398279
 }
 
 Item
@@ -223518,24 +223322,6 @@ Item
 
 Item
 {
-	Serial	0x425d8f9f
-	ObjType	0x888b
-	Graphic	0x1
-	X	5614
-	Y	1838
-	Z	0
-	Revision	0
-	Realm	britannia
-	CProp	amount i6
-	CProp	chestarray a6:i1768591003i1768602829i1768630613i1768648859i1768656669i1768656701
-	CProp	duration i1800
-	CProp	level i1
-	CProp	range i6
-	DecayAt	5399218
-}
-
-Item
-{
 	Serial	0x425d9081
 	ObjType	0x6c5
 	Graphic	0x6c5
@@ -224593,24 +224379,6 @@ Item
 
 Item
 {
-	Serial	0x425d89f9
-	ObjType	0x888b
-	Graphic	0x1
-	X	5575
-	Y	2005
-	Z	0
-	Revision	0
-	Realm	britannia
-	CProp	amount i2
-	CProp	chestarray a2:i1768589084i1768601171
-	CProp	duration i1800
-	CProp	level i1
-	CProp	range i2
-	DecayAt	5397941
-}
-
-Item
-{
 	Serial	0x6ae1232d
 	ObjType	0xe40
 	Graphic	0xe40
@@ -225552,24 +225320,6 @@ Item
 
 Item
 {
-	Serial	0x4143123e
-	ObjType	0x888b
-	Graphic	0x1
-	X	5740
-	Y	51
-	Z	0
-	Revision	0
-	Realm	britannia
-	CProp	amount i3
-	CProp	chestarray a3:i1768589475i1768640436i1768656248
-	CProp	duration i1800
-	CProp	level i4
-	CProp	range i2
-	DecayAt	1099977
-}
-
-Item
-{
 	Serial	0x6ae12326
 	ObjType	0xe43
 	Graphic	0xe43
@@ -225912,24 +225662,6 @@ Item
 	CProp	DestZ i5
 	Invisible	0
 	DecayAt	1099828
-}
-
-Item
-{
-	Serial	0x414311f5
-	ObjType	0x888b
-	Graphic	0x1
-	X	5699
-	Y	83
-	Z	0
-	Revision	0
-	Realm	britannia
-	CProp	amount i3
-	CProp	chestarray a3:i1768589608i1768609369i1768638307
-	CProp	duration i1800
-	CProp	level i3
-	CProp	range i4
-	DecayAt	1099923
 }
 
 Item
@@ -227047,24 +226779,6 @@ Item
 	CProp	DestZ i0
 	Invisible	0
 	DecayAt	700
-}
-
-Item
-{
-	Serial	0x414313e0
-	ObjType	0x888b
-	Graphic	0x1
-	X	5783
-	Y	24
-	Z	0
-	Revision	0
-	Realm	britannia
-	CProp	amount i3
-	CProp	chestarray a3:i1768589609i1768636177i1768656410
-	CProp	duration i1800
-	CProp	level i4
-	CProp	range i5
-	DecayAt	1100127
 }
 
 Item
@@ -239864,24 +239578,6 @@ Item
 	CProp	DestZ i20
 	Invisible	0
 	DecayAt	701
-}
-
-Item
-{
-	Serial	0x43e150f9
-	ObjType	0x888b
-	Graphic	0x1
-	X	6091
-	Y	184
-	Z	0
-	Revision	0
-	Realm	britannia
-	CProp	amount i3
-	CProp	chestarray a3:i1768589610i1768651146i1768656443
-	CProp	duration i1800
-	CProp	level i5
-	CProp	range i5
-	DecayAt	7088482
 }
 
 Item
