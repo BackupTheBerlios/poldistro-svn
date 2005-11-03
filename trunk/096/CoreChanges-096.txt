@@ -1,4 +1,16 @@
 -- POL096 --
+11-03 Austin
+    Added : uo::CoordinateDistance(x1, y1, x2, y2) - Returns the distance between two coordinates.
+    
+    The following two functions were originally scripted by Myrathi:
+    Added : uo::GetCoordsInLine(x1, y1, x2, y2) - Returns an array of structs {.x, .y} for every coordinate
+            between the two points.
+    Added : uo::GetFacing(from_x, from_y, to_x, to_y) - Returns the facing number an object must have in order to 
+            face to_x and to_y from from_x and from_y.
+
+10-31 Austin
+	Fixed : Core crash with MoveCharacterToLocation() when a character was moved to the same realm.
+
 10-30 Austin
         Changed : NPC.connected will now always return 1. Before it was 0.
 
