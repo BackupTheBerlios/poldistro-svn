@@ -163,6 +163,11 @@ enum SOUNDS
 	SFX_BEAR_2C		:= 0x4C5,
 	SFX_BEAR_3C		:= 0x4C6,
 	SFX_BEAR_4C		:= 0x4C7,
-	SFX_BEAR_5C		:= 0x4C8
-endenum
+	SFX_BEAR_5C		:= 0x4C8,
 	
+	SFX_SPELL_FAIL		:= 0x5D,
+endenum
+
+enum GRAPHIC_EFFECTS
+	GFX_SPELL_FAIL		:= 0x3735
+endenum
