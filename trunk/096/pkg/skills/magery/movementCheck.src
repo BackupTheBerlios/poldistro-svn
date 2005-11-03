@@ -1,0 +1,17 @@
+use uo;
+use os;
+
+program MovementChecker(params)
+	var who := params[1];
+	var spell_starter := GetProcess(params[2]);
+	var my_x := params[3];
+	var my_y := params[4];
+	
+	while ( spell_starter.pid )
+		if ( who.x != my_x || who.y != my_y )
+			spell_starter.SendEvent("moved");
+			return;
+		endif
+		sleepms(50);
+	endwhile
+endprogram

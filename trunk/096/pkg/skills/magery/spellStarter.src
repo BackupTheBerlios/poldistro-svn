@@ -1,0 +1,214 @@
+use uo;
+use os;
+use cfgfile;
+
+include ":attributes:attributes";
+include "include/client";
+include ":magery:spells";
+include "include/string";
+
+set_script_option(SCRIPTOPT_CAN_ACCESS_OFFLINE_MOBILES, 1);
+
+program SpellStarter(params)
+	var who := params[1];
+	var words_of_power := params[2];
+	var parent_pid := params[3];
+	
+	Attach(who);
+	
+	//Remove trailing space
+	words_of_power := RemoveSpaces(words_of_power, CLR_LEADING_SPACES+CLR_DOUBLE_SPACES+CLR_TRAILING_SPACES);
+	
+	var spell_info := ReadConfigFile("configs/spell_info");
+	spell_info := spell_info[words_of_power];
+
+	// If spell is set to 'TestOnly 1', then it requires GM-cmdlevel or #TestSpell CProp
+	// before it can be used.
+	var can_cast := 1;
+	if ( spell_info.TestOnly && (!who.cmdlevel) )
+		// They need #TestSpell to cast it
+		if ( GetObjProperty(who, "#TestSpell") == error )
+			can_cast := 0;
+		endif
+	elseif ( spell_info.NPCOnly && !who.npctemplate )
+		PrintTextAbove(who, "Unable to cast - NPC only spell.");
+		return 0;
+	endif
+
+	var attribute		:= spell_info.Attribute;
+	var delay		:= spell_info.BaseDelay;
+	var difficulty		:= spell_info.Difficulty;
+	var mana		:= spell_info.ManaCost;
+	if ( !attribute )
+		attribute := "Magery";
+	endif
+
+	if ( GetObjProperty(who, "#medding") )
+		SendSysMessage(who, "You can not cast right now.");
+		return;
+	else
+		SetObjProperty(who, "#medding", 1);
+	endif
+
+	if ( !spell_info || !can_cast )
+		SendSysMessage(who, "Your words seem to have no meaning.");
+		if ( who.npctemplate )
+			PrintTextAbove(who, "Your words seem to have no meaning.");
+		endif
+		FailSpell(who);
+	elseif ( who.squelched && !who.npctemplate )
+		SendSysMessage(who, "Something prevents you from casting.");
+		FailSpell(who);
+	elseif ( !UseMana(who, mana) )
+		SendSysMessage(who, "You are too tired to cast.");
+		FailSpell(who);
+	elseif ( !CheckRegs(who, spell_info) )
+		FailSpell(who);
+	elseif ( !EquipmentCheck(who) )
+		FailSpell(who);
+	elseif ( !CheckDelay(who, attribute, difficulty, delay) )
+		FailSpell(who);
+		SendSysMessage(who, "You break your concentration.");
+	else
+		var skill_check := SkillCheck(who, attribute, difficulty);
+		if ( skill_check > 0 )
+			var info := struct;
+			info.+script := spell_info.script;
+			info.+attribute := attribute;
+			info.+skill_check := skill_check;
+			info.+spell_words := words_of_power;
+			info.+target := params[4];
+			info.+pid := GetPid();
+
+			var script := start_script(spell_info.script, {who, info});
+			if ( script.errortext )
+				PrintTextAbove(who, "Unable to start ["+spell_info.script+"] -> "+script.errortext);
+				SendSysMessage(who, script.errortext);
+			endif
+
+			var ev;
+			while( script.pid && !ev )
+				ev := wait_for_event(1);
+			endwhile
+		else
+			SendSysMessage(who, "You are unable to build the concentration needed to cast.");
+		endif
+	endif
+
+	EraseObjProperty(who, "#medding");
+	ReleaseScript(parent_pid);
+endprogram
+
+function CheckDelay(who, attribute, difficulty, base_delay)
+	
+	SendSysMessage(who, "You begin building the concentration needed to cast.");
+	var equip_delay := GetEquipmentDelay(who);
+		
+	var my_x := who.x;
+	var my_y := who.y;
+	
+	var skill := AP_GetSkill(who, attribute);
+	var delay := CInt(CDbl(base_delay) * (CDbl(difficulty) / CDbl(skill)));
+	delay := delay+equip_delay;
+	
+	if ( delay < 50 )
+		delay := 50;
+	endif
+	
+	var script;
+	if ( !who.npctemplate )
+		script := start_script("movementcheck", {who, GetPid(), my_x, my_y});
+	endif
+	
+	SpellDebug(who, "Cast delay ->"+delay);
+	sleepms(delay);
+	
+	script.kill();
+	
+	if ( who.npctemplate )
+		return 1;
+	elseif ( Events_Waiting() > 0 )
+		return 0;
+	elseif ( who.x != my_x || who.y != my_y )
+		return 0;
+	else
+		return 1;
+	endif
+endfunction
+
+function GetEquipmentDelay(who)
+	/*
+	var weight := 0;
+	var ar := 0;
+	foreach item in EnumeratePhysicalItems(who)
+		weight := weight+item.weight;
+		ar := ar+item.ar;
+	endforeach
+	
+	return {weight, ar};
+	*/
+	
+	var cfg := ReadConfigFile(":*:itemdesc");
+	var delay := 0;
+	foreach item in EnumeratePhysicalItems(who)
+		delay := delay+CInt(cfg[item.objtype].CastDelay);
+		sleepms(2);
+	endforeach
+	
+	return delay;
+endfunction
+
+function EquipmentCheck(who)
+	var item_cfg := ReadConfigFile(":*:itemdesc");
+	foreach item in ListEquippedItems(who)
+		if ( item_cfg[item.objtype].BlocksCastingIfInHand ) // God thats long!
+			return 0;
+		endif
+		sleepms(2);
+	endforeach
+	return 1;
+endfunction
+
+function CheckRegs(who, byref spell_info)
+	if ( who.npctemplate )
+		return 1;
+	endif
+	
+	var reg_list := dictionary;
+
+	foreach line in GetConfigStringArray(spell_info, "Reagent")
+		line := SplitWords(line);
+		var objtype := GetObjTypeByName(line[1]);
+		var amount := CInt(line[2]);
+
+		if ( reg_list[objtype] )
+			reg_list[objtype] := reg_list[objtype] + amount;
+		else
+			reg_list[objtype] := amount;
+		endif
+
+		if ( AmountInPack(who, objtype) < reg_list[objtype] )
+			SendSysMessage(who, "You do not have enough " + GetName(objtype, 1));
+			return 0;
+		endif
+		sleepms(1);
+	endforeach
+
+	foreach key in (reg_list.keys())
+		ConsumeSubstance(who.backpack, key, reg_list[key]);
+		sleepms(1);
+	endforeach
+
+	return 1;
+endfunction
+
+function FailSpell(who)
+/*
+Simple function for handling effects when a caster
+fails the casting.
+*/
+	EraseObjProperty(who, "#medding");
+	PlayObjectCenteredEffect(who, FX_SPELL_FAIL, 5, 50);
+	PlaySoundEffect(who, SFX_SPELL_FAIL);
+
+endfunction
