@@ -1,9 +1,12 @@
+/* $Id$
+ *
+ */
 use uo;
 use os;
 use cfgfile;
 
 
-program itemcontrol(item)
+program control_Wrestle(item)
 	var cfgfile := ReadConfigFile(":combat:itemdesc");
 	var dmg := cfgfile[item.objtype].damage;
 
