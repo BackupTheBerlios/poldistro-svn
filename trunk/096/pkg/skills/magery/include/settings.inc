@@ -8,7 +8,7 @@ use cfgfile;
  * MS_GetSettingsCfgFile(engine_name)
  *
  * Purpose
- * Reads in :lumberjacking:config/settings.cfg
+ * Reads in :magery:config/settings.cfg
  *
  * Parameters
  *

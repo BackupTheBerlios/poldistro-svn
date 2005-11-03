@@ -5,18 +5,19 @@ use cfgfile;
 
 include ":attributes:attributes";
 include "include/client";
+include "include/dist";
 
 const MAX_RANGE	:= 16;
 
 function SpellDebug(who, text)
 	if ( who.cmdlevel )
-		SendSysMessage(who, text, SSM_INFO_DEBUG);
+		SendSysMessage(who, ""+text);
 	endif
 endfunction
 
 function UseMana(who, amount)
-	if ( GetManaPoints(who) >= amount )
-		SetManaPoints(who, GetManaPoints(who)-amount);
+	if ( AP_GetVital(who, MANA) >= amount )
+		AP_SetVital(who, MANA, AP_GetVital(who, MANA)-amount);
 		return 1;
 	else
 		return 0;
@@ -84,8 +85,8 @@ function SpellTargetCoordinates(byref who, byref npctarget:=0, prompt := "Select
 endfunction
 
 function GetSpellPoints(mage, targ, points)
-	var mage_skill := GetSkill(mage, "Magery");
-	var defense := GetSkill(targ, "Magic_Resistance");
+	var mage_skill := AP_GetSkill(mage, MAGERY);
+	var defense := AP_GetSkill(targ, RESISTING_SPELLS);
 
 	// Failed MR check results in only half your resistance being used!
 	if ( SkillCheck(targ, "Magic_Resistance", -1) < 0 )

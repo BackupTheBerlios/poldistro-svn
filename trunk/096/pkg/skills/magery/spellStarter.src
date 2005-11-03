@@ -100,6 +100,10 @@ program SpellStarter(params)
 endprogram
 
 function CheckDelay(who, attribute, difficulty, base_delay)
+	if ( who.npctemplate )
+		// NPCs are allowed to move.
+		return 1;
+	endif
 	
 	SendSysMessage(who, "You begin building the concentration needed to cast.");
 	var equip_delay := GetEquipmentDelay(who);
@@ -114,24 +118,20 @@ function CheckDelay(who, attribute, difficulty, base_delay)
 	if ( delay < 50 )
 		delay := 50;
 	endif
-	
-	var script;
-	if ( !who.npctemplate )
-		script := start_script("movementcheck", {who, GetPid(), my_x, my_y});
-	endif
+	var script := start_script("movementCheck", {who, GetPid(), my_x, my_y});
 	
 	SpellDebug(who, "Cast delay ->"+delay);
+	
 	sleepms(delay);
 	
+	// Delay is over, stop the movement checker.
 	script.kill();
 	
-	if ( who.npctemplate )
-		return 1;
-	elseif ( Events_Waiting() > 0 )
-		return 0;
-	elseif ( who.x != my_x || who.y != my_y )
+	if ( Events_Waiting() > 0 )
+		// movementCheck.ecl sent a "moved" event.
 		return 0;
 	else
+		// Player stood still and can move on.
 		return 1;
 	endif
 endfunction
@@ -150,7 +150,7 @@ function GetEquipmentDelay(who)
 	
 	var cfg := ReadConfigFile(":*:itemdesc");
 	var delay := 0;
-	foreach item in EnumeratePhysicalItems(who)
+	foreach item in ListEquippedItems(who)
 		delay := delay+CInt(cfg[item.objtype].CastDelay);
 		sleepms(2);
 	endforeach
@@ -171,6 +171,7 @@ endfunction
 
 function CheckRegs(who, byref spell_info)
 	if ( who.npctemplate )
+		// NPCs don't need reagents to cast.
 		return 1;
 	endif
 	
@@ -187,10 +188,10 @@ function CheckRegs(who, byref spell_info)
 			reg_list[objtype] := amount;
 		endif
 
-		if ( AmountInPack(who, objtype) < reg_list[objtype] )
-			SendSysMessage(who, "You do not have enough " + GetName(objtype, 1));
-			return 0;
-		endif
+		//if ( AmountInPack(who, objtype) < reg_list[objtype] )
+		//	SendSysMessage(who, "You do not have enough " + GetName(objtype, 1));
+		//	return 0;
+		//endif
 		sleepms(1);
 	endforeach
 
@@ -203,12 +204,9 @@ function CheckRegs(who, byref spell_info)
 endfunction
 
 function FailSpell(who)
-/*
-Simple function for handling effects when a caster
-fails the casting.
-*/
+	// Simple function for handling effects when a caster
+	// fails the casting.
 	EraseObjProperty(who, "#medding");
-	PlayObjectCenteredEffect(who, FX_SPELL_FAIL, 5, 50);
+	PlayObjectCenteredEffect(who, GFX_SPELL_FAIL, 5, 50);
 	PlaySoundEffect(who, SFX_SPELL_FAIL);
-
 endfunction
