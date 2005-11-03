@@ -1,4 +1,4 @@
-// $Id$
+// $Id: unlock.src 278 2005-09-28 19:20:39Z muaddiblsd $
 
 use os;
 use uo;
