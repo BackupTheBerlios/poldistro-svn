@@ -59107,7 +59107,7 @@ NPC cow
 	Stamina	15
 	CreatedAt	0
 	AR	9
-	script	:oldAI:cow
+	script	:brainAI:brain
 	SpeechColor	63
 }
 
@@ -59274,7 +59274,7 @@ NPC cow
 	Stamina	15
 	CreatedAt	0
 	AR	9
-	script	:oldAI:cow
+	script	:brainAI:brain
 	SpeechColor	18
 }
 
@@ -59344,7 +59344,7 @@ NPC cow
 	Stamina	15
 	CreatedAt	0
 	AR	9
-	script	:oldAI:cow
+	script	:brainAI:brain
 	SpeechColor	97
 }
 
@@ -59463,7 +59463,7 @@ NPC cow
 	Stamina	15
 	CreatedAt	0
 	AR	9
-	script	:oldAI:cow
+	script	:brainAI:brain
 	SpeechColor	442
 }
 
@@ -59603,7 +59603,7 @@ NPC cow
 	Stamina	15
 	CreatedAt	0
 	AR	9
-	script	:oldAI:cow
+	script	:brainAI:brain
 	SpeechColor	63
 }
 
@@ -60374,7 +60374,7 @@ NPC cow
 	Stamina	15
 	CreatedAt	0
 	AR	9
-	script	:oldAI:cow
+	script	:brainAI:brain
 	SpeechColor	348
 }
 
@@ -60636,7 +60636,7 @@ NPC cow
 	Stamina	15
 	CreatedAt	0
 	AR	9
-	script	:oldAI:cow
+	script	:brainAI:brain
 	SpeechColor	53
 }
 
@@ -61086,7 +61086,7 @@ NPC cow
 	Stamina	15
 	CreatedAt	0
 	AR	9
-	script	:oldAI:cow
+	script	:brainAI:brain
 	SpeechColor	243
 }
 
@@ -61121,7 +61121,7 @@ NPC cow
 	Stamina	15
 	CreatedAt	0
 	AR	9
-	script	:oldAI:cow
+	script	:brainAI:brain
 	SpeechColor	7
 }
 
@@ -61636,7 +61636,7 @@ NPC cow
 	Stamina	15
 	CreatedAt	0
 	AR	9
-	script	:oldAI:cow
+	script	:brainAI:brain
 	SpeechColor	37
 }
 
