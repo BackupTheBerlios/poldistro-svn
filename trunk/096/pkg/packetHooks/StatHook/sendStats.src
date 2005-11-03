@@ -30,7 +30,7 @@ include ":attributes:attributeConstants";
 include ":attributes:attributes";
 
 program sendStats()
-	Print( "Installing Outgoing Status PH..." );
+	Print( "INSTALLING Outgoing Status PH..." );
 	return 1;
 endprogram
 

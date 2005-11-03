@@ -23,7 +23,7 @@ use polsys;
 use math;
 
 program receiveStatLock()
-	Print( "Installing Statlock Recieving PH..." );
+	Print( "INSTALLING Statlock Recieving PH..." );
 	return 1;
 endprogram
 

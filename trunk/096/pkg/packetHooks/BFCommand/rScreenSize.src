@@ -15,7 +15,7 @@
 use uo;
 
 program rScreenSize()
-  Print( "Installing Screen Size Setup PH..." );
+  Print( "INSTALLING Screen Size Setup PH..." );
   return 1;
 endprogram
 
