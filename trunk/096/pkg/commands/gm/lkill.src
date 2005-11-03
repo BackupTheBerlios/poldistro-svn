@@ -20,7 +20,7 @@ program textcmd_Kill(who)
 	SetObjProperty(targ, "GuardKill", 1);
 	PlayLightningBoltEffect(targ);
 	PlaySoundEffect(targ, SFX_SPELL_LIGHTNING);	
-	ApplyRawDamage(targ, AP_GetVitalMaximumValue(targ, "Hits"));
+	ApplyRawDamage(targ, CInt(AP_GetVitalMaximumValue(targ, "Hits")));
 	
 	return 1;
 endprogram

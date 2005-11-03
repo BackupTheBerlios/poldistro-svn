@@ -21,7 +21,7 @@ program textcmd_eKill(who, text)
 	endif
 	
 	PlayMovingEffect(who, targ, CInt(text), 5, 1);
-	ApplyRawDamage(targ, AP_GetVitalMaximumValue(targ, "Hits"));
+	ApplyRawDamage(targ, CInt(AP_GetVitalMaximumValue(targ, "Hits")));
 	
 	return 1;
 endprogram
