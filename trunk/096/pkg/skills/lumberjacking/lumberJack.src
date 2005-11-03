@@ -55,7 +55,7 @@ function ChopTree(who, tool, targ, orig_x, orig_y)
 
 	var max_wood := CInt(LJ_GetSettingsCfgElem("Settings").MaxWood);
 	// The less wood there is, the more difficult it becomes.
-	var difficulty := CInt( 100 - 5 * wood_amount / max_wood );
+	var difficulty := CInt( 100 - (95 * (wood_amount / max_wood)) );
 	
 	if ( who.cmdlevel )
 		SendSysMessage(who, "MaxWood="+max_wood+"    CurWood="+wood_amount);
