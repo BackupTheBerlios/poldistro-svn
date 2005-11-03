@@ -102,6 +102,9 @@ endenum
 
 
 enum DIRECTIONS
+	MIN_DIR	:=  0x00,
+	MAX_DIR :=  0x07,
+
 	DIR_N	:=  0x00,   // North.
 	DIR_NE	:=  0x01,   // Northeast.
 	DIR_E	:=  0x02,   // East.
@@ -112,59 +115,47 @@ enum DIRECTIONS
 	DIR_NW	:=  0x07    // Northwest.
 endenum
 
-
-// * Colors *
-// This is not suposed to be a "complete" colorchart, but a
-// quick way to access normal colors.
-const COLOR_DEFAULT         := 0x0000;
-const COLOR_BLACK           := 0x0001;
-const COLOR_INDIGO_DARK     := 0x0007;
-const COLOR_INDIGO          := 0x0008;
-const COLOR_INDIGO_LIGHT    := 0x0009;
-
-const COLOR_VIOLET_DARK     := 0x000c;
-const COLOR_VIOLET          := 0x000d;
-const COLOR_VIOLET_LIGHT    := 0x000e;
-const COLOR_MAGENTA_DARK    := 0x0011;
-const COLOR_MAGENTA         := 0x0012;
-const COLOR_MAGENTA_LIGHT   := 0x0013;
-const COLOR_RED_DARK        := 0x0020;
-const COLOR_RED             := 0x0022;
-const COLOR_RED_LIGHT       := 0x0023;
-const COLOR_ORANGE_DARK     := 0x002a;
-const COLOR_ORANGE          := 0x002b;
-const COLOR_ORANGE_LIGHT    := 0x002c;
-const COLOR_YELLOW_DARK     := 0x0034;
-const COLOR_YELLOW          := 0x0035;
-const COLOR_YELLOW_LIGHT    := 0x0036;
-const COLOR_GREEN_DARK      := 0x003e;
-const COLOR_GREEN           := 0x003f;
-const COLOR_GREEN_LIGHT     := 0x0040;
-const COLOR_CYAN_DARK       := 0x0057;
-const COLOR_CYAN            := 0x0058;
-const COLOR_CYAN_LIGHT      := 0x0059;
-const COLOR_BLUE_DARK       := 0x0061;
-const COLOR_BLUE            := 0x0062;
-const COLOR_BLUE_LIGHT      := 0x0063;
-const COLOR_GRAY_DARK       := 0x0386;
-const COLOR_GRAY            := 0x0387;
-const COLOR_GRAY_LIGHT      := 0x0388;
-const COLOR_BLACKMETAL      := 0x044e;
-const COLOR_GOLDMETAL       := 0x046e;
-const COLOR_BSHIMMER        := 0x0480;	// T2A Only : Waterelemental color.
-const COLOR_WHITE           := 0x0481;	// T2A Only : True white.
-const COLOR_STONE           := 0x0482;	// T2A Only : Rock ( stoneharpy?)
-const COLOR_SPECTRAL        := 0x4631;  // Spectral
-const COLOR_TRANSLUCENT     := 0x7cf8;  // Translucent
-
-////
-// Font Colours.
-////
-const FONTCOLOR_RED := 38;
-const FONTCOLOR_GREEN :=68;
-const FONTCOLOR_BLUE := 90;
-const FONTCOLOR_MAUVE := 30;
-const FONTCOLOR_LAVENDER := 20;
-const FONTCOLOR_BLACK := 1;
-const FONTCOLOR_BROWN := 46;
-const FONTCOLOR_YELLOW := 53;
+// SOUNDS ABC order by insideUO
+// NOTE: Any number over 0xFF (255) will not work in older clients.
+enum SOUNDS
+	SFX_AGILITY		:= 0x1E8,
+	SFX_AGILITY2		:= 0x28F,
+	SFX_AIR_1		:= 0x291,
+	SFX_AIR_2		:= 0x292,
+	SFX_AIR_3		:= 0x293,
+	SFX_AIR_4		:= 0x294,
+	SFX_AIR_5		:= 0x295,
+	SFX_AIRELEMENTAL_1	:= 0x108,
+	SFX_AIRELEMENTAL_2	:= 0x109,
+	SFX_AIRELEMENTAL_3	:= 0x10A,
+	SFX_AIRELEMENTAL_4	:= 0x10B,
+	SFX_AIRELEMENTAL_5	:= 0x10C,
+	SFX_ALIGATOR_1		:= 0x5B,
+	SFX_ALIGATOR_2		:= 0x5C,
+	SFX_ALIGATOR_3		:= 0x5D,
+	SFX_ALIGATOR_4		:= 0x5E,
+	SFX_ALIGATOR_5		:= 0x5F,
+	SFX_ALIGATORB_1		:= 0x295,
+	SFX_ALIGATORB_2		:= 0x296,
+	SFX_ALIGATORB_3		:= 0x297,
+	SFX_ALIGATORB_4		:= 0x298,
+	SFX_ALIGATORB_5		:= 0x299,
+	SFX_ANVIL		:= 0x2B,
+	SFX_ARCH_PROTECT	:= 0x1F8,
+	SFX_AQUARIUM_DEADFISH	:= 0x5A3,
+	SFX_AQUARIUM_REWARDS	:= 0x5A4,
+	SFX_AQUARIUM_USE	:= 0x5A5,
+	SFX_ARCANE_CIRCLE	:= 0x5A6
+	SFX_ARCANE_EMPOWERMENT	:= 0x5C2,
+	SFX_ARCANE_EMPOWER_END	:= 0x5C3,
+	SFX_ARCH_CURE		:= 0x1E9,
+	SFX_ARCH_CURE2		:= 0x29A,
+	SFX_ATTUNE_WEAPON	:= 0x5C4,
+	SFX_AXE_01		:= 0x233,
+	SFX_BEAR_1		:= 0x60,
+	SFX_BEAR_2		:= 0x61,
+	SFX_BEAR_3		:= 0x62,
+	SFX_BEAR_4		:= 0x63,
+	SFX_BEAR_5		:= 0x64,
+endenum
+	
