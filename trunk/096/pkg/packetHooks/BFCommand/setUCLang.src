@@ -1,0 +1,33 @@
+/* $Id$
+ *
+ */
+////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//  name:    0xBF Hook: UniCode Language of Client Subcommand 0x0B
+//  version: 1.0
+//  author:  MuadDib
+//
+//  Purpose: Can be used to set the client's language code for Unicode upon login. This can
+//           later be accessed via scripts when sending Unicode to send them the right Lang Code.
+//           If that is your intent, you may prefer setting the language cprop on the character
+//           itself for a much faster and cleaner accessing of it.
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////
+use uo;
+
+program setUCLang()
+	Print( "Installing Language Selection PH..." );
+	return 1;
+endprogram
+
+exported function HandleSetUCLang( who, byref packet )
+	// Get the Language the client is sending from the packet.
+	var lang := packet.GetString(5,4);
+	// Find the player's account reference.
+	var acct := FindAccount(who.acctname);
+	// Add a Cprop to the account for using later.
+	acct.SetProp("%UCLang%", lang);
+
+	// No need for the core to see this packet.
+	return 1;
+endfunction
