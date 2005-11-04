@@ -1,4 +1,4 @@
-// $Id: magicUntrap.src 806 2005-11-01 21:56:02Z austin $
+// $Id$
 
 use os;
 use uo;
