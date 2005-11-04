@@ -1,4 +1,4 @@
-/* $Id: packets.inc,v 1.1 2004/03/16 14:05:46 folko Exp $
+/* $Id$
  *
  * Purpose
  * Provide various functions and constants for raw packets.
@@ -38,11 +38,11 @@ endenum
  *
  */
 function SendFeatures(who, features)
-    var packet;
+	var packet;
     
-    packet := CreatePacket(PACKET_FEATURES, 0x03);
-    packet.SetInt16(1, features);
-    packet.SendPacket(who);
+	packet := CreatePacket(PACKET_FEATURES, 0x03);
+	packet.SetInt16(1, features);
+	packet.SendPacket(who);
 
-    return;
+	return 1;
 endfunction

@@ -118,7 +118,7 @@ function CreateArrayIndex(MainArray)
 
 	for (q := 1; q <= ArrayLen; q := q + 1)
 		for (i := 1; i <= ArrayLen; i := i + 1)
-			if (OldArray[q] = MainArray[i])
+			if (OldArray[q] == MainArray[i])
 				IndexArray[q] := i;
 				i := ArrayLen + 1;
 			endif
@@ -241,7 +241,7 @@ function PadArray(x, arraylength)
 
 	if (padding < 0)
 		return 0;
-	elseif (padding = 0)
+	elseif (padding == 0)
 		return x;
 	endif
 
@@ -267,7 +267,7 @@ function ReturnIndex(myarray, elementvalue)
 
 	var i;
 	for (i := 1; i <= len(myarray); i := i + 1)
-		if (myarray[i] = elementvalue)
+		if (myarray[i] == elementvalue)
 			return i;
 		endif
 	endfor
@@ -296,40 +296,35 @@ endfunction
 // Makes the string lowercase, then capitalizes the first letter.
 function UCFirst(text)
 	text := CStr(text);
-	if ( len(text) > 1 )
-		text := lower(text);
-		text[1] := upper(text[1]);
+	if ( Len(text) > 1 )
+		text := Lower(text);
+		text[1] := Upper(text[1]);
 	endif
 	return text;
 endfunction
 
 // Removes spaces from a string based on the flags passed.
 function RemoveSpaces(text, flags:=CLR_LEADING_SPACES)
-	var pre := flags & CLR_LEADING_SPACES;
-	var post := flags & CLR_TRAILING_SPACES;
-	var dbl := flags & CLR_DOUBLE_SPACES;
-	var all := flags & CLR_ALL_SPACES;
-	
-	if ( all )
+	if ( flags & CLR_ALL_SPACES )
 		while ( text[" "] )
 			text[" "] := "";
 			sleepms(2);
 		endwhile
 	else
-		if ( pre )
+		if ( flags & CLR_LEADING_SPACES )
 			while ( text[1] == " " )
 				text[1] := "";
 				sleepms(2);
 			endwhile
 		endif
-		if ( post )
+		if ( flags & CLR_TRAILING_SPACES )
 			while ( text[len(text)] == " " )
 				text[len(text)] := "";
 				sleepms(2);
 			endwhile
 		endif
 	
-		if ( dbl )
+		if ( flags & CLR_DOUBLE_SPACES )
 			while ( text["  "] )
 				text["  "] := " ";
 				sleepms(2);

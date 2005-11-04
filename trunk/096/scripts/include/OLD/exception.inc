@@ -1,4 +1,4 @@
-/* $Id: exception.inc,v 1.1 2004/03/16 14:05:46 folko Exp $
+/* $Id: exception.inc 236 2005-09-25 09:06:19Z panosl $
  *
  * Purpose
  * Provides various functions and constants for exceptions.

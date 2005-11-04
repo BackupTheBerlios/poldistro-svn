@@ -1,5 +1,5 @@
 /*
- * $Id$
+ * $Id: resurrection.inc 693 2005-10-29 06:45:26Z muaddiblsd $
  *
  * Uhh what the fuck is this anyway?
  *
