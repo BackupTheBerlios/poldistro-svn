@@ -5,8 +5,8 @@
  *
  */
 use cfgfile;
+use basic;
 
-include ":logger:log";
 include ":logger:exception";
 
 CONST SHARD_CFG     := ":config:config/shardconfig";
