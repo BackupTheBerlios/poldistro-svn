@@ -149,7 +149,7 @@ endfunction
  * realm:	Name of the realm to set the wood type on.
  * x_pos:	X coordinate to set the wood type on.
  * y_pos:	Y coordinate to set the wood type on.
- * wood_type:	object type of the wood to set.
+ * wood_type:	object NAME of the wood to set.
  *
  * Return value
  * Returns 1
@@ -184,7 +184,7 @@ function LJ_SetWoodAmount(realm, x_pos, y_pos, amount)
 	
 	var data_elem := LJ_GetDataElem(pos_string);
 	
-	data_elem.SetProp("Amount", amount);
+	data_elem.SetProp("Amount", CInt(amount));
 endfunction
 
 /*

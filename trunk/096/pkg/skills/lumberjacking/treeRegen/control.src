@@ -13,7 +13,7 @@ program GlobalControl()
 	var settings := LJ_GetSettingsCfgElem("Settings");
 	var cycle_wait := CInt(settings.RegenWait);
 	if ( cycle_wait < 1 )
-		cycle_wait := 1;
+		cycle_wait := 30;
 	endif
 	cycle_wait := cycle_wait * 60;
 	
