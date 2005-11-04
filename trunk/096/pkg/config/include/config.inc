@@ -45,7 +45,7 @@ endenum
  * The config file's value for the desired elem.
  *
  */
-function QueryConfigString(what, cfg_file:=SHARD_CFG, elem_name:=DEFAULT_ELEM)
+function QueryConfigString(what, cfg_file:=SHARD_CFG, elem_name:=DEFAULT_KEY)
 	var ret_value := GetConfigString(FindConfigElem(ReadConfigFile(cfg_file), elem_name), what);
 	if( ret_value.errortext )
 		SysLog("Error::QueryConfigString() - Unable to open ["+cfg_file+"] ->"+ret_value.errortext);
@@ -71,7 +71,7 @@ endfunction
  * The config file's value for the desired elem.
  *
  */
-function QueryConfigInt(what, cfg_file:=SHARD_CFG, elem_name:=DEFAULT_ELEM)
+function QueryConfigInt(what, cfg_file:=SHARD_CFG, elem_name:=DEFAULT_KEY)
 	var ret_value := GetConfigInt(FindConfigElem(ReadConfigFile(cfg_file), elem_name), what);
 	if( ret_value.errortext )
 		SysLog("Error::QueryConfigInt() - Unable to open ["+cfg_file+"] ->"+ret_value.errortext);
