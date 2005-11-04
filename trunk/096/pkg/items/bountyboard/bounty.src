@@ -3,7 +3,7 @@
 use uo;
 use os;
 
-include "include/bounty";
+include ":bountyboard:bounty";
 include ":datafile:datafile";
 include ":containers:storageAreas";
 include ":gumps:gumps";

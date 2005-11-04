@@ -5,7 +5,7 @@ use os;
 use datafile;
 
 include ":datafile:datafile";
-include "include/bounty";
+include ":bountyboard:bounty";
 include ":containers:storageAreas";
 
 program collectBounty(parms)

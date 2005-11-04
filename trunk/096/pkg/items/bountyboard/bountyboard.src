@@ -5,7 +5,7 @@ use datafile;
 include ":datafile:datafile";
 include "include/sorting";
 include "include/client";
-include "include/bounty";
+include ":bountyboard:bounty";
 include ":gumps:include/old/old-gumps";
 
 var loop := 1;
