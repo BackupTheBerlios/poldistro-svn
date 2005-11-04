@@ -1,4 +1,4 @@
-/* $Id: exception.inc 236 2005-09-25 09:06:19Z panosl $
+/* $Id$
  *
  * Purpose
  * Provides various functions and constants for exceptions.
@@ -6,7 +6,7 @@
  */
 use uo;
 
-include "include/log";
+include ":logger:log";
 
 
 /*

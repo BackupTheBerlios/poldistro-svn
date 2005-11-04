@@ -1,0 +1,66 @@
+/* $Id$
+ *
+ */
+////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//  name:    Incoming Targetting Packet Hook
+//  version: 1.0
+//  author:  MuadDib
+//
+//  Purpose:  This hooks fixes issues involving having LOS to hidden characters, and targetting
+//		concealed characters above your cmdlevel.
+//
+///////////////////////////////////////////////////////////////////////////////////////////////
+use uo;
+use os;
+
+include ":config:config";
+
+CONST TYPE_MOB    := 0;
+CONST SERIAL_BYTE := 6;
+CONST X_BYTE      := 11;
+CONST Y_BYTE      := 13;
+CONST Z_BYTE      := 16;
+CONST GRAPHIC_BYTE := 17;
+
+program TargetCheck()
+	Print("Installing Incoming Target PH.");
+	return 1;
+endprogram
+
+exported function HandleTargetPacket(who, byref packet)
+	var enabled := QueryConfigInt("Enabled", ":packetconfig:config/packetconfig", "Target");
+	if( !enabled )
+		return 0;
+	endif
+
+	var the_target;
+	var packet_type := packet.GetInt8(1);
+	if( packet_type == TYPE_MOB )
+		the_target := packet.GetInt32(SERIAL_BYTE);
+		the_target := SystemFindObjectBySerial(the_target);
+		// If player level, check for player restrictions.
+		if(!who.cmdlevel)
+			if(the_target.hidden || the_target.concealed)
+				packet.SetInt32(SERIAL_BYTE, 0);
+				packet.SetInt16(X_BYTE, 0xFFFF);
+				packet.SetInt16(Y_BYTE, 0xFFFF);
+				packet.SetInt8(Z_BYTE, 0);
+				packet.SetInt16(GRAPHIC_BYTE, 0);
+				return 0;
+			endif
+		else
+			// Makes sure they are not attempting to target someone
+			// concealed at a higher level than themselves.
+			if(the_target.concealed > who.cmdlevel)
+				packet.SetInt32(SERIAL_BYTE, 0);
+				packet.SetInt16(X_BYTE, 0xFFFF);
+				packet.SetInt16(Y_BYTE, 0xFFFF);
+				packet.SetInt8(Z_BYTE, 0);
+				packet.SetInt16(GRAPHIC_BYTE, 0);
+				return 0;
+			endif
+		endif
+	endif
+	return 0;
+endfunction

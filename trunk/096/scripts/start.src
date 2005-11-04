@@ -12,8 +12,8 @@
 use uo;
 use os;
 
-include "include/exception";
-include "include/log";
+include ":logger:exception";
+include ":logger:log";
 include "include/utility";
 include "include/teleporters";
 

@@ -7,7 +7,7 @@
 use uo;
 
 include "include/properties";
-include "include/exception";
+include ":logger:exception";
 include ":config:include/config";
 
 enum TIME_UNITS

@@ -1,10 +1,10 @@
-/* $Id: savenow.src,v 1.1 2004/03/16 14:05:46 folko Exp $
+/* $Id$
  *
  * Purpose:
  * Save the world state.
  *
  */
-include "include/log";
+include ":logger:log";
 include ":saver:include/saver";
 
 

@@ -29,7 +29,7 @@
  */
 use os;
 
-include "include/exception";
+include ":logger:exception";
 include "include/properties";
 
 const SCHED_TIMEOUT := 5;               // Timeout for Wait_For_Event()
@@ -52,7 +52,7 @@ endenum
  *
  * Return value
  * No return value.
- * 
+ *
  */
 function Wait(what, time := SCHED_TIMEOUT)
 	while(Wait_For_Event(time) != what)
@@ -73,7 +73,7 @@ endfunction
  *
  * Return value
  * No return value.
- * 
+ *
  */
 function Send(what)
 	var sched := GetProcess(GetGlobalProperty(TEMPPROP_SCHED_PID));

@@ -10,7 +10,7 @@ use polsys;
 use cfgfile;
 use os;
 
-include "include/exception";
+include ":logger:exception";
 include ":scheduler:scheduler";
 
 

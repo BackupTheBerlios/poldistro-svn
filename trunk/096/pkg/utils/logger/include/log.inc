@@ -1,4 +1,4 @@
-/* $Id: log.inc,v 1.1 2004/03/16 14:05:46 folko Exp $
+/* $Id$
  *
  * Purpose
  * Provide various functions and constants to log stuff

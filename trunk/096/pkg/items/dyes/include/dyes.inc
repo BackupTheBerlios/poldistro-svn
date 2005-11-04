@@ -34,12 +34,13 @@ const MAX_COLOR := 1001;
 function CanDye(item)
 	var config := ReadConfigFile(":*:itemdesc");
 	config := config[item.objtype];
-	
+
 	if ( config.CanDye )
 		return 1;
 	elseif ( config.dyeable )
 		return 1;
 	endif
+	return 0;
 endfunction
 
 /*
@@ -82,6 +83,6 @@ endfunction
 function RandomDyeColor()
 	var color := RandomInt(MAX_COLOR - MIN_COLOR);
 	color := color+MIN_COLOR;
-	
+
 	return color;
 endfunction

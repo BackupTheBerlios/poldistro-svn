@@ -6,7 +6,7 @@
  */
 use uo;
 
-include "include/log";
+include ":logger:log";
 include "include/messages";
 include "include/localization";
 

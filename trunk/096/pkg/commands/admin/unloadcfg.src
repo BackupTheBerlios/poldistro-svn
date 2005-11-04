@@ -1,7 +1,7 @@
 use cfgfile;
 use uo;
 
-include "include/log";
+include ":logger:log";
 
 
 program command_unloadCFG(who, filename)

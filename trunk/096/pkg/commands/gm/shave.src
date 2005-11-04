@@ -6,7 +6,7 @@ use uo;
 include "include/client";
 include "include/messages";
 include "include/localization";
-include "include/log";
+include ":logger:log";
 
 
 program command_shave(who, area)
@@ -25,7 +25,7 @@ program command_shave(who, area)
 		endforeach
 		return;
 	endif
-    
+
 	SendMessage(who, MSG_TARGET_OBJ, {}, MSG_COMMAND);
 	mobile := Target(who, TGTOPT_NOCHECK_LOS);
 	if (!mobile.isA(POLCLASS_MOBILE))

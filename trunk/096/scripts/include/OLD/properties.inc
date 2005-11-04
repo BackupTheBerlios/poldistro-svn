@@ -6,7 +6,7 @@
  */
 use uo;
 
-include "include/log";
+include ":logger:log";
 
 const SECURE_MAGIC          := 0xBADC0DE;
 
@@ -76,7 +76,7 @@ function GetPropertyNames(what, magic := 0)
     if(magic == SECURE_MAGIC)
         return(GetObjPropertyNames(what));
     endif
-    
+
     props := GetObjPropertyNames(what);
     for(i := 1; i <= props.size(); i := i + 1)
         if(props[i][1] == "+")
