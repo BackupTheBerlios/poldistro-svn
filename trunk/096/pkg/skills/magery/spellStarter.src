@@ -9,9 +9,9 @@ use cfgfile;
 
 include ":attributes:attributes";
 include ":magery:spells";
+include ":containers:containers";
+include "include/itemdesc";
 include "include/client";
-include "include/string";
-
 
 set_script_option(SCRIPTOPT_CAN_ACCESS_OFFLINE_MOBILES, 1);
 
@@ -60,7 +60,7 @@ program SpellStarter(params)
 	elseif ( !ConsumeVital(who, MANA, mana_cost) )
 		SendSysMessage(who, "You are too tired to cast.");
 		FailSpell(who);
-	elseif ( !CheckRegs(who, spell_elem, scroll) )
+	elseif ( !CheckReagents(who, spell_elem, scroll) )
 		FailSpell(who);
 	elseif ( !EquipmentCheck(who) )
 		FailSpell(who);
@@ -166,7 +166,7 @@ function EquipmentCheck(who)
 	return 1;
 endfunction
 
-function CheckRegs(who, byref spell_elem, scroll)
+function CheckReagents(who, byref spell_elem, scroll)
 	if ( who.npctemplate )
 		// NPCs don't need reagents to cast.
 		return 1;

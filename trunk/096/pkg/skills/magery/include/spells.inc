@@ -5,7 +5,6 @@ use cfgfile;
 
 include ":attributes:attributes";
 include "include/client";
-include "include/dist";
 
 const MAX_RANGE	:= 16;
 
@@ -22,10 +21,10 @@ const MAX_RANGE	:= 16;
  *
  */
 function MS_GetSpellsCfgFile()
-	var cfg := ReadConfigFile(":magery:config/spells");
+	var cfg := ReadConfigFile(":magery:spells");
 
 	if ( cfg.errortext )
-		SysLog("Error::MS_GetSpellsCfgFile() - Unable to open [:magery:config/spells.cfg] ->"+cfg.errortext);
+		SysLog("Error::MS_GetSpellsCfgFile() - Unable to open [:magery:spells.cfg] ->"+cfg.errortext);
 	endif
 
 	return cfg;
