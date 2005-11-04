@@ -21,8 +21,6 @@ endenum
 /*
  * SendFeatures(who, features)
  *
- * Author: Folko
- *
  * Purpose
  * Enable OSI client features like the chat button or LBR graphics.
  *

@@ -28,8 +28,6 @@ var BKGND_DARK_STONE := GFCfgConst("Defaults", "ForeGround");
 /*
  * SendMessage(who, id, type)
  *
- * Author: Folko
- *
  * Purpose
  * Sends a message to a character.
  *
@@ -61,8 +59,6 @@ endfunction
 /*
  * SendAll(id, parms, type)
  *
- * Author: Folko
- *
  * Purpose
  * Sends a message to all online characters.
  *
@@ -87,9 +83,6 @@ endfunction
 
 /*
  * SendHTMLMessage(who, text)
- *
- * Author: Folko
- * Last-Edit: MuadDib
  *
  * Purpose
  * Sends a HTML gump containing the text to the character.
@@ -116,8 +109,6 @@ endfunction
 
 /*
  * SendCliloc(who, num, params, type, origin, hue, font)
- *
- * Author: Folko
  *
  * Purpose
  * Sends a localized message to the client.
@@ -173,8 +164,6 @@ endfunction
 
 /*
  * FormatMessage(message, parms)
- *
- * Author: Folko
  *
  * Purpose
  * Formats a message by inserting the parameters.

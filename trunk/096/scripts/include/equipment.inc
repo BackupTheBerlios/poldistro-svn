@@ -1,5 +1,4 @@
-/*
- * $Id$
+/* $Id$
  *
  * Purpose
  * Allows modifiers to be easily set and removed.
@@ -12,7 +11,6 @@
  * was chosen to be used in this script.
  *
  */
-
 use uo;
 use cfgfile;
 
@@ -22,6 +20,7 @@ CONST	EQUIP_ITEMDESC_MODS	:= 0x1;
 CONST	EQUIP_CUSTOM_MODS	:= 0x2;
 CONST	EQUIP_BOTH_MODS		:= 0x3;
 CONST	EQUIP_CSTM_OR_ITEMDESC	:= 0x4;
+
 
 /* 
  * GetEquipmentModifiers(item, flags:=EQUIP_CSTM_OR_ITEMDESC)
@@ -77,6 +76,7 @@ function GetEquipmentModifiers(item, flags:=EQUIP_CSTM_OR_ITEMDESC)
 		return cstm_mods;
 	endif
 endfunction
+
 	
 /*
  * AddModifierToEquipment(item, attrib_name, modifier)
@@ -117,6 +117,7 @@ function AddModifierToEquipment(item, attrib_name, modifier)
 	return SetObjProperty(item, "AttribMods", cstm_mods);
 endfunction
 
+
 /*
  * RemoveModifierFromEquipment(item, attrib_name)
  *
@@ -148,6 +149,7 @@ function RemoveModifierFromEquipment(item, attrib_name)
 		return EraseObjProperty(item, "AttribMods");
 	endif
 endfunction
+
 
 /* 
  * ApplyEquipmentMods(mobile, item)
@@ -185,6 +187,7 @@ function ApplyEquipmentMods(mobile, item, flags := EQUIP_CSTM_OR_ITEMDESC)
 	
 	return 1;
 endfunction
+
 
 /* 
  * RemoveEquipmentMods(mobile, item)

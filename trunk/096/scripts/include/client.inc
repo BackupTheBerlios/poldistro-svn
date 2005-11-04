@@ -1,8 +1,10 @@
-/* CLIENT.INC - defines client releated constants.
+/* $Id$
  *
+ * Purpose
  * This include file is designed to hold all the client lowlevel constants.
  * Not all constants might be usable as of now, but in the future, they
  * might be.
+ *
  */
 
 
@@ -165,7 +167,7 @@ enum SOUNDS
 	SFX_BEAR_4C		:= 0x4C7,
 	SFX_BEAR_5C		:= 0x4C8,
 	
-	SFX_SPELL_FAIL		:= 0x5D,
+	SFX_SPELL_FAIL		:= 0x5D
 endenum
 
 enum GRAPHIC_EFFECTS

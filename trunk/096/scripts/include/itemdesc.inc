@@ -1,12 +1,11 @@
-/*
- * $Id$
+/* $Id$
  *
  */
-
 use uo;
 use os;
 use cfgfile;
 use polsys;
+
 
 /*
  * LoadItemDescCfgFile(package)
@@ -36,6 +35,7 @@ function GetItemDescCfgFile(package:="")
 	return item_cfg;
 endfunction
 
+
 /*
  * GetItemDescInfo(obj_type)
  *
@@ -54,6 +54,7 @@ function GetItemDescInfo(obj_type)
 	var item_cfg := GetItemDescCfgFile("*");
 	return item_cfg[obj_type];
 endfunction
+
 
 /*
  * GetObjTypeGraphic(obj_type)
@@ -83,6 +84,7 @@ function GetObjTypeGraphic(obj_type)
 		return obj_type;
 	endif
 endfunction	
+
 
 /*
  * GetObjTypeDesc(obj_type, plural)

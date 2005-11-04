@@ -1,11 +1,10 @@
-/*
- * $Id$
+/* $Id$
  *
  */
-
 use uo;
 use os;
 use math;
+
 
 /*
  * TurnObjectToward(object, x_pos, y_pos)
@@ -30,6 +29,7 @@ function TurnObjectToward(object, x_pos, y_pos)
 	return orig;
 endfunction
 
+
 /*
  * IsFacing(mobile, x_pos, y_pos)
  *
@@ -50,6 +50,7 @@ endfunction
 	return ( mobile.facing == GetFacing(mobile.x, mobile.y, x, y) );
 endfunction
 
+
 /*
  * IsBehind(mobile, x_pos, y_pos)
  * Determines if a set of coordinates are behind a character.
@@ -69,12 +70,11 @@ endfunction
  * Returns 0 if not.
  *
  */
-function IsBehind( tgt_mob, locx, locy )
+function IsBehind(tgt_mob, locx, locy)
 	var frot := Abs(((tgt_mob.facing+4)%8)-GetFacing(tgt_mob.x,tgt_mob.y,locx,locy));
-	if ( frot > 4 )
+	if (frot > 4)
 		frot := 8-frot;
 	endif
 
-	return ( frot < 2 );
+	return (frot < 2);
 endfunction
-

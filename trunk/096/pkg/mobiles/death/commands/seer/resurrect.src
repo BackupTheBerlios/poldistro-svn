@@ -1,40 +1,41 @@
-/*
- * $Id$
+/* $Id$
  *
  */
-
 use uo;
 
 include ":attributes:attributes";
+include "include/messages";
+include "include/localization";
 
-program textcmd_Resurrection(who)
-	if ( who.dead )
+
+program command_Resurrect(who, params)
+	if (params == "")
+		SendMessage(who, MSG_TARGET_CHAR, array{}, MSG_COMMAND);
+		if ((var targ := Target(who, TGTOPT_NOCHECK_LOS)) == 0)
+			SendMessage(who, MSG_CANCELLED, array{}, MSG_COMMAND);
+			return 0;
+		else
+			if (targ.isA(POLCLASS_CORPSE))
+				targ := SystemFindObjectBySerial(targ.ownerserial);
+				if (!targ)
+					SendSysMessage(who, "No owner could be found for that corpse.");
+					return 0;
+				endif
+					var result := Resurrect(targ);
+				if (result.errortext)
+					SendSysMessage(who, "Error - "+result.errortext);
+					return 0;
+				endif
+			endif
+		endif		
+	elseif (params == "me")
 		Resurrect(who);
 		AP_RefreshVitals(who);
 		return 1;
+	else
+		SendMessage(who, MSG_USE_HELP, array{}, MSG_COMMAND);
 	endif
 
-	SendSysMessage(who, "Select a player corpse or ghost to resurrect.");
-	var targ := Target(who);
-	if ( !targ )
-		SendSysMessage(who, "Cancelled.");
-		return 0;
-	endif
-
-	if ( targ.IsA(POLCLASS_CORPSE) )
-		targ := SystemFindObjectBySerial(targ.ownerserial);
-		if ( !targ )
-			SendSysMessage(who, "No owner could be found for that corpse.");
-			return 0;
-		endif
-	endif
-
-	var result := Resurrect(targ);
-	if ( result.errortext )
-		SendSysMessage(who, "Error - "+result.errortext);
-		return 0;
-	endif
-
-	SendSysMessage(who, "Done.");
+	SendMessage(who, MSG_DONE, array{}, MSG_COMMAND);
 	return 1;
 endprogram
