@@ -5,7 +5,7 @@
  *
  */
 use cfgfile;
-use basic;
+use os;
 
 include ":logger:exception";
 
