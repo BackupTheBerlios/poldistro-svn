@@ -21,7 +21,7 @@ function generateBoard(byref who)
   OldGFPage(0);
   OldGFGumpPic(0, 0, 2170);
   OldGFTextLine(197, 38, 0, "Bounty Board");
-  OldGFTextLine(200, 40, COLOR_YELLOW, "Bounty Board");
+  OldGFTextLine(200, 40, 0x35, "Bounty Board");
   var data := ComposeBountyBoard();
   data.reverse();
   var count := 0, page := 2, ct := 0;

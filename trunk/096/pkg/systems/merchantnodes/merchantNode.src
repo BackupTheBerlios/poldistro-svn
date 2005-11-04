@@ -29,10 +29,10 @@ program MerchantNodeManager(who, itm)
   endif
   if(template == 1)
     OldGFTextLine(232, 17, 0, "Merchant Node Interface");
-    OldGFTextLine(230, 15, COLOR_YELLOW, "Merchant Node Interface");
+    OldGFTextLine(230, 15, 0x35, "Merchant Node Interface");
   else
     OldGFTextLine(232, 17, 0, "Banker Node Interface");
-    OldGFTextLine(230, 15, COLOR_YELLOW, "Banker Node Interface");
+    OldGFTextLine(230, 15, 0x35, "Banker Node Interface");
   endif
   type := GetObjProperty(item, "Type");
   if(!type)
@@ -49,7 +49,7 @@ program MerchantNodeManager(who, itm)
   OldGFTextLine(420, 40, COLOR_BLUE, "Rebuild Stock");
   FillInPageData();
   if(len(type) < 10)
-    OldGFTextLine(40, sy, COLOR_YELLOW, "Create a new merchant here?   (negates all other choices)");
+    OldGFTextLine(40, sy, 0x35, "Create a new merchant here?   (negates all other choices)");
     OldGFButtonID(20, sy, 210, 211, 1, sy);
   endif
   OldGFTextLine( 20, 20, COLOR_GREEN, "Current:");
@@ -68,7 +68,7 @@ program MerchantNodeManager(who, itm)
   elseif(current == 0)
     OldGFTextLine(90, 20, COLOR_RED,    current+"/"+amt);
   else
-    OldGFTextLine(90, 20, COLOR_YELLOW, current+"/"+amt);
+    OldGFTextLine(90, 20, 0x35, current+"/"+amt);
   endif
   apply   := OldGFButtonID( 20, 370, 2124, 2123, 1);
   cancel  := OldGFButtonID(100, 370, 2121, 2120, 1, 0);
@@ -169,10 +169,10 @@ function GetStatus(item)
     endcase
   var cs := GetObjProperty(item, "#wait");
   if(cs == 1)
-    color := COLOR_YELLOW;
+    color := 0x35;
     txt := "Merchant Node Is Waiting To Initialize";
   elseif(cs == 2)
-    color := COLOR_YELLOW;
+    color := 0x35;
     txt := "Merchant Nodes Are Disabled Globally";
   elseif(status != "off")
     restock := OldGFCheckBox(340, 320, 208, 209, 0, 400);

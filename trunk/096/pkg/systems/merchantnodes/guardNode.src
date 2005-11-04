@@ -20,7 +20,7 @@ program GuardNodeManager(who, itm)
   OldGFResizePic(  0,   0, 5120, 440, 300);
   OldGFResizePic( 10,  10, 5054, 420, 250);
   OldGFTextLine(132, 17, 0, "Guard Node Interface");
-  OldGFTextLine(130, 15, COLOR_YELLOW, "Guard Node Interface");
+  OldGFTextLine(130, 15, 0x35, "Guard Node Interface");
   var type := GetObjProperty(item, "Type");
   if(!type)
     type := "townguard";
@@ -49,7 +49,7 @@ program GuardNodeManager(who, itm)
   elseif(current == 0)
     OldGFTextLine(350,  80, COLOR_RED,    current+"/"+amt);
   else
-    OldGFTextLine(350,  80, COLOR_YELLOW, current+"/"+amt);
+    OldGFTextLine(350,  80, 0x35, current+"/"+amt);
   endif
   OldGFGumpPic(171, 50, 2440);
   OldGFGumpPic(171, 80, 2444);
@@ -86,10 +86,10 @@ function GetStatus(item, byref respawn)
     endcase
   var cs := GetObjProperty(item, "#wait");
   if(cs == 1)
-    color := COLOR_YELLOW;
+    color := 0x35;
     txt := "Guard Node Is Waiting To Initialize";
   elseif(cs == 2)
-    color := COLOR_YELLOW;
+    color := 0x35;
     txt := "Guard Nodes Are Disabled Globally";
   elseif(status != "off")
     respawn := OldGFCheckBox(  20, 120, 208, 209, 0, 300);

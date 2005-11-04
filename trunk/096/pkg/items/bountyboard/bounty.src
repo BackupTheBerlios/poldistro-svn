@@ -53,7 +53,7 @@ function GetBountyAmount(mobile, mygold, name)
 	GFResizePic(gump, 50,  50, 5120, 500, 200);
 	GFResizePic(gump, 60,  60, 5054, 480, 180);
 	GFTextLine(gump, 247,  68, 0, "Bounty Menu");
-	GFTextLine(gump, 250,  70, COLOR_YELLOW, "Bounty Menu");
+	GFTextLine(gump, 250,  70, 0x35, "Bounty Menu");
 	GFTextLine(gump, 80, 120, 0, "Your bank box contains " + mygold + " gold coins from which you");
 	GFTextLine(gump, 80, 140, 0, "may place a bounty on " + name + "'s head.");
 	GFTextLine(gump, 80, 160, 0, "Simply enter the bounty amount you wish to place below.");
