@@ -1,8 +1,10 @@
+/* $Id$
+ *
+ */
 use cfgfile;
 
 //returns all the items in container of objtype
 function EnumerateItemsInContainerOfObjtype(container, objtype)
-
 	var ret := { };
         foreach item in EnumerateItemsInContainer(container)
 		if ( item.objtype == objtype )
@@ -11,12 +13,11 @@ function EnumerateItemsInContainerOfObjtype(container, objtype)
 	endforeach
 
 	return ret;
-
 endfunction
+
 
 //returns all the 'top-level' items in container
 function ListRootItemsInContainer(container)
-
 	var ret := { };
         foreach item in EnumerateItemsInContainer(container)
 		if ( item.container == container )
@@ -25,12 +26,11 @@ function ListRootItemsInContainer(container)
 	endforeach
 
 	return ret;
-
 endfunction
+
 
 //returns all the 'top-level' items in container of objtype
 function ListRootItemsInContainerOfObjtype(container, objtype)
-
 	var ret := { };
         foreach item in EnumerateItemsInContainer(container)
 		if ( (item.container == container) && (item.objtype == objtype) )
@@ -39,11 +39,10 @@ function ListRootItemsInContainerOfObjtype(container, objtype)
 	endforeach
 
 	return ret;
-
 endfunction
 
-function InInventory(inventory, it)
 
+function InInventory(inventory, it)
 	foreach item in EnumerateItemsInContainer(inventory)
 		if (item == it)
 			return 1;
@@ -51,11 +50,10 @@ function InInventory(inventory, it)
 	endforeach
 
 	return 0;
-
 endfunction
 
-function IsContainer( it )
 
+function IsContainer( it )
 	if (it.objtype == 0x7057)
 		return 0;//trashcans don't count as containers
 		         // random note- huh? trashcans are 0x7007...
@@ -69,11 +67,10 @@ function IsContainer( it )
 	else
 		return 0;
 	endif
-
 endfunction
 
-function IsDungeon( x, y )
 
+function IsDungeon( x, y )
 	if ( (x >= 5120) && (x <= 6143) )
 		if ( (y >= 0) && (y <= 2303) )
 			return 1;
@@ -81,11 +78,10 @@ function IsDungeon( x, y )
 	endif
 
 	return 0;
-
 endfunction
 
-function NoTeleportZone( x, y )
 
+function NoTeleportZone( x, y )
 	if ( (x >= 5120) && (x <= 6143) )
 		if ( (y >= 2080) && (y <= 2303) )
 			return 1;
@@ -93,5 +89,4 @@ function NoTeleportZone( x, y )
 	endif
 
 	return 0;
-
 endfunction
