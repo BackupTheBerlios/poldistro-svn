@@ -3,7 +3,7 @@
  */
 use basic;
 
-include "include/myUtil";
+include ":itemutils:myUtil";
 
 
 function find_or_create_storage( areaname )

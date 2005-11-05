@@ -3,7 +3,7 @@ use os;
 use boat;
 include ":itemutils:objtype";
 include ":gumps:yesno";
-include "include/myUtil";
+include ":itemutils:myUtil";
 include "util/key";
 include ":itemutils:canAccess";
 

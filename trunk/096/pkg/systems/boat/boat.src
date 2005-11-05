@@ -16,7 +16,7 @@ use boat;
 
 include "include/OLD/eventID";
 include "include/sysEvent";
-include "include/myUtil";
+include ":itemutils:myUtil";
 include "include/client";
 include "include/sound";
 include ":gumps:yesno";

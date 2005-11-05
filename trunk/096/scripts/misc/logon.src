@@ -12,7 +12,7 @@ use math;
 use cfgfile;
 
 include "include/OLD/eventID";
-include "include/myUtil";
+include ":itemutils:myUtil";
 include ":attributes:attributes";
 include ":combat:equip";
 include "include/noto";
