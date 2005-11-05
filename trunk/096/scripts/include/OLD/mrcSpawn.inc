@@ -1,6 +1,6 @@
 use cfgfile;
 include ":attributes:attributes";
-include "include/utility";
+include ":itemutils:utility";;
 
 var mrcspawn_cfg := ReadConfigFile("::mrcspawn");
 var itemconfig := ReadConfigFile(":*:itemdesc");
@@ -168,7 +168,7 @@ function RestockMyInventory(source, destination)
 		var chk := CountExisting(destination, thing.objtype); // to see what we got *really* for sale
 		items := chk[2];// returns all of a particular item, stacked or unstacked. (array)
 		amt := chk[1];
-		
+
 		// determine whether to increase or decrease stock.
 		if(amt >= (thing.amount * multiplier))
 			multiplier := multiplier - 1;
@@ -182,9 +182,9 @@ function RestockMyInventory(source, destination)
 			endif
 		endif
 		SetObjProperty(thing, "Multiplier", multiplier);
-		
+
 		mlt := Cint(thing.amount * multiplier); // mlt is the amount that should be in stock
-		
+
 		if(amt != mlt)
 			// define characteristics of the items
 			var buyprice := Cint(thing.buyprice);
@@ -243,7 +243,7 @@ function ModifyPCSellList(merchanttype, backpack)
 	var prodgroups := FindConfigElem(mrcspawn_cfg, merchanttype);
 	var buys := GetConfigStringArray(prodgroups, "Buys");
 	var normcost, normsell, percentage;
-	
+
 	//  If not buying lets call the whole thing off.
 	if(buys.size() < 1)
 		return 0;
@@ -251,16 +251,16 @@ function ModifyPCSellList(merchanttype, backpack)
 
 	var iteminit := 0;
 	var itemmark := -1;
-	
+
 	// set buy price for each item to be 0 to start. This means it won't be sellable.
 	foreach item in backpackitems
 		item.buyprice := iteminit;
 	endforeach
-	
-	var buynobuyable := { }; 
+
+	var buynobuyable := { };
 	var objtype;
 	var counter := 0;
-	
+
 	// Populate the array of items the vendor will buy.
 	foreach prodgroup in buys
 		foreach itemstr in GetConfigStringArray(FindConfigElem(mrcspawn_cfg, prodgroup), "Item")
@@ -274,7 +274,7 @@ function ModifyPCSellList(merchanttype, backpack)
 			buynobuyable.append(objtype);
 		endforeach
 	endforeach
-	
+
 	// compare all the items in the top level of the backpack to things the vendor can buy and set the price.
 	if(buynobuyable.size())
 		foreach item in backpackitems

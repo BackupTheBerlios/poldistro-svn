@@ -5,7 +5,7 @@ use uo;
 include "include/eventID";
 include "include/sysEvent";
 include ":npcutils:names";
-include "include/utility";
+include ":itemutils:utility";;
 include "include/mrcSpawn";
 include ":npcutils:vetement";
 include ":npcutils:NPCBackpacks";

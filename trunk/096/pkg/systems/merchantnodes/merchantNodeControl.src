@@ -7,7 +7,7 @@ include "include/eventID";
 include ":attributes:attributes";
 include "include/sysEvent";
 include "include/mrcSpawn";
-include "include/utility";
+include ":itemutils:utility";;
 include "include/dist";
 
 var npclist := {};
@@ -24,7 +24,7 @@ program merchantnode(itm)
 	sleep(RandomInt(60));
 
 // if all nodes are globally disabled, we sleep until they are enabled again.
-	if(GetGlobalProperty("nomerchants"))											
+	if(GetGlobalProperty("nomerchants"))
 		SetNodeName("globally disabled");
 		SetObjProperty(item, "#wait", 2);
 		while(GetGlobalProperty("nomerchants"))
@@ -32,7 +32,7 @@ program merchantnode(itm)
 		endwhile
 	endif
 
-// 
+//
 	SetNodeName("enabled");
 	EraseObjProperty(item, "#wait");
 	rng := CInt(GetObjProperty(item, "Range"));
@@ -145,12 +145,12 @@ program merchantnode(itm)
 			endif
 			DespawnAll();
 			ValidateSpawns();
-			
+
 			// hang out here until it gets turned back on again.
 			while((GetObjProperty(item, "Status") == "off") or (GetGlobalProperty("nomerchants")))
 				var ev := os::wait_for_event(120);
 			endwhile
-			
+
 			// Things have turned back on, so this stuff gets moving
 			SpawnAll();
 			ValidateSpawns();
@@ -235,7 +235,7 @@ function SpawnAll()
 		var type	:= thing[1];
 		// 9-13-2005 Austin
 		// New function in math.em makes 'root' here not compile.
-		// I renamed the var to 'root_canal' which it often feels 
+		// I renamed the var to 'root_canal' which it often feels
 		// like I am getting when i work on old distro code.
 		var root_canal	:= thing[2];
 		var status 	:= thing[3];
@@ -302,10 +302,10 @@ function ProcessMerchantText(ev)
 	if (text["appraise"] || text["stable"] || text["showinventory"] || text["showrestock"])
 		pass := 1;
 	endif
-	
+
 	// If the character wants to do something with a vendor:
 	if (text["buy"] || text["sell"] || text["train"] || text["teach"]||(pass))
-		
+
 		// Just pick the nearest vendor if the player isn't specific.
 		if( text["merchant"] || text["vendor"] || (pass) )
 			var dis := 7;
