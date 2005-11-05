@@ -5,7 +5,7 @@ use math;
 include "customSpells";
 include "include/math";
 include "include/client";
-include "include/coords";
+include "include/OLD/coords";
 include ":itemutils:canAccess";
 
 const OBJTYPE_RUNE := 0x1f14;

@@ -1,6 +1,6 @@
 use uo;
 
-include "include/clock";
+include "include/OLD/clock";
 
 
 program command_time(who)

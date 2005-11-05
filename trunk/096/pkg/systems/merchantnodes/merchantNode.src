@@ -40,19 +40,19 @@ program MerchantNodeManager(who, itm)
     SetObjProperty(item, "Type", type);
   endif
   var amt := len(type);
-  OldGFTextLine( 20, 40, COLOR_BLUE, "Type");
-  OldGFTextLine(150, 40, COLOR_BLUE, "X");
-  OldGFTextLine(210, 40, COLOR_BLUE, "Y");
-  OldGFTextLine(270, 40, COLOR_BLUE, "Z");
-  OldGFTextLine(310, 40, COLOR_BLUE, "Enable");
-  OldGFTextLine(360, 40, COLOR_BLUE, "Delete");
-  OldGFTextLine(420, 40, COLOR_BLUE, "Rebuild Stock");
+  OldGFTextLine( 20, 40, 0, "Type");
+  OldGFTextLine(150, 40, 0, "X");
+  OldGFTextLine(210, 40, 0, "Y");
+  OldGFTextLine(270, 40, 0, "Z");
+  OldGFTextLine(310, 40, 0, "Enable");
+  OldGFTextLine(360, 40, 0, "Delete");
+  OldGFTextLine(420, 40, 0, "Rebuild Stock");
   FillInPageData();
   if(len(type) < 10)
     OldGFTextLine(40, sy, 0x35, "Create a new merchant here?   (negates all other choices)");
     OldGFButtonID(20, sy, 210, 211, 1, sy);
   endif
-  OldGFTextLine( 20, 20, COLOR_GREEN, "Current:");
+  OldGFTextLine( 20, 20, 0, "Current:");
   var npclist := GetObjProperty(item, "NpcList");
   var current := 0;
   var holder := array;
@@ -64,9 +64,9 @@ program MerchantNodeManager(who, itm)
   endforeach
   SetObjProperty(item, "NpcList", holder);
   if(current == amt)
-    OldGFTextLine(90, 20, COLOR_BLUE,   current+"/"+amt);
+    OldGFTextLine(90, 20, 0,   current+"/"+amt);
   elseif(current == 0)
-    OldGFTextLine(90, 20, COLOR_RED,    current+"/"+amt);
+    OldGFTextLine(90, 20, 0,    current+"/"+amt);
   else
     OldGFTextLine(90, 20, 0x35, current+"/"+amt);
   endif
@@ -133,9 +133,9 @@ function FillInPageData()
     var y        := current[2][2];
     var z        := current[2][3];
     var status   := current[3];
-    var color    := COLOR_GREEN;
+    var color    := 0;
     if(!status)
-      color := COLOR_RED;
+      color := 0;
     endif
     OldGFTextLine( 20, sy, color, template);
     OldGFTextLine(150, sy, color, x);
@@ -153,15 +153,15 @@ function GetStatus(item)
   var status := GetObjProperty(item, "Status");
   var color, txt;
     case(status)
-      "on":      color := COLOR_GREEN; txt := "Merchant Node Enabled";
+      "on":      color := 0; txt := "Merchant Node Enabled";
                  OldGFSetRadioGroup(1);
                  OldGFRadioButton(20, 320, 208, 209, 1, 200);
                  OldGFRadioButton(20, 340, 208, 209, 0, 201);
-      "off":     color := COLOR_RED; txt := "Merchant Node Disabled";
+      "off":     color := 0; txt := "Merchant Node Disabled";
                  OldGFSetRadioGroup(1);
                  OldGFRadioButton(20, 320, 208, 209, 0, 200);
                  OldGFRadioButton(20, 340, 208, 209, 1, 201);
-      default:   color := COLOR_GREEN; txt := "Merchant Node Enabled";
+      default:   color := 0; txt := "Merchant Node Enabled";
                  SetObjProperty(item, "Status", "on");
                  OldGFSetRadioGroup(1);
                  OldGFRadioButton(20, 320, 208, 209, 1, 200);
@@ -177,12 +177,12 @@ function GetStatus(item)
   elseif(status != "off")
     restock := OldGFCheckBox(340, 320, 208, 209, 0, 400);
     respawn := OldGFCheckBox(340, 340, 208, 209, 0, 300);
-    OldGFTextLine(370, 320, COLOR_GREEN, "Restock Merchants");
-    OldGFTextLine(370, 340, COLOR_GREEN, "Respawn Merchants");
+    OldGFTextLine(370, 320, 0, "Restock Merchants");
+    OldGFTextLine(370, 340, 0, "Respawn Merchants");
   endif
   OldGFTextMid(150, 370, 300, color, txt);
-  OldGFTextLine(50, 320, COLOR_GREEN, "Enable Node");
-  OldGFTextLine(50, 340, COLOR_GREEN, "Disable Node");
+  OldGFTextLine(50, 320, 0, "Enable Node");
+  OldGFTextLine(50, 340, 0, "Disable Node");
 endfunction
 
 function ResetMerchantNode(who, ret)

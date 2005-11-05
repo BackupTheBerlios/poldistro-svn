@@ -6,7 +6,7 @@
  */
 use uo;
 
-include "include/startEqp";
+include "include/OLD/startEqp";
 
 
 program core_onDelete(who)

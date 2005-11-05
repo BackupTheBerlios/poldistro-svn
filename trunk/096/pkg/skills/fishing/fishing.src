@@ -12,7 +12,7 @@ include ":attributes:include/attributeConstants";
 include ":attributes:include/attributes";
 include ":crafting:toolWear";
 include ":itemutils:objtype";
-include "include/startEqp";
+include "include/OLD/startEqp";
 include "include/sysEvent";
 
 program use_FishingPole(who, fishingpole)
@@ -86,7 +86,7 @@ program use_FishingPole(who, fishingpole)
 				SendSysMessage(who, "There doesn't seem to be any fish here.");
 				return 0;
 			endif
-			if( SkillCheck(who, ATTRIBUTE_FISHING, difficulty) > 0)
+			if( SkillCheck(who, FISHING, difficulty) > 0)
 				var fishreturned := HarvestResource("fish", targetsquare.x, targetsquare.y, 1, 1, who.realm);
 				if( !fishreturned )
 					SendSysMessage(who, "Oops, you let that one get away!");
@@ -111,7 +111,7 @@ endprogram
 function GetTheCatch(who, targetsquare, fishingpole)
 
 	var fishtype;
-	var currentskill := AP_GetSkill(who, ATTRIBUTE_FISHING);
+	var currentskill := AP_GetSkill(who, FISHING);
 	var thisone := RandomInt(100)+ 1;
 	if(thisone <= 94)
 		fishtype := RandomInt(UOBJ_FISH_END - UOBJ_FISH_START)+ UOBJ_FISH_START;
@@ -161,7 +161,7 @@ function GetTheCatch(who, targetsquare, fishingpole)
 		endif
 	else
 		if( CreateItemInContainer(who.backpack, fishtype, 1) )
-			CheckToolWear (who, fishingpole, ATTRIBUTE_FISHING);
+			CheckToolWear (who, fishingpole, FISHING);
 		endif
         endif
 

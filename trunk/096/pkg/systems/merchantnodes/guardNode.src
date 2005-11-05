@@ -31,9 +31,9 @@ program GuardNodeManager(who, itm)
     amt := 1;
     SetObjProperty(item, "Amount", 1);
   endif
-  OldGFTextLine( 20,  50, COLOR_GREEN, "Guard Set Type:");
-  OldGFTextLine( 20,  80, COLOR_GREEN, "Guard Set Amount:");
-  OldGFTextLine(255,  80, COLOR_GREEN, "Current:");
+  OldGFTextLine( 20,  50, 0, "Guard Set Type:");
+  OldGFTextLine( 20,  80, 0, "Guard Set Amount:");
+  OldGFTextLine(255,  80, 0, "Current:");
   var npclist := GetObjProperty(item, "NpcList");
   var current := 0;
   var holder := array;
@@ -45,16 +45,16 @@ program GuardNodeManager(who, itm)
   endforeach
   SetObjProperty(item, "NpcList", holder);
   if(current == amt)
-    OldGFTextLine(350,  80, COLOR_BLUE,   current+"/"+amt);
+    OldGFTextLine(350,  80, 0,   current+"/"+amt);
   elseif(current == 0)
-    OldGFTextLine(350,  80, COLOR_RED,    current+"/"+amt);
+    OldGFTextLine(350,  80, 0,    current+"/"+amt);
   else
     OldGFTextLine(350,  80, 0x35, current+"/"+amt);
   endif
   OldGFGumpPic(171, 50, 2440);
   OldGFGumpPic(171, 80, 2444);
-  newtype     := OldGFTextEntry(178,  50, 200,  30, COLOR_GREEN, type);
-  newamt      := OldGFTextEntry(178,  80, 200,  30, COLOR_GREEN, amt);
+  newtype     := OldGFTextEntry(178,  50, 200,  30, 0, type);
+  newamt      := OldGFTextEntry(178,  80, 200,  30, 0, amt);
   apply   := OldGFButtonID( 20, 270, 2124, 2123, 1);
   cancel  := OldGFButtonID(100, 270, 2121, 2120, 1);
   GetStatus(item, respawn);
@@ -70,15 +70,15 @@ function GetStatus(item, byref respawn)
   var status := GetObjProperty(item, "Status");
   var color, txt;
     case(status)
-      "on":      color := COLOR_GREEN; txt := "Guard Node Enabled";
+      "on":      color := 0; txt := "Guard Node Enabled";
                  OldGFSetRadioGroup(1);
                  OldGFRadioButton(20, 150, 210, 211, 1, 200);
                  OldGFRadioButton(20, 175, 210, 211, 0, 201);
-      "off":     color := COLOR_RED; txt := "Guard Node Disabled";
+      "off":     color := 0; txt := "Guard Node Disabled";
                  OldGFSetRadioGroup(1);
                  OldGFRadioButton(20, 150, 210, 211, 0, 200);
                  OldGFRadioButton(20, 175, 210, 211, 1, 201);
-      default:   color := COLOR_GREEN; txt := "Guard Node Enabled";
+      default:   color := 0; txt := "Guard Node Enabled";
                  SetObjProperty(item, "Status", "on");
                  OldGFSetRadioGroup(1);
                  OldGFRadioButton(20, 150, 210, 211, 1, 200);
@@ -93,11 +93,11 @@ function GetStatus(item, byref respawn)
     txt := "Guard Nodes Are Disabled Globally";
   elseif(status != "off")
     respawn := OldGFCheckBox(  20, 120, 208, 209, 0, 300);
-    OldGFTextLine( 50, 120, COLOR_GREEN, "Respawn Guards");
+    OldGFTextLine( 50, 120, 0, "Respawn Guards");
   endif
   OldGFTextMid(150, 270, 300, color, txt);
-  OldGFTextLine(60, 150, COLOR_GREEN, "Enable Node");
-  OldGFTextLine(60, 175, COLOR_GREEN, "Disable Node");
+  OldGFTextLine(60, 150, 0, "Enable Node");
+  OldGFTextLine(60, 175, 0, "Disable Node");
 endfunction
 
 function ResetGuardNode(item, ret)

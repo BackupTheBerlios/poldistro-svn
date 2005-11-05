@@ -3,7 +3,7 @@
 use uo;
 use os;
 
-include "include/startEqp";
+include "include/OLD/startEqp";
 include ":attributes:attributes";
 include ":npcutils:vetement";
 include ":npcutils:names";

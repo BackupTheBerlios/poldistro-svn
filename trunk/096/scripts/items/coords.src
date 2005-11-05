@@ -1,5 +1,5 @@
 use uo;
-include "include/coords";
+include "include/OLD/coords";
 include ":itemutils:canAccess";
 
 program get_coords(who, item)

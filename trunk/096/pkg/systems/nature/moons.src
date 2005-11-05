@@ -3,7 +3,7 @@ use uo;
 use os;
 use cfgfile;
 
-include "include/clock";
+include "include/OLD/clock";
 include "nature";
 
 var TLength := 60;

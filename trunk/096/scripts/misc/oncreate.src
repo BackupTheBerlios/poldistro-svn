@@ -7,7 +7,7 @@
  */
 use uo;
 
-include "include/startEqp";
+include "include/OLD/startEqp";
 
 
 program core_onCreate(who, skillids)

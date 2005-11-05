@@ -5,7 +5,7 @@ use uo;
 use os;
 use util;
 
-include "include/clock";
+include "include/OLD/clock";
 
 program cmd_shutdown( cmd )
 

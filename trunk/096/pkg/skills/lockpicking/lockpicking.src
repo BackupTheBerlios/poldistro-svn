@@ -5,7 +5,7 @@ use util;
 
 include ":itemutils:objtype";
 include "include/OLD/sound";
-include "include/startEqp";
+include "include/OLD/startEqp";
 include "util/key";
 include ":itemutils:canAccess";
 
