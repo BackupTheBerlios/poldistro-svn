@@ -4,7 +4,7 @@ use os;
 use uo;
 use cfgfile;
 
-include "include/eventID";
+include "include/OLD/eventID";
 include ":attributes:attributes";
 include "include/sysEvent";
 include ":npcutils:names";

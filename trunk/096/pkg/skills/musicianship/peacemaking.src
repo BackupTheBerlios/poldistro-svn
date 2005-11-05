@@ -6,7 +6,7 @@ use uo;
 include ":attributes:attributeConstants";
 include ":attributes:attributes";
 include ":attributes:skillCheck";
-include "include/eventID";
+include "include/OLD/eventID";
 include ":itemutils:canAccess";
 include ":musicianship:bard";
 

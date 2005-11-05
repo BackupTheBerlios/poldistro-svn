@@ -5,7 +5,7 @@ use cfgfile;
 
 const HALT_THRESHOLD := 8;
 
-include "include/eventID";
+include "include/OLD/eventID";
 include "include/sysEvent";
 include ":npcutils:names";
 include ":npcutils:NPCUtil";

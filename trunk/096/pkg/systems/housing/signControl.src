@@ -2,7 +2,7 @@ use uo;
 use os;
 use basic;
 
-include "include/eventID";
+include "include/OLD/eventID";
 include ":attributes:attributes";
 include "include/sysEvent";
 include ":itemutils:objtype";

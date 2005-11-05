@@ -13,7 +13,7 @@ use npc;
 use os;
 use uo;
 
-include "include/eventID";
+include "include/OLD/eventID";
 include "include/sysEvent";
 include ":npcutils:names";
 include ":npcutils:vetement";

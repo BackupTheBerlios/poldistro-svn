@@ -11,7 +11,7 @@ use math;
 use os;
 
 include "include/math";
-include "include/eventID";
+include "include/OLD/eventID";
 include ":attributes:attributes";
 
 const EVID_UNEQUIP   := 0x123456;

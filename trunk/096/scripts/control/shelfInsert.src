@@ -2,7 +2,7 @@ use uo;
 use os;
 use util;
 
-include "include/eventID";
+include "include/OLD/eventID";
 
 program on_insert(who, backpack, item, amtadded, movetype)
 

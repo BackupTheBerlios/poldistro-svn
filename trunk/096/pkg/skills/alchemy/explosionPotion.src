@@ -2,7 +2,7 @@ use uo;
 use os;
 use util;
 use cfgfile;
-include "include/eventID";
+include "include/OLD/eventID";
 include ":itemutils:canAccess";
 
 program use_explosion(who, potion)

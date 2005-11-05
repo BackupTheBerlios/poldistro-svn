@@ -18,7 +18,7 @@ var me         := npc::Self();
 const aggression  := 250;
 
 include "util/conflicts";
-include "include/eventID";
+include "include/OLD/eventID";
 include "include/sysEvent";
 include ":npcutils:names";
 include ":npcutils:vetement";

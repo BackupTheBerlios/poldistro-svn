@@ -7,7 +7,7 @@ include ":attributes:attributes";
 include ":npcutils:NPCBackpacks";
 include ":npcutils:names";
 include ":npcutils:vetement";
-include "include/eventID";
+include "include/OLD/eventID";
 include "include/sysEvent";
 include ":npcutils:anchors";
 include ":npcutils:speech";

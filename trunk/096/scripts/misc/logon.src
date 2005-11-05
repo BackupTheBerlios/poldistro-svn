@@ -11,7 +11,7 @@ use util;
 use math;
 use cfgfile;
 
-include "include/eventID";
+include "include/OLD/eventID";
 include "include/myUtil";
 include ":attributes:attributes";
 include ":combat:equip";

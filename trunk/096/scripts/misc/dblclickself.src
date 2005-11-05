@@ -9,7 +9,7 @@ use uo;
 use os;
 use npc;
 
-include "include/eventID";
+include "include/OLD/eventID";
 include "include/client";
 include ":mounts:mounts";
 

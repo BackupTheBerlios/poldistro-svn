@@ -2,7 +2,7 @@ use npc;
 use os;
 use uo;
 
-include "include/eventID";
+include "include/OLD/eventID";
 include ":attributes:attributes";
 include "include/sysEvent";
 include ":npcutils:names";
