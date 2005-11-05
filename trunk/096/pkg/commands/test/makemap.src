@@ -1,6 +1,6 @@
 use uo;
 
-include "include/objtype";
+include ":itemutils:objtype";
 
 var mapdefs := array(
 	array( "yew",    0x0ec, 0x2e5, 0x2fe, 0x4f5, 0xc8, 0xc8 ),

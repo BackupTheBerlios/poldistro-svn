@@ -3,7 +3,7 @@ use os;
 
 include "include/client";
 include "include/sound";
-include "include/objtype";
+include ":itemutils:objtype";
 include "include/spellRestrictions";
 include ":attributes:attributes";
 

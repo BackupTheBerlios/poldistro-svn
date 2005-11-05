@@ -3,7 +3,7 @@ use os;
 
 include "include/sound";
 include "include/tileEffects";
-include "include/objtype";
+include ":itemutils:objtype";
 
 
 program spell_pField(parms)

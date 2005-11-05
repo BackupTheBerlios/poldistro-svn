@@ -2,7 +2,7 @@ use os;
 use uo;
 
 include "include/isValidLoc";
-include "include/objtype";
+include ":itemutils:objtype";
 include "include/client";
 include "include/sound";
 

@@ -1,5 +1,5 @@
 include ":attributes:attributes";
-include "include/objtype";
+include ":itemutils:objtype";
 include "include/canAccess";
 include "include/noto";
 
@@ -47,7 +47,7 @@ program do_inscription(who)
         endif
       endforeach
     endif
-    
+
     if(!the_book)
       SendSysMessage(who, "You don't have a spellbook.");
       return;

@@ -13,7 +13,7 @@ include ":oldAI:combat/animalCombatEvent";
 include ":oldAI:combat/fight";
 include ":oldAI:main/loot";
 include ":npcutils:NPCUtil";
-include "include/objtype";
+include ":itemutils:objtype";
 include ":oldAI:main/sleepMode";
 include "include/skillLists";
 include ":npcutils:vetement";

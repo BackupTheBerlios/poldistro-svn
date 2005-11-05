@@ -15,7 +15,7 @@ include ":oldAI:combat/fight";
 include ":oldAI:main/loot";
 include ":npcutils:vetement";
 include ":npcutils:NPCUtil";
-include "include/objtype";
+include ":itemutils:objtype";
 include ":oldAI:setup/setup";
 include ":oldAI:main/sleepMode";
 include "include/skillLists";

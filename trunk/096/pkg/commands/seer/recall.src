@@ -1,7 +1,7 @@
 use uo;
 use os;
 
-include "include/objtype";
+include ":itemutils:objtype";
 
 program textcmd_recall( caster )
 

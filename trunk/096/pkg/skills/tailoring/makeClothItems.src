@@ -7,7 +7,7 @@ include ":gumps:include/old/old-gumps";
 include ":attributes:attributes";
 include "include/dist";
 include "include/client";
-include "include/objtype";
+include ":itemutils:objtype";
 include "include/canAccess";
 include "include/toolWear";
 include "include/noto";

@@ -1,7 +1,7 @@
 use uo;
 use cfgfile;
 
-include "include/objtype";
+include ":itemutils:objtype";
 include ":attributes:attributes";
 include "include/client";
 include "include/canAccess";
@@ -68,7 +68,7 @@ program use_scissors( who, scissors )
       if(!material)
         SendSysMessage (who, "You can't use scissors on that.");
         return;
-      endif   
+      endif
     endif
     PlaySoundEffect(who, 0x0249);
     amt := CInt((material * AP_GetSkill(who,TAILORING) * 75) / 10000);
@@ -86,5 +86,5 @@ program use_scissors( who, scissors )
       return;
     endif
   endif
-  
+
 endprogram

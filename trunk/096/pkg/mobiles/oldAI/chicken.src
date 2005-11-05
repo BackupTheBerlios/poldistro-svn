@@ -7,7 +7,7 @@ include "include/eventID";
 include "include/sysEvent";
 include ":npcutils:names";
 include ":npcutils:NPCUtil";
-include "include/objtype";
+include ":itemutils:objtype";
 include "include/dist";
 include ":npcutils:anchors";
 include ":oldAI:main/mainLoopChicken";

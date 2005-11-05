@@ -2,7 +2,7 @@ use os;
 use uo;
 
 include "util/key";
-include "include/objtype";
+include ":itemutils:objtype";
 include "plankUtil";
 
 program useplank(mob, plank)
@@ -19,7 +19,7 @@ if (mob.serial == owner)
     // so he doesn't get the message every time he gets on and off the ship.
     if ( (decay - ReadGameClock() ) < 860000 )
           SendSysMessage(mob, "Your ship has been refreshed.");
-    endif    
+    endif
     SetObjProperty( tillerman, 	  "decay",      (ReadGameClock()+ 864000));
   endif
 endif

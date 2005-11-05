@@ -8,7 +8,7 @@ use util;
 include ":attributes:attributes";
 include "include/client";
 include "include/sound";
-include "include/objtype";
+include ":itemutils:objtype";
 include "util/key";
 include "include/canAccess";
 include "include/toolWear";

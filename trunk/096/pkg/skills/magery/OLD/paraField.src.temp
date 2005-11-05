@@ -3,7 +3,7 @@ use uo;
 use util;
 
 include "include/fields";
-include "include/objtype";
+include ":itemutils:objtype";
 include "include/sound";
 include ":attributes:attributes";
 

@@ -3,7 +3,7 @@
 include ":attributes:attributeConstants";
 include ":attributes:attributes";
 include ":attributes:skillCheck";
-include "include/objtype";
+include ":itemutils:objtype";
 include "include/canAccess";
 
 program UseWood( who, wood )

@@ -1,9 +1,9 @@
 use uo;
 
-include "include/objtype";
+include ":itemutils:objtype";
 
 program cast_mark( caster )
-       
+
     SendSysMessage( caster, "Select a rune to mark." );
     var cast_on := Target( caster, TGTOPT_CHECK_LOS );
 
@@ -25,5 +25,5 @@ program cast_mark( caster )
 	SendSysMessage( caster, "You marked: " +  caster.x + " " + caster.y + " " + caster.z );
 
     SetName(cast_on, "a Marked Recall Rune");
-   
+
 endprogram

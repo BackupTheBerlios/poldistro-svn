@@ -4,7 +4,7 @@ use os;
 
 include "util/key";
 include ":containers:storageAreas";
-include "include/objtype";
+include ":itemutils:objtype";
 include "include/findCity";
 include "include/canAccess";
 include "include/isValidLoc";
@@ -156,8 +156,8 @@ function CreatehouseKeysAndBuiltDeed(character, housetype, where, deed)
   house.visible:=1;
   endif
 
- 
- 
+
+
   var result := struct;
   result.+packkey := packkey;
   result.+bankkey := bankkey;

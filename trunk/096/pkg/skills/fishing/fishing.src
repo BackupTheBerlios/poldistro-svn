@@ -11,7 +11,7 @@ include "include/canAccess";
 include ":attributes:include/attributeConstants";
 include ":attributes:include/attributes";
 include ":crafting:toolWear";
-include "include/objtype";
+include ":itemutils:objtype";
 include "include/startEqp";
 include "include/sysEvent";
 

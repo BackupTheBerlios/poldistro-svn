@@ -9,7 +9,7 @@ include "include/sysEvent";
 include ":npcutils:names";
 include ":npcutils:vetement";
 include ":npcutils:NPCUtil";
-include "include/objtype";
+include ":itemutils:objtype";
 include "include/dist";
 include ":npcutils:anchors";
 include ":oldAI:main/killPCsLoop";

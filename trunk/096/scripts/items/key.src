@@ -1,7 +1,7 @@
 use uo;
 use os;
 use boat;
-include "include/objtype";
+include ":itemutils:objtype";
 include ":gumps:yesno";
 include "include/myUtil";
 include "util/key";

@@ -1,5 +1,5 @@
 include "include/client";
-include "include/objtype";
+include ":itemutils:objtype";
 
 function AllocLockId()
   var lockid := GetGlobalProperty( "nextlockid" );

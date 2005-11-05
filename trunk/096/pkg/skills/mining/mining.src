@@ -5,7 +5,7 @@ use util;
 include "include/client";
 include ":attributes:attributes";
 include "include/dist";
-include "include/objtype";
+include ":itemutils:objtype";
 include "include/startEqp";
 include "util/key";
 include "include/utility";

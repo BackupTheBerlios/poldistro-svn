@@ -4,7 +4,7 @@ use util;
 
 include ":attributes:attributes";
 include "include/client";
-include "include/objtype";
+include ":itemutils:objtype";
 include "include/canAccess";
 
 program decode_map( who, map )

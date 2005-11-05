@@ -1,4 +1,4 @@
-include "include/objtype";
+include ":itemutils:objtype";
 
 function OpenTamedStorageAreas()
   var bank := FindStorageArea("Tamed Storage");

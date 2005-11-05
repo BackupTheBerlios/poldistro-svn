@@ -1,4 +1,4 @@
-// //$Id: bladed.src 806 2005-11-01 21:56:02Z austin $
+// //$Id$
 
 
 use cfgfile;
@@ -10,7 +10,7 @@ include "include/client";
 include "include/sound";
 include ":attributes:attributes";
 include "include/string";
-include "include/objtype";
+include ":itemutils:objtype";
 include "include/canAccess";
 include "include/dist";
 include "include/toolWear";

@@ -5,7 +5,7 @@ use basic;
 include "include/eventID";
 include ":attributes:attributes";
 include "include/sysEvent";
-include "include/objtype";
+include ":itemutils:objtype";
 
 program SignListener(sign)
   var house := GetObjProperty(sign, "house_serial");

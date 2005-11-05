@@ -4,7 +4,7 @@ use util;
 
 include "include/fields";
 include ":attributes:attributes";
-include "include/objtype";
+include ":itemutils:objtype";
 
 
 program spell_energyField( parms )

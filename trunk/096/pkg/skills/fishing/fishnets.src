@@ -10,7 +10,7 @@ include "include/canAccess";
 include "fishingFunctions";
 include ":attributes:include/attributeConstants";
 include ":attributes:include/attributes";
-include "include/objtype";
+include ":itemutils:objtype";
 
 program use_FishNets(who, fishnet)
 

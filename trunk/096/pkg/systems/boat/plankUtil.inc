@@ -1,4 +1,4 @@
-include "include/objtype";
+include ":itemutils:objtype";
 
 const KEYSTART := 0x100e;
 const KEYEND := 0x1013;
@@ -6,7 +6,7 @@ const KEYRING := 0x1011;
 
 function IsExtended( plank )
   return plank.graphic in { GID_PLANK_EXTENDED_FACING_EAST, GID_PLANK_EXTENDED_FACING_WEST, GID_PLANK_EXTENDED_FACING_NORTH, GID_PLANK_EXTENDED_FACING_SOUTH };
-endfunction                          
+endfunction
 
 function IsPlankOccupied( plank )
   return ListMobilesNearLocation( plank.x, plank.y, plank.z, 0, plank.realm ).size();
@@ -66,7 +66,7 @@ function fk(me, plank)
 		endif
 	  endforeach
 	endif
-  endforeach			
+  endforeach
   return 0;
 endfunction
 

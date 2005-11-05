@@ -13,7 +13,7 @@ include ":attributes:attributes";
 include ":attributes:skillCheck";
 include "include/mobileID";
 include "include/client";
-include "include/objtype";
+include ":itemutils:objtype";
 
 CONST MINKARMA := 4000;
 CONST MINFAME := 4000;
