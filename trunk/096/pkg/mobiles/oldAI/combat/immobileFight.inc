@@ -10,7 +10,7 @@ function Fight(opponent)
   TurnToward(opponent);
   var loops := 0;
   waittime := 0;
-  while((opponent) && not (opponent.dead || opponent.hidden || opponent.concealed) && (dist(me,opponent) < 20) )
+  while((opponent) && not (opponent.dead || opponent.hidden || opponent.concealed) && (Distance(me,opponent) < 20) )
 	if(!CloseDistance(opponent))
 	  loops := loops + 1;
 	  waittime := 0;
@@ -21,7 +21,7 @@ function Fight(opponent)
 	process_combat_event(opponent);
 	ev := wait_for_event(waittime);
 	case (ev.type)
-      SYSEVENT_DAMAGED: if((dist(me, ev.source) < dist(me, opponent)) || (!CheckLineOfSight(me, opponent)) || (!opponent))
+      SYSEVENT_DAMAGED: if((Distance(me, ev.source) < Distance(me, opponent)) || (!CheckLineOfSight(me, opponent)) || (!opponent))
 					      opponent := ev.source;
 			  		      SetOpponent(opponent);
 					      TurnToward(opponent);

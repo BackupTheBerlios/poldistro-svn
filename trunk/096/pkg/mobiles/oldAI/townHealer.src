@@ -13,7 +13,6 @@ include ":npcutils:vetement";
 include ":npcutils:NPCBackpacks";
 include "include/client";
 include ":npcutils:anchors";
-include "include/dist";
 include "include/resurrection";
 include "include/findCity";
 include ":begging:begging";
@@ -128,7 +127,7 @@ set_priority(50);
 	if(ReadGameClock() >= next_wander)
 	  begpurse(me);
       wander();
-      if(coordist(me.x, me.y, myanchor[1], myanchor[2]) > 5)
+      if(CoordinateDistance(me.x, me.y, myanchor[1], myanchor[2]) > 5)
         MoveCharacterToLocation(me, myanchor[1], myanchor[2], myanchor[3], MOVECHAR_FORCELOCATION);
       endif
       next_wander := ReadGameClock() + 30;

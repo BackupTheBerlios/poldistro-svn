@@ -13,7 +13,7 @@ endfunction
 
 function in_combat_event_loop(opponent, loops)
   if(loops > 50)
-    if((dist(me, opponent) > 12) && (!CheckLineOfSight(me, opponent)))
+    if((Distance(me, opponent) > 12) && (!CheckLineOfSight(me, opponent)))
 	  RestartScript(me);
 	  return;
     endif

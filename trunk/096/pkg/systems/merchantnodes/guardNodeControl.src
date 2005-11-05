@@ -8,7 +8,6 @@ use cfgfile;
 include "include/eventID";
 include ":attributes:attributes";
 include "include/sysEvent";
-include "include/dist";
 
 var npclist := {};
 var spawn, amt, item, status;

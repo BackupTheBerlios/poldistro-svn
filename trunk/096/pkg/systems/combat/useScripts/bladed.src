@@ -12,7 +12,6 @@ include ":attributes:attributes";
 include "include/string";
 include ":itemutils:objtype";
 include ":itemutils:canAccess";
-include "include/dist";
 include "include/toolWear";
 include "include/noto";
 include ":tailoring:tailoringFunctions";
@@ -82,7 +81,7 @@ endfunction
 
 function CarveTree(who, blade, use_on )
 
-	if ( dist(who, use_on) > 2 )
+	if ( Distance(who, use_on) > 2 )
 		SendSysMessage(who, "You cannot use that");
 		return 0;
 	endif

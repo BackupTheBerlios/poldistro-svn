@@ -5,7 +5,6 @@ use os;
 
 include "include/client";
 include ":attributes:attributes";
-include "include/dist";
 include ":timedscripts:timedScripts";
 include ":timedscripts:poisonUtil";
 
@@ -20,7 +19,7 @@ program use_bandages (parms)
   EraseObjProperty(who, "IsMeditating");
   //var sleeptime;
   var anatomy:= AP_GetSkill(who, ANATOMY);
-  if(dist(who, patient) > 2)
+  if(Distance(who, patient) > 2)
     SendSysMessage(who, "Your patient is too far away.");
     return;
   elseif(!CheckLineOfSight(who,patient))
@@ -37,7 +36,7 @@ program use_bandages (parms)
       SendSysMessage(who,"You can't see your patient.");
       return;
     endif
-    if(dist(who, patient) <= 2)
+    if(Distance(who, patient) <= 2)
       SendSysMessage(who,"You start to cure "+patient.name+".");
       cure(who, patient);
     else
@@ -49,7 +48,7 @@ program use_bandages (parms)
 	  SendSysMessage(who,"You can't see your patient.");
       return;
     endif
-    if(dist(who, patient) <= 2)
+    if(Distance(who, patient) <= 2)
       SendSysMessage(who,"You start to heal "+patient.name + ".");
       heal(who, patient);
     else
@@ -90,7 +89,7 @@ function heal(who, patient)
     endif
     chp:=AP_GetVital(who, HITS);
     sleep(1);
-    if(dist(who, patient) > 2)
+    if(Distance(who, patient) > 2)
       SendSysMessage(who,"Your patient isn't close enough.");
       break;
     endif
@@ -166,7 +165,7 @@ function cure(who, patient)
     endif
     chp:=AP_GetVital(who, HITS);
     sleep(1);
-    if(dist(who, patient) > 1)
+    if(Distance(who, patient) > 1)
       SendSysMessage(who,"Your patient isn't close enough.");
       break;
     endif

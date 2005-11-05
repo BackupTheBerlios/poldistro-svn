@@ -9,7 +9,6 @@ include ":npcutils:names";
 include ":npcutils:vetement";
 include "include/eventID";
 include "include/sysEvent";
-include "include/dist";
 include ":npcutils:anchors";
 include ":npcutils:speech";
 include "include/client";
@@ -76,7 +75,7 @@ function Fight( opponent )
   SetOpponent(opponent);
   var waittime;
   outer:
-  while (opponent && not (opponent.dead || opponent.hidden || opponent.concealed) && (dist(me,opponent) < 15))
+  while (opponent && not (opponent.dead || opponent.hidden || opponent.concealed) && (Distance(me,opponent) < 15))
     waittime := CloseDistance(opponent) * 15;
     var ev := wait_for_event(waittime);
     repeat

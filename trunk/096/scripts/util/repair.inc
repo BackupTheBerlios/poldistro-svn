@@ -146,7 +146,7 @@ function repair_this(who, skillid := 7)
     SendSysMessage(who, "You cannot repair that.");
     return;
   endif
-  if((!Accessible(who, use_on)) or (dist(who, use_on) > 2))
+  if((!Accessible(who, use_on)) or (Distance(who, use_on) > 2))
     SendSysMessage(who, "You cannot reach that.");
     return;
   endif

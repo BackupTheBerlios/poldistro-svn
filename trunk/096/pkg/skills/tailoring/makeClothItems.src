@@ -5,7 +5,6 @@ use os;
 
 include ":gumps:include/old/old-gumps";
 include ":attributes:attributes";
-include "include/dist";
 include "include/client";
 include ":itemutils:objtype";
 include ":itemutils:canAccess";

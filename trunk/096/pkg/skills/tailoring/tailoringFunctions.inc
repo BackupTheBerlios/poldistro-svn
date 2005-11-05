@@ -1,6 +1,6 @@
 
 function process_wool(who, blade, sheep)
-  if((!CheckLineOfSight(who, sheep)) or (dist(who, sheep) > 2))
+  if((!CheckLineOfSight(who, sheep)) or (Distance(who, sheep) > 2))
     SendSysMessage(who, "You cannot use that.");
     return;
   endif

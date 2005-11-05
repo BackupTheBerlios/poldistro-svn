@@ -5,11 +5,10 @@ use cfgfile;
 
 include "include/client";
 include ":attributes:attributes";
-include "include/eventID";
+include "include/OLD/eventID";
 include "include/sysEvent";
 include ":npcutils:names";
 include ":npcutils:vetement";
-include "include/dist";
 include ":npcutils:anchors";
 include ":npcutils:NPCBackpacks";
 include "include/skillLists";
@@ -58,7 +57,7 @@ program CastleGuard()
       endcase
 	endif
 	if(ReadGameClock() >= next_wander)
-      if(coordist(me.x, me.y, myanchor[1], myanchor[2]) > 15)
+      if( CoordinateDistance(me.x, me.y, myanchor[1], myanchor[2]) > 15)
         MoveCharacterToLocation(me, myanchor[1], myanchor[2], myanchor[3], MOVECHAR_FORCELOCATION);
       endif
       next_wander := ReadGameClock() + 10;
@@ -72,7 +71,7 @@ endprogram
 
 function WanderMe()
   wander();
-  if(coordist(me.x, me.y, myanchor[1], myanchor[2]) > 15)
+  if(CoordinateDistance(me.x, me.y, myanchor[1], myanchor[2]) > 15)
     MoveCharacterToLocation(me, myanchor[1], myanchor[2], myanchor[3], MOVECHAR_FORCELOCATION);
   endif
 endfunction

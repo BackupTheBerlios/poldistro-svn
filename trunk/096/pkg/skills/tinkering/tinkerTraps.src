@@ -2,7 +2,6 @@ use uo;
 use util;
 use os;
 
-include "include/dist";
 include "include/sound";
 include "include/tileEffects";
 include "include/client";
@@ -51,7 +50,7 @@ program open_trapped_item(who, item)
        EraseObjProperty(item, "trap_strength");
     2: PlaySoundEffect(who, SFX_232);
        PrintTextAbovePrivate(who, "You set off a poison trap!", who);
-       if(dist(who, item) < 3)
+       if(Distance(who, item) < 3)
          PlayObjectCenteredEffect(who, FX_POISON_GAS, 10,10);
          var passparms := {who, who, "poison trap", trapstrength};
          start_script(":spells:poisonDamage", passparms);
@@ -63,7 +62,7 @@ program open_trapped_item(who, item)
        EraseObjProperty(item, "trap_strength");
     3: PlaySoundEffect(who, SFX_208);
        SendSysMessage(who, "You set off an explosion trap!");
-       if(dist(who, item) < 3)
+       if(Distance(who, item) < 3)
          PlayObjectCenteredEffect(who, FX_EXPLODE_3, 10,10);
          var dmg :=(RandomInt(20) + CInt(trapstrength));
          ApplyRawDamage(who, dmg);
@@ -80,7 +79,7 @@ program open_trapped_item(who, item)
        var oldstrength := GetObjProperty(item, "oldstrength");
        var oldtype := GetObjProperty(item, "oldtype");
        SendSysMessage(who, "You set off an explosion trap!");
-       if(dist(who, item) < 3)
+       if(Distance(who, item) < 3)
          PlayObjectCenteredEffect(who, FX_EXPLODE_3, 10,10);
          var dmg := Resist(who, (RandomInt(20) + trapstrength));
          ApplyRawDamage(who, dmg);

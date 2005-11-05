@@ -19,7 +19,6 @@ include ":npcutils:names";
 include ":npcutils:vetement";
 include ":npcutils:speech";
 include ":npcutils:anchors";
-include "include/dist";
 include ":oldAI:main/loot";
 include ":begging:begging";
 

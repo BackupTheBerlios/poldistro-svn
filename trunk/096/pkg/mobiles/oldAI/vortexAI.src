@@ -9,7 +9,6 @@ include "include/client";
 include ":npcutils:names";
 include ":npcutils:NPCUtil";
 include ":itemutils:objtype";
-include "include/dist";
 include ":npcutils:anchors";
 include ":oldAI:combat/vortexCombatEvent";
 include ":oldAI:setup/setup";
@@ -84,7 +83,7 @@ function Fight(opponent)
   TurnToward(opponent);
   var loops := 0;
   waittime := 0;
-  while((opponent) && (!opponent.dead) && (!opponent.hidden) && (!opponent.concealed) && (dist(me,opponent) < 20))
+  while((opponent) && (!opponent.dead) && (!opponent.hidden) && (!opponent.concealed) && (Distance(me,opponent) < 20))
 	if(!CloseDistance(opponent))
 	  loops := loops + 1;
 	  waittime := 0;
@@ -156,7 +155,7 @@ function HerdingLoop(ev)
 	  loops := 0;
 	  waittime := 1;
 	endif
-	if((loops >= 30) or (coordist(me.x, me.y, lx, ly) <= 1))
+	if((loops >= 30) or (CoordinateDistance(me.x, me.y, lx, ly) <= 1))
 	  break;
 	endif
 	ev := wait_for_event(waittime);
@@ -173,7 +172,7 @@ function HerdingLoop(ev)
 endfunction
 
 function CloseIn(me, lx, ly)
-  case (coordist(me.x, me.y, lx, ly))
+  case (CoordinateDistance(me.x, me.y, lx, ly))
     0:       return 1;
     default: WalkTowardLocation(lx, ly);
              return 0;

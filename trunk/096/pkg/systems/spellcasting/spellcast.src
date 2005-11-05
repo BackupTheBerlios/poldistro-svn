@@ -5,7 +5,6 @@ use cfgfile;
 
 include "spellcastFunctions";
 include ":attributes:attributes";
-include "include/dist";
 
 program spellcast(who, spellid)
 
@@ -173,7 +172,7 @@ program spellcast(who, spellid)
       SendSysMessage(who, "You can't see that.", 3, 40);
       return 0;
     endif
-    if (coordist(who.x, who.y, castOn.x, castOn.y) >= 12)
+    if (CoordinateDistance(who.x, who.y, castOn.x, castOn.y) >= 12)
       SendSysMessage(who, "That is too far away.", 3, 40);
       return 0;
     endif

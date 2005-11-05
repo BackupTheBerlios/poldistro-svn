@@ -3,7 +3,6 @@ use util;
 use cfgfile;
 
 include ":itemutils:canAccess";
-include "include/dist";
 
 program usescript_repairDeed(who, deed)
 
@@ -105,7 +104,7 @@ function SelectiveRepair(who, skillid)
     SendSysMessage(who, "You cannot repair that");
     return;
   endif
-  if((!Accessible(who, use_on)) or (dist(who, use_on) > 2))
+  if((!Accessible(who, use_on)) or (Distance(who, use_on) > 2))
     SendSysMessage(who, "You cannot reach that");
     return;
   endif

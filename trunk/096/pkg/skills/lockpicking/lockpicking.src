@@ -3,7 +3,6 @@ use os;
 use cfgfile;
 use util;
 
-include "include/dist";
 include ":itemutils:objtype";
 include "include/sound";
 include "include/startEqp";

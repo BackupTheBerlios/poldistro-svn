@@ -9,7 +9,6 @@ include "include/eventID";
 include "include/sysEvent";
 include ":npcutils:names";
 include ":npcutils:vetement";
-include "include/dist";
 include ":npcutils:anchors";
 include ":npcutils:NPCBackpacks";
 include ":begging:begging";
@@ -81,7 +80,7 @@ endprogram
 
 function WanderMe()
   wander();
-  if(coordist(me.x, me.y, myanchor[1], myanchor[2]) > 15)
+  if(CoordinateDistance(me.x, me.y, myanchor[1], myanchor[2]) > 15)
     MoveCharacterToLocation(me, myanchor[1], myanchor[2], myanchor[3], MOVECHAR_FORCELOCATION);
   endif
 endfunction
@@ -161,7 +160,7 @@ function Fight(opponent)
   var loops := 0;
   var ev;
   var waittime := 0;
-  while((opponent) && (!opponent.dead) && (!opponent.hidden) && (!opponent.concealed) && (dist(me,opponent) < 20))
+  while((opponent) && (!opponent.dead) && (!opponent.hidden) && (!opponent.concealed) && (Distance(me,opponent) < 20))
 	if(!CloseDistance(opponent))
 	  loops := loops + 1;
 	  waittime := 0;

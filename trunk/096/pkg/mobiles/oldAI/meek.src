@@ -26,7 +26,6 @@ include ":npcutils:names";
 include ":npcutils:NPCUtil";
 include ":itemutils:objtype";
 include ":npcutils:speech";
-include "include/dist";
 include ":npcutils:anchors";
 include ":oldAI:main/mainLoopMeek";
 include ":oldAI:combat/fight";

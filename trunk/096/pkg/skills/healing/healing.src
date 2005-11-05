@@ -4,7 +4,6 @@ use npc;
 use util;
 use cfgfile;
 
-include "include/dist";
 include "include/client";
 include "include/resurrection";
 include ":itemutils:canAccess";
@@ -30,7 +29,7 @@ program use_bandages(who, item)
 		return;
 	endif
 	var poisons := TS_GetTimerNames(patient, "P");
-	if(dist(who, patient) >= 2)
+	if(Distance(who, patient) >= 2)
 		SendSysMessage(who, "Your patient is too far away.");
 		return;
 	elseif(!CheckLineOfSight(who,patient))
@@ -72,7 +71,7 @@ program use_bandages(who, item)
 						resurrect_pc(who, patient, 0);
 					endif
 				endif
-			elseif(dist(who, patient) > 1)
+			elseif(Distance(who, patient) > 1)
 				SendSysMessage(who, "Your patient is too far away.");
 			elseif(!CheckLineOfSight(who, patient))
 				SendSysMessage(who,"You can't see your patient.");
@@ -100,7 +99,7 @@ program use_bandages(who, item)
 						resurrect_pc(who, patient, 0);
 					endif
 				endif
-			elseif(dist(who, patient) > 1)
+			elseif(Distance(who, patient) > 1)
 				SendSysMessage(who, "Your patient is too far away.");
 			elseif(!CheckLineOfSight(who, patient))
 				SendSysMessage(who,"You can't see your patient.");
@@ -120,7 +119,7 @@ program use_bandages(who, item)
 			SendSysMessage(who, "You have no chance of reviving your patient.");
 		elseif(!CheckLineOfSight(who,patient))
 			SendSysMessage(who,"You can't see your patient anymore.");
-		elseif(dist(who, patient) > 1)
+		elseif(Distance(who, patient) > 1)
 			SendSysMessage(who, "Your patient is too far away.");
 		elseif(SubtractAmount(item, 1))
 			resurrect_pc(who, patient, 0);
@@ -131,7 +130,7 @@ program use_bandages(who, item)
 
 // Send the animals to vet.
 	elseif(patient.npctemplate)
-		if(dist(who, patient) >= 2)
+		if(Distance(who, patient) >= 2)
 			SendSysMessage(who, "Your patient is too far away.");
 		elseif(SubtractAmount(Item, 1))
 			var parms := array(patient, who);
@@ -181,7 +180,7 @@ function heal(who, patient, counter)
 			break;
 		elseif(clock != GetObjProperty(who, "HealTimer"))
 			break;
-		elseif(dist(who, patient) > 1)
+		elseif(Distance(who, patient) > 1)
 			SendSysMessage(who,"Your patient isn't close enough.");
 			SendSysMessage(patient, who.name + "has stopped healing you.");
 			break;
@@ -280,7 +279,7 @@ function cure(who, patient, counter)
 			break;
 		elseif(clock != GetObjProperty(who, "HealTimer"))
 			break;
-		elseif(dist(who, patient) > 1)
+		elseif(Distance(who, patient) > 1)
 			SendSysMessage(who, "Your patient isn't close enough.");
 			SendSysMessage(patient, who.name + " has stopped healing you.");
 			break;
@@ -340,7 +339,7 @@ function resurrect_pc(who, patient, counter)
 			break;
 		elseif(clock != GetObjProperty(who, "HealTimer"))
 			break;
-		elseif(dist(who, patient) > 1)
+		elseif(Distance(who, patient) > 1)
 			SendSysMessage(who,"Your patient isn't close enough.");
 			SendSysMessage(patient, who.name + "has stopped healing you.");
 			break;

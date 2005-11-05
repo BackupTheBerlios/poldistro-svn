@@ -10,7 +10,7 @@ function Fight(opponent)
   TurnToward(opponent);
   var loops := 0;
 
-  while((opponent) && (!opponent.dead) && (!opponent.hidden) && (!opponent.concealed) && (dist(me,opponent) < 20))
+  while((opponent) && (!opponent.dead) && (!opponent.hidden) && (!opponent.concealed) && (Distance(me,opponent) < 20))
 	if(!CloseDistance(opponent))
 	  loops := loops + 1;
 	  waittime := 0;
@@ -26,7 +26,7 @@ function Fight(opponent)
                             opponent := ev.source;
 			  		        SetOpponent(opponent);
 					        TurnToward(opponent);
-                          elseif((dist(me, ev.source) < dist(me, opponent)) || (!CheckLineOfSight(me, opponent)) || (!opponent))
+                          elseif((Distance(me, ev.source) < Distance(me, opponent)) || (!CheckLineOfSight(me, opponent)) || (!opponent))
 					        opponent := ev.source;
 			  		        SetOpponent(opponent);
 					        TurnToward(opponent);
@@ -84,7 +84,7 @@ function flee(opponent)
 	  WalkAwayFrom(opponent);
 	  runs := runs +1;
 	  case (ev.type)
-        SYSEVENT_DAMAGED: if(((ev.source.npctemplate) and (CheckLineOfSight(me, ev.source))) ||(dist(me, ev.source) < dist(me, opponent)) || (!CheckLineOfSight(me, opponent)) || (!opponent) || (RandomInt(3)==1))
+        SYSEVENT_DAMAGED: if(((ev.source.npctemplate) and (CheckLineOfSight(me, ev.source))) ||(Distance(me, ev.source) < Distance(me, opponent)) || (!CheckLineOfSight(me, opponent)) || (!opponent) || (RandomInt(3)==1))
 					        opponent := ev.source;
 			  		        SetOpponent(opponent);
 			              endif

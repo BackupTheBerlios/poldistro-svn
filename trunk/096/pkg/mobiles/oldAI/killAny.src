@@ -26,7 +26,6 @@ include ":npcutils:names";
 include ":npcutils:NPCUtil";
 include ":itemutils:objtype";
 include ":npcutils:anchors";
-include "include/dist";
 include ":oldAI:main/mainLoopKillAny";
 include ":oldAI:combat/fight";
 include ":oldAI:main/defaultNonCombatEvent";

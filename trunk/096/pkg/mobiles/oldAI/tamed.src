@@ -9,7 +9,6 @@ include "include/sysEvent";
 include ":npcutils:NPCBackpacks";
 include ":npcutils:NPCCast";
 include ":npcutils:names";
-include "include/dist";
 include "include/snooping";
 include "include/tileEffects";
 
@@ -203,7 +202,7 @@ function Fight(opponent)
   var ev;
   var loops := 0;
   var f_waittime := 0;
-  while((opponent) && (!opponent.dead || !opponent.hidden || !opponent.concealed)&&(dist(me,opponent)< 15))
+  while((opponent) && (!opponent.dead || !opponent.hidden || !opponent.concealed)&&(Distance(me,opponent)< 15))
     if(!CloseDistance(opponent))
       loops := loops + 1;
       f_waittime := 0;
@@ -254,7 +253,7 @@ function Fight(opponent)
     endif
     if(firebreather and caster)
       if(LAST_BREATH <= ReadGameClock())
-        if((CheckLineOfSight(me, opponent)) and (dist(me, opponent) <= 15))
+        if((CheckLineOfSight(me, opponent)) and (Distance(me, opponent) <= 15))
           if(RandomInt(4) == 1)
             cast_meteor(opponent);
           else
@@ -265,7 +264,7 @@ function Fight(opponent)
       endif
     elseif(caster)
       if(LAST_BREATH <= ReadGameClock())
-        if((CheckLineOfSight(me, opponent)) and (dist(me, opponent) <= 15))
+        if((CheckLineOfSight(me, opponent)) and (Distance(me, opponent) <= 15))
           cast_offensive_spell(me, opponent);
           LAST_BREATH := Cint(ReadGameClock() + (RandomInt(4) + 4));
         endif
@@ -611,7 +610,7 @@ function Guard()
       return;
     endforeach
   endif
-  if((!AP_GetStat(guarding, "Strength"))||(guarding.dead)||(dist(me,guarding)> 15))
+  if((!AP_GetStat(guarding, "Strength"))||(guarding.dead)||(Distance(me,guarding)> 15))
     guarding := 0;
   endif
 endfunction
