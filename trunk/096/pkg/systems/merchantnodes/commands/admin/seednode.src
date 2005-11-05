@@ -2,7 +2,7 @@ use uo;
 use os;
 use cfgfile;
 
-include "include/mrcSpawn";
+include "include/OLD/mrcSpawn";
 
 program textcmd_seednode(who)
   var cfg := ReadConfigFile("packedNodes");

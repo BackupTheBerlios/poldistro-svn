@@ -8,13 +8,13 @@ include ":attributes:attributes";
 include "include/sysEvent";
 include ":npcutils:names";
 include ":itemutils:utility";;
-include "include/mrcSpawn";
+include "include/OLD/mrcSpawn";
 include ":npcutils:vetement";
 include ":npcutils:NPCBackpacks";
 include "include/client";
 include ":npcutils:anchors";
-include "include/resurrection";
-include "include/findCity";
+include "include/OLD/resurrection";
+include "include/OLD/findCity";
 include ":begging:begging";
 include ":npcutils:trainSkill";
 

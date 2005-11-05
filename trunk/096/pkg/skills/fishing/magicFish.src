@@ -7,7 +7,7 @@ use cfgfile;
 use os;
 use util;
 
-include "include/statMod";
+include "include/OLD/statMod";
 include ":itemutils:canAccess";
 include ":timedscripts:timedScripts";
 include ":timedscripts:poisonUtil";

@@ -16,7 +16,7 @@ include ":npcutils:vetement";
 include ":npcutils:NPCUtil";
 include ":itemutils:objtype";
 include ":oldAI:main/sleepMode";
-include "include/skillLists";
+include "include/OLD/skillLists";
 include ":begging:begging";
 
 const HALT_THRESHOLD := 2;

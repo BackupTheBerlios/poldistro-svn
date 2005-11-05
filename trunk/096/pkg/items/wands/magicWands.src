@@ -7,7 +7,7 @@ include ":itemutils:canAccess";
 include "include/tileEffects";
 include "include/client";
 include "include/sound";
-include "include/statMod";
+include "include/OLD/statMod";
 
 
 var EVID_DISCHARGE := 0x123457;

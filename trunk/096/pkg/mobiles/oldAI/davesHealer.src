@@ -12,7 +12,7 @@ include "include/sysEvent";
 include ":npcutils:anchors";
 include ":npcutils:speech";
 include "include/client";
-include "include/resurrection";
+include "include/OLD/resurrection";
 include ":begging:begging";
 
 const SOUND_EFFECT_RES := 0x215;

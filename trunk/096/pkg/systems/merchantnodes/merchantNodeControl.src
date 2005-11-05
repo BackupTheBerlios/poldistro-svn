@@ -6,7 +6,7 @@ use cfgfile;
 include "include/OLD/eventID";
 include ":attributes:attributes";
 include "include/sysEvent";
-include "include/mrcSpawn";
+include "include/OLD/mrcSpawn";
 include ":itemutils:utility";;
 
 var npclist := {};

@@ -8,7 +8,7 @@ include "include/client";
 include "include/tileEffects";
 include "include/sound";
 include ":itemutils:objtype";
-include "include/statMod";
+include "include/OLD/statMod";
 include "include/firewall";
 include "include/spellAttack";
 

@@ -3,7 +3,7 @@ use uo;
 use util;
 use cfgfile;
 include "drinkPotion";
-include "include/statMod";
+include "include/OLD/statMod";
 include ":itemutils:canAccess";
 
 program whitePotion (who, potion)

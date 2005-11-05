@@ -11,7 +11,7 @@ include ":npcutils:names";
 include ":npcutils:vetement";
 include ":npcutils:anchors";
 include ":npcutils:NPCBackpacks";
-include "include/skillLists";
+include "include/OLD/skillLists";
 include ":timedscripts:timedScripts";
 
 var flee_point := 0;

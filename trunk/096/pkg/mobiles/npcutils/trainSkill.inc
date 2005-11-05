@@ -1,4 +1,4 @@
-include "include/skillLists";
+include "include/OLD/skillLists";
 include ":attributes:attributes_ex";
 
 var cost;

@@ -3,7 +3,7 @@ use os;
 
 include ":gumps:include/old/old-gumps";
 include "include/client";
-include "include/mrcSpawn";
+include "include/OLD/mrcSpawn";
 
 var pid, proc, item, restock, respawn, apply, cancel, page := 0, chk := 0, sy := 60, type;
 

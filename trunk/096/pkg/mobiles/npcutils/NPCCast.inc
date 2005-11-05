@@ -4,7 +4,7 @@ use util;
 use cfgfile;
 
 include "include/client";
-include "include/statMod";
+include "include/OLD/statMod";
 
 function castspell(caster, cast_on, spellname)
   var spellid := GetSpellID(spellname);
