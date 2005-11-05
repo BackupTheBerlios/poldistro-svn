@@ -3,7 +3,7 @@ use util;
 use uo;
 
 include "include/client";
-include "include/fields";
+include ":itemutils:fields";
 
 const SOUND_EFFECT_FIREFIELD:= 0x1de;
 const UOBJ_FIREFIELD_NS := 0x398c;

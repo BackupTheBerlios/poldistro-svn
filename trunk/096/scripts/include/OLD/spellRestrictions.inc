@@ -3,7 +3,7 @@ use os;
 use cfgfile;
 use util;
 
-include "include/fields";
+include ":itemutils:fields";
 include "include/client";
 include "include/tileEffects";
 include "include/sound";
