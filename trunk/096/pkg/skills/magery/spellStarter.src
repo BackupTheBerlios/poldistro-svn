@@ -10,7 +10,7 @@ use cfgfile;
 include ":attributes:attributes";
 include ":magery:spells";
 include ":containers:containers";
-include "include/itemdesc";
+include ":itemutils:itemdesc";
 include "include/client";
 
 program SpellStarter(params)
@@ -36,14 +36,6 @@ program SpellStarter(params)
 		return 0;
 	endif
 
-	var attribute		:= spell_elem.Attribute;
-	var delay		:= spell_elem.BaseDelay;
-	var difficulty		:= spell_elem.Difficulty;
-	var mana_cost		:= spell_elem.ManaCost;
-	if ( !attribute )
-		attribute := MAGERY;
-	endif
-
 	if ( GetObjProperty(who, "#medding") )
 		SendSysMessage(who, "You can not cast right now.");
 		return 0;
@@ -55,7 +47,7 @@ program SpellStarter(params)
 		SendSysMessage(who, "Something prevents you from casting.");
 		FailSpell(who);
 		return 0;
-	elseif ( !ConsumeVital(who, MANA, mana_cost) )
+	elseif ( !ConsumeVital(who, MANA, spell_elem.ManaCost) )
 		SendSysMessage(who, "You are too tired to cast.");
 		FailSpell(who);
 		return 0;
@@ -65,12 +57,21 @@ program SpellStarter(params)
 	elseif ( !EquipmentCheck(who) )
 		FailSpell(who);
 		return 0;
-	elseif ( !CheckDelay(who, attribute, difficulty, delay) )
+	elseif ( !CheckDelay(who, spell_elem) )
 		FailSpell(who);
 		SendSysMessage(who, "Your concentration has been broken.");
 		return 0;
 	else
-		var skill_check := SkillCheck(who, attribute, difficulty);
+		var attribute		:= spell_elem.Attribute;
+		if ( !attribute )
+			attribute := MAGERY;
+		endif
+		
+		var difficulty		:= spell_elem.Difficulty;
+		if ( !difficulty )
+			difficulty := -1;
+		endif
+		var skill_check 	:= SkillCheck(who, attribute, difficulty);
 		if ( skill_check > 0 )
 			var info := struct;
 			info.+script		:= spell_elem.script;
@@ -97,73 +98,34 @@ program SpellStarter(params)
 	EraseObjProperty(who, "#medding");
 endprogram
 
-function CheckDelay(who, attribute, difficulty, base_delay)
-	if ( who.npctemplate )
-		// NPCs are allowed to move.
-		return 1;
-	endif
+function CheckDelay(who, spell_elem)
 	
 	SendSysMessage(who, "You begin building the concentration needed to cast.");
-	var equip_delay := GetEquipmentDelay(who);
-		
-	var my_x := who.x;
-	var my_y := who.y;
 	
-	var skill := AP_GetSkill(who, attribute);
-	var delay := CInt(CDbl(base_delay) * (CDbl(difficulty) / CDbl(skill)));
-	delay := delay+equip_delay;
+	var script := start_script("movementCheck", {who, GetPid()});
 	
-	if ( delay < 50 )
-		delay := 50;
-	endif
-	var script := start_script("movementCheck", {who, GetPid(), my_x, my_y});
-	
+	var delay := spell_elem.Delay;
 	MS_SpellDebug(who, "Cast delay ->"+delay);
-	
 	sleepms(delay);
 	
-	// Delay is over, stop the movement checker.
 	script.kill();
-	
-	if ( Events_Waiting() > 0 )
-		// movementCheck.ecl sent a "moved" event.
-		return 0;
-	else
-		// Player stood still and can move on.
-		return 1;
-	endif
-endfunction
-
-function GetEquipmentDelay(who)
-	/*
-	var weight := 0;
-	var ar := 0;
-	foreach item in EnumeratePhysicalItems(who)
-		weight := weight+item.weight;
-		ar := ar+item.ar;
-	endforeach
-	
-	return {weight, ar};
-	*/
-	
-	var cfg := ReadConfigFile(":*:itemdesc");
-	var delay := 0;
-	foreach item in ListEquippedItems(who)
-		delay := delay+CInt(cfg[item.objtype].CastDelay);
-		sleepms(2);
-	endforeach
-	
-	return delay;
+	return ( Events_Waiting() > 0 );
 endfunction
 
 function EquipmentCheck(who)
-	var item_cfg := ReadConfigFile(":*:itemdesc");
-	foreach item in ListEquippedItems(who)
-		if ( item_cfg[item.objtype].BlocksCastingIfInHand ) // God thats long!
+	var hand_1 := GetEquipmentByLayer(who, LAYER_HAND1);
+	if ( hand_1 )
+		if ( !hand_1.IsA(POLCLASS_SPELLBOOK) )
 			return 0;
 		endif
-		sleepms(2);
-	endforeach
+	endif
+	var hand_2 := GetEquipmentByLayer(who, LAYER_HAND2);
+	if ( hand_2 )
+		if ( !hand_2.IsA(POLCLASS_SPELLBOOK) )
+			return 0;
+		endif
+	endif
+	
 	return 1;
 endfunction
 
@@ -207,4 +169,6 @@ function FailSpell(who)
 	EraseObjProperty(who, "#medding");
 	PlayObjectCenteredEffect(who, GFX_SPELL_FAIL, 5, 50);
 	PlaySoundEffect(who, SFX_SPELL_FAIL);
+	
+	return 1;
 endfunction

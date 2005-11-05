@@ -34,7 +34,7 @@ endfunction
  * MS_GetSpellsCfgElem(elem_name, cfg_file)
  *
  * Purpose
- * Retrieves an elem from a config file. 
+ * Retrieves an elem from a config file.
  *
  * Parameters
  * elem_name:	A string matching the elem name to be retrieved.
@@ -48,7 +48,7 @@ function MS_GetSpellsCfgElem(elem_name, byref cfg_file:=0)
 	if ( !cfg_file )
 		cfg_file := MS_GetSpellsCfgFile();
 	endif
-	
+
 	var elem := cfg_file[elem_name];
 
 	if ( elem.errortext )
@@ -58,7 +58,7 @@ function MS_GetSpellsCfgElem(elem_name, byref cfg_file:=0)
 	return elem;
 endfunction
 
-/* 
+/*
  * MS_SpellDebug(who, text)
  *
  * Purpose
@@ -86,10 +86,10 @@ function MS_Reflection()
 	// Apply some of spell_strength to target if reflected.
 	// Lower spell_strength by how much was not reflected.
 	// Start the spell again and point it at who from targ.
-	
+
 endfunction
 
-/* 
+/*
  * MS_Target(who, targ, prompt, flags)
  *
  * Purpose
@@ -107,18 +107,18 @@ endfunction
  */
 function MS_Target(byref who, byref targ:=0, byref prompt := "Select a target.", byref flags:=TGTOPT_CHECK_LOS+TGTOPT_NEUTRAL)
 	who.hidden := 0;
-	
+
 	if ( targ.IsA(POLCLASS_UOBJECT) )
 		return targ;
 	elseif ( who.npctemplate )
 		return 0;
 	endif
-	
+
 	var orig_x := who.x;
 	var orig_y := who.y;
-	
+
 	SendSysMessage(who, prompt);
-	
+
 	targ := Target(who, flags);
 	if ( Distance(who, targ) > MAX_RANGE )
 		SendSysMessage(who, "That is too far away.");
@@ -131,7 +131,7 @@ function MS_Target(byref who, byref targ:=0, byref prompt := "Select a target.",
 	endif
 endfunction
 
-/* 
+/*
  * MS_TargetCoordinates(who, targ, prompt)
  *
  * Purpose
@@ -148,19 +148,19 @@ endfunction
  */
 function MS_TargetCoordinates(byref who, byref targ:=0, byref prompt := "Select a target.")
 	who.hidden := 0;
-	
+
 	if ( targ )
 		return targ;
 	elseif ( who.npctemplate )
 		return 0;
 	endif
-	
+
 	var orig_x := who.x;
 	var orig_y := who.y;
-	
+
 	SendSysMessage(who, prompt);
 	targ := TargetCoordinates(who);
-	
+
 	if ( !targ )
 		SendSysMessage(who, "Cancelled.");
 		return 0;
@@ -195,7 +195,7 @@ function MS_AdjustSpellPoints(mage, targ, points)
 	var defense := AP_GetSkill(targ, RESISTING_SPELLS);
 
 	// Failed MR check results in only half your resistance being used!
-	if ( SkillCheck(targ, "Magic_Resistance", -1) < 0 )
+	if ( SkillCheck(targ, RESISTING_SPELLS, -1) < 0 )
 		defense := CInt(defense / 2);
 	endif
 
@@ -223,6 +223,6 @@ endfunction
 function ReleaseScript(pid)
 	var process := GetProcess(pid);
 	process.SendEvent("done");
-	
+
 	return 1;
 endfunction
