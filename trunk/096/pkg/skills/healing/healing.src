@@ -7,7 +7,7 @@ use cfgfile;
 include "include/dist";
 include "include/client";
 include "include/resurrection";
-include "include/canAccess";
+include ":itemutils:canAccess";
 include ":attributes:attributes";
 include ":timedscripts:timedScripts";
 include ":timedscripts:poisonUtil";
@@ -128,7 +128,7 @@ program use_bandages(who, item)
 			SendSysMessage(who, "You cannot use those bandages.");
 		endif
 		return;
-		
+
 // Send the animals to vet.
 	elseif(patient.npctemplate)
 		if(dist(who, patient) >= 2)
@@ -149,7 +149,7 @@ function heal(who, patient, counter)
 	var basehealamt := healamt;
 	var cycles;
 	var count := 0;
-	
+
 	// Determine how many attempts are made to heal.
 	if(patient == who)
 		var dexcheck := (AP_GetTrueStat(who, "Dexterity") / 20);
@@ -163,7 +163,7 @@ function heal(who, patient, counter)
 			cycles := 3;
 		endif
 	endif
-	
+
 	// This loop has two functions:
 	//	1- provide wait-states for healing, during which, if it's interrupted, no healing occurs.
 	//	2- test for fumbles during the healing process and lower the amount of healing
@@ -174,7 +174,7 @@ function heal(who, patient, counter)
 		if (counter%4 == 0)
 			SendSysMessage(patient, who.name + " continues to heal you.");
 		endif
-		
+
 		// break out if anyone does anything that should cause heal to stop.
 		if(!GetObjProperty(who, "HealTimer"))
 			SendSysMessage(who, "You stop healing your patient.");
@@ -213,8 +213,8 @@ function heal(who, patient, counter)
 				cure(who, patient, counter);
 			endif
 			break;
-		
-		// Testing to see if things are fumbled.  If they fumble too badly, 
+
+		// Testing to see if things are fumbled.  If they fumble too badly,
 		elseif(AP_GetVital(who, "Hits") < chp)
 			if((RandomInt(basehealamt) + 1) >= AP_GetStat(who, "Dexterity"))
 				SendSysMessage(who, "Your fingers slip." );
@@ -225,7 +225,7 @@ function heal(who, patient, counter)
 					count := count + 1;
 				endif
 			endif
-		
+
 		// The last cycle of the loop.  All actual healing is done here.
 		elseif(counter >= cycles)
 			var diff := 100 - Cint((AP_GetVital(patient, "Hits") * 100.0) / AP_GetVitalMaximumValue(patient, "Hits"));
@@ -250,7 +250,7 @@ function heal(who, patient, counter)
 				break;
 			endif
 		endif
-		
+
 		counter := counter + 1;
 	endwhile
 endfunction

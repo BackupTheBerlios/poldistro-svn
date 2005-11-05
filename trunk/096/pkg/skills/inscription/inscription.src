@@ -1,6 +1,6 @@
 include ":attributes:attributes";
 include ":itemutils:objtype";
-include "include/canAccess";
+include ":itemutils:canAccess";
 include "include/noto";
 
 var config_file;

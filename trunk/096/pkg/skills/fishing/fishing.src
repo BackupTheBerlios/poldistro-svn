@@ -7,7 +7,7 @@ use os;
 use math;
 
 include "fishingFunctions";
-include "include/canAccess";
+include ":itemutils:canAccess";
 include ":attributes:include/attributeConstants";
 include ":attributes:include/attributes";
 include ":crafting:toolWear";

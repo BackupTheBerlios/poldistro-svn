@@ -3,7 +3,7 @@ use uo;
 use util;
 use cfgfile;
 include "drinkPotion";
-include "include/canAccess";
+include ":itemutils:canAccess";
 include ":timedscripts:timedScripts";
 include ":timedscripts:poisonUtil";
 

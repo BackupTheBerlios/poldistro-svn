@@ -3,7 +3,7 @@
 use uo;
 use os;
 
-include "include/canAccess";
+include ":itemutils:canAccess";
 
 program on_insert(who, book, movetype, inserttype, item, existing_stack, amt);
 

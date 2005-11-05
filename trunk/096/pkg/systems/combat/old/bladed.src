@@ -11,7 +11,7 @@ include "include/sound";
 include ":attributes:attributes";
 include "include/string";
 include ":itemutils:objtype";
-include "include/canAccess";
+include ":itemutils:canAccess";
 include "include/dist";
 include "include/toolWear";
 include "include/noto";

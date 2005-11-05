@@ -5,7 +5,7 @@ use cfgfile;
 include "include/client";
 include ":attributes:attributes";
 include ":gumps:yesno";
-include "include/canAccess";
+include ":itemutils:canAccess";
 
 program cook(who, item)
   EraseObjProperty(who, "IsMeditating");
@@ -63,7 +63,7 @@ function cookit(who,item);
   var cfg := ReadConfigFile(":cooking:cooking");
   var skill_needed := -1;
   var points       := cfg[item.objtype].points;
-  var elem      := FindConfigElem(cfg, item.objtype);  
+  var elem      := FindConfigElem(cfg, item.objtype);
   var products  := GetConfigStringArray(elem,"product");
   var product   := Cint(products[RandomInt(len(products))+1]);
   var ingredients := GetConfigStringArray(elem, "ingredient");
@@ -128,16 +128,16 @@ var tgt;
 var result := {};
 
   foreach list in ingredients
-  
+
     words := SplitWords(list);
     objtypes := {};
     foreach word in words
       objtypes.append(CInt(word));
     endforeach
-    
+
     SendSysMessage(who, "Select an ingredient for cooking this.");
     tgt := Target(who);
-    
+
     if (tgt.objtype in objtypes)
       SendSysMessage(who, "Good choice!");
       result.append(tgt);

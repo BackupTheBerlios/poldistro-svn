@@ -4,7 +4,7 @@ use cfgfile;
 
 include "include/client";
 include "getSpellID";
-include "include/canAccess";
+include ":itemutils:canAccess";
 
 program use_scroll(who, scroll)
   EraseObjProperty(who, "IsMeditating");
@@ -23,7 +23,7 @@ program use_scroll(who, scroll)
     return;
   endif
   if(CInt(scroll.container.objtype) == CInt(0x0EFA))
-    return;  // Feel free to take this opportunity to report this 
+    return;  // Feel free to take this opportunity to report this
              // person as an injection user- that's the main known
              // way to try to use a scroll that is inside a spellbook.
   endif

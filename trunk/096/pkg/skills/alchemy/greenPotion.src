@@ -3,7 +3,7 @@ use uo;
 use util;
 use cfgfile;
 include "drinkPotion";
-include "include/canAccess";
+include ":itemutils:canAccess";
 
 program greenPotion(who, potion)
   EraseObjProperty(who, "IsMeditating");

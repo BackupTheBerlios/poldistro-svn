@@ -9,7 +9,7 @@ include ":attributes:skillCheck";
 include ":crafting:crafting";
 include ":crafting:craftingRepair";
 include ":crafting:toolWear";
-include "include/canAccess";
+include ":itemutils:canAccess";
 
 var item_config     := ReadConfigFile(":*:itemdesc");
 var craft_config    := ReadConfigFile(":bowcraft:bowcraft");

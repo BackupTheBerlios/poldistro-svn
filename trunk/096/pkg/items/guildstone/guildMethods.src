@@ -3,7 +3,7 @@ use os;
 use cfgfile;
 use util;
 
-include "include/canAccess";
+include ":itemutils:canAccess";
 
 program Install()
   return 1;

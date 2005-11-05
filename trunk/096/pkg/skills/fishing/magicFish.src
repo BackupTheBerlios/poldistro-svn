@@ -8,7 +8,7 @@ use os;
 use util;
 
 include "include/statMod";
-include "include/canAccess";
+include ":itemutils:canAccess";
 include ":timedscripts:timedScripts";
 include ":timedscripts:poisonUtil";
 

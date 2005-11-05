@@ -8,7 +8,7 @@ include ":itemutils:objtype";
 include "include/sound";
 include "include/startEqp";
 include "util/key";
-include "include/canAccess";
+include ":itemutils:canAccess";
 
 
 program skill_lockpicking( me, lockpick )

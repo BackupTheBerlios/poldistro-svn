@@ -4,7 +4,7 @@
 use cfgfile;
 use uo;
 
-include "include/canAccess";
+include ":itemutils:canAccess";
 
 program use_Statue(who, statue)
 

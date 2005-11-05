@@ -3,7 +3,7 @@ use os;
 use cfgfile;
 
 include ":attributes:attributes";
-include "include/canAccess";
+include ":itemutils:canAccess";
 include "include/tileEffects";
 include "include/client";
 include "include/sound";

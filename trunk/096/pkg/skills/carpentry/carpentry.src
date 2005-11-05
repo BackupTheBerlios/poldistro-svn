@@ -11,7 +11,7 @@ include ":attributes:skillCheck";
 include ":crafting:crafting";
 include ":crafting:craftingRepair";
 include ":crafting:toolWear";
-include "include/canAccess";
+include ":itemutils:canAccess";
 
 CONST CARP_WOOD_SOUND := 0x23e;
 

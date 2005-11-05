@@ -4,7 +4,7 @@ use util;
 use cfgfile;
 include "drinkPotion";
 include "include/statMod";
-include "include/canAccess";
+include ":itemutils:canAccess";
 
 program bluePotion (who, potion)
   EraseObjProperty(who, "IsMeditating");

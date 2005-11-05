@@ -2,7 +2,7 @@ use uo;
 use os;
 
 include ":gumps:yesno";
-include "include/canAccess";
+include ":itemutils:canAccess";
 include "guildData";
 include ":gumps:include/old/old-gumps";
 include "include/webPage";

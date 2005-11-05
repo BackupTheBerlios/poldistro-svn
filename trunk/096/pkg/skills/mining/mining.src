@@ -9,7 +9,7 @@ include ":itemutils:objtype";
 include "include/startEqp";
 include "util/key";
 include "include/utility";
-include "include/canAccess";
+include ":itemutils:canAccess";
 
 var startx;
 var starty;

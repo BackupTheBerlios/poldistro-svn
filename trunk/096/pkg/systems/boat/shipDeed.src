@@ -6,7 +6,7 @@ use os;
 
 include "util/key";
 include ":itemutils:objtype";
-include "include/canAccess";
+include ":itemutils:canAccess";
 
 program useshipdeed(who, deed)
   if(DeedAlreadyBuiltFrom(deed))

@@ -6,7 +6,7 @@ include "util/key";
 include ":containers:storageAreas";
 include ":itemutils:objtype";
 include "include/findCity";
-include "include/canAccess";
+include ":itemutils:canAccess";
 include "include/isValidLoc";
 
 const UOBJECT_DOORS_START:=0x675;

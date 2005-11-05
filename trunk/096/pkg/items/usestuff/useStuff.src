@@ -3,7 +3,7 @@ use util;
 use os;
 use cfgfile;
 
-include "include/canAccess";
+include ":itemutils:canAccess";
 
 var config;
 var elem;

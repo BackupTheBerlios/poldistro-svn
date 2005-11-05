@@ -6,7 +6,7 @@ include "customSpells";
 include "include/math";
 include "include/client";
 include "include/coords";
-include "include/canAccess";
+include ":itemutils:canAccess";
 
 const OBJTYPE_RUNE := 0x1f14;
 const X1 := 28;

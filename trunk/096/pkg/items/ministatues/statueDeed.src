@@ -5,7 +5,7 @@ use uo;
 use cfgfile;
 use util;
 
-include "include/canAccess";
+include ":itemutils:canAccess";
 
 program use_StatueDeed(who, deed)
 

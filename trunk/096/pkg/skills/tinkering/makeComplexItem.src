@@ -1,6 +1,6 @@
 
 include ":attributes:attributes";
-include "include/canAccess";
+include ":itemutils:canAccess";
 
 var tinker_cfg:= ReadConfigFile("tinker");
 var itemcfg := ReadConfigFile("itemdesc");
@@ -31,8 +31,8 @@ program make_complex_items(who, item)
     default:
   endcase
 endprogram
-  
-  
+
+
 function make_complex_thing(who, desired_item, clicked_part, required_part)
     var skill     := tinker_cfg[desired_item].skill;
     var itemname  := tinker_cfg[desired_item].Name;

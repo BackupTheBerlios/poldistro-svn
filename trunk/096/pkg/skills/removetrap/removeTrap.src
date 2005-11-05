@@ -7,7 +7,7 @@ use util;
 include "include/client";
 include "include/sound";
 include "include/tileEffects";
-include "include/canAccess";
+include ":itemutils:canAccess";
 include ":attributes:attributes";
 
 program removeTrap(who)

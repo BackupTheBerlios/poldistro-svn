@@ -4,7 +4,7 @@ use util;
 use cfgfile;
 
 include ":itemutils:objtype";
-include "include/canAccess";
+include ":itemutils:canAccess";
 include "potionKegs";
 
 const UOBJ_POTIONKEG := 0xf022;

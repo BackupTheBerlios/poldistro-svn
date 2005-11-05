@@ -6,7 +6,7 @@ use uo;
 use os;
 use math;
 
-include "include/canAccess";
+include ":itemutils:canAccess";
 include "fishingFunctions";
 include ":attributes:include/attributeConstants";
 include ":attributes:include/attributes";

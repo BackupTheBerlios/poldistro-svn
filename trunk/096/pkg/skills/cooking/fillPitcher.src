@@ -1,6 +1,6 @@
 use uo;
 
-include "include/canAccess";
+include ":itemutils:canAccess";
 
 program fillpitcher (who, pitcher)
   EraseObjProperty(who, "IsMeditating");

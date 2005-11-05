@@ -1,7 +1,7 @@
 use uo;
 use os;
 
-include "include/canAccess";
+include ":itemutils:canAccess";
 
 program packed_stone(who,stone)
   EraseObjProperty(who, "IsMeditating");

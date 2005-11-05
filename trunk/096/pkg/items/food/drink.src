@@ -3,7 +3,7 @@ use cfgfile;
 use util;
 use os;
 
-include "include/canAccess";
+include ":itemutils:canAccess";
 include ":timedscripts:timedScripts";
 
 const SOUND_EFFECT_DRINK1 := 0x32;
@@ -102,4 +102,4 @@ program Drink_Booz( character, drink )
     endif
   endif
 
-endprogram 
+endprogram

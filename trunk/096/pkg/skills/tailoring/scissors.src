@@ -4,7 +4,7 @@ use cfgfile;
 include ":itemutils:objtype";
 include ":attributes:attributes";
 include "include/client";
-include "include/canAccess";
+include ":itemutils:canAccess";
 include "include/toolWear";
 
 var scissors_cfg := ReadConfigFile("scissors");

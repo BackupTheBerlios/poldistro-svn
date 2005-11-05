@@ -5,7 +5,7 @@ include ":itemutils:objtype";
 include ":gumps:yesno";
 include "include/myUtil";
 include "util/key";
-include "include/canAccess";
+include ":itemutils:canAccess";
 
 const KEYSTART := 0x100e;
 const KEYEND := 0x1013;

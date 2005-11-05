@@ -1,7 +1,7 @@
 use uo;
 use os;
 
-include "include/canAccess";
+include ":itemutils:canAccess";
 include "guildData";
 
 program use_guild_deed(who, deed)

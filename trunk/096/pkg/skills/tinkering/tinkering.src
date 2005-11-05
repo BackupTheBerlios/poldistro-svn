@@ -10,7 +10,7 @@ include "include/client";
 include "include/sound";
 include ":itemutils:objtype";
 include "util/key";
-include "include/canAccess";
+include ":itemutils:canAccess";
 include "include/toolWear";
 include ":gumps:include/old/old-gumps";
 include "include/noto";

@@ -1,6 +1,6 @@
 use uo;
 include "include/coords";
-include "include/canAccess";
+include ":itemutils:canAccess";
 
 program get_coords(who, item)
   if(!can_access(who, item))

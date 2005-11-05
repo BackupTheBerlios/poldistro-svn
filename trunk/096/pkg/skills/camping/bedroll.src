@@ -5,7 +5,7 @@
 use uo;
 use os;
 
-include "include/canAccess";
+include ":itemutils:canAccess";
 
 CONST LOGOUT_WAIT 	:= 30;
 CONST UOBJECT_CAMPFIRE  := 0xde3;

@@ -2,7 +2,7 @@ use uo;
 use util;
 use cfgfile;
 
-include "include/canAccess";
+include ":itemutils:canAccess";
 include "include/dist";
 
 program usescript_repairDeed(who, deed)
@@ -91,7 +91,7 @@ function RepairFromDeed(who, deed)
   endif
 
   return 1;
-  
+
 endfunction
 
 function SelectiveRepair(who, skillid)

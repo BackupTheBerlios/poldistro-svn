@@ -3,7 +3,7 @@ use os;
 
 include "include/client";
 include ":itemutils:objtype";
-include "include/canAccess";
+include ":itemutils:canAccess";
 
 const uobj_wheel_start := 0x1015;
 const uobj_wheel_end := 0x101e;

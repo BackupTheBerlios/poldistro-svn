@@ -1,6 +1,6 @@
 use os;
 use uo;
-include "include/canAccess";
+include ":itemutils:canAccess";
 include ":attributes:attributes";
 
 const SEARCH_RANGE := 10;

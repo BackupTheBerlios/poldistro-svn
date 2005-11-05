@@ -6,7 +6,7 @@ use uo;
 use os;
 
 include "include/coords";
-include "include/canAccess";
+include ":itemutils:canAccess";
 include ":gumps:include/gumps";
 
 program use_SOSMessage( who, message )

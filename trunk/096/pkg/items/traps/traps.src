@@ -3,7 +3,7 @@ use util;
 use os;
 
 include "include/tileEffects";
-include "include/canAccess";
+include ":itemutils:canAccess";
 include "include/sound";
 
 

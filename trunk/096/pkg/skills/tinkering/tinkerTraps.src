@@ -6,7 +6,7 @@ include "include/dist";
 include "include/sound";
 include "include/tileEffects";
 include "include/client";
-include "include/canAccess";
+include ":itemutils:canAccess";
 include ":attributes:attributes";
 
 program open_trapped_item(who, item)
@@ -110,4 +110,4 @@ function Resist(cast_on, amt)
   else
     return amt;
   endif
-endfunction  
+endfunction

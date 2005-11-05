@@ -6,7 +6,7 @@ use os;
 
 include "include/client";
 include "potion";
-include "include/canAccess";
+include ":itemutils:canAccess";
 include "include/noto";
 
 CONST REAGENT_START := 0x0f78;
@@ -17,7 +17,7 @@ CONST SOUND_EFFECT_BUBBLE :=	0x4f;
 CONST UOBJECT_EMPTY_BOTTLE := 0x0f0e;
 
 var conf := ReadConfigFile("alchemy");
-	
+
 program use_mortar (who, mortar)
 	EraseObjProperty(who, "IsMeditating");
 	EraseObjProperty(who, "HealTimer");

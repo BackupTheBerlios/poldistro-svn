@@ -5,7 +5,7 @@ use util;
 include ":attributes:attributes";
 include "include/client";
 include ":itemutils:objtype";
-include "include/canAccess";
+include ":itemutils:canAccess";
 
 program decode_map( who, map )
   EraseObjProperty(who, "IsMeditating");
