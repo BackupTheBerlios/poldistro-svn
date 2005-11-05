@@ -15,7 +15,7 @@ include "include/OLD/eventID";
 include ":itemutils:myUtil";
 include ":attributes:attributes";
 include ":combat:equip";
-include "include/noto";
+include "include/OLD/noto";
 
 
 program core_logon(who)

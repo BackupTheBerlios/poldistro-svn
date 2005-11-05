@@ -5,7 +5,7 @@ use cfgfile;
 
 include "include/client";
 include ":itemutils:canAccess";
-include "include/noto";
+include "include/OLD/noto";
 
 program do_poisoning(who)
   EraseObjProperty(who, "IsMeditating");

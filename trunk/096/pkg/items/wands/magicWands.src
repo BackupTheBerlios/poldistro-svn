@@ -6,7 +6,7 @@ include ":attributes:attributes";
 include ":itemutils:canAccess";
 include "include/tileEffects";
 include "include/client";
-include "include/sound";
+include "include/OLD/sound";
 include "include/OLD/statMod";
 
 

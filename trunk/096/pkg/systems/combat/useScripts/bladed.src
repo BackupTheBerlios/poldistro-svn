@@ -7,13 +7,13 @@ use os;
 use util;
 
 include "include/client";
-include "include/sound";
+include "include/OLD/sound";
 include ":attributes:attributes";
 include "include/string";
 include ":itemutils:objtype";
 include ":itemutils:canAccess";
-include "include/toolWear";
-include "include/noto";
+include ":itemutils:toolWear";
+include "include/OLD/noto";
 include ":tailoring:tailoringFunctions";
 include ":fishing:fishingFunctions";
 include ":containers:corpse/corpseFunctions";

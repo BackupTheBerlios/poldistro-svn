@@ -5,7 +5,7 @@
 use uo;
 
 include ":attributes:attributes";
-include "include/sound";
+include "include/OLD/sound";
 
 program textcmd_Kill(who)
 	SendSysMessage(who, "Select a target to kill.");

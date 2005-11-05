@@ -6,7 +6,7 @@ use util;
 include ":itemutils:fields";
 include "include/client";
 include "include/tileEffects";
-include "include/sound";
+include "include/OLD/sound";
 include ":itemutils:objtype";
 include "include/OLD/statMod";
 include "include/firewall";

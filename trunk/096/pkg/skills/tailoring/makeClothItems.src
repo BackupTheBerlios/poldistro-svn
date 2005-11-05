@@ -8,8 +8,8 @@ include ":attributes:attributes";
 include "include/client";
 include ":itemutils:objtype";
 include ":itemutils:canAccess";
-include "include/toolWear";
-include "include/noto";
+include ":itemutils:toolWear";
+include "include/OLD/noto";
 
 const SCISSORS_SOUND    := 0x0249;
 

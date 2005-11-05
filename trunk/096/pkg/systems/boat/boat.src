@@ -18,7 +18,7 @@ include "include/OLD/eventID";
 include "include/sysEvent";
 include ":itemutils:myUtil";
 include "include/client";
-include "include/sound";
+include "include/OLD/sound";
 include ":gumps:yesno";
 include "include/math";
 include "util/key";

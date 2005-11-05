@@ -2,7 +2,7 @@ use uo;
 use os;
 
 include "include/client";
-include "include/sound";
+include "include/OLD/sound";
 include ":itemutils:objtype";
 include "include/spellRestrictions";
 include ":attributes:attributes";

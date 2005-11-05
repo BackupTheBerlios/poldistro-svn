@@ -7,7 +7,7 @@ include ":containers:storageAreas";
 include ":itemutils:objtype";
 include "include/OLD/findCity";
 include ":itemutils:canAccess";
-include "include/isValidLoc";
+include "include/OLD/isValidLoc";
 
 const UOBJECT_DOORS_START:=0x675;
 const UOBJECT_DOORS_END:=0x6f4;

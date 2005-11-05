@@ -7,13 +7,13 @@ use util;
 
 include ":attributes:attributes";
 include "include/client";
-include "include/sound";
+include "include/OLD/sound";
 include ":itemutils:objtype";
 include "util/key";
 include ":itemutils:canAccess";
-include "include/toolWear";
+include ":itemutils:toolWear";
 include ":gumps:include/old/old-gumps";
-include "include/noto";
+include "include/OLD/noto";
 
 var keys := {0x100e, 0x100f, 0x100f, 0x1012, 0x1013};
 var tinker_cfg:= ReadConfigFile("tinker");

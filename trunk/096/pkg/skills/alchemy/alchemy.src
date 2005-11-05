@@ -7,7 +7,7 @@ use os;
 include "include/client";
 include "potion";
 include ":itemutils:canAccess";
-include "include/noto";
+include "include/OLD/noto";
 
 CONST REAGENT_START := 0x0f78;
 CONST REAGENT_STOP := 0x0f91;

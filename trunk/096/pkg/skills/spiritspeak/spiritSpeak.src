@@ -25,7 +25,7 @@ use os;
 include ":attributes:attributeConstants";
 include ":attributes:attributes";
 include ":attributes:skillCheck";
-include "include/sound";
+include "include/OLD/sound";
 
 CONST SS_RANGE   :=  3;
 CONST SS_TIMER   := 30;

@@ -4,7 +4,7 @@ use cfgfile;
 use util;
 
 include ":itemutils:objtype";
-include "include/sound";
+include "include/OLD/sound";
 include "include/startEqp";
 include "util/key";
 include ":itemutils:canAccess";

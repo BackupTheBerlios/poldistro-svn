@@ -19,7 +19,7 @@ use cfgfile;
 include ":attributes:attributeConstants";
 include ":attributes:attributes";
 include ":attributes:skillCheck";
-include "include/sound";
+include "include/OLD/sound";
 include "include/tileEffects";
 
 CONST TRAP := "hiddentrap";

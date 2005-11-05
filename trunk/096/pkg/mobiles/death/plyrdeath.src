@@ -10,7 +10,7 @@ use uo;
 use os;
 use util;
 
-include "include/noto";
+include "include/OLD/noto";
 include "include/reportMurder";
 include ":attributes:attributes";
 include ":timedscripts:timedScripts";

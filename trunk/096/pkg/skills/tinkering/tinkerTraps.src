@@ -2,7 +2,7 @@ use uo;
 use util;
 use os;
 
-include "include/sound";
+include "include/OLD/sound";
 include "include/tileEffects";
 include "include/client";
 include ":itemutils:canAccess";

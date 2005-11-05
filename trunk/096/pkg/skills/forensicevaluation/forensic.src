@@ -1,7 +1,7 @@
 use uo;
 
 include "include/client";
-include "include/noto";
+include "include/OLD/noto";
 
 
 const UOBJ_PROOF := 0xbe34;

@@ -3,7 +3,7 @@ use uo;
 include "include/messages";
 include "include/localization";
 include "include/tileEffects";
-include "include/sound";
+include "include/OLD/sound";
 
 
 program command_tele(who)
