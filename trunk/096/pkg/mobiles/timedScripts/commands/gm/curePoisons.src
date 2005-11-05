@@ -1,5 +1,4 @@
-/*
- * $Id$
+/* $Id$
  *
  */
 use uo;
@@ -8,7 +7,7 @@ include ":timedscripts:timedScripts";
 include ":timedscripts:poisonUtil";
 
 
-program textcmd_LowerTimer(who, text)
+program command_LowerTimer(who, text)
 	text := SplitWords(text);
 	
 	var amount	:= CInt(text[1]);

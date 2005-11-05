@@ -1,37 +1,41 @@
-/*
- * $Id$
+/* $Id$
  *
  */
 use uo;
 
 include ":timedscripts:timedScripts";
+include "include/messages";
+include "include/localization";
 
-program cmd_AddPoison(who, text)
-	text := SplitWords(text);
+
+program command_AddPoison(who, params)
+	params := SplitWords(params);
 	
-	var timer_name	:= text[1];
-	var duration	:= CInt(text[2]);
-	var level	:= CInt(text[3]);
+	var timer_name	:= params[1];
+	var duration	:= CInt(params[2]);
+	var level	:= CInt(params[t3]);
 
-	if ( !level )
+	if (!level)
 		level := 1;
 	endif
 	
-	if ( !timer_name || !duration )
-		SendSysMessage(who, "Syntax: .addTimer <timer name> <duration> (level)");
+	if (!timer_name || !duration)
+		SendMessage(who, MSG_USE_HELP, array{}, MSG_COMMAND);
 		return;
 	endif
-	
-	SendSysMessage(who, "Target mobile to add timer to.");
+
+	SendMessage(who, MSG_TARGET_MOBILE, array{}, MSG_COMMAND);
+
 	var targ := target(who);
-	
-	if ( !targ.IsA(POLCLASS_MOBILE) )
-		SendSysMessage(who, "Cancelled.");
+	if (!targ.IsA(POLCLASS_MOBILE))
+		SendMessage(who, MSG_CANCELLED, array{}, MSG_COMMAND);
 		return 0;
 	endif
 	
 	TS_StartTimer(targ, timer_name, duration, level);
-	SendSysMessage(who, "Done.");
+
+	SendMessage(who, MSG_DONE, array{}, MSG_COMMAND);
 
 	return 1;
 endprogram
+

@@ -1,28 +1,30 @@
-/*
- * $Id$
+/* $Id$
  *
  */
 use uo;
 use os;
 
 include ":timedscripts:timedScripts";
+include "include/messages";
+include "include/localization";
 
-program textcmd_ListTimers(who, type)
+
+program command_ListTimers(who, type)
+	var targ;
+	SendMessage(who, MSG_TARGET_MOB, array{}, MSG_COMMAND);
 	
-	SendSysMessage(who, "Select the mobile to list timers on.");
-	
-	var targ := target(who);
-	
-	if ( !targ.IsA(POLCLASS_MOBILE) )
-		SendSysMessage(who, "Cancelled");
+	targ := target(who, TGTOPT_NOCHECK_LOS);
+	if (!targ.IsA(POLCLASS_MOBILE))
+		SendMessage(who, MSG_CANCELLED, array{}, MSG_COMMAND);
 		return 0;
 	endif
-	
-	foreach timer_name in ( TS_GetTimerNames(targ, type) )
+
+	foreach timer_name in (TS_GetTimerNames(targ, type))
 		SendSysMessage(who, "->"+timer_name);
 		sleepms(2);
 	endforeach
-	
-	SendSysMessage(who, "Done.");
+
+	SendMessage(who, MSG_DONE, array{}, MSG_COMMAND);
+
 	return 1;
 endprogram
