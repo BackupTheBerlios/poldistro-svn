@@ -1,4 +1,4 @@
-/* $Id: requestAttack.src 677 2005-10-27 04:44:34Z muaddiblsd $
+/* $Id$
  *
  */
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -26,7 +26,6 @@ endprogram
 
 
 exported function HandleAttackRequest( who, byref packet )
-
 	var defender := SystemFindObjectBySerial(packet.GetInt32(BYTE_DEFENDER));
 
 	if( distance(who, defender) >= 20 )
@@ -36,5 +35,4 @@ exported function HandleAttackRequest( who, byref packet )
 	endif
 
 	return 0;
-
 endfunction

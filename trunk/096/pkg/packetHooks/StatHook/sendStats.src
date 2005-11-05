@@ -16,10 +16,6 @@
 //            var STATCAP to be a variable if required for special rising stat cap systems.
 //
 // Const settings:
-// MODE      = 0 Ignore this, and send the packet unmodified for old style stats.
-//             3 Send simple AoS stats. Standard plus statcap, pet count, and pets max.
-//             4 All above, plus the elemental resists, luck, damage max/min, and thithing points.
-// STATLOCK:   0/1 Flagging. 1=Enabled. Send stat lock states with packet.
 // BIT_MASK  = 0x00000003 DO NOT CHANGE!
 //
 // Global Variables:
@@ -31,19 +27,27 @@ use polsys;
 
 include ":attributes:attributeConstants";
 include ":attributes:attributes";
+include ":config:config";
 
 program sendStats()
 	Print( "INSTALLING Outgoing Status PH..." );
 	return 1;
 endprogram
 
-CONST MODE     := 0;
-CONST STATLOCK := 1;
 CONST BIT_MASK := 0x00000003;
 
 var STATCAP := 225;
+var MODE    := 0;
+var STATLOCK:= 0;
 
 exported function HandleSendStats( character, byref packet )
+	var enabled := QueryConfigInt("Enabled", ":packetconfig:config/packetconfig", "StatusBar");
+	if( !enabled )
+		return 0;
+	endif
+	MODE := QueryConfigInt("Mode", ":packetconfig:config/packetconfig", "StatusBar");
+	STATLOCK := QueryConfigInt("Statlock", ":packetconfig:config/packetconfig", "StatusBar");
+
 	// Easiest method to decide which way to handle the packet. We could do this based on
 	// a Client version check too, but that would not be recommended since versions can be
 	// spoofed with software.

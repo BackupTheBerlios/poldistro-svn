@@ -1,4 +1,4 @@
-/* $Id: requestWar.src 688 2005-10-28 13:04:01Z panosl $
+/* $Id$
  *
  */
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -19,8 +19,6 @@
 use uo;
 use polsys;
 
-include "include/client";
-
 CONST BYTE_FLAG := 1;
 
 program requestWar()
@@ -30,7 +28,6 @@ endprogram
 
 
 exported function HandleWarRequest( who, byref packet )
-
 	// Let's see which mode the are requesting.
 	var flag := CInt(packet.GetInt8(BYTE_FLAG));
 	var allowWar := 1;
