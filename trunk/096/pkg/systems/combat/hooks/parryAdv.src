@@ -5,7 +5,7 @@
 use os;
 
 program hook_startup()
-	print("INSTALLED: Parry hook... ok.");
+	print("INSTALLING: Parry hook...");
 	return 1;
 endprogram
 

@@ -18,7 +18,7 @@ include ":attributes:include/attributes";
 include ":brainAI:include/npcUtil";
 
 program Install()
-	print("INSTALLED: Exported Vital - RegenRate and MaxValue functions... ok.");
+	print("INSTALLING: Exported Vital - RegenRate and MaxValue functions ...");
 	return 1;
 endprogram
 
