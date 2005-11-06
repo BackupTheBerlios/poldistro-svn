@@ -22,9 +22,9 @@ use math;
  *
  */
 function TurnObjectToward(object, x_pos, y_pos)
-	var orig := mobile.facing;
+	var orig := object.facing;
 
-	mobile.facing := GetFacing(mobile.x,mobile.y, x,y);
+	object.facing := GetFacing(object.x, object.y, x_pos, y_pos);
 
 	return orig;
 endfunction

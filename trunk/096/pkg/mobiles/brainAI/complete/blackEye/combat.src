@@ -1,14 +1,16 @@
-// $Id$
+/*
+ * $Id$
+ *
+ */
 
 use uo;
 use os;
 
-include ":brainAI:npcNerves";
-include ":brainAI:npcCommands";
 include ":attributes:attributes";
-include ":timedscripts:timedScripts";
+include ":brainAI:npcCommands";
+include ":brainAI:npcNerves";
 
-program BrainNerve(params)
+program MeleeCombatNerve(params)
 	var npc		:= params[1];
 	var nerve_name	:= params[2];
 	var event	:= params[3];
@@ -23,10 +25,13 @@ program BrainNerve(params)
 	var flee_mode := 0;
 
 	AI_SetOpponent(npc, opponent);
-
-	while ( npc )
+	
+	while( npc )
 		var dist := Distance(npc, opponent);
-		if ( ShouldFlee(npc, flee_level, flee_mode) )
+		if ( !GetNerveProcess(npc, "Virtual") )
+			// Start up the virtual nerve to do the special attack.
+			SendEvent(npc, "virtual");
+		elseif ( ShouldFlee(npc, flee_level, flee_mode) )
 			flee_mode := 1;
 			AI_WarMode(npc, 0);
 			AI_Move(npc, opponent, NEMOVE_AWAY, NEMOVE_RUN, WAKEUP, 100);
@@ -38,13 +43,11 @@ program BrainNerve(params)
 				AI_WarMode(npc, 0);
 			endif
 			AI_EndNerve(npc, nerve_name);
-		elseif( dist > 1 )
-			AI_Move(npc, opponent, NEMOVE_TOWARD, NEMOVE_RUN, WAKEUP, dist+1);
+		elseif( dist > 3 )
+			AI_Move(npc, opponent, NEMOVE_TOWARD, NEMOVE_RUN, WAKEUP, dist-2);
 		endif
-		
-		ShitToss(npc, opponent, dist);
-
-		sleepms(400);
+				
+		sleepms(600);
 		AI_ClearThoughts(npc, CLR_NERVE);
 	endwhile
 endprogram
@@ -71,28 +74,8 @@ function ShouldFlee(npc, byref flee_level, byref flee_mode)
 	if ( flee_mode )
 		return 1;
 	elseif ( AP_GetVital(npc, "Hits") < flee_level )
-		if ( !flee_mode )
-			AI_Speak(npc, "Meez wuntz no moooore of dis!");
-		endif
 		return 1;
 	endif
 
 	return 0;
-endfunction
-
-function ShitToss(npc, opponent, byref dist)
-	if ( CInt( GetObjProperty(npc, "#NextShoot") ) < ReadGameClock() )
-		if ( RandomInt(10) == 1 )
-			if ( dist <= 8 )
-				if ( CheckLineOfSight(npc, opponent) )
-					AI_Speak(npc, "Take dat yuuz stinkar!!!", SPEAK_TEXTTYPE_YELL);
-					AI_Turn(npc, opponent, NETURN_TOWARD);
-					PlayMovingEffect(npc, opponent, 3900, 10, 10);
-					PrintTextAbove(opponent, "*SPLAT!*");
-					TS_StartTimer(opponent, "poostink", 30);
-					SetObjProperty(npc, "#NextShoot", ReadGameClock()+30);
-				endif
-			endif
-		endif
-	endif
 endfunction
