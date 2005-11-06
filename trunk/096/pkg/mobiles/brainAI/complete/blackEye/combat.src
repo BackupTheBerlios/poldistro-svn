@@ -10,7 +10,7 @@ include ":attributes:attributes";
 include ":brainAI:npcCommands";
 include ":brainAI:npcNerves";
 
-program MeleeCombatNerve(params)
+program BrainNerve(params)
 	var npc		:= params[1];
 	var nerve_name	:= params[2];
 	var event	:= params[3];

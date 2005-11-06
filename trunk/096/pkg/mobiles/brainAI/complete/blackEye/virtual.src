@@ -15,7 +15,7 @@ include "include/facings";
 include "include/client";
 
 
-program VirtualNerve(params)
+program BrainNerve(params)
 	var npc		:= params[1];
 	//var nerve_name	:= params[2];
 	//var event	:= params[3];
