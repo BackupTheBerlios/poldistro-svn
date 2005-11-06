@@ -1,0 +1,59 @@
+Naming Conventions:
+-------------------
+
+FileNames:
+The letter of the first word is lowercase, while the first letter of each additional
+word is capitalized. This naming convention is known as camelCase. All file extensions
+are lowercase.
+	Examples:
+		npcBackpack.inc
+		myIncludeFle.inc
+		showAll.src
+
+	Exceptions:
+		Config files and commands are all lowercase.
+
+
+Variables:
+The variable naming is more loose, so we allow 'cameCasing', 'K&R', etc.
+	Examples:
+		var myInteger;
+		var mystring;
+		var layer_array;
+                       
+	Exceptions:
+		Constant variables are all capitalized and words are separated
+		using the underscore character '_'.
+                       
+		const MY_CONSTANT := 10.0;
+		const NUMBER_OF_GUARDS := 100;
+
+
+Functions:
+All functions use the PascalCase convention, which as you can see has the first
+letter of each word capitalized.
+	Examples:
+		function ListOnlineDrow(who)
+		function GetLastName(who, numOfLetters)
+                      
+	Exceptions:
+		If the function/s is part of a special package it can include a small
+		prefix to define its origin i.e. AI_GetNerves(mobile).
+
+
+Programs:
+All programs are named after the file in which they are contained. Unlike their filenames
+though, the can either follow the 'cameCasing' or 'PascalCasing'.
+	Examples:
+		(FileName is "bardInstruments.src"), thus the program is named:
+		program bardInstruments(item)
+
+		(FileName is "enumerateTowns.src), thus the program is named:
+		program EnumerateTowns(who, uX, uY, lX, lY, realm)
+
+	Exceptions:
+		There are certain exceptions with special kind of programs, such as commands
+		i.e. command_MyCommand(who, params)
+		or a spell program
+		i.e. spell_GreaterHeal(who)
+
