@@ -110,8 +110,7 @@ function SpecialAttack(npc, opponent, byref dist)
 	foreach coord in coord_list
 		if ( _coord_iter > 1 )
 			var field := CreateItemAtLocation(coord.x, coord.y, npc.z, "FireFieldNS", 1);
-			field.SetDamageDice("1d2");
-			field.SetFieldDuration("3");
+			field.SetDuration(3);
 			sleepms(105);
 		endif
 	endforeach
