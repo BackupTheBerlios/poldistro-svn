@@ -47,14 +47,14 @@ program SpellStarter(params)
 		SendSysMessage(who, "Something prevents you from casting.");
 		FailSpell(who);
 		return 0;
-	elseif ( !ConsumeVital(who, MANA, spell_elem.ManaCost) )
+	elseif ( !EquipmentCheck(who) )
+		FailSpell(who);
+		return 0;
+	elseif ( !AP_ConsumeVital(who, MANA, spell_elem.ManaCost) )
 		SendSysMessage(who, "You are too tired to cast.");
 		FailSpell(who);
 		return 0;
 	elseif ( !CheckReagents(who, spell_elem, scroll) )
-		FailSpell(who);
-		return 0;
-	elseif ( !EquipmentCheck(who) )
 		FailSpell(who);
 		return 0;
 	elseif ( !CheckDelay(who, spell_elem) )
