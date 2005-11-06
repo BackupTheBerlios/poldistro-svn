@@ -21,20 +21,29 @@ use cfgfile;
  *
  */
 function RandomFoodObjType(category:=0)
-	var cfg_file := ReadConfigFile(":food:config/food");
+	var cfg_file := ReadConfigFile(":food&drink:config/food");
+	if ( cfg_file.errortext )
+		return error{"errortext":="Unable to read food.cfg ->"+cfg_file.errortext};
+	endif
 	
 	var food_list := array{};
 	if ( category )
 		var cfg_elem := cfg_file[category];
 		food_list := GetConfigStringArray(cfg_elem, "Food");
 	else
-		food_list := array{};
 		foreach elem_name in ( GetConfigStringKeys(cfg_file) )
 			var cfg_elem := cfg_file[elem_name];
-			food_list := food_list + GetConfigStringArray(cfg_elem, "Food");
+			var temp_list := GetConfigStringArray(cfg_elem, "Food");
+			if ( temp_list.Size() > 0 )
+				food_list := food_list + temp_list;
+			endif
 			sleepms(2);
 		endforeach
 	endif
 	
-	return food_list[RandomInt(food_list.size())+1];
+	if ( food_list.Size() > 0 )
+		return CInt(food_list[RandomInt(food_list.Size())+1]);
+	else
+		return error{"errortext":="No food items found in food.cfg"};
+	endif
 endfunction

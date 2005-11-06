@@ -20,7 +20,10 @@ program SpellStarter(params)
 	var targ	:= params[4]; // NPC target
 	params := 0;	// No longer needed
 	
-	Attach(who);
+	if ( !Attach(who) )
+		SendSysMessage(who, "You are already doing something.");
+		return 0;
+	endif
 	
 	var spell_elem := MS_GetSpellsCfgElem(spell_id);
 
@@ -59,19 +62,18 @@ program SpellStarter(params)
 		return 0;
 	elseif ( !CheckDelay(who, spell_elem) )
 		FailSpell(who);
-		SendSysMessage(who, "Your concentration has been broken.");
 		return 0;
 	else
-		var attribute		:= spell_elem.Attribute;
+		var attribute := spell_elem.Attribute;
 		if ( !attribute )
 			attribute := MAGERY;
 		endif
 		
-		var difficulty		:= spell_elem.Difficulty;
+		var difficulty := spell_elem.Difficulty;
 		if ( !difficulty )
 			difficulty := -1;
 		endif
-		var skill_check 	:= SkillCheck(who, attribute, difficulty);
+		var skill_check := SkillCheck(who, attribute, difficulty);
 		if ( skill_check > 0 )
 			var info := struct;
 			info.+script		:= spell_elem.script;
@@ -81,11 +83,11 @@ program SpellStarter(params)
 			info.+pid		:= GetPid();
 			info.+spellId		:= spell_id;
 
-			var script := start_script(spell_elem.Script, {who, info});
+			var script := start_script(spell_elem.SpellScript, {who, info});
 			if ( script.errortext )
-				SendSysMessage(who, "Unable to start ["+spell_elem.script+"] -> "+script.errortext);
+				SendSysMessage(who, "Unable to start ["+spell_elem.SpellScript+"] -> "+script.errortext);
 			endif
-
+			
 			var ev;
 			while( script.pid && !ev )
 				ev := wait_for_event(1);
@@ -95,21 +97,29 @@ program SpellStarter(params)
 		endif
 	endif
 
+	MS_SpellDebug(who, "Spell starter completed..");
 	EraseObjProperty(who, "#medding");
+	
+	return 1;
 endprogram
 
 function CheckDelay(who, spell_elem)
 	
 	SendSysMessage(who, "You begin building the concentration needed to cast.");
 	
-	var script := start_script("movementCheck", {who, GetPid()});
-	
+	//var script := start_script("movementCheck", {who, GetPid()});
+	//
 	var delay := spell_elem.Delay;
-	MS_SpellDebug(who, "Cast delay ->"+delay);
+	//MS_SpellDebug(who, "Cast delay ->"+delay);
 	sleepms(delay);
-	
-	script.kill();
-	return ( Events_Waiting() > 0 );
+	//
+	//script.kill();
+	if ( Events_Waiting() > 0 )
+		SendSysMessage(who, "Your concentration has been broken.");
+		return 0;
+	else
+		return 1;
+	endif
 endfunction
 
 function EquipmentCheck(who)
@@ -145,7 +155,7 @@ function CheckReagents(who, byref spell_elem, scroll)
 		if ( !amount )
 			amount := 1;
 		endif
-		var objtype := GetObjTypeByName(CInt(_amount_iter));
+		var objtype := GetObjTypeByName(_amount_iter);
 		
 		if ( AmountInContainer(who.backpack, objtype) < amount )
 			SendSysMessage(who, "You do not have enough "+GetObjTypeDesc(objtype, (amount>1)));

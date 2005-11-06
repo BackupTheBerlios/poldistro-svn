@@ -18,9 +18,10 @@ program SpellScript(params)
 	var food_item := RandomFoodObjType();
 	
 	var food := CreateItemInBackPack(who, food_item, 1);
+	food.movable := 1;
 	
 	if ( food.errortext )
-		SendSysMessage(who, "Error creating food ->"+food.errortext);
+		SendSysMessage(who, "Error creating food ("+food_item+") ->"+food.errortext);
 	endif
 	
 	return 1;
