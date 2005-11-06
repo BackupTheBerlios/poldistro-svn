@@ -7,6 +7,11 @@ use uo;
 use os;
 
 program RemoveWeb(web)
-	sleep(60);
-	DestroyItem(web);
+	while ( web )
+		sleep(1);
+		if ( web.IsExpired() )
+			DestroyItem(web);
+			break;
+		endif
+	endwhile
 endprogram

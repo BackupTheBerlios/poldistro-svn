@@ -36,6 +36,11 @@ program controlScript(field)
 			//Someone just walked onto the tile.
 			PoisonMobile(event, poison_level, creator);
 		endif
+		
+		if ( field.IsExpired() )
+			DestroyItem(field);
+			return 1;
+		endif
 	endwhile
 endprogram
 
