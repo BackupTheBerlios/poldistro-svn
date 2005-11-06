@@ -44,10 +44,10 @@ program BrainNerve(params)
 				AI_WarMode(npc, 0);
 			endif
 			AI_EndNerve(npc, nerve_name);
-		elseif ( dist <= 6 )
-			AI_Move(npc, opponent, NEMOVE_AWAY, NEMOVE_RUN, WAKEUP, (7-dist));
-		elseif( dist > 10 )
-			AI_Move(npc, opponent, NEMOVE_TOWARD, NEMOVE_RUN, WAKEUP, (dist-10));
+		elseif ( dist <= settings["MinRange"] )
+			AI_Move(npc, opponent, NEMOVE_AWAY, NEMOVE_RUN, WAKEUP, (settings["MinRange"]-dist));
+		elseif( dist > settings["MaxRange"] )
+			AI_Move(npc, opponent, NEMOVE_TOWARD, NEMOVE_RUN, WAKEUP, (dist-settings["MaxRange"]));
 		else
 			npc.facing := GetFacing(npc.x, npc.y, opponent.x, opponent.y);
 		endif
