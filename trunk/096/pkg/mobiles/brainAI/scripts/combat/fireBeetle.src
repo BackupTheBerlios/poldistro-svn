@@ -44,9 +44,9 @@ program BrainNerve(params)
 			endif
 			AI_EndNerve(npc, nerve_name);
 		elseif ( dist <= 5 )
-			AI_Move(npc, opponent, NEMOVE_AWAY, NEMOVE_RUN, WAKEUP, (12-dist));
-		elseif( dist > 5 )
-			AI_Move(npc, opponent, NEMOVE_TOWARD, NEMOVE_RUN, WAKEUP, dist+1);
+			AI_Move(npc, opponent, NEMOVE_AWAY, NEMOVE_RUN, WAKEUP, (6-dist));
+		elseif( dist > 6 )
+			AI_Move(npc, opponent, NEMOVE_TOWARD, NEMOVE_RUN, WAKEUP, (dist-5));
 		endif
 
 		SpecialAttack(npc, opponent, dist);
@@ -109,7 +109,7 @@ function SpecialAttack(npc, opponent, byref dist)
 	var coord_list := GetCoordsInLine(npc.x, npc.y, opponent.x, opponent.y);
 	foreach coord in coord_list
 		if ( _coord_iter > 1 )
-			var field := CreateItemAtLocation(coord.x, coord.y, npc.z, "FireFieldNS", 1);
+			var field := CreateItemAtLocation(coord.x, coord.y, npc.z, "FireField_NS", 1);
 			field.SetDuration(3);
 			sleepms(105);
 		endif
