@@ -4,7 +4,7 @@
 use uo;
 
 include ":timedscripts:timedScripts";
-
+include "include/messages";
 
 program command_LowerTimer(who, params)
 	params := SplitWords(params);

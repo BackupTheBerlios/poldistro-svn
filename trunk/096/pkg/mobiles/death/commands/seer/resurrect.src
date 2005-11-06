@@ -9,26 +9,27 @@ include "include/localization";
 
 
 program command_Resurrect(who, params)
-	if (params == "")
+	if ( params == "" )
 		SendMessage(who, MSG_TARGET_CHAR, array{}, MSG_COMMAND);
-		if ((var targ := Target(who, TGTOPT_NOCHECK_LOS)) == 0)
+		var targ := Target(who, TGTOPT_NOCHECK_LOS);
+		if ( !targ )
 			SendMessage(who, MSG_CANCELLED, array{}, MSG_COMMAND);
 			return 0;
 		else
-			if (targ.isA(POLCLASS_CORPSE))
+			if ( targ.isA(POLCLASS_CORPSE) )
 				targ := SystemFindObjectBySerial(targ.ownerserial);
-				if (!targ)
+				if ( !targ )
 					SendSysMessage(who, "No owner could be found for that corpse.");
 					return 0;
 				endif
-					var result := Resurrect(targ);
-				if (result.errortext)
+				var result := Resurrect(targ);
+				if ( result.errortext )
 					SendSysMessage(who, "Error - "+result.errortext);
 					return 0;
 				endif
 			endif
 		endif		
-	elseif (params == "me")
+	elseif ( params == "me" )
 		Resurrect(who);
 		AP_RefreshVitals(who);
 		return 1;

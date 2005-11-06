@@ -13,21 +13,21 @@ program command_AddPoison(who, params)
 	
 	var timer_name	:= params[1];
 	var duration	:= CInt(params[2]);
-	var level	:= CInt(params[t3]);
+	var level	:= CInt(params[3]);
 
-	if (!level)
+	if ( !level )
 		level := 1;
 	endif
 	
-	if (!timer_name || !duration)
+	if ( !timer_name || !duration )
 		SendMessage(who, MSG_USE_HELP, array{}, MSG_COMMAND);
 		return;
 	endif
 
-	SendMessage(who, MSG_TARGET_MOBILE, array{}, MSG_COMMAND);
+	SendMessage(who, MSG_TARGET_CHAR, array{}, MSG_COMMAND);
 
 	var targ := target(who);
-	if (!targ.IsA(POLCLASS_MOBILE))
+	if ( !targ.IsA(POLCLASS_MOBILE) )
 		SendMessage(who, MSG_CANCELLED, array{}, MSG_COMMAND);
 		return 0;
 	endif
