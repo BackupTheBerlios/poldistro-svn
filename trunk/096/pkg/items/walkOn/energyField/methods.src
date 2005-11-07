@@ -9,6 +9,10 @@ program Install()
 	return 1;
 endprogram
 
+exported function IsEnergyField(field)
+	return 1;
+endfunction
+
 exported function SetDuration(field, seconds)
 	seconds := CInt(seconds);
 	
@@ -28,4 +32,21 @@ exported function IsExpired(field)
 	endif
 	
 	return ( duration < ReadGameClock() );
+endfunction
+
+exported function SetOwner(field, serial)
+	if ( serial.IsA(POLCLASS_UOBJECT) )
+		serial := serial.serial;
+	endif
+	
+	return SetObjProperty(field, "Owner", serial);
+endfunction
+
+exported function GetOwner(field)
+	var owner := CInt(GetObjProperty(field, "Owner"));
+	if ( owner )
+		owner := SystemFindObjectBySerial(owner);
+	endif
+	
+	return owner;
 endfunction

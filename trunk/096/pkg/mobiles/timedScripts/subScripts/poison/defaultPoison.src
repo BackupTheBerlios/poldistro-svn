@@ -3,7 +3,7 @@ use os;
 
 include ":attributes:attributes";
 include ":timedscripts:timedScripts";
-
+include "include/damage";
 
 program default_poison(params)
 	var who := params[1];
@@ -73,7 +73,7 @@ program default_poison(params)
 			sleepms(2);
 		endforeach		
 		
-		ApplyRawDamage(who, dmg);
+		ApplyRawDamageEX(who, dmg, DMG_POISON, attacker);
 
 		Set_Critical(1);
 		var curr := CInt(AP_GetVital(who, "Stamina"));

@@ -12,9 +12,8 @@ include ":timedscripts:timedScripts";
 program controlScript(field)
 	SetObjProperty(field, "#PID", GetPid());
 
-	var creator := CInt(GetObjProperty(field, "Creator"));
+	var creator := field.GetOwner();
 	if ( creator.IsA(POLCLASS_MOBILE) )
-		creator := SystemFindObjectBySerial(creator);
 		SetScriptController(creator);
 	endif
 

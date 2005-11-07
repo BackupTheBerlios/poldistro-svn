@@ -6,11 +6,12 @@ use cfgfile;
 include ":brainAI:npcUtil";
 
 enum DAMAGE_TYPES
+	DMG_FORCED	:= -1, // Ignores resistance
 	DMG_DEFAULT	:= "Default",
 	DMG_COLD	:= "Cold",
 	DMG_FIRE	:= "Fire",
 	DMG_POISON	:= "Poison",
-	DMG_MAGERY	:= "Magery",
+	DMG_MAGERY	:= "Magery"
 endenum
 
 /* 
@@ -94,6 +95,9 @@ endfunction
  */
 function CalcDamageAmount(mobile, amount, type)
 	amount := CInt(amount);
+	if ( type == DMG_FORCED )
+		return amount;
+	endif
 	
 	var resistance_mult := error;
 	var res_prop := GetObjProperty(mobile, "Resistances");
