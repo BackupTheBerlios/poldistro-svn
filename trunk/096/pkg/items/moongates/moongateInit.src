@@ -1,0 +1,47 @@
+use uo;
+use os;
+
+include ":logger:log";
+
+var mgate_config := ReadConfigFile(":moongates:config/moongate");
+
+program CreateMoongates()
+	var facet_list := GetConfigStringKeys(mgate_config);
+	if( facet_list.errortext )
+        	Log(LOG_ERROR, "Moongate Facet List Failed Config Read '" + GetLogInfo(facet_list) + "'");
+		return 0;
+	endif
+  	syslog( "Creating moongates." );
+	foreach key_name in facet_list
+		var key_elem := FindConfigElem(mgate_config, key_name);
+		if( GetConfigInt(key_elem, "Active") == 1 )
+			var gate_realm := GetConfigString(key_elem, "Realm");
+			var gate_towns := GetConfigStringArray(key_elem, "Town");
+			foreach town_entry in gate_towns
+				var gate := SplitWords(town_entry);
+				RemoveOldGates(gate, gate_realm);
+				CreateNewGates(gate, gate_realm);
+			endforeach
+		endif
+	endforeach
+endprogram
+
+
+function RemoveOldGates(gate, gate_realm)
+	foreach thing in ListItemsNearLocation(CInt(gate[1]), CInt(gate[2]), CInt(gate[3]), 0, gate_realm);
+		if(thing.objtype != 0x887b)
+			DestroyItem(thing);
+		endif
+	endforeach
+	return 1;
+endfunction
+
+
+function CreateNewGates(gate, gate_realm)
+	var moongate := CreateItemAtLocation(CInt(gate[1]), CInt(gate[2]), CInt(gate[3]), "systemmoongate", 1, gate_realm);
+	SetObjProperty(moongate, "City", gate[4]);
+	moongate.facing := 29;
+	moongate.decayAt := 0;
+	moongate.movable := 0;
+	return 1;
+endfunction
