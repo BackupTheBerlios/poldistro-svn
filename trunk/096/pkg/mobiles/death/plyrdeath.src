@@ -11,7 +11,6 @@ use os;
 use util;
 
 include "include/OLD/noto";
-include "include/reportMurder";
 include ":attributes:attributes";
 include ":timedscripts:timedScripts";
 include ":death:death";
@@ -31,7 +30,7 @@ program core_chrDeath(params)
 	CheckForAutoRes(ghost, corpse);
 	
 	if ( (ghost.reportables).Size() > 0)
-		SendReportGump(ghost);
+		//SendReportGump(ghost);
 	endif
 	
 	return 1;
@@ -51,7 +50,8 @@ function NotorietyChecks(ghost)
 endfunction
 
 function CheckForAutoRes(who, corpse)
-	if( CInt(GetObjProperty(corpse, "AutoRes")) >= 1 )
+	var auto_res := CInt(GetObjProperty(who, "AutoRes"));
+	if ( auto_res )
 		Resurrect(who);
 		AP_RefreshVitals(who);	
 		
@@ -67,6 +67,10 @@ function CheckForAutoRes(who, corpse)
 			endif
 		endforeach
 		
+		if ( auto_res != -1 ) // -1 means infinite uses
+			auto_res := auto_res-1;
+			SetObjProperty(who, "AutoRes", auto_res);
+		endif
 		return 1;
 	endif
 	return 0;

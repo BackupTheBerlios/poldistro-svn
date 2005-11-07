@@ -12,6 +12,7 @@ include ":magery:spells";
 include ":containers:containers";
 include ":itemutils:itemdesc";
 include "include/client";
+include "include/sounds";
 
 program SpellStarter(params)
 	var who		:= params[1]; // Caster.

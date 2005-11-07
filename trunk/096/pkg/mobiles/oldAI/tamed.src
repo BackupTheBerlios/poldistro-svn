@@ -9,7 +9,7 @@ include "include/sysEvent";
 include ":npcutils:NPCBackpacks";
 include ":npcutils:NPCCast";
 include ":npcutils:names";
-include "include/snooping";
+include "include/OLD/snooping";
 include "include/tileEffects";
 
 set_priority(5);

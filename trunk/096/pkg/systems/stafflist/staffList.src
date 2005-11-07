@@ -3,7 +3,7 @@ use os;
 use util;
 use math;
 
-include "include/math";
+include "include/OLD/math";
 include "include/OLD/eventID";
 var stff := {};
 var players := {};

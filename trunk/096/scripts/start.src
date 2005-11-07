@@ -14,21 +14,12 @@ use os;
 
 include ":logger:exception";
 include ":logger:log";
-include ":itemutils:utility";;
-include "include/teleporters";
-
 
 program StartServer()
 	Log(LOG_MAIN, "Server started.");
-	if (!start_script(":scheduler:scheduler"))
+	if ( !start_script(":scheduler:scheduler") )
 		Exception("::start:StartServer(): Couldn't start the script scheduler");
 	endif
-	print("Initializing merchant storage");
-	find_or_create_storage("Merchant Storage");
-	print("Wiping merchant storage");
-	start_script("storageWipe");
-	print("Initializing teleporters");
-	CreateTeleporters();
-
-	return;
+	
+	return 1;
 endprogram

@@ -35,7 +35,6 @@ use os;
 use datafile;
 
 include ":datafile:datafile";
-include "include/math";
 include ":gumps:include/gumps";
 include ":gumps:include/gumpprompt";
 include ":gumps:include/gumps_ex";

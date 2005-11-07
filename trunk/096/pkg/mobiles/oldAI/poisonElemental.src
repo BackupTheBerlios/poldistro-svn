@@ -12,7 +12,7 @@ include ":npcutils:NPCUtil";
 include ":itemutils:objtype";
 include ":npcutils:NPCCast";
 include ":npcutils:anchors";
-include "include/spellRestrictions";
+include "include/OLD/spellRestrictions";
 include ":oldAI:main/killPCsLoop";
 include ":oldAI:combat/fight";
 include ":oldAI:setup/spellSetup";

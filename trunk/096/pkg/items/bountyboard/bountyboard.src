@@ -3,7 +3,7 @@ use os;
 use datafile;
 
 include ":datafile:datafile";
-include "include/sorting";
+include "include/OLD/sorting";
 include "include/client";
 include ":bountyboard:bounty";
 include ":gumps:include/old/old-gumps";

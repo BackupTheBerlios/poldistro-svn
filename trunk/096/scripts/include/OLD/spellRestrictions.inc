@@ -9,8 +9,8 @@ include "include/tileEffects";
 include "include/OLD/sound";
 include ":itemutils:objtype";
 include "include/OLD/statMod";
-include "include/firewall";
-include "include/spellAttack";
+include "include/OLD/firewall";
+include "include/OLD/spellAttack";
 
 var caster;
 var npccfg := ReadConfigFile("::npcdesc");

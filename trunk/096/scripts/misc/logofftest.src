@@ -8,7 +8,7 @@
 use uo;
 
 include "include/OLD/eventID";
-include "include/innCheck";
+include "include/OLD/innCheck";
 
 include ":timedscripts:timedScripts";
 
