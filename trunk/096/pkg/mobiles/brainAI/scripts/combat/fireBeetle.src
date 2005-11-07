@@ -13,6 +13,7 @@ include "include/shapes";
 include "include/client";
 include "include/sounds";
 include "include/facings";
+include "include/damage";
 
 program BrainNerve(params)
 	var npc		:= params[1];
@@ -121,7 +122,7 @@ function SpecialAttack(npc, opponent, byref dist)
 	endforeach
 
 	PlaySoundEffect(opponent, 0x208);
-	ApplyRawDamage(opponent, RandomDiceRoll("3d7"));
+	ApplyRawDamageEX(opponent, RandomDiceRoll("3d7"), DMG_FIRE, npc);
 
 	foreach coord in GetCoordsInSquare(opponent.x, opponent.y, 3)
 		if ( RandomInt(2) != 1 ) // Don't place a fire field

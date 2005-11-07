@@ -12,6 +12,8 @@ include ":blood:blood";
 include ":combat:settings";
 include ":timedscripts:timedScripts";
 include "include/client";
+include "include/facings";
+include "include/damage";
 
 var item_cfg := ReadConfigFile(":*:itemdesc");
 
@@ -30,6 +32,7 @@ program MainHitScript(attacker, defender, weapon, armor, basedamage, rawdamage)
 		endif
 	endif
 	
+	FacingChecks(attacker, defender);	
 	PlayHitSounds(defender);
 	SkillChecks(attacker, defender, weapon, rawdamage);
 	ArrowRecovery(defender, weapon);
@@ -50,10 +53,23 @@ program MainHitScript(attacker, defender, weapon, armor, basedamage, rawdamage)
 	// Raw = post armor
 	//
 	if ( rawdamage > 0 )
-		ApplyRawDamage(defender, CInt(rawdamage));
+		ApplyRawDamageEX(defender, CInt(rawdamage), DMG_DEFAULT);
 		MakeBleed(defender);
 	endif
 endprogram
+
+function FacingChecks(attacker, defender)
+	if ( !CS_GetSettingsCfgElem("General").ForceFacing )
+		return 0;
+	endif
+	
+	var facing := GetFacing(attacker.x, attacker.y, defender.x, defender.y);
+	if ( attacker.facing != facing )
+		attacker.facing := facing;
+	endif
+	
+	return 1;
+endfunction
 
 function PlayHitSounds(defender)
 	if ( defender.IsA(POLCLASS_NPC) )

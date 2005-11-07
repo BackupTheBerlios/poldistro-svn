@@ -13,7 +13,7 @@ include ":npcutils:anchors";
 include ":oldAI:main/setup";
 include ":oldAI:main/sleepMode";
 include ":npcutils:animal";
-
+include "include/damage";
 
 const HALT_THRESHOLD := 10;
 var npccfgfile := ReadConfigFile("::npcdesc");
@@ -135,7 +135,7 @@ function in_combat_event_loop(opponent, loops)
     elseif(dmg < 2)
       dmg := 2;
     endif
-	ApplyRawDamage(opponent, RandomInt(dmg));
+	ApplyRawDamageEX(opponent, RandomInt(dmg), DMG_DEFAULT);
   endif
 endfunction
 

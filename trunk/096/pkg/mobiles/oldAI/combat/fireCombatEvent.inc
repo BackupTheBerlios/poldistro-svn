@@ -1,4 +1,6 @@
 include ":attributes:attributes";
+include "include/damage";
+
 function process_combat_event(opponent)
   if((AP_GetVital(me, "Hits") * 100/AP_GetVitalMaximumValue(me, "Hits")) < flee_point)
     EraseObjProperty(me,"#flees");
@@ -23,7 +25,7 @@ function spellattack(opponent);
     var base := Cint(((FLAME_STRENGTH * AP_GetVital(me, "Hits")) / AP_GetVitalMaximumValue(me, "Hits")) / 2);
     var dmg :=  RandomInt(base) + base;
     PlayMovingEffect(me, opponent, 0x36d4, 10, 1, 1);
-    ApplyRawDamage(opponent, dmg);
+    ApplyRawDamageEX(opponent, dmg, DMG_FIRE);
   endif
 endfunction
 
