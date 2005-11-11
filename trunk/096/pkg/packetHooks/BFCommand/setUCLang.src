@@ -22,7 +22,7 @@ endprogram
 
 exported function HandleSetUCLang( who, byref packet )
 	// Get the Language the client is sending from the packet.
-	var lang := packet.GetString(5,4);
+	var lang := packet.GetString(5,3);
 	// Find the player's account reference.
 	var acct := FindAccount(who.acctname);
 	// Add a Cprop to the account for using later.
