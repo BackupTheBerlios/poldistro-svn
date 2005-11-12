@@ -1,0 +1,6 @@
+<b>Syntax:</b>
+.reveal [me]
+
+<b>Purpose:</b>
+Let's you reveal yourself or target another mobile
+

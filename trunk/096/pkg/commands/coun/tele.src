@@ -1,3 +1,8 @@
+/* $Id$
+ *
+ * Purpose
+ *
+ */
 use uo;
 
 include "include/messages";
@@ -21,3 +26,4 @@ program command_tele(who)
 
 	return;
 endprogram
+

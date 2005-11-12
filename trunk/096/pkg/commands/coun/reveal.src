@@ -12,7 +12,8 @@ program command_reveal(who, params)
 
 	if (!params)
 		SendMessage(who, MSG_TARGET_MOB, array{}, MSG_COMMAND);
-		if ((mobile := Target(who, TGTOPT_NOCHECK_LOS) == 0))
+		mobile := Target(who, TGTOPT_NOCHECK_LOS);
+		if (mobile == 0)
 			SendMessage(who, MSG_CANCELLED, array{}, MSG_COMMAND);
 		else
 			if (!mobile.isA(POLCLASS_MOBILE))
