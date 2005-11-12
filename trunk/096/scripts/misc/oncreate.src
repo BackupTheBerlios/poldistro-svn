@@ -11,20 +11,12 @@ include "include/OLD/startEqp";
 
 
 program core_onCreate(who, skillids)
-	if ((13 in CAscZ(who.name)) || (10 in CAscZ(who.name)))
-		var account := who.acct;
-		account.ban();
-		for i:=1 to 5
-			account.DeleteCharacter( i );
-		endfor
-		syslog("ALERT! Account " + account.name + " was banned for cheating.");
+	var script := Start_Script(":newcharacter:onCreate", {who, skillids});
+	
+	if ( script.errortext )
+		SysLog("Error - Unable to start :newcharacter:onCreate ->"+script.errortext);
+		return 0;
 	endif
-	if (CInt(who.truecolor) <= 32768)
-		who.truecolor := who.truecolor + 32768;
-		who.color := who.truecolor;
-	endif
-	SetObjProperty(who, "OnCreate", ReadGameClock());
-	CreateStartingEquipment(who, skillids);
-
-	return;
+	
+	return 1;
 endprogram

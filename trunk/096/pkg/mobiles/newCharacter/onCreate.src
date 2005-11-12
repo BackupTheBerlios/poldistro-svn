@@ -1,0 +1,77 @@
+/*
+ * $Id$
+ *
+ */
+
+use uo;
+use os;
+use file;
+use cfgfile;
+
+include ":attributes:attributes";
+include ":attributes:attributes_ex";
+include ":newcharacter:newCharacter";
+
+program OnCreate(params)
+	var who := params[1];
+	var selected_skills := params[2];
+	params := 0; // No longer needed.
+	
+	// Convert skill ID numbers to attribute names.
+	// Core currently sends them as skill IDs!
+	foreach skill in ( selected_skills )
+		skill := AP_SkillIdToAttributeName(skill);
+		sleepms(2);
+	endforeach
+	
+	// Save the chosen skills.
+	NC_SetStartupSkills(who, selected_skills);
+	
+	GenerateItemsForSkill(who, "All");
+	foreach skill in ( selected_skills )
+		GenerateItemsForSkill(who, skill);
+		sleepms(2);
+	endforeach
+
+	return 1;
+endprogram
+
+function GenerateItemsForSkill(who, attribute)
+	var cfg_file := ReadConfigFile(":newcharacter:config/startEquip");
+	var cfg_elem := cfg_file[attribute];
+	
+	foreach entry in ( GetConfigStringArray(cfg_elem, "Item") )
+		entry := SplitWords(entry);
+		CreateItemInBackPack(who, entry[2], CInt(entry[1]));
+		sleepms(2);
+	endforeach
+	
+	foreach entry in ( GetConfigStringArray(cfg_elem, "Random") )
+		entry := SplitWords(entry);
+		var amount := CInt(entry[1]);
+		var rand_elem := cfg_file[amount[2]];
+		var item_list := GetConfigStringArray(rand_elem, "Item");
+		for ( amount; amount>0; amount:=amount-1 )
+			var selected := item_list[RandomInt(item_list.Size())+1];
+			selected := SplitWords(2);
+			CreateItemInBackPack(who, selected[2], CInt(selected[1]));
+			sleepms(2);
+		endfor
+		sleepms(2);
+	endforeach
+	
+	return 1;
+endfunction
+
+function CreateItemFromElem(who, byref cfg_elem)
+	var item_list := GetConfigStringArray(cfg_elem, "Item");
+	var entry := item_list[RandomInt(item_list.Size())+1];
+	entry := SplitWords(entry);
+	
+	var item := CreateItemInBackPack(who, CInt(entry[1]), entry[2]);
+	if ( item.errortext )
+		SendSysMessage(who, "Error creating "+entry+" ->"+item.errortext);
+	endif
+	
+	return item;
+endfunction
