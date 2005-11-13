@@ -190,16 +190,20 @@ function NPC_SetupRandomEquipment(mobile, elem_name:=0, flags:=EQUIP_NOGENDER)
 				continue;
 			endif
 
-			var item_list := GetConfigStringArray(group_elem, "Item");
+			var item_list := array{};
+			if ( !flags )
+				item_list := item_list+GetConfigStringArray(group_elem, "Item");
+			endif
 			if ( flags & EQUIP_MALE )
-				item_list := GetConfigStringArray(group_elem, "Male");
+				item_list := item_list + GetConfigStringArray(group_elem, "Male");
 			endif
 			if ( flags & EQUIP_FEMALE )
-				item_list := GetConfigStringArray(group_elem, "Female");
+				item_list := item_list + GetConfigStringArray(group_elem, "Female");
 			endif
 
 			var item := item_list[RandomDiceRoll(item_list.Size())+1];
 			item := CreateItemAtLocation(mobile.x, mobile.y, mobile.z, item, 1);
+			item.movable := 1;
 			if ( item.errortext )
 				PrintTextAbove(mobile, "Unable to create ["+item+"] ->"+item.errortext);
 			elseif ( !EquipItem(mobile, item) )
@@ -267,5 +271,5 @@ function NPC_SetupName(mobile, name_elem:=0)
 
 	SetName(mobile, my_name);
 
-	return 1;
+	return my_name;
 endfunction

@@ -51,6 +51,7 @@ function SpeechEvent(npc, byref event)
 	
 	var bank_box := CP_GetStorageContainerForMobile(source, bank_region, CP_CREATE);
 	if ( text["bank"] || text["box"] )
+		AI_Turn(npc, source, NETURN_TOWARD);		
 		SendOpenSpecialContainer(source, bank_box);
 	endif
 	// To-do:
