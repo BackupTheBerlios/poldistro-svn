@@ -15,7 +15,7 @@ program textcmd_Kill(who)
 		return 0;
 	endif
 	
-	targ.Disable("Invul");
+	targ.Disable("invul");
 	SetObjProperty(targ, "GuardKill", 1);	
 	ApplyRawDamage(targ, CInt(AP_GetVitalMaximumValue(targ, "Hits")));
 	
