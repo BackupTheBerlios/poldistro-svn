@@ -110,10 +110,11 @@ endfunction
 
 function Loot_ParseString(line)
 	line := SplitWords(line);
-	var amount := CStr(line[1]);
+	
+	var name := CStr(line[1]);
+	
+	var amount := CStr(line[2]);
 	amount := RandomDiceRoll(amount);
-
-	var name := CStr(line[2]);
 	
 	var chance := CDbl(line[3]);
 	if ( !chance )
@@ -121,8 +122,8 @@ function Loot_ParseString(line)
 	endif
 
 	var result := struct;
-	result.+amount := amount;
 	result.+name := name;
+	result.+amount := amount;
 	result.+chance := chance;
 
 	return result;
