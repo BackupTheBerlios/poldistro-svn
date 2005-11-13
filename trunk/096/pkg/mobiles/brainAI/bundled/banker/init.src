@@ -9,6 +9,7 @@ use os;
 include ":brainAI:npcNerves";
 include ":brainAI:npcInit";
 include ":brainAI:npcCommands";
+include ":dyes:dyes";
 
 program BrainCriticalScript(params)
 	var npc		:= params[1];
@@ -18,6 +19,11 @@ program BrainCriticalScript(params)
 	
 	NPC_SetupName(npc);
 	NPC_SetupRandomEquipment(npc);
+	
+	foreach item in ( ListEquippedItems(npc) )
+		item.color := RandomDyeColor();
+		sleepms(2);
+	endforeach
 	
 	return 1;
 endprogram 
