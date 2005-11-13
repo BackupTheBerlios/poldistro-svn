@@ -5,7 +5,14 @@
  
 use uo;
 
-program OnRemove(who, keyring, item)
+program OnInsert(who, keyring, movetype, INSERT_INCREASE_STACK, adding_item, existing_stack, amt_to_add)
+	if ( !adding_item.IsKey() )
+		SendSysMessage(who, "That is not a key.");
+		return 0;
+	endif
+	
+	SendSysMessage(who, "You put the key on the ring.");
+	
 	var numkeys := EnumerateItemsInContainer(keyring).Size();
 	if ( numkeys == 0 )
 		keyring.graphic := 4113;	

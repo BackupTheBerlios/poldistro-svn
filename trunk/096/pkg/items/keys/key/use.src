@@ -6,6 +6,7 @@
 use uo;
 
 include ":keys:key";
+include ":gumps:requestgump";
 
 program UseKey(who, key)
 	SendSysMessage(who, "What do you want to use this on?");
@@ -14,6 +15,9 @@ program UseKey(who, key)
 	if ( !targ.IsA(POLCLASS_ITEM) )
 		SendSysMessage(who, "Cancelled.");
 		return 0;
+	elseif ( targ == key )
+		RenameKey(who, key);
+		return 1;
 	elseif ( !KP_IsLockable(targ) )
 		SendSysMessage(who, "That is not lockable.");
 		return 0;
@@ -27,3 +31,14 @@ program UseKey(who, key)
 	
 	return 1;
 endprogram
+
+function RenameKey(who, key)
+	var new_name := RequestGump(who, "Enter a name for this key", "", key.desc);
+	
+	if ( new_name )
+		SetName(key, new_name);
+	else
+		SendSysMessage(who, "Cancelled.");
+		return 0;
+	endif
+endfunction
