@@ -93,6 +93,9 @@ function ShouldSleep()
 	elseif ( GetNerveProcess(npc, "LookAround") )
 		// Look around script is currently running.
 		return 0;
+	elseif ( g_settings["NoSleep"] )
+		// NPC is not allowed to enter sleep mode.
+		return 0;
 	elseif ( idle_ticks < g_settings["IdleTicks"] )
 		// Not enough idle ticks have gone by yet.
 		return 0;

@@ -38,11 +38,14 @@ function NPC_GetDefaultSettings(settings:=0)
 	if ( CInt(settings.exists("CycleWait")) <= 0 )
 		settings["CycleWait"] := 10;
 	endif
-	if ( CInt(settings.exists("SleepWait")) <= 0 )
-		settings["SleepWait"] := 1024;
-	endif
-	if ( CInt(settings.exists("IdleTicks")) <= 0 )
-		settings["IdleTicks"] := 5;
+	
+	if ( !settings.Exists("NoSleep") )
+		if ( CInt(settings.exists("SleepWait")) <= 0 )
+			settings["SleepWait"] := 1024;
+		endif
+		if ( CInt(settings.exists("IdleTicks")) <= 0 )
+			settings["IdleTicks"] := 5;
+		endif
 	endif
 
 	return settings;
