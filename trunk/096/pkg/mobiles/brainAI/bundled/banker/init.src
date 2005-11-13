@@ -20,4 +20,4 @@ program BrainCriticalScript(params)
 	NPC_SetupRandomEquipment(npc);
 	
 	return 1;
-endprogram
+endprogram 

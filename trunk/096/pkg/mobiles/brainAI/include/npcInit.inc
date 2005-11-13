@@ -170,29 +170,30 @@ function NPC_SetupRandomEquipment(mobile, elem_name:=0, flags:=EQUIP_NOGENDER)
 	var index_cfg := ReadConfigFile(":brainAI:config/equipIndex");
 	var group_cfg := ReadConfigFile(":brainAI:config/equipGroups");
 	if ( index_cfg.errortext )
-		return error{"errortext":="Error - Could not open equipIndex.cfg -> "+index_cfg.errortext};
+		return error{"errortext":="Could not open equipIndex.cfg -> "+index_cfg.errortext};
 	elseif ( group_cfg.errortext )
-		return error{"errortext":="Error - Could not open equipGroups.cfg -> "+group_cfg.errortext};
+		return error{"errortext":="Could not open equipGroups.cfg -> "+group_cfg.errortext};
 	elseif ( !elem_name )
 		var npc_elem := NPC_GetNPCConfig(mobile);
 		elem_name := npc_elem.EquipTemplate;
 	endif
+	
 	var index_elem := index_cfg[elem_Name];
 	if ( !index_elem )
-		return error{"errortext":="Error - equipIndex.cfg elem ["+index_elem+"] does not exist."};
+		return error{"errortext":="equipIndex.cfg elem ["+index_elem+"] does not exist."};
 	endif
 
 	foreach entry in ( GetConfigStringDictionary(index_elem, "Equip") )
-		if ( RandomInt(100)+1 <= entry )
-			var group_elem := index_cfg[_entry_iter];
+		if ( RandomInt(100)+1 <= CInt(entry) )
+			var group_elem := group_cfg[CStr(_entry_iter)];
 			if ( !group_elem )
-				PrintTextAbove(mobile, "Error - equipGroups.cfg elem ["+group_elem+"] does not exist.");
+				PrintTextAbove(mobile, "equipGroups.cfg elem ["+_entry_iter+"] does not exist.");
 				continue;
 			endif
 
 			var item_list := array{};
 			if ( !flags )
-				item_list := item_list+GetConfigStringArray(group_elem, "Item");
+				item_list := item_list + GetConfigStringArray(group_elem, "Item");
 			endif
 			if ( flags & EQUIP_MALE )
 				item_list := item_list + GetConfigStringArray(group_elem, "Male");
@@ -201,8 +202,8 @@ function NPC_SetupRandomEquipment(mobile, elem_name:=0, flags:=EQUIP_NOGENDER)
 				item_list := item_list + GetConfigStringArray(group_elem, "Female");
 			endif
 
-			var item := item_list[RandomDiceRoll(item_list.Size())+1];
-			item := CreateItemAtLocation(mobile.x, mobile.y, mobile.z, item, 1);
+			var item := item_list[RandomInt(item_list.Size())+1];
+			item := CreateItemAtLocation(mobile.x, mobile.y, mobile.z, item, 1, mobile.realm);
 			item.movable := 1;
 			if ( item.errortext )
 				PrintTextAbove(mobile, "Unable to create ["+item+"] ->"+item.errortext);
