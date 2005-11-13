@@ -7,71 +7,30 @@
  */
 use uo;
 
-include "include/OLD/eventID";
-include "include/OLD/innCheck";
-
+include "include/time";
 include ":timedscripts:timedScripts";
 
 program core_logoffTest(who)
+	// Send event to the 'timed scripts' package to run log off scripts.
 	TS_LogOff(who);
-	
-	if ((who.cmdlevel > 1) || (GetObjProperty(who,"justbanned")))
+		
+	if ( (who.cmdlevel > 1) || (GetObjProperty(who,"Delete")) )
+		// Let staff or characters being deleted/banned logout immediately.
 		return 0;
 	endif
-	EraseObjProperty(who, "#Online");
-	var safelogoff := 0;
-	if (CInt(GetObjProperty(who, "#camped"))== 1)
-		EraseObjProperty(who, "#camped");
-		safelogoff := 1;
-	elseif (Inncheck(who))
-		safelogoff := 1;
-	endif
-
-	if (!safelogoff)
-		if (who.multi.serial)
-			var house := who.multi;
-			if (who.acctname == (GetObjProperty(house, "owneracct")))
-				safelogoff := 1;
-			else
-				foreach player in (GetObjProperty(house, "friendlist"))
-					if (who.serial == player)
-						safelogoff := 1;
-					endif
-				endforeach
-				foreach player in (GetObjProperty(house,"coownlist"))
-					if (who.serial == player)
-						safelogoff := 1;
-					endif
-				endforeach
-			endif
-		endif
-	endif
-
-	if (!safelogoff)
-		staffnotify(who);
-		return 300;  // wait 5 minutes
-	elseif (safelogoff == 1)
-		return 0;   // ok to log off
-	else
-		return safelogoff;
-	endif
+	
+	var logout_delay := SECONDS_IN_MINUTE * 5;
+	
+	// Check if player is camping
+	// if ( IsCamping(who) )
+	
+	// Check if player is in an inn
+	// elseif ( IsInInn(who) )
+		
+	// Check if player is in a house
+	// Then check if player is the owner or  friend of the owner.
+	// elseif ( IsInHouse(who) )
+	
+	
+	return logout_delay;
 endprogram
-
-
-function staffnotify(who)
-	var pid := 0;
-	while (!pid)
-		sleepms(50);
-		pid := GetGlobalProperty("#stafflist");
-	endwhile
-	pid := getprocess(pid);
-	if (!pid)
-		return;
-	endif
-	var k := struct;
-	k.+player := who;
-	k.+type  := EVID_PLAYER_DELAY;
-	pid.sendevent(k);
-
-	return;
-endfunction

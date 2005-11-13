@@ -17,6 +17,7 @@ program core_onDelete(who)
 		return 1;
 	elseif ( age >= SECONDS_IN_WEEK )
 		SysLog("Account ["+who.acctname+"] deleting character "+who.name+" ("+who.serial+")");
+		return 1;
 	else
 		return 0;
 	endif
