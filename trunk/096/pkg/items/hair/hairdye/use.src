@@ -1,0 +1,15 @@
+/*
+ * $Id$
+ *
+ */
+
+use uo;
+use os;
+use cfgfile;
+
+include ":gumps:gumps";
+include ":gumps:gumps_ex";
+
+program UseDyes(who, dyes)
+	return 1;
+endprogram
