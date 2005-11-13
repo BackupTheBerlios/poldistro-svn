@@ -5,20 +5,19 @@
  *
  */
 use uo;
+use os;
 
-include "include/OLD/startEqp";
-
+include "include/time";
 
 program core_onDelete(who)
-	var created := GetObjProperty(who, "OnCreate");
-	if (!created)
-		created := 0;
-	endif
-	if ((ReadGameClock() - created) >= 604800)
-		print("deleting char");
+	var create_time := who.createdat;
+	var age := polcore().systime - create_time;
+	
+	if ( who.cmdlevel )
 		return 1;
+	elseif ( age >= SECONDS_IN_WEEK )
+		SysLog("Account ["+who.acctname+"] deleting character "+who.name+" ("+who.serial+")");
 	else
-		print("too young");
 		return 0;
 	endif
 endprogram
