@@ -1,0 +1,18 @@
+/*
+ * $Id$
+ *
+ * Purpose:
+ * When a player character is deleted this will remove all of its storage areas. 
+ *
+ */
+
+include ":containers:storageAreas";
+
+program OnDelete(who)
+	var box_id := CP_GetMobileContainerID(who);
+	foreach area_name in ( CP_GetStorageAreaNames() )
+		CP_RemoveStorageAreaContainer(box_id, area_name);
+	endforeach
+	
+	return 1;
+endprogram
