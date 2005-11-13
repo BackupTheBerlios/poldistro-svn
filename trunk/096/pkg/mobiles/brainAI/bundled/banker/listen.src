@@ -1,0 +1,61 @@
+use uo;
+use os;
+
+include ":brainAI:eventid";
+include ":brainAI:npcNerves";
+include ":brainAI:npcCommands";
+include ":containers:storageAreas";
+
+program BrainNerve(params)
+	var npc		:= params[1];
+	//var nerve_name:= params[2];
+	var event	:= params[3];
+	//var settings	:= params[4];
+	//var scripts	:= params[5];
+	params := 0; // Not needed anymore.
+	
+	while ( npc )
+		if ( event )
+			case ( event.type )
+				SYSEVENT_SPEECH:
+					SpeechEvent(npc, event);
+					break;
+				default:
+					break;
+			endcase
+			
+			event := 0;
+		endif
+		
+		sleepms(5);
+		event := wait_for_event(100000);
+	endwhile
+endprogram
+
+function SpeechEvent(npc, byref event)
+	var text := event.text;
+	var source := event.source;
+	
+	if ( source.IsA(POLCLASS_NPC) )
+		// Remember - NPCs can send speech events now.
+		return 0;
+	elseif ( !CheckLineOfSight(npc, event.source) )
+		// No line of sight - ignore speech.
+		return 0;
+	endif
+	
+	var bank_region := GetObjProperty(npc, "StorageArea");
+	if ( !bank_region )
+		bank_region := CP_DEFAULT_AREA;
+	endif
+	
+	var bank_box := CP_GetStorageContainerForMobile(source, bank_region, CP_CREATE);
+	if ( text["bank"] || text["box"] )
+		SendOpenSpecialContainer(source, bank_box);
+	endif
+	// To-do:
+	// Gold withdrawl and deposit support?
+	//	
+	
+	return 1;
+endfunction
