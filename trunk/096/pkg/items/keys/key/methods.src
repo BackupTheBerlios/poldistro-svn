@@ -4,3 +4,47 @@
  */
  
 use uo;
+
+program Install()
+	return 1;
+endprogram
+
+exported function IsKey(key)
+	key := key; // Avoid compiler warning
+	return 1;
+endfunction
+
+exported function GetLockId(key)
+	return GetObjProperty(key, "LockId");
+endfunction
+
+exported function SetLockId(key, lock_id)
+	SetObjProperty(key, "LockId", CStr(lock_id));
+endfunction
+
+exported function KeyMatchesLock(key, lock)
+	if ( lock == error )
+		return 0;
+	endif
+	
+	var lock_id := error;
+	if ( lock.GetLockId() )
+		lock_id := lock.GetLockId();
+	elseif ( TypeOf(lock) == "String" )
+		lock_id := lock;
+	else
+		lock_id := GetObjProperty(lock, "LockId");
+		if ( lock_id == error )
+			return 0;
+		endif
+	endif
+	
+	var key_id := GetLockId(key);
+	if ( key_id == error )
+		return 0;
+	elseif ( key_id != lock_id )
+		return 0;
+	else
+		return 1;
+	endif
+endfunction
