@@ -27,8 +27,17 @@ function EnterSleepMode()
 			if ( !process )
 				StartNerve(npc, "Sleep", g_scripts["Sleep"].script, array{g_settings, g_scripts}, g_scripts["Sleep"].flags);
 			endif
+		else
+			foreach nerve in (LoadNerves(npc))
+				if ( nerve.flags & NF_CONTINUE_ON_SLEEP )
+					continue;
+				else
+					StopNerve(npc, _nerve_iter);
+				endif
+				sleepms(2);
+			endforeach
 		endif
-					
+	
 		//The brain is now in sleep mode, isn't it cute?
 		sleep_mode := 1;
 	endif
