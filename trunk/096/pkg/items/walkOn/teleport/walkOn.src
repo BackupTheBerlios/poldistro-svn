@@ -25,7 +25,7 @@ endprogram
 function JustTeleported(mobile)
 	var tele_time := CInt(GetObjProperty(mobile, "#Teleported"));
 	if ( tele_time > ReadMillisecondClock()-500 )
-		// Mobile just teleported Too soon to teleport again.
+		// Mobile just teleported. Too soon to teleport again.
 		return 1;
 	else
 		// Safe to teleport the mobile
@@ -36,12 +36,7 @@ endfunction
 function TeleportMobile(mobile, byref dest)
 	SetObjProperty(mobile, "#Teleported", ReadMillisecondClock());
 	
-	var moved;
-	if ( mobile.realm != dest.realm )
-		moved := MoveObjectToRealm(mobile, dest.realm, dest.x, dest.y, dest.z, MOVECHAR_FORCELOCATION);
-	else
-		moved := MoveCharacterToLocation(mobile, dest.x, dest.y, dest.z, MOVECHAR_FORCELOCATION);
-	endif
+	var moved := MoveObjectToLocation(mobile, dest.x, dest.y, dest.z, dest.realm, MOVECHAR_FORCELOCATION);
 	
 	if ( moved.errortext )
 		SendSysMessage(mobile, "Teleport Error: "+moved.errortext);
