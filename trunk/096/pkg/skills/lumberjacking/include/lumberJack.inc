@@ -234,18 +234,13 @@ endfunction
  *
  */
 function LJ_PickWoodType(realm, x_pos, y_pos)
-	var wood_cfg := ReadConfigFile(":lumberjacking:config/woodRegions");
+	var wood_cfg := ReadConfigFile(":lumberjacking:config/wood-"+realm);
 	if ( !wood_cfg )
 		return GetObjTypeByName("Log");
 	endif
 
-	var realm_elem := wood_cfg[realm];
-	if ( !realm_elem )
-		return GetObjTypeByName("Log");
-	endif
-
 	var wood_found := array{"Log"};
-	foreach region_name in ( GetConfigStringArray(realm_elem, "Region") )
+	foreach region_name in ( GetConfigStringKeys(wood_cfg) )
 		var region_elem := wood_cfg[region_name];
 		if ( !LJ_InRect(x_pos, y_pos, region_elem.Rect) )
 			continue;
@@ -259,6 +254,10 @@ function LJ_PickWoodType(realm, x_pos, y_pos)
 	endforeach
 
 	var selected_wood := wood_found[RandomInt(wood_found.Size())+1];
-	return GetObjTypeByName(selected_wood);
+	selected_wood := GetObjTypeByName(selected_wood);
+	if ( !selected_wood )
+		return GetObjTypeByName("Log");
+	endif
+	
 endfunction
 
