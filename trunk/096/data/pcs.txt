@@ -45,19 +45,16 @@ Character
 	Alchemy	100
 	Anatomy	100
 	AnimalLore	100
-	ItemId	100
 	ArmsLore	100
 	Parry	100
 	Begging	100
 	Blacksmithy	100
-	Bowcraft	100
 	Peacemaking	100
 	Camping	100
 	Carpentry	100
 	Cartography	100
 	Cooking	100
 	DetectingHidden	100
-	Enticement	100
 	EvaluatingIntelligence	100
 	Healing	100
 	Fishing	100
@@ -68,7 +65,6 @@ Character
 	Inscription	100
 	Lockpicking	100
 	Magery	100
-	MagicResistance	100
 	Tactics	100
 	Snooping	100
 	Musicianship	100
@@ -83,7 +79,7 @@ Character
 	Tracking	100
 	Veterinary	100
 	Swordsmanship	100
-	Macefighting	100
+	MaceFighting	100
 	Fencing	100
 	Wrestling	100
 	Lumberjacking	100
@@ -91,7 +87,7 @@ Character
 	Meditation	100
 	Stealth	100
 	RemoveTrap	100
-	Life	100
+	Hits	100
 	Mana	100
 	Stamina	100
 	Privs	clotheany dblclickany hearghosts invul losany moveany seeghosts seehidden seeinvisitems 

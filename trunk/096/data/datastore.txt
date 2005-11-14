@@ -4,12 +4,22 @@
 
 DataFile
 {
+	Descriptor	:attributes:attributes
+	Name	attributes
+	Package	attributes
+	Flags	0
+	Version	1
+	OldVersion	0
+}
+
+DataFile
+{
 	Descriptor	:bountyboard:BountySystem
 	Name	BountySystem
 	Package	bountyboard
 	Flags	0
 	Version	16
-	OldVersion	15
+	OldVersion	16
 }
 
 DataFile
@@ -28,8 +38,8 @@ DataFile
 	Name	gumps
 	Package	control
 	Flags	0
-	Version	20
-	OldVersion	19
+	Version	21
+	OldVersion	20
 }
 
 DataFile
@@ -38,8 +48,8 @@ DataFile
 	Name	packages
 	Package	control
 	Flags	0
-	Version	32
-	OldVersion	31
+	Version	33
+	OldVersion	32
 }
 
 DataFile
@@ -88,8 +98,8 @@ DataFile
 	Name	Groups
 	Package	spawnsystem
 	Flags	0
-	Version	1
-	OldVersion	0
+	Version	2
+	OldVersion	1
 }
 
 DataFile
@@ -98,8 +108,8 @@ DataFile
 	Name	Realms
 	Package	spawnsystem
 	Flags	0
-	Version	1
-	OldVersion	0
+	Version	2
+	OldVersion	1
 }
 
 DataFile
@@ -108,8 +118,8 @@ DataFile
 	Name	Regions
 	Package	spawnsystem
 	Flags	0
-	Version	1
-	OldVersion	0
+	Version	2
+	OldVersion	1
 }
 
 DataFile
@@ -119,6 +129,6 @@ DataFile
 	Package	sysbook
 	Flags	1
 	Version	4
-	OldVersion	3
+	OldVersion	4
 }
 
