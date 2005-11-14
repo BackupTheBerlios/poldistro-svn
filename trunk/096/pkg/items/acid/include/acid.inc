@@ -29,7 +29,10 @@ function SpitAcid(spitter, spit_on)
 	endif
 	PlayMovingEffectXYZHued(spitter, spit_on, 0x36d4, 5, 1, 1, 0x47, 0);
 	var acid_pool := CreateItemAtLocation(spit_on.x, spit_on.y, GetMapInfo(spit_on.x, spit_on.y).z, "acid",  1, spit_on.realm);
-	DealAcidDamage(spitter, spit_on, acid_pool);
+	var dice_dealt := DealAcidDamage(spitter, spit_on, acid_pool);
+	if( TypeOf(dice_dealt) == "String" && !GetObjProperty(acid_pool, "%AcidDice%") )
+		SetObjProperty(acid_pool, "%AcidDice%", dice_dealt);
+	endif
 	return acid_pool;
 endfunction
 
@@ -40,9 +43,8 @@ endfunction
  * Purpose
  * Deals damage to a mob based on an npc's AcidDamage entry in it's npctemplate
  * if 0 is sent for acid_damage. Otherwise uses the Dice Roll sent. Also checks
- * for a cprop on the acid itself. CProp is set here in this function. The CProp
- * is used by walkOn/Timer scripts. Also deals damage randomly to the mobile's
- * armor or weapon.
+ * for a cprop on the acid itself. The CProp is used by walkOn/Timer scripts.
+ * Also deals damage randomly to the mobile's armor or weapon.
  *
  * Parameters
  * npc:		The npc spitting the acid
@@ -51,26 +53,20 @@ endfunction
  *		to the npc's AcidDamage setting in template.
  *
  * Return value
- * Returns 1 if armor damaged, 0 elsewise.
+ * Returns dice roll string.
  *
- * Note:	If NPC is sent as the acid_pool, it will store the AcidDamage string
- * 		on the NPC itself, and make it useable for future occurances instead
- *		of reading the template.
  */
 function DealAcidDamage(npc, mobile, acid_pool, acid_damage:=0)
-	var npc_info := NPC_GetNPCConfig(npc.npctemplate);
+	var acid_dice := GetAcidDiceFromTemplate(npc);
+	if( TypeOf(acid_dice) != "String" )
+		acid_dice := GetAcidDiceFromItem(acid_pool);
+	endif
 	if( acid_damage )
 		acid_damage := RandomDiceRoll(acid_damage);
-	elseif( !npc_info.AcidDamage )
-		if( TypeOf(GetObjProperty(acid_pool, "%AcidDice%")) == "String" )
-			acid_damage := RandomDiceRoll(GetObjProperty(acid_pool, "%AcidDice%"));
-		else
-			// Can't Deal Acid Damage
-			return 0;
-		endif
+	elseif( TypeOf(acid_dice) == "String" )
+		acid_damage := RandomDiceRoll(acid_dice);
 	else
-		acid_damage := RandomDiceRoll(npc_info.AcidDamage);
-		SetObjProperty(acid_pool, "%AcidDice%", npc_info.AcidDamage);
+		return 0;
 	endif
 	ApplyRawDamage(mobile, acid_damage);
 	var equipped_items := ListEquippedItems(mobile);
@@ -84,8 +80,37 @@ function DealAcidDamage(npc, mobile, acid_pool, acid_damage:=0)
 			else
 				DestroyItem(acid_burned);
 			endif
-			return 1;
 		endif
 	endif
-	return 0;
+	return acid_dice;
+endfunction
+
+
+function GetAcidDiceFromTemplate(npc)
+	if( npc.isA(POLCLASS_NPC) )
+		var npc_info := NPC_GetNPCConfig(npc.npctemplate);
+		if( !npc_info.AcidDamage )
+			// Can't Deal Acid Damage
+			return 0;
+		else
+			return npc_info.AcidDamage;
+		endif
+	else
+		return 0;
+	endif
+endfunction
+
+
+function GetAcidDiceFromItem(acid_pool)
+	if( acid_pool.isA(POLCLASS_ITEM) )
+		if( TypeOf(GetObjProperty(acid_pool, "%AcidDice%")) == "String" )
+			return GetObjProperty(acid_pool, "%AcidDice%");
+
+		else
+			// Can't Deal Acid Damage
+			return 0;
+		endif
+	else
+		return 0;
+	endif
 endfunction
