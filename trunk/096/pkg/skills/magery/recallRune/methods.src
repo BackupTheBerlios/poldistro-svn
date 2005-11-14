@@ -1,0 +1,39 @@
+/*
+ * $Id$
+ *
+ */
+
+use uo;
+use cfgfile;
+
+program Install()
+	return 1;
+endprogram
+
+exported function SetDestination(rune, x, y, z, realm)
+	var coords := struct;
+	struct.+x := CInt(x);
+	struct.+y := CInt(y);
+	struct.+z := CInt(z);
+	struct.+realm := CStr(realm);
+	
+	var color_cfg := ReadConfigFile(":magery:config/runeColor");
+	var realm_elem := color_cfg[realm];
+	rune.color := CInt(realm_elem.RuneColor);
+		
+	return SetObjProperty(rune, "Destination", coords);
+endfunction
+
+exported function GetDestination(rune)
+	return GetObjProperty(rune, "Destination");
+endfunction
+
+exported function SendToDestination(rune, object)
+	var dest := GetDestination(rune);
+	if ( !dest )
+		return error{"errortext":="Rune has no destination set."};
+	endif
+	
+	return MoveObjectToLocation(object, dest.x, dest.y, dest.z, dest.realm, MOVEOBJECT_FORCELOCATION);
+endfunction
+	
