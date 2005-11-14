@@ -37,10 +37,13 @@ program UseKey(who, key)
 endprogram
 
 function RenameKey(who, key)
-	var new_name := RequestGump(who, "Enter a name for this key", "Maximum length is 20 characters.", key.desc);
+	var new_name := RequestGump(who, "Enter a name for this key", "Maximum length is 20 characters.", key.desc, CANCEL_BTN_ON);
 	var name_len := Len(new_name);
 	
-	if ( name_len > 20 )
+	if ( !new_name )
+		SendSysMessage(who, "Cancelled.");
+		return 0;
+	elseif ( name_len > 20 )
 		SendSysMessage(who, "Name is too long.");
 		return 0;
 	elseif ( name_len < 1 )
