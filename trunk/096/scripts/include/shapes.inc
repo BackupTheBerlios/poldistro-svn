@@ -107,3 +107,31 @@ function GetCoordsInCircle(mid_x, mid_y, radius)
 	radius := radius;
 	return error{"errortext":="Hasn't been coded yet!"};
 endfunction
+
+/* 
+ * GetCoordsInPolygon(coord_list)
+ *
+ * Purpose
+ * Takes in an array of structs containing .x, .y coordinates.
+ * Each point is a segment that builds the shape.
+ * Finds the coordinates inside of that shape.
+ *
+ *
+ * Parameters
+ * coord_list:	Array of structs. Each struct contains an x and y member.
+ *
+ * Return value
+ * Returns an array of structs containing a .x and .y member.
+ *
+ */
+function GetCoordsInPolygon(coord_list)
+	var num_coords := coord_list.Size();
+	if ( num_coords < 3 )
+		return error{"errortext":="Needs atleast three coordinates to form a polygon."};
+	endif
+	
+	//var start_coord := coord_list[1];
+	//var end_coord := coord_list[num_coords];
+	
+	return error{"errortext":="Hasn't been coded yet!"};
+endfunction
