@@ -29,7 +29,7 @@ function SpitAcid(spitter, spit_on)
 	endif
 	PlayMovingEffectXYZHued(spitter, spit_on, 0x36d4, 5, 1, 1, 0x47, 0);
 	var acid_pool := CreateItemAtLocation(spit_on.x, spit_on.y, GetMapInfo(spit_on.x, spit_on.y).z, "acid",  1, spit_on.realm);
-	DealAcidDamage(spitter, spit_on);
+	DealAcidDamage(spitter, spit_on, acid_pool);
 	return acid_pool;
 endfunction
 
@@ -38,25 +38,39 @@ endfunction
  * DealAcidDamage(npc, mobile)
  *
  * Purpose
- * Deals damage to a mob based on an npc's AcidDamage entry in it's npctemplate.
- * Also deals damage randomly to the mobile's armor or weapon.
+ * Deals damage to a mob based on an npc's AcidDamage entry in it's npctemplate
+ * if 0 is sent for acid_damage. Otherwise uses the Dice Roll sent. Also checks
+ * for a cprop on the acid itself. CProp is set here in this function. The CProp
+ * is used by walkOn/Timer scripts. Also deals damage randomly to the mobile's
+ * armor or weapon.
  *
  * Parameters
  * npc:		The npc spitting the acid
  * mobile:	The mobile the npc is spitting on.
+ * acid_damage:	Optional. If 0/Not sent, then it defaults to
+ *		to the npc's AcidDamage setting in template.
  *
  * Return value
  * Returns 1 if armor damaged, 0 elsewise.
  *
+ * Note:	If NPC is sent as the acid_pool, it will store the AcidDamage string
+ * 		on the NPC itself, and make it useable for future occurances instead
+ *		of reading the template.
  */
-function DealAcidDamage(npc, mobile)
+function DealAcidDamage(npc, mobile, acid_pool, acid_damage:=0)
 	var npc_info := NPC_GetNPCConfig(npc.npctemplate);
-	var acid_damage := 0;
-	if( !npc_info.AcidDamage )
-		// NPC doesn't Spit Acid
-		return 0;
+	if( acid_damage )
+		acid_damage := RandomDiceRoll(acid_damage);
+	elseif( !npc_info.AcidDamage )
+		if( TypeOf(GetObjProperty(acid_pool, "%AcidDice%")) == "String" )
+			acid_damage := RandomDiceRoll(GetObjProperty(acid_pool, "%AcidDice%"));
+		else
+			// Can't Deal Acid Damage
+			return 0;
+		endif
 	else
 		acid_damage := RandomDiceRoll(npc_info.AcidDamage);
+		SetObjProperty(acid_pool, "%AcidDice%", npc_info.AcidDamage);
 	endif
 	ApplyRawDamage(mobile, acid_damage);
 	var equipped_items := ListEquippedItems(mobile);
