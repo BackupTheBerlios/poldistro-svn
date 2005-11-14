@@ -9,14 +9,15 @@ include ":brainAI:npcUtil";
 include "include/packets";
 
 /*
- * MakeBleed(object, blood_color)
+ * SpitAced(spitter, spit_on)
  *
  * Purpose
- * Creates a blood tile where the object is and sets the blood to the appropriate color.
+ * Creates an acid tile where the spit_on is and handles dealing initial
+ * damage to the spit_on and affects armor if applicable.
  *
  * Parameters
- * object:	The object to create the blood for.
- * blood_color:	Optional parameter. Will force the blood to be this color.
+ * spitter:	The npc spitting the acid
+ * spit_on:	The mobile the npc is spitting on.
  *
  * Return value
  * Returns an item reference to the tile created.
@@ -26,7 +27,30 @@ function SpitAcid(spitter, spit_on)
 	if( !CheckLineOfSight(spitter, spit_on) )
 		return 0;
 	endif
-	var npc_info := NPC_GetNPCConfig(spitter.npctemplate);
+	PlayMovingEffectXYZHued(spitter, spit_on, 0x36d4, 5, 1, 1, 0x47, 0);
+	var acid_pool := CreateItemAtLocation(spit_on.x, spit_on.y, GetMapInfo(spit_on.x, spit_on.y).z, "acid",  1, spit_on.realm);
+	DealAcidDamage(spitter, spit_on);
+	return acid_pool;
+endfunction
+
+
+/*
+ * DealAcidDamage(npc, mobile)
+ *
+ * Purpose
+ * Deals damage to a mob based on an npc's AcidDamage entry in it's npctemplate.
+ * Also deals damage randomly to the mobile's armor or weapon.
+ *
+ * Parameters
+ * npc:		The npc spitting the acid
+ * mobile:	The mobile the npc is spitting on.
+ *
+ * Return value
+ * Returns 1 if armor damaged, 0 elsewise.
+ *
+ */
+function DealAcidDamage(npc, mobile)
+	var npc_info := NPC_GetNPCConfig(npc.npctemplate);
 	var acid_damage := 0;
 	if( !npc_info.AcidDamage )
 		// NPC doesn't Spit Acid
@@ -34,9 +58,20 @@ function SpitAcid(spitter, spit_on)
 	else
 		acid_damage := RandomDiceRoll(npc_info.AcidDamage);
 	endif
-
-	PlayMovingEffectXYZHued(spitter, spit_on, 0x36d4, 5, 1, 1, 0x47, 0);
-	var acid_pool := CreateItemAtLocation(spit_on.x, spit_on.y, GetMapInfo(spit_on.x, spit_on.y).z, "acid",  1, spit_on.realm);
-	ApplyRawDamage(spit_on, acid_damage);
-	return acid_pool;
+	ApplyRawDamage(mobile, acid_damage);
+	var equipped_items := ListEquippedItems(mobile);
+	if( RandomInt(10) > 5 )
+		var acid_burned := equipped_items[RandomInt(equipped_items.size())+1];
+		if( acid_burned.isA(POLCLASS_WEAPON) || acid_burned.isA(POLCLASS_ARMOR) )
+			var armor_damage := RandomInt(4) + 1;
+			if( acid_burned.hp > armor_damage )
+				acid_burned.hp := acid_burned.hp - armor_damage;
+				PrintTextAbovePrivate( mobile, "*Acid damages your equipment*", mobile, _DEFAULT_TEXT_FONT, 72);
+			else
+				DestroyItem(acid_burned);
+			endif
+			return 1;
+		endif
+	endif
+	return 0;
 endfunction
