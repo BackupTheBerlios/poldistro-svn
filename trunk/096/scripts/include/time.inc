@@ -7,6 +7,7 @@
 use uo;
 
 include ":config:config";
+include "include/properties";
 
 enum TIME_UNITS
 	// Base unit: Millisecond

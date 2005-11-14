@@ -55,10 +55,10 @@ endenum
  *
  */
 function Wait(what, time := SCHED_TIMEOUT)
-	while(Wait_For_Event(time) != what)
+	while( Wait_For_Event(time) != what )
 	endwhile
 
-	return;
+	return 1;
 endfunction
 
 
@@ -82,5 +82,5 @@ function Send(what)
 	endif
 	sched.sendevent(what);
 
-	return;
+	return 1;
 endfunction

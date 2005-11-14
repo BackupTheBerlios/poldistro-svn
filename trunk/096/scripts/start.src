@@ -1,25 +1,8 @@
-/* $Id$
- *
- * Purpose
- * This script is called when the server starts up.
- * It will start the script scheduler which will in turn start other start scripts.
- *
- * Parameters: None
- *
- * Return value: Ignored
+/*
+ * $Id$
  *
  */
-use uo;
-use os;
 
-include ":logger:exception";
-include ":logger:log";
-
-program StartServer()
-	Log(LOG_MAIN, "Server started.");
-	if ( !start_script(":scheduler:scheduler") )
-		Exception("::start:StartServer(): Couldn't start the script scheduler");
-	endif
-	
+program GlobalStartup()
 	return 1;
 endprogram
