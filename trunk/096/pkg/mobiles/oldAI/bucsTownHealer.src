@@ -12,7 +12,7 @@ include ":npcutils:vetement";
 include ":npcutils:NPCBackpacks";
 include "include/client";
 include ":npcutils:anchors";
-include "include/OLD/findCity";
+include ":coords:findCity";
 include ":begging:begging";
 include ":npcutils:trainSkill";
 

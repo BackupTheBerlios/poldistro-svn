@@ -5,7 +5,7 @@ use util;
 include "include/client";
 include ":attributes:attributes";
 include "include/sound";
-include "include/findCity";
+include ":coords:findCity";
 
 
 program spell_magicTrap(parms)

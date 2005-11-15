@@ -5,9 +5,9 @@ use os;
 include "util/key";
 include ":containers:storageAreas";
 include ":itemutils:objtype";
-include "include/OLD/findCity";
+include ":coords:findCity";
 include ":itemutils:canAccess";
-include "include/OLD/isValidLoc";
+include ":coords:isValidLoc";
 
 const UOBJECT_DOORS_START:=0x675;
 const UOBJECT_DOORS_END:=0x6f4;

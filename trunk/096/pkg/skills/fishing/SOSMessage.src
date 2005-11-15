@@ -5,7 +5,7 @@
 use uo;
 use os;
 
-include "include/OLD/coords";
+include ":coords:coords";
 include ":itemutils:canAccess";
 include ":gumps:include/gumps";
 

@@ -1,7 +1,7 @@
 use os;
 use uo;
 
-include "include/isValidLoc";
+include ":coords:isValidLoc";
 include ":itemutils:objtype";
 include "include/client";
 include "include/sound";

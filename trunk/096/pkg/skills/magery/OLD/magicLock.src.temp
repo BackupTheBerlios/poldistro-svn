@@ -5,7 +5,7 @@ use util;
 include "include/client";
 include "include/sound";
 include ":attributes:attributes";
-include "include/findCity";
+include ":coords:findCity";
 include "util/key";
 
 
