@@ -9,6 +9,9 @@ include ":magery:spells";
 include ":itemutils:objtype";
 include ":coords:isValidLoc";
 include ":runebook:runebookFunctions";
+include ":containers:containers";
+include ":itemutils:itemdesc";
+include "include/sounds";
 
 program SpellScript(params)
 	var who := params[1];
@@ -191,6 +194,12 @@ function RunebookGate(who, runebook_info)
 		return 0;
 	endif
 
+	var spell_elem := MS_GetSpellsCfgElem(52);
+	if ( !CheckReagents(who, spell_elem, 0) )
+		FailSpell(who);
+		return 0;
+	endif
+
 	if( GetObjProperty(runebook, "Vendored") )
 		SendSysMessage(who, "You cannot recall off of runebooks on a vendor.");
 		return 0;
@@ -278,5 +287,56 @@ function RunebookGate(who, runebook_info)
 	DestroyItem( gate1 );
 	DestroyItem( gate2 );
 	set_critical(0);
+	return 1;
+endfunction
+
+
+function CheckReagents(who, byref spell_elem, scroll)
+	if ( who.npctemplate )
+		// NPCs don't need reagents to cast.
+		return 1;
+	elseif ( scroll.isA(POLCLASS_ITEM) )
+		return SubtractAmount(scroll, 1);
+	elseif ( scroll == 1 )
+		// Added scroll/1 check for passing 1 to override reg
+		// and scroll check. IE: runebooks, wands, etc.
+		return 1;
+	endif
+
+	var reagent_costs := GetConfigStringDictionary(spell_elem, "RegCost");
+
+	// Before consuming, verify that there is enough of everything.
+	foreach amount in ( reagent_costs )
+		amount := CInt(amount);
+		if ( !amount )
+			amount := 1;
+		endif
+		var objtype := GetObjTypeByName(_amount_iter);
+
+		if ( AmountInContainer(who.backpack, objtype) < amount )
+			SendSysMessage(who, "You do not have enough "+GetObjTypeDesc(objtype, (amount>1)));
+			return 0;
+		endif
+		sleepms(2);
+	endforeach
+	// Consume reagents - CInt() and < 1 checks already done in previous loop.
+	// Foreach is a pointer!
+	foreach amount in ( reagent_costs )
+		ConsumeSubstance(who.backpack, GetObjTypeByName(_amount_iter), amount);
+		sleepms(2);
+	endforeach
+
+	return 1;
+endfunction
+
+
+function FailSpell(who)
+	// Simple function for handling effects when a caster
+	// fails the casting.
+	who.frozen := 0;
+	EraseObjProperty(who, "#medding");
+	PlayObjectCenteredEffect(who, GFX_SPELL_FAIL, 5, 50);
+	PlaySoundEffect(who, SFX_SPELL_FAIL);
+
 	return 1;
 endfunction

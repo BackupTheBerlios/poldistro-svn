@@ -114,8 +114,8 @@ function MS_Target(byref who, byref targ:=0, byref prompt := "Select a target.",
 		return 0;
 	endif
 
-	var orig_x := who.x;
-	var orig_y := who.y;
+//	var orig_x := who.x;
+//	var orig_y := who.y;
 
 	SendSysMessage(who, prompt);
 
@@ -123,9 +123,9 @@ function MS_Target(byref who, byref targ:=0, byref prompt := "Select a target.",
 	if ( Distance(who, targ) > MAX_RANGE )
 		SendSysMessage(who, "That is too far away.");
 		return 0;
-	elseif ( who.x != orig_x || who.y != orig_y )
-		SendSysMessage(who, "You break your concentration.");
-		return 0;
+//	elseif ( who.x != orig_x || who.y != orig_y )
+//		SendSysMessage(who, "You break your concentration.");
+//		return 0;
 	else
 		return targ;
 	endif

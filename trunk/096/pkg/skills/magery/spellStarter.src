@@ -45,6 +45,7 @@ program SpellStarter(params)
 		return 0;
 	else
 		SetObjProperty(who, "#medding", 1);
+		who.frozen := 1;
 	endif
 
 	if ( !who.squelched )
@@ -79,6 +80,7 @@ program SpellStarter(params)
 			difficulty := -1;
 		endif
 		var skill_check := SkillCheck(who, attribute, difficulty);
+		who.frozen := 0;
 		if ( skill_check > 0 )
 			var info := struct;
 			info.+script		:= spell_elem.script;
@@ -144,12 +146,17 @@ function EquipmentCheck(who)
 	return 1;
 endfunction
 
+
 function CheckReagents(who, byref spell_elem, scroll)
 	if ( who.npctemplate )
 		// NPCs don't need reagents to cast.
 		return 1;
-	elseif ( scroll )
+	elseif ( scroll.isA(POLCLASS_ITEM) )
 		return SubtractAmount(scroll, 1);
+	elseif ( scroll == 1 )
+		// Added scroll/1 check for passing 1 to override reg
+		// and scroll check. IE: runebooks, wands, etc.
+		return 1;
 	endif
 
 	var reagent_costs := GetConfigStringDictionary(spell_elem, "RegCost");
@@ -181,6 +188,7 @@ endfunction
 function FailSpell(who)
 	// Simple function for handling effects when a caster
 	// fails the casting.
+	who.frozen := 0;
 	EraseObjProperty(who, "#medding");
 	PlayObjectCenteredEffect(who, GFX_SPELL_FAIL, 5, 50);
 	PlaySoundEffect(who, SFX_SPELL_FAIL);
