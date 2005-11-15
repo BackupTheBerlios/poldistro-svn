@@ -1,0 +1,220 @@
+/* $Id$
+ *
+ */
+use uo;
+use os;
+
+include ":attributes:attributes";
+include ":magery:spells";
+include ":itemutils:objtype";
+include ":coords:isValidLoc";
+include ":runebook:runebookFunctions";
+
+program SpellScript(params)
+	var who := params[1];
+	var runebook_info := params[4];
+	//var info := params[2];
+	params := 0; // No longer needed
+
+	if( TypeOf(runebook_info) == "Array" )
+		RunebookRecall(who, runebook_info);
+		return 1;
+	endif
+
+	var prompt := "Select an object to recall from.";
+	var recall_rune := MS_Target(who, 0, prompt, TGTOPT_CHECK_LOS+TGTOPT_NEUTRAL);
+	if( (recall_rune.objtype != UOBJ_RUNE) && (recall_rune.objtype != 0x6100))
+		SendSysMessage(who, "You can only cast that on a recall rune or runebook.");
+		return 0;
+	endif
+	if( !ReserveItem(recall_rune) )
+		return 0;
+	endif
+
+	if( GetObjProperty(recall_rune, "Vendored") )
+		SendSysMessage(who, "You cannot recall off of runes on a vendor.");
+		return 0;
+	endif
+	var tox := CInt(GetObjProperty( recall_rune, "x" ));
+	var toy := CInt(GetObjProperty( recall_rune, "y" ));
+	var toz := CInt(GetObjProperty( recall_rune, "z" ));
+	var torealm :=  GetObjProperty( recall_rune, "realm" );
+	if(!tox)
+		SendSysMessage(who, "That item is not marked.");
+		return 0;
+	endif
+	if(!torealm)
+		torealm := "britannia";
+	endif
+
+	if( !isValidLoc(tox,toy,torealm) )
+		SendSysMessage(who, "Invalid recall location.");
+		if( recall_rune.objtype == 0x6100 )
+			RemoveRunebookDefault(recall_rune);
+			return 0;
+		else
+			DestroyItem(recall_rune);
+			return 0;
+		endif
+	endif
+
+	PlaySoundEffect(who, 0x210);
+
+	if( (who.x >= 5120) && (who.x <= 5375) && (who.y >= 0) && (who.y <= 255) )
+		SendSysMessage(who, "Your spell fails and consumes the rune!");
+		if(recall_rune.objtype == UOBJ_RUNE)
+			DestroyItem(recall_rune);
+		elseif(recall_rune.objtype == 0x6100)
+			RemoveRunebookDefault(recall_rune);
+		endif
+		return 0;
+	endif
+
+	var signs := ListItemsNearLocationOfType( tox, toy, toz, 30, 0x7060, torealm);
+	foreach sign in signs
+		var infoarr := GetObjProperty(sign, "homeinfo");
+		if( infoarr )
+			if( (tox >= infoarr[2]) && (tox <= infoarr[4]) && (toy >= infoarr[3]) && (toy <= infoarr[5]) )
+				SendSysMessage(who, "Something is blocking the location.");
+				return 0;
+				break;
+			endif
+		endif
+	endforeach
+
+	var multicheck := CreateItemAtLocation(1, 1, 0, 0xeed, 1, torealm);
+	multicheck.invisible := 1;
+	if( !MoveItemToLocation(multicheck, tox, toy, toz, MOVEITEM_NORMAL) )
+		SendSysMessage(who, "Something is blocking the location.");
+		if(recall_rune.objtype == UOBJ_RUNE)
+			DestroyItem(recall_rune);
+		elseif(recall_rune.objtype == 0x6100)
+			RemoveRunebookDefault(recall_rune);
+		endif
+		return 0;
+	endif
+	if(multicheck.multi)
+		SendSysMessage(who,"Something is blocking the location.");
+		if(recall_rune.objtype == UOBJ_RUNE)
+			DestroyItem(recall_rune);
+		elseif(recall_rune.objtype == 0x6100)
+			RemoveRunebookDefault(recall_rune);
+		endif
+		return 0;
+	endif
+	DestroyItem(multicheck);
+	MoveObjectToLocation( who, tox, toy, toz, torealm );
+	PlaySoundEffect(who, 0x1fd);
+	return 1;
+endprogram
+
+function RemoveRunebookDefault(runebook)
+	var tox := CInt(GetObjProperty( runebook, "x" ));
+	var toy := CInt(GetObjProperty( runebook, "y" ));
+	var toz := CInt(GetObjProperty( runebook, "z" ));
+	var torealm := GetObjProperty( runebook, "realm" );
+	var rune_list := GetRuneList(runebook);
+
+	foreach rune_entry in rune_list
+		if( (Cint(rune_list.X) == tox) && (Cint(rune_list.Y) == toy) && (Cint(rune_list.Z) == toz) && (Cint(rune_list.Realm) == torealm) )
+			rune_list.Erase(rune_entry);
+		endif
+	endforeach
+
+	SetObjProperty(runebook, "%RuneList%", rune_list);
+	EraseObjProperty(runebook, "x");
+	EraseObjProperty(runebook, "y");
+	EraseObjProperty(runebook, "z");
+	EraseObjProperty(runebook, "realm");
+	return 1;
+endfunction
+
+
+function RemoveRunebookEntry(runebook, rune_info)
+	var tox := CInt(rune_info.X);
+	var toy := CInt(rune_info.Y);
+	var toz := CInt(rune_info.Z);
+	var torealm :=  rune_info.Realm;
+	var rune_list := GetRuneList(runebook);
+
+	foreach rune_entry in rune_list
+		if( (Cint(rune_list.X) == tox) && (Cint(rune_list.Y) == toy) && (Cint(rune_list.Z) == toz) && (Cint(rune_list.Realm) == torealm) )
+			rune_list.Erase(rune_entry);
+		endif
+	endforeach
+
+	SetObjProperty(runebook, "%RuneList%", rune_list);
+	EraseObjProperty(runebook, "x");
+	EraseObjProperty(runebook, "y");
+	EraseObjProperty(runebook, "z");
+	EraseObjProperty(runebook, "realm");
+	return 1;
+endfunction
+
+
+function RunebookRecall(who, runebook_info)
+	var runebook := runebook_info[1];
+	var rune_info := runebook_info[2];
+
+	if( !ReserveItem(runebook) )
+		return 0;
+	endif
+
+	if( GetObjProperty(runebook, "Vendored") )
+		SendSysMessage(who, "You cannot recall off of runebooks on a vendor.");
+		return 0;
+	endif
+	var tox := CInt(rune_info.X);
+	var toy := CInt(rune_info.Y);
+	var toz := CInt(rune_info.Z);
+	var torealm :=  rune_info.Realm;
+	if(!tox)
+		SendSysMessage(who, "That is an invalid location.");
+		return 0;
+	endif
+	if(!torealm)
+		torealm := "britannia";
+	endif
+
+	if( !isValidLoc(tox,toy,torealm) )
+		SendSysMessage(who, "Invalid recall location.");
+		RemoveRunebookEntry(runebook, rune_info);
+		return 0;
+	endif
+
+	PlaySoundEffect(who, 0x210);
+
+	if( (who.x >= 5120) && (who.x <= 5375) && (who.y >= 0) && (who.y <= 255) )
+		SendSysMessage(who, "Your spell fails and consumes the rune!");
+		RemoveRunebookEntry(runebook, rune_info);
+		return 0;
+	endif
+
+	var signs := ListItemsNearLocationOfType( tox, toy, toz, 30, 0x7060, torealm);
+	foreach sign in signs
+		var infoarr := GetObjProperty(sign, "homeinfo");
+		if( infoarr )
+			if( (tox >= infoarr[2]) && (tox <= infoarr[4]) && (toy >= infoarr[3]) && (toy <= infoarr[5]) )
+				SendSysMessage(who, "Something is blocking the location.");
+				return 0;
+				break;
+			endif
+		endif
+	endforeach
+
+	var multicheck := CreateItemAtLocation(1, 1, 0, 0xeed, 1, torealm);
+	multicheck.invisible := 1;
+	if( !MoveItemToLocation(multicheck, tox, toy, toz, MOVEITEM_NORMAL) )
+		SendSysMessage(who, "Something is blocking the location.");
+		return 0;
+	endif
+	if(multicheck.multi)
+		SendSysMessage(who,"A house is blocking the location.");
+		RemoveRunebookEntry(runebook, rune_info);
+		return 0;
+	endif
+	DestroyItem(multicheck);
+	MoveObjectToLocation( who, tox, toy, toz, torealm );
+	PlaySoundEffect(who, 0x1fd);
+	return 1;
+endfunction
