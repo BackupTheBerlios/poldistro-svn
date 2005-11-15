@@ -20,17 +20,17 @@ program SpellStarter(params)
 	var scroll	:= params[3]; // Scroll object being used.
 	var targ	:= params[4]; // NPC target
 	params := 0;	// No longer needed
-	
+
 	if ( !Attach(who) )
 		SendSysMessage(who, "You are already doing something.");
 		return 0;
 	endif
-	
+
 	var spell_elem := MS_GetSpellsCfgElem(spell_id);
 
 	// If spell is set to 'TestOnly 1', then it requires cmdlevel or #SpellTester CProp before it can be used.
 	if ( spell_elem.TestOnly && (!who.cmdlevel) )
-		// They need #TestSpell to cast it
+		// They need #SpellTester to cast it
 		if ( !GetObjProperty(who, "#SpellTester") )
 			FailSpell(who);
 			return 0;
@@ -47,6 +47,10 @@ program SpellStarter(params)
 		SetObjProperty(who, "#medding", 1);
 	endif
 
+	if ( !who.squelched )
+		who.hidden := 0;
+		SpeakPowerWords(who, spell_id);
+	endif
 	if ( who.squelched && !who.npctemplate )
 		SendSysMessage(who, "Something prevents you from casting.");
 		FailSpell(who);
@@ -69,7 +73,7 @@ program SpellStarter(params)
 		if ( !attribute )
 			attribute := MAGERY;
 		endif
-		
+
 		var difficulty := spell_elem.Difficulty;
 		if ( !difficulty )
 			difficulty := -1;
@@ -88,7 +92,7 @@ program SpellStarter(params)
 			if ( script.errortext )
 				SendSysMessage(who, "Unable to start ["+spell_elem.SpellScript+"] -> "+script.errortext);
 			endif
-			
+
 			var ev;
 			while( script.pid && !ev )
 				ev := wait_for_event(1);
@@ -100,14 +104,14 @@ program SpellStarter(params)
 
 	MS_SpellDebug(who, "Spell starter completed..");
 	EraseObjProperty(who, "#medding");
-	
+
 	return 1;
 endprogram
 
 function CheckDelay(who, spell_elem)
-	
+
 	SendSysMessage(who, "You begin building the concentration needed to cast.");
-	
+
 	//var script := start_script("movementCheck", {who, GetPid()});
 	//
 	var delay := spell_elem.Delay;
@@ -136,7 +140,7 @@ function EquipmentCheck(who)
 			return 0;
 		endif
 	endif
-	
+
 	return 1;
 endfunction
 
@@ -147,9 +151,9 @@ function CheckReagents(who, byref spell_elem, scroll)
 	elseif ( scroll )
 		return SubtractAmount(scroll, 1);
 	endif
-	
+
 	var reagent_costs := GetConfigStringDictionary(spell_elem, "RegCost");
-	
+
 	// Before consuming, verify that there is enough of everything.
 	foreach amount in ( reagent_costs )
 		amount := CInt(amount);
@@ -157,7 +161,7 @@ function CheckReagents(who, byref spell_elem, scroll)
 			amount := 1;
 		endif
 		var objtype := GetObjTypeByName(_amount_iter);
-		
+
 		if ( AmountInContainer(who.backpack, objtype) < amount )
 			SendSysMessage(who, "You do not have enough "+GetObjTypeDesc(objtype, (amount>1)));
 			return 0;
@@ -180,6 +184,6 @@ function FailSpell(who)
 	EraseObjProperty(who, "#medding");
 	PlayObjectCenteredEffect(who, GFX_SPELL_FAIL, 5, 50);
 	PlaySoundEffect(who, SFX_SPELL_FAIL);
-	
+
 	return 1;
 endfunction
