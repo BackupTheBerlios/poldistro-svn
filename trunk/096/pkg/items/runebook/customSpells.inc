@@ -2,7 +2,7 @@ use uo;
 use os;
 
 function runebookRecall(who, parms, book, charges, use_charge:=0)
-	var runebook_info := array{ book, parms };
+	var runebook_info := array{ book, parms, use_charge };
 	var script := Start_Script(":magery:spellStarter", {who, 32, 1, runebook_info});
 	if ( script.errortext )
 		SendSysMessage(who, "Error - Could not start spell starter ->"+script.errortext);

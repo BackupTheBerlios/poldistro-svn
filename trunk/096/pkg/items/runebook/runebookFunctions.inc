@@ -96,21 +96,21 @@ function CreateRunebookGump(book)
 		endif
 
 		var rune_entry := rune_list[rune_pos];
-		if( TypeOf(rune_entry) == "Dictionary" )
-			if( rune_entry.Name )
+		if( TypeOf(rune_entry) == "Struct" )
+			if( rune_entry.name )
 				// Fixes any error with the text color.
-				if( TypeOf(rune_entry.Color) != "Integer" || rune_entry.Color < 0 )
-					rune_entry.Color := 10;
+				if( TypeOf(rune_entry.Color) != "Integer" || rune_entry.color < 0 )
+					rune_entry.color := 24;
 				endif
 				// This puts the rune in page 1's list.
 				GFPage(book_gump, 1);
-				GFTextCrop(book_gump, pOX,  pOY, 115, 17, rune_entry.Color, rune_entry.Name);
+				GFTextCrop(book_gump, pOX,  pOY, 115, 17, rune_entry.color, rune_entry.name);
 				GFPage(book_gump, i);
 
 				GFAddButton(book_gump, 130, 65, 2103, 2104, GF_CLOSE_BTN, charge_button);
-				GFTextCrop(book_gump, 145, 60, 115, 17, rune_entry.Color, rune_entry.Name);
-				GFTextLine(book_gump, 135, 80, 0, ConvertLatLong(rune_entry.X, rune_entry.Y, 1));
-				GFTextLine(book_gump, 135, 95, 0, ConvertLatLong(rune_entry.X, rune_entry.Y, 2));
+				GFTextCrop(book_gump, 145, 60, 115, 17, rune_entry.color, rune_entry.name);
+				GFTextLine(book_gump, 135, 80, 0, ConvertLatLong(rune_entry.x, rune_entry.y, 1));
+				GFTextLine(book_gump, 135, 95, 0, ConvertLatLong(rune_entry.x, rune_entry.y, 2));
 
 				GFAddButton(book_gump, 135, 115, 2437, 2438, GF_CLOSE_BTN, drop_rune_button);
 				GFHTMLArea(book_gump, 150, 115, 100, 18, "Drop Rune");
@@ -137,21 +137,21 @@ function CreateRunebookGump(book)
 		endif
 
 		rune_entry := rune_list[rune_pos];
-		if( TypeOf(rune_entry) == "Dictionary" )
-			if( rune_entry.Name )
+		if( TypeOf(rune_entry) == "Struct" )
+			if( rune_entry.name )
 				// Fixes any error with the text color.
-				if( TypeOf(rune_entry.Color) != "Integer" || rune_entry.Color < 0 )
-					rune_entry.Color := 10;
+				if( TypeOf(rune_entry.color) != "Integer" || rune_entry.color < 0 )
+					rune_entry.color := 10;
 				endif
 				// This puts the rune in page 1's list.
 				GFPage(book_gump, 1);
-				GFTextCrop(book_gump, pOX,  pOY, 115, 17, rune_entry.Color, rune_entry.Name);
+				GFTextCrop(book_gump, pOX,  pOY, 115, 17, rune_entry.color, rune_entry.name);
 				GFPage(book_gump, i);
 
 				GFAddButton(book_gump, 290, 65, 2103, 2104, GF_CLOSE_BTN, charge_button);
-				GFTextCrop(book_gump, 305, 60, 115, 17, rune_entry.Color, rune_entry.Name);
-				GFTextLine(book_gump, 295, 80, 0, ConvertLatLong(rune_entry.X, rune_entry.Y, 1));
-				GFTextLine(book_gump, 295, 95, 0, ConvertLatLong(rune_entry.X, rune_entry.Y, 2));
+				GFTextCrop(book_gump, 305, 60, 115, 17, rune_entry.color, rune_entry.name);
+				GFTextLine(book_gump, 295, 80, 0, ConvertLatLong(rune_entry.x, rune_entry.y, 1));
+				GFTextLine(book_gump, 295, 95, 0, ConvertLatLong(rune_entry.x, rune_entry.y, 2));
 
 				GFAddButton(book_gump, 295, 115, 2437, 2438, GF_CLOSE_BTN, drop_rune_button);
 				GFHTMLArea(book_gump, 310, 115, 100, 18, "Drop Rune");
@@ -311,11 +311,8 @@ endfunction
 
 function SetDefault(book, who, rune_pos)
 	var rune_info := GetRuneDetails(book, rune_pos);
-	SetObjProperty(book, "x", rune_info.X);
-	SetObjProperty(book, "y", rune_info.Y);
-	SetObjProperty(book, "z", rune_info.Z);
-	SetObjProperty(book, "realm", rune_info.Realm);
-	SendSysMessage(who, "Default rune set to: " + rune_info.Name);
+	SetObjProperty(book, "Destination", rune_info);
+	SendSysMessage(who, "Default rune set to: " + rune_info.name);
 	return 1;
 endfunction
 

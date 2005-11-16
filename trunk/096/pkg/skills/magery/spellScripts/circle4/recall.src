@@ -38,14 +38,20 @@ program SpellScript(params)
 		SendSysMessage(who, "You cannot recall off of runes on a vendor.");
 		return 0;
 	endif
-	var tox := CInt(GetObjProperty( recall_rune, "x" ));
-	var toy := CInt(GetObjProperty( recall_rune, "y" ));
-	var toz := CInt(GetObjProperty( recall_rune, "z" ));
-	var torealm :=  GetObjProperty( recall_rune, "realm" );
-	if(!tox)
+	var rune_settings;
+	case(recall_rune.objtype)
+		UOBJ_RUNE: rune_settings := recall_rune.GetDestination();
+		0x6100: rune_settings := GetObjProperty(recall_rune, "Destination");
+	endcase
+	if( TypeOf(rune_settings) != "Struct" )
 		SendSysMessage(who, "That item is not marked.");
 		return 0;
 	endif
+
+	var tox := CInt(rune_settings.x);
+	var toy := CInt(rune_settings.y);
+	var toz := CInt(rune_settings.z);
+	var torealm :=  rune_settings.realm;
 	if(!torealm)
 		torealm := "britannia";
 	endif
@@ -106,7 +112,10 @@ program SpellScript(params)
 		return 0;
 	endif
 	DestroyItem(multicheck);
-	MoveObjectToLocation( who, tox, toy, toz, torealm );
+	case(recall_rune.objtype)
+		UOBJ_RUNE: recall_rune.SendToDestination(who);
+		0x6100: MoveObjectToLocation(who, tox, toy, toz, torealm, MOVEOBJECT_FORCELOCATION);
+	endcase
 	PlaySoundEffect(who, 0x1fd);
 	return 1;
 endprogram
@@ -158,9 +167,11 @@ endfunction
 function RunebookRecall(who, runebook_info)
 	var runebook := runebook_info[1];
 	var rune_info := runebook_info[2];
+	var use_charge := runebook_info[3];
 
 	var spell_elem := MS_GetSpellsCfgElem(32);
-	if ( !CheckReagents(who, spell_elem, 0) )
+
+	if ( !CheckReagents(who, spell_elem, use_charge) )
 		FailSpell(who);
 		return 0;
 	endif
@@ -173,14 +184,16 @@ function RunebookRecall(who, runebook_info)
 		SendSysMessage(who, "You cannot recall off of runebooks on a vendor.");
 		return 0;
 	endif
-	var tox := CInt(rune_info.X);
-	var toy := CInt(rune_info.Y);
-	var toz := CInt(rune_info.Z);
-	var torealm :=  rune_info.Realm;
-	if(!tox)
-		SendSysMessage(who, "That is an invalid location.");
+
+	if( TypeOf(rune_info) != "Struct" )
+		SendSysMessage(who, "That item is not marked.");
 		return 0;
 	endif
+
+	var tox := CInt(rune_info.x);
+	var toy := CInt(rune_info.y);
+	var toz := CInt(rune_info.z);
+	var torealm :=  rune_info.realm;
 	if(!torealm)
 		torealm := "britannia";
 	endif

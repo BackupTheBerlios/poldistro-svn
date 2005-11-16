@@ -38,14 +38,21 @@ program SpellScript(params)
 		SendSysMessage(who, "You cannot recall off of runes on a vendor.");
 		return 0;
 	endif
-	var tox := CInt(GetObjProperty( recall_rune, "x" ));
-	var toy := CInt(GetObjProperty( recall_rune, "y" ));
-	var toz := CInt(GetObjProperty( recall_rune, "z" ));
-	var torealm :=  GetObjProperty( recall_rune, "realm" );
-	if(!tox)
+
+	var rune_settings;
+	case(recall_rune.objtype)
+		UOBJ_RUNE: rune_settings := recall_rune.GetDestination();
+		0x6100: rune_settings := GetObjProperty(recall_rune, "Destination");
+	endcase
+	if( TypeOf(rune_settings) != "Struct" )
 		SendSysMessage(who, "That item is not marked.");
 		return 0;
 	endif
+
+	var tox := CInt(rune_settings.x);
+	var toy := CInt(rune_settings.y);
+	var toz := CInt(rune_settings.z);
+	var torealm :=  rune_settings.realm;
 	if(!torealm)
 		torealm := "britannia";
 	endif
@@ -204,14 +211,16 @@ function RunebookGate(who, runebook_info)
 		SendSysMessage(who, "You cannot recall off of runebooks on a vendor.");
 		return 0;
 	endif
-	var tox := CInt(rune_info.X);
-	var toy := CInt(rune_info.Y);
-	var toz := CInt(rune_info.Z);
-	var torealm :=  rune_info.Realm;
-	if(!tox)
-		SendSysMessage(who, "That is an invalid location.");
+
+	if( TypeOf(rune_info) != "Struct" )
+		SendSysMessage(who, "That item is not marked.");
 		return 0;
 	endif
+
+	var tox := CInt(rune_info.x);
+	var toy := CInt(rune_info.y);
+	var toz := CInt(rune_info.z);
+	var torealm :=  rune_info.realm;
 	if(!torealm)
 		torealm := "britannia";
 	endif

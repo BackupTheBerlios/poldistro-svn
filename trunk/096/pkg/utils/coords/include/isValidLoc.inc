@@ -50,8 +50,9 @@ function isValidLoc(x, y, realm := "britannia" )
 	  endif
 
   else
-  	var realm := Realms()[realm];
-  	if( x >= realm.width || y >= realm.height )
+  	var t_realm := Realms()[realm];
+
+  	if( x >= t_realm.width || y >= t_realm.height )
   		return 0;
   	endif
   endif

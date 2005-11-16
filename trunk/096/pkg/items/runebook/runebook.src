@@ -4,8 +4,6 @@ use math;
 
 include ":gumps:gumps";
 include ":gumps:gumps_ex";
-//include "include/math";
-include "include/client";
 include ":itemUtils:canAccess";
 include ":runebook:runebookFunctions";
 include ":runebook:customSpells";
@@ -79,12 +77,9 @@ program use_Runebook(who, book)
 		else
 			var rune_info := GetRuneDetails(book, (result[0]-400));
 			var rune := CreateItemInBackpack(who, 0x1F14);
-			SetName(rune, rune_info.Name);
-			SetObjProperty(rune, "x", rune_info.X);
-			SetObjProperty(rune, "y", rune_info.Y);
-			SetObjProperty(rune, "z", rune_info.Z);
-			SetObjProperty(rune, "realm", rune_info.Realm);
-			rune.color := rune_info.Color;
+			SetName(rune, rune_info.name);
+			SetObjProperty(rune, "Destination", rune_info);
+			rune.color := rune_info.color;
 			DeleteRune(book, (result[0]-400));
 			return 1;
 		endif

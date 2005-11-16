@@ -94,23 +94,19 @@ function addRune(who, book, rune)
 		MoveItemToContainer(rune, who.backpack);
 		return;
 	endif
-	if( !GetObjProperty(rune, "x") )
+	if( !GetObjProperty(rune, "Destination") )
 		SendSysMessage(who,"You can only add marked runes.");
 		MoveItemToContainer(rune, who.backpack);
-		return;
+		return 0;
 	endif
 	set_critical(1);
 
-	var temp := dictionary;
-	temp["Name"]  := rune.desc - "A recall rune for";
-	temp["Realm"] := GetObjProperty(rune, "realm");
-	temp["X"] := GetObjProperty(rune, "x");
-	temp["Y"] := GetObjProperty(rune, "y");
-	temp["Z"] := GetObjProperty(rune, "z");
+	var temp := GetObjProperty(rune, "Destination");
+	temp.+name := rune.name;
 	if( !rune.color )
-		temp["Color"] := 10;
+		temp.+color := 24;
 	else
-		temp["Color"] := rune.color;
+		temp.+color := CInt(rune.color);
 	endif
 	rune_list.append(temp);
 
