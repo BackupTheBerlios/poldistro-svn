@@ -1,4 +1,41 @@
 -- POL096 --
+11-15 Austin
+    Added : regions.cfg / justice.cfg support for EnterScript and LeaveScript.
+            Scripts will be run when a player enters or leaves the region.
+            Parameters passed to it are the mobile that entered/left and the region name.
+            Please note these scripts run critical.
+            Regions.cfg Example:
+            Region Britain
+            {
+                 Range      1416 1500 1740 1790
+                 Guarded    1
+                 EnterText  You have entered britain
+                 LeaveText  You have left britain
+                 Midi       9
+	
+                 EnterScript   :coords:enterScript
+                 LeaveScript   :coords:leaveScript
+            }
+            Example of enterScript.ecl
+            ------
+            use uo;
+            program EnterRegionZone(mobile, region_name)
+                   ApplyRawDamage(mobile, 10000);
+                   SendSysMessage(mobile, "You just died because you entered an area that makes you dead!");
+                   return 1;
+            endprogram
+            ------
+
+11-14 Austin
+    Fixed : uo::*InBox(x1, y1, z1, x2, y2, z2) functions will check the boundaries of the coordinates.
+            If they are too low or too high, they will be adjusted to fit within the realm.
+    Fixed : Using the .realm property on an intrinsic weapon caused a core crash.
+    Added : weapon.intrinsic
+
+11-10 Austin
+    Fixed : Items moved to invalid locations will not go to the player's feet on the 
+            correct realm and not just to britannia.
+    
 11-03 Austin
     Added : uo::CoordinateDistance(x1, y1, x2, y2) - Returns the distance between two coordinates.
     
