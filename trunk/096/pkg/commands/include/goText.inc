@@ -35,12 +35,12 @@ function Go_GoXYZ(who, params)
 	if (Realms().Exists(lower(params[5])))
 		var move_check := 0;
 		if (who.realm == lower(params[5]))
-			move_check := MoveCharacterToLocation(who, CInt(params[2]), CInt(params[3]), CInt(params[4]), MOVECHAR_FORCELOCATION);
+			move_check := MoveCharacterToLocation(who, CInt(params[2]), CInt(params[3]), CInt(params[4]));
 		else
-			move_check := MoveObjectToRealm(who, lower(params[5]), CInt(params[2]), CInt(params[3]), CInt(params[4]), MOVECHAR_FORCELOCATION);
+			move_check := MoveObjectToRealm(who, lower(params[5]), CInt(params[2]), CInt(params[3]), CInt(params[4]));
                 endif
 		if( move_check == error )
-			GumpPrompt(who, "Invalid Realm name in xyz!");
+			GumpPrompt(who, move_check);
 			return 1;
 		endif
 	else
