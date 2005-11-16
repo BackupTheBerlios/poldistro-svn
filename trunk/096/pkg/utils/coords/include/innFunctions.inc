@@ -2,7 +2,7 @@ use uo;
 use cfgfile;
 
 function isInInn(who)
-	var inn_config := ReadConfigFile(":inns:inns-"+who.realm);
+	var inn_config := ReadConfigFile(":coords:inns-"+who.realm);
 	var inn_locations := GetConfigStringKeys(inn_config);
 	foreach inn in inn_locations
 		var element :=  inn_config[inn];

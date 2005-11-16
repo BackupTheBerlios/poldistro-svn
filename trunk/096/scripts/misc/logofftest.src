@@ -8,7 +8,7 @@
 use uo;
 
 include "include/time";
-include ":inns:innFunctions";
+include ":coords:innFunctions";
 include ":timedscripts:timedScripts";
 
 program core_logoffTest(who)
