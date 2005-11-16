@@ -1,52 +1,53 @@
--- POL096 --
 11-15 Austin
-    Added : regions.cfg / justice.cfg support for EnterScript and LeaveScript.
-            Scripts will be run when a player enters or leaves the region.
-            Parameters passed to it are the mobile that entered/left and the region name.
-            Please note these scripts run critical.
-            Regions.cfg Example:
-            Region Britain
-            {
-                 Range      1416 1500 1740 1790
-                 Guarded    1
-                 EnterText  You have entered britain
-                 LeaveText  You have left britain
-                 Midi       9
+        Added : using "::regions/" in a config path will allow a config file from pol/regions/ to be read.
+                Example ReadConfigFile("::regions/justice");
+        Added : regions.cfg / justice.cfg support for EnterScript and LeaveScript.
+                Scripts will be run when a player enters or leaves the region.
+                Parameters passed to it are the mobile that entered/left and the region name.
+                Please note these scripts run critical.
+                Regions.cfg Example:
+                Region Britain
+                {
+                    Range      1416 1500 1740 1790
+                    Guarded    1
+                    EnterText  You have entered britain
+                    LeaveText  You have left britain
+                    Midi       9
 	
-                 EnterScript   :coords:enterScript
-                 LeaveScript   :coords:leaveScript
-            }
-            Example of enterScript.ecl
-            ------
-            use uo;
-            program EnterRegionZone(mobile, region_name)
-                   ApplyRawDamage(mobile, 10000);
-                   SendSysMessage(mobile, "You just died because you entered an area that makes you dead!");
-                   return 1;
-            endprogram
-            ------
+                    EnterScript   :coords:enterScript
+                    LeaveScript   :coords:leaveScript
+                }
+                Example of enterScript.ecl
+                ------
+                use uo;
+                program EnterRegionZone(mobile, region_name)
+                     ApplyRawDamage(mobile, 10000);
+                     SendSysMessage(mobile, "You just died because you entered an area that makes you dead!");
+                     return 1;
+                endprogram
+                ------
 
 11-14 Austin
-    Fixed : uo::*InBox(x1, y1, z1, x2, y2, z2) functions will check the boundaries of the coordinates.
-            If they are too low or too high, they will be adjusted to fit within the realm.
-    Fixed : Using the .realm property on an intrinsic weapon caused a core crash.
-    Added : weapon.intrinsic
-
+        Fixed : uo::*InBox(x1, y1, z1, x2, y2, z2) functions will check the boundaries of the coordinates.
+                If they are too low or too high, they will be adjusted to fit within the realm.
+        Fixed : Using the .realm property on an intrinsic weapon caused a core crash.
+        Added : weapon.intrinsic
+    
 11-10 Austin
-    Fixed : Items moved to invalid locations will not go to the player's feet on the 
-            correct realm and not just to britannia.
-    
+        Fixed : Items moved to invalid locations will not go to the player's feet on the 
+                correct realm and not just to britannia.
+            
 11-03 Austin
-    Added : uo::CoordinateDistance(x1, y1, x2, y2) - Returns the distance between two coordinates.
+        Added : uo::CoordinateDistance(x1, y1, x2, y2) - Returns the distance between two coordinates.
     
-    The following two functions were originally scripted by Myrathi:
-    Added : uo::GetCoordsInLine(x1, y1, x2, y2) - Returns an array of structs {.x, .y} for every coordinate
-            between the two points.
-    Added : uo::GetFacing(from_x, from_y, to_x, to_y) - Returns the facing number an object must have in order to 
-            face to_x and to_y from from_x and from_y.
-
+        The following two functions were originally scripted by Myrathi:
+        Added : uo::GetCoordsInLine(x1, y1, x2, y2) - Returns an array of structs {.x, .y} for every coordinate
+                between the two points.
+        Added : uo::GetFacing(from_x, from_y, to_x, to_y) - Returns the facing number an object must have in order to 
+                face to_x and to_y from from_x and from_y.
+    
 10-31 Austin
-	Fixed : Core crash with MoveCharacterToLocation() when a character was moved to the same realm.
+        Fixed : Core crash with MoveCharacterToLocation() when a character was moved to the same realm.
 
 10-30 Austin
         Changed : NPC.connected will now always return 1. Before it was 0.
@@ -81,10 +82,10 @@
         Added : servspecopt.cfg - 'DoubleClickWait'. (Default is 0)
                 Time in seconds that must pass before a player can double click something again.
         Added : mobile.GetCorpse() - Returns an item reference to the most recent corpse made.
-
+        
 10-03 Austin
         Added : corpse.ownerserial - Returns the serial of the npc / player that died.
-
+        
 10-02 Shinigami
         Added : Prop script_process.attached_to and script_process.controller.
                 (script_process comes from NPC.process or uo::GetProcess(pid))
@@ -1105,4 +1106,3 @@
 06-20 Syzygy
     account.GetCharacter(index) will notice if you pass 0, which is bad.
         account.DeleteCharacter(index) - same
-
