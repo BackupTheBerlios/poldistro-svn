@@ -11,10 +11,10 @@ include "include/OLD/startEqp";
 
 
 program core_onCreate(who, skillids)
-	var script := Start_Script(":newcharacter:onCreate", {who, skillids});
+	var script := Start_Script(":newcharacter:oncreate", {who, skillids});
 	
 	if ( script.errortext )
-		SysLog("Error - Unable to start :newcharacter:onCreate ->"+script.errortext);
+		SysLog("Error - Unable to start :newcharacter:oncreate ->"+script.errortext);
 		return 0;
 	endif
 	
