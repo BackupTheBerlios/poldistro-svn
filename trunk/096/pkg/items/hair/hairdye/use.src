@@ -11,8 +11,6 @@ include "include/client";
 include ":gumps:gumps";
 include ":gumps:gumps_ex";
 
-unload_scripts("hairdye");
-
 CONST CANCEL_BTN	:= 0xA00001;
 CONST OKAY_BTN		:= 0xA00002;
 
