@@ -1,4 +1,4 @@
-// $Id$
+// $Id: changeOwner.src 905 2005-11-05 08:20:50Z muaddiblsd $
 
 use uo;
 use os;
