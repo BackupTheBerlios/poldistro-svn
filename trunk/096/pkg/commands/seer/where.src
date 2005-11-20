@@ -1,3 +1,8 @@
+/* $Id$
+ *
+ * Purpose
+ *
+ */
 use uo;
 
 
@@ -6,3 +11,4 @@ program command_where(who)
 
 	return;
 endprogram
+

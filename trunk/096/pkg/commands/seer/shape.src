@@ -1,3 +1,8 @@
+/* $Id$
+ *
+ * Purpose
+ *
+ */
 use uo;
 
 include "include/mobileID";
@@ -23,3 +28,4 @@ program command_shape(who, params)
 
 	return;
 endprogram
+
