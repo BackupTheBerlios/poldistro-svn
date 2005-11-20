@@ -7,11 +7,13 @@ use uo;
 
 include ":gumps:gumps";
 include "include/client";
+include "include/sounds";
 
 function ResurrectionGump(mobile)
 	var gump := GFCreateGump();
 	
-	return gump;
+	var input := GFSendGump(who, gump);
+	return input[0];
 endfunction
 
 function Resurrection(mobile)
@@ -21,6 +23,9 @@ function Resurrection(mobile)
 		return error{"errortext":="mobile is not dead."};
 	endif
 	
+	mobile.graphic := mobile.trueobjtype;
+	PlaySoundEffect(mobile, SFX_RESURRECT);
+	PlayObjectCenteredEffect(mobile, GFX_BLUE_SPARKLES, 10,10);
 	return Resurrect(mobile);
 endfunction
 
