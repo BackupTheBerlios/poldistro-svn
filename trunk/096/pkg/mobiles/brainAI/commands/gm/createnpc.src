@@ -109,15 +109,15 @@ function BuildIndexGump()
 	var gump := GFCreateGump();
 	GFPage(gump, 0);
 	GFResizePic(gump, 0, 0, GFCfgConst("Defaults", "BackGround"), 300, 480);
-	GFResizePic(gump, 10, 10, GFCfgConst("Defaults", "ForeGround"), 280, 460);
+	GFResizePic(gump, 15, 15, GFCfgConst("Defaults", "ForeGround"), 270, 450);
 	var y_pos := 40;
 	var counter := 1;
 	var page_num := 1;
-	GFTextMid(gump, 10, 15, 280, 2100, "NPC Categories");
+	GFTextMid(gump, 10, 20, 280, 2100, "NPC Categories");
 	
 	/////
-	GFAddButton(gump, 158, 445, 4002, 4003, GF_CLOSE_BTN, UNCACHE_BTN);
-	GFTextLine(gump, 193, 445, 2100, "Uncache data");
+	GFAddButton(gump, 158, 440, 4002, 4003, GF_CLOSE_BTN, UNCACHE_BTN);
+	GFTextLine(gump, 193, 440, 2100, "Uncache data");
 	/////
 	
 	GFPage(gump, page_num);
@@ -155,11 +155,11 @@ function BuildNPCGump(category_name)
 	var gump := GFCreateGump();
 	GFPage(gump, 0);
 	GFResizePic(gump, 0, 0, GFCfgConst("Defaults", "BackGround"), 300, 480);
-	GFResizePic(gump, 10, 10, GFCfgConst("Defaults", "ForeGround"), 280, 460);
+	GFResizePic(gump, 15, 15, GFCfgConst("Defaults", "ForeGround"), 270, 450);
 	var y_pos := 40;
 	var counter := 1;
 	var page_num := 1;
-	GFTextMid(gump, 10, 15, 280, 2100, "NPC List - "+category_name);
+	GFTextMid(gump, 10, 15, 290, 2100, "NPC List - "+category_name);
 	GFPage(gump, page_num);
 	foreach template in (npc_list[category_name])
 		GFAddButton(gump, 20, y_pos+3, 2117, 2118, GF_CLOSE_BTN, template.pos);

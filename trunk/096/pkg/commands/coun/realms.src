@@ -25,14 +25,14 @@ program textcmd_Realms(who)
 	var gump := GFCreateGump();
 	
 	GFResizePic(gump, 0, 0, GFCfgConst("Defaults", "BackGround"), 435, 420);
-	GFResizePic(gump, 10, 10, GFCfgConst("Defaults", "ForeGround"), 415, 400);
+	GFResizePic(gump, 15, 15, GFCfgConst("Defaults", "ForeGround"), 405, 390);
 	
-	GFTextLine(gump, 20, 15, 2100, "Realm Name");
-	GFTextLine(gump, 150, 15, 2100, "Height");
-	GFTextLine(gump, 200, 15, 2100, "Width");
-	GFTextLine(gump, 245, 15, 2100, "MapID");
-	GFTextLine(gump, 300, 15, 2100, "TLI");
-	GFTextLine(gump, 340, 15, 2100, "Mobile Count");
+	GFTextLine(gump, 20, 20, 2100, "Realm Name");
+	GFTextLine(gump, 150, 20, 2100, "Height");
+	GFTextLine(gump, 200, 20, 2100, "Width");
+	GFTextLine(gump, 245, 20, 2100, "MapID");
+	GFTextLine(gump, 300, 20, 2100, "TLI");
+	GFTextLine(gump, 340, 20, 2100, "Mobile Count");
 	
 	var y_pos := 40;
 	foreach realm in realm_list

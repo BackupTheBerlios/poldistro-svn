@@ -28,21 +28,17 @@ program MessageOfTheDay(mobile)
 	if ( !text )
 		text := "There is no MOTD for today.";
 	endif
-
-	var BKGND_SILVERTRIM := GFCfgConst("Defaults", "BackGround");
-	var BKGND_DARK_STONE := GFCfgConst("Defaults", "ForeGround");
-	var BKGND_GOLDTRIM   := GFCfgConst("Backgrounds", "GOLDTRIM");
-
+	
 	var gump := GFCreateGump();
-	GFResizePic(gump, 0, 0, BKGND_SILVERTRIM, 360, 480);
+	GFResizePic(gump, 0, 0, GFCfgConst("Defaults", "BackGround"), 360, 480);
 
-	GFResizePic(gump, 10, 12, BKGND_DARK_STONE, 340, 30);
+	GFResizePic(gump, 15, 12, GFCfgConst("Defaults", "ForeGround"), 330, 30);
 	GFTextLine(gump, 110, 17, 2100, "Messages of the Day");
 
-	GFResizePic(gump, 10, 45, BKGND_GOLDTRIM, 340, 390);
+	GFResizePic(gump, 15, 45, GFCfgConst("Backgrounds", "GOLDTRIM"), 330, 390);
 	GFHTMLArea(gump, 22, 53, 322, 375, text, 0, 1);
 
-	GFResizePic(gump, 10, 438, BKGND_DARK_STONE, 340, 30);
+	GFResizePic(gump, 15, 438,GFCfgConst("Defaults", "ForeGround"), 330, 30);
 	GFCheckBox(gump, 20, 443, 0x768, 0x767, (off == 0), ONOFF_BTN);
 	GFTextLine(gump, 45, 443, 2100, "Open on login");
 

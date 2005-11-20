@@ -29,16 +29,16 @@ function MessageGump(who)
 	var gump := GFCreateGump();
 	
 	GFResizePic(gump, 0, 0, GFCfgConst("Defaults", "BackGround"), 310, 420);
-	GFResizePic(gump, 10, 10, GFCfgConst("Defaults", "ForeGround"), 290, 400);
+	GFResizePic(gump, 15, 15, GFCfgConst("Defaults", "ForeGround"), 280, 390);
 	
-	GFTextLine(gump, 25, 15, 2100, "Player Name");
-	GFTextLine(gump, 255, 15, 2100, "Send");
+	GFTextLine(gump, 25, 20, 2100, "Player Name");
+	GFTextLine(gump, 255, 20, 2100, "Send");
 	
 	var names_list := GetNamesList(who);
 	var num_players := names_list.size();
 	var counter := 0;
 	var page_num := 1;
-	var y_pos := 40;
+	var y_pos := 45;
 	
 	GFPage(gump, 1);
 	foreach name in (names_list.keys())
