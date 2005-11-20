@@ -41,7 +41,7 @@ function EnteredArea(npc, byref event, byref scripts)
 	elseif ( source.criminal )
 		AI_Speak(npc, "I will not aid a criminal.");
 	elseif ( !GetObjProperty(source, "#ResMenu") )
-		var script := Start_Script(scripts["ResMenu"], {npc, source});
+		var script := Start_Script(scripts["ResMenu"], {source, npc});
 		if ( script.errortext )
 			SendSysMessage(source, "Error - Unable to start "+scripts["ResMenu"]+" ->"+script.errortext);
 			return 0;
