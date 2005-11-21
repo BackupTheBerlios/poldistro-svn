@@ -83,7 +83,6 @@ function GetCoordsInRect(x1, y1, x2, y2)
 		for ( sy:=y1; sy<=y2; sy:=sy+1 )
 			coord.x := Abs(sx);
 			coord.y := ABs(sy);
-			Broadcast(coord);
 			point_list.Append(coord);
 			sleepms(2);
 		endfor
