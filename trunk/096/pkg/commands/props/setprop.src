@@ -1,10 +1,14 @@
-/* $Id: setprop.src 385 2005-10-02 18:31:15Z panosl $
+/* $Id$
  *
  */
 use uo;
-
+use os;
 
 program SetProperties(who, text)
+	
+	var ref := GetProcess(GetPid());
+	SendSysMessage(who, "->"+ref.name);
+	
 	var param := SplitWords(text);
 	if ( param.size() < 2 )
 		SendSysMessage(who, "SYNTAX: .setprop <property name> <value>");
