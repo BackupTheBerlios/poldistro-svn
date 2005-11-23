@@ -42,7 +42,7 @@ program textcmd_Info(who, serial)
 	else
 		index_list := GetConfigStringArray(info_cfg["Index"], "Index");
 	endif
-	
+
 	var targ := who;
 	if ( serial )
 		targ := SystemFindObjectBySerial(CInt(serial));
@@ -55,13 +55,13 @@ program textcmd_Info(who, serial)
 		targ := who;
 	endif
 	template := GumpTemplate(targ);
-	
-	BuildGumps(who, targ);
-	
+
+	BuildGumps(targ);
+
 	GFSendGump(who, gump_list[1]);
 endprogram
 
-function BuildGumps(who, targ)
+function BuildGumps(targ)
 	foreach index in ( index_list)
 		var gump := template;
 		var cfg_elem := info_cfg["Index-"+index];
@@ -69,7 +69,7 @@ function BuildGumps(who, targ)
 		var y_pos := 55;
 		foreach group in ( groups )
 			var group_elem := info_cfg[group];
-			BuildEntries(gump, group_elem, y_pos);
+			BuildEntries(targ, gump, group_elem, y_pos);
 			sleepms(2);
 		endforeach
 		sleepms(2);
@@ -77,17 +77,32 @@ function BuildGumps(who, targ)
 	endforeach
 endfunction
 
-function BuildEntries(byref gump, byref group_elem, byref y_pos)
+function BuildEntries(targ, byref gump, byref group_elem, byref y_pos)
 	var entries := GetConfigStringArray(group_elem, "Entry");
 	var num_entries := entries.Size();
-	
+
 	GFResizePic(gump, 145, y_pos, GFCfgConst("Defaults", "ForeGround"), 340, (num_entries*20));
 	foreach entry in ( entries )
-		GFTextLine(gump, 175, y_pos, 2100, entry);
-		y_pos := y_pos+20;
+		entry := SplitWords(entry);
+		case ( Lower(entry[1]) )
+			"member": AddMemberEntry(targ, gump, entry, y_pos);
+			default: GFTextLine(175, y_pos, "Ahhhh ERRRRRROOORRRR!!!");
+		endcase
+		
 		sleepms(2);
 	endforeach
-endfunction			
+endfunction
+
+function AddMemberEntry(targ, byref gump, byref entry, byref y_pos)
+	//GFTextLine(gump, 175, y_pos, 2100, entry);
+	if ( entry[4] )
+		GFAddButton(gump, 150, (y_pos+3), 2117, 2118, GF_CLOSE_BTN);
+	endif
+	GFTextLine(gump, 175, y_pos, 2100, entry[2]);
+	GFTextRight(gump, 480, y_pos, 2100, targ.Get_Member(entry[3]));
+		
+	y_pos := y_pos+20;
+endfunction
 
 function GumpTemplate(targ)
 
@@ -115,7 +130,7 @@ function GumpTemplate(targ)
 		y_pos := y_pos+20;
 		sleepms(2);
 	endforeach
-	
+
 	return gump;
 endfunction
 
@@ -233,7 +248,7 @@ function CombatGump(who, targ)
 		wpn_speed := cfg.Speed;
 		wpn_dice := cfg.Damage;
 	endif
-	
+
 	var average := CS_GetAverageDamage(weapon);
 
 	GFTextLine(gump, 185, 180, 2100, "Weapon Name");
