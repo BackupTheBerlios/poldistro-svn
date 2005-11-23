@@ -82,8 +82,16 @@ function BuildEntries(targ, byref gump, byref group_elem, byref y_pos)
 	foreach entry in ( entries )
 		entry := SplitWords(entry);
 		case ( Lower(entry[1]) )
-			"member": AddMemberEntry(targ, gump, entry, y_pos);
-			default: GFTextLine(175, y_pos, "Ahhhh ERRRRRROOORRRR!!!");
+			"member": 
+				AddMemberEntry(targ, gump, entry, y_pos);
+				break;
+			"blank": 
+				y_pos := y_pos + 20;
+				break;
+			default: 
+				GFTextLine(gump, 175, y_pos, 32, entry); 
+				y_pos:=y_pos+20; 
+				break;
 		endcase
 		
 		sleepms(2);
