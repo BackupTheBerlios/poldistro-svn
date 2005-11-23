@@ -17,6 +17,7 @@ include ":gumps:gumpprompt";
 include ":gumps:requestgump";
 include ":gumps:yesno";
 include ":containers:storageAreas";
+include ":combat:weaponInfo";
 
 unload_scripts("");
 
@@ -43,13 +44,13 @@ program textcmd_Info(who, serial)
 		targ := who;
 	endif
 
-	var gump := PropertyGump(who, targ);
+	var gump := LocationGump(who, targ);
 	GFSendGump(who, gump);
 
 endprogram
 
 
-function PropertyGump(who, targ)
+function LocationGump(who, targ)
 	var gump := GumpTemplate(targ);
 	// Used to fix unused var report by ecompile: who;
 	who := who;
@@ -89,31 +90,34 @@ function GumpTemplate(targ)
 	GFTextLine(gump, 40, 60, 2100, "General");
 
 	GFAddButton(gump, 20, 83, 2117, 2118, GF_CLOSE_BTN, 1);
-	GFTextLine(gump, 40, 80, 2100, "Client");
+	GFTextLine(gump, 40, 80, 2100, "Location");
 
 	GFAddButton(gump, 20, 103, 2117, 2118, GF_CLOSE_BTN, 1);
-	GFTextLine(gump, 40, 100, 2100, "Combat");
+	GFTextLine(gump, 40, 100, 2100, "Client");
 
 	GFAddButton(gump, 20, 123, 2117, 2118, GF_CLOSE_BTN, 1);
-	GFTextLine(gump, 40, 120, 2100, "Script");
+	GFTextLine(gump, 40, 120, 2100, "Combat");
 
 	GFAddButton(gump, 20, 143, 2117, 2118, GF_CLOSE_BTN, 1);
-	GFTextLine(gump, 40, 140, 2100, "Reputation");
+	GFTextLine(gump, 40, 140, 2100, "Script");
 
 	GFAddButton(gump, 20, 163, 2117, 2118, GF_CLOSE_BTN, 1);
-	GFTextLine(gump, 40, 160, 2100, "Properties");
+	GFTextLine(gump, 40, 160, 2100, "Reputation");
 
 	GFAddButton(gump, 20, 183, 2117, 2118, GF_CLOSE_BTN, 1);
-	GFTextLine(gump, 40, 180, 2100, "Attributes");
+	GFTextLine(gump, 40, 180, 2100, "Properties");
 
 	GFAddButton(gump, 20, 203, 2117, 2118, GF_CLOSE_BTN, 1);
-	GFTextLine(gump, 40, 200, 2100, "Privileges");
+	GFTextLine(gump, 40, 200, 2100, "Attributes");
 
 	GFAddButton(gump, 20, 223, 2117, 2118, GF_CLOSE_BTN, 1);
-	GFTextLine(gump, 40, 220, 2100, "Storage");
+	GFTextLine(gump, 40, 220, 2100, "Privileges");
 
 	GFAddButton(gump, 20, 243, 2117, 2118, GF_CLOSE_BTN, 1);
-	GFTextLine(gump, 40, 240, 2100, "Miscellaneous");
+	GFTextLine(gump, 40, 240, 2100, "Storage");
+	
+	GFAddButton(gump, 20, 263, 2117, 2118, GF_CLOSE_BTN, 1);
+	GFTextLine(gump, 40, 260, 2100, "Misc.");
 
 	return gump;
 endfunction
@@ -211,17 +215,8 @@ function CombatGump(who, targ)
 		wpn_speed := cfg.Speed;
 		wpn_dice := cfg.Damage;
 	endif
-	var dmg := wpn_dice;
-	dmg["d"] := " ";
-	dmg["-"] := " ";
-	dmg["+"] := " ";
-	dmg := SplitWords(dmg);
-	var X := CInt(dmg[1]);
-	var Y := CInt(dmg[2]);
-	var Z := CInt(dmg[3]);
-	Z := Z+CInt((targ.weapon).dmg_mod);
-	// (x*((1+y)/2))+z average formula
-	var average := (X*((1+Y)/2))+Z;
+	
+	var average := CS_GetAverageDamage(weapon);
 
 	GFTextLine(gump, 185, 180, 2100, "Weapon Name");
 	GFTextRight(gump, 475, 180, 2100, wpn_name);
