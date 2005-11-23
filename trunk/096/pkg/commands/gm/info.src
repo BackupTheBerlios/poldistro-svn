@@ -32,7 +32,6 @@ var priv_names := array
 var info_cfg;			// info.cfg
 var index_list; 		// info.cfg "Index" lines from Index elem
 var template;			// Template gump (so it doesn't need to be rebuilt)
-var gump_list := array{};	// Gumps for each index category
 
 program textcmd_Info(who, serial)
 	info_cfg := ReadConfigFile(":commands:config/info");
@@ -55,26 +54,24 @@ program textcmd_Info(who, serial)
 		targ := who;
 	endif
 	template := GumpTemplate(targ);
-
-	BuildGumps(targ);
-
-	GFSendGump(who, gump_list[1]);
+	var cur_gump := 1;
+	
+	GFSendGump(who, BuildGump(targ, 2));
 endprogram
 
-function BuildGumps(targ)
-	foreach index in ( index_list)
-		var gump := template;
-		var cfg_elem := info_cfg["Index-"+index];
-		var groups := GetConfigStringArray(cfg_elem, "Group");
-		var y_pos := 55;
-		foreach group in ( groups )
-			var group_elem := info_cfg[group];
-			BuildEntries(targ, gump, group_elem, y_pos);
-			sleepms(2);
-		endforeach
+function BuildGump(targ, index_num)
+	var index := index_list[index_num];
+	var gump := template;
+	var cfg_elem := info_cfg["Index-"+index];
+	var groups := GetConfigStringArray(cfg_elem, "Group");
+	var y_pos := 55;
+	foreach group in ( groups )
+		var group_elem := info_cfg[group];
+		BuildEntries(targ, gump, group_elem, y_pos);
 		sleepms(2);
-		gump_list.Append(gump);
 	endforeach
+	
+	return gump;
 endfunction
 
 function BuildEntries(targ, byref gump, byref group_elem, byref y_pos)
