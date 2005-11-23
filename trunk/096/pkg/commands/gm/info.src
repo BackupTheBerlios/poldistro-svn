@@ -21,13 +21,14 @@ include ":combat:weaponInfo";
 
 unload_scripts("");
 
+var info_config;	// Makes the script easier to use with this being global.
+
 var priv_names := array
 {
 	"ignoredoors", "seeinvisitems", "seehidden", "seeghosts",
 	"renameany", "moveany", "losany", "invul", "hearghosts",
 	"dblclickany", "clotheany", "freemove"
 };
-
 
 program textcmd_Info(who, serial)
 
@@ -44,29 +45,14 @@ program textcmd_Info(who, serial)
 		targ := who;
 	endif
 
-	var gump := LocationGump(who, targ);
-	GFSendGump(who, gump);
-
+	var info_config := ReadConfigFile(":commands:config/info");
+	if ( !info_config )
+		SendSysMessage(who, "Error reading in info.cfg ->"+info_config);
+		return 0;
+	endif
+	
+	GFSendGump(who, GumpTemplate(targ));
 endprogram
-
-
-function LocationGump(who, targ)
-	var gump := GumpTemplate(targ);
-	// Used to fix unused var report by ecompile: who;
-	who := who;
-	GFResizePic(gump, 160, 55, GFCfgConst("Defaults", "ForeGround"), 325, 95);
-	GFTextLine(gump, 185, 60, 2100, "X");
-	GFTextRight(gump, 475, 60, 2100, targ.x);
-	GFTextLine(gump, 185, 80, 2100, "Y");
-	GFTextRight(gump, 475, 80, 2100, targ.y);
-	GFTextLine(gump, 185, 100, 2100, "Z");
-	GFTextRight(gump, 475, 100, 2100, targ.z);
-	GFTextLine(gump, 185, 120, 2100, "Realm");
-	GFTextRight(gump, 475, 120, 2100, targ.realm);
-
-	return gump;
-endfunction
-
 
 function GumpTemplate(targ)
 
@@ -85,42 +71,38 @@ function GumpTemplate(targ)
 		GFTextRight(gump, 475, 22, 2100, "[Offline Player]");
 	endif
 
-	GFResizePic(gump, 15, 55, GFCfgConst("Defaults", "ForeGround"), 140, 410);
-	GFAddButton(gump, 20, 63, 2117, 2118, GF_CLOSE_BTN, 1);
-	GFTextLine(gump, 40, 60, 2100, "General");
-
-	GFAddButton(gump, 20, 83, 2117, 2118, GF_CLOSE_BTN, 1);
-	GFTextLine(gump, 40, 80, 2100, "Location");
-
-	GFAddButton(gump, 20, 103, 2117, 2118, GF_CLOSE_BTN, 1);
-	GFTextLine(gump, 40, 100, 2100, "Client");
-
-	GFAddButton(gump, 20, 123, 2117, 2118, GF_CLOSE_BTN, 1);
-	GFTextLine(gump, 40, 120, 2100, "Combat");
-
-	GFAddButton(gump, 20, 143, 2117, 2118, GF_CLOSE_BTN, 1);
-	GFTextLine(gump, 40, 140, 2100, "Script");
-
-	GFAddButton(gump, 20, 163, 2117, 2118, GF_CLOSE_BTN, 1);
-	GFTextLine(gump, 40, 160, 2100, "Reputation");
-
-	GFAddButton(gump, 20, 183, 2117, 2118, GF_CLOSE_BTN, 1);
-	GFTextLine(gump, 40, 180, 2100, "Properties");
-
-	GFAddButton(gump, 20, 203, 2117, 2118, GF_CLOSE_BTN, 1);
-	GFTextLine(gump, 40, 200, 2100, "Attributes");
-
-	GFAddButton(gump, 20, 223, 2117, 2118, GF_CLOSE_BTN, 1);
-	GFTextLine(gump, 40, 220, 2100, "Privileges");
-
-	GFAddButton(gump, 20, 243, 2117, 2118, GF_CLOSE_BTN, 1);
-	GFTextLine(gump, 40, 240, 2100, "Storage");
+	var menus := info_config["Index"];
+	var y_pos := 20;
+	foreach entry in ( GetConfigStringArray(menus, "Index") )
+		GFAddButton(gump, 20, (y_pos+3), 2117, 2118, GF_CLOSE_BTN, _entry_iter);
+		GFTextLine(gump, 40, y_pos, 2100, entry);
+		y_pos := y_pos+20;
+		sleepms(2);
+	endforeach
 	
-	GFAddButton(gump, 20, 263, 2117, 2118, GF_CLOSE_BTN, 1);
-	GFTextLine(gump, 40, 260, 2100, "Misc.");
+	return gump;
+endfunction
+
+/*
+function LocationGump(who, targ)
+	var gump := GumpTemplate(targ);
+	// Used to fix unused var report by ecompile: who;
+	who := who;
+	GFResizePic(gump, 160, 55, GFCfgConst("Defaults", "ForeGround"), 325, 95);
+	GFTextLine(gump, 185, 60, 2100, "X");
+	GFTextRight(gump, 475, 60, 2100, targ.x);
+	GFTextLine(gump, 185, 80, 2100, "Y");
+	GFTextRight(gump, 475, 80, 2100, targ.y);
+	GFTextLine(gump, 185, 100, 2100, "Z");
+	GFTextRight(gump, 475, 100, 2100, targ.z);
+	GFTextLine(gump, 185, 120, 2100, "Realm");
+	GFTextRight(gump, 475, 120, 2100, targ.realm);
 
 	return gump;
 endfunction
+
+
+
 
 function GeneralGump(who, targ)
 	var gump := GumpTemplate(targ);
@@ -297,3 +279,4 @@ function GetScriptName(path)
 
 	return path;
 endfunction
+*/
