@@ -21,8 +21,6 @@ include ":combat:weaponInfo";
 
 unload_scripts("");
 
-var info_config;	// Makes the script easier to use with this being global.
-
 var priv_names := array
 {
 	"ignoredoors", "seeinvisitems", "seehidden", "seeghosts",
@@ -30,13 +28,25 @@ var priv_names := array
 	"dblclickany", "clotheany", "freemove"
 };
 
+// Storing these globally just makes the script easier to use...
+var info_cfg;			// info.cfg
+var index_list; 		// info.cfg "Index" lines from Index elem
+var template;			// Template gump (so it doesn't need to be rebuilt)
+var gump_list := array{};	// Gumps for each index category
+
 program textcmd_Info(who, serial)
-
+	info_cfg := ReadConfigFile(":commands:config/info");
+	if ( !info_cfg )
+		SendSysMessage(who, "Error reading in info.cfg ->"+info_cfg);
+		return 0;
+	else
+		index_list := GetConfigStringArray(info_cfg["Index"], "Index");
+	endif
+	
 	var targ := who;
-
 	if ( serial )
 		targ := SystemFindObjectBySerial(CInt(serial));
-	else
+	elseif ( !targ )
 		targ := Target(who);
 	endif
 	if ( !targ.IsA(POLCLASS_MOBILE) )
@@ -44,15 +54,40 @@ program textcmd_Info(who, serial)
 		//return 0;
 		targ := who;
 	endif
-
-	var info_config := ReadConfigFile(":commands:config/info");
-	if ( !info_config )
-		SendSysMessage(who, "Error reading in info.cfg ->"+info_config);
-		return 0;
-	endif
+	template := GumpTemplate(targ);
 	
-	GFSendGump(who, GumpTemplate(targ));
+	BuildGumps(who, targ);
+	
+	GFSendGump(who, gump_list[1]);
 endprogram
+
+function BuildGumps(who, targ)
+	foreach index in ( index_list)
+		var gump := template;
+		var cfg_elem := info_cfg["Index-"+index];
+		var groups := GetConfigStringArray(cfg_elem, "Group");
+		var y_pos := 55;
+		foreach group in ( groups )
+			var group_elem := info_cfg[group];
+			BuildEntries(gump, group_elem, y_pos);
+			sleepms(2);
+		endforeach
+		sleepms(2);
+		gump_list.Append(gump);
+	endforeach
+endfunction
+
+function BuildEntries(byref gump, byref group_elem, byref y_pos)
+	var entries := GetConfigStringArray(group_elem, "Entry");
+	var num_entries := entries.Size();
+	
+	GFResizePic(gump, 145, y_pos, GFCfgConst("Defaults", "ForeGround"), 340, (num_entries*20));
+	foreach entry in ( entries )
+		GFTextLine(gump, 175, y_pos, 2100, entry);
+		y_pos := y_pos+20;
+		sleepms(2);
+	endforeach
+endfunction			
 
 function GumpTemplate(targ)
 
@@ -71,9 +106,10 @@ function GumpTemplate(targ)
 		GFTextRight(gump, 475, 22, 2100, "[Offline Player]");
 	endif
 
-	var menus := info_config["Index"];
-	var y_pos := 20;
-	foreach entry in ( GetConfigStringArray(menus, "Index") )
+	GFResizePic(gump, 15, 55, GFCfgConst("Defaults", "ForeGround"), 125, 410);
+	var index := info_cfg["Index"];
+	var y_pos := 60;
+	foreach entry in ( index_list )
 		GFAddButton(gump, 20, (y_pos+3), 2117, 2118, GF_CLOSE_BTN, _entry_iter);
 		GFTextLine(gump, 40, y_pos, 2100, entry);
 		y_pos := y_pos+20;
