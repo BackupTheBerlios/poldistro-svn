@@ -42,7 +42,7 @@ program textcmd_Info(who, serial)
 		index_list := GetConfigStringArray(info_cfg["Index"], "Index");
 	endif
 
-	var targ := who;
+	var targ;
 	if ( serial )
 		targ := SystemFindObjectBySerial(CInt(serial));
 	elseif ( !targ )
@@ -56,7 +56,15 @@ program textcmd_Info(who, serial)
 	template := GumpTemplate(targ);
 	var cur_gump := 1;
 	
-	GFSendGump(who, BuildGump(targ, 2));
+	while ( 1 )
+		cur_gump := GFSendGump(who, BuildGump(targ, cur_gump));
+		cur_gump := cur_gump[0];
+		if ( !who.connected )
+			break;
+		elseif ( !cur_gump )
+			break;
+		endif
+	endwhile
 endprogram
 
 function BuildGump(targ, index_num)
@@ -68,6 +76,7 @@ function BuildGump(targ, index_num)
 	foreach group in ( groups )
 		var group_elem := info_cfg[group];
 		BuildEntries(targ, gump, group_elem, y_pos);
+		y_pos := y_pos+5;
 		sleepms(2);
 	endforeach
 	
@@ -80,7 +89,7 @@ function BuildEntries(targ, byref gump, byref group_elem, byref y_pos)
 
 	GFResizePic(gump, 145, y_pos, GFCfgConst("Defaults", "ForeGround"), 340, (num_entries*20));
 	foreach entry in ( entries )
-		entry := SplitWords(entry);
+		entry := SplitWords(entry, " ");
 		case ( Lower(entry[1]) )
 			"member": 
 				AddMemberEntry(targ, gump, entry, y_pos);
@@ -103,10 +112,35 @@ function AddMemberEntry(targ, byref gump, byref entry, byref y_pos)
 	if ( entry[4] )
 		GFAddButton(gump, 150, (y_pos+3), 2117, 2118, GF_CLOSE_BTN);
 	endif
-	GFTextLine(gump, 175, y_pos, 2100, entry[2]);
-	GFTextRight(gump, 480, y_pos, 2100, targ.Get_Member(entry[3]));
+	GFTextLine(gump, 175, y_pos, 2100, ParseEntryName(entry[2]));
+	GFTextRight(gump, 480, y_pos, 2100, ParseMembers(targ, entry[3]));
 		
 	y_pos := y_pos+20;
+endfunction
+
+function ParseEntryName(entry_name)
+	while ( entry_name["_"] )
+		entry_name["_"] := " ";
+		sleepms(2);
+	endwhile
+	return entry_name;
+endfunction
+
+function ParseMembers(targ, members)
+	members := SplitWords(members, ".");
+	var result := targ;
+	foreach member in ( members )
+		var temp := result.Get_Member(member);
+		if ( temp != error ) 
+			result := temp;
+		else
+			result := "error";
+			break;
+		endif
+		
+		sleepms(2);
+	endforeach
+	return CStr(result);
 endfunction
 
 function GumpTemplate(targ)
@@ -127,7 +161,7 @@ function GumpTemplate(targ)
 	endif
 
 	GFResizePic(gump, 15, 55, GFCfgConst("Defaults", "ForeGround"), 125, 410);
-	var index := info_cfg["Index"];
+	
 	var y_pos := 60;
 	foreach entry in ( index_list )
 		GFAddButton(gump, 20, (y_pos+3), 2117, 2118, GF_CLOSE_BTN, _entry_iter);
