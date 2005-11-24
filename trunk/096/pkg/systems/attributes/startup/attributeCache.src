@@ -18,9 +18,9 @@ Program attributeCache()
 	var cfg_file := AP_GetAttributesCfgFile();
 	foreach elem_name in ( GetConfigStringKeys(cfg_file) )
 		var cfg_elem := AP_GetAttributeCfgElem(elem_name, cfg_file);
-		var type_name := cfg_elem.AttributeType;
+		var type_name := Lower(cfg_elem.AttributeType);
 		if ( !type_name )
-			type_name := "Unknown";
+			type_name := "unknown";
 		endif
 		
 		var type_list := data_elem.GetProp(type_name);
