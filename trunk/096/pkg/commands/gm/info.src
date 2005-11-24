@@ -56,6 +56,7 @@ program textcmd_Info(who, serial)
 		//return 0;
 		targ := who;
 	endif
+	
 	template := GumpTemplate(targ);
 	var cur_gump := 1;
 	
@@ -123,8 +124,11 @@ function AddMemberEntry(targ, byref gump, byref entry, byref y_pos)
 	if ( CInt(entry[4]) )
 		GFAddButton(gump, 150, (y_pos+3), 2117, 2118, GF_CLOSE_BTN);
 	endif
+	
 	GFTextLine(gump, 175, y_pos, 2100, ParseEntryName(entry[2]));
-	GFTextRight(gump, 480, y_pos, 2100, ParseMembers(targ, entry[3]));
+	
+	var value := ParseMembers(targ, entry[3]);
+	GFTextRight(gump, 480, y_pos, 2100, value);
 	
 	y_pos := y_pos+20;
 	return 1;
@@ -152,8 +156,9 @@ function DisplayAttributes(targ, byref gump, byref entry, byref y_pos)
 	var attributes := AP_ListAttributesByType("Stat");
 	var num_attribs := attributes.Size();
 	
+	var y_needed := num_attribs * 20;	
 	var y_space := (END_Y-y_pos)+START_Y;
-	GFResizePic(gump, 145, y_pos, GFCfgConst("Defaults", "ForeGround"), 340, y_space);
+	GFResizePic(gump, 145, y_pos, GFCfgConst("Defaults", "ForeGround"), 340, y_needed);
 	
 	foreach attrib_name in ( attributes )
 		GFAddButton(gump, 150, (y_pos+3), 2117, 2118, GF_CLOSE_BTN);
@@ -184,7 +189,7 @@ function ParseMembers(targ, members)
 		if ( temp != error ) 
 			result := temp;
 		else
-			result := "error";
+			result := "None";
 			break;
 		endif
 		
@@ -224,188 +229,6 @@ function GumpTemplate(targ)
 	return gump;
 endfunction
 
-/*
-function LocationGump(who, targ)
-	var gump := GumpTemplate(targ);
-	// Used to fix unused var report by ecompile: who;
-	who := who;
-	GFResizePic(gump, 160, 55, GFCfgConst("Defaults", "ForeGround"), 325, 95);
-	GFTextLine(gump, 185, 60, 2100, "X");
-	GFTextRight(gump, 475, 60, 2100, targ.x);
-	GFTextLine(gump, 185, 80, 2100, "Y");
-	GFTextRight(gump, 475, 80, 2100, targ.y);
-	GFTextLine(gump, 185, 100, 2100, "Z");
-	GFTextRight(gump, 475, 100, 2100, targ.z);
-	GFTextLine(gump, 185, 120, 2100, "Realm");
-	GFTextRight(gump, 475, 120, 2100, targ.realm);
-
-	return gump;
-endfunction
-
-
-
-
-function GeneralGump(who, targ)
-	var gump := GumpTemplate(targ);
-
-	GFResizePic(gump, 160, 55, GFCfgConst("Defaults", "ForeGround"), 325, 95);
-
-	GFAddButton(gump, 165, 63, 2117, 2118, GF_DUMMY_BTN);
-	GFTextLine(gump, 185, 60, 2100, "Title Prefix");
-	GFTextRight(gump, 475, 60, 2100, targ.title_prefix);
-
-	GFAddButton(gump, 165, 83, 2117, 2118, GF_DUMMY_BTN);
-	GFTextLine(gump, 185, 80, 2100, "Name");
-	GFTextRight(gump, 475, 80, 2100, targ.name);
-
-	GFAddButton(gump, 165, 103, 2117, 2118, GF_DUMMY_BTN);
-	GFTextLine(gump, 185, 100, 2100, "Title Suffix");
-	GFTextRight(gump, 475, 100, 2100, targ.title_suffix);
-
-	GFAddButton(gump, 165, 123, 2117, 2118, GF_DUMMY_BTN);
-	GFTextLine(gump, 185, 120, 2100, "Tile Race");
-	GFTextRight(gump, 475, 120, 2100, targ.title_race);
-
-	return gump;
-endfunction
-
-function ClientGump(who, targ)
-	var gump := GumpTemplate(targ);
-
-	GFResizePic(gump, 160, 55, GFCfgConst("Defaults", "ForeGround"), 325, 75);
-	GFTextLine(gump, 185, 60, 2100, "Connected");
-	GFTextRight(gump, 475, 60, 2100, targ.connected);
-	GFTextLine(gump, 185, 80, 2100, "IP Address");
-	GFTextRight(gump, 475, 80, 2100, targ.ip);
-	GFTextLine(gump, 185, 100, 2100, "Client Version");
-	GFTextRight(gump, 475, 100, 2100, targ.clientversion);
-
-	GFResizePic(gump, 160, 135, GFCfgConst("Defaults", "ForeGround"), 325, 75);
-	GFTextLine(gump, 185, 140, 2100, "Account Name");
-	GFTextRight(gump, 475, 140, 2100, targ.acctname);
-	GFTextLine(gump, 185, 160, 2100, "Account Enabled");
-	GFTextRight(gump, 475, 160, 2100, (targ.acct).enabled);
-	GFTextLine(gump, 185, 180, 2100, "Account Banned");
-	GFTextRight(gump, 475, 180, 2100, (targ.acct).banned);
-
-	GFResizePic(gump, 163, 215, GFCfgConst("Backgrounds", "GOLDTRIM"), 315, 245);
-	var client_info := targ.clientinfo;
-	var info_string := "<U>Client Info</U><BR>";
-	foreach key in ( (client_info).keys() )
-		info_string := info_string + key +" <B>:</B> "+client_info[key]+"<BR>";
-		sleepms(2);
-	endforeach
-
-	GFHTMLArea(gump, 170, 222, 303, 231, info_string, 0, 1);
-
-	return gump;
-endfunction
-
-function CombatGump(who, targ)
-	var gump := GumpTemplate(targ);
-
-	GFResizePic(gump, 160, 55, GFCfgConst("Defaults", "ForeGround"), 325, 95);
-	GFAddButton(gump, 165, 63, 2117, 2118, GF_DUMMY_BTN);
-	GFTextLine(gump, 185, 60, 2100, "Warmode");
-	GFTextRight(gump, 475, 60, 2100, targ.warmode);
-
-	GFTextLine(gump, 185, 80, 2100, "Armor Rating (AR)");
-	GFTextRight(gump, 475, 80, 2100, targ.ar);
-
-	GFAddButton(gump, 165, 103, 2117, 2118, GF_DUMMY_BTN);
-	GFTextLine(gump, 185, 100, 2100, "AR Mod");
-	GFTextRight(gump, 475, 100, 2100, targ.ar_mod);
-
-	GFAddButton(gump, 165, 123, 2117, 2118, GF_DUMMY_BTN);
-	GFTextLine(gump, 185, 120, 2100, "Attack Speed Mod");
-	GFTextRight(gump, 475, 120, 2100, targ.delay_mod);
-
-	GFResizePic(gump, 160, 155, GFCfgConst("Defaults", "ForeGround"), 325, 195);
-	GFTextLine(gump, 170, 160, 2100, "Weapon Information");
-
-	var weapon := targ.weapon;
-	var wpn_name, wpn_speed, wpn_dice;
-	if ( targ.IsA(POLCLASS_NPC) && ((targ.weapon).objtype == 0xF020) )
-		var cfg := NPC_GetNPCConfig(targ.npctemplate);
-		cfg := cfg[targ.npctemplate];
-		wpn_name := "NPC intrinsic weapon";
-		wpn_speed := cfg.AttackSpeed;
-		wpn_dice := cfg.AttackDamage;
-	elseif ( targ.weapon )
-		var cfg := ReadConfigFile(":*:itemdesc");
-		cfg := cfg[(targ.weapon).objtype];
-		wpn_name := (targ.weapon).desc;
-		wpn_speed := cfg.Speed;
-		wpn_dice := cfg.Damage;
-	endif
-
-	var average := CS_GetAverageDamage(weapon);
-
-	GFTextLine(gump, 185, 180, 2100, "Weapon Name");
-	GFTextRight(gump, 475, 180, 2100, wpn_name);
-	GFTextLine(gump, 185, 200, 2100, "Weapon Serial");
-	GFTextRight(gump, 475, 200, 2100, Hex(weapon.serial));
-	GFTextLine(gump, 185, 220, 2100, "Weapon Objtype");
-	GFTextRight(gump, 475, 220, 2100, Hex(weapon.objtype));
-
-	GFTextLine(gump, 185, 260, 2100, "Weapon Speed");
-	GFTextRight(gump, 475, 260, 2100, CInt(wpn_speed));
-	GFTextLine(gump, 185, 280, 2100, "Damage Modifier");
-	GFTextRight(gump, 475, 280, 2100, weapon.dmg_mod);
-	GFTextLine(gump, 185, 300, 2100, "Damage Dice");
-	GFTextRight(gump, 475, 300, 2100, wpn_dice);
-	GFTextLine(gump, 185, 320, 2100, "Average Damage");
-	GFTextRight(gump, 475, 320, 2100, average);
-
-	return gump;
-endfunction
-
-function ScriptGump(who, targ)
-	var gump := GumpTemplate(targ);
-
-	GFResizePic(gump, 160, 55, GFCfgConst("Defaults", "ForeGround"), 325, 55);
-	GFTextLine(gump, 175, 60, 2100, "Attached Script");
-	GFTextRight(gump, 475, 60, 2100, GetScriptName((targ.attached).name));
-	GFTextLine(gump, 175, 80, 2100, "Attached PID");
-	GFTextRight(gump, 475, 80, 2100, CInt((targ.attached).pid));
-
-	GFResizePic(gump, 160, 115, GFCfgConst("Defaults", "ForeGround"), 325, 95);
-	GFTextLine(gump, 175, 120, 2100, "AI Script");
-	GFTextRight(gump, 475, 120, 2100, GetScriptName(targ.script));
-	GFTextLine(gump, 175, 140, 2100, "AI PID");
-	GFTextRight(gump, 475, 140, 2100, CInt((targ.process).pid));
-	GFTextLine(gump, 175, 160, 2100, "Event Mask");
-	GFTextRight(gump, 475, 160, 2100, Hex(CInt(targ.eventmask)));
-	GFTextLine(gump, 175, 180, 2100, "Master Serial");
-	GFTextRight(gump, 475, 180, 2100, Hex(CInt((targ.master).serial)));
-
-	return gump;
-endfunction
-
-function RepSysGump(who, targ)
-	var gump := GumpTemplate(targ);
-
-	GFResizePic(gump, 160, 55, GFCfgConst("Defaults", "ForeGround"), 325, 55);
-	GFAddButton(gump, 165, 63, 2117, 2118, GF_DUMMY_BTN);
-	GFTextLine(gump, 185, 60, 2100, "Criminal");
-	GFTextRight(gump, 475, 60, 2100, targ.criminal);
-	GFAddButton(gump, 165, 83, 2117, 2118, GF_DUMMY_BTN);
-	GFTextLine(gump, 185, 80, 2100, "Murderer");
-	GFTextRight(gump, 475, 80, 2100, targ.murderer);
-
-	GFResizePic(gump, 163, 115, GFCfgConst("Backgrounds", "GOLDTRIM"), 315, 245);
-	var client_info := targ.clientinfo;
-	var info_string := "<U>Reportables</U><BR>";
-	foreach entry in ( targ.reportables )
-		info_string := info_string + "<B>o</B> "+ entry + "<BR>";
-		sleepms(2);
-	endforeach
-
-	GFHTMLArea(gump, 170, 122, 303, 231, info_string, 0, 1);
-
-	return gump;
-endfunction
-
 function GetScriptName(path)
 	if ( !path )
 		return "None";
@@ -420,4 +243,3 @@ function GetScriptName(path)
 
 	return path;
 endfunction
-*/
