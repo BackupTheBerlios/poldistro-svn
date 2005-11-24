@@ -133,7 +133,7 @@ function AddMemberEntry(targ, byref gump, byref entry, byref y_pos)
 			value := Hex(value);
 			break;
 		"binary": 
-			value := CInt(value);
+			value := Bin(CInt(value));
 			break;
 		"script":
 			value := GetScriptName(value);
@@ -206,7 +206,8 @@ function ParseMembers(targ, members)
 		
 		sleepms(2);
 	endforeach
-	return CStr(result);
+	
+	return result;
 endfunction
 
 function GumpTemplate(targ)
