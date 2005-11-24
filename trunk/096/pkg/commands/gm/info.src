@@ -42,7 +42,7 @@ program textcmd_Info(who, serial)
 		index_list := GetConfigStringArray(info_cfg["Index"], "Index");
 	endif
 
-	var targ;
+	var targ := who;
 	if ( serial )
 		targ := SystemFindObjectBySerial(CInt(serial));
 	elseif ( !targ )
@@ -86,14 +86,19 @@ endfunction
 function BuildEntries(targ, byref gump, byref group_elem, byref y_pos)
 	var entries := GetConfigStringArray(group_elem, "Entry");
 	var num_entries := entries.Size();
-
-	GFResizePic(gump, 145, y_pos, GFCfgConst("Defaults", "ForeGround"), 340, (num_entries*20));
+	
+	if ( group_elem.AutoBox )
+		GFResizePic(gump, 145, y_pos, GFCfgConst("Defaults", "ForeGround"), 340, (num_entries*20));
+	endif
+	
 	foreach entry in ( entries )
 		entry := SplitWords(entry, " ");
 		case ( Lower(entry[1]) )
 			"member": 
 				AddMemberEntry(targ, gump, entry, y_pos);
 				break;
+			"vitals":
+				DisplayVitals(targ, gump, y_pos);				
 			"blank": 
 				y_pos := y_pos + 20;
 				break;
@@ -105,17 +110,36 @@ function BuildEntries(targ, byref gump, byref group_elem, byref y_pos)
 		
 		sleepms(2);
 	endforeach
+	
+	return 1;
 endfunction
 
 function AddMemberEntry(targ, byref gump, byref entry, byref y_pos)
-	//GFTextLine(gump, 175, y_pos, 2100, entry);
-	if ( entry[4] )
+	if ( CInt(entry[4]) )
 		GFAddButton(gump, 150, (y_pos+3), 2117, 2118, GF_CLOSE_BTN);
 	endif
 	GFTextLine(gump, 175, y_pos, 2100, ParseEntryName(entry[2]));
 	GFTextRight(gump, 480, y_pos, 2100, ParseMembers(targ, entry[3]));
 		
 	y_pos := y_pos+20;
+	
+	return 1;
+endfunction
+
+function DisplayVitals(targ, byref gump, byref y_pos)
+	var vitals := AP_GetVitalNames();
+	var num_vitals := vitals.size();
+	GFResizePic(gump, 145, y_pos, GFCfgConst("Defaults", "ForeGround"), 340, (num_vitals*20));
+	foreach vital_name in ( vitals )
+		GFAddButton(gump, 150, (y_pos+3), 2117, 2118, GF_CLOSE_BTN);
+		GFTextLine(gump, 175, y_pos, 2100, vital_name);
+		var value := AP_GetVital(targ, vital_name);
+		var max_value := AP_GetVitalMaximumValue(targ, vital_name);
+		GFTextRight(gump, 480, y_pos, 2100, value+" / "+max_value);
+		y_pos := y_pos+20;
+	endforeach
+	
+	return 1;
 endfunction
 
 function ParseEntryName(entry_name)
