@@ -1,3 +1,18 @@
+11-23 Austin
+        Fixed : account.Get_Member(member name) now works.
+        Fixed : .Get_Member(member name) for script objects now works.
+    
+11-23 MuadDib
+        Added : Added second optional param to SplitWords() function. Second param now defaults to space.
+                Allows use of "bleh" "+" "," "_," "." etc. as the delimiter instead of just whitespace.
+        Added : New combat.cfg setting "WarModeDelay". Setting is in Integer for Seconds delay between
+                ability to toggle war mode status via client. Does not affect using SetWarMode method.
+
+11-20 Austin
+        Fixed : Attempt # 2 with *InBox() coordinate checks. 
+        Fixed : Region scripts (EnterScript / LeaveScript) no longer need an 
+                EnterText and LeaveText to work.
+
 11-15 Austin
         Added : using "::regions/" in a config path will allow a config file from pol/regions/ to be read.
                 Example ReadConfigFile("::regions/justice");
