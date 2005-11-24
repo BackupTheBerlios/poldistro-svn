@@ -149,7 +149,7 @@ endfunction
 
 function DisplayAttributes(targ, byref gump, byref entry, byref y_pos)
 	var type := entry[2];
-	var attributes := AP_ListAttributesByType("Stats");
+	var attributes := AP_ListAttributesByType("Stat");
 	var num_attribs := attributes.Size();
 	
 	var y_space := (END_Y-y_pos)+START_Y;
