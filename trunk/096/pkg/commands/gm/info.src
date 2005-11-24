@@ -56,10 +56,10 @@ program textcmd_Info(who, serial)
 		//return 0;
 		targ := who;
 	endif
-	
+
 	template := GumpTemplate(targ);
 	var cur_gump := 1;
-	
+
 	while ( 1 )
 		cur_gump := GFSendGump(who, BuildGump(targ, cur_gump));
 		cur_gump := cur_gump[0];
@@ -83,7 +83,7 @@ function BuildGump(targ, index_num)
 		y_pos := y_pos+5;
 		sleepms(2);
 	endforeach
-	
+
 	return gump;
 endfunction
 
@@ -93,11 +93,11 @@ function BuildEntries(targ, byref gump, byref group_elem, byref y_pos)
 		var num_entries := entries.Size();
 		GFResizePic(gump, 145, y_pos, GFCfgConst("Defaults", "ForeGround"), 340, (num_entries*20));
 	endif
-	
+
 	foreach entry in ( entries )
 		entry := SplitWords(entry, " ");
 		case ( Lower(entry[1]) )
-			"member": 
+			"member":
 				AddMemberEntry(targ, gump, entry, y_pos);
 				break;
 			"vitals":
@@ -105,18 +105,33 @@ function BuildEntries(targ, byref gump, byref group_elem, byref y_pos)
 				break;
 			"attributes":
 				DisplayAttributes(targ, gump, entry, y_pos);
-				break;			
-			"blank": 
+				break;
+			"blank":
 				y_pos := y_pos+20;
 				break;
-			default: 
-				GFTextLine(gump, 175, y_pos, 32, entry); 
+			"custom":
+				BuildCustomEntry(targ, gump, entry, y_pos);
+				break;
+			default:
+				GFTextLine(gump, 175, y_pos, 32, entry);
 				y_pos := y_pos+20;
 				break;
 		endcase
 		sleepms(2);
 	endforeach
-	
+
+	return 1;
+endfunction
+
+function BuildCustomEntry(targ, byref gump, byref entry, byref y_pos)
+	case ( Lower(entry[2]) )
+		"Weapon_Speed":
+		"Damage_Dice":
+		"Average_Damage":
+		default:
+		break;
+	endcase
+
 	return 1;
 endfunction
 
@@ -124,15 +139,15 @@ function AddMemberEntry(targ, byref gump, byref entry, byref y_pos)
 	if ( CInt(entry[4]) )
 		GFAddButton(gump, 150, (y_pos+3), 2117, 2118, GF_CLOSE_BTN);
 	endif
-	
+
 	GFTextLine(gump, 175, y_pos, 2100, ParseEntryName(entry[2]));
-	
+
 	var value := ParseMembers(targ, entry[3]);
 	case ( Lower(entry[4]) )
-		"hex":	
+		"hex":
 			value := Hex(value);
 			break;
-		"binary": 
+		"binary":
 			value := Bin(CInt(value));
 			break;
 		"script":
@@ -140,7 +155,7 @@ function AddMemberEntry(targ, byref gump, byref entry, byref y_pos)
 			break;
 	endcase
 	GFTextRight(gump, 480, y_pos, 2100, value);
-	
+
 	y_pos := y_pos+20;
 	return 1;
 endfunction
@@ -158,7 +173,7 @@ function DisplayVitals(targ, byref gump, byref y_pos)
 		y_pos := y_pos+20;
 		sleepms(2);
 	endforeach
-	
+
 	return 1;
 endfunction
 
@@ -166,11 +181,11 @@ function DisplayAttributes(targ, byref gump, byref entry, byref y_pos)
 	var type := entry[2];
 	var attributes := AP_ListAttributesByType("Stat");
 	var num_attribs := attributes.Size();
-	
-	var y_needed := num_attribs * 20;	
+
+	var y_needed := num_attribs * 20;
 	var y_space := (END_Y-y_pos)+START_Y;
 	GFResizePic(gump, 145, y_pos, GFCfgConst("Defaults", "ForeGround"), 340, y_needed);
-	
+
 	foreach attrib_name in ( attributes )
 		GFAddButton(gump, 150, (y_pos+3), 2117, 2118, GF_CLOSE_BTN);
 		GFTextLine(gump, 175, y_pos, 2100, attrib_name);
@@ -180,9 +195,9 @@ function DisplayAttributes(targ, byref gump, byref entry, byref y_pos)
 		y_pos := y_pos+20;
 		sleepms(2);
 	endforeach
-	
+
 	return 1;
-endfunction	
+endfunction
 
 function ParseEntryName(entry_name)
 	while ( entry_name["_"] )
@@ -197,21 +212,20 @@ function ParseMembers(targ, members)
 	var result := targ;
 	foreach member in ( members )
 		var temp := result.Get_Member(member);
-		if ( temp != error ) 
+		if ( temp != error )
 			result := temp;
 		else
 			result := "None";
 			break;
 		endif
-		
+
 		sleepms(2);
 	endforeach
-	
+
 	return result;
 endfunction
 
 function GumpTemplate(targ)
-
 	var gump := GFCreateGump();
 	GFPage(gump, 0);
 	GFResizePic(gump, 0, 0, GFCfgConst("Defaults", "BackGround"), 500, 480);
@@ -228,7 +242,7 @@ function GumpTemplate(targ)
 	endif
 
 	GFResizePic(gump, 15, START_Y, GFCfgConst("Defaults", "ForeGround"), 125, END_Y);
-	
+
 	var y_pos := 60;
 	foreach entry in ( index_list )
 		GFAddButton(gump, 20, (y_pos+3), 2117, 2118, GF_CLOSE_BTN, _entry_iter);
