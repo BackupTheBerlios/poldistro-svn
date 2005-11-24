@@ -19,6 +19,9 @@ include ":gumps:yesno";
 include ":containers:storageAreas";
 include ":combat:weaponInfo";
 
+CONST START_Y	:= 55;
+CONST END_Y	:= 410;
+
 unload_scripts("");
 
 var priv_names := array
@@ -72,7 +75,7 @@ function BuildGump(targ, index_num)
 	var gump := template;
 	var cfg_elem := info_cfg["Index-"+index];
 	var groups := GetConfigStringArray(cfg_elem, "Group");
-	var y_pos := 55;
+	var y_pos := START_Y;
 	foreach group in ( groups )
 		var group_elem := info_cfg[group];
 		BuildEntries(targ, gump, group_elem, y_pos);
@@ -85,9 +88,8 @@ endfunction
 
 function BuildEntries(targ, byref gump, byref group_elem, byref y_pos)
 	var entries := GetConfigStringArray(group_elem, "Entry");
-	var num_entries := entries.Size();
-	
 	if ( group_elem.AutoBox )
+		var num_entries := entries.Size();
 		GFResizePic(gump, 145, y_pos, GFCfgConst("Defaults", "ForeGround"), 340, (num_entries*20));
 	endif
 	
@@ -98,16 +100,19 @@ function BuildEntries(targ, byref gump, byref group_elem, byref y_pos)
 				AddMemberEntry(targ, gump, entry, y_pos);
 				break;
 			"vitals":
-				DisplayVitals(targ, gump, y_pos);				
+				DisplayVitals(targ, gump, y_pos);
+				break;
+			"attributes":
+				DisplayAttributes(targ, gump, entry, y_pos);
+				break;			
 			"blank": 
-				y_pos := y_pos + 20;
+				y_pos := y_pos+20;
 				break;
 			default: 
 				GFTextLine(gump, 175, y_pos, 32, entry); 
-				y_pos:=y_pos+20; 
+				y_pos := y_pos+20;
 				break;
 		endcase
-		
 		sleepms(2);
 	endforeach
 	
@@ -120,9 +125,8 @@ function AddMemberEntry(targ, byref gump, byref entry, byref y_pos)
 	endif
 	GFTextLine(gump, 175, y_pos, 2100, ParseEntryName(entry[2]));
 	GFTextRight(gump, 480, y_pos, 2100, ParseMembers(targ, entry[3]));
-		
-	y_pos := y_pos+20;
 	
+	y_pos := y_pos+20;
 	return 1;
 endfunction
 
@@ -137,10 +141,32 @@ function DisplayVitals(targ, byref gump, byref y_pos)
 		var max_value := AP_GetVitalMaximumValue(targ, vital_name);
 		GFTextRight(gump, 480, y_pos, 2100, value+" / "+max_value);
 		y_pos := y_pos+20;
+		sleepms(2);
 	endforeach
 	
 	return 1;
 endfunction
+
+function DisplayAttributes(targ, byref gump, byref entry, byref y_pos)
+	var type := entry[2];
+	var attributes := AP_ListAttributesByType("Stats");
+	var num_attribs := attributes.Size();
+	
+	var y_space := (END_Y-y_pos)+START_Y;
+	GFResizePic(gump, 145, y_pos, GFCfgConst("Defaults", "ForeGround"), 340, y_space);
+	
+	foreach attrib_name in ( attributes )
+		GFAddButton(gump, 150, (y_pos+3), 2117, 2118, GF_CLOSE_BTN);
+		GFTextLine(gump, 175, y_pos, 2100, attrib_name);
+		var value := AP_GetTrueSkill(targ, attrib_name);
+		var mod_value := AP_GetSkillMod(targ, attrib_name);
+		GFTextRight(gump, 480, y_pos, 2100, value+" (+"+mod_value+")");
+		y_pos := y_pos+20;
+		sleepms(2);
+	endforeach
+	
+	return 1;
+endfunction	
 
 function ParseEntryName(entry_name)
 	while ( entry_name["_"] )
@@ -170,7 +196,7 @@ endfunction
 function GumpTemplate(targ)
 
 	var gump := GFCreateGump();
-
+	GFPage(gump, 0);
 	GFResizePic(gump, 0, 0, GFCfgConst("Defaults", "BackGround"), 500, 480);
 
 	GFResizePic(gump, 15, 15, GFCfgConst("Defaults", "ForeGround"), 470, 35);
@@ -184,7 +210,7 @@ function GumpTemplate(targ)
 		GFTextRight(gump, 475, 22, 2100, "[Offline Player]");
 	endif
 
-	GFResizePic(gump, 15, 55, GFCfgConst("Defaults", "ForeGround"), 125, 410);
+	GFResizePic(gump, 15, START_Y, GFCfgConst("Defaults", "ForeGround"), 125, END_Y);
 	
 	var y_pos := 60;
 	foreach entry in ( index_list )
@@ -193,6 +219,7 @@ function GumpTemplate(targ)
 		y_pos := y_pos+20;
 		sleepms(2);
 	endforeach
+	GFPage(gump, 1);
 
 	return gump;
 endfunction
