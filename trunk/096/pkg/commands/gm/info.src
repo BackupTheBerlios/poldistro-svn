@@ -128,6 +128,17 @@ function AddMemberEntry(targ, byref gump, byref entry, byref y_pos)
 	GFTextLine(gump, 175, y_pos, 2100, ParseEntryName(entry[2]));
 	
 	var value := ParseMembers(targ, entry[3]);
+	case ( Lower(entry[4]) )
+		"hex":	
+			value := Hex(value);
+			break;
+		"binary": 
+			value := CInt(value);
+			break;
+		"script":
+			value := GetScriptName(value);
+			break;
+	endcase
 	GFTextRight(gump, 480, y_pos, 2100, value);
 	
 	y_pos := y_pos+20;
