@@ -1,3 +1,7 @@
+11-25 MuadDib
+        Fixed : AttackRequest now checks for distance < 20, realm, hidden, concealed higher, and dead characters.
+	Fixed : Visibility checks now check for same realm.
+
 11-23 Austin
         Fixed : account.Get_Member(member name) now works.
         Fixed : .Get_Member(member name) for script objects now works.
