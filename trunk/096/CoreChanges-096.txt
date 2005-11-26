@@ -1,6 +1,29 @@
+-- POL096 --
+11-26 MuadDib
+        Fixed : Fixed Attack Denied method for client expectations.
+        Fixed : Logon issues involving map visibility on >2 mapid.
+        Fixed : Issues with weather and seasons on logon.
+
+11-26 Austin
+        Added : Support for bit shifting integers using << and >>
+
+11-26 Shinigami
+        Fixed : Compiler will work case insensitive now.
+        Added : New Mounts to uoconvert.cfg
+        Added : uoconvert.cfg to Linux Files
+        Fixed : illegal Attack Requests (Packet 0x05) will not crash Pol
+
+11-25 Shinigami
+        Changed : Packet 0xBF Subcommand 0x24 will no longer cause POL to treat client as active.
+
 11-25 MuadDib
         Fixed : AttackRequest now checks for distance < 20, realm, hidden, concealed higher, and dead characters.
-	Fixed : Visibility checks now check for same realm.
+        Fixed : Visibility checks now check for same realm.
+        Added : Packet 0xBF Subcommand 0x24 no longer reports in unknown packets. Packet will still cause
+                POL to treat client as active.
+
+11-24 Austin
+        Added : basic::Bin() - Convert 25 to 11001
 
 11-23 Austin
         Fixed : account.Get_Member(member name) now works.
@@ -16,7 +39,7 @@
         Fixed : Attempt # 2 with *InBox() coordinate checks. 
         Fixed : Region scripts (EnterScript / LeaveScript) no longer need an 
                 EnterText and LeaveText to work.
-
+                
 11-15 Austin
         Added : using "::regions/" in a config path will allow a config file from pol/regions/ to be read.
                 Example ReadConfigFile("::regions/justice");
@@ -53,7 +76,7 @@
         Added : weapon.intrinsic
     
 11-10 Austin
-        Fixed : Items moved to invalid locations will not go to the player's feet on the 
+        Fixed : Items moved to invalid locations will now go to the player's feet on the 
                 correct realm and not just to britannia.
             
 11-03 Austin
