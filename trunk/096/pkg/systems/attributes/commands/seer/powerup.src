@@ -1,5 +1,5 @@
 /*
- * $Id: powerup.src 523 2005-10-10 15:33:01Z austin $
+ * $Id$
  *
  */
 
@@ -11,9 +11,9 @@ include ":gumps:requestgump";
 
 program textcmd_PowerUp(who, level)
 	if ( !level )
-		level := CInt(RequestGump(who, "Power up level", "", 100));
+		level := CDbl(RequestGump(who, "Power up level", "", 100));
 	else
-		level := CInt(level);
+		level := CDbl(level);
 	endif
 		
 	foreach attrib_name in AP_ListAttributesByType()
