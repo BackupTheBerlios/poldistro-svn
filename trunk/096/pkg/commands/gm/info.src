@@ -18,6 +18,7 @@ include ":gumps:requestgump";
 include ":gumps:yesno";
 include ":containers:storageAreas";
 include ":combat:weaponInfo";
+include "include/arrays";
 
 CONST START_Y	:= 55;
 CONST END_Y	:= 410;
@@ -179,20 +180,33 @@ endfunction
 
 function DisplayAttributes(targ, byref gump, byref entry, byref y_pos)
 	var type := entry[2];
-	var attributes := AP_ListAttributesByType("Stat");
-	var num_attribs := attributes.Size();
-
-	var y_needed := num_attribs * 20;
-	var y_space := (END_Y-y_pos)+START_Y;
-	GFResizePic(gump, 145, y_pos, GFCfgConst("Defaults", "ForeGround"), 340, y_needed);
-
-	foreach attrib_name in ( attributes )
-		GFAddButton(gump, 150, (y_pos+3), 2117, 2118, GF_CLOSE_BTN);
-		GFTextLine(gump, 175, y_pos, 2100, attrib_name);
-		var value := AP_GetTrueSkill(targ, attrib_name);
-		var mod_value := AP_GetSkillMod(targ, attrib_name);
-		GFTextRight(gump, 480, y_pos, 2100, value+" (+"+mod_value+")");
-		y_pos := y_pos+20;
+	var attributes := AP_ListAttributesByType(type);
+	attributes := BreakArray(attributes, 20);
+	
+	foreach group in ( attributes )
+		var num_attribs := group.Size();
+		var y_needed := (num_attribs * 20)+10;
+		var y_space := (END_Y-y_pos)+START_Y;
+		
+		GFResizePic(gump, 145, y_pos, GFCfgConst("Defaults", "ForeGround"), 340, y_needed);
+		
+		foreach attrib_name in ( group )
+			GFAddButton(gump, 150, (y_pos+3), 2117, 2118, GF_CLOSE_BTN);
+			GFTextLine(gump, 175, y_pos, 2100, attrib_name);
+			var value := AP_GetTrueSkill(targ, attrib_name);
+			var mod_value := AP_GetSkillMod(targ, attrib_name);
+			GFTextRight(gump, 480, y_pos, 2100, value+" (+"+mod_value+")");
+			y_pos := y_pos+20;
+			sleepms(2);
+		endforeach
+		
+		if ( _group_iter < attributes.Size() )
+			GFAddButton(gump, 460, 400, 2648, 2649, GF_PAGE_BTN, gump.cur_page+1);
+			GFPage(gump, gump.cur_page+1);
+			GFAddButton(gump, 460, START_Y, 2650, 1651, GF_PAGE_BTN, gump.cur_page-1);
+			y_pos := START_Y;
+		endif
+		
 		sleepms(2);
 	endforeach
 
