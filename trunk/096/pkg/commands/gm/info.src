@@ -95,7 +95,7 @@ function BuildEntries(targ, byref gump, byref cfg_elem, byref y_pos)
 	foreach entry in ( entries )
 		entry := SplitWords(entry, " ");
 		case ( Lower(entry[1]) )
-			"member":
+			"member": "custom":
 				DisplayMember(targ, gump, entry, y_pos);
 				break;
 			"vitals":
@@ -115,10 +115,14 @@ function BuildEntries(targ, byref gump, byref cfg_elem, byref y_pos)
 				DisplayStorageAreas(targ, gump, y_pos);
 				break;
 			"blank":
-				y_pos := y_pos+20;
+				var buffer := CInt(entry[2]);
+				if ( !buffer )
+					buffer := 20;
+				endif
+				y_pos := y_pos+buffer;
 				break;
-			"custom":
-				BuildCustomEntry(targ, gump, entry, y_pos);
+			"reportables":
+				DisplayReportables(targ, gump, y_pos);
 				break;
 			default:
 				GFTextLine(gump, 175, y_pos, 32, entry);
@@ -132,18 +136,6 @@ function BuildEntries(targ, byref gump, byref cfg_elem, byref y_pos)
 	return 1;
 endfunction
 
-function BuildCustomEntry(targ, byref gump, byref entry, byref y_pos)
-	case ( Lower(entry[2]) )
-		"Weapon_Speed":
-		"Damage_Dice":
-		"Average_Damage":
-		default:
-		break;
-	endcase
-
-	return 1;
-endfunction
-
 function DisplayMember(targ, byref gump, byref entry, byref y_pos)
 	if ( entry[5] )
 		GFAddButton(gump, 150, (y_pos+3), 2117, 2118, GF_CLOSE_BTN);
@@ -151,7 +143,16 @@ function DisplayMember(targ, byref gump, byref entry, byref y_pos)
 
 	GFTextLine(gump, 175, y_pos, 2100, ParseEntryName(entry[2]));
 
-	var value := ParseMembers(targ, entry[3]);
+	var value := "";
+	if ( Lower(entry[1]) == "member" )
+		value := ParseMembers(targ, entry[3]);
+	else
+		value := GetCustom(targ, entry[2]);
+	endif
+	if ( value == error )
+		value := "None";
+	endif
+	
 	case ( Lower(entry[4]) )
 		"hex":
 			value := Hex(value);
@@ -275,6 +276,31 @@ function DisplayStorageAreas(targ, byref gump, byref y_pos)
 	return 1;
 endfunction
 
+function DisplayReportables(targ, byref gump, byref y_pos)
+	GFResizePic(gump, 145, y_pos, GFCfgConst("BackGrounds", "GoldTrim"), 340, 200);
+	var lines := "<CENTER><U>Reportables</U></CENTER><BR>";
+	foreach line in ( targ.reportables )
+		lines := "<B>o</B>"+lines+line+"<BR>";
+		sleepms(2);
+	endforeach
+	GFHTMLArea(gump, 155, y_pos+7, 325, 186, lines, 0, 1);
+	
+	y_pos := y_pos+340;	
+	return 1;
+endfunction
+
+function DisplayWeaponInfo(targ, byref gump, byref entry, byref y_pos)
+	var weapon := targ.weapon;
+	
+	case ( Lower(entry[1]) )
+		"weaponspeed": 
+		"damagedice": 
+		"averagedamage":
+	endcase
+	y_pos := y_pos+20;
+	return 1;
+endfunction
+
 function ParseEntryName(entry_name)
 	while ( entry_name["_"] )
 		entry_name["_"] := " ";
@@ -288,11 +314,10 @@ function ParseMembers(targ, members)
 	var result := targ;
 	foreach member in ( members )
 		var temp := result.Get_Member(member);
-		if ( temp != error )
-			result := temp;
+		if ( temp == error )
+			return error;
 		else
-			result := "None";
-			break;
+			result := temp;
 		endif
 
 		sleepms(2);
@@ -301,11 +326,24 @@ function ParseMembers(targ, members)
 	return result;
 endfunction
 
-function ParseScriptName(path)
-	if ( !path )
-		return "None";
-	endif
+function GetCustom(targ, property)
+	case ( Lower(property) )
+		"weapon_speed": 
+			return CS_GetWeaponInfo(targ.weapon, "Speed");
+		"damage_dice":
+			return CS_GetWeaponInfo(targ.weapon, "Damage");
+		"average_damage":
+			return CS_GetAverageDamage(targ.weapon);
+		"gotten_item_name":
+			return targ.GetGottenItem().desc;
+		"gotten_item_serial":
+			return targ.GetGottenItem().serial;
+	endcase
+	
+	return "Unknown custom type!";
+endfunction
 
+function ParseScriptName(path)
 	while ( path["/"] )
 		// Breaks it down to just the file name.
 		var pos := Find(path, "/", 1);
