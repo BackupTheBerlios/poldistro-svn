@@ -99,7 +99,7 @@ function BuildEntries(targ, byref gump, byref group_elem, byref y_pos)
 		entry := SplitWords(entry, " ");
 		case ( Lower(entry[1]) )
 			"member":
-				AddMemberEntry(targ, gump, entry, y_pos);
+				DisplayMember(targ, gump, entry, y_pos);
 				break;
 			"vitals":
 				DisplayVitals(targ, gump, y_pos);
@@ -136,8 +136,8 @@ function BuildCustomEntry(targ, byref gump, byref entry, byref y_pos)
 	return 1;
 endfunction
 
-function AddMemberEntry(targ, byref gump, byref entry, byref y_pos)
-	if ( CInt(entry[4]) )
+function DisplayMember(targ, byref gump, byref entry, byref y_pos)
+	if ( entry[5] )
 		GFAddButton(gump, 150, (y_pos+3), 2117, 2118, GF_CLOSE_BTN);
 	endif
 
@@ -181,14 +181,30 @@ endfunction
 function DisplayAttributes(targ, byref gump, byref entry, byref y_pos)
 	var type := entry[2];
 	var attributes := AP_ListAttributesByType(type);
-	attributes := BreakArray(attributes, 20);
-
+	//
+	// Notes about the first page of showing attributes:
+	// 1. The Y position they start showing on is dynamic.
+	// 2. They may all fit on the first page.
+	// 3. The remaining attributes on other pages start on START_Y
+	// With this in mind, the array must be broken once for the first page.
+	// Then broken again for the remaining pages. Not the most 'efficient' way I suppose.
+	//
+	
+	var y_space := (END_Y-y_pos)+START_Y;
+	var available_lines := CInt(y_space / 20);
+	var num_attribs := attributes.Size();
+	if ( available_lines > num_attribs )
+		attributes := array{attributes};
+	else
+		var page_1 := GetArrayRange(attributes, 1, available_lines);
+		var rest := GetArrayRange(attributes, available_lines+1, num_attribs);
+		attributes := BreakArray(rest, 20);
+		attributes.Insert(1, page_1);
+	endif
+		
 	foreach group in ( attributes )
-		var num_attribs := group.Size();
-		var y_needed := (num_attribs * 20);
-		var y_space := (END_Y-y_pos)+START_Y;
-
-		GFResizePic(gump, 145, y_pos, GFCfgConst("Defaults", "ForeGround"), 340, y_needed);
+		num_attribs := group.Size();
+		GFResizePic(gump, 145, y_pos, GFCfgConst("Defaults", "ForeGround"), 340, num_attribs * 20);
 		if ( _group_iter > 1 )
 			GFAddButton(gump, 460, START_Y+5, 2650, 2651, GF_PAGE_BTN, gump.cur_page-1);
 		endif
@@ -204,7 +220,7 @@ function DisplayAttributes(targ, byref gump, byref entry, byref y_pos)
 		endforeach
 
 		if ( _group_iter < attributes.Size() )
-			GFAddButton(gump, 460, 440, 2648, 2649, GF_PAGE_BTN, gump.cur_page+1);
+			GFAddButton(gump, 460, 430, 2648, 2649, GF_PAGE_BTN, gump.cur_page+1);
 			GFPage(gump, gump.cur_page+1);
 			y_pos := START_Y;
 		endif
