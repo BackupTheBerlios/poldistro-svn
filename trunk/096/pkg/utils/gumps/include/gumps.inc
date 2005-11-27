@@ -227,9 +227,9 @@ function GFMovable(byref gump, bool)
  *
  */
 function GFPage(byref gump, page_num)
-	(gump.layout).append("Page " + CStr(CInt(page_num)));
+	gump.cur_page := CInt(page_num);
 	
-	gump.cur_page := page_num;
+	(gump.layout).Append("Page " + CStr(gump.cur_page));
 	
 	return 1;
 endfunction
