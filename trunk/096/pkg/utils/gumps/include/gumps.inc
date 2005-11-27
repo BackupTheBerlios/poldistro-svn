@@ -79,6 +79,9 @@ function GFCreateGump(x:=0, y:=0, width:=0, height:=0)
 	
 	// Starting points for data values
 	gump.+data_id	:= 1;
+	
+	// Current page the gump is writing to
+	gump.+cur_page := 0;
 
 	return(gump);
 endfunction
@@ -226,12 +229,7 @@ function GFMovable(byref gump, bool)
 function GFPage(byref gump, page_num)
 	(gump.layout).append("Page " + CStr(CInt(page_num)));
 	
-	if ( gump.optimize )
-		gump.cur_page := page_num;
-		if ( !gump.pagelocs[page_num] )
-			gump.pagelocs[page_num] := (gump.layout).size();
-		endif
-	endif
+	gump.cur_page := page_num;
 	
 	return 1;
 endfunction
