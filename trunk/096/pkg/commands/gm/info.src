@@ -86,7 +86,7 @@ function BuildEntries(targ, byref gump, byref cfg_elem, byref y_pos)
 	if ( entries.Size() < 1 )
 		return 0;
 	endif
-	
+
 	if ( cfg_elem.AutoBox )
 		var num_entries := entries.Size();
 		GFResizePic(gump, 145, y_pos, GFCfgConst("Defaults", "ForeGround"), 340, (num_entries*20));
@@ -106,7 +106,7 @@ function BuildEntries(targ, byref gump, byref cfg_elem, byref y_pos)
 				break;
 			"privileges":
 				DisplayPrivileges(targ, gump, y_pos);
-				break;	
+				break;
 			"text":
 				GFTextLine(gump, 175, y_pos, 2100, entry);
 				y_pos := y_pos+20;
@@ -132,7 +132,7 @@ function BuildEntries(targ, byref gump, byref cfg_elem, byref y_pos)
 		sleepms(2);
 	endforeach
 	y_pos := y_pos+5;
-		
+
 	return 1;
 endfunction
 
@@ -152,7 +152,7 @@ function DisplayMember(targ, byref gump, byref entry, byref y_pos)
 	if ( value == error )
 		value := "None";
 	endif
-	
+
 	case ( Lower(entry[4]) )
 		"hex":
 			value := Hex(value);
@@ -198,7 +198,7 @@ function DisplayAttributes(targ, byref gump, byref entry, byref y_pos)
 	// With this in mind, the array must be broken once for the first page.
 	// Then broken again for the remaining pages. Not the most 'efficient' way I suppose.
 	//
-	
+
 	var y_space := (END_Y-y_pos)+START_Y;
 	var available_lines := CInt(y_space / 20);
 	var num_attribs := attributes.Size();
@@ -210,14 +210,21 @@ function DisplayAttributes(targ, byref gump, byref entry, byref y_pos)
 		attributes := BreakArray(rest, 20);
 		attributes.Insert(1, page_1);
 	endif
-		
+
+	var num_groups := attributes.Size();
 	foreach group in ( attributes )
 		num_attribs := group.Size();
-		GFResizePic(gump, 145, y_pos, GFCfgConst("Defaults", "ForeGround"), 340, num_attribs*20);
+
+		var y_stretch := num_attribs * 20;
+		if ( _group_iter < num_groups )
+			y_stretch := y_stretch + 10;
+		endif
+		
+		GFResizePic(gump, 145, y_pos, GFCfgConst("Defaults", "ForeGround"), 340, y_stretch);
 		if ( _group_iter > 1 )
 			GFAddButton(gump, 460, START_Y+5, 2650, 2651, GF_PAGE_BTN, gump.cur_page-1);
 		endif
-		
+
 		foreach attrib_name in ( group )
 			GFAddButton(gump, 150, (y_pos+3), 2117, 2118, GF_CLOSE_BTN);
 			GFTextLine(gump, 175, y_pos, 2100, attrib_name);
@@ -228,7 +235,7 @@ function DisplayAttributes(targ, byref gump, byref entry, byref y_pos)
 			sleepms(2);
 		endforeach
 
-		if ( _group_iter < attributes.Size() )
+		if ( _group_iter < num_groups )
 			GFAddButton(gump, 460, 430, 2648, 2649, GF_PAGE_BTN, gump.cur_page+1);
 			GFPage(gump, gump.cur_page+1);
 			y_pos := START_Y;
@@ -243,13 +250,19 @@ endfunction
 function DisplayPrivileges(targ, byref gump, byref y_pos)
 	var privs := info_cfg["PrivList"];
 	privs := GetConfigStringArray(privs, "Priv");
-	
+
 	var num_privs := privs.Size();
 	GFResizePic(gump, 145, y_pos, GFCfgConst("Defaults", "ForeGround"), 340, (num_privs*20));
 	foreach priv_name in ( privs )
 		GFAddButton(gump, 150, (y_pos+3), 2117, 2118, GF_CLOSE_BTN);
 		GFTextLine(gump, 175, y_pos, 2100, priv_name);
-		GFTextRight(gump, 480, y_pos, 2100, targ.Enabled(priv_name));
+		
+		var status := "Disabled";
+		if ( targ.Enabled(priv_name) )
+			status := "Enabled";
+		endif
+		
+		GFTextRight(gump, 480, y_pos, 2100, status);
 		y_pos := y_pos+20;
 		sleepms(2);
 	endforeach
@@ -258,9 +271,9 @@ function DisplayPrivileges(targ, byref gump, byref y_pos)
 endfunction
 
 function DisplayStorageAreas(targ, byref gump, byref y_pos)
-	
+
 	var storage_areas := CP_GetStorageAreaNames();
-	
+
 	var num_areas := storage_areas.Size();
 	GFResizePic(gump, 145, y_pos, GFCfgConst("Defaults", "ForeGround"), 340, (num_areas*20));
 	foreach area_name in ( storage_areas )
@@ -284,17 +297,17 @@ function DisplayReportables(targ, byref gump, byref y_pos)
 		sleepms(2);
 	endforeach
 	GFHTMLArea(gump, 155, y_pos+7, 325, 186, lines, 0, 1);
-	
-	y_pos := y_pos+340;	
+
+	y_pos := y_pos+340;
 	return 1;
 endfunction
 
 function DisplayWeaponInfo(targ, byref gump, byref entry, byref y_pos)
 	var weapon := targ.weapon;
-	
+
 	case ( Lower(entry[1]) )
-		"weaponspeed": 
-		"damagedice": 
+		"weaponspeed":
+		"damagedice":
 		"averagedamage":
 	endcase
 	y_pos := y_pos+20;
@@ -328,7 +341,7 @@ endfunction
 
 function GetCustom(targ, property)
 	case ( Lower(property) )
-		"weapon_speed": 
+		"weapon_speed":
 			return CS_GetWeaponInfo(targ.weapon, "Speed");
 		"damage_dice":
 			return CS_GetWeaponInfo(targ.weapon, "Damage");
@@ -339,7 +352,7 @@ function GetCustom(targ, property)
 		"gotten_item_serial":
 			return targ.GetGottenItem().serial;
 	endcase
-	
+
 	return "Unknown custom type!";
 endfunction
 
