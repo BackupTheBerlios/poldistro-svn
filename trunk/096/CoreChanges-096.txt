@@ -1,4 +1,23 @@
 -- POL096 --
+12-05 MuadDib
+        Added : Decay timer reset when Item is picked up/dragged by client (only on success).
+                Should *help* with instant decay problems when dropping items
+        Added : InvulTag=0/1/2 in ServSpecOpt.cfg. 0 Disables invul tags totally. 1 (default)
+                keeps them as they are now, giving [Invul] tag when single clicked. 2 will
+                work only on 3.x+ clients, and makes the mob's highlight color Yellow with
+                no [Invul] tag when single clicked. Only recommend using 2 if your shard
+                requires a 3.x or higher client!
+        Added : Invulnerable entry in RepSys.cfg for coloring name of invuls.
+
+11-29 MuadDib
+        Added : Packet 0x9 will no longer cause POL to treat client as active.
+        Fixed : Change to Secure trade window handling. Be sure to test thouroughly with all
+                versions of clients and report back to pol-core-test with results. Hoping this
+                helps with client issues reported.
+
+11-29 Shinigami
+        Fixed : uo::SplitWords() will now accept each type of to-split-value as same as in the past
+
 11-26 MuadDib
         Fixed : Fixed Attack Denied method for client expectations.
         Fixed : Logon issues involving map visibility on >2 mapid.
