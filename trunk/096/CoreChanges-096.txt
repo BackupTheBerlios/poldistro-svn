@@ -1,4 +1,7 @@
 -- POL096 --
+12-06 Shinigami
+        Fixed : z<0 bug inside uo::MoveCharacterToLocation() and uo::MoveObjectToLocation()
+
 12-05 MuadDib
         Added : Decay timer reset when Item is picked up/dragged by client (only on success).
                 Should *help* with instant decay problems when dropping items
