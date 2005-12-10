@@ -1,4 +1,21 @@
 -- POL096 --
+12-10 MuadDib
+        Changed: Various changes involving item dropping and creation and setting of
+                 decayat properties to help with instant decay.
+               
+12-09 MuadDib
+        Changed: Repsys coloring for Invulnerable names will only occur when InvulTag is
+                 set to 2. Will follow OSI standards more, and allow more flexibility to
+                 shard admins per request.
+        Fixed: ItemGiven Event will now return items if the script handler does nothing
+               with the item.
+        Fixed: Items will now move correctly across realms or to same realm again with
+               MoveObjectToLocation().
+        Fixed: Crash bug when deleting items after using MoveObjectToRealm().
+        Added: New read-only member .uclang for players. Reports the Unicode Language string
+               client sends during logon. Usefull for Unicode support based on language of
+               individual clients/characters.
+
 12-06 Shinigami
         Fixed : z<0 bug inside uo::MoveCharacterToLocation() and uo::MoveObjectToLocation()
 
