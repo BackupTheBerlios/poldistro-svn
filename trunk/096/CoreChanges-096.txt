@@ -2,7 +2,14 @@
 12-10 MuadDib
         Changed: Various changes involving item dropping and creation and setting of
                  decayat properties to help with instant decay.
-               
+        Fixed: Secure Trade Window now correctly updates client when items added. As a
+               side effect, also fixes a small problem involving adding items to normal
+               containers also when using tooltips.
+        Notes: For now, since Tooltips is an AOS feature, do NOT leave tooltips disabled
+               and use UOExpansion set to AOS or this WILL cause client problems. The client
+               was never designed for this to happen, and I do plan on putting in failsafes
+               in the core to keep these problems from happening. Bear with me on this please.
+
 12-09 MuadDib
         Changed: Repsys coloring for Invulnerable names will only occur when InvulTag is
                  set to 2. Will follow OSI standards more, and allow more flexibility to
