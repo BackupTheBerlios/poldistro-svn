@@ -23,6 +23,9 @@ include "include/arrays";
 CONST START_Y	:= 55;
 CONST END_Y	:= 410;
 
+const MENU_BTN	:= 0xA0;
+const DATA_BTN	:= 0xF0;
+
 unload_scripts("");
 
 // Storing these globally just makes the script easier to use...
@@ -39,6 +42,7 @@ program textcmd_Info(who, serial)
 		index_list := GetConfigStringArray(info_cfg["Index"], "Index");
 	endif
 
+	//var targ := Target(who);
 	var targ := who;
 	if ( serial )
 		targ := SystemFindObjectBySerial(CInt(serial));
@@ -46,18 +50,25 @@ program textcmd_Info(who, serial)
 		targ := Target(who);
 	endif
 	if ( !targ.IsA(POLCLASS_MOBILE) )
-		//SendSysMessage(who, "Cancelled.");
-		//return 0;
-		targ := who;
+		SendSysMessage(who, "Cancelled.");
+		return 0;
 	endif
 
 	template := GumpTemplate(targ);
 	var cur_gump := 1;
 
 	while ( 1 )
-		cur_gump := GFSendGump(who, BuildGump(targ, cur_gump));
-		cur_gump := cur_gump[0];
-		if ( !who.connected )
+		var gump := BuildGump(targ, cur_gump);
+		var input := GFSendGump(targ, gump);
+		input := input[0];
+		
+		if ( input >= MENU_BTN )
+			cur_gump := input - MENU_BTN;
+		endif
+		
+		if ( !input )
+			break;
+		elseif ( !who.connected )
 			break;
 		elseif ( !cur_gump )
 			break;
@@ -224,7 +235,7 @@ function DisplayAttributes(targ, byref gump, byref entry, byref y_pos)
 		if ( _group_iter > 1 )
 			GFAddButton(gump, 460, START_Y+5, 2650, 2651, GF_PAGE_BTN, gump.cur_page-1);
 		endif
-
+		
 		foreach attrib_name in ( group )
 			GFAddButton(gump, 150, (y_pos+3), 2117, 2118, GF_CLOSE_BTN);
 			GFTextLine(gump, 175, y_pos, 2100, attrib_name);
@@ -388,7 +399,7 @@ function GumpTemplate(targ)
 
 	var y_pos := 60;
 	foreach entry in ( index_list )
-		GFAddButton(gump, 20, (y_pos+3), 2117, 2118, GF_CLOSE_BTN, _entry_iter);
+		GFAddButton(gump, 20, (y_pos+3), 2117, 2118, GF_CLOSE_BTN, (MENU_BTN+_entry_iter));
 		GFTextLine(gump, 40, y_pos, 2100, entry);
 		y_pos := y_pos+20;
 		sleepms(2);
