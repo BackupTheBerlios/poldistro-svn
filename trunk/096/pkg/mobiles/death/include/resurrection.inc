@@ -12,7 +12,7 @@ include "include/sounds";
 function ResurrectionGump(mobile)
 	var gump := GFCreateGump();
 	
-	var input := GFSendGump(who, gump);
+	var input := GFSendGump(mobile, gump);
 	return input[0];
 endfunction
 
