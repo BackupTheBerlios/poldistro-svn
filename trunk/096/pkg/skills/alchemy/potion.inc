@@ -2,9 +2,9 @@ use uo;
 use os;
 use cfgfile;
 
-var cfg := ReadConfigFile("alchemy");
-if( !cfg )
-	syslog("Failed to open alchemy.cfg: " + cfg.errortext);
+var alc_cfg := ReadConfigFile("alchemy");
+if( !alc_cfg )
+	syslog("Failed to open alchemy.cfg: " + alc_cfg.errortext);
 endif
 
 include ":attributes:attributes";
@@ -37,11 +37,11 @@ function make_the_potion(user, mortar)
 		return;
 	endif
 	if(is_reagent(use_on))
-		if(!cfg)
+		if(!alc_cfg)
 			SendSysMessage(user, "Alchemy config error. Please inform the staff.");
 			return;
 		endif
-		var elem := cfg[use_on.objtype];
+		var elem := alc_cfg[use_on.objtype];
 		if(!elem)
 			SendSysMessage(user, "Alchemy element error. Please inform the staff.");
 			return;
@@ -52,7 +52,7 @@ function make_the_potion(user, mortar)
 		possible := GetConfigStringArray( elem, "potion");
 		foreach thingie in possible
 			if(can_make(user, thingie, use_on))
-				var titem := cfg[thingie].objtype;
+				var titem := alc_cfg[thingie].objtype;
 				if(titem)
 					thingie["_"] := " ";
 					AddMenuItem( tmenu, titem, thingie );
@@ -85,7 +85,7 @@ endfunction
 
 function can_make(user, potion, reg)
 	reg := reg; // stops ecompile "not used" warning
-	var skillneeded:= CInt(cfg[potion].skill);
+	var skillneeded:= CInt(alc_cfg[potion].skill);
 	if(skillneeded > 20)
 		skillneeded := skillneeded - 20;
 	else
@@ -99,7 +99,7 @@ function can_make(user, potion, reg)
 endfunction
 
 function take_regs(user, potion, reg)
-	var amount_needed:= cfg[potion].reagent_amount;
+	var amount_needed:= alc_cfg[potion].reagent_amount;
 	set_critical(1);
 	if(CInt(amount_needed) <= reg.amount)
 		SubtractAmount(reg, amount_needed);
@@ -115,9 +115,9 @@ endfunction
 function try_to_make_potion(user, potion, in_mortar, mortar, reg)
 	if(!in_mortar)
 		potion[" "] := "_";
-		var difficulty := cfg[potion].skill;
-		var points := cfg[potion].points;
-		var product := cfg[potion].objtype;
+		var difficulty := alc_cfg[potion].skill;
+		var points := alc_cfg[potion].points;
+		var product := alc_cfg[potion].objtype;
 		SetObjProperty(mortar, "LastMade", potion);
 		var loop := 0;
 		while(loop < 3)
@@ -224,9 +224,8 @@ function try_to_make_last(user, potion, mortar)
 		return;
 	endif
 	potion[" "] := "_";
-	var difficulty := cfg[potion].skill;
-	var points := cfg[potion].points;
-	var product := cfg[potion].objtype;
+	var difficulty := alc_cfg[potion].skill;
+	var product := alc_cfg[potion].objtype;
 	if(!take_regs(user, potion, reg))
 		SendSysMessage(user, "You do not have enough reagents to make that.");
 		return;
