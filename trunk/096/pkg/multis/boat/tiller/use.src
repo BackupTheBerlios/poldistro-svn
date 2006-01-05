@@ -1,0 +1,12 @@
+/*
+ * $Id$
+ *
+ */
+
+use uo;
+
+include ":gumps:gumps";
+
+program UseScript(who, tillerman)
+	return 1;
+endprogram
