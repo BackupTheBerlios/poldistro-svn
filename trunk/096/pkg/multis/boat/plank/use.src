@@ -5,8 +5,6 @@
 
 use uo;
 
-include ":locksandkeys:includes/locks";
-
 program UsePlank(who, plank)
 	detach();
 	if ( plank.Extended() )
