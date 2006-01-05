@@ -23,8 +23,8 @@ include "include/arrays";
 CONST START_Y	:= 55;
 CONST END_Y	:= 410;
 
-const MENU_BTN	:= 0xA0;
-const DATA_BTN	:= 0xF0;
+CONST MENU_BTN	:= 0xA0; // Value of the first menu button.
+CONST DATA_BTN	:= 0xF0; // Value of the first data changing button.
 
 unload_scripts("");
 
@@ -65,6 +65,8 @@ program textcmd_Info(who, serial)
 		if ( input >= MENU_BTN )
 			cur_gump := input - MENU_BTN;
 		endif
+		
+		SendSysMessage(who, "Input->"+input);
 		
 		if ( !input )
 			break;
