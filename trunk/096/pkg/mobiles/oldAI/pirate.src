@@ -17,7 +17,6 @@ use util;
 var me         := npc::Self();
 const aggression  := 250;
 
-include "util/conflicts";
 include "include/OLD/eventID";
 include "include/sysEvent";
 include ":npcutils:names";
@@ -33,10 +32,7 @@ program Pirate()
 		me.frozen := 1;
 	endif
     while (1)
-      if( badguy )
-           co_fight();
-        endif
-        var ev;
+       var ev;
         ev := os::wait_for_event( 120 );
         case (ev.type)
 
