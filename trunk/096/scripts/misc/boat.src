@@ -12,8 +12,6 @@
 use os;
 
 
-program autostart_boat(param)
-	start_script(":boat:boat", param);
-
-	return;
+Program CoreScript_Boat(multi)
+	return start_script(":boat:multi/listener", multi);
 endprogram
