@@ -42,5 +42,5 @@ program SpellScript(params)
 	 *
 	 */
 	 
-	 recall_rune.SendToDestination(recall_rune, who);
+	 recall_rune.SendToDestination(who);
 endprogram
