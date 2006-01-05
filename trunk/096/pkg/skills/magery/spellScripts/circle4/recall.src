@@ -15,278 +15,32 @@ include "include/sounds";
 
 program SpellScript(params)
 	var who := params[1];
-	var runebook_info := params[2].targ;
+	var recall_rune := params[2];
 	//var info := params[2];
 	params := 0; // No longer needed
 
-	if( TypeOf(runebook_info) == "Array" )
-		RunebookRecall(who, runebook_info);
-		return 1;
-	endif
-
 	var prompt := "Select an object to recall from.";
-	var recall_rune := MS_Target(who, 0, prompt, TGTOPT_CHECK_LOS+TGTOPT_NEUTRAL);
-	if( (recall_rune.objtype != UOBJ_RUNE) && (recall_rune.objtype != 0x6100))
+	recall_rune := MS_Target(who, recall_rune, prompt, TGTOPT_CHECK_LOS+TGTOPT_NEUTRAL);
+	if( !recall_rune.IsRecallRune() )
 		SendSysMessage(who, "You can only cast that on a recall rune or runebook.");
 		return 0;
-	endif
-	if( !ReserveItem(recall_rune) )
+	elseif( !ReserveItem(recall_rune) )
+		SendSysMessage(who, "That is already being used.");		
 		return 0;
-	endif
-
-	if( GetObjProperty(recall_rune, "Vendored") )
+	elseif( GetObjProperty(recall_rune, "Vendored") )
 		SendSysMessage(who, "You cannot recall off of runes on a vendor.");
 		return 0;
 	endif
-	var rune_settings;
-	case(recall_rune.objtype)
-		UOBJ_RUNE: rune_settings := recall_rune.GetDestination();
-		0x6100: rune_settings := GetObjProperty(recall_rune, "Destination");
-	endcase
-	if( TypeOf(rune_settings) != "Struct" )
-		SendSysMessage(who, "That item is not marked.");
+	
+	var dest := recall_rune.GetDestination();
+	if ( !dest )
+		SendSysMessage(who, "That rune is not marked.");
 		return 0;
 	endif
-
-	var tox := CInt(rune_settings.x);
-	var toy := CInt(rune_settings.y);
-	var toz := CInt(rune_settings.z);
-	var torealm :=  rune_settings.realm;
-	if(!torealm)
-		torealm := "britannia";
-	endif
-
-	if( !isValidLoc(tox,toy,torealm) )
-		SendSysMessage(who, "Invalid recall location.");
-		if( recall_rune.objtype == 0x6100 )
-			RemoveRunebookDefault(recall_rune);
-			return 0;
-		else
-			DestroyItem(recall_rune);
-			return 0;
-		endif
-	endif
-
-	PlaySoundEffect(who, 0x210);
-
-	if( (who.x >= 5120) && (who.x <= 5375) && (who.y >= 0) && (who.y <= 255) )
-		SendSysMessage(who, "Your spell fails and consumes the rune!");
-		if(recall_rune.objtype == UOBJ_RUNE)
-			DestroyItem(recall_rune);
-		elseif(recall_rune.objtype == 0x6100)
-			RemoveRunebookDefault(recall_rune);
-		endif
-		return 0;
-	endif
-
-	var signs := ListItemsNearLocationOfType( tox, toy, toz, 30, 0x7060, torealm);
-	foreach sign in signs
-		var infoarr := GetObjProperty(sign, "homeinfo");
-		if( infoarr )
-			if( (tox >= infoarr[2]) && (tox <= infoarr[4]) && (toy >= infoarr[3]) && (toy <= infoarr[5]) )
-				SendSysMessage(who, "Something is blocking the location.");
-				return 0;
-				break;
-			endif
-		endif
-	endforeach
-
-	var multicheck := CreateItemAtLocation(1, 1, 0, 0xeed, 1, torealm);
-	multicheck.invisible := 1;
-	if( !MoveItemToLocation(multicheck, tox, toy, toz, MOVEITEM_NORMAL) )
-		SendSysMessage(who, "Something is blocking the location.");
-		if(recall_rune.objtype == UOBJ_RUNE)
-			DestroyItem(recall_rune);
-		elseif(recall_rune.objtype == 0x6100)
-			RemoveRunebookDefault(recall_rune);
-		endif
-		return 0;
-	endif
-	if(multicheck.multi)
-		SendSysMessage(who,"Something is blocking the location.");
-		if(recall_rune.objtype == UOBJ_RUNE)
-			DestroyItem(recall_rune);
-		elseif(recall_rune.objtype == 0x6100)
-			RemoveRunebookDefault(recall_rune);
-		endif
-		return 0;
-	endif
-	DestroyItem(multicheck);
-	case(recall_rune.objtype)
-		UOBJ_RUNE: recall_rune.SendToDestination(who);
-		0x6100: MoveObjectToLocation(who, tox, toy, toz, torealm, MOVEOBJECT_FORCELOCATION);
-	endcase
-	PlaySoundEffect(who, 0x1fd);
-	return 1;
+	/*
+	 * Check if destination is a multi here.
+	 *
+	 */
+	 
+	 recall_rune.SendToDestination(recall_rune, who);
 endprogram
-
-function RemoveRunebookDefault(runebook)
-	var tox := CInt(GetObjProperty( runebook, "x" ));
-	var toy := CInt(GetObjProperty( runebook, "y" ));
-	var toz := CInt(GetObjProperty( runebook, "z" ));
-	var torealm := GetObjProperty( runebook, "realm" );
-	var rune_list := GetRuneList(runebook);
-
-	foreach rune_entry in rune_list
-		if( (Cint(rune_list.X) == tox) && (Cint(rune_list.Y) == toy) && (Cint(rune_list.Z) == toz) && (Cint(rune_list.Realm) == torealm) )
-			rune_list.Erase(rune_entry);
-		endif
-	endforeach
-
-	SetObjProperty(runebook, "%RuneList%", rune_list);
-	EraseObjProperty(runebook, "x");
-	EraseObjProperty(runebook, "y");
-	EraseObjProperty(runebook, "z");
-	EraseObjProperty(runebook, "realm");
-	return 1;
-endfunction
-
-
-function RemoveRunebookEntry(runebook, rune_info)
-	var tox := CInt(rune_info.X);
-	var toy := CInt(rune_info.Y);
-	var toz := CInt(rune_info.Z);
-	var torealm :=  rune_info.Realm;
-	var rune_list := GetRuneList(runebook);
-
-	foreach rune_entry in rune_list
-		if( (Cint(rune_list.X) == tox) && (Cint(rune_list.Y) == toy) && (Cint(rune_list.Z) == toz) && (Cint(rune_list.Realm) == torealm) )
-			rune_list.Erase(rune_entry);
-		endif
-	endforeach
-
-	SetObjProperty(runebook, "%RuneList%", rune_list);
-	EraseObjProperty(runebook, "x");
-	EraseObjProperty(runebook, "y");
-	EraseObjProperty(runebook, "z");
-	EraseObjProperty(runebook, "realm");
-	return 1;
-endfunction
-
-
-function RunebookRecall(who, runebook_info)
-	var runebook := runebook_info[1];
-	var rune_info := runebook_info[2];
-	var use_charge := runebook_info[3];
-
-	var spell_elem := MS_GetSpellsCfgElem(32);
-
-	if ( !CheckReagents(who, spell_elem, use_charge) )
-		FailSpell(who);
-		return 0;
-	endif
-
-	if( !ReserveItem(runebook) )
-		return 0;
-	endif
-
-	if( GetObjProperty(runebook, "Vendored") )
-		SendSysMessage(who, "You cannot recall off of runebooks on a vendor.");
-		return 0;
-	endif
-
-	if( TypeOf(rune_info) != "Struct" )
-		SendSysMessage(who, "That item is not marked.");
-		return 0;
-	endif
-
-	var tox := CInt(rune_info.x);
-	var toy := CInt(rune_info.y);
-	var toz := CInt(rune_info.z);
-	var torealm :=  rune_info.realm;
-	if(!torealm)
-		torealm := "britannia";
-	endif
-
-	if( !isValidLoc(tox,toy,torealm) )
-		SendSysMessage(who, "Invalid recall location.");
-		RemoveRunebookEntry(runebook, rune_info);
-		return 0;
-	endif
-
-	PlaySoundEffect(who, 0x210);
-
-	if( (who.x >= 5120) && (who.x <= 5375) && (who.y >= 0) && (who.y <= 255) )
-		SendSysMessage(who, "Your spell fails and consumes the rune!");
-		RemoveRunebookEntry(runebook, rune_info);
-		return 0;
-	endif
-
-	var signs := ListItemsNearLocationOfType( tox, toy, toz, 30, 0x7060, torealm);
-	foreach sign in signs
-		var infoarr := GetObjProperty(sign, "homeinfo");
-		if( infoarr )
-			if( (tox >= infoarr[2]) && (tox <= infoarr[4]) && (toy >= infoarr[3]) && (toy <= infoarr[5]) )
-				SendSysMessage(who, "Something is blocking the location.");
-				return 0;
-				break;
-			endif
-		endif
-	endforeach
-
-	var multicheck := CreateItemAtLocation(1, 1, 0, 0xeed, 1, torealm);
-	multicheck.invisible := 1;
-	if( !MoveItemToLocation(multicheck, tox, toy, toz, MOVEITEM_NORMAL) )
-		SendSysMessage(who, "Something is blocking the location.");
-		return 0;
-	endif
-	if(multicheck.multi)
-		SendSysMessage(who,"A house is blocking the location.");
-		RemoveRunebookEntry(runebook, rune_info);
-		return 0;
-	endif
-	DestroyItem(multicheck);
-	MoveObjectToLocation( who, tox, toy, toz, torealm );
-	PlaySoundEffect(who, 0x1fd);
-	return 1;
-endfunction
-
-function CheckReagents(who, byref spell_elem, scroll)
-	if ( who.npctemplate )
-		// NPCs don't need reagents to cast.
-		return 1;
-	elseif ( scroll.isA(POLCLASS_ITEM) )
-		return SubtractAmount(scroll, 1);
-	elseif ( scroll == 1 )
-		// Added scroll/1 check for passing 1 to override reg
-		// and scroll check. IE: runebooks, wands, etc.
-		return 1;
-	endif
-
-	var reagent_costs := GetConfigStringDictionary(spell_elem, "RegCost");
-
-	// Before consuming, verify that there is enough of everything.
-	foreach amount in ( reagent_costs )
-		amount := CInt(amount);
-		if ( !amount )
-			amount := 1;
-		endif
-		var objtype := GetObjTypeByName(_amount_iter);
-
-		if ( AmountInContainer(who.backpack, objtype) < amount )
-			SendSysMessage(who, "You do not have enough "+GetObjTypeDesc(objtype, (amount>1)));
-			return 0;
-		endif
-		sleepms(2);
-	endforeach
-	// Consume reagents - CInt() and < 1 checks already done in previous loop.
-	// Foreach is a pointer!
-	foreach amount in ( reagent_costs )
-		ConsumeSubstance(who.backpack, GetObjTypeByName(_amount_iter), amount);
-		sleepms(2);
-	endforeach
-
-	return 1;
-endfunction
-
-
-function FailSpell(who)
-	// Simple function for handling effects when a caster
-	// fails the casting.
-	who.frozen := 0;
-	EraseObjProperty(who, "#medding");
-	PlayObjectCenteredEffect(who, GFX_FIZZLE, 5, 50);
-	PlaySoundEffect(who, SFX_SPELL_FAIL);
-
-	return 1;
-endfunction
