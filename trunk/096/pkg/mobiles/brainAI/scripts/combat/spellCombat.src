@@ -46,7 +46,7 @@ program BrainNerve(params)
 				AI_WarMode(npc, 0);
 			endif
 			AI_EndNerve(npc, nerve_name);
-		elseif ( dist <= settings["MinRange"] )
+		elseif ( dist < settings["MinRange"] )
 			AI_Move(npc, opponent, NEMOVE_AWAY, NEMOVE_RUN, WAKEUP, (settings["MinRange"]-dist));
 		elseif( dist > settings["MaxRange"] )
 			AI_Move(npc, opponent, NEMOVE_TOWARD, NEMOVE_RUN, WAKEUP, (dist-settings["MaxRange"]));
@@ -54,7 +54,7 @@ program BrainNerve(params)
 			npc.facing := GetFacing(npc.x, npc.y, opponent.x, opponent.y);
 		endif
 
-		SpecialAttack(npc, opponent, dist);
+		SpecialAttack(npc, opponent, settings, dist);
 
 		sleepms(400);
 		AI_ClearThoughts(npc, CLR_NERVE);
@@ -89,7 +89,7 @@ function ShouldFlee(npc, byref flee_level, byref flee_mode)
 	return 0;
 endfunction
 
-function SpecialAttack(npc, opponent, byref dist)
+function SpecialAttack(npc, opponent, byref settings, byref dist)
 	if ( GetObjProperty(npc, "#medding") )
 		return 0;
 	elseif ( CInt(GetObjProperty(npc, "#NextCast")) > ReadGameClock() )
@@ -98,7 +98,7 @@ function SpecialAttack(npc, opponent, byref dist)
 		return 0;
 	elseif ( !CheckLineOfSight(npc, opponent) )
 		return 0;
-	elseif ( dist > 16 )
+	elseif ( dist > settings["MaxRange"] )
 		return 0;
 	endif
 	
@@ -119,6 +119,8 @@ function SpecialAttack(npc, opponent, byref dist)
 		PrintTextAbove(npc, script.errortext);
 		return 0;
 	endif
+	
+	SetObjProperty(npc, "#NextCast", ReadGameClock()+settings["CastWait"]);
 	
 	return 1;
 endfunction
