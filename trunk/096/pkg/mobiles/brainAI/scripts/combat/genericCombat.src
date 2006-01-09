@@ -8,12 +8,9 @@ use os;
 
 include ":brainAI:npcNerves";
 include ":brainAI:npcCommands";
+include ":brainAI:commonFunctions";
 include ":attributes:attributes";
-include ":magery:spells_ex";
 include ":combat:weaponInfo";
-include "include/shapes";
-include "include/client";
-include "include/sounds";
 include "include/facings";
 include "include/damage";
 
@@ -26,7 +23,7 @@ program BrainNerve(params)
 	params := 0; // Not needed anymore.
 
 	//Store it here so it does not have to do the math over and over.
-	var flee_level := AP_GetVitalMaximumValue(npc, "Hits") * (CDbl(settings["FleeLevel"])/100.0);
+	var flee_level := NPC_GetFleeLevel(npc, settings["FleeLevel"]);
 	
 	var opponent := event.source;
 	var flee_mode := 0;
@@ -34,7 +31,7 @@ program BrainNerve(params)
 	AI_SetOpponent(npc, opponent);
 	
 	var min_range, max_range;
-	SetupRanges(npc, min_range, max_range);
+	NPC_WeaponRanges(npc, byref min_range, byref max_range);
 	
 	while( npc )
 		var dist := Distance(npc, opponent);
@@ -94,15 +91,4 @@ function ShouldFlee(npc, byref flee_level, byref flee_mode)
 	endif
 
 	return 0;
-endfunction
-
-function SetupRanges(npc, byref min_range, byref max_range)
-	// To support having distance for archery weapons or being close up for a melee weapon.
-	min_range := CInt(CS_GetWeaponInfo(npc.weapon, "MinRange"));
-	max_range := CInt(CS_GetWeaponInfo(npc.weapon, "MaxRange"));
-	if ( !max_range )
-		max_range := 1;
-	endif
-	
-	return 1;
 endfunction

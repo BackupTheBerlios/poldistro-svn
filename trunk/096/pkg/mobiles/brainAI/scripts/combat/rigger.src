@@ -5,6 +5,7 @@ use os;
 
 include ":brainAI:npcNerves";
 include ":brainAI:npcCommands";
+include ":brainAI:commonFunctions";
 include ":attributes:attributes";
 include ":timedscripts:timedScripts";
 
@@ -17,7 +18,7 @@ program BrainNerve(params)
 	params := 0; // Not needed anymore.
 
 	//Store it here so it does not have to do the math over and over.
-	var flee_level := AP_GetVitalMaximumValue(npc, "Hits") * (CDbl(settings["FleeLevel"])/100.0);
+	var flee_level := NPC_GetFleeLevel(npc, settings["FleeLevel"]);
 	
 	var opponent := event.source;
 	var flee_mode := 0;
