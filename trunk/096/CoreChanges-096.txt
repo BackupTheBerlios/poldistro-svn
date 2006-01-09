@@ -1,4 +1,10 @@
 -- POL096 --
+01-09 MuadDib
+        Changed: Added check for No Decay timer on items when resetting decay time.
+        Fixed: AOS Tooltips will now correctly show the Reputation of mobiles. In order
+               to see Invul correctly, InvulTag MUST be set to 2 due to the Reputation
+               color being handled fully client-side (No way around this).
+
 12-10 MuadDib
         Changed: Various changes involving item dropping and creation and setting of
                  decayat properties to help with instant decay.
