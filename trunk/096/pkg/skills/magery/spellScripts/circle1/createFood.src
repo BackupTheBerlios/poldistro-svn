@@ -9,6 +9,7 @@ use os;
 include ":attributes:attributes";
 include ":magery:spells";
 include ":food&drink:food";
+include "include/sounds";
 
 program SpellScript(params)
 	var who := params[1];
@@ -16,6 +17,8 @@ program SpellScript(params)
 	params := 0; // No longer needed
 	
 	var food_item := RandomFoodObjType();
+	
+	PlaySoundEffect(who, SFX_CREATE_FOOD);
 	
 	var food := CreateItemInBackPack(who, food_item, 1);
 	food.movable := 1;

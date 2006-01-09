@@ -26,11 +26,11 @@ program SpellScript(params)
 	//To-Do:
 	// Check for reflection here and if need-be, change the target.
 	
-	PlaySoundEffect(targ, SFX_CURE);
+	PlaySoundEffect(targ, SFX_WEAKEN);
 	PlayObjectCenteredEffect(targ, GFX_RED_SPARKLES, 7, 7);	
 	
 	// Note: Stratics gives no duration formula - i'm assuming 60 seconds.	
-	TS_StartTimer(targ, "clumsy", 60, who);
+	TS_StartTimer(targ, "weaken", 60, who);
 	
 	return 1;
 endprogram
