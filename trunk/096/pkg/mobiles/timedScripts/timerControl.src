@@ -1,3 +1,8 @@
+/*
+ * $Id$
+ *
+ */
+
 use uo;
 use os;
 use util;
@@ -96,7 +101,7 @@ function LogOff(mobile, byref timer_list)
 		KillTimedScript(mobile, timer_list.pid, timer_list, _timer_iter);
 
 		if( elem_info.LogOffScript )
-			var script := start_script(elem_info.LogOffScript, {mobile});
+			var script := start_script(elem_info.LogOffScript, {mobile, "LogOff"});
 			if( script.errortext )
 				Print("Error::LogOff() - ["+elem_info.LogOffScript+"] "+script.errortext);
 			endif
