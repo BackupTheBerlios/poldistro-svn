@@ -24,15 +24,15 @@ program BrainNerve(params)
 
 	//Store it here so it does not have to do the math over and over.
 	var flee_level := NPC_GetFleeLevel(npc, settings["FleeLevel"]);
-	
+
 	var opponent := event.source;
 	var flee_mode := 0;
 
 	AI_SetOpponent(npc, opponent);
-	
+
 	var min_range, max_range;
-	NPC_WeaponRanges(npc, byref min_range, byref max_range);
-	
+	NPC_WeaponRanges(npc, min_range, max_range);
+
 	while( npc )
 		var dist := Distance(npc, opponent);
 		if ( ShouldFlee(npc, flee_level, flee_mode) )
@@ -54,7 +54,7 @@ program BrainNerve(params)
 		else
 			npc.facing := GetFacing(npc.x, npc.y, opponent.x, opponent.y);
 		endif
-		
+
 		//To-Do:
 		// If using archery and out of ammo or can't use missile weapon
 		// switch to a melee weapon and call SetupRanges() again
