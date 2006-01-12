@@ -21,7 +21,7 @@ program UsePlank(who, plank)
 			return 0;
 		endif
 		
-		plank.Extend(who);
+		plank.Extend();
 	endif
 	
 	return 1;
