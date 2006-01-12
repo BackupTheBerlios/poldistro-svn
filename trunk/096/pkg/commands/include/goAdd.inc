@@ -115,7 +115,7 @@ function Go_SetLocation(gump_Type, who, name, realm, x, y, z)
 
 	z := GetMapInfo(x, y, realm).z;
 
-	var temp := dictionary;
+	var temp := struct;
 	temp.+Name := lower(name);
 	temp.+Realm := lower(realm);
 	temp.+X := x;
