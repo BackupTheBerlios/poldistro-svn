@@ -8,6 +8,10 @@ program Install()
 	return 1;
 endprogram
 
+exported function IsTillerMan(tiller)
+	return 1;
+endfunction
+
 exported function GetMulti(tiller)
 	return SystemFindBoatBySerial((tiller.multi).serial);
 endfunction

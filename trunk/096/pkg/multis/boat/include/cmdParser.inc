@@ -20,14 +20,18 @@ use cfgfile;
  * Returns an array of strings.
  *
  */
-function ParseCommands(byref text)
+function ParseCommands(text)
 	var cmd_cfg := ReadConfigFile(":boat:config/commands");
-	var cmd_elem := GetConfigStringArray(cmd_cfg["heirarchy"], "CMD");
+	if ( cmd_cfg.errortext )
+		SysLog("Error - Unable to open :boat:config/commands.cfg");
+		return cmd_cfg;
+	endif	
 	
+	var cmd_list := GetConfigStringArray(cmd_cfg["heirarchy"], "CMD");
 	text := Lower(text);
 		
 	var match := 0, pos := 0;
-	foreach cmd in ( cmd_elem )
+	foreach cmd in ( cmd_list )
 		pos := pos + 1;
 		cmd := Lower(cmd);
 		while ( text[cmd] )
@@ -41,18 +45,18 @@ function ParseCommands(byref text)
 		return 0;
 	endif
 
-	var cmd_list := array{};
+	var cmd_order := array{};
 	text := SplitWords(text);
 	foreach cmd in ( text )
 		if ( cmd["[["] && cmd["]]"] )
 			cmd["[["] := "";
 			cmd["]]"] := "";
 			cmd := cmd_list[CInt(cmd)];
-			cmd_list.Append(cmd);
+			cmd_order.Append(cmd);
 		endif
 		sleepms(2);
 	endforeach
 	text := "";
 
-	return cmd_list;
+	return cmd_order;
 endfunction

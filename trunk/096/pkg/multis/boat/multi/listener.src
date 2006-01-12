@@ -20,7 +20,7 @@ program BoatController(boat)
 	while ( boat )
 		var ev;
 		
-		if ( repeat_cmd != -1 && !Events_Waiting() )
+		if ( repeat_cmd == -1 && !Events_Waiting() )
 			while ( !ev )
 				if ( last_sound < polcore().systime-120 )
 					PlaySoundEffect(boat, 0x14);
@@ -41,6 +41,7 @@ program BoatController(boat)
 		sleepms(delay);		
 				
 		if ( ev.text )
+			
 			if ( (boat.tillerman).IsOnBoat(boat, ev.source) )
 				if ( (boat.tillerman).CanCommand(ev.source) )
 					var cmd_list := ParseCommands(ev.text);
@@ -63,22 +64,35 @@ program BoatController(boat)
 endprogram
 
 function Initialize(boat)
-	while ( !(boat.tillerman).GetOwner() )
-		sleep(2);
-	endwhile
-	
 	SetObjProperty(boat.tillerman, "#PID", GetPid());
 	
-	//ToDo:
-	//Consider checking the size of the boat then set this accordingly.
-	RegisterForSpeechEvents(boat, 15);
+	if ( !(boat.tillerman).GetOwner() )
+		SetName(boat.tillerman, "a tiller man [awaiting owner]");
+		while ( !(boat.tillerman).GetOwner() )
+			sleep(2);
+		endwhile
+		var name := (boat.tillerman).desc;
+		name[" [awaiting owner]"] := "";
+		SetName(boat.tillerman, name);
+	endif
+	
+	// Ensures the boat only listens as far as it needs to from its mid-point (usually the mast)
+	var foot_print := boat.footprint;
+	var bow_dist := CoordinateDistance(foot_print.xmin, foot_print.ymin, boat.x, boat.y);
+	var stern_dist := CoordinateDistance(foot_print.xmax, foot_print.ymax, boat.x, boat.y);
+	if ( bow_dist > stern_dist )
+		foot_print := bow_dist;
+	else
+		foot_print := stern_dist;
+	endif
+	RegisterForSpeechEvents(boat, foot_print);
 	
 	return 1;
 endfunction
 
 function DoCommand(byref boat, byref cmd)
 	var cmd_cfg := ReadConfigFile(":boat:config/commands");
-	var cmd_elem := GetConfigStringArray(cmd_cfg[cmd], "CMD");
+	var cmd_elem := cmd_cfg[cmd];
 	
 	if ( cmd_elem.Anchor == 2 )
 		if ( !(boat.tillerman).IsAnchored() )
