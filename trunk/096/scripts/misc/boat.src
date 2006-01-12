@@ -9,9 +9,16 @@
  * which can be found in /pkg/systems/boat/
  *
  */
+use uo;
 use os;
 
-
 Program CoreScript_Boat(multi)
-	return start_script(":boat:multi/listener", multi);
+	var result := start_script(":boat:multi/listener", multi);
+	
+	if ( result.errortext )
+		PrintTextAbove(multi, "Error initializing control script");
+		PrintTextAbove(multi, ""+result.errortext);
+	endif
+	
+	return result;
 endprogram
