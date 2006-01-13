@@ -13,6 +13,9 @@ Please be aware that this is a live deveopment environment.
 Things will change and at times a script may not compile.
 Do not use it for a live shard because of the above mentioned reasons.
 
+Any issues, comments, compliments:
+Post to the 'POL Distro Dev' board at http://www.polserver.com
+
 !!! NOTICE !!!
 -----------------------------------------------------------------------
 
@@ -44,6 +47,10 @@ Do not use it for a live shard because of the above mentioned reasons.
 * Download the latest POL 096 test core at: (.zip file, newest is usually at the bottom of the list)
   http://games.groups.yahoo.com/group/pol-core-test/files/%20Latest%20Cores/
 * Save it next to the "096" folder.
+++ Note: ++
+        Do NOT post to the pol-core-test group with issues related to the scripts
+        you download from this. It is for pol.exe bug reports only. You are provided
+        with this link only so that you can download the POL 096 'test' core.
   
 * Extract the following files from the zip file to the "096" folder:
 POL.EXE
