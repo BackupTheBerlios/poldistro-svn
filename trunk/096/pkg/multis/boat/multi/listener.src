@@ -133,10 +133,10 @@ function ClosePlanks(byref boat)
 	var plank_b := boat.portplank;
 	
 	if ( plank_a.Extended() )
-		plank_a.Retract(0);
+		plank_a.Retract();
 	endif
 	
 	if ( plank_b.Extended() )
-		plank_b.Retract(0);
+		plank_b.Retract();
 	endif
 endfunction
