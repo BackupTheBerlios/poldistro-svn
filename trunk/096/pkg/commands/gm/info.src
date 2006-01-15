@@ -467,6 +467,9 @@ function ProcessInput(who, targ, input)
 		"methodedit":
 			MethodEdit(who, targ, input_info);
 			break;
+		"privedit":
+			PrivEdit(who, targ, input_info);
+			break;
 		default:
 			GumpPrompt(who, "Dont know what to do with edit function type '"+input_info.editFunc+"'");
 			break;
@@ -547,5 +550,21 @@ function MethodEdit(who, targ, input_info)
 			break;
 	endcase
 	
+	return 1;
+endfunction
+
+function PrivEdit(who, targ, input_info)
+	var priv_name := input_info.name;
+	
+	if ( targ.enabled(priv_name) )
+		SendSysMessage(who, priv_name + " disabled.");
+		targ.disable(priv_name);
+		RevokePrivilege(targ, priv_name);
+	else
+		SendSysMessage(who, priv_name + " enabled.");
+		GrantPrivilege(targ, priv_name);
+		targ.enable(priv_name);
+	endif
+
 	return 1;
 endfunction
