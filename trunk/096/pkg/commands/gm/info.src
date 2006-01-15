@@ -449,11 +449,16 @@ function ProcessInput(who, targ, input)
 
 	SendSysMessage(who, "+>"+input_info);
 
-	case ( CStr(input_info.editFunc) )
-		"PropEdit":
+	case ( Lower(CStr(input_info.editFunc)) )
+		"propedit":
 			PropEdit(who, targ, input_info);
+			break;
+		"coordedit":
+			CoordEdit(who, targ, input_info);
+			break;
 		default:
 			GumpPrompt(who, "Dont know what to do with edit function type '"+input_info.editFunc+"'");
+			break;
 	endcase
 	return 0;
 endfunction
@@ -461,8 +466,46 @@ endfunction
 function PropEdit(who, targ, input_info)
 	var value := ParseMembers(targ, input_info.name);
 	
-	var change := CStr(RequestGump(who, "New value to assign "+input_info.name+" to.", "'NULL' to set as non-value.", CStr(value)));
-	SendSysMessage(who, "*>"+ParseMembers(targ, input_info.name, change));
+	var change := CStr(RequestGump(who, "New value to assign "+input_info.name+" to.", "'NULL' to set as non-value.", CStr(value), CANCEL_BTN_ON));
+	if ( change != error )
+		ParseMembers(targ, input_info.name, change);
+	endif
+
+	return 1;
+endfunction
+
+function CoordEdit(who, targ, input_info)
+	var value := ParseMembers(targ, input_info.name);
+	
+	var change := CStr(RequestGump(who, "New value to assign "+input_info.name+" to.", "", CStr(value), CANCEL_BTN_ON));
+	if ( change == error )
+		return 0;
+	endif
+	
+	var x := targ.x;
+	var y := targ.y;
+	var z := targ.z;
+	var realm := targ.realm;
+	
+	case ( Lower(input_info.name) )
+		"x": 
+			x := CInt(change);
+			break;
+		"y": 
+			y := CInt(change); 
+			break;
+		"z": z := 
+			z := CInt(change);
+			break;
+		"realm" : 
+			realm := CStr(change);
+			break;
+	endcase
+		
+	var result := MoveObjectToLocation(targ, x, y, z, realm, MOVEOBJECT_FORCELOCATION);
+	if ( result.errortext )
+		GumpPrompt(who, "Movement Error [P] "+result);
+	endif
 
 	return 1;
 endfunction
