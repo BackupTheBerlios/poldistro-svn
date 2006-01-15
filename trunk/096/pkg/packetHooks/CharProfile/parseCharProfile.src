@@ -1,4 +1,4 @@
-/* $Id: parseCharProfile.src 661 2005-10-26 15:39:23Z muaddiblsd $
+/* $Id$
  *
  */
 use uo;
@@ -27,7 +27,10 @@ CONST OFFSET_CMDTYPE := 8;
 CONST OFFSET_NEW_PROFILE_TEXTLEN := 10;
 CONST OFFSET_NEW_PROFILE := 12;
 
-program runScript_CharProfileRequest( who, packet )
+program runScript_CharProfileRequest( params )
+	var who := params[1];
+	var packet := params[2];
+	params := 0; // Not needed anymore.
 
 	var mode := packet.GetInt8(OFFSET_MODE); //mode 0 for request, 1 for update
 	var id := packet.GetInt32(OFFSET_SERIAL_IN);  //serial of requested profile
