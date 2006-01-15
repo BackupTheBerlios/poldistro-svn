@@ -193,7 +193,8 @@ function DisplayVitals(targ, byref gump, byref y_pos)
 	var num_vitals := vitals.Size();
 	GFResizePic(gump, 145, y_pos, GFCfgConst("Defaults", "ForeGround"), 340, (num_vitals*20));
 	foreach vital_name in ( vitals )
-		GFAddButton(gump, 150, (y_pos+3), 2117, 2118, GF_CLOSE_BTN);
+		var btn_id := GFAddButton(gump, 150, (y_pos+3), 2117, 2118, GF_CLOSE_BTN);
+		RegisterButton(btn_id, vital_name, "vitalEdit");
 		GFTextLine(gump, 175, y_pos, 2100, vital_name);
 		var value := AP_GetVital(targ, vital_name);
 		var max_value := AP_GetVitalMaximumValue(targ, vital_name);
@@ -244,7 +245,9 @@ function DisplayAttributes(targ, byref gump, byref entry, byref y_pos)
 		endif
 
 		foreach attrib_name in ( group )
-			GFAddButton(gump, 150, (y_pos+3), 2117, 2118, GF_CLOSE_BTN);
+			var btn_id := GFAddButton(gump, 150, (y_pos+3), 2117, 2118, GF_CLOSE_BTN);
+			RegisterButton(btn_id, attrib_name, "attribEdit");
+			
 			GFTextLine(gump, 175, y_pos, 2100, attrib_name);
 			var value := AP_GetTrueSkill(targ, attrib_name);
 			var mod_value := AP_GetSkillMod(targ, attrib_name);
@@ -272,7 +275,9 @@ function DisplayPrivileges(targ, byref gump, byref y_pos)
 	var num_privs := privs.Size();
 	GFResizePic(gump, 145, y_pos, GFCfgConst("Defaults", "ForeGround"), 340, (num_privs*20));
 	foreach priv_name in ( privs )
-		GFAddButton(gump, 150, (y_pos+3), 2117, 2118, GF_CLOSE_BTN);
+		var btn_id := GFAddButton(gump, 150, (y_pos+3), 2117, 2118, GF_CLOSE_BTN);
+		RegisterButton(btn_id, priv_name, "privEdit");
+		
 		GFTextLine(gump, 175, y_pos, 2100, priv_name);
 
 		var status := "Disabled";
@@ -297,7 +302,8 @@ function DisplayStorageAreas(targ, byref gump, byref y_pos)
 	foreach area_name in ( storage_areas )
 		var container := CP_GetStorageContainerForMobile(targ, area_name, CP_NOCREATE);
 		if ( container )
-			GFAddButton(gump, 150, (y_pos+3), 2117, 2118, GF_CLOSE_BTN);
+			var btn_id := GFAddButton(gump, 150, (y_pos+3), 2117, 2118, GF_CLOSE_BTN);
+			RegisterButton(btn_id, area_name, "openStorage");
 		endif
 		GFTextLine(gump, 175, y_pos, 2100, area_name);
 		y_pos := y_pos+20;
@@ -447,7 +453,7 @@ function ProcessInput(who, targ, input)
 		"PropEdit":
 			PropEdit(who, targ, input_info);
 		default:
-			GumpPrompt(who, "Dont know what to do with type '"+input_info.type+"'");
+			GumpPrompt(who, "Dont know what to do with edit function type '"+input_info.editFunc+"'");
 	endcase
 	return 0;
 endfunction
