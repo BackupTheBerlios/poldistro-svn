@@ -1,4 +1,5 @@
 /* $Id$
+ * script by MuadDib
  *
  */
 use uo;
@@ -36,12 +37,12 @@ program runScript_CharProfileRequest( params )
 	var id := packet.GetInt32(OFFSET_SERIAL_IN);  //serial of requested profile
                                                 //who
 	var chr := SystemFindObjectBySerial(id);
-	if(!chr || !chr.isa(POLCLASS_MOBILE))
-		return; //don't bother working on nonexistant or items :P
+	if( !chr.isa(POLCLASS_MOBILE) )
+		return 0; //don't bother working on nonexistant or items :P
 	endif
 
 	var cp_data_file  := DFOpenDataFile(":charprofile:CPFile", DF_CREATE);
-	var cp_elem       := DFFindElement(cp_data_file, who.serial, DF_CREATE);
+	var cp_elem       := DFFindElement(cp_data_file, chr.serial, DF_CREATE);
 	var cp_profile    := DFGetProp(cp_elem, "Profile", DF_CREATE);
 
 	if(mode == PROFILE_UPDATE_MODE)
