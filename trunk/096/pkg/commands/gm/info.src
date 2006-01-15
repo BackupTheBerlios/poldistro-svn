@@ -247,7 +247,7 @@ function DisplayAttributes(targ, byref gump, byref entry, byref y_pos)
 		foreach attrib_name in ( group )
 			var btn_id := GFAddButton(gump, 150, (y_pos+3), 2117, 2118, GF_CLOSE_BTN);
 			RegisterButton(btn_id, attrib_name, "attribEdit");
-			
+
 			GFTextLine(gump, 175, y_pos, 2100, attrib_name);
 			var value := AP_GetTrueSkill(targ, attrib_name);
 			var mod_value := AP_GetSkillMod(targ, attrib_name);
@@ -277,7 +277,7 @@ function DisplayPrivileges(targ, byref gump, byref y_pos)
 	foreach priv_name in ( privs )
 		var btn_id := GFAddButton(gump, 150, (y_pos+3), 2117, 2118, GF_CLOSE_BTN);
 		RegisterButton(btn_id, priv_name, "privEdit");
-		
+
 		GFTextLine(gump, 175, y_pos, 2100, priv_name);
 
 		var status := "Disabled";
@@ -297,7 +297,7 @@ function DisplayStorageAreas(targ, byref gump, byref y_pos)
 
 	var storage_areas := CP_GetStorageAreaNames();
 	var num_areas := storage_areas.Size();
-	
+
 	GFResizePic(gump, 145, y_pos, GFCfgConst("Defaults", "ForeGround"), 340, (num_areas*20));
 	foreach area_name in ( storage_areas )
 		var container := CP_GetStorageContainerForMobile(targ, area_name, CP_NOCREATE);
@@ -308,7 +308,7 @@ function DisplayStorageAreas(targ, byref gump, byref y_pos)
 		else
 			GFTextRight(gump, 480, y_pos, 2100, "(no container)");
 		endif
-		
+
 		GFTextLine(gump, 175, y_pos, 2100, name);
 		y_pos := y_pos+20;
 		sleepms(2);
@@ -444,7 +444,7 @@ function RegisterButton(btn_id, name, edit_function)
 	btn_info.editFunc := edit_function;
 	btn_info.name := name;
 	btn_list[btn_id] := btn_info;
-	
+
 	return 1;
 endfunction
 
@@ -470,6 +470,9 @@ function ProcessInput(who, targ, input)
 		"privedit":
 			PrivEdit(who, targ, input_info);
 			break;
+		"openstorage":
+			OpenStorage(who, targ, input_info);
+			break;
 		default:
 			GumpPrompt(who, "Dont know what to do with edit function type '"+input_info.editFunc+"'");
 			break;
@@ -479,7 +482,7 @@ endfunction
 
 function PropEdit(who, targ, input_info)
 	var value := ParseMembers(targ, input_info.name);
-	
+
 	var change := RequestGump(who, "New value to assign "+input_info.name+" to.", "'NULL' to set as non-value.", CStr(value), CANCEL_BTN_ON);
 	if ( change != error )
 		ParseMembers(targ, input_info.name, change);
@@ -490,32 +493,32 @@ endfunction
 
 function CoordEdit(who, targ, input_info)
 	var value := ParseMembers(targ, input_info.name);
-	
+
 	var change := RequestGump(who, "New value to assign "+input_info.name+" to.", "", CStr(value), CANCEL_BTN_ON);
 	if ( change == error )
 		return 0;
 	endif
-	
+
 	var x := targ.x;
 	var y := targ.y;
 	var z := targ.z;
 	var realm := targ.realm;
-	
+
 	case ( Lower(input_info.name) )
-		"x": 
+		"x":
 			x := CInt(change);
 			break;
-		"y": 
-			y := CInt(change); 
+		"y":
+			y := CInt(change);
 			break;
-		"z": z := 
+		"z": z :=
 			z := CInt(change);
 			break;
-		"realm" : 
+		"realm" :
 			realm := CStr(change);
 			break;
 	endcase
-		
+
 	var result := MoveObjectToLocation(targ, x, y, z, realm, MOVEOBJECT_FORCELOCATION);
 	if ( result.errortext )
 		GumpPrompt(who, "Movement Error [P] "+result);
@@ -526,12 +529,12 @@ endfunction
 
 function MethodEdit(who, targ, input_info)
 	var value := ParseMembers(targ, input_info.name);
-	
+
 	var change := RequestGump(who, "New value to assign "+input_info.name+" to.", "", CStr(value), CANCEL_BTN_ON);
 	if ( change == error )
 		return 0;
 	endif
-	
+
 	case ( Lower(input_info.name) )
 		"criminal":
 			targ.SetCriminal(CInt(change));
@@ -555,7 +558,7 @@ endfunction
 
 function PrivEdit(who, targ, input_info)
 	var priv_name := input_info.name;
-	
+
 	if ( targ.enabled(priv_name) )
 		SendSysMessage(who, priv_name + " disabled.");
 		targ.disable(priv_name);
@@ -567,4 +570,17 @@ function PrivEdit(who, targ, input_info)
 	endif
 
 	return 1;
+endfunction
+
+function OpenStorage(who, targ, input_info)
+	var storage_area := input_info.name;
+
+	// Kind of a kludge, but oh well, deal with it!
+	if ( storage_area == "backpack" )
+		SendOpenSpecialContainer(who, targ.backpack);
+		return 1;
+	else
+		var container := CP_GetStorageContainerForMobile(targ, storage_area, CP_NOCREATE);
+		return SendOpenSpecialContainer(who, container);
+	endif
 endfunction
