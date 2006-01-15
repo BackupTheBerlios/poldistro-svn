@@ -296,16 +296,20 @@ endfunction
 function DisplayStorageAreas(targ, byref gump, byref y_pos)
 
 	var storage_areas := CP_GetStorageAreaNames();
-
 	var num_areas := storage_areas.Size();
+	
 	GFResizePic(gump, 145, y_pos, GFCfgConst("Defaults", "ForeGround"), 340, (num_areas*20));
 	foreach area_name in ( storage_areas )
 		var container := CP_GetStorageContainerForMobile(targ, area_name, CP_NOCREATE);
+		var name := area_name;
 		if ( container )
 			var btn_id := GFAddButton(gump, 150, (y_pos+3), 2117, 2118, GF_CLOSE_BTN);
 			RegisterButton(btn_id, area_name, "openStorage");
+		else
+			GFTextRight(gump, 480, y_pos, 2100, "(no container)");
 		endif
-		GFTextLine(gump, 175, y_pos, 2100, area_name);
+		
+		GFTextLine(gump, 175, y_pos, 2100, name);
 		y_pos := y_pos+20;
 		sleepms(2);
 	endforeach
@@ -456,6 +460,13 @@ function ProcessInput(who, targ, input)
 		"coordedit":
 			CoordEdit(who, targ, input_info);
 			break;
+		"disconnect":
+			DisconnectClient(targ);
+			GumpPrompt(who, "Client has been disconnected.");
+			break;
+		"methodedit":
+			MethodEdit(who, targ, input_info);
+			break;
 		default:
 			GumpPrompt(who, "Dont know what to do with edit function type '"+input_info.editFunc+"'");
 			break;
@@ -466,7 +477,7 @@ endfunction
 function PropEdit(who, targ, input_info)
 	var value := ParseMembers(targ, input_info.name);
 	
-	var change := CStr(RequestGump(who, "New value to assign "+input_info.name+" to.", "'NULL' to set as non-value.", CStr(value), CANCEL_BTN_ON));
+	var change := RequestGump(who, "New value to assign "+input_info.name+" to.", "'NULL' to set as non-value.", CStr(value), CANCEL_BTN_ON);
 	if ( change != error )
 		ParseMembers(targ, input_info.name, change);
 	endif
@@ -477,7 +488,7 @@ endfunction
 function CoordEdit(who, targ, input_info)
 	var value := ParseMembers(targ, input_info.name);
 	
-	var change := CStr(RequestGump(who, "New value to assign "+input_info.name+" to.", "", CStr(value), CANCEL_BTN_ON));
+	var change := RequestGump(who, "New value to assign "+input_info.name+" to.", "", CStr(value), CANCEL_BTN_ON);
 	if ( change == error )
 		return 0;
 	endif
@@ -507,5 +518,34 @@ function CoordEdit(who, targ, input_info)
 		GumpPrompt(who, "Movement Error [P] "+result);
 	endif
 
+	return 1;
+endfunction
+
+function MethodEdit(who, targ, input_info)
+	var value := ParseMembers(targ, input_info.name);
+	
+	var change := RequestGump(who, "New value to assign "+input_info.name+" to.", "", CStr(value), CANCEL_BTN_ON);
+	if ( change == error )
+		return 0;
+	endif
+	
+	case ( Lower(input_info.name) )
+		"criminal":
+			targ.SetCriminal(CInt(change));
+			break;
+		"murderer":
+			targ.SetMurderer(CInt(change));
+			break;
+		"warmode":
+			targ.SetWarMode(CInt(change));
+			break;
+		"squelched":
+			targ.Squelched(CInt(change));
+			break;
+		default:
+			GumpPrompt(who, "Dont know how to handle method '"+input_info.name);
+			break;
+	endcase
+	
 	return 1;
 endfunction
