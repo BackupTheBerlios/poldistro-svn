@@ -473,6 +473,10 @@ function ProcessInput(who, targ, input)
 		"openstorage":
 			OpenStorage(who, targ, input_info);
 			break;
+		"vitaledit":
+			VitalEdit(who, targ, input_info);
+		"attribedit":
+			AttributeEdit(who, targ, input_info);
 		default:
 			GumpPrompt(who, "Dont know what to do with edit function type '"+input_info.editFunc+"'");
 			break;
@@ -553,6 +557,36 @@ function MethodEdit(who, targ, input_info)
 			break;
 	endcase
 	
+	return 1;
+endfunction
+
+function VitalEdit(who, targ, input_info)
+	
+	var value := AP_GetVital(targ, input_info.name);
+	var change := RequestGump(who, "New value to assign "+input_info.name+" to.", "", CStr(value), CANCEL_BTN_ON);
+	if ( change == error )
+		return 0;
+	endif
+	
+	AP_SetVital(targ, input_info.name, change);
+
+	return 1;
+endfunction
+
+function AttributeEdit(who, targ, input_info)
+	
+	var real_value := AP_GetTrueSkill(targ, input_info.name);
+	var mod_value := AP_GetSkillMod(targ, input_info.name);
+	var value := real_value+" "+mod_value;
+	var change := RequestGump(who, "New value to assign "+input_info.name+" to.", "real_value("+real_value+") modifier("+mod_value+")", CStr(value), CANCEL_BTN_ON);
+	if ( change == error )
+		return 0;
+	endif
+	
+	change := SplitWords(change, " ");
+	AP_SetTrueSkill(targ, input_info.name, change[1]);
+	AP_SetSkillMod(targ, input_info.name, change[2]);
+
 	return 1;
 endfunction
 
