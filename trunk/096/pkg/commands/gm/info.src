@@ -20,11 +20,9 @@ include ":containers:storageAreas";
 include ":combat:weaponInfo";
 include "include/arrays";
 
-CONST START_Y	:= 55;
-CONST END_Y	:= 410;
+CONST START_Y	:= 55;   // These are to track the display area height.
+CONST END_Y	:= 410;  // These are to track the display area height.
 CONST MENU_BTN	:= 0xF000; // Value of the first menu button.
-
-unload_scripts("");
 
 // Storing these globally just makes the script easier to use...
 var info_cfg;			// info.cfg
@@ -43,10 +41,10 @@ program textcmd_Info(who, serial)
 		index_list := GetConfigStringArray(info_cfg["Index"], "Index");
 	endif
 
-	var targ := Target(who);
+	var targ;
 	if ( serial )
 		targ := SystemFindObjectBySerial(CInt(serial));
-	elseif ( !targ )
+	else
 		targ := Target(who);
 	endif
 	if ( !targ.IsA(POLCLASS_MOBILE) )
@@ -59,7 +57,7 @@ program textcmd_Info(who, serial)
 
 	while ( 1 )
 		var gump := BuildGump(targ, cur_gump);
-		var input := GFSendGump(targ, gump);
+		var input := GFSendGump(who, gump);
 		input := input[0];
 
 		if ( input >= MENU_BTN )
