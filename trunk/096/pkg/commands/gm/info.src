@@ -43,8 +43,7 @@ program textcmd_Info(who, serial)
 		index_list := GetConfigStringArray(info_cfg["Index"], "Index");
 	endif
 
-	//var targ := Target(who);
-	var targ := who;
+	var targ := Target(who);
 	if ( serial )
 		targ := SystemFindObjectBySerial(CInt(serial));
 	elseif ( !targ )
@@ -62,8 +61,6 @@ program textcmd_Info(who, serial)
 		var gump := BuildGump(targ, cur_gump);
 		var input := GFSendGump(targ, gump);
 		input := input[0];
-
-		SendSysMessage(who, "Input-> "+input);
 
 		if ( input >= MENU_BTN )
 			cur_gump := input - MENU_BTN;
@@ -450,9 +447,7 @@ endfunction
 
 function ProcessInput(who, targ, input)
 	var input_info := btn_list[input];
-
-	SendSysMessage(who, "+>"+input_info);
-
+	
 	case ( Lower(CStr(input_info.editFunc)) )
 		"propedit":
 			PropEdit(who, targ, input_info);
@@ -550,7 +545,7 @@ function MethodEdit(who, targ, input_info)
 			targ.SetWarMode(CInt(change));
 			break;
 		"squelched":
-			targ.Squelched(CInt(change));
+			targ.Squelch(CInt(change));
 			break;
 		default:
 			GumpPrompt(who, "Dont know how to handle method '"+input_info.name);
@@ -591,14 +586,13 @@ function AttributeEdit(who, targ, input_info)
 endfunction
 
 function PrivEdit(who, targ, input_info)
+	who := who; // Stops compiler warning.
 	var priv_name := input_info.name;
 
 	if ( targ.enabled(priv_name) )
-		SendSysMessage(who, priv_name + " disabled.");
 		targ.disable(priv_name);
 		RevokePrivilege(targ, priv_name);
 	else
-		SendSysMessage(who, priv_name + " enabled.");
 		GrantPrivilege(targ, priv_name);
 		targ.enable(priv_name);
 	endif
