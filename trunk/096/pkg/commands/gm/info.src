@@ -22,9 +22,7 @@ include "include/arrays";
 
 CONST START_Y	:= 55;
 CONST END_Y	:= 410;
-
-CONST MENU_BTN	:= 0xA0; // Value of the first menu button.
-CONST DATA_BTN	:= 0xF0; // Value of the first data changing button.
+CONST MENU_BTN	:= 0xF000; // Value of the first menu button.
 
 unload_scripts("");
 
@@ -32,6 +30,9 @@ unload_scripts("");
 var info_cfg;			// info.cfg
 var index_list; 		// info.cfg "Index" lines from Settings elem
 var template;			// Template gump (so it doesn't need to be rebuilt)
+
+var btn_list := array{};	// Stores button information for the current gump (since its so dynamic)
+var btn_info := struct{"type", "value"}; // Individual button tracking that goes into the btn_list array.
 
 program textcmd_Info(who, serial)
 	info_cfg := ReadConfigFile(":commands:config/info");
@@ -62,12 +63,15 @@ program textcmd_Info(who, serial)
 		var input := GFSendGump(targ, gump);
 		input := input[0];
 		
+		SendSysMessage(who, "Input-> "+input);
+				
 		if ( input >= MENU_BTN )
 			cur_gump := input - MENU_BTN;
+			btn_list.Shrink(0); // New panel, reset button tracking.
+		elseif ( input > 0 )
+			ProcessInput(who, targ, input);
 		endif
-		
-		SendSysMessage(who, "Input->"+input);
-		
+				
 		if ( !input )
 			break;
 		elseif ( !who.connected )
@@ -151,7 +155,10 @@ endfunction
 
 function DisplayMember(targ, byref gump, byref entry, byref y_pos)
 	if ( entry[5] )
-		GFAddButton(gump, 150, (y_pos+3), 2117, 2118, GF_CLOSE_BTN);
+		var btn_id := GFAddButton(gump, 150, (y_pos+3), 2117, 2118, GF_CLOSE_BTN);
+		btn_info.type := entry[1]; // 'member' or 'custom'
+		btn_info.value := entry[3];
+		btn_list[btn_id] := btn_info;
 	endif
 
 	GFTextLine(gump, 175, y_pos, 2100, ParseEntryName(entry[2]));
@@ -335,12 +342,28 @@ function ParseEntryName(entry_name)
 	return entry_name;
 endfunction
 
-function ParseMembers(targ, members)
+function ParseMembers(targ, members, new_val:=error)
 	members := SplitWords(members, ".");
 	var result := targ;
 	foreach member in ( members )
 		var temp := result.Get_Member(member);
-		if ( temp == error )
+		
+		if ( new_val != error && _member_iter == members.Size() )
+			var old_type := Lower(TypeOf(temp));
+			if ( new_val == "NULL" )
+				new_val := "";
+			endif
+			case ( old_type )
+				"integer"	: value := CInt(new_val); break;
+				"string"	: value := CStr(new_val); break;
+				"double"	: value := CDbl(new_val); break;
+				default:
+					GumpPrompt(who, "Original data-type '"+old_type+"' not supported. No changes can be made.");
+					return error{"errortext":=old_type+" not a supported data type."};
+			endcase
+						
+			return result.Set_Member(member, new_val);			
+		elseif ( temp == error )
 			return error;
 		else
 			result := temp;
@@ -380,7 +403,6 @@ function ParseScriptName(path)
 	return path;
 endfunction
 
-
 function GumpTemplate(targ)
 	var gump := GFCreateGump();
 	GFPage(gump, 0);
@@ -409,4 +431,32 @@ function GumpTemplate(targ)
 	GFPage(gump, 1);
 
 	return gump;
+endfunction
+
+function ProcessInput(who, targ, input)
+	var input_info := btn_list[input];
+	
+	SendSysMessage(who, "+>"+input_info);
+	
+	case ( CStr(input_info.type) )
+		"member": "custom":
+			ChangeMember(who, targ, input_info);
+		default:
+			GumpPrompt(who, "Dont know what to do with type '"+input_info.type+"'");
+	endcase
+	return 0;
+endfunction
+
+function ChangeMember(who, targ, input_info)
+	var value;
+	if ( Lower(input_info.type) == "member" )
+		value := ParseMembers(targ, input_info.value);
+	else
+		value := GetCustom(targ, input_info.value);
+	endif
+	
+	var change := CStr(RequestGump(who, "New value to assign "+input_info.value+" to.", "'NULL' to set as non-value.", CStr(value)));
+	SendSysMessage(who, "*>"+ParseMembers(targ, input_info.value, change));
+	
+	return 1;
 endfunction
