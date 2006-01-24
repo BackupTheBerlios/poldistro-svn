@@ -18,6 +18,7 @@
  */
 use uo;
 use os;
+use file;
 use polsys;
 
 // * Global Variables *
@@ -241,9 +242,10 @@ endfunction
  * Return value
  *
  */
-function CP_StorageDebugMsg(text)
+function CP_StorageDebugMsg(report_text)
 	if ( STORAGE_DEBUG )
-		SysLog(text);
+		var script_name := GetProcess(GetPid()).name;
+		LogToFile("::log/storage.log", "["+script_name+"]: "+report_text, LOG_DATETIME);
 	endif
 
 	return 1;
