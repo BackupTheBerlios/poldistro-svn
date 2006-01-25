@@ -84,6 +84,7 @@ function BuildGump(targ, index_num)
 	var groups := GetConfigStringArray(cfg_elem, "Group");
 	var y_pos := START_Y;
 	BuildEntries(targ, gump, cfg_elem, y_pos);
+	
 	foreach group in ( groups )
 		var group_elem := info_cfg[group];
 		BuildEntries(targ, gump, group_elem, y_pos);
@@ -186,6 +187,7 @@ endfunction
 function DisplayVitals(targ, byref gump, byref y_pos)
 	var vitals := AP_GetVitalNames();
 	var num_vitals := vitals.Size();
+	
 	GFResizePic(gump, 145, y_pos, GFCfgConst("Defaults", "ForeGround"), 340, (num_vitals*20));
 	foreach vital_name in ( vitals )
 		var btn_id := GFAddButton(gump, 150, (y_pos+3), 2117, 2118, GF_CLOSE_BTN);
@@ -322,6 +324,7 @@ function DisplayReportables(targ, byref gump, byref y_pos)
 	GFHTMLArea(gump, 155, y_pos+7, 325, 186, lines, 0, 1);
 
 	y_pos := y_pos+340;
+	
 	return 1;
 endfunction
 
@@ -333,7 +336,9 @@ function DisplayWeaponInfo(targ, byref gump, byref entry, byref y_pos)
 		"damagedice":
 		"averagedamage":
 	endcase
+	
 	y_pos := y_pos+20;
+	
 	return 1;
 endfunction
 
@@ -342,6 +347,7 @@ function ParseEntryName(entry_name)
 		entry_name["_"] := " ";
 		sleepms(2);
 	endwhile
+	
 	return entry_name;
 endfunction
 
@@ -474,6 +480,7 @@ function ProcessInput(who, targ, input)
 			GumpPrompt(who, "Dont know what to do with edit function type '"+input_info.editFunc+"'");
 			break;
 	endcase
+	
 	return 0;
 endfunction
 
@@ -508,7 +515,7 @@ function CoordEdit(who, targ, input_info)
 		"y":
 			y := CInt(change);
 			break;
-		"z": z :=
+		"z":
 			z := CInt(change);
 			break;
 		"realm" :
