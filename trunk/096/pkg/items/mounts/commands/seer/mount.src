@@ -14,8 +14,15 @@ program command_Mount(who, type)
 	endif
 
 	Set_Critical(1);
+	var graphic := MP_GetMountGraphic(type);
+	if ( graphic == error )
+		SendSysMessage(who, "Error:"+graphic.errortext);
+		return 0;
+	endif
+	
 	var item := CreateItemAtLocation(who.x, who.y, who.z, MOUNT_OBJTYPE, 1);
-	item.graphic := MP_GetMountGraphic(type);
+	item.graphic := CInt(graphic);
+	
 	EquipItem(targ, item);
 	Set_Critical(0);
 	
