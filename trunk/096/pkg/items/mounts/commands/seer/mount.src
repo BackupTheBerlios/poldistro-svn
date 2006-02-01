@@ -11,6 +11,8 @@ program command_Mount(who, type)
 	if ( !targ.isa(POLCLASS_MOBILE) )
 		SendSysMessage(who, "Cancelled.");
 		return 0;
+	elseif ( !type )
+		type := 0xCC;
 	endif
 
 	Set_Critical(1);
