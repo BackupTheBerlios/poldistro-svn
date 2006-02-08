@@ -19,7 +19,7 @@ program cmd_unloadNPCDescs(who)
 		sleepms(2);
 	endforeach
 	
-	ReloadConfiguration();
+	SendSysMessage(who, "ReloadConfiguration() -> "+ReloadConfiguration());
 	
 	SendSysMessage(who, "All npcdesc.cfg files unloaded.");
 endprogram
