@@ -31,7 +31,7 @@ program BrainNerve(params)
 
 endprogram
 
-function ItemGivenEvent(npc, event)
+function ItemGivenEvent(npc, byref event)
 	var item := event.item;
 	var source := event.source;
 	

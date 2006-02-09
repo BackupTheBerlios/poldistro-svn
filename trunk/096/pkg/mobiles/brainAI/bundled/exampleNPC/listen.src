@@ -32,7 +32,7 @@ program BrainNerve(params)
 	endwhile
 endprogram
 
-function SpeechEvent(npc, event)
+function SpeechEvent(npc, byref event)
 	if ( event.text["restock"] )
 		Restock(npc, event.text);
 		return 1;
@@ -59,7 +59,7 @@ function SpeechEvent(npc, event)
 	return 1;
 endfunction
 
-function Restock(npc, text)
+function Restock(npc, byref text)
 	text := SplitWords(text);
 	var item_name := text[2];
 	var amount := CInt(text[3]);

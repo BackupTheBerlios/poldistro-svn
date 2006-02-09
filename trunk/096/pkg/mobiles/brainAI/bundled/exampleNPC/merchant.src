@@ -37,7 +37,7 @@ program BrainNerve(params)
 	endwhile
 endprogram
 
-function SoldEvent(npc, event)
+function SoldEvent(npc, byref event)
 
 	// Used to fix unused var report by ecompile: event;
 	event := event;
@@ -47,7 +47,7 @@ function SoldEvent(npc, event)
 	return 1;
 endfunction
 
-function BoughtEvent(npc, event)
+function BoughtEvent(npc, byref event)
 
 	// Used to fix unused var report by ecompile: event;
 	event := event;
