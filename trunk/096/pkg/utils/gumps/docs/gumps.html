@@ -296,7 +296,7 @@
 
       <tr>
           <td width="1%" bordercolor="#000000" bgcolor="#C0C0C0" bordercolorlight="#000000" bordercolordark="#000000" style="border-style:solid; border-width:1; " align="center" colspan="2">
-          <p align="center"><b><font face="Tahoma">GFPage</font></b></td>
+          <p align="center"><b><font face="Tahoma">GFResizePic</font></b></td>
       </tr>
       <tr>
           <td width="1%" bgcolor="#808080" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-left-style:solid; border-left-width:1; border-right-style:solid; border-right-width:1; border-bottom-style:solid; border-bottom-width:1" colspan="2">
@@ -304,7 +304,7 @@
       </tr>
       <tr>
           <td width="1%" bgcolor="#C0C0C0" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-style: solid; border-width: 1" colspan="2">
-          <font face="Tahoma" size="2">(byref gump, bool)</font></td>
+          <font face="Tahoma" size="2">(byref gump, x, y, gump_id, width, height)</font></td>
       </tr>
       <tr>
           <td width="25%" bgcolor="#C0C0C0" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-left-style:solid; border-left-width:1; border-right-style:none; border-right-width:medium; border-top-style:solid; border-top-width:1; border-bottom-style:solid; border-bottom-width:1">
@@ -320,10 +320,35 @@
       </tr>
       <tr>
           <td width="25%" bgcolor="#C0C0C0" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-left-style:solid; border-left-width:1; border-right-style:none; border-right-width:medium; border-top-style:none; border-top-width:medium; border-bottom-style:none; border-bottom-width:medium">
-          <font face="Tahoma" size="2">page_num</font></td>
+          <font face="Tahoma" size="2">x</font></td>
           <td width="102%" bgcolor="#C0C0C0" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-left-style:none; border-left-width:medium; border-right-style:solid; border-right-width:1; border-top-style:none; border-top-width:medium; border-bottom-style:none; border-bottom-width:medium" height="18">
-          <font face="Tahoma" size="2">The integer representing the page's number.<BR>
-          (page '0' is the background, always visible)</font></td>
+          <font face="Tahoma" size="2">The top-left spot of the X axis.</font></td>
+      </tr>
+      <tr>
+          <td width="25%" bgcolor="#C0C0C0" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-left-style:solid; border-left-width:1; border-right-style:none; border-right-width:medium; border-top-style:none; border-top-width:medium; border-bottom-style:none; border-bottom-width:medium">
+          <font face="Tahoma" size="2">y</font></td>
+          <td width="102%" bgcolor="#C0C0C0" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-left-style:none; border-left-width:medium; border-right-style:solid; border-right-width:1; border-top-style:none; border-top-width:medium; border-bottom-style:none; border-bottom-width:medium" height="18">
+          <font face="Tahoma" size="2">The top-left spot of the Y axis.</font></td>
+      </tr>
+      <tr>
+          <td width="25%" bgcolor="#C0C0C0" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-left-style:solid; border-left-width:1; border-right-style:none; border-right-width:medium; border-top-style:none; border-top-width:medium; border-bottom-style:none; border-bottom-width:medium">
+          <font face="Tahoma" size="2">gump_id</font></td>
+          <td width="102%" bgcolor="#C0C0C0" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-left-style:none; border-left-width:medium; border-right-style:solid; border-right-width:1; border-top-style:none; border-top-width:medium; border-bottom-style:none; border-bottom-width:medium" height="18">
+          <font face="Tahoma" size="2">The decimal number of the gump ID to resize.</font></td>
+      </tr>
+      <tr>
+          <td width="25%" bgcolor="#C0C0C0" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-left-style:solid; border-left-width:1; border-right-style:none; border-right-width:medium; border-top-style:none; border-top-width:medium; border-bottom-style:none; border-bottom-width:medium">
+          <font face="Tahoma" size="2">width</font></td>
+          <td width="102%" bgcolor="#C0C0C0" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-left-style:none; border-left-width:medium; border-right-style:solid; border-right-width:1; border-top-style:none; border-top-width:medium; border-bottom-style:none; border-bottom-width:medium" height="18">
+          <font face="Tahoma" size="2">The width (pixels) of the gump from position X.<BR>
+          Default is the gump's width.</font></td>
+      </tr>
+      <tr>
+          <td width="25%" bgcolor="#C0C0C0" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-left-style:solid; border-left-width:1; border-right-style:none; border-right-width:medium; border-top-style:none; border-top-width:medium; border-bottom-style:none; border-bottom-width:medium">
+          <font face="Tahoma" size="2">height</font></td>
+          <td width="102%" bgcolor="#C0C0C0" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-left-style:none; border-left-width:medium; border-right-style:solid; border-right-width:1; border-top-style:none; border-top-width:medium; border-bottom-style:none; border-bottom-width:medium" height="18">
+          <font face="Tahoma" size="2">The height (pixels) of how far to scale the gump downwards from position Y.<BR>
+          Default is the gump's height.</font></td>
       </tr>
       <tr>
           <td width="1%" bgcolor="#808080" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-style: solid; border-width: 1" colspan="2">
@@ -331,7 +356,8 @@
       </tr>
       <tr>
           <td width="1%" bgcolor="#C0C0C0" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-style: solid; border-width: 1" colspan="2">
-          <font face="Tahoma" size="2">Sets the page number to write to on the gump.</font></td>
+          <font face="Tahoma" size="2">Resizes a picture on a gump.<BR>
+          Note: Only certain gump sets can be resized. See GumpInfo.cfg for IDs of known resizable pictures.</font></td>
       </tr>
       <tr>
           <td width="1%" bgcolor="#808080" bordercolor="#000000" bordercolorlight="#000000" bordercolordark="#000000" style="border-style: solid; border-width: 1" colspan="2">
