@@ -31,7 +31,8 @@ program BrainNerve(params)
 endprogram
 
 function DoubleClickEvent(npc, byref event)
-	SendEvent(npc, "Virtual");
+	var new_event := struct{"type":="virtual", "source":=event.source};
+	SendEvent(npc, new_event);
 
 	return 1;
 endfunction

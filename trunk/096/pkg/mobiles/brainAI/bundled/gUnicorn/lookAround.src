@@ -18,6 +18,8 @@ program BrainNerve(params)
 			if ( NPC_LoadWatchList(npc).size() < 1 )
 				// No need to look around any longer. We're all alone :(
 				return 0;
+			else
+				SendEvent(npc, struct{"type":="virtual"});
 			endif
 			// Keep running while the npc sees something
 			// to prevent it from going to sleep.
@@ -26,6 +28,6 @@ program BrainNerve(params)
 		endif
 		
 		AI_ClearThoughts(npc, CLR_NERVE);
-		Sleep(5);
+		sleep(10);
 	endwhile
 endprogram
