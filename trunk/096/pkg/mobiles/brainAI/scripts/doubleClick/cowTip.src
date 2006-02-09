@@ -53,7 +53,7 @@ program npcTip(params)
 endprogram
 
 
-function CowTipEvent(npc, event)
+function CowTipEvent(npc, byref event)
 	PrintTextAbove(event.source, "*push*");
 	PlaySoundEffect(npc, 0x7D);
 	PerformAction(npc, 0x8);

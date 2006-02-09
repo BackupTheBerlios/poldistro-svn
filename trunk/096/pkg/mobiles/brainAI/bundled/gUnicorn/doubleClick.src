@@ -31,9 +31,7 @@ program BrainNerve(params)
 endprogram
 
 function DoubleClickEvent(npc, byref event)
-	AI_Speak(npc, "Eeeheee... that tickles!", SPEAK_TEXTTYPE_YELL, SPEAK_DOEVENT_ENABLE, WAKEUP);
-	AI_Speak(npc, "*moves away from "+(event.source).name+"*");
-	AI_Move(npc, event.source, NEMOVE_AWAY, NEMOVE_WALK, WAKEUP, 1);
+	SendEvent(npc, "Virtual");
 
 	return 1;
 endfunction
