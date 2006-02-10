@@ -54,3 +54,38 @@ function KP_IsLockable(object)
 	
 	return GetItemDescInfo(object).Lockable;
 endfunction
+
+/*
+ * KP_HasKeyForLock(container, lock_id)
+ *
+ * Purpose
+ * Determines if a container has a key that matches a lock_id
+ *
+ * Parameters
+ * container:	Container to search for keys in.
+ * lock_id:	Lock ID to match.
+ *
+ * Return value
+ * Returns 1 if a match was found.
+ * Returns 0 if no keys match the lock.
+ *
+ */
+function KP_HasKeyForLock(container, lock_id)
+	if ( container.IsA(POLCLASS_MOBILE) )
+		container := container.backpack;
+	endif
+	if ( lock_id.IsA(POLCLASS_ITEM) )
+		lock_id := GetObjProperty(lock_id, "LockId");
+	endif
+	
+	foreach item in ( container )
+		if ( item.IsKey() )
+			if ( item.KeyMatchesLock(lock_id) )
+				return 1;
+			endif
+		endif
+		sleepms(2);
+	endforeach
+	
+	return 0;
+endfunction

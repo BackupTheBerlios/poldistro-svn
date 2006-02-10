@@ -22,21 +22,9 @@ exported function SetLockId(key, lock_id)
 	SetObjProperty(key, "LockId", CStr(lock_id));
 endfunction
 
-exported function KeyMatchesLock(key, lock)
-	if ( lock == error )
-		return 0;
-	endif
-	
-	var lock_id := error;
-	if ( lock.GetLockId() )
-		lock_id := lock.GetLockId();
-	elseif ( TypeOf(lock) == "String" )
-		lock_id := lock;
-	else
+exported function KeyMatchesLock(key, lock_id)
+	if ( lock_id.IsA(POLCLASS_ITEM) )
 		lock_id := GetObjProperty(lock, "LockId");
-		if ( lock_id == error )
-			return 0;
-		endif
 	endif
 	
 	var key_id := GetLockId(key);

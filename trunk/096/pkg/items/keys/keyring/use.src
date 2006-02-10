@@ -22,22 +22,12 @@ program UseKeyRing(who, keyring)
 		SendSysMessage(who, "That is not lockable.");
 		return 0;
 	endif
-	
-	var matched := 0;
-	foreach key in ( EnumerateItemsInContainer(keyring) )
-		if ( key.KeyMatchesLock(targ) )
-			KP_ToggleLock(targ, who);
-			matched := 1;
-			break;
-		endif
-		sleepms(2);
-	endforeach
-	
-	if ( !matched )
+
+	if ( KP_HasKeyForLock(keyring, targ) )
+		return 1;
+	else
 		SendSysMessage(who, "You do not have a key for that lock.");
 		return 0;
-	else
-		return 1;
 	endif
 endprogram
 
