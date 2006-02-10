@@ -24,6 +24,7 @@ program UseKeyRing(who, keyring)
 	endif
 
 	if ( KP_HasKeyForLock(keyring, targ) )
+		KP_ToggleLock(targ, who);
 		return 1;
 	else
 		SendSysMessage(who, "You do not have a key for that lock.");
