@@ -19,7 +19,7 @@ exported function IsDoor(door)
 endfunction
 
 exported function Toggle(door)
-	if ( IsOpened(door) )
+	if ( IsOpen(door) )
 		Close(door);
 	else
 		Open(door);
@@ -29,7 +29,7 @@ exported function Toggle(door)
 endfunction
 
 exported function Open(door)
-	if ( IsOpened(door) )
+	if ( IsOpen(door) )
 		return error{"errortext":="Door is already open."};
 	endif
 	
@@ -46,7 +46,7 @@ exported function Open(door)
 endfunction
 
 exported function Close(door)
-	if ( !IsOpened(door) )
+	if ( !IsOpen(door) )
 		return error{"errortext":="Door is already closed."};
 	endif
 	
@@ -62,7 +62,7 @@ exported function Close(door)
 	return 1;
 endfunction
 
-exported function IsOpened(door)
+exported function IsOpen(door)
 	return CInt(GetObjProperty(door, "Open"));
 endfunction
 
