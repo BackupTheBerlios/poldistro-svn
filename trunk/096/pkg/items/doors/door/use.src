@@ -19,7 +19,10 @@ endprogram
 
 function DoorIsLocked(mobile, door)
 	if ( !door.locked )
-		// Nothing to worry about
+		// Nothing to worry about.
+		return 0;
+	elseif ( door.IsOpen() )
+		// Allow an open door to always be closed.
 		return 0;
 	elseif ( door.IsInside(mobile) )
 		SendSysMessage(mobile, "You open the door from the inside.");
