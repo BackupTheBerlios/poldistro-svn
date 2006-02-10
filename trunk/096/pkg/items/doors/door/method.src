@@ -63,7 +63,11 @@ exported function Close(door)
 endfunction
 
 exported function IsOpen(door)
-	return CInt(GetObjProperty(door, "Open"));
+	if ( door.isopen )
+		return 1;
+	else
+		return CInt(GetObjProperty(door, "Open"));
+	endif
 endfunction
 
 exported function IsInside(door, object)
