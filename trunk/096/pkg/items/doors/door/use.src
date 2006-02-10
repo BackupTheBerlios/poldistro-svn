@@ -1,0 +1,12 @@
+/* $Id$
+ * 
+ * Purpose:
+ * Closes doors on startup.
+ *
+ */
+
+use uo;
+
+program useScript(mobile, door)
+	return 1;
+endprogram

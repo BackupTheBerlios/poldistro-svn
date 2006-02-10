@@ -1,0 +1,103 @@
+/* $Id$
+ *
+ */
+ 
+use uo;
+use os;
+use cfgfile;
+
+include "include/sounds";
+
+program Install()
+	return 1;
+endprogram
+
+exported function IsDoor(door)
+	// object.IsA(POLCLASS_DOOR) is more ideal but this allows for custom doors.
+	door := door;
+	return 1;
+endfunction
+
+exported function Toggle(door)
+	if ( Opened(door) )
+		Close(door);
+	else
+		Open(door);
+	endif
+	
+	return 1;
+endfunction
+
+exported function Open(door)
+	if ( Opened(door) )
+		return error{"errortext":="Door is already open."};
+	endif
+	
+	ChangeDoor(door);
+	
+	SetObjProperty(door, "Open", 1);	
+	
+	case ( Lower(ConfigInfo(door).DoorType) )
+		"metal" : PlaySoundEffect(door, SFX_METAL_DOOR_OPEN);
+		"wooden" : PlaySoundEffect(door, SFX_WOODEN_DOOR_OPEN);
+	endcase
+	
+	return 1;
+endfunction
+
+exported function Close(door)
+	if ( !Opened(door) )
+		return error{"errortext":="Door is already closed."};
+	endif
+	
+	ChangeDoor(door);
+	
+	EraseObjProperty(door, "Open");
+	case ( lower(ConfigInfo(door).DoorType) )
+		"metal" : PlaySoundEffect(door, SFX_METAL_DOOR_CLOSE);
+		"wooden" : PlaySoundEffect(door, SFX_WOODEN_DOOR_CLOSE);
+	endcase
+	
+	return 1;
+endfunction
+
+exported function Opened(door)
+	return CInt(GetObjProperty(door, "Open"));
+endfunction
+
+exported function Occupied(x, y, z)
+	// Used to prevent a door slamming closed if a character is in the way.
+	return ListMobilesNearLocationEX(x, y, z, 0, LISTEX_FLAG_HIDDEN+LISTEX_FLAG_NORMAL);
+endfunction
+
+/***********
+ *
+ * Private functions
+ *
+ **********/
+
+function ChangeDoor(door)
+	if ( door.container )
+		return 0;
+	endif
+	
+	var move_state := door.movable;
+	var door_info := ConfigInfo(door);
+	
+	Set_Critical(1);	
+	
+	door.movable := 1;
+	door.graphic := door_info.ChangeTo;
+	
+	MoveObjectToLocation(door, door.x+door_info.xmod, door.y+door_info.ymod, door.z, MOVEITEM_FORCELOCATION);
+	
+	door.movable := move_state;
+	EraseObjProperty(door, "open");
+	
+	Set_Critical(0);
+endfunction
+
+function ConfigInfo(door)
+	var config := ReadConfigFile(":*:itemdesc");
+	return config[door.graphic];
+endfunction
