@@ -6,7 +6,9 @@
  */
 
 use uo;
+use os;
+use cfgfile;
 
 program useScript(mobile, door)
-	return 1;
+	door.Toggle();
 endprogram
