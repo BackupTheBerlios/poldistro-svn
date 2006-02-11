@@ -24,7 +24,7 @@ endfunction
 
 exported function KeyMatchesLock(key, lock_id)
 	if ( lock_id.IsA(POLCLASS_ITEM) )
-		lock_id := GetObjProperty(lock, "LockId");
+		lock_id := GetObjProperty(lock_id, "LockId");
 	endif
 	
 	var key_id := GetLockId(key);
