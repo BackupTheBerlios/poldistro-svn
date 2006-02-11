@@ -11,6 +11,8 @@ use os;
 use cfgfile;
 use util;
 
+include "include/damage";
+
 program TrapWalkOn(mobile, trap)
 	if ( mobile.dead )
 		// Ghosts dont trigger traps.
@@ -26,11 +28,8 @@ program TrapWalkOn(mobile, trap)
 	var cfg := ReadConfigFile(":*:itemdesc");
 	cfg := cfg[trap.objtype];
 	
-	var dmg := RandomDiceRoll(cfg.Damage);
-	var effect := cfg.Effect;
-
-	PlayStationaryEffect(trap.x, trap.y, trap.z, effect, 10, 11, 0, trap.realm);
-	ApplyRawDamage(mobile, dmg);
+	PlayStationaryEffect(trap.x, trap.y, trap.z, CInt(cfg.Animation), 10, 11, 0, trap.realm);
+	ApplyRawDamageEX(mobile, CInt(cfg.Damage));
 	
 	return 1;
 endprogram

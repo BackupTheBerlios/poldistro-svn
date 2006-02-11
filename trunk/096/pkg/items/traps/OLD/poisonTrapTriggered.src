@@ -15,7 +15,7 @@ program poisonTrapTriggered(parms)
 
 	PlaySoundEffect(who, SFX_232);
 	PrintTextAbovePrivate(who, message, who);
-	PlayStationaryEffect(item.x, item.y, item.z, FX_POISON_GAS, 10,10, 0, who.realm);
+	PlayStationaryEffect(item.x, item.y, item.z, GFX_POISON_GAS, 10,10, 0, who.realm);
 	
 	TS_StartTimer(who, "defaultPoison", 15, trapstrength);
 	
