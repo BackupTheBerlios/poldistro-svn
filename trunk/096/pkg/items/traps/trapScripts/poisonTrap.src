@@ -1,3 +1,7 @@
+/* $Id$
+ *
+ */
+
 use uo;
 use util;
 
@@ -5,7 +9,7 @@ include "include/client";
 include "include/damage";
 include ":timedscripts:timedScripts";
 
-program needletrap(params)
+program trapScript(params)
 	var mobile := params[1];
 	var object := params[2];
 	var trap_info := params[3];

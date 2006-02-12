@@ -1,5 +1,8 @@
 /* $Id$
  *
+ * Purpose:
+ * Trap script that turns victim's hair to an old and gray color.
+ *
  */
 
 use uo;
@@ -16,8 +19,14 @@ program trapScript(params)
 	params := 0; // Not needed anymore.
 	
 	SendSysMessage(mobile, "You set off a trap!");
-	PlayObjectCenteredEffect(mobile, GFX_EXPLODE_3, 10, 10);
-	ApplyRawDamageEX(mobile, RandomDiceRoll("5d10"));
+	
+	PlayObjectCenteredEffect(mobile, GFX_BLACK_GLOW, 10, 10);
+	
+	SleepMS(100);
+	
+	SendSysMessage(mobile, "You feel slightly aged...");
+	GetEquipmentByLayer(mobile, LAYER_HAIR).color := 1000;
+	GetEquipmentByLayer(mobile, LAYER_BEARD).color := 1000;
 	
 	return 1;
 endprogram
