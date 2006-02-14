@@ -309,7 +309,7 @@ function EndTimedScript(mobile, byref timer_name, byref num_poisons)
 		SendSysMessage(mobile, elem_info.EndMessage);
 	endif
 
-	if( elem_info.CureScript )
+	if( elem_info.EndScript )
 		var script := start_script(elem_info.EndScript, mobile);
 		if( script.errortext )
 			SysLog("Error::EndTimedScript() - "+script.errortext);
