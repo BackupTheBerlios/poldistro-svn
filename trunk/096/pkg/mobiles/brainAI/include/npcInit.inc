@@ -78,7 +78,7 @@ endfunction
  * mobile:	The npc that will be given the ammunition.
  *
  * Return value
- * Returns 1 or error
+ * Returns 1
  *
  */
 function NPC_SetupAmmo(mobile)
@@ -101,13 +101,9 @@ function NPC_SetupAmmo(mobile)
 
 			return 1;
 		endif
-	else
-		var temp := error{"errortext":="Error::NPC_SetupAmmo() - No 'AmmoType' was specified."};
-
-		NPC_ErrorSysLog(mobile, temp.errortext);
-		PrintTextAbove(mobile, temp.errortext);
-		return temp;
 	endif
+	
+	return 1;
 endfunction
 
 /*
