@@ -132,9 +132,7 @@ function NPC_SetupEquipment(mobile, elem_name:=0)
 	if ( !elem_name )
 		return NPC_SetupBackPack(mobile);
 	elseif ( !equip_cfg[elem_name] )
-		var errmsg := error{"errortext":="Error::NPC_SetupEquipment() - There is no elem ["+elem_name+"] in '::equip.cfg'"};
-		PrintTextAbove(mobile, errmsg);
-		return errmsg;
+		return error{"errortext":="Error::NPC_SetupEquipment() - There is no elem ["+elem_name+"] in '::equip.cfg'"};
 	else
 		return EquipFromTemplate(mobile, elem_name);
 	endif
@@ -242,21 +240,12 @@ function NPC_SetupName(mobile, name_elem:=0)
 
 	var npc_names := ReadConfigFile("::names");
 	if ( !npc_names[name_elem] )
-		var temp := error{"errortext" := "There is no elem ["+name_elem+"] in NAMES.CFG"};
-
-		NPC_ErrorSysLog(mobile, "Error::NPC_SetupName() - "+temp.errortext);
-		PrintTextAbove(mobile, temp.errortext);
-		return temp;
+		return error{"errortext" := "There is no elem ["+name_elem+"] in NAMES.CFG"};
 	endif
 
 	var name_list := GetConfigStringArray(npc_names[name_elem], "Name");
 	if ( name_list.Size() < 1 )
-		var temp := error{"errortext":="No names were found in the ["+name_elem+"] elem for names.cfg"};
-
-		SysLog("Error::NPC_SetupName() - "+temp.errortext);
-		PrintTextAbove(mobile, temp.errortext);
-
-		return temp;
+		return error{"errortext":="No names were found in the ["+name_elem+"] elem for names.cfg"};
 	endif
 
 	var my_name := mobile.name;
