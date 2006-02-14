@@ -13,8 +13,6 @@ const DEFAULT_CATEGORY	:= "None";
 
 var g_datafile := DFOpenDataFile(":brainAI:createnpc", DF_CREATE);
 
-unload_scripts("");
-
 program command_CreateNPC(who, template)
 	if ( !template )
 		template := SelectTemplateFromGump(who);
