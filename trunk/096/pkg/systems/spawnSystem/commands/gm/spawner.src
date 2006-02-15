@@ -81,8 +81,8 @@ function BuildGumpTemplate(realm_name:="")
 	GFPage(gump, 0);
 	GFClosable(gump, 0);
 	GFResizePic(gump, 0, 0, bkgnd_silvertrim, 640, 480);
-	GFResizePic(gump, 10, 10, bkgnd_dark_stone, 130, 460);
-	GFResizePic(gump, 145, 10, bkgnd_dark_stone, 485, 460);
+	GFResizePic(gump, 15, 15, bkgnd_dark_stone, 125, 450);
+	GFResizePic(gump, 145, 15, bkgnd_dark_stone, 480, 450);
 
 	GFAddButton(gump, 15, 23, 2117, 2118, GF_CLOSE_BTN, SHOW_REALMS_BTN);
 	GFTextLine(gump, 35, 20, 2100, "Realm List");

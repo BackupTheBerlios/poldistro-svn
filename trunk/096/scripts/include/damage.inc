@@ -223,3 +223,29 @@ endfunction
 function GetLastDamageInfo(mobile)
 	return GetObjProperty(mobile, "LastDamage");
 endfunction
+
+//
+// Resistance Functions 
+//
+
+/*
+ * GetResistances(mobile)
+ *
+ * Purpose
+ * Retrieves the resistances list for a mobile.
+ *
+ * Parameters
+ * mobile:	Mobile to retrieve the resistances for.
+ *
+ * Return value
+ * dictionary
+ * 
+ */
+function GetResistances(mobile)
+	var resistances := GetObjProperty(mobile, "Resistances");
+	if ( Lower(TypeOf(resistances)) != "dictionary" )
+		resistances := dictionary;
+	endif
+	
+	return resistances;
+endfunction
