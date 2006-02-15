@@ -1,3 +1,10 @@
+/* $Id$
+ * 
+ * Purpose
+ * Handles damages and resistances to damage types
+ *
+ */
+
 use uo;
 use os;
 use math;
@@ -272,6 +279,33 @@ function SetResistance(mobile, name, value)
 	endif
 	
 	resistances[name] := CDbl(value);
+	
+	return SetObjProperty(mobile, "Resistances", resistances);
+endfunction
+
+/*
+ * ModifyResistance(mobile, name, value)
+ * Purpose
+ * Modifies a resistance multiplier on a mobile.
+ *
+ * mobile:	Mobile to set the resistance multiplier for.
+ * name:	Name of the resistance type to change.
+ * value:	Adjustment to the multiplier.
+ *
+ * Return value
+ * Returns 1
+ *
+ */
+function ModifyResistance(mobile, name, value)
+	var resistances := GetObjProperty(mobile, "Resistances");
+	if ( Lower(TypeOf(resistances)) != "dictionary" )
+		resistances := dictionary;
+	endif
+	
+	var cur_value := CDbl(resistances[name]);
+	value := cur_value + CDbl(value);
+	
+	resistances[name] := value;
 	
 	return SetObjProperty(mobile, "Resistances", resistances);
 endfunction
