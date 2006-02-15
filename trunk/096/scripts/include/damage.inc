@@ -103,20 +103,26 @@ endfunction
  *---------------------------
  * Notes:
  * AOS deals with resistances as percentages. To keep POL more flexible, it uses multipliers. 
- * Stratics reports the max for any resistance type is 80% (80/100 = 0.8).
+ * Stratics reports the max for any resistance type is 80% (80/100 = 0.8). 
+ * % to Mult	(100-80)*0.010 = 0.2
+ * Mult to %	100-(0.2*100) = 80
  *
  * Examples: 
  * NPC resists 25% (1/4) of cold damage.
  * Cold-ResistMult 0.75
- * (10 * 0.75 = 7.5) Removes 2.5 points of damage. 
+ * (10 * 0.75 = 7.5) // Removes 2.5 points of damage. 
  *
  * NPC resists 50% (1/2) of cold damage.
  * Cold-ResistMult 0.5
- * (10 * 0.5 = 5) Removes 5 points of damage.
+ * (10 * 0.5 = 5) // Removes 5 points of damage.
  *
  * NPC resists 75% (3/4) of cold damage.
  * Cold-ResistMult 0.25
- * (10 * 0.25 = 2.5) Removes 7.5 points of damage.
+ * (10 * 0.25 = 2.5) // Removes 7.5 points of damage.
+ *
+ * NPC resists 80% (4/5 max AOS resitance)
+ * Cold-ResistMult 0.80
+ * (10 * 0.2 = 2) // Removes 8 points of damae.
  *
  * NPC is immune to fire damage
  * Fire-ResistMult 0.0
