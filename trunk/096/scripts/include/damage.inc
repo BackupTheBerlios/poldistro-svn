@@ -143,23 +143,7 @@ function CalcDamageAmount(mobile, amount, type)
 		return amount;
 	endif
 	
-	var resistance_mult := error;
-	var res_prop := GetObjProperty(mobile, "Resistances");
-	if ( res_prop.Exists(type) )
-		// Resistances CProp overrides the NPCDESC.CFG settings.
-		// Can also be used on players for their resistances.
-		resistance_mult := CDbl(res_prop[type]);
-	elseif ( mobile.npctemplate )
-		// Looks for type-ResistMult in the NPCDESC.CFG
-		// Example 'Physical-ResistMult 0.0' means the NPC is immune to physical damage.
-		// 'Fire-ResistMult 2.0' means fire does double damage to the NPC.
-		// 'Energy-ResistMult 0.5' means 50% reduction.
-		var npc_elem := NPC_GetNPCConfig(mobile);
-		var temp := GetConfigReal(npc_elem, type+"-ResistMult");
-		if (  temp != error )
-			resistance_mult := temp;
-		endif
-	endif
+	var resistance_mult := GetResistance(mobile, type);	
 			
 	if ( resistance_mult == error )
 		// Do nothing, there is no resistance.
@@ -229,23 +213,65 @@ endfunction
 //
 
 /*
- * GetResistances(mobile)
+ * GetResistance(mobile, type)
  *
  * Purpose
  * Retrieves the resistances list for a mobile.
  *
  * Parameters
  * mobile:	Mobile to retrieve the resistances for.
+ * type:	Optional argument.
+ *		If 0 or blank, will return a dictionary of all resistances.
+ *		If specified, will return a double for that value.
  *
  * Return value
- * dictionary
+ * dictionary or double
  * 
  */
-function GetResistances(mobile)
+function GetResistance(mobile, type:=0)
+	var resistances := GetObjProperty(mobile, "Resistances");
+	if ( Lower(TypeOf(resistances)) != "dictionary" )
+		resistances := dictionary;
+	endif
+	if ( !type )
+		return resistances;
+	elseif ( resistances.Exists(type) )
+		// Resistances CProp overrides the NPCDESC.CFG settings.
+		// Can also be used on players for their resistances.
+		return CDbl(resistances[type]);
+	elseif ( mobile.npctemplate )
+		// Looks for type-ResistMult in the NPCDESC.CFG
+		var npc_elem := NPC_GetNPCConfig(mobile);
+		var mult := GetConfigReal(npc_elem, type+"-ResistMult");
+		if (  mult != error )
+			return CDbl(mult);
+		endif
+	else
+		return 1.0;
+	endif
+endfunction
+
+/*
+ * SetResistance(mobile, name, value)
+ *
+ * Purpose
+ * Sets a resistance multiplier on a mobile.
+ *
+ * mobile:	Mobile to set the resistance multiplier for.
+ * name:	Name of the resistance type to set.
+ * value:	Multiplier for the resistance.
+ *
+ * Return value
+ * Returns 1
+ *
+ */
+function SetResistance(mobile, name, value)
 	var resistances := GetObjProperty(mobile, "Resistances");
 	if ( Lower(TypeOf(resistances)) != "dictionary" )
 		resistances := dictionary;
 	endif
 	
-	return resistances;
+	resistances[name] := CDbl(value);
+	
+	return SetObjProperty(mobile, "Resistances", resistances);
 endfunction
