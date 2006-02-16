@@ -53,7 +53,7 @@ program MainHitScript(attacker, defender, weapon, armor, basedamage, rawdamage)
 	// Raw = post armor
 	//
 	if ( rawdamage > 0 )
-		ApplyRawDamageEX(defender, CInt(rawdamage), DMG_DEFAULT);
+		ApplyRawDamageEX(defender, CInt(rawdamage));
 		MakeBleed(defender);
 	endif
 endprogram
