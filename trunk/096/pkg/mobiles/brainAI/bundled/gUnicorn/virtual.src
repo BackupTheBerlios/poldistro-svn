@@ -1,5 +1,6 @@
 use uo;
 use os;
+use math;
 use util;
 
 include ":brainAI:npcNerves";
@@ -28,13 +29,16 @@ program BrainNerve(params)
 endprogram
 
 function SomethingLame(npc)
-	var effect := RandomInt(5);
+	var effect := RandomInt(7);
 	case ( effect )
 		0: 1: 2:
 			SaySomething(npc);
 			break;
 		3:
 			RainbowStuff(npc);
+			break;
+		6:
+			FartFireworks(npc);
 			break;
 		default:
 			break;
@@ -45,39 +49,53 @@ endfunction
 
 function RainbowStuff(npc)
 	var orig_color := npc.color;
+	var speech_color := npc.speech_color;
 	
-	AI_Speak(npc, "RED!");
+	npc.speech_color := 32;
 	npc.color := 32;
+	AI_Speak(npc, "RED!");
 	sleepms(600);
 
-	AI_Speak(npc, "ORANGE!");
+	npc.speech_color := 44;
 	npc.color := 44;
+	AI_Speak(npc, "ORANGE!");
 	sleepms(600);
 
-	AI_Speak(npc, "YELLOW!");
+	npc.speech_color := 53;
 	npc.color := 53;
+	AI_Speak(npc, "YELLOW!");
 	sleepms(600);
 
-	AI_Speak(npc, "GREEN!");
+	npc.speech_color := 462;
 	npc.color := 462;
+	AI_Speak(npc, "GREEN!");
 	sleepms(600);
 
-	AI_Speak(npc, "BLUE!");
+	npc.speech_color := 3;
 	npc.color := 3;
+	AI_Speak(npc, "BLUE!");
 	sleepms(600);
 
-	AI_Speak(npc, "INDIGO!");
+	npc.speech_color := 818;
 	npc.color := 818;
+	AI_Speak(npc, "INDIGO!");
 	sleepms(600);
 
-	AI_Speak(npc, "VIOLET!");
+	npc.speech_color := 223;
 	npc.color := 223;
+	AI_Speak(npc, "VIOLET!");
 	sleepms(700);
 
+	npc.speech_color := speech_color;
 	npc.color := orig_color;
 	AI_Speak(npc, "UNICORN POWER!");
 	SparkleEffect(npc);
 	return 1;
+endfunction
+
+function FartFireworks(npc)
+	var behind := Abs((npc.facing+4)%8);
+	// Need to go back a few spaces, do a wiggly fireball animation then mass sparkly effects.
 endfunction
 
 function SparkleEffect(npc)
