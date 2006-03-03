@@ -6,8 +6,8 @@ use uo;
 
 program EnterRegionZone(mobile, region_name)
 	
-	mobile.GrantPrivilege("Invul");
-	mobile.Enable("Invul");
+	mobile.GrantPrivilege("invul");
+	mobile.Enable("invul");
 	
 	if ( mobile.cmdlevel )
 		SendSysMessage(mobile, "Ahh another hard day of work in the office. (Entering "+region_name+")");

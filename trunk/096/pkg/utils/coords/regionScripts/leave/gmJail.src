@@ -11,7 +11,7 @@ program EnterRegionZone(mobile, region_name)
 		return 1;
 	else 
 		SendSysMessage(mobile, "Go on, get out of here and behave for once.");
-		mobile.Disable("Invul");
+		mobile.Disable("invul");
 		return 1;
 	endif
 	
