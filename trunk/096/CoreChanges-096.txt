@@ -1,4 +1,41 @@
 -- POL096 --
+03-07 MuadDib
+        Added: New Justice/Region config entry for Regions. NoCombat is a 0/1 Flag to set
+               a region to be a No Combat region. No Combat regions will not allow the 
+               Clicking of a mobile to select as a new opponent if they are in this region.
+               It will also reset opponent data for mob if one enters this region. This is
+               a PvP specific addon. It does NOT check for npcs, this will have to be done
+               via packethooks.
+               
+               When Entering a NoCombat region, while already in combat, if YOU are the
+               attacker, it will reset your fight. If you are the one being attacked, it
+               will reset the fight with the first "opponent" you have listed.
+
+03-06 MuadDib
+        Changed: Regen after being damaged delay was changed from 10 seconds to 2 seconds.
+        Changed: Regen delay after changing warmode was changed from 5 seconds to 2 seconds.
+        Changed: SE Expansion set to send UOGold (Final UOSE) packet of 0xB9807B.
+                 Expansion changes should not affect versioning due to the updated releases
+                 simply added a feature they kept hidden, or simply was a more patched up version
+                 on the CD.
+
+03-03 MuadDib
+        Changed: Optimized handling of mobile.connected in core.
+        
+03-02 MuadDib
+        Fixed: Handling of 0x22 Move Resync with "Player Noto" handling to send
+                 correct information.
+                 
+03-01 MuadDib
+        Changed: Handling of item's decayat property when moved.
+        Fixed: Stack checking for decayat handling when moving items.
+        Fixed: Newly created characters will now have the connected member set
+               correctly.
+        
+01-18 Shinigami
+        Changed : Prop script_process.attached_to will return NPC if it's his AI-Script.
+                  (script_process comes from NPC.process or uo::GetProcess(pid))
+
 01-09 MuadDib
         Changed: Added check for No Decay timer on items when resetting decay time.
         Fixed: AOS Tooltips will now correctly show the Reputation of mobiles. In order
