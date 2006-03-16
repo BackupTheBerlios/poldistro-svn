@@ -1,4 +1,10 @@
 -- POL096 --
+03-15 MuadDib
+        Fixed: Attack Request will be automatically denied if Defender.serial == Attacker.serial.
+        Changed: Packet Logs (using .startlog and .stoplog) format has changed. It has been updated
+                 for easier reading and to match Packet Loggers format more (Such as UOLog and
+                 Spy UO).
+                 
 03-07 MuadDib
         Added: New Justice/Region config entry for Regions. NoCombat is a 0/1 Flag to set
                a region to be a No Combat region. No Combat regions will not allow the 
@@ -14,10 +20,6 @@
 03-06 MuadDib
         Changed: Regen after being damaged delay was changed from 10 seconds to 2 seconds.
         Changed: Regen delay after changing warmode was changed from 5 seconds to 2 seconds.
-        Changed: SE Expansion set to send UOGold (Final UOSE) packet of 0xB9807B.
-                 Expansion changes should not affect versioning due to the updated releases
-                 simply added a feature they kept hidden, or simply was a more patched up version
-                 on the CD.
 
 03-03 MuadDib
         Changed: Optimized handling of mobile.connected in core.
