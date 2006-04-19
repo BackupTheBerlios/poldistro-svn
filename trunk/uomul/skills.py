@@ -26,19 +26,13 @@ class Skills(Index):
 		return skill
 	
 	def getSkills(self):
-		#TODO: Calculate the _actual_ range of the index, 'cause last
-		# seem to be empty.
+		#TODO: Calculate the _actual_ range of the index, 'cause index
+		# seems to have alot of empty stuff.
 		skills = [self.getSkill(skill) for skill in range(0, 15)]
 		return skills
 
 
 class SkillGrp:
-	def __init__(self, file):
+	def __init__(self, file='SkillGrp.mul'):
 		self.data = getData(file)
-		self.count = self.getCount()
-		pass
-
-	def getCount():
-		count = unpack('i', self.data[:4][0])
-		return count
 
