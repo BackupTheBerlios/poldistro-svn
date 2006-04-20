@@ -17,6 +17,7 @@ class Skills(Index):
 
 	def __getMax(self):
 		'''Determine the max number of skills'''
+		# if index lookup is -1 it's invalid
 		valid = [entry for entry in self.entries if entry[0] > -1]
 		return len(valid)
 	
@@ -26,12 +27,12 @@ class Skills(Index):
 		if id > self.max-1:
 			#TODO Define a custom class Exception SkillError
 			raise NameError('Skill ID is out of range.')
-		sidx = self.entries[id]
-		skillt = unpack('b'+str(sidx[1]-1)+'s',
-			self.data[sidx[0]:sidx[0]+sidx[1]])
+		skillidx = self.entries[id]
+		unpacked = unpack('b'+str(skillidx[1]-1)+'s',
+			self.data[skillidx[0]:skillidx[0]+skillidx[1]])
 		skill = {}
-		skill['active'] = skillt[0]
-		skill['name'] = skillt[1][:-1]
+		skill['active'] = unpacked[0]
+		skill['name'] = unpacked[1][:-1]
 		return skill
 	
 	def setSkill(self, id, name, active):
