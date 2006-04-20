@@ -30,12 +30,17 @@ class Skills(Index):
 		skillt = unpack('b'+str(sidx[1]-1)+'s',
 			self.data[sidx[0]:sidx[0]+sidx[1]])
 		skill = {}
-		skill['action'] = skillt[0]
+		skill['active'] = skillt[0]
 		skill['name'] = skillt[1][:-1]
 		return skill
 	
-	def setSkill(self, id, name, action):
+	def setSkill(self, id, name, active):
 		'''Replace an already existing skill, with a new one.'''
+		entries = self.entries[:]
+		idxold = entries.pop(id)
+		idxnew = (idxold[0], len(name), 0)
+		entries.insert(id, idxnew)
+		return entries
 
 	def getSkills(self):
 		skills = [self.getSkill(skill) for skill in range(0, self.max)]
