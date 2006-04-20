@@ -14,6 +14,7 @@ class Skills(Index):
 		Index.__init__(self, indexfile)
 		self.data = getData(file)
 		self.max = self.__getMax()
+		self.newentries = []
 
 	def __getMax(self):
 		'''Determine the max number of skills'''
@@ -36,17 +37,25 @@ class Skills(Index):
 		return skill
 	
 	def setSkill(self, id, name, active):
-		'''Replace an already existing skill, with a new one.'''
-		entries = self.entries[:]
-		idxold = entries.pop(id)
+		'''Replace an already existing skill, with a new one'''
+		if len(self.newentries) == 0:
+			self.newentries = self.entries[:]
+		self.newentries = [list(entry) for entry in self.newentries]
+		idxold = self.newentries.pop(id)
 		idxnew = (idxold[0], len(name), 0)
-		entries.insert(id, idxnew)
-		return entries
+		self.newentries.insert(id, idxnew)
+		temp = idxold[1] - idxnew[1]
+		for i in range(id+1, self.max):
+			self.newentries[i][0] += temp
+		return self.newentries
 
 	def getSkills(self):
 		skills = [self.getSkill(skill) for skill in range(0, self.max)]
 		return skills
 
+	def writeSkills(self, entries=self.newentries, data):
+		fsock = open('Skills.idx', 'w')
+		fsock.close()
 
 class SkillGrp:
 	def __init__(self, file='SkillGrp.mul'):
