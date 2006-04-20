@@ -24,9 +24,11 @@ class Skills(Index):
 		'''Get skill name, and if active or not
 		returns dict'''
 		if id > self.max-1:
-			return
+			#TODO Define a custom class Exception SkillError
+			raise NameError('Skill ID is out of range.')
 		sidx = self.entries[id]
-		skillt = unpack('b'+str(sidx[1]-1)+'s', self.data[sidx[0]:sidx[0]+sidx[1]])
+		skillt = unpack('b'+str(sidx[1]-1)+'s',
+			self.data[sidx[0]:sidx[0]+sidx[1]])
 		skill = {}
 		skill['action'] = skillt[0]
 		skill['name'] = skillt[1][:-1]
