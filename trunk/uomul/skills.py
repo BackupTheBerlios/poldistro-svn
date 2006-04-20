@@ -13,11 +13,18 @@ class Skills(Index):
 	def __init__(self, file='skills.mul', indexfile='Skills.idx'):
 		Index.__init__(self, indexfile)
 		self.data = getData(file)
-		self.count = len(self.entries)
+		self.max = self.__getMax()
+
+	def __getMax(self):
+		'''Determine the max number of skills'''
+		valid = [entry for entry in self.entries if entry[0] > -1]
+		return len(valid)
 	
 	def getSkill(self, id):
 		'''Get skill name, and if active or not
 		returns dict'''
+		if id > self.max-1:
+			return
 		sidx = self.entries[id]
 		skillt = unpack('b'+str(sidx[1]-1)+'s', self.data[sidx[0]:sidx[0]+sidx[1]])
 		skill = {}
@@ -25,10 +32,11 @@ class Skills(Index):
 		skill['name'] = skillt[1][:-1]
 		return skill
 	
+	def setSkill(self, id, name, action):
+		'''Replace an already existing skill, with a new one.'''
+
 	def getSkills(self):
-		#TODO: Calculate the _actual_ range of the index, 'cause index
-		# seems to have alot of empty stuff.
-		skills = [self.getSkill(skill) for skill in range(0, 15)]
+		skills = [self.getSkill(skill) for skill in range(0, self.max)]
 		return skills
 
 
