@@ -49,13 +49,13 @@ class Skills(Index):
 		idxntemp = idxnew[:]
 		idxntemp[1] += 2
 		self.newentries.insert(id, idxntemp)
-		temp = idxold[1] - idxnew[1]
+		temp = idxntemp[1] - idxold[1]
 		for i in range(id+1, self.max):
 			self.newentries[i][0] += temp
 		packed = pack('b'+str(idxnew[1])+'s', active, name) + '\x00'
 		temp = self.newdata[:idxold[0]] + packed + self.newdata[idxold[0]+idxold[1]:]
 		self.newdata = temp
-		return packed
+		return
 
 	def getSkills(self):
 		skills = [self.getSkill(skill) for skill in range(0, self.max)]
@@ -68,4 +68,8 @@ class Skills(Index):
 class SkillGrp:
 	def __init__(self, file='SkillGrp.mul'):
 		self.data = getData(file)
+
+
+if __name__ == '__main__':
+	s = Skills()
 
