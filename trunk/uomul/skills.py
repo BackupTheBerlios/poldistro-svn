@@ -23,6 +23,13 @@ class Skills(Index):
 		valid = [entry for entry in self.entries if entry[0] > -1]
 		return len(valid)
 	
+	def __flushData(self):
+		'''Copy the new data/entries to the cache and clean the new*'''
+		self.entries = self.newentries[:]
+		self.newentries = []
+		self.data = self.newdata[:]
+		self.newdata = ''
+
 	def getSkill(self, id):
 		'''Get skill name, and if active or not
 		returns dict'''
@@ -45,25 +52,31 @@ class Skills(Index):
 			self.newdata = self.data[:]
 		self.newentries = [list(entry) for entry in self.newentries]
 		idxold = self.newentries.pop(id)
-		idxnew = [idxold[0], len(name), 0]
-		idxntemp = idxnew[:]
-		idxntemp[1] += 2
-		self.newentries.insert(id, idxntemp)
-		temp = idxntemp[1] - idxold[1]
+		idxnew = [idxold[0], len(name)+2, 0] # we +2 for action and null char
+		self.newentries.insert(id, idxnew)
+		charodds = idxnew[1] - idxold[1]
 		for i in range(id+1, self.max):
-			self.newentries[i][0] += temp
-		packed = pack('b'+str(idxnew[1])+'s', active, name) + '\x00'
+			self.newentries[i][0] += charodds
+		packed = pack('b'+str(idxnew[1]-2)+'s', active, name) + '\x00'
 		temp = self.newdata[:idxold[0]] + packed + self.newdata[idxold[0]+idxold[1]:]
 		self.newdata = temp
-		return
 
 	def getSkills(self):
 		skills = [self.getSkill(skill) for skill in range(0, self.max)]
 		return skills
 
-	#def writeSkills(self, entries=self.newentries, data=self.newdata):
-	#	fsock = open('Skills.idx', 'w')
-	#	fsock.close()
+	def writeSkills(self, flush=True):
+		'''Write the changes to the files and flush the old data'''
+		idxpacked = pack('%di' % (len(self.newentries)*3),
+			*(i for entry in self.entries for i in entry))
+		fsock = open('Skills.idx', 'w')
+		fsock.write(idxpacked)
+		fsock.close()
+		fsock = open('skills.mul', 'w')
+		fsock.write(self.newdata)
+		fsock.close()
+		self.__flushData()
+
 
 class SkillGrp:
 	def __init__(self, file='SkillGrp.mul'):
