@@ -1,8 +1,11 @@
+# $Id$
+
 from index import Index
 from struct import unpack, pack
 
 
 def getData(file):
+	''''''
 	fsock = open(file, 'rb')
 	data = fsock.read()
 	fsock.close()
@@ -10,6 +13,7 @@ def getData(file):
 
 
 class Skills(Index):
+	'''TODO'''
 	def __init__(self, file='skills.mul', indexfile='Skills.idx'):
 		Index.__init__(self, indexfile)
 		self.data = getData(file)
@@ -37,7 +41,8 @@ class Skills(Index):
 			#TODO Define a custom class Exception SkillError
 			raise NameError('Skill ID is out of range.')
 		skillsidx = self.entries[id]
-		unpacked = unpack('b'+str(skillsidx[1]-1)+'s',
+		unpacked = unpack('b%ds' % (skillsidx[1]-1),
+		#unpacked = unpack('b'+str(skillsidx[1]-1)+'s',
 			self.data[skillsidx[0]:skillsidx[0]+skillsidx[1]])
 		skill = {}
 		skill['active'] = unpacked[0]
@@ -62,6 +67,7 @@ class Skills(Index):
 		self.newdata = temp
 
 	def getSkills(self):
+		'''Get a list of all the skills'''
 		skills = [self.getSkill(skill) for skill in range(0, self.max)]
 		return skills
 
@@ -79,10 +85,7 @@ class Skills(Index):
 
 
 class SkillGrp:
+	'''TODO'''
 	def __init__(self, file='SkillGrp.mul'):
 		self.data = getData(file)
-
-
-if __name__ == '__main__':
-	s = Skills()
 
