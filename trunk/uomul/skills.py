@@ -1,5 +1,4 @@
 # $Id$
-
 from index import Index
 from struct import unpack, pack
 
