@@ -61,7 +61,7 @@ class Skills(Index):
 		charodds = idxnew[1] - idxold[1]
 		for i in range(id+1, self.max):
 			self.newentries[i][0] += charodds
-		packed = pack('b'+str(idxnew[1]-2)+'s', active, name) + '\x00'
+		packed = pack('b%ds' % (idxnew[1]-2), active, name) + '\x00'
 		temp = self.newdata[:idxold[0]] + packed + self.newdata[idxold[0]+idxold[1]:]
 		self.newdata = temp
 
@@ -73,11 +73,11 @@ class Skills(Index):
 	def writeSkills(self, flush=True):
 		'''Write the changes to the files and flush the old data'''
 		idxpacked = pack('%di' % (len(self.newentries)*3),
-			*(i for entry in self.entries for i in entry))
-		fsock = open('Skills.idx', 'w')
+			*(i for entry in self.newentries for i in entry))
+		fsock = open('Skills.idx', 'wb')
 		fsock.write(idxpacked)
 		fsock.close()
-		fsock = open('skills.mul', 'w')
+		fsock = open('skills.mul', 'wb')
 		fsock.write(self.newdata)
 		fsock.close()
 		self.__flushData()

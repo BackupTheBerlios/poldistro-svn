@@ -3,16 +3,16 @@ from struct import unpack
 
 
 class Index:
-	def __init__(self, fname):
-		self.entries = self.__getEntries(fname)
+	def __init__(self, file):
+		self.entries = self.__getEntries(file)
 
-	def __getEntries(self, fname):
-		li = []
-		fsock = open(fname, 'rb')
+	def __getEntries(self, file):
+		entries = []
+		fsock = open(file, 'rb')
 		data = fsock.read()
 		fsock.close()
-		data = unpack(str(len(data)/4)+'i', data)
+		data = unpack('%di' % (len(data)/4), data)
 		for i in range(0, len(data), 3):
-			li.append(data[i:i+3])
-		return li
+			entries.append(data[i:i+3])
+		return entries 
 
