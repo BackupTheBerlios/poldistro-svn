@@ -4,7 +4,8 @@ from struct import unpack, pack
 
 
 def getData(file):
-	''''''
+	'''Get the data of a mul file'''
+	#TODO: Probably move this to some place generic
 	fsock = open(file, 'rb')
 	data = fsock.read()
 	fsock.close()
@@ -41,7 +42,6 @@ class Skills(Index):
 			raise NameError('Skill ID is out of range.')
 		skillsidx = self.entries[id]
 		unpacked = unpack('b%ds' % (skillsidx[1]-1),
-		#unpacked = unpack('b'+str(skillsidx[1]-1)+'s',
 			self.data[skillsidx[0]:skillsidx[0]+skillsidx[1]])
 		skill = {}
 		skill['active'] = unpacked[0]
@@ -62,8 +62,8 @@ class Skills(Index):
 		for i in range(id+1, self.max):
 			self.newentries[i][0] += charodds
 		packed = pack('b%ds' % (idxnew[1]-2), active, name) + '\x00'
-		temp = self.newdata[:idxold[0]] + packed + self.newdata[idxold[0]+idxold[1]:]
-		self.newdata = temp
+		tempdata = self.newdata[:idxold[0]] + packed + self.newdata[idxold[0]+idxold[1]:]
+		self.newdata = tempdata
 
 	def getSkills(self):
 		'''Get a list of all the skills'''
@@ -85,6 +85,23 @@ class Skills(Index):
 
 class SkillGrp:
 	'''TODO'''
+	NAME_LEN = 17
+
 	def __init__(self, file='SkillGrp.mul'):
 		self.data = getData(file)
+		self.count = self.__getGroupCount();
+		#self.groupnames = self.__getGroupNames()
+
+	def __getGroupCount(self):
+		count = unpack('i', self.data[:4])
+		return count[0]
+
+	'''def __getGroupNames(self):
+		groupnames = unpack('%ds' % (NAME_LEN*self.count), self.data[self.count:NAME_LEN*self.count])
+		return groupnames'''
+
+	def getGroupName(self, id):
+		if id > count-1:
+			raise NameError('Skill Group ID is out of range.')
+		groupname = unpack('17s', self.data[4+id*17:])
 
