@@ -4,7 +4,7 @@ from struct import unpack, pack
 
 
 def getData(file):
-	'''Get the data of a mul file'''
+	'''Get the data of a file'''
 	#TODO: Probably move this to some place generic
 	fsock = open(file, 'rb')
 	data = fsock.read()
@@ -22,7 +22,10 @@ class Skills(Index):
 		self.newdata = ''
 
 	def __getMax(self):
-		'''Determine the max number of skills'''
+		'''Calculate the max number of skills.
+		@return: then max skill number
+		@rtype: integer
+		'''
 		# if index lookup is -1 it's invalid
 		valid = [entry for entry in self.entries if entry[0] > -1]
 		return len(valid)
@@ -35,8 +38,12 @@ class Skills(Index):
 		self.newdata = ''
 
 	def getSkill(self, id):
-		'''Get skill name, and if active or not
-		returns dict'''
+		'''Get skill name.
+		@param id: the id of the skill who's name we want
+		@type id: integer
+		@return: the name of the skill and if active/passive
+		@rtype: dictionary
+		'''
 		if id > self.max-1:
 			#TODO Define a custom class Exception SkillError
 			raise NameError('Skill ID is out of range.')
@@ -44,12 +51,19 @@ class Skills(Index):
 		unpacked = unpack('b%ds' % (skillsidx[1]-1),
 			self.data[skillsidx[0]:skillsidx[0]+skillsidx[1]])
 		skill = {}
-		skill['active'] = unpacked[0]
+		skill['active'] = bool(unpacked[0])
 		skill['name'] = unpacked[1][:-1]
 		return skill
 	
 	def setSkill(self, id, name, active):
-		'''Replace an already existing skill, with a new one'''
+		'''Replace a skill with a new one.
+		@param id: the id of the skill to replace
+		@type id: integer
+		@param name: the name of new skill
+		@type name: string
+		@param active: wether the skill is active/passive
+		@type active: boolean
+		'''
 		if len(self.newentries) == 0:
 			self.newentries = self.entries[:]
 		if len(self.newdata) == 0:
@@ -61,7 +75,7 @@ class Skills(Index):
 		charodds = idxnew[1] - idxold[1]
 		for i in range(id+1, self.max):
 			self.newentries[i][0] += charodds
-		packed = pack('b%ds' % (idxnew[1]-2), active, name) + '\x00'
+		packed = pack('b%ds' % (idxnew[1]-2), int(active), name) + '\x00'
 		tempdata = self.newdata[:idxold[0]] + packed + self.newdata[idxold[0]+idxold[1]:]
 		self.newdata = tempdata
 
@@ -71,7 +85,10 @@ class Skills(Index):
 		return skills
 
 	def writeSkills(self, flush=True):
-		'''Write the changes to the files and flush the old data'''
+		'''Write the changes to the files.
+		@param flush: wether to flush the old data on not
+		@type flush: boolean
+		'''
 		idxpacked = pack('%di' % (len(self.newentries)*3),
 			*(i for entry in self.newentries for i in entry))
 		fsock = open('Skills.idx', 'wb')
@@ -80,7 +97,8 @@ class Skills(Index):
 		fsock = open('skills.mul', 'wb')
 		fsock.write(self.newdata)
 		fsock.close()
-		self.__flushData()
+		if flush is True:
+			self.__flushData()
 
 
 class SkillGrp:

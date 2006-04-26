@@ -3,6 +3,7 @@ from struct import unpack
 
 
 class Index:
+	'''TODO'''
 	def __init__(self, file):
 		self.entries = self.__getEntries(file)
 
