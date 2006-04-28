@@ -9,9 +9,7 @@ class Index:
 
 	def __getEntries(self, file):
 		entries = []
-		fsock = open(file, 'rb')
-		data = fsock.read()
-		fsock.close()
+		data = BaseMul.getData(self, file)
 		data = unpack('%di' % (len(data)/4), data)
 		for i in range(0, len(data), 3):
 			entries.append(data[i:i+3])

@@ -1,7 +1,7 @@
-'''Ultima Online MUL format access.
+'''Ultima Online MUL.
 
 uomul allows you to access UO's MUL files.
 '''
 
-__version__ = ''
+__version__ = '0.1'
 
