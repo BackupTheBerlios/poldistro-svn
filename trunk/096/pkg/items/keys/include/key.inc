@@ -78,7 +78,7 @@ function KP_HasKeyForLock(container, lock_id)
 		lock_id := GetObjProperty(lock_id, "LockId");
 	endif
 	
-	foreach item in ( container )
+	foreach item in ( EnumerateItemsInContainer(container) )
 		if ( item.IsKey() )
 			if ( item.KeyMatchesLock(lock_id) )
 				return 1;
