@@ -84,6 +84,7 @@ endfunction
  */
 function AP_SetTrueStat(mobile, stat_name, points)
 	SetAttributeBaseValue(mobile, stat_name, CInt(CDbl(points) * 10.0));
+	RecalcVitals(mobile);
 endfunction
 
 /*
@@ -104,6 +105,7 @@ endfunction
  */
 function AP_SetStatMod(mobile, stat_name, points)
 	SetAttributeTemporaryMod(mobile, stat_name, CInt(CDbl(points) * 10.0));
+	RecalcVitals(mobile);
 endfunction
 
 /*

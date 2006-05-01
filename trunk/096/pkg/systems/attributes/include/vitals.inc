@@ -96,7 +96,7 @@ function AP_GetVital(mobile, vital_name)
 endfunction
 
 /*
- * AP_GetVital(mobile, vital_name)
+ * AP_GetVitalMaximumValue(mobile, vital_name)
  *
  * Purpose
  * Retrieves the maximum number of vital points a mobile can have.

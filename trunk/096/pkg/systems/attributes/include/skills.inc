@@ -84,6 +84,7 @@ endfunction
  */
 function AP_SetTrueSkill(mobile, skill_name, points)
 	SetAttributeBaseValue(mobile, skill_name, CInt(CDbl(points) * 10.0));
+	RecalcVitals(mobile);
 endfunction
 
 /*
@@ -104,6 +105,7 @@ endfunction
  */
 function AP_SetSkillMod(mobile, skill_name, points)
 	SetAttributeTemporaryMod(mobile, skill_name, CInt(CDbl(points) * 10.0));
+	RecalcVitals(mobile);
 endfunction
 
 /*
