@@ -1,4 +1,31 @@
 -- POL096 --
+04-11 MuadDib
+        Change: Starting Gold will no longer be newbied (blessed). Can still be set newbied if you choose in
+                the create scripts for new characters.
+                
+04-09 Shinigami
+        Added : uoconvert.cfg element option added, TileOptions, in the following form:
+                TileOptions
+                {
+                    ShowRoofAndPlatformWarning 1
+                }
+                it's a flag and defaults to 1 (shows a Warning if you use both Flags in same Tile).
+
+04-05 MuadDib
+        Changed: Added servspecopt.cfg flag SingleCombat. This is a 0/1 flag for allowing players to attack
+                 themselves. 0 will disable it (default). Per request.
+        Fixed: Crash involving invalid serial data sent with Target Cursor from client.
+        Fixed: Bug blocking non-harmful targeting of Players in NoCombat zones.
+        Fixed: Optimized NoCombat Target check.
+                 
+03-19 MuadDib
+        Fixed: Will now correctly send AOS Tooltips if features are combined with 0x20 in the
+               UOFeatureEnable setting in servspecopt.cfg file.
+               
+03-18 MuadDib
+        Added: Servspecopt.cfg entry StartingGold=#. This will default to 100 gold. However, it can be
+               used to override the core's initial starting gold amount to this setting. Enjoy.
+
 03-15 MuadDib
         Fixed: Attack Request will be automatically denied if Defender.serial == Attacker.serial.
         Changed: Packet Logs (using .startlog and .stoplog) format has changed. It has been updated
