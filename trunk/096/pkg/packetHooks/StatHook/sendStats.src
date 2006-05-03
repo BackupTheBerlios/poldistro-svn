@@ -30,7 +30,7 @@ include ":attributes:attributes";
 include ":config:config";
 
 program sendStats()
-	Print( "INSTALLING Outgoing Status PH..." );
+	Print( "INSTALLING: Outgoing Status PH..." );
 	return 1;
 endprogram
 

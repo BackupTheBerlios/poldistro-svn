@@ -24,7 +24,7 @@ CONST Z_BYTE      := 16;
 CONST GRAPHIC_BYTE := 17;
 
 program TargetCheck()
-	Print("Installing Incoming Target PH.");
+	Print("INSTALLING: Incoming Target PH.");
 	return 1;
 endprogram
 

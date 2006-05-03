@@ -16,7 +16,7 @@
 use uo;
 
 program setUCLang()
-	Print( "INSTALLING Language Selection PH..." );
+	Print( "INSTALLING: Language Selection PH..." );
 	return 1;
 endprogram
 
