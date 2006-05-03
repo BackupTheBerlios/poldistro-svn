@@ -249,7 +249,6 @@ endfunction
  * region_name:	Name of the region to add the group to.
  * group_name:	Name of the group to add to the region.
  * max_amt:	Max amount of objects (mobiles/items) the group should make.
- * spawn_wait:	Amount of time between each spawn cycle for this group.
  * enabled:	0 | 1
  * 
  * Return Value
@@ -259,10 +258,9 @@ endfunction
  * 	This function can also be used to update a spawn group's settings in a region.
  *
  */
-function SS_AddGroupToRegion(region_name, group_name, max_amt, spawn_wait, enabled)
+function SS_AddGroupToRegion(region_name, group_name, max_amt, enabled)
 	var settings := struct;
 	settings.+max_amt := max_amt;
-	settings.+spawn_wait := spawn_wait;
 	settings.+enabled := enabled;
 	
 	var group_list := SS_GetGroupsInRegion(region_name);
@@ -346,3 +344,52 @@ function SS_GetSpawnsInRegionGroup(region_name, group_name)
 	
 	return spawns;
 endfunction
+
+/* 
+ * SS_GetRegionSpawnWait(region_name)
+ *
+ * Purpose
+ * Retrieves the number of seconds a region waits between spawn runs.
+ *
+ * Parameters
+ * region_name:	Name of the region to get the spawn wait for.
+ *
+ * Return Value
+ * Integer (seconds)
+ *
+ */
+function SS_GetRegionSpawnWait(region_name)
+	var region_elem := SS_GetRegionDataElem(region_name);
+	var wait := CInt(region_elem.GetProp("SpawnWait"));
+	if ( wait < 1 )
+		wait := 1;
+	endif
+	return wait;
+endfunction
+
+/* 
+ * SS_SetRegionSpawnWait(region_name, seconds)
+ *
+ * Purpose
+ * Sets the number of seconds a region waits between spawn runs.
+ *
+ * Parameters
+ * region_name:	Name of the region to get the spawn wait for.
+ * seconds:	Number of seconds between spawns cycles.
+ *
+ * Return Value
+ * 1
+ *
+ */
+function SS_SetRegionSpawnWait(region_name, seconds)
+	var region_elem := SS_GetRegionDataElem(region_name);
+	
+	seconds := CInt(seconds);
+	if ( seconds < 1 )
+		seconds := 1;
+	endif
+	
+	region_elem.SetProp("SpawnWait", seconds);
+	return 1;
+endfunction
+
