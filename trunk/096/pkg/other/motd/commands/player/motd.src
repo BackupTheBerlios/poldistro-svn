@@ -11,10 +11,10 @@ program MOTD(who, text)
 		
 		if ( text == "off" )
 			SendSysMessage(who, "'Messages of the day' will no longer pop up on login.");
-			data_elem.SetProp("off", 1);
+			data_elem.SetProp("noshow", 1);
 		elseif ( text == "on" )
 			SendSysMessage(who, "'Messages of the day' will pop up on login.");
-			data_elem.EraseProp("off");
+			data_elem.EraseProp("noshow");
 		else
 			SendSysMessage(who, "Syntax: .motd on off");
 		endif
