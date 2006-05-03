@@ -1,46 +1,22 @@
 /* $Id$
  *
- * TODO: convert the remaining SendSysMessage()
- * must check agaist cmdlevel within the script
+ * Example: .conceal [level] - Conceals you
+ *
+ * Level is: <hide level> (default: 0 [unconceal])
+ *			** can't be higher than cmdlevel! **
+ *
  */
 use uo;
+use polsys;
 
-include ":logger:log";
-include "include/messages";
-include "include/localization";
-
-
-program command_conceal(who, params)
-	var mobile;
-
-	if (!params)
-		SendMessage(who, MSG_TARGET_MOB, array{}, MSG_COMMAND);
-		mobile := Target(who, TGTOPT_NOCHECK_LOS);
-		if (mobile == 0)
-			SendMessage(who, MSG_CANCELLED, array{}, MSG_COMMAND);
-		else
-			if (!mobile.isA(POLCLASS_MOBILE))
-				SendMessage(who, MSG_NO_MOB, array{}, MSG_COMMAND);
-			else
-				if (mobile.concealed == 1)
-					SendSysMessage(who, "Mobile is already concealed.");
-				else
-					mobile.concealed := 1;
-					SendMessage(who, MSG_DONE, array{}, MSG_COMMAND);
-				endif
-			endif
-		endif
-	elseif (params == "me")
-		if (who.concealed == 1)
-			SendSysMessage(who, "You are already concealed.");
-		else
-			who.concealed := 1;
-			SendMessage(who, MSG_DONE, array{}, MSG_COMMAND);
-		endif
-	else
-		SendMessage(who, MSG_USE_HELP, array{"conceal"}, MSG_COMMAND);
+program textcmd_Conceal(who, number)
+	number := CInt(number);
+	if ( number > who.cmdlevel )
+		number := who.cmdlevel;
+		SendSysMessage(who, "Conceal level too high; resetting to " + number + ".");
 	endif
-
-	return;
+		
+	SendSysMessage(who, "Concealed:"+number+" ["+GetCmdLevelName(number)+"]");
+	who.concealed := number;
 endprogram
 

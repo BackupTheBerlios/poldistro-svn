@@ -28,8 +28,8 @@ include ":brainAI:npcError";
 // * Global Varibles *
 //
 // Nerve flags
-const NF_NO_FLAGS		:= 0x0;
-const NF_CONTINUE_ON_SLEEP	:= 0x1;
+CONST NF_NO_FLAGS		:= 0x0;
+CONST NF_CONTINUE_ON_SLEEP	:= 0x1;
 //
 /////////////////////////////////////////////////////////////////
 
