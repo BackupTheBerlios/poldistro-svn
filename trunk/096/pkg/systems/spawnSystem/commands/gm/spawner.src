@@ -4,6 +4,7 @@ use os;
 include ":gumps:include/gumps";
 include ":gumps:include/gumps_ex";
 include ":gumps:include/gumpprompt";
+include ":gumps:include/requestgump";
 include ":spawnsystem:include/realms";
 include ":spawnsystem:include/regions";
 
@@ -67,6 +68,8 @@ program SpawnerCMD(who)
 			cur_realm := realm_list[input-REALM_START];
 		elseif ( input == SHOW_REALMS_BTN )
 			cur_menu := SHOW_REALMS_BTN;
+		elseif ( input == ADD_REALM_BTN )
+			AddRealmGump(who);
 		endif
 	endwhile
 
@@ -190,3 +193,35 @@ function VisitRegionCenter(who, region_name)
 	
 	return 1;
 endfunction
+
+function AddRealmGump(who)
+	var gump := GFCreateGump(20, 20);
+	GFResizePic(gump, 0, 0, GFCfgConst("Defaults", "BackGround"), 300, 300);
+	GFResizePic(gump, 15, 15, GFCfgConst("Defaults", "ForeGround"), 270, 270);
+	
+	var used_realms := SS_GetRealmNames();
+	var realm_names := Realms().keys();
+	var y_pos := 20;
+	
+	foreach realm_name in ( realm_names )
+		if ( !(realm_name in used_realms) )
+			GFAddButton(gump, 20, y_pos+3, 2117, 2118, GF_CLOSE_BTN, _realm_name_iter);
+			GFTextLine(gump, 40, y_pos, 2100, realm_name);
+			y_pos := y_pos+20;
+		endif
+		sleepms(2);
+	endforeach
+	
+	var input := GFSendGump(who, gump);
+	var new_realm := realm_names[input[0]];
+	if ( new_realm )
+		var result := SS_AddRealm(new_realm);
+		if ( result.errortext )
+			GumpPrompt(who, result.errortext);
+			return 0;
+		endif
+	endif
+	
+	return 1;
+endfunction
+	

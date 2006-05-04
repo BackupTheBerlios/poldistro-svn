@@ -23,7 +23,9 @@ program SpawnSystem()
 endprogram
 
 function Initialize()
-	if ( !GetGlobalProperty("SpawnSystem") )
+	// To-do: Make this use a datafile for tracking.
+	// Laziness prevails for now, so a global prop is used.
+	if ( !GetGlobalProperty("SpawnSystemInit") )
 		var script := Start_Script(":spawnsystem:initializer/firstRun");
 		if ( script.errortext )
 			SS_ReportText(script.errortext);
@@ -33,6 +35,8 @@ function Initialize()
 				sleep(1);
 			endwhile
 		endif
+		
+		SetGlobalProperty("SpawnSystemInit", 1);
 	endif
 	
 	return 1;

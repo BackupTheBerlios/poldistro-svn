@@ -13,7 +13,21 @@ program www_SpawnControl()
 	var realm_name := QueryParam("RealmName");
 	var region_name := QueryParam("RegionName");
 	var group_name := QueryParam("GroupName");
+	
+	if ( QueryParam("ACTION") == "Add Realm" )
+		var result := SS_AddRealm(realm_name);
+		if ( result.errortext )
+			WriteHTML("<B>Error: "+result.errortext+"<BR><BR>");
+		endif
+		realm_name := "";		
+	endif
 
+	Index(realm_name, region_name, group_name);
+		
+	return 1;
+endprogram
+
+function Index(realm_name, region_name, group_name)
 	WriteHTML("<HTML>");
 	WriteHTML("<HEAD>");
 	WriteHTML("<BODY>");
@@ -45,8 +59,9 @@ program www_SpawnControl()
 
 	WriteHTML("</HTML>");
 	WriteHTML("</BODY>");
+	
 	return 1;
-endprogram
+endfunction
 
 function ShowRealmList()
 	WriteHTML("<BR><BR><TABLE>");
@@ -77,7 +92,7 @@ function ShowRealmList()
 	WriteHTML("<TD COLSPAN='2' CLASS='addform'>");
 	WriteHTML("<FORM METHOD='GET' NAME='FORM'>");
 	WriteHTML("<INPUT TYPE='TEXT' NAME='RealmName' VALUE=''>");
-	WriteHTML("<INPUT TYPE='SUBMIT' Name='AddRealm' VALUE='Add Realm'>");
+	WriteHTML("<INPUT TYPE='SUBMIT' Name='ACTION' VALUE='Add Realm'>");
 	WriteHTML("</FORM>");
 	WriteHTML("</TD>");
 	WriteHTML("</TR>");
@@ -113,7 +128,7 @@ function ShowGroupList()
 	WriteHTML("<TD COLSPAN='3' CLASS='addform'>");
 	WriteHTML("<FORM METHOD='GET' NAME='FORM'>");
 	WriteHTML("<INPUT TYPE='TEXT' NAME='GroupName' VALUE=''>");
-	WriteHTML("<INPUT TYPE='SUBMIT' Name='AddGroup' VALUE='Add Group'>");
+	WriteHTML("<INPUT TYPE='SUBMIT' Name='ACTION' VALUE='Add Group'>");
 	WriteHTML("</FORM>");
 	WriteHTML("</TD>");
 	WriteHTML("</TR>");
