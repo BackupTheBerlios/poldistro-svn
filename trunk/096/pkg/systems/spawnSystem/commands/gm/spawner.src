@@ -15,20 +15,20 @@ const REALM_START	:= 0xA000;
 const REGION_START	:= 0xB000;
 const GROUP_START	:= 0xC000;
 
-const CLOSE_BTN		:= 0x4;
-const ADD_REALM_BTN	:= 0x5;
-const ADD_REGION_BTN	:= 0x6;
-const ADD_GROUP_BTN	:= 0x7;
-const REMOVE_REALM_BTN	:= 0x8;
-const REMOVE_REGION_BTN	:= 0x9;
-const REMOVE_GROUP_BTN	:= 0xA;
-const SHOW_REALMS_BTN	:= 0xB;
-const SHOW_REGIONS_BTN	:= 0xC;
-const SHOW_THIS_REGION	:= 0xD;
-const SHOW_GROUPS_BTN	:= 0xE;
-const SEARCH_BTN	:= 0xF;
-const VISIT_REGION_BTN	:= 0x10;
-const UPDATE_COORDS_BTN	:= 0x11;
+const CLOSE_BTN		:= 0xA4;
+const ADD_REALM_BTN	:= 0xA5;
+const ADD_REGION_BTN	:= 0xA6;
+const ADD_GROUP_BTN	:= 0xA7;
+const REMOVE_REALM_BTN	:= 0xA8;
+const REMOVE_REGION_BTN	:= 0xA9;
+const REMOVE_GROUP_BTN	:= 0xAA;
+const SHOW_REALMS_BTN	:= 0xAB;
+const SHOW_REGIONS_BTN	:= 0xAC;
+const SHOW_THIS_REGION	:= 0xAD;
+const SHOW_GROUPS_BTN	:= 0xAE;
+const SEARCH_BTN	:= 0xAF;
+const VISIT_REGION_BTN	:= 0xB0;
+const UPDATE_COORDS_BTN	:= 0xB1;
 
 const X1_TEXT_POS	:= 0xA00;
 const Y1_TEXT_POS	:= 0xA01;
@@ -49,6 +49,8 @@ program SpawnerCMD(who)
 				input := BuildRegionListGump(who, cur_realm);
 			elseif ( cur_menu == SHOW_THIS_REGION )
 				input := BuildRegionInfoGump(who, cur_realm, cur_region);
+			elseif ( cur_menu == ADD_REALM_BTN )
+				input := BuildAddRealmGump(who);
 			endif
 		endif
 
@@ -69,7 +71,7 @@ program SpawnerCMD(who)
 		elseif ( input == SHOW_REALMS_BTN )
 			cur_menu := SHOW_REALMS_BTN;
 		elseif ( input == ADD_REALM_BTN )
-			AddRealmGump(who);
+			cur_menu := ADD_REALM_BTN;
 		endif
 	endwhile
 
@@ -194,34 +196,35 @@ function VisitRegionCenter(who, region_name)
 	return 1;
 endfunction
 
-function AddRealmGump(who)
-	var gump := GFCreateGump(20, 20);
-	GFResizePic(gump, 0, 0, GFCfgConst("Defaults", "BackGround"), 300, 300);
-	GFResizePic(gump, 15, 15, GFCfgConst("Defaults", "ForeGround"), 270, 270);
+function BuildAddRealmGump(who)
+	var gump := BuildGumpTemplate();
+	
+	GFTextMid(gump, 145, 20, 485, 2100, "Add Realm");
 	
 	var used_realms := SS_GetRealmNames();
 	var realm_names := Realms().keys();
-	var y_pos := 20;
-	
+	var y_pos := 40;
+		
 	foreach realm_name in ( realm_names )
-		if ( !(realm_name in used_realms) )
-			GFAddButton(gump, 20, y_pos+3, 2117, 2118, GF_CLOSE_BTN, _realm_name_iter);
-			GFTextLine(gump, 40, y_pos, 2100, realm_name);
+		//if ( !(realm_name in used_realms) )
+			GFAddButton(gump, 155, y_pos+3, 2117, 2118, GF_CLOSE_BTN, _realm_name_iter);
+			GFTextLine(gump, 175, y_pos, 2100, realm_name);
 			y_pos := y_pos+20;
-		endif
+		//endif
 		sleepms(2);
 	endforeach
 	
 	var input := GFSendGump(who, gump);
-	var new_realm := realm_names[input[0]];
+	input := input[0];
+		
+	var new_realm := realm_names[input];
 	if ( new_realm )
 		var result := SS_AddRealm(new_realm);
 		if ( result.errortext )
 			GumpPrompt(who, result.errortext);
-			return 0;
 		endif
 	endif
-	
-	return 1;
+
+	return input;
 endfunction
 	
