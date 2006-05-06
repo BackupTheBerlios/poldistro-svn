@@ -55,11 +55,9 @@ endfunction
  * Returns the result of the elem creation
  *
  */
-function SS_AddGroup(group_name, engine_type:="")
+function SS_AddGroup(group_name, engine_name:="")
 	group_name := Lower(group_name);
-	engine_type := Lower(engine_type);
-	
-	
+		
 	var data_file := SS_GetGroupDataFile();
 	
 	if ( data_file.FindElement(group_name) != error )
@@ -68,8 +66,8 @@ function SS_AddGroup(group_name, engine_type:="")
 	
 	var result := data_file.CreateElement(group_name);
 	
-	if ( engine_type && result )
-		SS_SetGroupEngine(group_name, engine_type);
+	if ( engine_name && result )
+		SS_SetGroupEngine(group_name, engine_name);
 	endif
 	
 	return result;
@@ -146,7 +144,6 @@ endfunction
  */
 function SS_SetGroupEngine(group_name, engine_name)
 	group_name := Lower(group_name);
-	engine_name := Lower(engine_name);
 	
 	var group_elem := SS_GetGroupDataElem(group_name);
 	
