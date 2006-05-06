@@ -57,13 +57,16 @@ endfunction
 function SS_AddRegion(region_name, realm_name:="")
 	var data_file := SS_GetRegionDataFile();
 	
+	region_name := Lower(region_name);
+	realm_name := Lower(realm_name);
+	
 	if ( data_file.FindElement(region_name) != error )
 		return error{"errortext":="Region already exists."};
 	endif
 	
 	var result := data_file.CreateElement(region_name);
 	if ( realm_name && result )
-		SS_SetRegionRealm(region_name, Lower(realm_name));
+		SS_SetRegionRealm(region_name, realm_name);
 	endif
 	
 	return result;
@@ -87,7 +90,7 @@ endfunction
  */
 function SS_RemoveRegion(region_name)
 	var data_file := SS_GetRegionDataFile();
-	return data_file.DeleteElement(region_name);
+	return data_file.DeleteElement(Lower(region_name));
 endfunction
 
 /*
@@ -106,6 +109,8 @@ endfunction
  */
 function SS_GetRegionNames(realm_name:="")
 	var data_file := SS_GetRegionDataFile();
+	
+	realm_name := Lower(realm_name);
 
 	var region_names := array{};
 	if ( !realm_name )
@@ -136,7 +141,7 @@ endfunction
  *
  */
 function SS_GetRegionRealm(region_name)
-	var region_elem := SS_GetRegionDataElem(region_name);
+	var region_elem := SS_GetRegionDataElem(Lower(region_name));
 	return region_elem.GetProp("Realm");
 endfunction
 
@@ -155,7 +160,7 @@ endfunction
  *
  */
 function SS_SetRegionRealm(region_name, realm_name)
-	var region_elem := SS_GetRegionDataElem(region_name);
+	var region_elem := SS_GetRegionDataElem(Lower(region_name));
 	return region_elem.SetProp("Realm", Lower(realm_name));
 endfunction
 
@@ -173,7 +178,7 @@ endfunction
  *
  */
 function SS_GetRegionCoordinates(region_name)
-	var region_elem := SS_GetRegionDataElem(region_name);
+	var region_elem := SS_GetRegionDataElem(Lower(region_name));
 	return region_elem.GetProp("Coordinates");
 endfunction
 
@@ -195,7 +200,7 @@ endfunction
  *
  */
 function SS_SetRegionCoordinates(region_name, x1, y1, x2, y2)
-	var region_elem := SS_GetRegionDataElem(region_name);
+	var region_elem := SS_GetRegionDataElem(Lower(region_name));
 	
 	var coords := struct{"x1":=CInt(x1), "y1":=CInt(y1), "x2":=CInt(x2), "y2":=CInt(y2)};
 		
@@ -217,7 +222,7 @@ endfunction
  * 
  */
 function SS_GetGroupsInRegion(region_name)
-	var region_elem := SS_GetRegionDataElem(region_name);
+	var region_elem := SS_GetRegionDataElem(Lower(region_name));
 	var group_list := region_elem.GetProp("Groups");
 	if ( !group_list )
 		group_list := dictionary;
@@ -239,8 +244,8 @@ endfunction
  *
  */
  function SS_GetGroupInRegion(region_name, group_name)
- 	var group_list := SS_GetGroupsInRegion(region_name);
- 	return group_list[group_name];
+ 	var group_list := SS_GetGroupsInRegion(Lower(region_name));
+ 	return group_list[Lower(group_name)];
  endfunction
 
 /*
@@ -267,6 +272,9 @@ function SS_AddGroupToRegion(region_name, group_name, max_amt, enabled)
 	settings.+max_amt := max_amt;
 	settings.+enabled := enabled;
 	
+	region_name := Lower(region_name);
+	group_name := Lower(group_name);
+	
 	var group_list := SS_GetGroupsInRegion(region_name);
 	group_list.Insert(Lower(group_name), settings);
 	
@@ -289,8 +297,10 @@ endfunction
  *
  */
 function SS_RemoveGroupFromRegion(region_name, group_name)
-	var group_list := SS_GetGroupsInRegion(region_name);
+	region_name := Lower(region_name);
 	group_name := Lower(group_name);
+	
+	var group_list := SS_GetGroupsInRegion(region_name);
 	
 	group_list.Erase(group_name);
 	
@@ -315,6 +325,9 @@ endfunction
  *
  */
 function SS_AddSpawnToRegion(region_name, group_name, object)
+	region_name := Lower(region_name);
+	group_name := Lower(group_name);
+	
 	var spawn_list := SS_GetSpawnsInRegionGroup(region_name, group_name);
 	
 	var spawn_info := struct;
@@ -342,8 +355,10 @@ endfunction
  *
  */
 function SS_GetSpawnsInRegionGroup(region_name, group_name)
-	var region_elem := SS_GetRegionDataElem(region_name);
+	region_name := Lower(region_name);
 	group_name := Lower(group_name);
+	
+	var region_elem := SS_GetRegionDataElem(region_name);
 	
 	var spawns := region_elem.GetProp("Spawns-"+group_name);
 	if ( !spawns )
@@ -367,7 +382,7 @@ endfunction
  *
  */
 function SS_GetRegionSpawnWait(region_name)
-	var region_elem := SS_GetRegionDataElem(region_name);
+	var region_elem := SS_GetRegionDataElem(Lower(region_name));
 	var wait := CInt(region_elem.GetProp("SpawnWait"));
 	if ( wait < 1 )
 		wait := 1;
@@ -390,7 +405,7 @@ endfunction
  *
  */
 function SS_SetRegionSpawnWait(region_name, seconds)
-	var region_elem := SS_GetRegionDataElem(region_name);
+	var region_elem := SS_GetRegionDataElem(Lower(region_name));
 	
 	seconds := CInt(seconds);
 	if ( seconds < 1 )

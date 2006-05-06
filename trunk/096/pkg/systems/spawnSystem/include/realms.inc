@@ -56,6 +56,8 @@ endfunction
  */
 function SS_AddRealm(realm_name)
 	var core_realms := Realms();
+	realm_name := Lower(realm_name);
+	
 	if ( !core_realms.Exists(Lower(realm_name)) )
 		return error{"errortext":="'"+realm_name+"' is not a valid realm name."};
 	endif
@@ -83,7 +85,7 @@ endfunction
  */
 function SS_RemoveRealm(realm_name)
 	var data_file := SS_GetRealmDataFile();
-	return data_file.DeleteElement(realm_name);
+	return data_file.DeleteElement(Lower(realm_name));
 endfunction
 
 /*

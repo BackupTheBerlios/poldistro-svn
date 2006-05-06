@@ -36,7 +36,7 @@ endfunction
  */
 function SS_GetGroupDataElem(elem_name)
 	var data_file := SS_GetGroupDataFile();
-	var group_elem := DFFindElement(data_file, elem_name, DF_NO_CREATE);
+	var group_elem := DFFindElement(data_file, Lower(elem_name), DF_NO_CREATE);
 	
 	return group_elem;
 endfunction
@@ -56,6 +56,10 @@ endfunction
  *
  */
 function SS_AddGroup(group_name, engine_type:="")
+	group_name := Lower(group_name);
+	engine_type := Lower(engine_type);
+	
+	
 	var data_file := SS_GetGroupDataFile();
 	
 	if ( data_file.FindElement(group_name) != error )
@@ -86,7 +90,7 @@ endfunction
  */
 function SS_RemoveGroup(group_name)
 	var data_file := SS_GetGroupDataFile();
-	return data_file.DeleteElement(group_name);
+	return data_file.DeleteElement(Lower(group_name));
 endfunction
 
 /*
@@ -122,7 +126,7 @@ endfunction
  *
  */
 function SS_GetGroupEngine(group_name)
-	var group_elem := SS_GetGroupDataElem(group_name);
+	var group_elem := SS_GetGroupDataElem(Lower(group_name));
 	return group_elem.GetProp("Engine");
 endfunction
 
@@ -141,9 +145,12 @@ endfunction
  *
  */
 function SS_SetGroupEngine(group_name, engine_name)
+	group_name := Lower(group_name);
+	engine_name := Lower(engine_name);
+	
 	var group_elem := SS_GetGroupDataElem(group_name);
 	
-	return group_elem.SetProp("Engine", Lower(engine_name));
+	return group_elem.SetProp("Engine", engine_name);
 endfunction
 
 /*
@@ -161,9 +168,11 @@ endfunction
  *
  */
 function SS_AddEntryToGroup(group_name, entry_name)
-	var entry_list := SS_GetEntriesInGroup(group_name);
+	group_name := Lower(group_name);
 	entry_name := Lower(entry_name);
 	
+	var entry_list := SS_GetEntriesInGroup(group_name);
+		
 	if ( entry_list.Exists(entry_name) )
 		return 0;
 	else
@@ -188,8 +197,10 @@ endfunction
  *
  */
 function SS_RemoveEntryFromGroup(group_name, entry_name)
-	var entry_list := SS_GetEntriesInGroup(group_name);
+	group_name := Lower(group_name);
 	entry_name := Lower(entry_name);
+	
+	var entry_list := SS_GetEntriesInGroup(group_name);
 	
 	if ( !entry_list.Exists(entry_name) )
 		return 0;
@@ -215,6 +226,8 @@ endfunction
  * 
  */
 function SS_GetEntriesInGroup(group_name)
+	group_name := Lower(group_name);
+	
 	var group_elem := SS_GetGroupDataElem(group_name);
 	var group_list := group_elem.GetProp("EntryList");
 	
@@ -240,9 +253,12 @@ endfunction
  *
  */
 function SS_GetEntryByNumber(group_name, number)
+	group_name := Lower(group_name);
+	number := CInt(number);
+	
 	var entries := SS_GetEntriesInGroup(group_name);
 	entries := entries.Keys();
-	var entry := entries[CInt(number)];
+	var entry := entries[number];
 	if ( entry )
 		return CStr(entry);
 	else
