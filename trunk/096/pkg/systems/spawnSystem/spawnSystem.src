@@ -37,6 +37,7 @@ function Initialize()
 		endif
 		
 		SetGlobalProperty("SpawnSystemInit", 1);
+		SS_ReportText("---=[ SPANER INITIALIZATION COMPLETE ]=---");
 	endif
 	
 	return 1;

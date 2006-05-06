@@ -34,6 +34,7 @@ const X1_TEXT_POS	:= 0xA00;
 const Y1_TEXT_POS	:= 0xA01;
 const X2_TEXT_POS	:= 0xA02;
 const Y2_TEXT_POS	:= 0xA03;
+const REALM_NAME_POS	:= 0xA04;
 
 program SpawnerCMD(who)
 	var input := SHOW_REALMS_BTN;
@@ -51,6 +52,8 @@ program SpawnerCMD(who)
 				input := BuildRegionInfoGump(who, cur_realm, cur_region);
 			elseif ( cur_menu == ADD_REALM_BTN )
 				input := BuildAddRealmGump(who);
+			elseif ( cur_menu == ADD_REGION_BTN )
+				input := BuildAddRegionGump(who, cur_realm);
 			endif
 		endif
 
@@ -72,6 +75,8 @@ program SpawnerCMD(who)
 			cur_menu := SHOW_REALMS_BTN;
 		elseif ( input == ADD_REALM_BTN )
 			cur_menu := ADD_REALM_BTN;
+		elseif ( input == ADD_REGION_BTN )
+			cur_menu := ADD_REGION_BTN;
 		endif
 	endwhile
 
@@ -89,24 +94,24 @@ function BuildGumpTemplate(realm_name:="")
 	GFResizePic(gump, 15, 15, bkgnd_dark_stone, 125, 450);
 	GFResizePic(gump, 145, 15, bkgnd_dark_stone, 480, 450);
 
-	GFAddButton(gump, 15, 23, 2117, 2118, GF_CLOSE_BTN, SHOW_REALMS_BTN);
+	GFAddButton(gump, 20, 23, 2117, 2118, GF_CLOSE_BTN, SHOW_REALMS_BTN);
 	GFTextLine(gump, 35, 20, 2100, "Realm List");
-	GFAddButton(gump, 15, 43, 2117, 2118, GF_CLOSE_BTN, ADD_REALM_BTN);
+	GFAddButton(gump, 20, 43, 2117, 2118, GF_CLOSE_BTN, ADD_REALM_BTN);
 	GFTextLine(gump, 35, 40, 2100, "Add Realm");
 
-	GFAddButton(gump, 15, 83, 2117, 2118, GF_CLOSE_BTN, SHOW_GROUPS_BTN);
+	GFAddButton(gump, 20, 83, 2117, 2118, GF_CLOSE_BTN, SHOW_GROUPS_BTN);
 	GFTextLine(gump, 35, 80, 2100, "Group List");
-	GFAddButton(gump, 15, 103, 2117, 2118, GF_CLOSE_BTN, ADD_GROUP_BTN);
+	GFAddButton(gump, 20, 103, 2117, 2118, GF_CLOSE_BTN, ADD_GROUP_BTN);
 	GFTextLine(gump, 35, 100, 2100, "Add Group");
 
 	if ( realm_name )
-		GFAddButton(gump, 15, 143, 2117, 2118, GF_CLOSE_BTN, SHOW_REGIONS_BTN);
+		GFAddButton(gump, 20, 143, 2117, 2118, GF_CLOSE_BTN, SHOW_REGIONS_BTN);
 		GFTextLine(gump, 35, 140, 2100, "Regions List");
-		GFAddButton(gump, 15, 163, 2117, 2118, GF_CLOSE_BTN, ADD_REGION_BTN);
+		GFAddButton(gump, 20, 163, 2117, 2118, GF_CLOSE_BTN, ADD_REGION_BTN);
 		GFTextLine(gump, 35, 160, 2100, "Add Region");
 	endif
-	
-	GFAddButton(gump, 15, 443, 2117, 2118, GF_CLOSE_BTN, CLOSE_BTN);
+
+	GFAddButton(gump, 20, 443, 2117, 2118, GF_CLOSE_BTN, CLOSE_BTN);
 	GFTextLine(gump, 35, 440, 2100, "CLOSE");
 
 	return gump;
@@ -170,7 +175,7 @@ function BuildRegionInfoGump(who, realm_name, region_name)
 	GFTextLine(gump, 375, 46, 2100, "Y2");
 	GFResizePic(gump, 360, 64, GFCfgConst("Backgrounds", "GOLDTRIM"), 45, 28);
 	GFTextEntry(gump, 366, 68, 35, 20, 2100, coords.y2, Y2_TEXT_POS);
-	
+
 	GFAddButton(gump, 430, 71, 2117, 2118, GF_CLOSE_BTN, VISIT_REGION_BTN);
 	GFTextLine(gump, 450, 68, 2100, "Goto center.");
 
@@ -184,7 +189,7 @@ function VisitRegionCenter(who, region_name)
 	var x := ((coords.x2 - coords.x1) / 2) + coords.x1;
 	var y := ((coords.y2 - coords.y1) / 2) + coords.y1;
 	var z := GetMapInfo(x, y, realm_name).z;
-		
+
 	var result := MoveObjectToLocation(who, x, y, z, realm_name, MOVECHAR_FORCELOCATION);
 	if ( result.errortext )
 		GumpPrompt(who, ""+result.errortext);
@@ -192,19 +197,19 @@ function VisitRegionCenter(who, region_name)
 	else
 		GumpPrompt(who, "Moved to "+realm_name+" [P] X("+x+") Y("+y+") Z("+z+")");
 	endif
-	
+
 	return 1;
 endfunction
 
 function BuildAddRealmGump(who)
 	var gump := BuildGumpTemplate();
-	
+
 	GFTextMid(gump, 145, 20, 485, 2100, "Add Realm");
-	
+
 	var used_realms := SS_GetRealmNames();
 	var realm_names := Realms().keys();
-	var y_pos := 40;
-		
+	var y_pos := 50;
+
 	foreach realm_name in ( realm_names )
 		//if ( !(realm_name in used_realms) )
 			GFAddButton(gump, 155, y_pos+3, 2117, 2118, GF_CLOSE_BTN, _realm_name_iter);
@@ -213,10 +218,10 @@ function BuildAddRealmGump(who)
 		//endif
 		sleepms(2);
 	endforeach
-	
+
 	var input := GFSendGump(who, gump);
 	input := input[0];
-		
+
 	var new_realm := realm_names[input];
 	if ( new_realm )
 		var result := SS_AddRealm(new_realm);
@@ -227,4 +232,35 @@ function BuildAddRealmGump(who)
 
 	return input;
 endfunction
+
+function BuildAddRegionGump(who, realm_name)
+	var gump := BuildGumpTemplate();
+
+	GFTextMid(gump, 145, 20, 485, 2100, "Add Region ["+realm_name+"]");
+
+	GFTextLine(gump, 155, 50, 2100, "Region Name");
+	GFResizePic(gump, 230, 46, GFCfgConst("Backgrounds", "GOLDTRIM"), 245, 28);
+	GFTextEntry(gump, 236, 50, 235, 20, 2100, "", X1_TEXT_POS);
 	
+	GFTextLine(gump, 155, 80, 2100, "Coordinates");
+	GFTextLine(gump, 245, 80, 2100, "X1");
+	GFResizePic(gump, 230, 100, GFCfgConst("Backgrounds", "GOLDTRIM"), 45, 28);
+	GFTextEntry(gump, 236, 104, 35, 20, 2100, "", X1_TEXT_POS);
+	GFTextLine(gump, 285, 80, 2100, "Y1");
+	GFResizePic(gump, 270, 100, GFCfgConst("Backgrounds", "GOLDTRIM"), 45, 28);
+	GFTextEntry(gump, 276, 104, 35, 20, 2100, "", Y1_TEXT_POS);
+	GFTextLine(gump, 335, 80, 2100, "X2");
+	GFResizePic(gump, 320, 100, GFCfgConst("Backgrounds", "GOLDTRIM"), 45, 28);
+	GFTextEntry(gump, 326, 104, 35, 20, 2100, "", X2_TEXT_POS);
+	GFTextLine(gump, 375, 80, 2100, "Y2");
+	GFResizePic(gump, 360, 100, GFCfgConst("Backgrounds", "GOLDTRIM"), 45, 28);
+	GFTextEntry(gump, 366, 104, 35, 20, 2100, "", Y2_TEXT_POS);
+	
+	GFTextLine(gump, 500, 80, 2100, "Spawn Wait (Sec.)");
+	GFResizePic(gump, 525, 100, GFCfgConst("Backgrounds", "GOLDTRIM"), 65, 28);
+	GFTextEntry(gump, 531, 104, 55, 20, 2100, "", Y2_TEXT_POS);
+	
+	var input := GFSendGump(who, gump);
+	
+	return input[0];
+endfunction
