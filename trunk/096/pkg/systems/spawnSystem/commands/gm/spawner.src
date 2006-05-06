@@ -8,6 +8,7 @@ include ":gumps:include/yesno";
 include ":gumps:include/requestgump";
 include ":spawnsystem:include/realms";
 include ":spawnsystem:include/regions";
+include ":spawnsystem:include/groups";
 
 unload_scripts("");
 
@@ -57,6 +58,10 @@ program SpawnerCMD(who)
 				input := BuildAddRealmGump(who);
 			elseif ( cur_menu == ADD_REGION_BTN )
 				input := BuildAddRegionGump(who, cur_realm);
+			elseif ( cur_menu == SHOW_GROUPS_BTN )
+				input := BuildGroupsListGump(who);
+			elseif ( cur_menu == ADD_GROUP_BTN )
+				input := BuildAddGroupGump(who);
 			endif
 		endif
 
@@ -74,6 +79,10 @@ program SpawnerCMD(who)
 			cur_menu := ADD_REGION_BTN;
 		elseif ( input == SHOW_REGIONS_BTN )
 			cur_menu := SHOW_REGIONS_BTN;
+		elseif ( input == SHOW_GROUPS_BTN )
+			cur_menu := SHOW_GROUPS_BTN;
+		elseif ( input == ADD_GROUP_BTN )
+			cur_menu := ADD_GROUP_BTN;
 		elseif ( input >= REGION_START ) // Button next to a region name was clicked.
 			cur_menu := SHOW_THIS_REGION;
 			var region_list := SS_GetRegionsInRealm(cur_realm).keys();
@@ -131,6 +140,24 @@ function BuildRealmListGump(who)
 	foreach realm_name in realm_list
 		GFAddButton(gump, 155, y_pos+3, 2117, 2118, GF_CLOSE_BTN, (REALM_START+_realm_name_iter));
 		GFTextLine(gump, 175, y_pos, 2100, realm_name);
+
+		y_pos := y_pos+20;
+		sleepms(2);
+	endforeach
+
+	var input := GFSendGump(who, gump);
+	return input[0];
+endfunction
+
+function BuildGroupsListGump(who)
+	var group_list := SS_GetGroupNames();
+	var gump := BuildGumpTemplate();
+
+	GFTextMid(gump, 145, 20, 485, 2100, "Groups List");
+	var y_pos := 50;
+	foreach group_name in group_list
+		GFAddButton(gump, 155, y_pos+3, 2117, 2118, GF_CLOSE_BTN, (GROUP_START+_group_name_iter));
+		GFTextLine(gump, 175, y_pos, 2100, group_name);
 
 		y_pos := y_pos+20;
 		sleepms(2);
@@ -325,6 +352,26 @@ function BuildAddRegionGump(who, realm_name)
 			SS_AddRegionToRealm(realm_name, region_name);
 			GumpPrompt(who, "Region added.");
 		endif
+	endif
+	
+	return input[0];
+endfunction
+
+function BuildAddGroupGump(who)
+	var gump := BuildGumpTemplate();
+
+	GFTextMid(gump, 145, 20, 485, 2100, "Add Group");
+
+	GFTextLine(gump, 155, 50, 2100, "Group Name");
+	GFResizePic(gump, 230, 46, GFCfgConst("Backgrounds", "GOLDTRIM"), 245, 28);
+	GFTextEntry(gump, 236, 50, 235, 20, 2100, "", NAME_TEXT_POS);
+		
+	GFAddButton(gump, 366, 174, 0x482, 0x483, GF_CLOSE_BTN, APPLY_BTN);
+	GFTextLine(gump, 345, 200, 2100, "Create Group.");
+	
+	var input := GFSendGump(who, gump);
+	if ( input[APPLY_BTN] )
+		//
 	endif
 	
 	return input[0];
