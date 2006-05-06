@@ -83,13 +83,12 @@ function SetupRegion(region_name, realm_name, start_cfg)
 	foreach group_name in (GetConfigStringArray(region_info, "Group"))
 		group_name := SplitWords(group_name);
 		var max_amt := CInt(group_name[2]);
-		var spawn_wait := CInt(group_name[3]);
 		group_name := group_name[1];
 		
 		var success := SetupGroup(group_name, start_cfg);
 		
 		if ( success )
-			success := SS_AddGroupToRegion(region_name, group_name, max_amt, spawn_wait, 1);
+			success := SS_AddGroupToRegion(region_name, group_name, max_amt, 1);
 		endif
 		if ( success )
 			SS_ReportText("Adding group ("+group_name+") to region ("+region_name+")... okay.");
