@@ -6,6 +6,7 @@ include ":gumps:include/gumps_ex";
 include ":gumps:include/gumpprompt";
 include ":gumps:include/yesno";
 include ":gumps:include/requestgump";
+include ":spawnsystem:include/engines";
 include ":spawnsystem:include/realms";
 include ":spawnsystem:include/regions";
 include ":spawnsystem:include/groups";
@@ -365,9 +366,18 @@ function BuildAddGroupGump(who)
 	GFTextLine(gump, 155, 50, 2100, "Group Name");
 	GFResizePic(gump, 230, 46, GFCfgConst("Backgrounds", "GOLDTRIM"), 245, 28);
 	GFTextEntry(gump, 236, 50, 235, 20, 2100, "", NAME_TEXT_POS);
+	
+	GFTextLine(gump, 155, 80, 2100, "Spawn Engine");
+	var engines := SS_GetEnginesList();
+	var y_pos := 100;
+	foreach engine_name in ( engines )
+		GFRadioButton(gump, 155, y_pos, 0xD2, 0xD3, 0, 3);
+		GFTextLine(gump, 185, y_pos, 2100, engine_name);
+		y_pos := y_pos+20;
+	endforeach	
 		
-	GFAddButton(gump, 366, 174, 0x482, 0x483, GF_CLOSE_BTN, APPLY_BTN);
-	GFTextLine(gump, 345, 200, 2100, "Create Group.");
+	GFAddButton(gump, 555, 70, 0x482, 0x483, GF_CLOSE_BTN, APPLY_BTN);
+	GFTextLine(gump, 525, 50, 2100, "Create Group.");
 	
 	var input := GFSendGump(who, gump);
 	if ( input[APPLY_BTN] )
