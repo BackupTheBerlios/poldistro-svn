@@ -59,7 +59,7 @@ function SS_AddRegion(region_name, realm_name:="")
 	var result := data_file.CreateElement(region_name);
 	
 	if ( realm_name && result )
-		SS_SetRegionRealm(region_name, realm_name);
+		SS_SetRegionRealm(region_name, Lower(realm_name));
 	endif
 	
 	return result;
@@ -109,7 +109,7 @@ function SS_GetRegionNames(realm_name:="")
 	else
 		foreach region_name in DFGetElemNames(data_file)
 			if ( Lower(SS_GetRegionRealm(region_name)) == Lower(realm_name) )
-				region_names.append(region_name);
+				region_names.Append(region_name);
 			endif
 			sleepms(2);
 		endforeach
@@ -152,7 +152,7 @@ endfunction
  */
 function SS_SetRegionRealm(region_name, realm_name)
 	var region_elem := SS_GetRegionDataElem(region_name);
-	return region_elem.SetProp("Realm", realm_name);
+	return region_elem.SetProp("Realm", Lower(realm_name));
 endfunction
 
 /*
@@ -264,7 +264,7 @@ function SS_AddGroupToRegion(region_name, group_name, max_amt, enabled)
 	settings.+enabled := enabled;
 	
 	var group_list := SS_GetGroupsInRegion(region_name);
-	group_list.Insert(group_name, settings);
+	group_list.Insert(Lower(group_name), settings);
 	
 	var region_elem := SS_GetRegionDataElem(region_name);
 	return region_elem.SetProp("Groups", group_list);
@@ -286,6 +286,8 @@ endfunction
  */
 function SS_RemoveGroupFromRegion(region_name, group_name)
 	var group_list := SS_GetGroupsInRegion(region_name);
+	group_name := Lower(group_name);
+	
 	group_list.Erase(group_name);
 	
 	var region_elem := SS_GetRegionDataElem(region_name);
@@ -337,6 +339,8 @@ endfunction
  */
 function SS_GetSpawnsInRegionGroup(region_name, group_name)
 	var region_elem := SS_GetRegionDataElem(region_name);
+	group_name := Lower(group_name);
+	
 	var spawns := region_elem.GetProp("Spawns-"+group_name);
 	if ( !spawns )
 		spawns := dictionary;

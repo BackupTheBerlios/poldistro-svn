@@ -118,9 +118,10 @@ endfunction
 function SS_AddRegionToRealm(realm_name, region_name)
 	var realm_elem := SS_GetRealmDataElem(realm_name);
 	var region_list := SS_GetRegionsInRealm(realm_name);
+	region_name := Lower(region_name);
 	
 	if ( region_list.Exists(region_name) )
-		return 0;
+		return error{"errortext":="Region already exists in that realm."};
 	else
 		region_list.Insert(region_name, 1);
 		return realm_elem.SetProp("Regions", region_list);
@@ -147,9 +148,10 @@ endfunction
 function SS_RemoveRegionFromRealm(realm_name, region_name)
 	var realm_elem := SS_GetRealmDataElem(realm_name);
 	var region_list := SS_GetRegionsInRealm(realm_name);
+	region_name := Lower(region_name);
 	
 	if ( !region_list.Exists(region_name) )
-		return 0;
+		return error{"errortext":="No region exists by that name."};
 	else
 		region_list.Erase(region_name);
 		return realm_elem.SetProp("Regions", region_list);

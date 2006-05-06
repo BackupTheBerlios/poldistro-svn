@@ -156,6 +156,7 @@ endfunction
  */
 function SS_AddEntryToGroup(group_name, entry_name)
 	var entry_list := SS_GetEntriesInGroup(group_name);
+	entry_name := Lower(entry_name);
 	
 	if ( entry_list.Exists(entry_name) )
 		return 0;
@@ -182,7 +183,8 @@ endfunction
  */
 function SS_RemoveEntryFromGroup(group_name, entry_name)
 	var entry_list := SS_GetEntriesInGroup(group_name);
-			
+	entry_name := Lower(entry_name);
+	
 	if ( !entry_list.Exists(entry_name) )
 		return 0;
 	else
