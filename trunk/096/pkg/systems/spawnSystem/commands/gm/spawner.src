@@ -290,11 +290,11 @@ function BuildAddRealmGump(who)
 	var y_pos := 50;
 
 	foreach realm_name in ( realm_names )
-		//if ( !(realm_name in used_realms) )
+		if ( !(realm_name in used_realms) )
 			GFAddButton(gump, 155, y_pos+3, 2117, 2118, GF_CLOSE_BTN, _realm_name_iter);
 			GFTextLine(gump, 175, y_pos, 2100, realm_name);
 			y_pos := y_pos+20;
-		//endif
+		endif
 		sleepms(2);
 	endforeach
 
@@ -379,10 +379,19 @@ function BuildAddGroupGump(who)
 	GFTextEntry(gump, 236, 50, 235, 20, 2100, "", NAME_TEXT_POS);
 
 	GFAddButton(gump, 555, 70, 0x482, 0x483, GF_CLOSE_BTN, APPLY_BTN);
-	GFTextLine(gump, 525, 50, 2100, "Create Group.");
+	GFTextLine(gump, 525, 50, 2100, "Create Group");
 
-	GFTextLine(gump, 155, 80, 2100, "Spawn Engine");
+	GFTextLine(gump, 175, 80, 2100, "Spawn Engine");
+	GFTextLine(gump, 375, 80, 2100, "Group Entries");
+
 	GFPage(gump, 1);
+	GFAddButton(gump, 155, 82, 0xA96, 0xA97, GF_PAGE_BTN, 200);
+	GFAddButton(gump, 355, 82, 0xA96, 0xA97, GF_PAGE_BTN, 300);
+	
+	GFPage(gump, 200);
+	GFAddButton(gump, 155, 82, 0xA97, 0xA96, GF_PAGE_BTN, 1);
+	GFAddButton(gump, 355, 82, 0xA96, 0xA97, GF_PAGE_BTN, 300);
+	
 	var engines := SS_GetEnginesList();
 	var y_pos := 100;
 	var counter := 0;
@@ -399,15 +408,29 @@ function BuildAddGroupGump(who)
 			y_pos := 100;
 		endif
 	endforeach
+	GFPage(gump, 300);
+	GFAddButton(gump, 155, 82, 0xA96, 0xA97, GF_PAGE_BTN, 200);
+	GFAddButton(gump, 355, 82, 0xA97, 0xA96, GF_PAGE_BTN, 1);
+	var lines := 16;
+	y_pos := 120;
+	for ( lines; lines > 0; lines:=lines-1 )
+		GFResizePic(gump, 155, y_pos-4, GFCfgConst("Backgrounds", "GOLDTRIM"), 210, 28);
+		GFTextEntry(gump, 161, y_pos, 200, 20, 2100, "", NAME_TEXT_POS);
+		
+		GFResizePic(gump, 405, y_pos-4, GFCfgConst("Backgrounds", "GOLDTRIM"), 210, 28);
+		GFTextEntry(gump, 406, y_pos, 200, 20, 2100, "", NAME_TEXT_POS);
+		y_pos := y_pos+21;
+		sleepms(2);
+	endfor
 
 	var input := GFSendGump(who, gump);
 	if ( input[APPLY_BTN] )
 		var group_name := GFExtractData(input, NAME_TEXT_POS);
 		var engine_name;
 		foreach key in ( input.keys )
-			BroadCast("*** "+key+"  ("+hex(key)+")");
 			if ( key >= ENGINE_START && key < ENTRY_START )
 				engine_name := engines[key-ENGINE_START];
+				break;
 			endif
 			sleepms(2);
 		endforeach
@@ -428,7 +451,7 @@ function BuildAddGroupGump(who)
 endfunction
 
 function BuildGroupInfoGump(who, group_name)
-	var gump := BuildGumpTemplate(group_name);
+	var gump := BuildGumpTemplate();
 
 	GFTextMid(gump, 145, 20, 485, 2100, "Edit Group");
 
@@ -439,6 +462,7 @@ function BuildGroupInfoGump(who, group_name)
 	GFAddButton(gump, 525, 50, 0x84C, 0x84B, GF_CLOSE_BTN, APPLY_BTN);
 	
 	GFTextLine(gump, 155, 80, 2100, "Spawn Engine");
+	
 	GFPage(gump, 1);
 	var engines := SS_GetEnginesList();
 	var y_pos := 100;
