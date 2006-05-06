@@ -207,7 +207,7 @@ function BuildRegionInfoGump(who, realm_name, region_name)
 		var y2 := GFExtractData(input, Y2_TEXT_POS);
 		var wait := GFExtractData(input, WAIT_TEXT_POS);
 		SS_SetRegionCoordinates(region_name, x1, y1, x2, y2);
-		 SS_SetRegionSpawnWait(region_name, wait);
+		SS_SetRegionSpawnWait(region_name, wait);
 	endif
 	
 	return input[0];
@@ -290,7 +290,32 @@ function BuildAddRegionGump(who, realm_name)
 	GFResizePic(gump, 525, 100, GFCfgConst("Backgrounds", "GOLDTRIM"), 65, 28);
 	GFTextEntry(gump, 531, 104, 55, 20, 2100, "", WAIT_TEXT_POS);
 	
+	GFGumpPic(gump, 165, 175, 0x5F);
+	GFGumpPic(gump, 174, 184, 0x60);
+	GFGumpPic(gump, 411, 184, 0x60);
+	GFGumpPic(gump, 590, 175, 0x61);
+	
+	GFAddButton(gump, 366, 174, 0x482, 0x483, GF_CLOSE_BTN, APPLY_BTN);
+	GFTextLine(gump, 345, 200, 2100, "Create Region.");
+	
 	var input := GFSendGump(who, gump);
+	if ( input[APPLY_BTN] )
+		var region_name := GFExtractData(input, NAME_TEXT_POS);
+		var result := SS_AddRegion(region_name, realm_name);
+		if ( result.errortext )
+			GumpPrompt(who, "Error Creating Region [P] "+result.errortext);
+		else
+			var x1 := GFExtractData(input, X1_TEXT_POS);
+			var y1 := GFExtractData(input, Y1_TEXT_POS);
+			var x2 := GFExtractData(input, X2_TEXT_POS);
+			var y2 := GFExtractData(input, Y2_TEXT_POS);
+			var wait := GFExtractData(input, WAIT_TEXT_POS);
+			SS_SetRegionCoordinates(region_name, x1, y1, x2, y2);
+			SS_SetRegionSpawnWait(region_name, wait);
+			SS_AddRegionToRealm(realm_name, region_name);
+			GumpPrompt(who, "Region added.");
+		endif
+	endif
 	
 	return input[0];
 endfunction
