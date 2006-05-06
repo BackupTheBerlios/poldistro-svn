@@ -14,10 +14,13 @@ include ":spawnsystem:include/groups";
 unload_scripts("");
 
 // Used for button ranges
-const REALM_START	:= 0xA0000;
-const REGION_START	:= 0xB0000;
-const GROUP_START	:= 0xC0000;
+const REALM_START	:= 0x1000;
+const REGION_START	:= 0x2000;
+const GROUP_START	:= 0x3000;
+const ENGINE_START	:= 0x4000;
+const ENTRY_START	:= 0x5000;
 
+// Arbitrary buttons
 const CLOSE_BTN		:= 0xA4;
 const ADD_REALM_BTN	:= 0xA5;
 const ADD_REGION_BTN	:= 0xA6;
@@ -29,11 +32,13 @@ const SHOW_REALMS_BTN	:= 0xAB;
 const SHOW_REGIONS_BTN	:= 0xAC;
 const SHOW_THIS_REGION	:= 0xAD;
 const SHOW_GROUPS_BTN	:= 0xAE;
-const SEARCH_BTN	:= 0xAF;
-const VISIT_REGION_BTN	:= 0xB0;
-const APPLY_BTN		:= 0xB1;
-const REGION_GROUPS_BTN	:= 0xB2;
+const SHOW_THIS_GROUP	:= 0xAF;
+const SEARCH_BTN	:= 0xB0;
+const VISIT_REGION_BTN	:= 0xB1;
+const APPLY_BTN		:= 0xB2;
+const REGION_GROUPS_BTN	:= 0xB3;
 
+// Text entry locations
 const X1_TEXT_POS	:= 0xF00;
 const Y1_TEXT_POS	:= 0xF01;
 const X2_TEXT_POS	:= 0xF02;
@@ -63,6 +68,8 @@ program SpawnerCMD(who)
 				input := BuildGroupsListGump(who);
 			elseif ( cur_menu == ADD_GROUP_BTN )
 				input := BuildAddGroupGump(who);
+			elseif ( cur_menu == SHOW_THIS_GROUP )
+				input := BuildGroupInfoGump(who, cur_group);
 			endif
 		endif
 
@@ -84,6 +91,10 @@ program SpawnerCMD(who)
 			cur_menu := SHOW_GROUPS_BTN;
 		elseif ( input == ADD_GROUP_BTN )
 			cur_menu := ADD_GROUP_BTN;
+		elseif ( input >= GROUP_START ) // Button next to a realm name was clicked.
+			cur_menu := SHOW_THIS_GROUP;
+			var group_list := SS_GetGroupNames();
+			cur_group := group_list[input-GROUP_START];
 		elseif ( input >= REGION_START ) // Button next to a region name was clicked.
 			cur_menu := SHOW_THIS_REGION;
 			var region_list := SS_GetRegionsInRealm(cur_realm).keys();
@@ -195,7 +206,7 @@ function BuildRegionInfoGump(who, realm_name, region_name)
 	GFTextLine(gump, 155, 50, 2100, "Region Name");
 	GFResizePic(gump, 230, 46, GFCfgConst("Backgrounds", "GOLDTRIM"), 245, 28);
 	GFTextLine(gump, 236, 50, 1000, region_name);
-	
+
 	var coords := SS_GetRegionCoordinates(region_name);
 	GFTextLine(gump, 155, 80, 2100, "Coordinates");
 	GFTextLine(gump, 245, 80, 2100, "X1");
@@ -210,27 +221,27 @@ function BuildRegionInfoGump(who, realm_name, region_name)
 	GFTextLine(gump, 375, 80, 2100, "Y2");
 	GFResizePic(gump, 360, 100, GFCfgConst("Backgrounds", "GOLDTRIM"), 45, 28);
 	GFTextEntry(gump, 366, 104, 35, 20, 2100, coords.y2, Y2_TEXT_POS);
-	
+
 	GFTextLine(gump, 500, 80, 2100, "Spawn Wait (Sec.)");
 	GFResizePic(gump, 525, 100, GFCfgConst("Backgrounds", "GOLDTRIM"), 65, 28);
 	GFTextEntry(gump, 531, 104, 55, 20, 2100, SS_GetRegionSpawnWait(region_name), WAIT_TEXT_POS);
-	
+
 	GFAddButton(gump, 354, 174, 0x84C, 0x84B, GF_CLOSE_BTN, APPLY_BTN);
-	
+
 	GFGumpPic(gump, 165, 175, 0x5F);
 	GFGumpPic(gump, 174, 184, 0x60);
 	GFGumpPic(gump, 411, 184, 0x60);
 	GFGumpPic(gump, 590, 175, 0x61);
-		
+
 	GFAddButton(gump, 155, 203, 2117, 2118, GF_CLOSE_BTN, REGION_GROUPS_BTN);
 	GFTextLine(gump, 175, 200, 2100, "Manage region groups.");
-	
+
 	GFAddButton(gump, 155, 223, 2117, 2118, GF_CLOSE_BTN, VISIT_REGION_BTN);
 	GFTextLine(gump, 175, 220, 2100, "Goto region center.");
-	
+
 	GFAddButton(gump, 155, 303, 2117, 2118, GF_CLOSE_BTN, REMOVE_REGION_BTN);
 	GFTextLine(gump, 175, 300, 2100, "Delete region.");
-	
+
 	var input := GFSendGump(who, gump);
 	if ( input[APPLY_BTN] )
 		var x1 := GFExtractData(input, X1_TEXT_POS);
@@ -247,7 +258,7 @@ function BuildRegionInfoGump(who, realm_name, region_name)
 			return SHOW_REGIONS_BTN;
 		endif
 	endif
-	
+
 	return input[0];
 endfunction
 
@@ -309,7 +320,7 @@ function BuildAddRegionGump(who, realm_name)
 	GFTextLine(gump, 155, 50, 2100, "Region Name");
 	GFResizePic(gump, 230, 46, GFCfgConst("Backgrounds", "GOLDTRIM"), 245, 28);
 	GFTextEntry(gump, 236, 50, 235, 20, 2100, "", NAME_TEXT_POS);
-	
+
 	GFTextLine(gump, 155, 80, 2100, "Coordinates");
 	GFTextLine(gump, 245, 80, 2100, "X1");
 	GFResizePic(gump, 230, 100, GFCfgConst("Backgrounds", "GOLDTRIM"), 45, 28);
@@ -323,19 +334,19 @@ function BuildAddRegionGump(who, realm_name)
 	GFTextLine(gump, 375, 80, 2100, "Y2");
 	GFResizePic(gump, 360, 100, GFCfgConst("Backgrounds", "GOLDTRIM"), 45, 28);
 	GFTextEntry(gump, 366, 104, 35, 20, 2100, "", Y2_TEXT_POS);
-	
+
 	GFTextLine(gump, 500, 80, 2100, "Spawn Wait (Sec.)");
 	GFResizePic(gump, 525, 100, GFCfgConst("Backgrounds", "GOLDTRIM"), 65, 28);
 	GFTextEntry(gump, 531, 104, 55, 20, 2100, "", WAIT_TEXT_POS);
-	
+
 	GFGumpPic(gump, 165, 175, 0x5F);
 	GFGumpPic(gump, 174, 184, 0x60);
 	GFGumpPic(gump, 411, 184, 0x60);
 	GFGumpPic(gump, 590, 175, 0x61);
-	
+
 	GFAddButton(gump, 366, 174, 0x482, 0x483, GF_CLOSE_BTN, APPLY_BTN);
 	GFTextLine(gump, 345, 200, 2100, "Create Region.");
-	
+
 	var input := GFSendGump(who, gump);
 	if ( input[APPLY_BTN] )
 		var region_name := GFExtractData(input, NAME_TEXT_POS);
@@ -354,7 +365,7 @@ function BuildAddRegionGump(who, realm_name)
 			GumpPrompt(who, "Region added.");
 		endif
 	endif
-	
+
 	return input[0];
 endfunction
 
@@ -366,23 +377,90 @@ function BuildAddGroupGump(who)
 	GFTextLine(gump, 155, 50, 2100, "Group Name");
 	GFResizePic(gump, 230, 46, GFCfgConst("Backgrounds", "GOLDTRIM"), 245, 28);
 	GFTextEntry(gump, 236, 50, 235, 20, 2100, "", NAME_TEXT_POS);
-	
-	GFTextLine(gump, 155, 80, 2100, "Spawn Engine");
-	var engines := SS_GetEnginesList();
-	var y_pos := 100;
-	foreach engine_name in ( engines )
-		GFRadioButton(gump, 155, y_pos, 0xD2, 0xD3, 0, 3);
-		GFTextLine(gump, 185, y_pos, 2100, engine_name);
-		y_pos := y_pos+20;
-	endforeach	
-		
+
 	GFAddButton(gump, 555, 70, 0x482, 0x483, GF_CLOSE_BTN, APPLY_BTN);
 	GFTextLine(gump, 525, 50, 2100, "Create Group.");
+
+	GFTextLine(gump, 155, 80, 2100, "Spawn Engine");
+	GFPage(gump, 1);
+	var engines := SS_GetEnginesList();
+	var y_pos := 100;
+	var counter := 0;
+	foreach engine_name in ( engines )
+		GFRadioButton(gump, 185, y_pos, 0xD2, 0xD3, 0, ENGINE_START+_engine_name_iter);
+		GFTextLine(gump, 215, y_pos, 2100, engine_name);
+		y_pos := y_pos+20;
+		counter := counter+1;
+		if ( counter >= 16 )
+			GFAddButton(gump, 155, 435, 0xA56, 0xA57, GF_PAGE_BTN, gump.cur_page+1);
+			GFPage(gump, gump.cur_page+1);
+			GFAddButton(gump, 155, 100, 0xA5A, 0xA5B, GF_PAGE_BTN, gump.cur_page-1);
+			counter := 0;
+			y_pos := 100;
+		endif
+	endforeach
+
+	var input := GFSendGump(who, gump);
+	if ( input[APPLY_BTN] )
+		var group_name := GFExtractData(input, NAME_TEXT_POS);
+		var engine_name;
+		foreach key in ( input.keys )
+			BroadCast("*** "+key+"  ("+hex(key)+")");
+			if ( key >= ENGINE_START && key < ENTRY_START )
+				engine_name := engines[key-ENGINE_START];
+			endif
+			sleepms(2);
+		endforeach
+		if ( !engine_name )
+			GumpPrompt(who, "Error Creating Group [P] No engine selected.");
+			return SHOW_GROUPS_BTN;
+		endif
+		
+		var result := SS_AddGroup(group_name, engine_name);
+		if ( result.errortext )
+			GumpPrompt(who, "Error Creating Group [P] "+result.errortext);
+		else
+			GumpPrompt(who, "Group added.");
+		endif
+	endif
+
+	return input[0];
+endfunction
+
+function BuildGroupInfoGump(who, group_name)
+	var gump := BuildGumpTemplate(group_name);
+
+	GFTextMid(gump, 145, 20, 485, 2100, "Edit Group");
+
+	GFTextLine(gump, 155, 50, 2100, "Group Name");
+	GFResizePic(gump, 230, 46, GFCfgConst("Backgrounds", "GOLDTRIM"), 245, 28);
+	GFTextLine(gump, 236, 50, 1000, group_name);
+
+	GFAddButton(gump, 525, 50, 0x84C, 0x84B, GF_CLOSE_BTN, APPLY_BTN);
 	
+	GFTextLine(gump, 155, 80, 2100, "Spawn Engine");
+	GFPage(gump, 1);
+	var engines := SS_GetEnginesList();
+	var y_pos := 100;
+	var counter := 0;
+	foreach engine_name in ( engines )
+		GFRadioButton(gump, 185, y_pos, 0xD2, 0xD3, 0, 3);
+		GFTextLine(gump, 215, y_pos, 2100, engine_name);
+		y_pos := y_pos+20;
+		counter := counter+1;
+		if ( counter >= 16 )
+			GFAddButton(gump, 155, 435, 0xA56, 0xA57, GF_PAGE_BTN, gump.cur_page+1);
+			GFPage(gump, gump.cur_page+1);
+			GFAddButton(gump, 155, 100, 0xA5A, 0xA5B, GF_PAGE_BTN, gump.cur_page-1);
+			counter := 0;
+			y_pos := 100;
+		endif
+	endforeach
+
 	var input := GFSendGump(who, gump);
 	if ( input[APPLY_BTN] )
 		//
 	endif
-	
+
 	return input[0];
 endfunction
