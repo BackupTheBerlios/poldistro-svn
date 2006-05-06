@@ -25,18 +25,16 @@ const CLOSE_BTN		:= 0xA4;
 const ADD_REALM_BTN	:= 0xA5;
 const ADD_REGION_BTN	:= 0xA6;
 const ADD_GROUP_BTN	:= 0xA7;
-const REMOVE_REALM_BTN	:= 0xA8;
-const REMOVE_REGION_BTN	:= 0xA9;
-const REMOVE_GROUP_BTN	:= 0xAA;
-const SHOW_REALMS_BTN	:= 0xAB;
-const SHOW_REGIONS_BTN	:= 0xAC;
-const SHOW_THIS_REGION	:= 0xAD;
-const SHOW_GROUPS_BTN	:= 0xAE;
-const SHOW_THIS_GROUP	:= 0xAF;
-const SEARCH_BTN	:= 0xB0;
-const VISIT_REGION_BTN	:= 0xB1;
-const APPLY_BTN		:= 0xB2;
-const REGION_GROUPS_BTN	:= 0xB3;
+const DELETE_BTN	:= 0xA8;
+const SHOW_REALMS_BTN	:= 0xA9;
+const SHOW_REGIONS_BTN	:= 0xAA;
+const SHOW_THIS_REGION	:= 0xAB;
+const SHOW_GROUPS_BTN	:= 0xAC;
+const SHOW_THIS_GROUP	:= 0xAD;
+const SEARCH_BTN	:= 0xAE;
+const VISIT_REGION_BTN	:= 0xAF;
+const APPLY_BTN		:= 0xB0;
+const REGION_GROUPS_BTN	:= 0xB1;
 
 // Text entry locations
 const X1_TEXT_POS	:= 0xF00;
@@ -67,9 +65,9 @@ program SpawnerCMD(who)
 			elseif ( cur_menu == SHOW_GROUPS_BTN )
 				input := BuildGroupsListGump(who);
 			elseif ( cur_menu == ADD_GROUP_BTN )
-				input := BuildAddGroupGump(who);
+				input := BuildGroupsGump(who);
 			elseif ( cur_menu == SHOW_THIS_GROUP )
-				input := BuildGroupInfoGump(who, cur_group);
+				input := BuildGroupsGump(who, cur_group);
 			endif
 		endif
 
@@ -239,7 +237,7 @@ function BuildRegionInfoGump(who, realm_name, region_name)
 	GFAddButton(gump, 155, 223, 2117, 2118, GF_CLOSE_BTN, VISIT_REGION_BTN);
 	GFTextLine(gump, 175, 220, 2100, "Goto region center.");
 
-	GFAddButton(gump, 155, 303, 2117, 2118, GF_CLOSE_BTN, REMOVE_REGION_BTN);
+	GFAddButton(gump, 155, 303, 2117, 2118, GF_CLOSE_BTN, DELETE_BTN);
 	GFTextLine(gump, 175, 300, 2100, "Delete region.");
 
 	var input := GFSendGump(who, gump);
@@ -251,7 +249,7 @@ function BuildRegionInfoGump(who, realm_name, region_name)
 		var wait := GFExtractData(input, WAIT_TEXT_POS);
 		SS_SetRegionCoordinates(region_name, x1, y1, x2, y2);
 		SS_SetRegionSpawnWait(region_name, wait);
-	elseif ( input[REMOVE_REGION_BTN] )
+	elseif ( input[DELETE_BTN] )
 		if ( YesNo(who, "Are you sure you want to delete this region?") )
 			SS_RemoveRegion(region_name);
 			SS_RemoveRegionFromRealm(realm_name, region_name);
@@ -369,21 +367,28 @@ function BuildAddRegionGump(who, realm_name)
 	return input[0];
 endfunction
 
-function BuildAddGroupGump(who)
+function BuildGroupsGump(who, group_name:="")
 	var gump := BuildGumpTemplate();
-
+	var new_group := (group_name == "");
+	
 	GFTextMid(gump, 145, 20, 485, 2100, "Add Group");
 
 	GFTextLine(gump, 155, 50, 2100, "Group Name");
 	GFResizePic(gump, 230, 46, GFCfgConst("Backgrounds", "GOLDTRIM"), 245, 28);
-	GFTextEntry(gump, 236, 50, 235, 20, 2100, "", NAME_TEXT_POS);
+	if ( !new_group )
+		GFTextLine(gump, 236, 50, 1000, group_name);
+	else
+		GFTextEntry(gump, 236, 50, 235, 20, 2100, group_name, NAME_TEXT_POS);
+	endif
 
-	GFAddButton(gump, 555, 70, 0x482, 0x483, GF_CLOSE_BTN, APPLY_BTN);
-	GFTextLine(gump, 525, 50, 2100, "Create Group");
-
+	GFAddButton(gump, 555, 50, 0x84C, 0x84B, GF_CLOSE_BTN, APPLY_BTN);
+	
 	GFTextLine(gump, 175, 80, 2100, "Spawn Engine");
 	GFTextLine(gump, 375, 80, 2100, "Group Entries");
-
+	
+	GFAddButton(gump, 155, 203, 2117, 2118, GF_CLOSE_BTN, DELETE_BTN);
+	GFTextLine(gump, 175, 200, 2100, "Delete Group");
+	
 	GFPage(gump, 1);
 	GFAddButton(gump, 155, 82, 0xA96, 0xA97, GF_PAGE_BTN, 200);
 	GFAddButton(gump, 355, 82, 0xA96, 0xA97, GF_PAGE_BTN, 300);
@@ -393,10 +398,11 @@ function BuildAddGroupGump(who)
 	GFAddButton(gump, 355, 82, 0xA96, 0xA97, GF_PAGE_BTN, 300);
 	
 	var engines := SS_GetEnginesList();
+	var cur_engine := SS_GetGroupEngine(group_name);
 	var y_pos := 100;
 	var counter := 0;
 	foreach engine_name in ( engines )
-		GFRadioButton(gump, 185, y_pos, 0xD2, 0xD3, 0, ENGINE_START+_engine_name_iter);
+		GFRadioButton(gump, 185, y_pos, 0xD2, 0xD3, (Lower(engine_name)==Lower(cur_engine)), ENGINE_START+_engine_name_iter);
 		GFTextLine(gump, 215, y_pos, 2100, engine_name);
 		y_pos := y_pos+20;
 		counter := counter+1;
@@ -412,13 +418,18 @@ function BuildAddGroupGump(who)
 	GFAddButton(gump, 155, 82, 0xA96, 0xA97, GF_PAGE_BTN, 200);
 	GFAddButton(gump, 355, 82, 0xA97, 0xA96, GF_PAGE_BTN, 1);
 	var lines := 16;
+	counter := 1;
 	y_pos := 120;
+	var cur_entries := SS_GetEntriesInGroup(group_name);
+	cur_entries := cur_entries.Keys();
+	var cur_entry;
 	for ( lines; lines > 0; lines:=lines-1 )
 		GFResizePic(gump, 155, y_pos-4, GFCfgConst("Backgrounds", "GOLDTRIM"), 210, 28);
-		GFTextEntry(gump, 161, y_pos, 200, 20, 2100, "", NAME_TEXT_POS);
-		
+		GFTextEntry(gump, 161, y_pos, 200, 20, 2100, SS_GetEntryByNumber(group_name, counter), ENTRY_START+counter);
+		counter := counter+1;
 		GFResizePic(gump, 405, y_pos-4, GFCfgConst("Backgrounds", "GOLDTRIM"), 210, 28);
-		GFTextEntry(gump, 406, y_pos, 200, 20, 2100, "", NAME_TEXT_POS);
+		GFTextEntry(gump, 411, y_pos, 200, 20, 2100, SS_GetEntryByNumber(group_name, counter), ENTRY_START+counter);
+		counter := counter+1;
 		y_pos := y_pos+21;
 		sleepms(2);
 	endfor
@@ -426,11 +437,15 @@ function BuildAddGroupGump(who)
 	var input := GFSendGump(who, gump);
 	if ( input[APPLY_BTN] )
 		var group_name := GFExtractData(input, NAME_TEXT_POS);
-		var engine_name;
+		var engine_name:=0, entries := array{};
 		foreach key in ( input.keys )
 			if ( key >= ENGINE_START && key < ENTRY_START )
 				engine_name := engines[key-ENGINE_START];
-				break;
+			elseif ( key >= ENTRY_START )
+				var entry := GFExtractData(input, key);
+				if ( entry )
+					entries.Append(entry);
+				endif
 			endif
 			sleepms(2);
 		endforeach
@@ -438,53 +453,30 @@ function BuildAddGroupGump(who)
 			GumpPrompt(who, "Error Creating Group [P] No engine selected.");
 			return SHOW_GROUPS_BTN;
 		endif
-		
-		var result := SS_AddGroup(group_name, engine_name);
-		if ( result.errortext )
-			GumpPrompt(who, "Error Creating Group [P] "+result.errortext);
+		var result;
+		if ( new_group )
+			result := SS_AddGroup(group_name, engine_name);
+			if ( result.errortext )
+				GumpPrompt(who, "Error Creating Group [P] "+result.errortext);
+			endif
 		else
+			result := SS_SetGroupEngine(group_name, engine_name);
+		endif
+		
+		if ( result != error )
+			foreach entry in entries
+				SS_AddEntryToGroup(group_name, entry);
+				sleepms(2);
+			endforeach
 			GumpPrompt(who, "Group added.");
+		else
+			GumpPrompt(who, "Error [P] "+result.errortext);
+		endif
+	elseif ( input[DELETE_BTN] )
+		if ( YesNo(who, "Are you sure you want to delete this group?") )
+			SS_RemoveGroup(group_name);
+			return SHOW_GROUPS_BTN;
 		endif
 	endif
-
-	return input[0];
-endfunction
-
-function BuildGroupInfoGump(who, group_name)
-	var gump := BuildGumpTemplate();
-
-	GFTextMid(gump, 145, 20, 485, 2100, "Edit Group");
-
-	GFTextLine(gump, 155, 50, 2100, "Group Name");
-	GFResizePic(gump, 230, 46, GFCfgConst("Backgrounds", "GOLDTRIM"), 245, 28);
-	GFTextLine(gump, 236, 50, 1000, group_name);
-
-	GFAddButton(gump, 525, 50, 0x84C, 0x84B, GF_CLOSE_BTN, APPLY_BTN);
-	
-	GFTextLine(gump, 155, 80, 2100, "Spawn Engine");
-	
-	GFPage(gump, 1);
-	var engines := SS_GetEnginesList();
-	var y_pos := 100;
-	var counter := 0;
-	foreach engine_name in ( engines )
-		GFRadioButton(gump, 185, y_pos, 0xD2, 0xD3, 0, 3);
-		GFTextLine(gump, 215, y_pos, 2100, engine_name);
-		y_pos := y_pos+20;
-		counter := counter+1;
-		if ( counter >= 16 )
-			GFAddButton(gump, 155, 435, 0xA56, 0xA57, GF_PAGE_BTN, gump.cur_page+1);
-			GFPage(gump, gump.cur_page+1);
-			GFAddButton(gump, 155, 100, 0xA5A, 0xA5B, GF_PAGE_BTN, gump.cur_page-1);
-			counter := 0;
-			y_pos := 100;
-		endif
-	endforeach
-
-	var input := GFSendGump(who, gump);
-	if ( input[APPLY_BTN] )
-		//
-	endif
-
 	return input[0];
 endfunction
