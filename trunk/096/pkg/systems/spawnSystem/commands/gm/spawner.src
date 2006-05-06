@@ -436,7 +436,10 @@ function BuildGroupsGump(who, group_name:="")
 
 	var input := GFSendGump(who, gump);
 	if ( input[APPLY_BTN] )
-		var group_name := GFExtractData(input, NAME_TEXT_POS);
+		if ( new_group )
+			group_name := GFExtractData(input, NAME_TEXT_POS);
+		endif
+		
 		var engine_name:=0, entries := array{};
 		foreach key in ( input.keys )
 			if ( key >= ENGINE_START && key < ENTRY_START )
@@ -468,9 +471,7 @@ function BuildGroupsGump(who, group_name:="")
 				SS_AddEntryToGroup(group_name, entry);
 				sleepms(2);
 			endforeach
-			GumpPrompt(who, "Group added.");
-		else
-			GumpPrompt(who, "Error [P] "+result.errortext);
+			GumpPrompt(who, "Group setup complete.");
 		endif
 	elseif ( input[DELETE_BTN] )
 		if ( YesNo(who, "Are you sure you want to delete this group?") )

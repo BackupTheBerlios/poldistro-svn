@@ -142,7 +142,8 @@ endfunction
  */
 function SS_SetGroupEngine(group_name, engine_name)
 	var group_elem := SS_GetGroupDataElem(group_name);
-	return group_elem.SetProp("Engine", engine_name);
+	
+	return group_elem.SetProp("Engine", Lower(engine_name));
 endfunction
 
 /*
@@ -224,3 +225,27 @@ function SS_GetEntriesInGroup(group_name)
 	return group_list;
 endfunction
 
+/*
+ * SS_GetEntryByNumber(group_name, number)
+ *
+ * Purpose
+ * Retrieves an entry by its position number.
+ *
+ * Parameters
+ * group_name:	Name of the group to retrieve an entry from.
+ *
+ * Return Value
+ * Returns a string on success.
+ * Returns an empty string if nothing is set.
+ *
+ */
+function SS_GetEntryByNumber(group_name, number)
+	var entries := SS_GetEntriesInGroup(group_name);
+	entries := entries.Keys();
+	var entry := entries[CInt(number)];
+	if ( entry )
+		return CStr(entry);
+	else
+		return "";
+	endif
+endfunction
