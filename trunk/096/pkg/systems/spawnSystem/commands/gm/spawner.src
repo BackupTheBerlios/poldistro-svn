@@ -11,9 +11,9 @@ include ":spawnsystem:include/regions";
 unload_scripts("");
 
 // Used for button ranges
-const REALM_START	:= 0xA000;
-const REGION_START	:= 0xB000;
-const GROUP_START	:= 0xC000;
+const REALM_START	:= 0xA0000;
+const REGION_START	:= 0xB0000;
+const GROUP_START	:= 0xC0000;
 
 const CLOSE_BTN		:= 0xA4;
 const ADD_REALM_BTN	:= 0xA5;
@@ -31,12 +31,12 @@ const VISIT_REGION_BTN	:= 0xB0;
 const APPLY_BTN		:= 0xB1;
 const REGION_GROUPS_BTN	:= 0xB2;
 
-const X1_TEXT_POS	:= 0xA00;
-const Y1_TEXT_POS	:= 0xA01;
-const X2_TEXT_POS	:= 0xA02;
-const Y2_TEXT_POS	:= 0xA03;
-const NAME_TEXT_POS	:= 0xA04;
-const WAIT_TEXT_POS	:= 0xA05;
+const X1_TEXT_POS	:= 0xF00;
+const Y1_TEXT_POS	:= 0xF01;
+const X2_TEXT_POS	:= 0xF02;
+const Y2_TEXT_POS	:= 0xF03;
+const NAME_TEXT_POS	:= 0xF04;
+const WAIT_TEXT_POS	:= 0xF05;
 
 program SpawnerCMD(who)
 	var input := SHOW_REALMS_BTN;
@@ -184,7 +184,7 @@ function BuildRegionInfoGump(who, realm_name, region_name)
 	
 	GFTextLine(gump, 500, 80, 2100, "Spawn Wait (Sec.)");
 	GFResizePic(gump, 525, 100, GFCfgConst("Backgrounds", "GOLDTRIM"), 65, 28);
-	GFTextEntry(gump, 531, 104, 55, 20, 2100, SS_GetRegionSpawnWait(region_name), Y2_TEXT_POS);
+	GFTextEntry(gump, 531, 104, 55, 20, 2100, SS_GetRegionSpawnWait(region_name), WAIT_TEXT_POS);
 	
 	GFAddButton(gump, 354, 174, 0x84C, 0x84B, GF_CLOSE_BTN, APPLY_BTN);
 	
@@ -200,6 +200,16 @@ function BuildRegionInfoGump(who, realm_name, region_name)
 	GFTextLine(gump, 175, 220, 2100, "Goto region center.");
 	
 	var input := GFSendGump(who, gump);
+	if ( input[APPLY_BTN] )
+		var x1 := GFExtractData(input, X1_TEXT_POS);
+		var y1 := GFExtractData(input, Y1_TEXT_POS);
+		var x2 := GFExtractData(input, X2_TEXT_POS);
+		var y2 := GFExtractData(input, Y2_TEXT_POS);
+		var wait := GFExtractData(input, WAIT_TEXT_POS);
+		SS_SetRegionCoordinates(region_name, x1, y1, x2, y2);
+		 SS_SetRegionSpawnWait(region_name, wait);
+	endif
+	
 	return input[0];
 endfunction
 
