@@ -34,7 +34,6 @@ const SHOW_THIS_GROUP	:= 0xAD;
 const SEARCH_BTN	:= 0xAE;
 const VISIT_REGION_BTN	:= 0xAF;
 const APPLY_BTN		:= 0xB0;
-const REGION_GROUPS_BTN	:= 0xB1;
 
 // Text entry locations
 const X1_TEXT_POS	:= 0xF00;
@@ -48,8 +47,7 @@ program SpawnerCMD(who)
 	var input := SHOW_REALMS_BTN;
 	var cur_menu := SHOW_REALMS_BTN;
 	var cur_realm, cur_region, cur_group;
-	var gump;
-
+	
 	while ( who.connected )
 		if ( input )
 			if ( cur_menu == SHOW_REALMS_BTN )
@@ -230,8 +228,9 @@ function BuildRegionInfoGump(who, realm_name, region_name)
 	GFGumpPic(gump, 174, 184, 0x60);
 	GFGumpPic(gump, 411, 184, 0x60);
 	GFGumpPic(gump, 590, 175, 0x61);
-
-	GFAddButton(gump, 155, 203, 2117, 2118, GF_CLOSE_BTN, REGION_GROUPS_BTN);
+	
+	GFPage(gump, 1);
+	GFAddButton(gump, 155, 203, 2117, 2118, GF_PAGE_BTN, 200);
 	GFTextLine(gump, 175, 200, 2100, "Manage region groups.");
 
 	GFAddButton(gump, 155, 223, 2117, 2118, GF_CLOSE_BTN, VISIT_REGION_BTN);
@@ -239,6 +238,15 @@ function BuildRegionInfoGump(who, realm_name, region_name)
 
 	GFAddButton(gump, 155, 303, 2117, 2118, GF_CLOSE_BTN, DELETE_BTN);
 	GFTextLine(gump, 175, 300, 2100, "Delete region.");
+	
+	GFPage(gump, 200);
+	var y_pos := 200;
+	var group_list := SS_GetGroupsInRegion(region_name);
+	foreach group_name in ( group_list )
+		GFTextLine(gump, 175, y_pos, 2100, group_name);
+		y_pos := y_pos+20;
+		sleepms(2);
+	endforeach
 
 	var input := GFSendGump(who, gump);
 	if ( input[APPLY_BTN] )
@@ -385,13 +393,13 @@ function BuildGroupsGump(who, group_name:="")
 	
 	GFTextLine(gump, 175, 80, 2100, "Spawn Engine");
 	GFTextLine(gump, 375, 80, 2100, "Group Entries");
-	
-	GFAddButton(gump, 155, 203, 2117, 2118, GF_CLOSE_BTN, DELETE_BTN);
-	GFTextLine(gump, 175, 200, 2100, "Delete Group");
-	
+			
 	GFPage(gump, 1);
 	GFAddButton(gump, 155, 82, 0xA96, 0xA97, GF_PAGE_BTN, 200);
 	GFAddButton(gump, 355, 82, 0xA96, 0xA97, GF_PAGE_BTN, 300);
+	
+	GFAddButton(gump, 155, 203, 2117, 2118, GF_CLOSE_BTN, DELETE_BTN);
+	GFTextLine(gump, 175, 200, 2100, "Delete Group");
 	
 	GFPage(gump, 200);
 	GFAddButton(gump, 155, 82, 0xA97, 0xA96, GF_PAGE_BTN, 1);
@@ -413,6 +421,7 @@ function BuildGroupsGump(who, group_name:="")
 			counter := 0;
 			y_pos := 100;
 		endif
+		sleepms(2);
 	endforeach
 	GFPage(gump, 300);
 	GFAddButton(gump, 155, 82, 0xA96, 0xA97, GF_PAGE_BTN, 200);
@@ -422,7 +431,6 @@ function BuildGroupsGump(who, group_name:="")
 	y_pos := 120;
 	var cur_entries := SS_GetEntriesInGroup(group_name);
 	cur_entries := cur_entries.Keys();
-	var cur_entry;
 	for ( lines; lines > 0; lines:=lines-1 )
 		GFResizePic(gump, 155, y_pos-4, GFCfgConst("Backgrounds", "GOLDTRIM"), 210, 28);
 		GFTextEntry(gump, 161, y_pos, 200, 20, 2100, SS_GetEntryByNumber(group_name, counter), ENTRY_START+counter);
