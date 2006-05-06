@@ -56,8 +56,12 @@ endfunction
  */
 function SS_AddRegion(region_name, realm_name:="")
 	var data_file := SS_GetRegionDataFile();
-	var result := data_file.CreateElement(region_name);
 	
+	if ( data_file.FindElement(region_name) != error )
+		return error{"errortext":="Region already exists."};
+	endif
+	
+	var result := data_file.CreateElement(region_name);
 	if ( realm_name && result )
 		SS_SetRegionRealm(region_name, Lower(realm_name));
 	endif

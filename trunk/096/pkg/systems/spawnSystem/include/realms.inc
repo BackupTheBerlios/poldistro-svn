@@ -59,8 +59,12 @@ function SS_AddRealm(realm_name)
 	if ( !core_realms.Exists(Lower(realm_name)) )
 		return error{"errortext":="'"+realm_name+"' is not a valid realm name."};
 	endif
-	
 	var data_file := SS_GetRealmDataFile();
+	
+	if ( data_file.FindElement(realm_name) != error )
+		return error{"errortext":="Realm already exists."};
+	endif
+	
 	return data_file.CreateElement(realm_name);
 endfunction
 

@@ -57,6 +57,11 @@ endfunction
  */
 function SS_AddGroup(group_name, engine_type:="")
 	var data_file := SS_GetGroupDataFile();
+	
+	if ( data_file.FindElement(group_name) != error )
+		return error{"errortext":="Group already exists."};
+	endif
+	
 	var result := data_file.CreateElement(group_name);
 	
 	if ( engine_type && result )
