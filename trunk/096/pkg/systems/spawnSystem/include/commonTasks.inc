@@ -21,6 +21,9 @@ include ":spawnsystem:regions";
  *
  */
 function SS_MoveRegionToNewRealm(region_name, realm_name)
+	region_name := Lower(region_name);
+	realm_name := Lower(realm_name);
+	
 	Set_Critical(1);
 	var cur_realm := SS_GetRegionRealm(region_name);
 	SS_RemoveRegionFromRealm(cur_realm, region_name);
@@ -45,6 +48,8 @@ endfunction
  *
  */
 function SS_FullRemoveRegion(region_name)
+	region_name := Lower(region_name);
+	
 	var realm_name := SS_GetRegionRealm(region_name);
 	SS_RemoveRegionFromRealm(realm_name, region_name);
 	SS_RemoveRegion(region_name);
