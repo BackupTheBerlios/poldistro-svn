@@ -87,7 +87,7 @@ program SpawnerCMD(who)
 			cur_menu := SHOW_GROUPS_BTN;
 		elseif ( input == ADD_GROUP_BTN )
 			cur_menu := ADD_GROUP_BTN;
-		elseif ( input >= GROUP_START ) // Button next to a realm name was clicked.
+		elseif ( input >= GROUP_START ) // Button next to a group name was clicked.
 			cur_menu := SHOW_THIS_GROUP;
 			var group_list := SS_GetGroupNames();
 			cur_group := group_list[input-GROUP_START];
@@ -283,14 +283,24 @@ function BuildRegionGump(who, realm_name, region_name:="")
 		GFTextLine(gump, 540, 200, 2100, "Enabled");
 		var y_pos := 220;
 		var group_list := SS_GetGroupsInRegion(region_name);
-		foreach group in ( group_list )
-			GFAddButton(gump, 170, y_pos+3, 2117, 2118, GF_CLOSE_BTN, 1);
-			GFTextLine(gump, 225, y_pos, 2100, _group_iter);
-			GFTextLine(gump, 450, y_pos, 2100, group.max_amt);
-			GFCheckBox(gump, 550, y_pos, 0xD2, 0xD3, (group.enabled), 1);
+		var group_names := group_list.Keys();
+		var lines := 1;
+		
+		for ( lines; lines <= 12; lines := lines+1 )
+			GFAddButton(gump, 170, y_pos+3, 2117, 2118, GF_CLOSE_BTN, GROUP_START+lines);
+			var name := group_names[lines];
+			if ( group_names[lines] )
+				var group := group_list[name];
+				GFTextLine(gump, 225, y_pos, 2100, name);
+				GFTextLine(gump, 450, y_pos, 2100, group.max_amt);
+				GFCheckBox(gump, 550, y_pos, 0xD2, 0xD3, (group.enabled), 1);
+			else
+				GFTextLine(gump, 225, y_pos, 2100, "----");
+			endif
+			
 			y_pos := y_pos+20;
 			sleepms(2);
-		endforeach
+		endfor
 	endif
 
 	var input := GFSendGump(who, gump);
@@ -329,7 +339,7 @@ function BuildGroupGump(who, group_name:="")
 	var gump := BuildGumpTemplate();
 	var new_group := (group_name == "");
 	
-	GFTextMid(gump, 145, 20, 485, 2100, "Add Group");
+	GFTextMid(gump, 145, 20, 485, 2100, "Group Information");
 
 	GFTextLine(gump, 155, 50, 2100, "Group Name");
 	GFResizePic(gump, 230, 46, GFCfgConst("Backgrounds", "GOLDTRIM"), 245, 28);
