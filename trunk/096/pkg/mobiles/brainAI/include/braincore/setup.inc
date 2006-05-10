@@ -127,6 +127,20 @@ function StartupScripts()
 		endif
 	endif
 	
+	// Kludge to know what is in the NPC's area when it is created.
+	if ( g_scripts.Exists("EnterArea") )
+		var event := struct;
+		event.+type := SYSEVENT_ENTEREDAREA;
+		event.+source;
+		foreach mobile in (ListMobilesNearLocationEX(npc.x, npc.y, npc.z, CInt(g_settings["AreaSize"]), npc.realm, LISTEX_FLAG_NORMAL+LISTEX_FLAG_HIDDEN+LISTEX_FLAG_GHOST+LISTEX_FLAG_CONCEALED))
+			event.source := mobile;
+			SendEvent(npc, event);
+			sleepms(10);
+		endforeach
+	endif
+	
+	sleepms(50);
+		
 	if ( g_scripts.Exists("LookAround") )
 		StartNerve(npc, "LookAround", g_scripts["LookAround"].script, array{g_settings, g_scripts}, g_scripts["LookAround"].flags);
 	endif		
