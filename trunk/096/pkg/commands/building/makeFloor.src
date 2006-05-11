@@ -6,6 +6,8 @@
 use os;
 use uo;
 
+include "include/facings";
+
 CONST MAX_DISTANCE := 10;
 
 program textcmd_MakeFloor(who, input)
@@ -28,51 +30,10 @@ program textcmd_MakeFloor(who, input)
 		SendSysMessage (who,"You have gone over " + MAX_DISTANCE + " tiles. Distance has been adjusted.");
 	endif
 
-	var xdiff := 0, ydiff := 0;
-	case ( who.facing )
-		0:
-			xdiff := 0;
-			ydiff := -1;
-			break;
-		1:
-			xdiff := +1;
-			ydiff := -1;
-			break;
-		2:
-			xdiff := +1;
-			ydiff := 0;
-			break;
-		3:
-			xdiff := +1;
-			ydiff := +1;
-			break;
-		4:
-			xdiff := 0;
-			ydiff := +1;
-			break;
-		5:
-			xdiff := -1;
-			ydiff := +1;
-			break;
-		6:
-			xdiff := -1;
-			ydiff := 0;
-			break;
-		7:
-			xdiff := -1;
-			ydiff := -1;
-			break;
-		default:
-			SendSysMessage(who, "Cant figure out your facing!");
-			return 0;
-			break;
-	endcase
-
-	var i;
-	for( i := 1; i <= dist; i := i + 1 )
-		var created := CreateItemAtLocation(who.x + i*xdiff, who.y + i*ydiff, who.z, graphic, 1, who.realm);
+	var coordinates := GetPointsByFacing(who.x, who.y, who.facing, dist);
+	foreach coord in ( coordinates )
+		var created := CreateItemAtLocation(coord.x, coord.y, who.z, graphic, 1, who.realm);
 		created.decayat := 0;
-		sleepms(1);
-	endfor
-
+		sleepms(2);
+	endforeach
 endprogram
