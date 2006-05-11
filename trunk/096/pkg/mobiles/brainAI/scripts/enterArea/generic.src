@@ -41,8 +41,6 @@ function EnteredArea(npc, byref event, byref settings, byref scripts)
 				if ( !GetNerveProcess(npc, "LookAround") )
 					AI_WakeUp(npc);
 				endif
-			else
-				PrintTextAbove(npc, "No wakeup nerve.");
 			endif
 			
 			return 1;

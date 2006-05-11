@@ -152,15 +152,13 @@ endfunction
 function InitializeEnterArea()
 	// Kludge to know what is in the NPC's area when it is created.
 	if ( g_scripts.Exists("EnterArea") )
-		var k := CInt(g_settings["AreaSize"]);
 		var event := struct;
 		event.+type := SYSEVENT_ENTEREDAREA;
 		event.+source;
-		foreach mobile in ( ListMobilesNearLocationEX(npc.x, npc.y, npc.z, k, LISTEX_FLAG_NORMAL+LISTEX_FLAG_HIDDEN+LISTEX_FLAG_GHOST+LISTEX_FLAG_CONCEALED) )
+		foreach mobile in ( ListMobilesNearLocationEX(npc.x, npc.y, npc.z, CInt(g_settings["AreaSize"]), LISTEX_FLAG_NORMAL+LISTEX_FLAG_HIDDEN+LISTEX_FLAG_GHOST+LISTEX_FLAG_CONCEALED) )
 			if ( mobile == npc )
 				continue;
 			else
-				PrintTextAbove(npc, "Found "+mobile.name);
 				event.source := mobile;
 				SendEvent(npc, event);
 			endif
