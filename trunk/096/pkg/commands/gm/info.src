@@ -33,6 +33,11 @@ var btn_list := array{};	// Stores button information for the current gump (sinc
 var btn_info := struct{"editFunc", "name"}; // Individual button tracking that goes into the btn_list array.
 
 program textcmd_Info(who, serial)
+	if ( Lower(TypeOf(who)) == "array" )
+		serial := who[2];
+		who := who[1];
+	endif
+	
 	info_cfg := ReadConfigFile(":commands:config/info");
 	if ( !info_cfg )
 		SendSysMessage(who, "Error reading in info.cfg ->"+info_cfg);
