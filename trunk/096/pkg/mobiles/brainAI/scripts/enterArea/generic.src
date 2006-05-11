@@ -15,10 +15,10 @@ program BrainNerve(params)
 	
 	while ( npc )
 		if ( event )
-			case ( event.type )
+			CHECKS: case ( event.type )
 				SYSEVENT_ENTEREDAREA:
 					EnteredArea(npc, event, settings, scripts);
-					break;
+					break CHECKS;
 				default:
 					break;
 			endcase
@@ -26,7 +26,6 @@ program BrainNerve(params)
 			event := 0;
 		endif
 		
-		sleepms(5);
 		event := wait_for_event(600);
 	endwhile
 endprogram
@@ -42,6 +41,8 @@ function EnteredArea(npc, byref event, byref settings, byref scripts)
 				if ( !GetNerveProcess(npc, "LookAround") )
 					AI_WakeUp(npc);
 				endif
+			else
+				PrintTextAbove(npc, "No wakeup nerve.");
 			endif
 			
 			return 1;

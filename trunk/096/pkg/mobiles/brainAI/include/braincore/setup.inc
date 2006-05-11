@@ -117,6 +117,7 @@ function StartupScripts()
 		endif
 	else
 		SetObjProperty(npc, "CreateTime", polcore().systime);
+		InitializeEnterArea();
 		
 		if ( g_scripts.Exists("Init") )
 			var init_script := Run_Script_To_Completion(g_scripts["Init"].script, {npc, g_settings, g_scripts});
@@ -127,23 +128,45 @@ function StartupScripts()
 		endif
 	endif
 	
-	// Kludge to know what is in the NPC's area when it is created.
-	if ( g_scripts.Exists("EnterArea") )
-		var event := struct;
-		event.+type := SYSEVENT_ENTEREDAREA;
-		event.+source;
-		foreach mobile in (ListMobilesNearLocationEX(npc.x, npc.y, npc.z, CInt(g_settings["AreaSize"]), npc.realm, LISTEX_FLAG_NORMAL+LISTEX_FLAG_HIDDEN+LISTEX_FLAG_GHOST+LISTEX_FLAG_CONCEALED))
-			event.source := mobile;
-			SendEvent(npc, event);
-			sleepms(10);
-		endforeach
-	endif
-	
-	sleepms(50);
+	sleepms(20);
 		
 	if ( g_scripts.Exists("LookAround") )
 		StartNerve(npc, "LookAround", g_scripts["LookAround"].script, array{g_settings, g_scripts}, g_scripts["LookAround"].flags);
 	endif		
+	
+	return 1;
+endfunction
+
+/*
+ * StartupScripts()
+ *
+ * Purpose
+ * Informs the newly created NPC of surrounding mobiles through its EnterArea script.
+ *
+ * Parameters
+ *
+ * Return value
+ * Returns 1
+ *
+ */
+function InitializeEnterArea()
+	// Kludge to know what is in the NPC's area when it is created.
+	if ( g_scripts.Exists("EnterArea") )
+		var k := CInt(g_settings["AreaSize"]);
+		var event := struct;
+		event.+type := SYSEVENT_ENTEREDAREA;
+		event.+source;
+		foreach mobile in ( ListMobilesNearLocationEX(npc.x, npc.y, npc.z, k, LISTEX_FLAG_NORMAL+LISTEX_FLAG_HIDDEN+LISTEX_FLAG_GHOST+LISTEX_FLAG_CONCEALED) )
+			if ( mobile == npc )
+				continue;
+			else
+				PrintTextAbove(npc, "Found "+mobile.name);
+				event.source := mobile;
+				SendEvent(npc, event);
+			endif
+			sleepms(10);
+		endforeach
+	endif
 	
 	return 1;
 endfunction

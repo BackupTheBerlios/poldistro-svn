@@ -61,8 +61,10 @@ endfunction
 function LeaveSleepMode()
 	if ( sleep_mode )
 		StopNerve(npc, "Sleep");
+	endif
 	
-		if ( g_scripts.Exists("LookAround") )
+	if ( g_scripts.Exists("LookAround") )
+		if ( !GetNerveProcess(npc, "LookAround") )
 			StartNerve(npc, "LookAround", g_scripts["LookAround"].script, array{g_settings, g_scripts}, g_scripts["LookAround"].flags);
 		endif
 	endif
