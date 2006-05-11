@@ -91,21 +91,39 @@ endfunction
 
 function SpecialAttacks(npc, opponent, byref dist)
 	AI_Turn(npc, opponent, NETURN_TOWARD);
-	npc.frozen := 1;
-	if ( dist < 2 )
-		BlowFire(npc, opponent);
-	else
+	//npc.frozen := 1;
+	if ( dist <= 5 )
+		BlowFire(npc, opponent, dist);
+	elseif ( dist <= 10 )
 		SpitFireBall(npc, opponent);
 	endif
-	npc.frozen := 0;
+	//npc.frozen := 0;
 	
-	SetObjProperty(npc, "#NextAttack", ReadGameClock()+15);
+	//SetObjProperty(npc, "#NextAttack", ReadGameClock()+15);
 	
 	return 1;
 endfunction
 
-function BlowFire(npc, opponent)
-	//
+function BlowFire(npc, opponent, byref dist)
+	var facing := GetFacing(npc.x, npc.y, opponent.x, opponent.y);
+	var coordinates := GetPointsByFacing(npc.x, npc.y, facing, dist);
+	PerformAction(npc, 5);
+	//AI_Speak(npc, "*BURNINNATES*");
+	foreach coord in ( coordinates )
+		/*
+		PlayStationaryEffect(coord.x, coord.y, npc.z+(15-(RandomInt(3)+3)), SelectRandomExplosion(), 15, 15, 1);
+		if ( RandomInt(3) == 1 )
+			PlayStationaryEffect(coord.x, coord.y, npc.z+(15-(RandomInt(3)+3)), GFX_SMOKE, 5, 5, 0);
+		endif
+		
+		foreach player in ListMobilesNearLocationEX(coord.x, coord.y, coord.z, 0, LISTEX_FLAG_NORMAL+LISTEX_FLAG_HIDDEN, npc.realm)
+			ApplyRawDamageEX(player, RandomDiceRoll("5d15"), DMG_FIRE, npc);
+			sleepms(2);
+		endforeach
+		*/
+		sleepms(2);
+	endforeach
+	
 	return 1;
 endfunction
 
@@ -133,17 +151,7 @@ function SpitFireBall(npc, opponent)
 		if ( RandomInt(2) != 1 ) // Don't place a fire field
 			continue;
 		endif
-		case( RandomInt(3) )
-			default:
-				PlayStationaryEffect(coord.x, coord.y, npc.z, GFX_EXPLODE_1, 10, 10, 0);
-				break;
-			1:
-				PlayStationaryEffect(coord.x, coord.y, npc.z, GFX_EXPLODE_2, 10, 10, 0);
-				break;
-			2:
-				PlayStationaryEffect(coord.x, coord.y, npc.z, GFX_EXPLODE_3, 10, 10, 0);
-				break;
-		endcase
+		PlayStationaryEffect(coord.x, coord.y, npc.z, SelectRandomExplosion(), 10, 10, 0);
 		var field := CreateItemAtLocation(coord.x, coord.y, opponent.z, "FireFieldNS", 1);
 		field.SetDuration(5);
 		sleepms(5);
@@ -151,3 +159,12 @@ function SpitFireBall(npc, opponent)
 	
 	return 1;
 endfunction
+
+function SelectRandomExplosion()
+	case ( RandomInt(3) )
+		1: return GFX_EXPLODE_2; break;
+		2: return GFX_EXPLODE_3; break;
+		default: return GFX_EXPLODE_1; break;
+	endcase
+endfunction
+		
