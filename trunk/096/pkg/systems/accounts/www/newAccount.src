@@ -23,14 +23,19 @@ include ":accounts:settings";
  *
  */
 program HTTPScript()
+	var settings := ACCT_GetSettingsCfgElem("Settings");
+	if ( !settings.AllowWWWAccounts )
+		WriteHTMLRaw("Error: Web account maker is disabled.");
+		return 0;
+	endif
+	
 	var username := QueryParam("username");
 	var password := QueryParam("password");
 	var cmd_lvl := QueryParam("cmdlevel");
 	var expansion := QueryParam("expansion");
 	var email := QueryParam("email");
 	var admin_pw := QueryParam("adminpw");
-
-	var settings := ACCT_GetSettingsCfgElem("Settings");
+	
 	if ( settings.AuxWebPassword )
 		if ( settings.AuxWebPassword != admin_pw )
 			 WriteHTMLRaw("Error: Invalid administration password.");

@@ -20,7 +20,14 @@ include ":accounts:settings";
  */
 program AuxService(connection)
 	var report;
+	var settings := ACCT_GetSettingsCfgElem("Settings");
 	while ( connection )
+		if ( !settings.AllowWWWAccounts )
+			report := array{"Error", "Web account maker is disabled."};
+			connection.Transmit(report);
+			return 0;
+		endif
+	
 		var event := Wait_For_Event(5);
 		if ( event ) // New account to be made?
 			var username := event[1];
@@ -30,11 +37,11 @@ program AuxService(connection)
 			var email := event[5];
 			var admin_pw := event[6];
 			
-			var settings := ACCT_GetSettingsCfgElem("Settings");
 			if ( settings.AuxWebPassword )
 				if ( settings.AuxWebPassword != admin_pw )
-					 connection.Transmit("Invalid administration password.");
-					 return 0;
+					report := array{"Error", "Invalid administration password."};
+					connection.Transmit(report);
+					return 0;
 				endif
 			endif
 			
