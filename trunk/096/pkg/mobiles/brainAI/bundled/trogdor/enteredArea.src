@@ -37,7 +37,6 @@ function EnteredArea(npc, byref event, byref settings, byref scripts)
 	if ( NPC_ShouldWatch(npc, source, settings, scripts) )
 		if ( NPC_AddToWatchList(npc, source) )
 			AI_WakeUp(npc);
-			AI_Speak(npc, "Ive added you to my watch list "+source.name);
 			
 			if ( scripts["LookAround"] )
 				if ( !GetNerveProcess(npc, "LookAround") )

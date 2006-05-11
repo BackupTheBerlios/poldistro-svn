@@ -37,7 +37,6 @@ function LeftArea(npc, byref event)
 	if ( source.npctemplate )
 		return 0;
 	elseif ( NPC_RemoveFromWatchList(npc, source) )
-		AI_Speak(npc, "I am no longer watching "+source.name);
 		return 1;
 	endif
 	

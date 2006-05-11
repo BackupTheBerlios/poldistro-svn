@@ -17,6 +17,10 @@ program BrainNerve(params)
 	
 	AI_WarMode(npc, 0);
 	
+	if ( !opponent.dead )
+		return 0;
+	endif
+	
 	var corpse := opponent.GetCorpse();
 	do
 		var dist := Distance(npc, corpse);
@@ -24,7 +28,7 @@ program BrainNerve(params)
 		sleep(dist-1);
 	dowhile( ShouldApproach(npc, opponent, corpse) );
 	
-	AI_Speak(npc, "Killed ya, neener!");
+	AI_Speak(npc, "BWAAHAHAHA! Trogdor strikes again!");
 	AI_EndNerve(npc, nerve_name);
 endprogram
 
@@ -33,9 +37,7 @@ function ShouldApproach(npc, opponent, corpse)
 		return 0;
 	elseif ( !corpse )
 		return 0;
-	endif
-	
-	if ( Distance(npc, corpse) > 1 )
+	elseif ( Distance(npc, corpse) > 1 )
 		return 1;
 	endif
 	

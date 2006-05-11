@@ -16,7 +16,7 @@ program BrainNerve(params)
 		if ( event )
 			case ( event.type )
 				SYSEVENT_DOUBLECLICKED:
-					DoubleClickEvent(npc, event);
+					DoubleClickEvent(npc);
 					break;
 				default:
 					break;
@@ -30,10 +30,18 @@ program BrainNerve(params)
 	endwhile
 endprogram
 
-function DoubleClickEvent(npc, byref event)
-	AI_Speak(npc, "Eeeheee... that tickles!", SPEAK_TEXTTYPE_YELL, SPEAK_DOEVENT_ENABLE, WAKEUP);
-	AI_Speak(npc, "*moves away from "+(event.source).name+"*");
-	AI_Move(npc, event.source, NEMOVE_AWAY, NEMOVE_WALK, WAKEUP, 1);
-
+function DoubleClickEvent(npc)
+	AI_Speak(npc, "Trogdor was a man....");
+	sleepms(700);
+	AI_Speak(npc, "Err... he was a dragon man...");
+	sleepms(900);
+	AI_Speak(npc, "... he was a DRAGON!", SPEAK_TEXTTYPE_YELL, SPEAK_DOEVENT_ENABLE, WAKEUP);
+	sleep(1);
+	AI_Speak(npc, ".... TROOOGGGDOOOORRRRR!!!!!!!!", SPEAK_TEXTTYPE_YELL, SPEAK_DOEVENT_ENABLE, WAKEUP);
+	sleepms(1600);
+	AI_Speak(npc, "Burninating the country side!", SPEAK_TEXTTYPE_YELL, SPEAK_DOEVENT_ENABLE, WAKEUP);
+	sleepms(500);
+	AI_Speak(npc, "Burninating the peasants!", SPEAK_TEXTTYPE_YELL, SPEAK_DOEVENT_ENABLE, WAKEUP);
+	
 	return 1;
 endfunction

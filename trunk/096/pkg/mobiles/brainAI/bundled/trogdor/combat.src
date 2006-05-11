@@ -91,36 +91,31 @@ endfunction
 
 function SpecialAttacks(npc, opponent, byref dist)
 	AI_Turn(npc, opponent, NETURN_TOWARD);
-	//npc.frozen := 1;
-	if ( dist <= 5 )
-		BlowFire(npc, opponent, dist);
+	npc.frozen := 1;
+	if ( dist <= 4 )
+		BlowFire(npc, opponent);
 	elseif ( dist <= 10 )
 		SpitFireBall(npc, opponent);
 	endif
-	//npc.frozen := 0;
+	npc.frozen := 0;
 	
-	//SetObjProperty(npc, "#NextAttack", ReadGameClock()+15);
+	SetObjProperty(npc, "#NextAttack", ReadGameClock()+15);
 	
 	return 1;
 endfunction
 
-function BlowFire(npc, opponent, byref dist)
+function BlowFire(npc, opponent)
 	var facing := GetFacing(npc.x, npc.y, opponent.x, opponent.y);
-	var coordinates := GetPointsByFacing(npc.x, npc.y, facing, dist);
-	PerformAction(npc, 5);
-	//AI_Speak(npc, "*BURNINNATES*");
+	var coordinates := GetPointsByFacing(npc.x, npc.y, facing, 4);
+	PerformAction(npc, 12);
+	sleepms(1100);
+	AI_Speak(npc, "*BURNINNATES*");
 	foreach coord in ( coordinates )
-		/*
-		PlayStationaryEffect(coord.x, coord.y, npc.z+(15-(RandomInt(3)+3)), SelectRandomExplosion(), 15, 15, 1);
-		if ( RandomInt(3) == 1 )
-			PlayStationaryEffect(coord.x, coord.y, npc.z+(15-(RandomInt(3)+3)), GFX_SMOKE, 5, 5, 0);
-		endif
-		
+		PlayStationaryEffect(coord.x, coord.y, npc.z+15, SelectRandomExplosion(), 15, 15, 0);
 		foreach player in ListMobilesNearLocationEX(coord.x, coord.y, coord.z, 0, LISTEX_FLAG_NORMAL+LISTEX_FLAG_HIDDEN, npc.realm)
 			ApplyRawDamageEX(player, RandomDiceRoll("5d15"), DMG_FIRE, npc);
 			sleepms(2);
 		endforeach
-		*/
 		sleepms(2);
 	endforeach
 	

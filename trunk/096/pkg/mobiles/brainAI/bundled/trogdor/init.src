@@ -11,8 +11,7 @@ program BrainCriticalScript(params)
 	//var scripts	:= params[3];
 	params := 0; // Not needed anymore.
 	
-	npc.color := RandomDiceRoll("1d100");
-	NPC_SetupBackPack(npc);
+	AI_Speak(npc, "AND THE DRAGON COMES IN THE NIIIIGHHHHHTTTTT!");
 	
 	return 1;
 endprogram
