@@ -1,5 +1,0 @@
-<b>Syntax:</b>
-.moveto [me]
-
-<b>Purpose:</b>
-Move an object/mobile to someplace else or to yourself.

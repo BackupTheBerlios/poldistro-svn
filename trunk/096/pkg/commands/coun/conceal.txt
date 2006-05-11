@@ -2,4 +2,4 @@
 .conceal [me]
 
 <b>Purpose:</b>
-Let's you conceal yourself or target another mobile.
+Let's you conceal yourself at various levels.
