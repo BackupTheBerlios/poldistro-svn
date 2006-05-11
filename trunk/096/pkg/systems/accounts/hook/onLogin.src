@@ -102,33 +102,33 @@ function AcctHackChecks(username, password)
 	if ( !account )
 		// Account doesn't even exist.
 		return ACCT_NOT_EXIST;
-	endif
-
-	if ( account )
-		 if ( !account.CheckPassword(password) )
-		 	var failed_login := account.GetProp("FailedLogin");
-			// First attempt at failing the password check.
-			if ( !failed_login )
-				account.SetProp( "FailedLogin", {1, ReadGameClock()});
-				return ACCT_LOGIN_FAIL; // Let pol tell the user it's an incorrect password.
-			else
-				// Incorrect password for the 5th time.
-			 	// Leave the user hanging at login for the next 10 minutes.
-			 	if ( failed_login[1] >= 5 && ( failed_login[2] >> ReadGameClock() ) )
-			  		account.SetProp( "FailedLogin", {failed_login[1]+1, ReadGameClock()+10});
-			  		return ACCT_LOGIN_HACK; // Leave user hanging.
-			 	elseif ( failed_login[1] >= 5 && ( failed_login[2] << ReadGameClock() ) )
-			  		// User attempted to login with the wrong password after 10 minutes.
-			 		// Reset user's wait time.
-			 		account.EraseProp( "FailedLogin" );
-			  		return ACCT_LOGIN_FAIL; // Let pol tell the user it's an incorrect password.
-			 	elseif ( failed_login[1] << 5 )
-			  		account.SetProp( "FailedLogin", {failed_login[1]+1, ReadGameClock()});
-			  		return ACCT_LOGIN_FAIL; // Let pol tell him it's an incorrect password.
-			 	endif
-			endif
+	elseif ( !account.CheckPassword(password) )
+		var failed_login := account.GetProp("FailedLogin");
+		// First attempt at failing the password check.
+		if ( !failed_login )
+			account.SetProp( "FailedLogin", {1, ReadGameClock()});
+			return ACCT_LOGIN_FAIL; // Let pol tell the user it's an incorrect password.
 		else
-			return ACCT_LOGIN_OKAY; // Passed password check, let them login.
+			if ( failed_login[1] >= 5 && ( failed_login[2] >> ReadGameClock() ) )
+		  		// Incorrect password for the 5th time.
+		 		// Leave the user hanging at login for the next 10 minutes.
+		 		account.SetProp("FailedLogin", {failed_login[1]+1, ReadGameClock()+10});
+		  		return ACCT_LOGIN_HACK; // Leave user hanging.
+		 	
+		 	elseif ( failed_login[1] >= 5 && ( failed_login[2] << ReadGameClock() ) )
+		  		// User attempted to login with the wrong password after 10 minutes.
+		 		// Reset user's wait time.
+		 		account.EraseProp("FailedLogin");
+		  		return ACCT_LOGIN_FAIL; // Let pol tell the user it's an incorrect password.
+		 	
+		 	elseif ( failed_login[1] << 5 )
+		 		// Let pol tell user it's an incorrect password.
+		  		account.SetProp("FailedLogin", {failed_login[1]+1, ReadGameClock()});
+		  		return ACCT_LOGIN_FAIL;
+		 	endif
 		endif
+	else
+		// Passed password check, let user login.
+		return ACCT_LOGIN_OKAY;
 	endif
 endfunction
