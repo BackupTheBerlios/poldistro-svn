@@ -56,6 +56,8 @@ program MainHitScript(attacker, defender, weapon, armor, basedamage, rawdamage)
 		ApplyRawDamageEX(defender, CInt(rawdamage));
 		MakeBleed(defender);
 	endif
+	
+	return 1;
 endprogram
 
 function FacingChecks(attacker, defender)

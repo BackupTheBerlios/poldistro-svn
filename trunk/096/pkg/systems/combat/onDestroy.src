@@ -16,5 +16,7 @@ program OnDestroy(item)
 	var mobile := SystemFindObjectBySerial(equipped);
 	
 	RemoveEquipmentMods(mobile, item);
+	
+	return 1;
 endprogram
 		
