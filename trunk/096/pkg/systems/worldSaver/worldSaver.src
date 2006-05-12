@@ -1,0 +1,44 @@
+/* $Id$
+ *
+ */
+ 
+use uo;
+use os;
+use math;
+
+include ":worldsaver:saver";
+include ":worldsaver:settings";
+include ":worldsaver:report";
+
+program WorldSaver()
+	
+	SetGlobalProperty("#WorldSaverPid", GetPid());
+	
+	while ( 1 )
+		DoTheSave();
+	endwhile
+	
+	return 1;
+endprogram
+
+function DoTheSave()
+	
+	var save_result := SaveWorldState();
+	
+	if ( save_result == error )
+		SVR_ReportText("!!! Error saving world state. Restarting POL in 20 seconds !!!", SAVER_REPORT_SYSLOG+SAVER_REPORT_BROADCAST);
+		sleep(20);
+		ShutDown();
+	else
+		set_critical(1);
+		var save_time := save_result.ElapsedMilliseconds;
+		save_time := Cdbl(CDbl(save_time)/CDbl(1000));
+		save_time := FormatRealToString(save_time, 2);
+		set_critical(0);
+		
+		SVR_ReportText("Finished world save. ("+save_time+")", SAVER_REPORT_SYSLOG+SAVER_REPORT_BROADCAST);
+		SVR_ReportText("Saver - CleanObjects["+save_result.CleanObjects+"] DirtyObjects["+save_result.DirtyObjects+"]", SAVER_REPORT_SYSLOG);
+	endif
+	
+	return 1;
+endfunction
