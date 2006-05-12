@@ -1,42 +1,32 @@
-/* $Id$
+/*
+ * $Id$
  *
  */
+
 use uo;
 
-include ":attributes:attributes";
-include "include/messages";
-include "include/localization";
+include ":death:resurrection";
 
 
-program command_Resurrect(who, params)
-	if ( params == "" )
-		SendMessage(who, MSG_TARGET_CHAR, array{}, MSG_COMMAND);
-		var targ := Target(who, TGTOPT_NOCHECK_LOS);
-		if ( !targ )
-			SendMessage(who, MSG_CANCELLED, array{}, MSG_COMMAND);
-			return 0;
-		else
-			if ( targ.isA(POLCLASS_CORPSE) )
-				targ := SystemFindObjectBySerial(targ.ownerserial);
-				if ( !targ )
-					SendSysMessage(who, "No owner could be found for that corpse.");
-					return 0;
-				endif
-				var result := Resurrect(targ);
-				if ( result.errortext )
-					SendSysMessage(who, "Error - "+result.errortext);
-					return 0;
-				endif
-			endif
-		endif		
-	elseif ( params == "me" )
-		Resurrect(who);
-		AP_RefreshVitals(who);
-		return 1;
+program textcmd_ResGump(who)
+	var targ;
+	if ( who.dead )
+		targ := who;
 	else
-		SendMessage(who, MSG_USE_HELP, array{}, MSG_COMMAND);
+		targ := Target(who);
+		if ( targ.IsA(POLCLASS_CORPSE) )
+			targ := SystemFindObjectBySerial(targ.ownerserial);
+			if ( !targ )
+				SendSysMessage(who, "No owner could be found for that corpse.");
+				return 0;
+			endif
+		endif
+		
+		if ( !targ.dead )
+			SendSysMessage(who, "Target is not dead.");
+			return 0;
+		endif
 	endif
-
-	SendMessage(who, MSG_DONE, array{}, MSG_COMMAND);
-	return 1;
+	
+	Resurrect(targ);
 endprogram
