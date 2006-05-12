@@ -73,7 +73,9 @@ function ShouldSave(byref savetimes)
 endfunction
 
 function GetWaitTime(byref savetimes)
-	return (savetimes.nextsave - savetimes.lasttick);
+	var wait_time := savetimes.nextsave - savetimes.lasttick;
+	//Print("WaitTime="+wait_time);
+	return wait_time;
 endfunction
 
 function UpdateTimes(byref savetimes)
@@ -85,8 +87,8 @@ function UpdateTimes(byref savetimes)
 		SVR_ReportText("Error - No SaveTime setting set in settings.cfg", SAVER_REPORT_SYSLOG);
 	endif
 	
-	savetimes.+lasttick := polcore().systime; 		// Time time there was a save or event.
-	savetimes.+nextsave := polcore().systime + wait;	// Time the next save will happen.
+	savetimes.lasttick := polcore().systime; 	// Time time there was a save or event.
+	savetimes.nextsave := polcore().systime + wait;	// Time the next save will happen.
 	
 	return 1;
 endfunction
