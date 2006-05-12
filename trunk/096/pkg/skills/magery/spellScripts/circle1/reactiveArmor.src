@@ -32,7 +32,7 @@ program SpellScript(params)
 endprogram
 
 function ApplyReactiveArmor(who)
-	var resistances := GetResistances(who);
+	var resistances := GetResistance(who);
 	var inscription := (AP_GetSkill(who, INSCRIPTION) / 20) + 15;
 		
 	resistances[DMG_PHYSICAL] := inscription;
