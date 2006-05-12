@@ -23,8 +23,8 @@ const EVENT_SHUT_DOWN	:= 0x2;
  * Returns 1
  *
  */
-function SVR_SendCommand(event_id, data)
-	var event := struct{"id":=event_id, "data":=data};
+function SVR_SendCommand(event_id, data:=0)
+	var event := struct{"type":=event_id, "data":=data};
 	
 	return SVR_GetProcess().SendEvent(event);
 endfunction
