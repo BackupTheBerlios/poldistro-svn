@@ -12,36 +12,41 @@ include ":worldsaver:report";
 
 
 program WorldSaver()
+	SVR_ReportText("---=[ WORLD SAVER HAS STARTED UP ]=---", SAVER_REPORT_SYSLOG);
 	SetGlobalProperty("#WorldSaverPid", GetPid());
 
 	var savetimes;
 	UpdateTimes(savetimes);
 
 	while ( 1 )
-		var event := Wait_For_Event(10);
+		var wait_time := GetWaitTime(savetimes);
+		Print("WaitTime="+wait_time);
+		var event := Wait_For_Event(wait_time);
 		if ( event )
+			savetimes.last := polcore().systime;
 			case ( event.type )
 				EVENT_SAVE_NOW:
 					DoTheSave();
 					break;
 			endcase
-		else
-			if ( ShouldSave(savetimes ) )
-				DoTheSave();
-				UpdateTimes(savetimes);
-			endif
 		endif
+		
+		if ( ShouldSave(savetimes ) )
+			DoTheSave();
+			UpdateTimes(savetimes);
+		endif
+		
+		sleepms(2);
 	endwhile
 
 	return 1;
 endprogram
 
 function DoTheSave()
-
 	var save_result := SaveWorldState();
 
 	if ( save_result == error )
-		SVR_ReportText("!!! Error saving world state. Restarting POL in 20 seconds !!!", SAVER_REPORT_SYSLOG+SAVER_REPORT_BROADCAST);
+		SVR_ReportText("!!! Error saving world state. Restarting POL in 20 seconds !!!", SAVER_REPORT_ALL);
 		sleep(20);
 		ShutDown();
 	else
@@ -51,7 +56,7 @@ function DoTheSave()
 		save_time := FormatRealToString(save_time, 2);
 		set_critical(0);
 
-		SVR_ReportText("Finished world save. ("+save_time+")", SAVER_REPORT_SYSLOG+SAVER_REPORT_BROADCAST);
+		SVR_ReportText("Finished world save. ("+save_time+")", SAVER_REPORT_ALL);
 		SVR_ReportText("Saver - CleanObjects["+save_result.CleanObjects+"] DirtyObjects["+save_result.DirtyObjects+"]", SAVER_REPORT_SYSLOG);
 	endif
 
@@ -59,11 +64,15 @@ function DoTheSave()
 endfunction
 
 function ShouldSave(byref savetimes)
-	if ( savetimes.save < polcore().systime )
+	if ( savetimes.save <= polcore().systime )
 		return 1;
 	endif
 	
 	return 0;
+endfunction
+
+function GetWaitTime(byref savetimes)
+	return (savetimes.save - savetimes.last);
 endfunction
 
 function UpdateTimes(byref savetimes)
@@ -72,11 +81,12 @@ function UpdateTimes(byref savetimes)
 	var wait := CInt(cfg_settings.SaveTime) * 60;
 	if ( !wait )
 		wait := 3600; // 1 hour if not set.
+		SVR_ReportText("Error - No SaveTime setting set in settings.cfg", SAVER_REPORT_SYSLOG);
 	endif
 	var warn := CInt(cfg_settings.SaveAnnounce) * 60;
 
 	savetimes := struct;
-	savetimes.+last := polcore().systime; 		// Time the last save took place.
+	savetimes.+last := polcore().systime; 		// Time time there was a save or event.
 	savetimes.+save := polcore().systime + wait;	// Time the next save will happen.
 	if ( warn )
 		savetimes.+warn := savetimes.save-warn; // Time the next save warning will come up.
