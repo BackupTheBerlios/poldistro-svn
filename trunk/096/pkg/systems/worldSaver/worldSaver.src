@@ -94,6 +94,8 @@ function UpdateTimes(byref savetimes)
 endfunction
 
 function DoShutDown(countdown:=0)
+	countdown := CInt(countdown);
+	
 	for( countdown; countdown > 0; countdown:=countdown-1 )
 		var i := 2;
 		for (i:=2; i > 0; i:=i-1)
@@ -104,6 +106,7 @@ function DoShutDown(countdown:=0)
 	
 	SVR_ReportText("Shutting down now!", SAVER_REPORT_ALL);
 	sleep(3);
+	
 	ShutDown();
 	
 	return 1;
