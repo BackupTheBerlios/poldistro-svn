@@ -6,6 +6,10 @@ use util;
 include ":brainAI:npcNerves";
 include ":brainAI:npcCommands";
 include "include/client";
+include "include/facings";
+include "include/shapes";
+
+const FIREWORK_RANGE	:= 4;
 
 program BrainNerve(params)
 	var npc		:= params[1];
@@ -94,8 +98,30 @@ function RainbowStuff(npc)
 endfunction
 
 function FartFireworks(npc)
+	npc.frozen := 1;
+	AI_Speak(npc, "Oh .. god.. what did Rowan put in there?!");
+	sleep(1);
+	AI_Speak(npc, "*lifts its tail*");
+	sleep(1);
+	AI_Speak(npc, "*nnngggffffffff*");
+	
 	var behind := Abs((npc.facing+4)%8);
-	// Need to go back a few spaces, do a wiggly fireball animation then mass sparkly effects.
+	var coords := GetPointsByFacing(npc.x, npc.y, behind, FIREWORK_RANGE+2);
+	var coord_a := coords[1]; // First coordinate
+	var coord_z := coords[coords.Size()]; // Last coordinate
+	
+	PlaySoundEffect(npc, 351);
+	sleepms(30);
+	PlayMovingEffectXYZ(coord_a.x, coord_a.y, npc.z, coord_z.x, coord_z.y, npc.z+5, GFX_WAVY_FIREBALL, 10, 10, 0, npc.realm);
+	sleepms(400);
+	PlayStationaryEffect(coord_z.x, coord_z.y, npc.z+5, GFX_EXPLODE_3, 10, 10, 0, npc.realm);
+	foreach coordinate in ( GetCoordsInSquare(coord_z.x, coord_z.y, FIREWORK_RANGE-2) )
+		PlayStationaryEffect(coordinate.x, coordinate.y, npc.z+5, RandomSparkle(), 15, 15, 0, npc.realm);
+		sleepms(2);
+	endforeach
+	
+	npc.frozen := 0;
+	return 1;
 endfunction
 
 function SparkleEffect(npc)
@@ -125,4 +151,18 @@ function SaySomething(npc)
 	AI_Speak(npc, text, SPEAK_TEXTTYPE_DEFAULT, SPEAK_DOEVENT_ENABLE, WAKEUP);
 	
 	return 1;
+endfunction
+
+function RandomSparkle()
+	var sparkles := array{
+	GFX_MAGICAL_SPARKLES_EW,
+	GFX_MAGICAL_SPARKLES_NS,
+	GFX_BLUE_SPARKLES,
+	GFX_RED_SPARKLES,
+	GFX_BLUE_SPARKLE_SWIRL,
+	GFX_BLUE_SPARKLE_BORDER,
+	GFX_BLUE_SPARKLE_GROUND
+	};
+	
+	return sparkles[RandomInt(sparkles.Size())+1];
 endfunction
