@@ -10,7 +10,6 @@ use uo;
 use os;
 use util;
 
-include "include/OLD/noto";
 include ":attributes:attributes";
 include ":timedscripts:timedScripts";
 include ":death:death";
@@ -35,19 +34,6 @@ program core_chrDeath(params)
 	
 	return 1;
 endprogram
-
-function NotorietyChecks(ghost)
-	var killer := GetObjProperty(ghost, "LastHit");
-  	if (killer != error)
-		AdjustNoto((SystemFindObjectBySerial(killer[2])), ghost);
-	endif
-	var fame := CInt(GetObjProperty(ghost, "Fame"));
-	fame := (fame - CInt(fame / 20));
-	SetObjProperty(ghost, "Fame", fame);
-	SetObjProperty(corpse,"serial", ghost.serial);
-	
-	return 1;
-endfunction
 
 function CheckForAutoRes(who, corpse)
 	var auto_res := CInt(GetObjProperty(who, "AutoRes"));

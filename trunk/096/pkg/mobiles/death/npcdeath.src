@@ -11,7 +11,6 @@ use os;
 use util;
 use cfgfile;
 
-include "include/OLD/noto";
 include ":containers:merchantUtil";
 include ":timedscripts:timedScripts";
 include ":death:death";
@@ -45,7 +44,6 @@ program core_npcDeath(params)
 	endif
 	
 	MP_DeathUnmount(corpse);
-	NotorietyChecks(corpse);
 endprogram
 
 function NotorietyChecks(corpse)
