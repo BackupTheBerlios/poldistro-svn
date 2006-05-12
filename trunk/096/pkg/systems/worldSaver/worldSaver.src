@@ -15,18 +15,19 @@ program WorldSaver()
 	SVR_ReportText("---=[ WORLD SAVER HAS STARTED UP ]=---", SAVER_REPORT_SYSLOG);
 	SetGlobalProperty("#WorldSaverPid", GetPid());
 
-	var savetimes;
+	var savetimes:=struct{"nextsave":=0, "lasttick":=0};
 	UpdateTimes(savetimes);
 
 	while ( 1 )
-		var wait_time := GetWaitTime(savetimes);
-		Print("WaitTime="+wait_time);
-		var event := Wait_For_Event(wait_time);
+		var event := Wait_For_Event(GetWaitTime(savetimes));
 		if ( event )
-			savetimes.last := polcore().systime;
+			savetimes.lasttick := polcore().systime;
 			case ( event.type )
 				EVENT_SAVE_NOW:
 					DoTheSave();
+					break;
+				EVENT_START_SHUTDOWN:
+					DoShutDown(event.data);
 					break;
 			endcase
 		endif
@@ -35,7 +36,7 @@ program WorldSaver()
 			DoTheSave();
 			UpdateTimes(savetimes);
 		endif
-		
+
 		sleepms(2);
 	endwhile
 
@@ -64,15 +65,15 @@ function DoTheSave()
 endfunction
 
 function ShouldSave(byref savetimes)
-	if ( savetimes.save <= polcore().systime )
+	if ( savetimes.nextsave <= polcore().systime )
 		return 1;
 	endif
-	
+
 	return 0;
 endfunction
 
 function GetWaitTime(byref savetimes)
-	return (savetimes.save - savetimes.last);
+	return (savetimes.nextsave - savetimes.lasttick);
 endfunction
 
 function UpdateTimes(byref savetimes)
@@ -83,14 +84,25 @@ function UpdateTimes(byref savetimes)
 		wait := 3600; // 1 hour if not set.
 		SVR_ReportText("Error - No SaveTime setting set in settings.cfg", SAVER_REPORT_SYSLOG);
 	endif
-	var warn := CInt(cfg_settings.SaveAnnounce) * 60;
+	
+	savetimes.+lasttick := polcore().systime; 		// Time time there was a save or event.
+	savetimes.+nextsave := polcore().systime + wait;	// Time the next save will happen.
+	
+	return 1;
+endfunction
 
-	savetimes := struct;
-	savetimes.+last := polcore().systime; 		// Time time there was a save or event.
-	savetimes.+save := polcore().systime + wait;	// Time the next save will happen.
-	if ( warn )
-		savetimes.+warn := savetimes.save-warn; // Time the next save warning will come up.
-	endif
-
+function DoShutDown(countdown:=0)
+	for( countdown; countdown > 0; countdown:=countdown-1 )
+		var i := 2;
+		for (i:=2; i > 0; i:=i-1)
+			SVR_ReportText("System Message: POL restarting in "+countdown+" minutes.", SAVER_REPORT_ALL);
+			sleep(30);
+		endfor
+	endfor
+	
+	SVR_ReportText("Shutting down now!", SAVER_REPORT_ALL);
+	sleep(3);
+	ShutDown();
+	
 	return 1;
 endfunction

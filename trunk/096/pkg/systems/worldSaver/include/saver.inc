@@ -6,8 +6,9 @@ use uo;
 use os;
 
 // SAVER EVENTS
-const EVENT_SAVE_NOW	:= 0x1;
-const EVENT_SHUT_DOWN	:= 0x2;
+const EVENT_SAVE_NOW		:= 0x1;
+const EVENT_START_SHUTDOWN	:= 0x2;
+const EVENT_CANCEL_SHUTDOWN	:= 0x4;
 
 /*
  * SVR_SendCommand(event_id, data)
