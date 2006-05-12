@@ -55,6 +55,40 @@ function EnumerateOnlineCharactersABC(dir:=SORT_ASCENDING)
 endfunction
 
 /*
+ * EnumeratePhysicalItems(mobile)
+ *
+ * Purpose
+ * Builds a list of equipped items on a mobile that are safe to access.
+ *
+ * Parameters
+ * mobile:	Mobile to get the equipment on.
+ *
+ * Return Value:
+ * Returns an array of item references.
+ *
+ */
+function EnumeratePhysicalItems(mobile)
+	var equip_list := array{};
+
+	var skip_layers := {11, 16, 21, 25};
+	var i;
+
+	for ( i:=0; i<=25; i:=i+1 )
+		if ( i in skip_layers ) 
+			continue;
+		else
+			var item := GetEquipmentByLayer(mobile, i);
+			if ( item )
+				equip_list.Append(item);
+			endif
+		endif
+		sleepms(2);
+	endfor
+
+	return equip_list;
+endfunction
+
+/*
  * Just a development function to test lists..
  * Dont get many people online on my computer, but wanna make stuff work
  * on other shards!

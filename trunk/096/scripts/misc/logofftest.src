@@ -7,7 +7,7 @@
  */
 use uo;
 
-include "include/time";
+include ":timeutils:time";
 include ":coords:innFunctions";
 include ":timedscripts:timedScripts";
 

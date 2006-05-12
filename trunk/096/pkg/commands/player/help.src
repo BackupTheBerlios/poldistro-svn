@@ -6,20 +6,15 @@
  */
 use uo;
 
-include ":logger:log";
-include "include/messages";
-include "include/localization";
-
-
 program command_help(who, command)
 	var help;
 
 	help := GetCommandHelp(who, command);
-	if (help)
-		SendHTMLMessage(who, help);
+	if ( help )
+		//SendHTMLMessage(who, help);
+		return 1;
 	else
-		SendMessage(who, MSG_NO_HELP, {}, MSG_COMMAND);
+		SendSysMessage(who, "No help available for that command.");
+		return 0;
 	endif
-
-	return;
 endprogram

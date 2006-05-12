@@ -7,7 +7,7 @@
 use uo;
 use os;
 
-include "include/time";
+include ":timeutils:time";
 
 program core_onDelete(who)
 	var create_time := who.createdat;

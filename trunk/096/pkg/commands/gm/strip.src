@@ -3,37 +3,24 @@
  */
 use uo;
 
-include "include/messages";
-include "include/localization";
+include "include/uo_extend";
 
-
-program command_strip(who)
-	var mobile, nbpack;
-	var x, i;
-
-	SendMessage(who, MSG_TARGET_MOB, {}, MSG_COMMAND);
-	mobile := Target(who);
-
-	if ((mobile := Target(who, TGTOPT_NOCHECK_LOS)) == 0)
-		SendMessage(who, MSG_CANCELLED, {}, MSG_COMMAND);
-		return;
+program command_Strip(who)
+	SendSysMessage(who, "Select a mobile.");
+	var targ := Target(who);
+	if ( !targ.IsA(POLCLASS_MOBILE) )
+		SendSysMessage(who, "Cancelled.");
+		return 0;
 	endif
-	if (!mobile.isA(POLCLASS_MOBILE))
-		SendMessage(who, MSG_NO_MOB, {}, MSG_COMMAND);
-		return;
-	endif
-
-	nbpack := CreateItemAtLocation(mobile.x, mobile.y, mobile.z, 0xE75, 1, mobile.realm);
-
-	for (i := 1; i <= 24; i := i + 1)
-		if ((i == 0x0b) || (i == 0x10) || (i == 0x15))
-			x := { };	// Do nothing.
-		else
-			x := GetEquipmentByLayer(mobile, i);
-			MoveItemToContainer(x, nbpack);
-		endif
-	endfor
-
-	return;
+	
+	var container := CreateItemAtLocation(targ.x, targ.y, targ.z, "backpack", 1, targ.realm);
+	foreach item in ( EnumeratePhysicalItems(targ) )
+		MoveItemToContainer(item, container);
+		sleepms(2);
+	endforeach
+	
+	SendSysMessage(who, "Done.");
+		
+	return 1;
 endprogram
 

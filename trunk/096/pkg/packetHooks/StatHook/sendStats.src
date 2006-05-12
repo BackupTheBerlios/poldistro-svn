@@ -27,7 +27,7 @@ use polsys;
 
 include ":attributes:attributeConstants";
 include ":attributes:attributes";
-include ":config:config";
+include ":packetconfig:settings";
 
 program sendStats()
 	Print( "INSTALLING: Outgoing Status PH..." );
