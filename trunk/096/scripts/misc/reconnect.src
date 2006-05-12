@@ -11,5 +11,6 @@ include "include/client";
 
 
 program core_reconnect(who)
+	who := who; // Avoid compiler warnings.
 	return 1;
 endprogram

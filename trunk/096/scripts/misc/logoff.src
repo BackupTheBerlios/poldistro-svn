@@ -7,5 +7,6 @@
  */
 
 program LogOff(who)
+	who := who; // Avoid compiler warnings.
 	return 1;
 endprogram

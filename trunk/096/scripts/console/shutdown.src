@@ -5,8 +5,6 @@ use uo;
 use os;
 use util;
 
-include "include/OLD/clock";
-
 program cmd_shutdown( cmd )
 
 	cmd := CInt(cmd);

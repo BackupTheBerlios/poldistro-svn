@@ -6,9 +6,7 @@
  *
  */
 use uo;
-
-include "include/OLD/startEqp";
-
+use os;
 
 program core_onCreate(who, skillids)
 	var script := Start_Script(":newcharacter:oncreate", {who, skillids});
