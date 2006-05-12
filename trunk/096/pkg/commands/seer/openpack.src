@@ -1,23 +1,33 @@
+/* $Id$
+ *
+ */
+
 use uo;
+use os;
 
-include ":npcutils:NPCBackpacks";
-
-program textcmd_pack( who )
-  var me := Target( who,TGTOPT_NOCHECK_LOS );
-  if((!me) || (me.IsA(POLCLASS_ITEM)))
-    return;
-  endif
-  if (!me.backpack)
-    var newbackpack := CreateItemAtLocation(me.x, me.y, me.z, 0xe75,1, me.realm);
-    if (!EquipItem(me, newbackpack))
-      return;
-    endif
-  endif
-  var mypack := FindMyPack(me.serial);
-  foreach item in EnumerateItemsInContainer(mypack)
-    if (item.container.serial == mypack.serial)
-      MoveItemToContainer(item, me.backpack);
-    endif
-  endforeach
-  SendOpenspecialContainer( who, me.backpack );
+program textcmd_openPack(who)
+	SendSysMessage(who, "Select a container or mobile.");
+	var targ := Target(who);
+	
+	if ( !targ )
+		SendSysMessage(who, "Cancelled.");
+		return 0;
+	endif
+	
+	if ( targ.IsA(POLCLASS_MOBILE) )
+		if ( !targ.backpack )
+			Set_Critical(1);
+			var newpack := CreateItemAtLocation(targ.x, targ.y, targ.z, "backpack", 1, targ.realm);
+			if ( !EquipItem(targ, newpack) )
+				DestroyItem(newpack);
+				return 0;
+			endif
+		endif
+		
+		SendOpenSpecialContainer(who, targ.backpack);
+	elseif ( targ.IsA(POLCLASS_CONTAINER) )
+		SendViewContainer(who, targ);
+	endif
+	
+	return 1;
 endprogram

@@ -5,7 +5,7 @@
 use uo;
 
 include ":attributes:attributes";
-include "include/OLD/sound";
+include "include/sounds";
 
 program textcmd_Kill(who)
 	SendSysMessage(who, "Select a target to kill.");
@@ -19,7 +19,7 @@ program textcmd_Kill(who)
 	targ.Disable("Invul");
 	SetObjProperty(targ, "GuardKill", 1);
 	PlayLightningBoltEffect(targ);
-	PlaySoundEffect(targ, SFX_SPELL_LIGHTNING);	
+	PlaySoundEffect(targ, SFX_LIGHTNING);	
 	ApplyRawDamage(targ, CInt(AP_GetVitalMaximumValue(targ, "Hits")));
 	
 	return 1;

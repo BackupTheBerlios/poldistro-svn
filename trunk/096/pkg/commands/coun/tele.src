@@ -8,7 +8,7 @@ use uo;
 include "include/messages";
 include "include/localization";
 include "include/tileEffects";
-include "include/OLD/sound";
+include "include/sounds";
 
 
 program command_tele(who)
@@ -19,9 +19,9 @@ program command_tele(who)
 	if ((where := TargetCoordinates(who)) == 0)
 		SendMessage(who, MSG_CANCELLED, {}, MSG_COMMAND);
 	else
-		PlaySoundEffectPrivate(who, SFX_SPELL_TELEPORT, who);
+		PlaySoundEffectPrivate(who, SFX_TELEPORT, who);
 		result := MoveCharacterToLocation(who, where.x, where.y, where.z, MOVECHAR_FORCELOCATION);
-		PlayObjectCenteredEffect(who, FX_TELE_VANISH, 0, 5);
+		PlayObjectCenteredEffect(who, GFX_SMOKE, 0, 5);
 	endif
 
 	return;
