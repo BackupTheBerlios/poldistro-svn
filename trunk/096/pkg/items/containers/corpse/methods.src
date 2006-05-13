@@ -86,6 +86,7 @@ exported function MakeRemains(corpse)
 	var owner := IsPlayerCorpse(corpse);
 	if ( owner )
 		remains.SetOwner(owner);
+		SetName(remains, "remains of "+owner.name);
 	endif
 	
 	return remains;
