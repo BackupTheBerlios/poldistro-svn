@@ -1,0 +1,107 @@
+/* $Id$
+ *
+ */
+
+use uo;
+use os;
+use math;
+
+include ":partySystem:config";
+include ":partySystem:packetInfo";
+include ":attributes:attributes"; // for getting player stats
+
+const OFFSET_UPDATE_STAT_PLAYERID := 1;
+
+const OFFSET_SEND_STATUS_LENGTH := 1;
+const OFFSET_SEND_STATUS_PLAYERID := 3;
+const OFFSET_SEND_STATUS_CURRENT_HEALTH := 37;
+const OFFSET_SEND_STATUS_MAX_HEALTH := 39;
+const OFFSET_SEND_STATUS_NAME_CHANGE := 41;
+const OFFSET_SEND_STATUS_VALID := 42;
+const OFFSET_SEND_STATUS_SEX := 43;
+const OFFSET_SEND_STATUS_STR := 44;
+const OFFSET_SEND_STATUS_DEX := 46;
+const OFFSET_SEND_STATUS_INT := 48;
+const OFFSET_SEND_STATUS_CURRENT_STAMINA := 50;
+const OFFSET_SEND_STATUS_MAX_STAMINA := 52;
+const OFFSET_SEND_STATUS_CURRENT_MANA := 54;
+const OFFSET_SEND_STATUS_MAX_MANA := 56;
+const OFFSET_SEND_STATUS_GOLD := 58;
+const OFFSET_SEND_STATUS_ARMOR := 62;
+const OFFSET_SEND_STATUS_WEIGHT := 64;
+
+program doPlayerStatus()
+	print("INSTALLING: Party Status Update PH...");
+	return 1;
+endprogram
+
+exported function handleUpdateStat(character, byref packet)
+	var id := packet.GetInt32(OFFSET_UPDATE_STAT_PLAYERID);
+	var party := GetObjProperty(character, PARTY_PROP);
+
+	if ( DEBUG )
+		print("handleUpdateStat - character: "+character.name+"	packet: "+packet);
+	endif
+
+	// Only send packets if character is in a party
+	if ( TypeOf(party) == "Array" )
+		var char;
+
+		foreach member in ( party )
+			// Only the other members of the party
+			if ( member != id )
+				char := SystemFindObjectBySerial(member);
+
+				// Only send this packet if we're less than PARTY_STATUS_UPDATE_DISTANCE tiles away in any direction
+				if ( char && Distance(char, character) <= PARTY_STATUS_UPDATE_DISTANCE )
+					packet.SendPacket(SystemFindObjectBySerial(member));
+				endif
+			endif
+			sleepms(2);
+		endforeach
+	endif
+
+	return 0;
+endfunction
+
+exported function handleSendStatus(character, byref packet)
+	var party := GetObjProperty(character, PARTY_PROP);
+
+	if ( DEBUG )
+		print("handleSendStatus - character: " + character.name + "	packet: " + packet);
+	endif
+
+	// Only try to send packet if character is in a party
+	if ( TypeOf(party) == "Array" )
+		var id := packet.GetInt32(OFFSET_SEND_STATUS_PLAYERID);
+
+		// Modify the packet for everyone else in the party
+		if ( (id in party) && (character.serial != id) )
+			var char := SystemFindObjectBySerial(id);
+
+			if ( char )
+				// Set the length and everything in the packet past name
+				packet.SetInt16(OFFSET_SEND_STATUS_LENGTH, 66);
+				packet.SetInt16(OFFSET_SEND_STATUS_CURRENT_HEALTH, AP_GetVital(char, "health"));
+				packet.SetInt16(OFFSET_SEND_STATUS_MAX_HEALTH, AP_GetVitalMaximumValue(char, "health"));
+				packet.SetInt8(OFFSET_SEND_STATUS_NAME_CHANGE, 0);
+				packet.SetInt8(OFFSET_SEND_STATUS_VALID, 1);
+				packet.SetInt8(OFFSET_SEND_STATUS_SEX, char.gender);
+				packet.SetInt16(OFFSET_SEND_STATUS_STR, AP_GetStat(char, "strength"));
+				packet.SetInt16(OFFSET_SEND_STATUS_DEX, AP_GetStat(char, "dexterity"));
+				packet.SetInt16(OFFSET_SEND_STATUS_INT, AP_GetStat(char, "intelligence"));
+				packet.SetInt16(OFFSET_SEND_STATUS_CURRENT_STAMINA, AP_GetVital(char, "stamina"));
+				packet.SetInt16(OFFSET_SEND_STATUS_MAX_STAMINA, AP_GetVital(char, "stamina"));
+				packet.SetInt16(OFFSET_SEND_STATUS_CURRENT_MANA, AP_GetVital(char, "mana"));
+				packet.SetInt16(OFFSET_SEND_STATUS_MAX_MANA, AP_GetVitalMaximumValue(char, "mana"));
+
+				// The client doesn't normally display this information, so don't send real data.
+				packet.SetInt32(OFFSET_SEND_STATUS_GOLD, 0); // should be: char.gold
+				packet.SetInt16(OFFSET_SEND_STATUS_ARMOR, 0); // should be: char.ar_mod
+				packet.SetInt16(OFFSET_SEND_STATUS_WEIGHT, 0); // should be: char.weight
+			endif
+		endif
+	endif
+
+	return 0;
+endfunction

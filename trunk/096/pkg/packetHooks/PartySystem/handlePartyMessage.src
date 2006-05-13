@@ -1,0 +1,37 @@
+/* $Id$
+ *
+ */
+
+use uo;
+use os;
+use unicode;
+
+include ":partySystem:config";
+
+program handlePartyMessage(params)
+	Set_Critical(DEBUG_SET_CRITICAL);
+
+	var who := params[1];
+	var targid := params[2];
+	var msg := params[3];
+
+	// You really can not message yourself. The client doesn't send the packet and shows "Note to self: "
+	if ( targid == who.serial )
+		SendSysMessage(who, "You cannot message yourself.", PARTY_FONT, PARTY_FONT_COLOR);
+		return;
+	endif
+
+	var char := SystemFindObjectBySerial(targid);
+
+	if ( char )
+		// Prepare unicode stuff
+		// One could probably just convert the unicode to a string, but just in case you don't use non-latin characters...
+		var cmsg := (CAscZ("[Private] "+who.name+": "))+msg;
+		var wmsg := (CAscZ("[Private->"+char.name+"] "))+msg;
+
+		SendSysMessageUC(char, cmsg, "ENU");
+		SendSysMessageUC(who, wmsg, "ENU");
+	endif
+
+	return 1;
+endprogram

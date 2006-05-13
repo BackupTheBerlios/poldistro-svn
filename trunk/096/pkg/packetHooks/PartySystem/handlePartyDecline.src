@@ -1,0 +1,26 @@
+/* $Id$
+ *
+ */
+
+use uo;
+use os;
+
+include ":partySystem:config";
+
+program handlePartyDecline(params)
+	Set_Critical(DEBUG_SET_CRITICAL);
+
+	var invitee := params[1];
+	var leader := SystemFindObjectBySerial(params[2]);
+
+	// No need for this anymore
+	EraseObjProperty(invitee, PARTY_JOINING_PROP);
+
+	// Let everyone know what happened
+	if ( leader )
+		SendSysMessage(leader, invitee.name+" has declined your offer to join the party.", PARTY_FONT, PARTY_FONT_COLOR);
+		SendSysMessage(invitee, "You have declined "+leader.name+"'s offer.", PARTY_FONT, PARTY_FONT_COLOR);
+	endif
+
+	return 1;
+endprogram

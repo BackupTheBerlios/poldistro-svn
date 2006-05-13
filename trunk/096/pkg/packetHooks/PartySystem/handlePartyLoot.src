@@ -1,0 +1,23 @@
+/* $Id$
+ *
+ */
+
+use uo;
+use os;
+
+include ":partySystem:config";
+include ":partySystem:packetInfo";
+
+program handlePartyLoot(who, loot)
+	Set_Critical(DEBUG_SET_CRITICAL);
+
+	if ( loot == 1 )
+		SetObjProperty(who, PARTY_LOOT_PROP, 1);
+		SendSysMessage(who, "Your party may now loot you. This only takes effect on new corpses.", PARTY_FONT, PARTY_FONT_COLOR);
+	else
+		EraseObjProperty(who, PARTY_LOOT_PROP);
+		SendSysMessage(who, "Your party may no longer loot you. This only takes effect on new corpses.", PARTY_FONT, PARTY_FONT_COLOR);
+	endif
+
+	return 1;
+endprogram

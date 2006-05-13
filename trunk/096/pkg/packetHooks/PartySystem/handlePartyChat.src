@@ -1,0 +1,35 @@
+/* $Id$
+ *
+ */
+
+use uo;
+use os;
+use unicode;
+
+include ":partySystem:config";
+
+program handlePartyChat(params)
+	Set_Critical(DEBUG_SET_CRITICAL);
+
+	var who := params[1];
+	var msg := params[2];
+	var party := GetObjProperty(who, PARTY_PROP);
+
+	// Send message to every memeber in party
+	for i := 1 to ( party.Size() )
+		var char := SystemFindObjectBySerial(party[i]);
+
+		if ( char )
+			// Prepare unicode stuff
+			// One could probably just convert the unicode to a string, but I don't know if you should
+			var cmsg := CAscZ("[Party] "+who.name+": ");
+
+			cmsg := cmsg + msg;
+
+			SendSysMessageUC(char, cmsg, "ENU");
+		endif
+		sleepms(2);
+	endfor
+
+	return 1;
+endprogram
