@@ -1,0 +1,21 @@
+/* $Id$
+ *
+ */
+ 
+use uo;
+use os;
+
+program control_Remains(remains)
+	sleep(300); // 5 minutes
+	
+	foreach item in ( EnumerateItemsInContainer(remains) )
+		if ( item.container != remains )
+			continue;
+		else
+			MoveObjectToLocation(item, remains.x, remains.y, remains.z, remains.realm, MOVEOBJECT_NORMAL);
+		endif
+		sleepms(2);
+	endforeach
+	
+	DestroyItem(remains);
+endprogram

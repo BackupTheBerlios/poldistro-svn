@@ -9,7 +9,18 @@ program Install()
 endprogram
 
 exported function GetOwner(corpse)
-	return SystemFindObjectBySerial(corpse.ownerserial);
+	if ( corpse.ownerserial )
+		return SystemFindObjectBySerial(corpse.ownerserial);
+	elseif ( CInt(GetObjProperty(corpse, "ownerserial")) )
+		return SystemFindObjectBySerial(CInt(GetObjProperty(corpse, "ownerserial")));
+	endif
+endfunction
+
+exported function SetOwner(corpse, serial)
+	if ( serial.IsA(POLCLASS_UOBJECT) )
+		serial := serial.serial;
+	endif
+	return SetObjProperty(corpse, "ownerserial", serial);
 endfunction
 
 exported function NPCTemplate(corpse)
@@ -54,6 +65,32 @@ exported function IsSkinned(corpse)
 	return CInt(GetObjProperty(corpse, "Skinned"));
 endfunction
 
+exported function MakeRemains(corpse)
+	if ( !corpse.IsA(POLCLASS_CORPSE) )
+		return error{"errortext":="Object is not a corpse."};
+	endif
+	
+	var remains := CreateItemAtLocation(corpse.x, corpse.y, corpse.z, "CorpseRemains", 1, corpse.realm);
+	if ( remains.errortext )
+		return remains;
+	endif
+	
+	foreach item in ( corpse )
+		if ( item.container != corpse )
+			continue;
+		endif
+		
+		MoveItemToContainer(item, remains, item.x, item.y);
+	endforeach
+	
+	var owner := IsPlayerCorpse(corpse);
+	if ( owner )
+		remains.SetOwner(owner);
+	endif
+	
+	return remains;
+endfunction
+
 exported function Gibbify(corpse, range:=10)
 	var piece_list := array
 	{
@@ -88,11 +125,12 @@ exported function Gibbify(corpse, range:=10)
 				newy := corpse.y;
 				break MOVE_LOOP;
 			endif
-
 		until ( CheckLosAt(corpse, newx, newy, corpse.z) );
 		
 		MoveItemToLocation(item, newx, newy, corpse.z, MOVEITEM_FORCELOCATION);
 	endforeach
 	
 	DestroyItem(corpse);
+	
+	return 1;
 endfunction

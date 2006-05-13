@@ -2,8 +2,8 @@ use uo;
 use os;
 use util;
 
-program corpseControl(corpse)
-
+program control_Corpse(corpse)
+	/*
 	sleep(300);
 	if(!corpse)
 		return 0;
@@ -33,5 +33,5 @@ program corpseControl(corpse)
 	endif
 
 	return 0;
-
+	*/
 endprogram
