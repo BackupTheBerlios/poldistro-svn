@@ -1,11 +1,15 @@
+/* $Id$
+ *
+ */
 //Example: .npcwipe (x1) (y1) (x2) (y2) -> Removes all npcs.
+
 use uo;
 use os;
 use polsys;
 
 include ":gumps:requestgump";
 
-program cmd_npcwipe(who)
+program textcmd_NPCWipe(who)
 	Set_Priority(100);
 	
 	var realm_name := RequestGump(who, "Enter the realm name to perform the wipe on.", "", who.realm);
@@ -42,4 +46,6 @@ program cmd_npcwipe(who)
 	
 	SendSysMessage(who, "Killed " + count + " NPCs");
 	SysLog("Killed " + count + " NPCs");
+	
+	return 1;
 endprogram

@@ -1,8 +1,14 @@
+/* $Id$
+ *
+ */
+ 
 use uo;
 
-program FixAI(who)
+program textcmd_fixAI(who)
 	var targ := target(who);
 	var result := RestartScript(targ);
 	
 	SendSysMessage(who, "Result of RestartScript("+targ.name+") ->"+result);
+	
+	return 1;
 endprogram

@@ -1,4 +1,8 @@
+/* $Id$
+ *
+ */
 //Example: .massacre [radius] - Kills npcs within the radius.
+
 use uo;
 use os;
 
@@ -19,4 +23,6 @@ program Massacre(who, range)
 		endif
 		sleepms(2);
 	endforeach
+	
+	return 1;
 endprogram

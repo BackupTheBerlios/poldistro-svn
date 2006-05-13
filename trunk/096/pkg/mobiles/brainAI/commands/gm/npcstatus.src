@@ -11,7 +11,7 @@ include ":brainAI:npcWatchList";
 include ":gumps:gumps";
 include ":gumps:gumps_ex";
 
-program NPCStatus(who)
+program textcmd_NPCStatus(who)
 	var targ := Target(who);
 	if ( !targ.IsA(POLCLASS_NPC) )
 		SendSysMessage(who, "Cancelled.");

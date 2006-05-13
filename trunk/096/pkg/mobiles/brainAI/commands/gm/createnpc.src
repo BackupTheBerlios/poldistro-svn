@@ -1,3 +1,7 @@
+/* $Id$
+ *
+ */
+
 use uo;
 use os;
 use polsys;
@@ -13,7 +17,7 @@ const DEFAULT_CATEGORY	:= "None";
 
 var g_datafile := DFOpenDataFile(":brainAI:createnpc", DF_CREATE);
 
-program command_CreateNPC(who, template)
+program textcmd_createNPC(who, template)
 	if ( !template )
 		template := SelectTemplateFromGump(who);
 		if ( !template )
@@ -33,6 +37,8 @@ program command_CreateNPC(who, template)
 		SendSysMessage(who, "Error creating NPC ["+template+"] -> "+npc.errortext);
 		return 0;
 	endif
+	
+	return 1;
 endprogram
 
 function SelectTemplateFromGump(who)

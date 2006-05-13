@@ -1,4 +1,8 @@
+/* $Id$
+ *
+ */
 //Example: .resetnpcs -> Restarts the AI script of every npc on the shard.
+
 use uo;
 use os;
 use polsys;
@@ -6,7 +10,7 @@ use polsys;
 include ":brainAI:npcCommands";
 include ":gumps:requestgump";
 
-program ResetAllNPCs(who)
+program textcmd_resetAllNPCs(who)
 	var realm_name := RequestGump(who, "Enter the realm name to perform the AI restarts on.", "", who.realm);
 	var realm_info := Realms()[realm_name];
 	if ( !realm_info )
@@ -32,4 +36,6 @@ program ResetAllNPCs(who)
 	
 	SendSysMessage(who, "Done restarting all npcs.");
 	SysLog("Finished restarting all npcs.");
+	
+	return 1;
 endprogram

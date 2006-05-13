@@ -1,10 +1,14 @@
+/* $Id$
+ *
+ */
 //Example: .sendevent [event] -> Sends an event to the targetted npc.
+
 use uo;
 use os;
 
 include ":gumps:requestgump";
 
-program ControlNPC(who, event)
+program textcmd_sendEvent(who, event)
 	if ( !event )
 		event := CInt(RequestGump(who, "Enter event value", "Place a + or - at the begining if it is a number."));
 	endif
@@ -24,4 +28,6 @@ program ControlNPC(who, event)
 	else
 		SendSysMessage(who, "Cancelled");
 	endif
+	
+	return 1;
 endprogram

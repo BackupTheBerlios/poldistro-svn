@@ -1,9 +1,13 @@
+/* $Id$
+ *
+ */
 //Example: .massacre [radius] - Kills npcs within the radius and leaves the corpses.
+
 use uo;
 
 include ":gumps:requestgump";
 
-program Massacre(who, range)
+program textcmd_massacre(who, range)
 	
 	range := CInt(range);
 	if ( !range )
@@ -16,4 +20,6 @@ program Massacre(who, range)
 		endif
 		sleepms(2);
 	endforeach
+	
+	return 1;
 endprogram

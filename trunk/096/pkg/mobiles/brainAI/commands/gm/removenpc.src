@@ -1,11 +1,15 @@
+/* $Id$
+ *
+ */
 //Example: .removenpc [npc template] -> Removes every npc of that type.
+
 use uo;
 use os;
 use polsys;
 
 include ":gumps:requestgump";
 
-program NPCWipe(who, template)
+program textcmd_NPCWipe(who, template)
 	if ( !template )
 		template := RequestGump(who, "Enter the npc template name to remove.");
 		if ( !template )
@@ -35,4 +39,6 @@ program NPCWipe(who, template)
 		sleepms(2);
 	endforeach
 	SendSysMessage(who, "Killed " + count + " NPCs");
+	
+	return 1;
 endprogram

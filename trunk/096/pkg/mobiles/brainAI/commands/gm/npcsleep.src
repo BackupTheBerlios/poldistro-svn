@@ -1,4 +1,8 @@
+/* $Id$
+ *
+ */
 //Example: .npcsleep -> Forces all npcs to go to sleep.
+
 use uo;
 use os;
 use polsys;
@@ -6,7 +10,7 @@ use polsys;
 include ":gumps:requestgump";
 include ":brainAI:npcCommands";
 
-program PutEveryNPCToSleep(who)
+program textcmd_NPCSleep(who)
 	var realm_name := RequestGump(who, "Enter the realm name to put npcs to sleep on.", "", who.realm);
 	var realm_info := Realms()[realm_name];
 	if ( !realm_info )
@@ -30,4 +34,6 @@ program PutEveryNPCToSleep(who)
 	endforeach
 	
 	SendSysMessage(who, "Done telling all npcs to sleep.");
+	
+	return 1;
 endprogram
