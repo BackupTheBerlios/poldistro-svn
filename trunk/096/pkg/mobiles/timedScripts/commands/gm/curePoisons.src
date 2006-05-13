@@ -7,7 +7,7 @@ include ":timedscripts:timedScripts";
 include ":timedscripts:poisonUtil";
 
 
-program command_LowerTimer(who, text)
+program textcmd_curePoisons(who, text)
 	text := SplitWords(text);
 	
 	var amount	:= CInt(text[1]);

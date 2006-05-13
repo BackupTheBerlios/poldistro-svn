@@ -4,29 +4,28 @@
 use uo;
 
 include ":timedscripts:timedScripts";
-include "include/messages";
 
-program command_LowerTimer(who, params)
+program textcmd_lowerTimer(who, params)
 	params := SplitWords(params);
 	
 	var timer_name	:= params[1];
 	var amount	:= CInt(params[2]);
 	
 	if (!timer_name || !amount)
-		SendMessage(who, MSG_USE_HELP, array{}, MSG_COMMAND);
+		SendSysMessage(who, "Command syntax: .lowerTimer <timer name> <amount>");
 		return 0;
 	endif
 
-	SendMessage(who, MSG_TARGET_MOB, array{}, MSG_COMMAND);
-	var targ := target(who);
+	SendSysMessage(who, "Select a mobile.");
+	var targ := Target(who);
 	
 	if ( !targ.IsA(POLCLASS_MOBILE) )
-		SendMessage(who, MSG_CANCELLED, array{}, MSG_COMMAND);
+		SendSysMessage(who, "Cancelled.");
 		return 0;
 	endif
 	
 	TS_LowerDuration(targ, timer_name, amount);
-	SendMessage(who, MSG_DONE, array{}, MSG_COMMAND);
+	SendSysMessage(who, "Done.");
 
 	return 1;
 endprogram

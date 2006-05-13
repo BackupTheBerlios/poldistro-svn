@@ -4,11 +4,8 @@
 use uo;
 
 include ":timedscripts:timedScripts";
-include "include/messages";
-include "include/localization";
 
-
-program command_AddPoison(who, params)
+program textcmd_AddTimer(who, params)
 	params := SplitWords(params);
 	
 	var timer_name	:= params[1];
@@ -20,21 +17,20 @@ program command_AddPoison(who, params)
 	endif
 	
 	if ( !timer_name || !duration )
-		SendMessage(who, MSG_USE_HELP, array{}, MSG_COMMAND);
-		return;
+		SendSysMessage(who, "Command syntax .addtimer <duration> (level)");
+		return 0;
 	endif
 
-	SendMessage(who, MSG_TARGET_CHAR, array{}, MSG_COMMAND);
-
+	SendSysMessage(who, "Select a mobile.");
 	var targ := target(who);
 	if ( !targ.IsA(POLCLASS_MOBILE) )
-		SendMessage(who, MSG_CANCELLED, array{}, MSG_COMMAND);
+		SendSysMessage(who, "Cancelled.");
 		return 0;
 	endif
 	
 	TS_StartTimer(targ, timer_name, duration, level);
 
-	SendMessage(who, MSG_DONE, array{}, MSG_COMMAND);
+	SendSysMessage(who, "Done.");
 
 	return 1;
 endprogram
