@@ -68,7 +68,7 @@ exported function LoginHook(who, byref packet)
 		return 0;
 	endif
 	
-	var account := CreateNewAccount(username, password);
+	var account := CreateNewAccount(username, password, 0, settings.DefaultExpansion);
 	// In theory this should only return an error saying "Invalid parameter type".
 	// Should never return "Account already exists" because we already looked for the
 	// account and let pol handle it. And when it does return "Invalid parameter type"
@@ -78,7 +78,7 @@ exported function LoginHook(who, byref packet)
 		SysLog("CreateAccount() Error: " + account.errortext);
 		return 0;
 	endif
-
+		
 	SysLog( "AutoAccount Created: " + username );
 
 	return 0;
