@@ -11,6 +11,7 @@ include ":datafile:datafile";
 include ":lumberjacking:settings";
 include ":lumberjacking:lumberJack";
 include "include/client";
+include "include/facings";
 
 program skill_LumberJack(who, tool)
 	SendSysMessage(who, "Select a tree to chop.");
@@ -85,7 +86,10 @@ function CanChop(who, axe, targ, orig_x, orig_y)
 	if ( who.hidden )
 		SendSysMessage(who, "You stop chopping to remain hidden.");
 		return 0;
-	elseif ( who.x != orig_x || who.y != orig_y )
+	elseif ( CoordinateDistance(who.x, who.y, orig_x, orig_y) > 3 )
+		SendSysMessage(who, "You turn your attention away from lumberjacking.");
+		return 0;
+	elseif ( !IsFacing(who, orig_x, orig_y) > 3 )
 		SendSysMessage(who, "You turn your attention away from lumberjacking.");
 		return 0;
 	elseif ( !(axe in ListEquippedItems(who)) )

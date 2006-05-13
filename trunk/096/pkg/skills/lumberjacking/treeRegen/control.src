@@ -8,8 +8,11 @@ use os;
 include ":datafile:datafile";
 include ":lumberjacking:settings";
 include ":lumberjacking:lumberJack";
+include ":lumberjacking:report";
 
 program GlobalControl()
+	LJ_ReportText("---=[ TREE REGENERATOR HAS STARTED UP ]=---", LJ_REPORT_SYSLOG);
+	
 	var settings := LJ_GetSettingsCfgElem("Settings");
 	var cycle_wait := CInt(settings.RegenWait);
 	if ( cycle_wait < 1 )
@@ -27,7 +30,7 @@ program GlobalControl()
 endprogram
 
 function RegenWood(settings)
-	Print("Running wood regeneration cycle...");
+	LJ_ReportText("Running wood regeneration cycle...", LJ_REPORT_SYSLOG);
 	var data_file := LJ_GetDataFile();
 	
 	foreach elem_name in DFGetElemNames(data_file)

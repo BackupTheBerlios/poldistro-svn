@@ -8,24 +8,6 @@ include ":datafile:datafile";
 include ":lumberjacking:settings";
 
 /*
- * LJ_ReportText(text)
- *
- * Purpose
- * Outputs text to pol/log/lumberjacking.log rather than pol.log or the console.
- *
- * Parameters
- * text:	Text to log.
- *
- * Return value
- * Result of LogToFile()
- *
- */
-function LJ_ReportText(text)
-	var script_name := GetProcess(GetPid()).name;
-	return LogToFile("::log/lumberjacking.log", "["+script_name+"]: "+text, LOG_DATETIME);
-endfunction
-
-/*
  * LJ_IsTree(graphic)
  *
  * Purpose
