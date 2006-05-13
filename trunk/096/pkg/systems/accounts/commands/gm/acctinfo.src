@@ -5,7 +5,7 @@
 use uo;
 use os;
 
-include "include/time";
+include ":timeutils:time";
 include ":accounts:settings";
 include ":gumps:gumps";
 include ":gumps:gumps_ex";
