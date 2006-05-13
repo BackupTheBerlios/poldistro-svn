@@ -8,51 +8,67 @@ use polsys;
 
 include ":gumps:gumps";
 include ":gumps:gumps_ex";
-
-unload_scripts("");
+include ":moongates:moongate";
 
 program walkOnScript(mobile, tile)
-	var config := ReadConfigFile(":moongates:config/moongate");
-	var gump := GFCreateGump();
-	GFResizePic(gump, 0, 0, GFCfgConst("Defaults", "BackGround"), 340, 330);
-	GFResizePic(gump, 15, 15, GFCfgConst("Defaults", "ForeGround"), 310, 300);
+	if ( mobile.npctemplate )
+		return 0;
+	elseif ( JustTeleported(mobile) )
+		return 0;
+	endif
 	
-	GFTextMid(gump, 20, 20, 310, 2100, "Select a Destination");
-	GFAddButton(gump, 35, 250, 2128, 2129, GF_CLOSE_BTN);
-	GFAddButton(gump, 35, 280, 2119, 2120, GF_CLOSE_BTN);
-	
-	var y_pos := 50;
-	var page := 2;
-	foreach realm in ( Realms() )
-		var cfg_elem := config[_realm_iter];
-		GFAddButton(gump, 20, y_pos+3, 2117, 2118, GF_PAGE_BTN, page);
-		GFTextLine(gump, 40, y_pos, 2100, cfg_elem.Faction);
-		y_pos := y_pos+20;
-		page := page+2;
-	endforeach
-	
-	page := 2;
-	foreach realm in ( Realms() )
-		var cfg_elem := config[_realm_iter];
-		GFPage(gump, page);
-		BuildLocationList(gump, cfg_elem);
-		sleepms(2);
-		page := page+2;
-	endforeach
-	
+	var gump := tile.GetGump();
 	var input := GFSendGump(mobile, gump);
-
-	return 1;
+	
+	if ( !input[MG_OKAY_BTN] )
+		SendSysMessage(mobile, "Cancelled.");
+		return 0;
+	elseif ( Distance(mobile, tile) > 1 )
+		SendSysMessage(mobile, "No longer close enough to the moongate.");
+		return 0;
+	endif
+	
+	var select := 0;
+	foreach key in ( input.Keys )
+		if ( key >= MG_LOCATION_START )
+			select := key-MG_LOCATION_START;
+			break;
+		endif
+		sleepms(2);
+	endforeach
+	
+	// Not too happy with how I designed this part. - Austin
+	// Should probably save a list in a datafile and directly access it by the 'select' variable.
+	var config := ReadConfigFile(":moongates:config/moongate");
+	var btn_id := 1;
+	foreach realm in ( Realms() )
+		realm := realm; // To avoid a compiler warning.
+		var cfg_elem := config[_realm_iter];
+		foreach entry in ( GetConfigStringDictionary(cfg_elem, "Town") )
+			if ( btn_id == select )
+				var coords := SplitWords(entry);
+				var result := MoveObjectToLocation(mobile, CInt(coords[1]), CInt(coords[2]), CInt(coords[3]), _realm_iter, MOVEOBJECT_NORMAL);				
+				SetObjProperty(mobile, "#Teleported", ReadMillisecondClock());
+				if ( result.errortext )
+					SendSysMessage(mobile, "Unable to move ->"+result.errortext);
+				endif
+				return 1;
+			endif
+			btn_id := btn_id+1;
+		endforeach
+		sleepms(2);
+	endforeach
+	
+	return 0;
 endprogram
 
-function BuildLocationList(byref gump, byref cfg_elem)
-	var y_pos := 50;
-	foreach entry in ( GetConfigStringDictionary(cfg_elem, "Town") )
-		GFRadioButton(gump, 150, y_pos, 210, 211, 0, 0);
-		GFTextLine(gump, 173, y_pos, 2100, _entry_iter);
-		y_pos := y_pos+20;
-		sleepms(2);
-	endforeach
-	
-	return 1;		
+function JustTeleported(mobile)
+	var tele_time := CInt(GetObjProperty(mobile, "#Teleported"));
+	if ( tele_time > ReadMillisecondClock()-500 )
+		// Mobile just teleported. Too soon to teleport again.
+		return 1;
+	else
+		// Safe to teleport the mobile
+		return 0;
+	endif
 endfunction

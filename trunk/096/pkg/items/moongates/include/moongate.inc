@@ -11,7 +11,7 @@ include ":datafile:datafile";
 
 // Constats for the moongate gump.
 const MG_CANCEL_BTN	:= 0x0;
-const MG_OKAY_BTN	:= 0x1;
+const MG_OKAY_BTN	:= 0x10;
 const MG_LOCATION_START := 0xA00;
 
 
