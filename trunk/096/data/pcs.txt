@@ -18,75 +18,15 @@ Character
 	Y	822
 	Z	0
 	Facing	1
-	Revision	94
+	Revision	0
 	Realm	britannia
-	CProp	Equip i1
-	CProp	Fame i0
-	CProp	HighSkill i43
-	CProp	HungerLevel i10
-	CProp	HungerTimer i22
-	CProp	Karma i0
-	CProp	LastHit a3:S5:Admini1707739S5:curse
-	CProp	LastLog i25190423
-	CProp	OnCreate i25065898
-	CProp	Poisons d0:
-	CProp	cap_pid i15707
-	CProp	guardkill i1
-	CProp	logontime i25190423
-	CProp	mailkeeper i12
-	CProp	onlinetimer i814297
 	CmdLevel	test
-	TrueColor	0x83ea
+	TrueColor	0x8026
 	TrueObjtype	0x190
 	Gender	0
 	Strength	100
 	Intelligence	100
 	Dexterity	100
-	Alchemy	100
-	Anatomy	100
-	AnimalLore	100
-	ArmsLore	100
-	Parry	100
-	Begging	100
-	Blacksmithy	100
-	Peacemaking	100
-	Camping	100
-	Carpentry	100
-	Cartography	100
-	Cooking	100
-	DetectingHidden	100
-	EvaluatingIntelligence	100
-	Healing	100
-	Fishing	100
-	ForensicEvaluation	100
-	Herding	100
-	Hiding	100
-	Provocation	100
-	Inscription	100
-	Lockpicking	100
-	Magery	100
-	Tactics	100
-	Snooping	100
-	Musicianship	100
-	Poisoning	100
-	Archery	100
-	SpiritSpeak	100
-	Stealing	100
-	Tailoring	100
-	AnimalTaming	100
-	TasteIdentification	100
-	Tinkering	100
-	Tracking	100
-	Veterinary	100
-	Swordsmanship	100
-	MaceFighting	100
-	Fencing	100
-	Wrestling	100
-	Lumberjacking	100
-	Mining	100
-	Meditation	100
-	Stealth	100
-	RemoveTrap	100
 	Hits	100
 	Mana	100
 	Stamina	100
