@@ -18,7 +18,6 @@ include ":control:include/icp-pkgpanel";
 include ":control:include/icp-scripts";
 include ":control:include/icp-util";
 
-
 // Arbitrary button return (id) values.
 const START_ID		:= 0xA00000; // Anything above this value is a button.
 const BACK_BTN		:= 0xA00002;
@@ -32,10 +31,8 @@ const ITEMDESC_BTN	:= 0xA00007;
 var pkg_info := DFOpenDataFile(":control:packages", DF_CREATE);
 var pkg_gumps := DFOpenDataFile(":control:gumps", DF_CREATE);
 
-unload_scripts("");
-
-program ICPSystem(who, pkg_name)
-	while ( 1 )
+program textcmd_ICPSystem(who, pkg_name)
+	while ( who.connected )
 		if ( pkg_name )
 			var input := ICP_PackagePanels(who, pkg_name);
 			if ( !input )
@@ -50,4 +47,6 @@ program ICPSystem(who, pkg_name)
 		endif
 	endwhile
 	SendSysMessage(who, "Done");
+	
+	return 1;
 endprogram
