@@ -4,20 +4,10 @@
 use uo;
 use os;
 
+include ":worldsaver:saver";
 
-program console_save()
-
-	var res;
-	print("System Message: Saving World State");
-	Broadcast("Saving World State");
-
-	if( !(res := SaveWorldState()) )
-		print("System Message: Done saving, " + res);
-		Broadcast("Done saving");
-		return 1;
-	else
-		print("System Message: Save error, " + res);
-		return 0;
-	endif
-
+program console_Save()
+	SVR_SendCommand(EVENT_SAVE_NOW);
+	
+	return 1;
 endprogram
