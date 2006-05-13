@@ -72,6 +72,27 @@ function DFOpenDataFile(file_name, create:=DF_NO_CREATE, flags:=DF_KEYTYPE_STRIN
 	endif
 endfunction
 
+/*
+ * DFPurgeFile(byref file_ref)
+ *
+ * Purpose
+ * Erases all elems in a datafile. (WIPES IT CLEAN)
+ *
+ * Parameters
+ * file_ref:	The datafile to wipe.
+ *
+ * Return value
+ * Returns 1
+ *
+ */
+function DFPurgeFile(byref file_ref)
+	foreach elem_name in ( DFGetElemNames(file_ref) )
+		file_ref.DeleteElement(elem_name);
+		sleepms(2);
+	endforeach
+	
+	return 1;
+endfunction
 
 /*
  * DFGetElemNames(byref file_ref)
