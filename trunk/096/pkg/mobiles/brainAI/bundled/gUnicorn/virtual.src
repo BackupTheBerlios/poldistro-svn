@@ -35,13 +35,13 @@ endprogram
 function SomethingLame(npc)
 	var effect := RandomInt(7);
 	case ( effect )
-		0: 1: 2:
+		0: 1: 5:
 			SaySomething(npc);
 			break;
-		3:
+		2: 4:
 			RainbowStuff(npc);
 			break;
-		6:
+		3: 6:
 			FartFireworks(npc);
 			break;
 		default:

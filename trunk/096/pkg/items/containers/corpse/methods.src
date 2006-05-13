@@ -94,7 +94,7 @@ exported function MakeRemains(corpse)
 	return remains;
 endfunction
 
-exported function Gibbify(corpse, range:=10)
+exported function Gibbify(corpse, range)
 	var piece_list := array
 	{
 		0x1DAD, //Torso
