@@ -1,26 +1,28 @@
+/* $Id$
+ *
+ */
+ 
 use os;
 use uo;
 
-include ":logger:log";
-include "include/messages";
-include "include/localization";
-
+include ":gumps:requestgump";
 
 program command_rename(who, text)
-	var what;
-
-	if (!text)
-		SendMessage(who, MSG_NO_PARAM, {}, MSG_IMPORTANT);
-	else
-		SendMessage(who, MSG_TARGET_OBJ, {}, MSG_COMMAND);
-		if ((what := Target(who, TGTOPT_NOCHECK_LOS)) == 0)
-			SendMessage(who, MSG_CANCELLED, {}, MSG_COMMAND);
-		else
-			Log(LOG_COMMAND, GetLogInfo(who) + " invoking 'rename' command on " + GetLogInfo(what));
-			SetName(what, text);
-			SendMessage(who, MSG_DONE, {}, MSG_COMMAND);
+	var targ := Target(who);
+	if ( !targ )
+		SendSysMessage(who, "Cancelled.");
+		return 0;
+	endif
+	
+	if ( !text )
+		text := RequestGump(who, "New Name", "", "", CANCEL_BTN_ON);
+		if ( !text || Len(text) < 1 )
+			SendSysMessage(who, "Cancelled.");
+			return 0;
 		endif
 	endif
-
-	return;
+	
+	SetName(targ, text);
+	
+	return 1;
 endprogram

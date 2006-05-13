@@ -6,12 +6,14 @@
  */
 use uo;
 
+include ":gumps:htmlgump";
+
 program command_help(who, command)
 	var help;
 
 	help := GetCommandHelp(who, command);
 	if ( help )
-		//SendHTMLMessage(who, help);
+		SendHTMLGump(who, command+" Help Text", help);
 		return 1;
 	else
 		SendSysMessage(who, "No help available for that command.");

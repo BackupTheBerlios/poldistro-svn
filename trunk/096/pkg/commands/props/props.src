@@ -1,16 +1,29 @@
-use uo;
+/* $Id$
+ *
+ */
 
-program dot_props( who )
-    var what := Target( who );
-    if (what)
-        var names := what.propnames();
-        if (names.size() != 0)
-            foreach propname in names
-                SendSysMessage( who, propname + ": " + what.getprop( propname ) );
-            endforeach
-        else
-            SendSysMessage( who, "No properties." );
-        endif
-    endif
+use uo;
+use os;
+
+program textcmd_Props( who )
+	SendSysMessage(who, "Target an object.");
+	var targ := Target(who);
+	
+	if ( !targ )
+		SendSysMessage(who, "Cancelled.");
+		return 0;
+	endif
+	
+	var prop_names := targ.PropNames();
+	if ( prop_names.Size() > 0 )
+		foreach prop_name in prop_names
+			SendSysMessage(who, prop_name+": "+Pack(targ.GetProp(prop_name)));
+        		sleepms(2);
+	        endforeach
+	else
+		SendSysMessage(who, "No properties.");
+	endif
+	
+	return 1;
 
 endprogram

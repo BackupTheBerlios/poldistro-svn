@@ -6,9 +6,6 @@
 use uo;
 
 include "include/mobileID";
-include "include/localization";
-include "include/messages";
-
 
 program command_shape(who, params)
 	case (params)
@@ -22,10 +19,10 @@ program command_shape(who, params)
 			who.graphic := MOB_GM;
 			break;
 		default:
-			SendMessage(who, MSG_USE_HELP, array{".shape"}, MSG_COMMAND);
+			SendSysMessage(who, "Please see .help shape");
 			break;
 	endcase
 
-	return;
+	return 1;
 endprogram
 
