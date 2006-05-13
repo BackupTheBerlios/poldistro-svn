@@ -18,6 +18,8 @@ program useScript_Corpse(mobile, corpse)
 		endif
 		sleepms(2);
 	endforeach
+	SendSysMessage(mobile, "You collect your belongings.");
+	DestroyItem(corpse);
 	
 	return 1;
 endprogram	

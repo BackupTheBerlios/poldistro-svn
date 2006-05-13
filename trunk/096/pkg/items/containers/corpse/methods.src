@@ -89,6 +89,8 @@ exported function MakeRemains(corpse)
 		SetName(remains, "remains of "+owner.name);
 	endif
 	
+	DestroyItem(corpse);
+	
 	return remains;
 endfunction
 
