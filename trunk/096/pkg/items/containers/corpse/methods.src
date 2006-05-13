@@ -75,7 +75,7 @@ exported function MakeRemains(corpse)
 		return remains;
 	endif
 	
-	foreach item in ( corpse )
+	foreach item in ( EnumerateItemsInContainer(corpse) )
 		if ( item.container != corpse )
 			continue;
 		endif
