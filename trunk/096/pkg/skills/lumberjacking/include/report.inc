@@ -19,7 +19,7 @@ function LJ_ReportText(report_text:="?", flags:=LJ_REPORT_DISABLE)
 	
 	if ( flags & LJ_REPORT_SYSLOG )
 		var script_name := GetProcess(GetPid()).name;
-		LogToFile("::log/LJ_.log", "["+script_name+"]: "+report_text, LOG_DATETIME);
+		LogToFile("::log/lumberjacking.log", "["+script_name+"]: "+report_text, LOG_DATETIME);
 	endif
 	
 	if ( flags & LJ_REPORT_BROADCAST )
