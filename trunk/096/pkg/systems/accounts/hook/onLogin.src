@@ -29,7 +29,7 @@ enum THEFT_LEVELS
 endenum
 
 Program Install()
-	Print( "INSTALLING: Login packet hook..." );
+	Print( "INSTALLING: Auto Account/Theft Prevention PH..." );
 	Return 1;
 Endprogram
 
