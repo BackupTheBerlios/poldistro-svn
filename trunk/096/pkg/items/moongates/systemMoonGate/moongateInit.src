@@ -23,7 +23,6 @@ program CreateSystemMoonGates()
 	CleanupOldMoongates();
 	
 	var realm_names := Realms();
-	var gate_list := array{};
 	foreach realm_name in ( GetConfigStringKeys(config) )
 		var cfg_elem := config[realm_name];
 		if ( !realm_names.Exists(realm_name) )
@@ -70,6 +69,7 @@ function BuildGumpForGate(gate, byref town_name, byref config)
 	var y_pos := 50;
 	var page := 2;
 	foreach realm in ( Realms() )
+		realm := realm; // To avoid compiler warnings.
 		var cfg_elem := config[_realm_iter];
 		GFAddButton(gump, 20, y_pos+3, 2117, 2118, GF_PAGE_BTN, page);
 		GFTextLine(gump, 40, y_pos, 2100, cfg_elem.Faction);
@@ -80,11 +80,13 @@ function BuildGumpForGate(gate, byref town_name, byref config)
 	page := 2;
 	var btn_id := 1;
 	foreach realm in ( Realms() )
+		realm := realm; // To avoid compiler warnings.
 		y_pos := 50;
 		var cfg_elem := config[_realm_iter];
 		GFPage(gump, page);
 		
 		foreach entry in ( GetConfigStringDictionary(cfg_elem, "Town") )
+			entry := entry; // To avoid compiler warnings.
 			if ( _entry_iter == town_name && _realm_iter == gate.realm )
 				GFGumpPic(gump, 153, y_pos+5, 2104);
 			else
