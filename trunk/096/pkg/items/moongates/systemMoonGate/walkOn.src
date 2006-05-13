@@ -47,8 +47,8 @@ program walkOnScript(mobile, tile)
 		foreach entry in ( GetConfigStringDictionary(cfg_elem, "Town") )
 			if ( btn_id == select )
 				var coords := SplitWords(entry);
-				var result := MoveObjectToLocation(mobile, CInt(coords[1]), CInt(coords[2]), CInt(coords[3]), _realm_iter, MOVEOBJECT_NORMAL);				
 				SetObjProperty(mobile, "#Teleported", ReadMillisecondClock());
+				var result := MoveObjectToLocation(mobile, CInt(coords[1]), CInt(coords[2]), CInt(coords[3]), _realm_iter, MOVEOBJECT_NORMAL);				
 				if ( result.errortext )
 					SendSysMessage(mobile, "Unable to move ->"+result.errortext);
 				endif
@@ -64,7 +64,7 @@ endprogram
 
 function JustTeleported(mobile)
 	var tele_time := CInt(GetObjProperty(mobile, "#Teleported"));
-	if ( tele_time > ReadMillisecondClock()-500 )
+	if ( tele_time > ReadMillisecondClock()-800 )
 		// Mobile just teleported. Too soon to teleport again.
 		return 1;
 	else
