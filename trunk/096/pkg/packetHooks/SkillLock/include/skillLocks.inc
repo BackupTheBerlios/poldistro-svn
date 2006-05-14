@@ -58,10 +58,12 @@ endfunction
  */
 function SLPH_GetLockState(mobile, skill_id)
 	var data_elem := SLPH_GetDataElem(Hex(mobile.serial));
-	var lock_list := data_elem.GetProp("SkillLocks");
 	
 	// +1 is added because skills start at 0 and arrays start at 1
-	return CInt(lock_list[skill_id + 1]);
+	// Hex because cprop IDs need to be strings.
+	skill_id := Hex(CInt(skill_id)+1);
+	
+	return CInt(data_elem.GetProp(skill_id));
 endfunction
 
 /*
@@ -76,27 +78,21 @@ endfunction
  * state:	State of the skill lock.
  *
  * Return Value
- * An integer
+ * 1
  *
  */
 function SLPH_SaveLockState(mobile, skill_id, state)
 	var data_elem := SLPH_GetDataElem(Hex(mobile.serial));
-	var lock_list := data_elem.GetProp("SkillLocks");
 	
-	if ( Lower(TypeOf(lock_list)) != "array" )
-		lock_list := array{};
-	endif
-	
+	skill_id := Hex(CInt(skill_id)+1);
 	state := CInt(state);
 	
-	// +1 is added because skills start at 0 and arrays start at 1
 	if ( state == 0 )
-		// Keeps array smaller and more tidy.
-		lock_list.Erase(skill_id + 1);
+		data_elem.EraseProp(skill_id);
 	else
-		lock_list[skill_id + 1] := CInt(state);
+		data_elem.SetProp(skill_id, state);
 	endif
-	
-	return data_elem.SetProp("SkillLocks", lock_list);
+
+	return 1;
 endfunction
 
