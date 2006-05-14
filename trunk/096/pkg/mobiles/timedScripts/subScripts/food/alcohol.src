@@ -1,14 +1,19 @@
+/* $Id$
+ *
+ */
+
 use uo;
 use os;
 use util;
 
+include "include/client";
 include ":timedscripts:timedScripts";
 
-program shitfaced(params)
+program TimedScript_Alcohol(params)
 	var mobile := params[1];
 
 	var cycle := 0;
-	while(1)
+	while ( 1 )
 		cycle := cycle+1;
 		if  ( cycle == 1 )
 			SendSysMessage(mobile, "You feel no effects from the alcohol.");
@@ -24,21 +29,23 @@ program shitfaced(params)
 
 		var roll := RandomInt(10);
 		if ( cycle >= 13 )
-			mobile.facing := RandomDiceRoll("1d8");
+			mobile.facing := RandomInt(8);
 			PrintTextAbove(mobile, "*Hic!*");
 
 			if ( roll < 7 )
-				PerformAction(mobile, 32);
+				PerformAction(mobile, ANIM_BOW);
 			endif
 		endif
 
 		if ( cycle > 25 ) // Boy this person is wasted.
 			PerformAction(mobile, 32);
 			if ( roll < 3 )
-				CreateItemAtLocation(mobile.x, mobile.y, mobile.z, "vomit", 1);
+				CreateItemAtLocation(mobile.x, mobile.y, mobile.z, "vomit", 1, mobile.realm);
 			endif
 		endif
 		
 		Sleep(RandomDiceRoll("1d4")+2);
 	endwhile
+	
+	return 1;
 endprogram

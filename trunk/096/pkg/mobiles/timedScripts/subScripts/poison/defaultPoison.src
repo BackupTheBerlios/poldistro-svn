@@ -5,10 +5,11 @@ include ":attributes:attributes";
 include ":timedscripts:timedScripts";
 include "include/damage";
 
-program default_poison(params)
+program TimedScript_DefaultPoison(params)
 	var who := params[1];
 	var attacker := params[2];
 	var level := CInt(params[3]);
+	params := 0; // No longer needed.
 
 	if ( !level )
 		level := 1;
@@ -64,7 +65,7 @@ program default_poison(params)
 		   time := 5;
 	endcase
 
-	while(1)
+	while ( 1 )
 		PrintTextAbovePrivate(who, poisonedmsg, who);
 		foreach mobile in ( ListMobilesInLineOfSight(who, 8) )
 			if( mobile.ip && mobile != who )
@@ -87,6 +88,5 @@ program default_poison(params)
 		sleep(time);
 	endwhile
 
-	return;
+	return 1;
 endprogram
-

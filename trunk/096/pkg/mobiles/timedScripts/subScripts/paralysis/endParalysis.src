@@ -6,9 +6,8 @@
 use uo;
 use os;
 
-program poisonScript(mobile)
+program TimedScript_EndParalysis(mobile)
 	mobile.paralyzed := 0;
 	
 	return 1;
 endprogram
-

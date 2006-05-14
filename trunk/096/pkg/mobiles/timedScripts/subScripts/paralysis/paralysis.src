@@ -6,7 +6,7 @@
 use uo;
 use os;
 
-program poisonScript(params)
+program TimedScript_Paralysis(params)
 	var mobile := params[1];
 	
 	PlaySoundEffect(mobile, 0x205);
