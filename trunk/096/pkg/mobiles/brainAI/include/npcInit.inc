@@ -238,7 +238,7 @@ function NPC_SetupName(mobile, name_elem:=0)
 		endif
 	endif
 
-	var npc_names := ReadConfigFile("::names");
+	var npc_names := ReadConfigFile(":brainAI:config/names");
 	if ( !npc_names[name_elem] )
 		return error{"errortext" := "There is no elem ["+name_elem+"] in NAMES.CFG"};
 	endif
