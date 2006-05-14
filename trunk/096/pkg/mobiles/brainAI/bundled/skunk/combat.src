@@ -24,10 +24,9 @@ program BrainNerve(params)
 
 	AI_SetOpponent(npc, opponent);
 
-	var has_sprayed := 0;
 	while ( npc )
 		var dist := Distance(npc, opponent);
-		if ( has_sprayed || ShouldFlee(npc, flee_level, flee_mode) )
+		if ( ShouldFlee(npc, flee_level, flee_mode) )
 			flee_mode := 1;
 			AI_WarMode(npc, 0);
 			AI_Move(npc, opponent, NEMOVE_AWAY, NEMOVE_RUN, WAKEUP, 100);
@@ -42,7 +41,7 @@ program BrainNerve(params)
 		elseif ( dist <= 4 && CheckLineOfSight(npc, opponent) )
 			AI_Speak(npc, "*sprays at "+opponent.name+"*");
 			TS_StartTimer(opponent, "skunk", 180); // 3 minutes
-			has_sprayed := 1;
+			flee_mode := 1;
 		endif
 
 		sleepms(400);
