@@ -78,8 +78,8 @@ program textcmd_MakeSet(who , text)
 		endif
 	endforeach
 	
-	AppendConfigFileElem( "::sets", "set", text, itemlist);
-	UnloadConfigFile("::sets");
+	AppendConfigFileElem( "::noncore/sets", "set", text, itemlist);
+	UnloadConfigFile("::noncore/sets");
 	
 	SendSysMessage(who, "Done!");
 endprogram
