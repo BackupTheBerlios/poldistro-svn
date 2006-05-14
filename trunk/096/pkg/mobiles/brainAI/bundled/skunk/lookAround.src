@@ -32,7 +32,9 @@ function FindOpponent(npc, byref settings, byref scripts)
 	var closest := 0;
 	foreach mobile in ListMobilesInLineOfSight(npc, CInt(settings["AreaSize"]))
 		if ( NPC_ShouldWatch(npc, mobile, settings, scripts) )
-			if ( Distance(npc, mobile) < Distance(npc, closest) )
+			if ( !closest )
+				closest := mobile;
+			elseif ( Distance(npc, mobile) < Distance(npc, closest) )
 				closest := mobile;
 			endif
 		endif
