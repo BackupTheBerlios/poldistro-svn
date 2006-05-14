@@ -23,7 +23,10 @@ include ":brainAI:npcError";
 // NPC_SaveWatchList(npc, dict_list)
 //
 /////////////////////////////////////////////////////////////////
-
+//
+// Note: Once a function leaves scope, it stops being critical.
+//       As such, no set_critical(0) statements are made.
+//
 /*
  * NPC_LoadWatchList(npc)
  *
@@ -38,6 +41,7 @@ include ":brainAI:npcError";
  *
  */
 function NPC_LoadWatchList(npc)
+	set_critical(1);
 	var watch_dict := GetObjProperty(npc, "#WatchList");
 	if ( Lower(TypeOf(watch_dict)) != "dictionary" )
 		watch_dict := dictionary;
@@ -61,7 +65,7 @@ endfunction
  *
  */
 function NPC_SaveWatchList(npc, dict_list)
-	SetObjProperty(npc, "#WatchList", dict_list);
+	return SetObjProperty(npc, "#WatchList", dict_list);
 endfunction
 
 /*
@@ -79,6 +83,7 @@ endfunction
  *
  */
 function NPC_AddToWatchList(npc, mobile)
+	set_critical(1);
 	if ( mobile.IsA(POLCLASS_MOBILE) )
 		mobile := mobile.serial;
 	endif
@@ -109,6 +114,7 @@ endfunction
  *
  */
 function NPC_RemoveFromWatchList(npc, mobile)
+	set_critical(1);
 	if ( mobile.IsA(POLCLASS_MOBILE) )
 		mobile := mobile.serial;
 	endif
@@ -139,6 +145,7 @@ endfunction
  *
  */
 function NPC_IsInWatchList(npc, mobile)
+	set_critical(1);
 	if ( mobile.IsA(POLCLASS_MOBILE) )
 		mobile := mobile.serial;
 	endif
