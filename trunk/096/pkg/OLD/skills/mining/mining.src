@@ -56,7 +56,7 @@ program use_picktool(who, tool)
       SendSysMessage(who, "You cannot see that.");
       return;
     endif
-    var chk := CInt(GetObjProperty(who, "IsMining"));
+    var chk := CInt(GetObjProperty(who, "#IsMining"));
     if(!chk)
       chk := CInt(ReadGameClock() - 10);
     endif
@@ -64,7 +64,7 @@ program use_picktool(who, tool)
       SendSysMessage(who, "You must wait to perform another action.");
       return;
     endif
-    SetObjProperty(who, "IsMining", ReadGameClock() + 1);
+    SetObjProperty(who, "#IsMining", ReadGameClock() + 1);
 	if((CoordinateDistance(who.x, who.y, use_on.x, use_on.y)) > 2 )
 	  SendSysMessage(who,"That is too far away.");
 	  return;
