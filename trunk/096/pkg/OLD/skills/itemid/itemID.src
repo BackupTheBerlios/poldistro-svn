@@ -12,8 +12,8 @@ include "include/client";
 
 program skill_ItemID( who )
 
-	EraseObjProperty(who, "IsMeditating");
-	EraseObjProperty(who, "HealTimer");
+	EraseObjProperty(who, "#IsMeditating");
+	EraseObjProperty(who, "#HealTimer");
 
 	var the_item;
 	var ncharges;

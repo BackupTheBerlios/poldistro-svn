@@ -23,8 +23,8 @@ var bowcraftconfigfile := ReadConfigFile(":bowcraft:bowcraft");
 
 program use_blade(who, blade)
 
-	EraseObjProperty(who, "IsMeditating");
-	EraseObjProperty(who, "HealTimer");
+	EraseObjProperty(who, "#IsMeditating");
+	EraseObjProperty(who, "#HealTimer");
 
 	if(!can_access(who, blade))
 		return;

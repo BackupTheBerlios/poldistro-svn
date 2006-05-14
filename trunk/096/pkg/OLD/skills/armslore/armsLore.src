@@ -7,8 +7,8 @@ include ":attributes:skillCheck";
 
 program skill_armslore(who)
 
-	EraseObjProperty(who, "IsMeditating");
-	EraseObjProperty(who, "HealTimer");
+	EraseObjProperty(who, "#IsMeditating");
+	EraseObjProperty(who, "#HealTimer");
 
 	var quality_descr, damage_descr;
 	SendSysMessage(who, "Select an object to evaluate.");

@@ -8,8 +8,8 @@ include ":attributes:skillCheck";
 
 program skill_EvaluatingIntelligence(who)
 
-	EraseObjProperty(who, "IsMeditating");
-	EraseObjProperty(who, "HealTimer");
+	EraseObjProperty(who, "#IsMeditating");
+	EraseObjProperty(who, "#HealTimer");
 
 	SendSysMessage(who, "What do you wish to evaluate?");
 	var subject := Target(who);

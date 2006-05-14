@@ -23,7 +23,7 @@ program usehousedeed(character, deed)
   if(!can_access(character, deed))
     return;
   endif
-  EraseObjProperty(character, "IsMeditating");
+  EraseObjProperty(character, "#IsMeditating");
   if(deed.movable == 0)
     SendSysMessage(character, "You cannot use that.");
     return;

@@ -32,8 +32,8 @@ program use_FishingPole(who, fishingpole)
 		return 0;
 	endif
 
-	EraseObjProperty(who, "IsMeditating");
-	EraseObjProperty(who, "HealTimer");
+	EraseObjProperty(who, "#IsMeditating");
+	EraseObjProperty(who, "#HealTimer");
 
 	var targetsquare := TargetCoordinates(who);
 	if( !targetsquare )

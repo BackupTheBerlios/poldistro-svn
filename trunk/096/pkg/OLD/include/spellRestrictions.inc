@@ -31,8 +31,8 @@ function maincast(parms, delivery, circle, noto, id);
   elseif (parms[1] == "#scroll")
     spellscroll := 1;
     caster := parms[2];
-    EraseObjProperty(caster, "IsMeditating");
-    EraseObjProperty(caster, "HealTimer");
+    EraseObjProperty(caster, "#IsMeditating");
+    EraseObjProperty(caster, "#HealTimer");
     if(spellcast(caster, circle, spellscroll, id) == 0)
       return 0;
     endif
@@ -79,8 +79,8 @@ function maincast(parms, delivery, circle, noto, id);
     endif
   else
     caster := parms;
-    EraseObjProperty(caster, "IsMeditating");
-    EraseObjProperty(caster, "HealTimer");
+    EraseObjProperty(caster, "#IsMeditating");
+    EraseObjProperty(caster, "#HealTimer");
     if (spellcast(caster, circle, spellscroll, id) == 0)
       return 0;
     endif

@@ -34,8 +34,8 @@ var corpse_check :=  0;
 
 program skill_SpiritSpeak(who)
 
-	EraseObjProperty(who, "IsMeditating");
-	EraseObjProperty(who, "HealTimer");
+	EraseObjProperty(who, "#IsMeditating");
+	EraseObjProperty(who, "#HealTimer");
 
 	var my_skill  := CInt(AP_GetSkill(who, SPIRIT_SPEAK));
 

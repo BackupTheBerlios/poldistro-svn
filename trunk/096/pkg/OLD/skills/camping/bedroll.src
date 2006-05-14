@@ -12,8 +12,8 @@ CONST UOBJECT_CAMPFIRE  := 0xde3;
 
 program use_Bedroll( who, bedroll )
 
-	EraseObjProperty(who, "IsMeditating");
-	EraseObjProperty(who, "HealTimer");
+	EraseObjProperty(who, "#IsMeditating");
+	EraseObjProperty(who, "#HealTimer");
 	if(!can_access(who, bedroll))
 		return 0;
 	endif

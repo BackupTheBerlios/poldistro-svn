@@ -10,8 +10,8 @@ include ":attributes:attributes";
 
 
 program tracking(who)
-  EraseObjProperty(who, "IsMeditating");
-  EraseObjProperty(who, "HealTimer");
+  EraseObjProperty(who, "#IsMeditating");
+  EraseObjProperty(who, "#HealTimer");
 //  UnloadConfigFile(":tracking:tracking");
   if(SkillCheck(who, TRACKING, -1) >0)
     var tracker := ReadGameClock();

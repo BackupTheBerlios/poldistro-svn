@@ -21,8 +21,8 @@ CONST UOBJ_GOLDCOIN :=0x0eed;
 
 program skill_Begging( who )
 
-	EraseObjProperty(who, "IsMeditating");
-	EraseObjProperty(who, "HealTimer");
+	EraseObjProperty(who, "#IsMeditating");
+	EraseObjProperty(who, "#HealTimer");
 
 	SendSysMessage( who, "Select the person you wish to beg to." );
 	var beggee := Target( who );

@@ -6,8 +6,8 @@ var tinker_cfg:= ReadConfigFile("tinker");
 var itemcfg := ReadConfigFile("itemdesc");
 
 program make_complex_items(who, item)
-  EraseObjProperty(who, "IsMeditating");
-  EraseObjProperty(who, "HealTimer");
+  EraseObjProperty(who, "#IsMeditating");
+  EraseObjProperty(who, "#HealTimer");
   if(!can_access(who, item))
     return;
   endif

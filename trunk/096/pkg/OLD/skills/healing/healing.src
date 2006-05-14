@@ -18,7 +18,7 @@ var Anatomy;
 program use_bandages(who, item)
 	healing := GetAttribute(who, "healing");
 	Anatomy := GetAttribute(who, "anatomy");
-	EraseObjProperty(who, "IsMeditating");
+	EraseObjProperty(who, "#IsMeditating");
 	if(!can_access(who, item))
 		return;
 	endif
@@ -40,7 +40,7 @@ program use_bandages(who, item)
 		return;
 	endif
 	detach();
-	SetObjProperty(who, "HealTimer", clock);
+	SetObjProperty(who, "#HealTimer", clock);
 
 // If we're dealing with a person
 	if((patient.graphic == 0x190) or (patient.graphic == 0x191) )
@@ -175,10 +175,10 @@ function heal(who, patient, counter)
 		endif
 
 		// break out if anyone does anything that should cause heal to stop.
-		if(!GetObjProperty(who, "HealTimer"))
+		if(!GetObjProperty(who, "#HealTimer"))
 			SendSysMessage(who, "You stop healing your patient.");
 			break;
-		elseif(clock != GetObjProperty(who, "HealTimer"))
+		elseif(clock != GetObjProperty(who, "#HealTimer"))
 			break;
 		elseif(Distance(who, patient) > 1)
 			SendSysMessage(who,"Your patient isn't close enough.");
@@ -273,11 +273,11 @@ function cure(who, patient, counter)
 	while(counter <= cycles)
 		var chp := AP_GetVital(who, "Hits");
 		sleep(1);
-		if(!GetObjProperty(who, "HealTimer"))
+		if(!GetObjProperty(who, "#HealTimer"))
 			SendSysMessage(who, "You stop healing your patient.");
 			SendSysMessage(patient, who.name + " has stopped healing you.");
 			break;
-		elseif(clock != GetObjProperty(who, "HealTimer"))
+		elseif(clock != GetObjProperty(who, "#HealTimer"))
 			break;
 		elseif(Distance(who, patient) > 1)
 			SendSysMessage(who, "Your patient isn't close enough.");
@@ -333,11 +333,11 @@ function resurrect_pc(who, patient, counter)
 	while(counter <= 10)
 		var chp := AP_GetVital(who, "Hits");
 		sleep(1);
-		if(!GetObjProperty(who, "HealTimer"))
+		if(!GetObjProperty(who, "#HealTimer"))
 			SendSysMessage(who, "You stop reviving your patient.");
 			SendSysMessage(patient, who.name + " has stopped reviving you.");
 			break;
-		elseif(clock != GetObjProperty(who, "HealTimer"))
+		elseif(clock != GetObjProperty(who, "#HealTimer"))
 			break;
 		elseif(Distance(who, patient) > 1)
 			SendSysMessage(who,"Your patient isn't close enough.");

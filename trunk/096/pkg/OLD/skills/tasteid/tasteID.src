@@ -11,8 +11,8 @@ const UOBJECT_FLASK_FULL := 0x1834;
 const UOBJECT_FLASK_HEATED := 0x1833;
 
 program do_tasteid(who)
-  EraseObjProperty(who, "IsMeditating");
-  EraseObjProperty(who, "HealTimer");
+  EraseObjProperty(who, "#IsMeditating");
+  EraseObjProperty(who, "#HealTimer");
   var poison_descr;
   var alchemcfg := ReadConfigFile("::itemdesc");
   SendSysMessage(who, "Select an object to taste.");

@@ -3,8 +3,8 @@ use uo;
 include ":itemutils:canAccess";
 
 program fillpitcher (who, pitcher)
-  EraseObjProperty(who, "IsMeditating");
-  EraseObjProperty(who, "HealTimer");
+  EraseObjProperty(who, "#IsMeditating");
+  EraseObjProperty(who, "#HealTimer");
   if(!can_access(who, pitcher))
     return;
   endif

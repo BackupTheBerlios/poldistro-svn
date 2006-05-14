@@ -5,8 +5,8 @@ include "drinkPotion";
 include ":itemutils:canAccess";
 
 program yellowPotion (who, potion)
-  EraseObjProperty(who, "IsMeditating");
-  EraseObjProperty(who, "HealTimer");
+  EraseObjProperty(who, "#IsMeditating");
+  EraseObjProperty(who, "#HealTimer");
   if(!can_access(who, potion))
     return;
   endif

@@ -28,8 +28,8 @@ program use_MapmakersPen(who, tool)
 		return 0;
 	endif
 
-	EraseObjProperty(who, "IsMeditating");
-	EraseObjProperty(who, "HealTimer");
+	EraseObjProperty(who, "#IsMeditating");
+	EraseObjProperty(who, "#HealTimer");
 
 	var rinfo := sendCraftGump(who, CARTOGRAPHY);
 

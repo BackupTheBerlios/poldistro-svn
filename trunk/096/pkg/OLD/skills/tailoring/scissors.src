@@ -12,7 +12,7 @@ var cfg2 := ReadConfigFile("tailoring");
 var cfg3 := ReadConfigFile("leather");
 
 program use_scissors( who, scissors )
-  EraseObjProperty(who, "IsMeditating");
+  EraseObjProperty(who, "#IsMeditating");
   if(!can_access(who, scissors))
     return;
   elseif(scissors.movable == 0)

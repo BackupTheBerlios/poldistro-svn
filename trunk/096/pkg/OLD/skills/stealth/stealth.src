@@ -20,8 +20,8 @@ include ":attributes:skillCheck";
 
 program skill_Stealth( who )
 
-	EraseObjProperty(who, "IsMeditating");
-	EraseObjProperty(who, "HealTimer");
+	EraseObjProperty(who, "#IsMeditating");
+	EraseObjProperty(who, "#HealTimer");
 
 	if( AP_GetSkill(who, HIDING) < 80 )
 		PrintTextAbovePrivate( who, "You are not good enough at Hiding to do that.", who );

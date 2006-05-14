@@ -8,8 +8,8 @@ include ":itemutils:canAccess";
 
 program UseWood( who, wood )
 
-	EraseObjProperty(who, "IsMeditating");
-	EraseObjProperty(who, "HealTimer");
+	EraseObjProperty(who, "#IsMeditating");
+	EraseObjProperty(who, "#HealTimer");
 	if( !can_access(who, wood) )
 		return 0;
 	endif

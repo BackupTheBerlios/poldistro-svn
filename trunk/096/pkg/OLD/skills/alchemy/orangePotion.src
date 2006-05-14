@@ -8,8 +8,8 @@ include ":timedscripts:timedScripts";
 include ":timedscripts:poisonUtil";
 
 program orangePotion (who, potion)
-  EraseObjProperty(who, "IsMeditating");
-  EraseObjProperty(who, "HealTimer");
+  EraseObjProperty(who, "#IsMeditating");
+  EraseObjProperty(who, "#HealTimer");
   if(!can_access(who, potion))
     return;
   endif

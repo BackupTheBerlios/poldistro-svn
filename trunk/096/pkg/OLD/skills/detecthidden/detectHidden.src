@@ -29,8 +29,8 @@ var item_cfg := ReadConfigFile( ":*:itemdesc" );
 
 program skill_DetectHidden(who)
 
-	EraseObjProperty(who, "IsMeditating");
-	EraseObjProperty(who, "HealTimer");
+	EraseObjProperty(who, "#IsMeditating");
+	EraseObjProperty(who, "#HealTimer");
 
 	SendSysMessage(who,"Target the location to search.");
 	var targ := TargetCoordinates( who );

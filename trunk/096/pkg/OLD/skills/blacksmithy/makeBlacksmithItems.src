@@ -30,8 +30,8 @@ program use_SmithTool(who, tool)
 		endif
 	endif
 
-	EraseObjProperty(who, "IsMeditating");
-	EraseObjProperty(who, "HealTimer");
+	EraseObjProperty(who, "#IsMeditating");
+	EraseObjProperty(who, "#HealTimer");
 
 	var rinfo := sendCraftGump(who, "Blacksmithy");
 

@@ -7,8 +7,8 @@ include "include/OLD/noto";
 const UOBJ_PROOF := 0xbe34;
 
 program forensic(who)
-  EraseObjProperty(who, "IsMeditating");
-//  EraseObjProperty(who, "HealTimer");
+  EraseObjProperty(who, "#IsMeditating");
+//  EraseObjProperty(who, "#HealTimer");
   SendSysMessage(who, "What would you like to evaluate?");
   var what := Target(who, TGTOPT_CHECK_LOS);
   if (!what)

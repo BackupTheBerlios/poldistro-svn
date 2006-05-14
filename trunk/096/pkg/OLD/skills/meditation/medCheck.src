@@ -20,7 +20,7 @@ program medcheck(who)
     skill := 0;
     waittime := 0;
     loss := 0;
-    if(GetObjProperty(who, "IsMeditating"))
+    if(GetObjProperty(who, "#IsMeditating"))
       skill:=CInt((AP_GetSkill(who, MEDITATION)*100)/2);
       loss := manaloss(who);
       if(loss == "nomed")

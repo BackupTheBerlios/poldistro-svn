@@ -7,8 +7,8 @@ include ":brainAI:npcUtil";
 
 program skill_animal_lore( who )
 
-        EraseObjProperty(who, "IsMeditating");
-        EraseObjProperty(who, "HealTimer");
+        EraseObjProperty(who, "#IsMeditating");
+        EraseObjProperty(who, "#HealTimer");
 
         SendSysMessage(who, "Which animal shall I examine?");
         var creature := Target(who, TGTOPT_CHECK_LOS);

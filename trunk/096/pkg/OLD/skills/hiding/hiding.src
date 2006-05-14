@@ -19,8 +19,8 @@ include ":attributes:skillCheck";
 
 program skill_Hide(who)
 
-	EraseObjProperty(who, "IsMeditating");
-	EraseObjProperty(who, "HealTimer");
+	EraseObjProperty(who, "#IsMeditating");
+	EraseObjProperty(who, "#HealTimer");
 
 	if( who.warmode )
 		who.SetWarMode(0);

@@ -14,8 +14,8 @@ const UOBJECT_DOORS_END     := 0x06f4;
 const CANCEL_ID         := 9999;
 
 program place_deed(who, deed)
-  EraseObjProperty(who, "IsMeditating");
-  EraseObjProperty(who, "HealTimer");
+  EraseObjProperty(who, "#IsMeditating");
+  EraseObjProperty(who, "#HealTimer");
   if(!Accessible(who, deed))
     SendSysMessage(who, "You can't reach that.");
     return;

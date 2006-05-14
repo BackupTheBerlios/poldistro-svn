@@ -6,8 +6,8 @@ include "include/OLD/noto";
 var config_file;
 
 program do_inscription(who)
-  EraseObjProperty(who, "IsMeditating");
-  EraseObjProperty(who, "HealTimer");
+  EraseObjProperty(who, "#IsMeditating");
+  EraseObjProperty(who, "#HealTimer");
   var the_item,the_book,skill,points;
   var elem,selected_spell,product,spellnum;
   var circle,themana;

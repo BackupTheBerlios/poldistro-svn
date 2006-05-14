@@ -9,8 +9,8 @@ include "include/client";
 
 
 program skill_taming(who)
-  EraseObjProperty(who, "IsMeditating");
-  EraseObjProperty(who, "HealTimer");
+  EraseObjProperty(who, "#IsMeditating");
+  EraseObjProperty(who, "#HealTimer");
   var conf := ReadConfigFile("::npcdesc");
   var elem;
   var points := 0;

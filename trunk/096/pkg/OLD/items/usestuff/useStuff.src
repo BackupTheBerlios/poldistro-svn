@@ -9,8 +9,8 @@ var config;
 var elem;
 
 program UseStuff(character, stuff)
-  EraseObjProperty(character, "IsMeditating");
-  EraseObjProperty(character, "HealTimer");
+  EraseObjProperty(character, "#IsMeditating");
+  EraseObjProperty(character, "#HealTimer");
   if(!can_access(character, stuff))
     return;
   endif

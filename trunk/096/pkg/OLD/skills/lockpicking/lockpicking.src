@@ -11,8 +11,8 @@ include ":itemutils:canAccess";
 
 
 program skill_lockpicking( me, lockpick )
-	EraseObjProperty(me, "IsMeditating");
-	EraseObjProperty(me, "HealTimer");
+	EraseObjProperty(me, "#IsMeditating");
+	EraseObjProperty(me, "#HealTimer");
 
 	if(!can_access(me, lockpick))
     return;

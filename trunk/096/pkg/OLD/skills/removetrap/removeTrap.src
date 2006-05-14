@@ -11,8 +11,8 @@ include ":itemutils:canAccess";
 include ":attributes:attributes";
 
 program removeTrap(who)
-  EraseObjProperty(who, "IsMeditating");
-  EraseObjProperty(who, "HealTimer");
+  EraseObjProperty(who, "#IsMeditating");
+  EraseObjProperty(who, "#HealTimer");
   var thepoints := 50;
   SendSysMessage(who, "Select Target.");
   var item := Target(who);

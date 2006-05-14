@@ -8,8 +8,8 @@ include ":itemutils:canAccess";
 include "include/OLD/noto";
 
 program do_poisoning(who)
-  EraseObjProperty(who, "IsMeditating");
-  EraseObjProperty(who, "HealTimer");
+  EraseObjProperty(who, "#IsMeditating");
+  EraseObjProperty(who, "#HealTimer");
   SendSysMessage(who, "Select a poison potion.");
   var the_poison := Target(who);
   if(!the_poison)

@@ -14,8 +14,8 @@ include ":timedscripts:poisonUtil";
 
 program use_MagicFish(who, fish)
 
-	EraseObjProperty(who, "IsMeditating");
-	EraseObjProperty(who, "HealTimer");
+	EraseObjProperty(who, "#IsMeditating");
+	EraseObjProperty(who, "#HealTimer");
 
 	if( !can_access(who, fish) )
 		return 0;

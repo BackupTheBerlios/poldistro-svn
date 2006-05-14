@@ -13,8 +13,8 @@ program open_trapped_item(who, item)
     item := who[2];
     who := who[1];
   endif
-  EraseObjProperty(who, "IsMeditating");
-  EraseObjProperty(who, "HealTimer");
+  EraseObjProperty(who, "#IsMeditating");
+  EraseObjProperty(who, "#HealTimer");
   if(!can_access(who, item, "unmovable distance"))
     return;
   endif

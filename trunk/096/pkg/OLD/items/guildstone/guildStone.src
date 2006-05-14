@@ -14,8 +14,8 @@ var stonemanager;
 
 program use_guild_stone(who, stone)
   guildstone := stone;
-  EraseObjProperty(who, "IsMeditating");
-  EraseObjProperty(who, "HealTimer");
+  EraseObjProperty(who, "#IsMeditating");
+  EraseObjProperty(who, "#HealTimer");
   if(!ReserveItem(guildstone))
     SendSysMessage(who, "Guild Stone in use.", 3, 40);
     return;

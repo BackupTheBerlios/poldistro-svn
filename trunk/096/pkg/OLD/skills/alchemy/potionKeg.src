@@ -12,8 +12,8 @@ const POTION_START   := 0xdc01;
 const POTION_END     := 0xdce6;
 
 program use_potionkeg(ch, keg)
-  EraseObjProperty(ch, "IsMeditating");
-  EraseObjProperty(ch, "HealTimer");
+  EraseObjProperty(ch, "#IsMeditating");
+  EraseObjProperty(ch, "#HealTimer");
   if(!can_access(ch, keg))
     return;
   endif

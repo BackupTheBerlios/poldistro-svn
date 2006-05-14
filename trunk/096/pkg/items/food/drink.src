@@ -14,7 +14,7 @@ program Drink_Booz( character, drink )
   if(!can_access(character, drink))
     return;
   endif
-  EraseObjProperty(character, "IsMeditating");
+  EraseObjProperty(character, "#IsMeditating");
   if(drink.movable == 0)
     SendSysMessage(character, "You cannot drink that.");
     return;

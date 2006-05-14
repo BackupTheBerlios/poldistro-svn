@@ -13,7 +13,7 @@ var config;
 
 program skill_Musicianship(who, instrument)
 
-	EraseObjProperty(who, "IsMeditating");
+	EraseObjProperty(who, "#IsMeditating");
 
 	if( Cint(GetObjProperty(who, "#LastMusic")) > ReadGameClock() )
 		SendSysMessage(who, "You must wait a moment before playing again.");

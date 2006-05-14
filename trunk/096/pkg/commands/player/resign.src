@@ -4,8 +4,8 @@ use os;
 include ":gumps:yesno";
 
 program use_guild_stone(who)
-  EraseObjProperty(who, "IsMeditating");
-  EraseObjProperty(who, "HealTimer");
+  EraseObjProperty(who, "#IsMeditating");
+  EraseObjProperty(who, "#HealTimer");
   var guild_id := who.guildid;
   var guild:= FindGuild(guild_id);
   resign(guild, who);

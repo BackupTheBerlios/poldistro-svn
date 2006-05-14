@@ -17,8 +17,8 @@ var permuting := 0;
 var opposing  := 0;
 
 program place_deed(who, deed)
-  EraseObjProperty(who, "IsMeditating");
-  EraseObjProperty(who, "HealTimer");
+  EraseObjProperty(who, "#IsMeditating");
+  EraseObjProperty(who, "#HealTimer");
   if(!Accessible(who, deed))
     SendSysMessage(who, "You can't reach that.");
     return;

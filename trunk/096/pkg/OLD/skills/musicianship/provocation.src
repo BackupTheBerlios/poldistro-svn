@@ -12,7 +12,7 @@ include ":musicianship:bard";
 
 program bard_provoke(who)
 
-	EraseObjProperty(who, "IsMeditating");
+	EraseObjProperty(who, "#IsMeditating");
 
 	if(Cint(GetObjProperty(who, "#LastMusic")) > ReadGameClock())
 		SendSysMessage(who, "You must wait a moment before playing again.");

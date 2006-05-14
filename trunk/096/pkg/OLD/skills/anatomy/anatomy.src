@@ -10,8 +10,8 @@ include ":attributes:skillCheck";
 
 program skill_Anatomy(who)
 
-	EraseObjProperty(who, "IsMeditating");
-	EraseObjProperty(who, "HealTimer");
+	EraseObjProperty(who, "#IsMeditating");
+	EraseObjProperty(who, "#HealTimer");
 
 	SendSysMessage(who, "Whom shall I examine?");
 	var subject := Target(who);

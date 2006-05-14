@@ -16,7 +16,7 @@ var clock := ReadGameClock();
 program use_bandages (parms)
   var patient := parms[1];
   var who := parms[2];
-  EraseObjProperty(who, "IsMeditating");
+  EraseObjProperty(who, "#IsMeditating");
   //var sleeptime;
   var anatomy:= AP_GetSkill(who, ANATOMY);
   if(Distance(who, patient) > 2)
@@ -30,7 +30,7 @@ program use_bandages (parms)
 	return;
   endif
   Detach();
-  SetObjProperty(who, "HealTimer", clock);
+  SetObjProperty(who, "#HealTimer", clock);
   if(TS_GetTimerNames(patient, "P").size() > 0)
     if(!CheckLineOfSight(who,patient))
       SendSysMessage(who,"You can't see your patient.");
@@ -80,10 +80,10 @@ function heal(who, patient)
     endif
   endif
   while(counter <= cycles)
-    if(!GetObjProperty(who, "HealTimer"))
+    if(!GetObjProperty(who, "#HealTimer"))
       SendSysMessage(who, "You stop healing your patient.");
       break;
-    elseif(clock != GetObjProperty(who, "HealTimer"))
+    elseif(clock != GetObjProperty(who, "#HealTimer"))
       SendSysMessage(who, "You stop healing your patient to work on another.");
       break;
     endif
@@ -156,10 +156,10 @@ function cure(who, patient)
     endif
   endif
   while(counter <= cycles)
-    if(!GetObjProperty(who, "HealTimer"))
+    if(!GetObjProperty(who, "#HealTimer"))
       SendSysMessage(who, "You stop healing your patient.");
       break;
-    elseif(clock != GetObjProperty(who, "HealTimer"))
+    elseif(clock != GetObjProperty(who, "#HealTimer"))
       SendSysMessage(who, "You stop healing your patient to work on another.");
       break;
     endif

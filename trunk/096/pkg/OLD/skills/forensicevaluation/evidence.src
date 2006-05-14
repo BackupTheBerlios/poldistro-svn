@@ -1,8 +1,8 @@
 use uo;
 
 program evidence(who, evidence)
-  EraseObjProperty(who, "IsMeditating");
-  EraseObjProperty(who, "HealTimer");
+  EraseObjProperty(who, "#IsMeditating");
+  EraseObjProperty(who, "#HealTimer");
   var ser := GetObjProperty(evidence, "serial");
   if (!ser)
     SendSysMessage(who, "This proves nothing!");
@@ -19,4 +19,4 @@ program evidence(who, evidence)
   else
     PrintTextAbove(what, "This does not match the evidence.");
   endif
-endprogram       
+endprogram

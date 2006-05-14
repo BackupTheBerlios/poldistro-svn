@@ -14,8 +14,8 @@ var EVID_DISCHARGE := 0x123457;
 
 
 program magicWands(who, item)
-  EraseObjProperty(who, "IsMeditating");
-  EraseObjProperty(who, "HealTimer");
+  EraseObjProperty(who, "#IsMeditating");
+  EraseObjProperty(who, "#HealTimer");
   if(!can_access(who, item))
     return;
   endif
@@ -300,7 +300,7 @@ function IsWandEquipped(who,wand)
 endfunction
 
 function identifyit(who, item)
-  EraseObjProperty(who, "IsMeditating");
+  EraseObjProperty(who, "#IsMeditating");
   var charges := CInt(GetObjProperty(item, "charges"));
   var the_item, ncharges;
   SendSysMessage(who, "Select an object to identify.");

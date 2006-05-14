@@ -6,8 +6,8 @@ include "include/OLD/eventID";
 include ":itemutils:canAccess";
 
 program use_explosion(who, potion)
-  EraseObjProperty(who, "IsMeditating");
-  EraseObjProperty(who, "HealTimer");
+  EraseObjProperty(who, "#IsMeditating");
+  EraseObjProperty(who, "#HealTimer");
   if(!can_access(who, potion))
     return;
   endif

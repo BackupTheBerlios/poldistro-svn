@@ -21,8 +21,8 @@ GFref.x := 50;
 GFref.y := 50;
 
 program use_sewing_kit(who, sewing_kit)
-  EraseObjProperty(who, "IsMeditating");
-  EraseObjProperty(who, "HealTimer");
+  EraseObjProperty(who, "#IsMeditating");
+  EraseObjProperty(who, "#HealTimer");
   if(!can_access(who, sewing_kit))
     return;
   endif
