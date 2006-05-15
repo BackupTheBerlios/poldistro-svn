@@ -62,3 +62,49 @@ though, the can either follow the 'cameCasing' or 'PascalCasing'.
 		or a spell program
 		i.e. spell_GreaterHeal(who)
 
+
+
+Other Formatting:
+
+	if ( something )
+		Code here;
+	endif
+
+	case ( something )
+	     	value:
+		     	code;
+		     	break;
+     		default:
+     			code;
+     			break;
+     	endcase
+
+	while ( something )
+		code here;
+		sleepms(2);
+	endwhile
+
+	do
+		codehere;
+		sleepms(2);
+	while ( case );
+	
+	foreach iteration in ( iterated )
+		codehere;
+		sleepms(2);
+	endforeach
+	
+	for ( i; i <= 4; i:=i+1 )
+		codehere;
+		sleepms(2);
+	endfor
+	
+	for ( ( i:=1 ) to ( value ) )
+		codehere;
+		sleepms(2);
+	endfor
+	
+	var math := 4 + 3 * 10;
+	var string := "Hello there "+"Stephen."+" I am "+math+" years old.";
+	var value := SomeFunction(argument_1, argument_2);
+	
