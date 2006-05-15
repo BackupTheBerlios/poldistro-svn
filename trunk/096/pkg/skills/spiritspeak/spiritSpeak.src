@@ -8,15 +8,13 @@
 //
 //  Purpose: Follows OSI methodology for the Spirit Speak skill. At GM Skill, you are given the priv
 //		to hear ghosts. This is always checked in logon/reconnect also to help keep them
-//		legit. As GM skill, you can also be heard be everyone when you speak as a ghost.
+//		legit.
 //		As per newer OSI changes, you will also be able to use this skill as a Healing method.
 //		When corpses are within a short range to you, you can channel their spiritual residu
 //		to help heal a few HP per corpse. You can only channel their energy once per corpse,
 //		as you would use it up the first time. You can tell whenever a corpse has been used
 //		up by it's color.
 //
-//  To-Do: The being heard as a ghost is pending a new core addition to privs, so will have to wait
-//		until that change is in effect.
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 use uo;
