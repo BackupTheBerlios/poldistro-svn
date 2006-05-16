@@ -22,8 +22,9 @@ use cfgfile;
  *
  */
 function CS_GetRandomArmorZone()
-	//This function assumes that the 'Chance' totals in
-	//armrzone.cfg all add up to 100.
+	// This function assumes that the 'Chance' totals in
+	// armrzone.cfg all add up to 100. You will most likely
+	// get the error return value if they do not.
 
 	var cfg_file := ReadConfigFile("::armrzone");
 
@@ -68,11 +69,15 @@ function CS_GetLayersInArmorZone(zone_name)
 endfunction
 	
 /*
- * CS_GetEquipmentInArmorZone(defender)
+ * CS_GetEquipmentInArmorZone(mobile, zone_name)
  *
  * Purpose
  * Returns a list of all equipment that a mobile is wearing
  * that covers an armor zone.
+ *
+ * An armor piece can cover layers other than its .layer property
+ * which is why this function is here. A chainmail tunic for example,
+ * often covers arms and body.
  *
  * Parameters
  * mobile:	Mobile to evaluate the equipment on.
@@ -96,6 +101,7 @@ function CS_GetEquipmentInArmorZone(mobile, zone_name)
 				equip_list.Append(item);
 				break;
 			endif
+			sleepms(2);
 		endforeach
 		
 		sleepms(2);
