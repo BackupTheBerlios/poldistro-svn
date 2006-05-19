@@ -8,15 +8,18 @@ use os;
 include ":partySystem:config";
 include ":partySystem:packetInfo";
 
-program handlePartyLoot(who, loot)
+program handlePartyLoot(params)
 	Set_Critical(DEBUG_SET_CRITICAL);
 
-	if ( loot == 1 )
+	var who := params[1];
+	var loot := params[2];
+
+	if ( loot )
 		SetObjProperty(who, PARTY_LOOT_PROP, 1);
-		SendSysMessage(who, "Your party may now loot you. This only takes effect on new corpses.", PARTY_FONT, PARTY_FONT_COLOR);
+		SendSysMessage(who, "You have chosen to allow your party to loot your corpse.");
 	else
 		EraseObjProperty(who, PARTY_LOOT_PROP);
-		SendSysMessage(who, "Your party may no longer loot you. This only takes effect on new corpses.", PARTY_FONT, PARTY_FONT_COLOR);
+		SendSysMessage(who, "You have chosen to prevent your party from looting your corpse.");
 	endif
 
 	return 1;

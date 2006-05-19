@@ -8,6 +8,7 @@ use polsys;
 
 include ":partySystem:config";
 include ":partySystem:packetInfo";
+include ":partySystem:messages";
 
 const OFFSET_PARTY_REMOVE_NEWSIZE := 6;
 const OFFSET_PARTY_REMOVE_PLAYERID := 7;
@@ -16,158 +17,128 @@ const OFFSET_PARTY_REMOVE_PLAYERIDS := 11;
 program HandlePartyRemove(params)
 	Set_Critical(DEBUG_SET_CRITICAL);
 
-	var kicker := params[1];
-	var packet := "", newparty := array{};
-	var kicked, party, char;
-
-	// param[3] is set to PARTY_PROP when called from logoff, so search offline mobiles as well
-	if ( !params[3] )
-		kicked := SystemFindObjectBySerial(params[2]);
-		party := GetObjProperty(kicker, PARTY_PROP);
+	var who := params[1];
+	var kicked_memberid := params[2];
+	var newparty := array{};
+	var kicked_member, party, member;
+	
+	// No kickid, so who must be using /rem client command
+	if ( !kicked_memberid )
+		SendSysMessage(who, "Who would you like to remove from your party?");
+		kicked_member := Target(who);
+		party := GetObjProperty(who, PARTY_PROP);
+		
+		if ( !kicked_member )
+			SendSysMessage(who, "Cancelled.");
+			return 0;
+		endif
+		
+		if ( !kicked_member.IsA(POLCLASS_MOBILE) || !kicked_member.acctname || !(kicked_member.serial in party) )
+			return 0;
+		endif
 	else
-		kicked := SystemFindObjectBySerial(params[2], SYSFIND_SEARCH_OFFLINE_MOBILES);
-		party := params[3];
+		// param[3] is set to PARTY_PROP when called from logoff, so search offline mobiles as well
+		if ( !params[3] )
+			kicked_member := SystemFindObjectBySerial(kicked_memberid);
+			party := GetObjProperty(who, PARTY_PROP);
+		else
+			kicked_member := SystemFindObjectBySerial(kicked_memberid, SYSFIND_SEARCH_OFFLINE_MOBILES);
+			party := params[3];
+		endif
 	endif
 
 	if ( TypeOf(party) != "Array" || party.Size() < 1 || !party[1] )
-		EraseObjProperty(kicker, PARTY_PROP);
-		EraseObjProperty(kicker, PARTY_JOINING_PROP);
-		SendSysMessage(kicker, "You are not in a party.", PARTY_FONT, PARTY_FONT_COLOR);
+		EraseObjProperty(who, PARTY_PROP);
+		EraseObjProperty(who, PARTY_JOINING_PROP);
 		return 0;
 	endif
 
-	// Don't build the packet unless we have to
-	if ( (kicked.serial == kicker.serial) || (party[1] == kicker.serial && !params[3]) )
-		// Build the packet
-		packet := CreatePacket(MSGTYPE_PARTY, MSGLEN_VARIABLE);
-		packet.SetInt16(OFFSET_PARTY_SUBCMD, 6); // Set subcmd to Party
-		packet.SetInt8(OFFSET_PARTY_SUBSUBCMD, 2); // Set subsubcmd to Remove
-		packet.SetInt32(OFFSET_PARTY_REMOVE_PLAYERID, kicked.serial); // Set kicked player's serial
-		packet.SetInt8(OFFSET_PARTY_REMOVE_NEWSIZE, 0); // Set 0 party size (this may change)
-		packet.Set16(OFFSET_PARTY_MSGLEN, packet.GetSize()); // Set packet length (this may change)
+	// kicked_member is removing themselves OR is removing someone in the party and is the leader
+	if ( kicked_member.serial == who.serial || (who.serial == party[1] && (kicked_member.serial in party)) ) 
+		// Remove PARTY_PROP from kicked_member's character
+		EraseObjProperty(kicked_member, PARTY_PROP);
 
-		// Packet looks like this now: BF 000B 0006 02 00 00112233
-		// 00112233 = kicked.serial
-	endif
+		// Send remove packet
+		SendRemovePacket(kicked_member, kicked_memberid);
 
-	if ( kicked.serial == kicker.serial ) // kicked is removing themself
-		if ( party[1] != kicked.serial ) // kicked is not the party leader
-			// Remove PARTY_PROP from kicked's character
-			EraseObjProperty(kicked, PARTY_PROP);
+		// If kicked_member is not the party leader
+		if ( kicked_member.serial == party[1] )
+			// Send everyone the packet to disband
+			foreach memberid in (party)
+				member := SystemFindObjectBySerial(memberid, SYSFIND_SEARCH_OFFLINE_MOBILES);
 
-			// Only send the packet and message if kicked is online (not being called from logoff)
-			if ( !params[3] )
-				packet.SendPacket(kicked);
-				SendSysMessage(kicked, "You have left the party.", PARTY_FONT, PARTY_FONT_COLOR);
-			endif
+				SendRemovePacket(member, member.serial);
+				EraseObjProperty(member, PARTY_PROP);
 
-			// Build newparty array and set remaining party member's serials at the end of packet
-			for i := 1 to ( party.Size() )
-				if ( party[i] != kicked.serial )
-					newparty.Append(party[i]);
-					packet.SetInt32(OFFSET_PARTY_REMOVE_PLAYERIDS + ((i - 1) * 4), party[i]);
-				endif
-				sleepms(2);
-			endfor
-
-			// Change remining party size and length
-			packet.SetInt8(OFFSET_PARTY_REMOVE_NEWSIZE, newparty.Size());
-			packet.Set16(OFFSET_PARTY_MSGLEN, packet.GetSize());
-
-			// Send the same packet to everyone else, unless it's a 2-person party, then send a different packet
-			foreach member in ( newparty )
-				char := SystemFindObjectBySerial(member);
-
-				if ( char )
-					if ( newparty.Size() > 1 )
-						packet.SendPacket(kicked);
-						SetObjProperty(char, PARTY_PROP, newparty);
-						SendSysMessage(char, kicked.name+" has left the party.", PARTY_FONT, PARTY_FONT_COLOR);
-						packet.SendPacket(char);
+				if ( member.connected )
+					if ( memberid != kicked_member.serial )
+						SendSysMessage(member, "Party disbanded.");
 					else
-						// Set the kicked players id as char's id, the party size to 0 and resize packet to disband
-						packet.SetInt32(OFFSET_PARTY_REMOVE_PLAYERID, char.serial);
-						packet.SetInt8(OFFSET_PARTY_REMOVE_NEWSIZE, 0);
-						packet.SetSize(11);
-						packet.SendPacket(char);
-
-						EraseObjProperty(char, PARTY_PROP);
-						SendSysMessage(char, kicked.name+" has left the party. Party disbanded.", PARTY_FONT, PARTY_FONT_COLOR);
+						SendSysMessage(kicked_member, "You have disbanded the party.");
 					endif
 				endif
 				sleepms(2);
 			endforeach
-		else // kicker == kicked and the party leader, so disband the party
-			// Remove PARTY_PROP from kicked's character
-			EraseObjProperty(kicked, PARTY_PROP);
-
-			// Only send the packet and message if kicked is online (not being called from logoff)
-			if ( !params[3] )
-				packet.SendPacket(kicked);
-				SendSysMessage(kicked, "You have disbanded your party.", PARTY_FONT, PARTY_FONT_COLOR);
-			endif
-
-			// For everyone else in the party who's online, send the same packet and a message
-			for i := 2 to ( party.Size() )
-				char := SystemFindObjectBySerial(party[i]);
-
-				if ( char )
-					packet.SendPacket(char);
-					EraseObjProperty(char, PARTY_PROP);
-					SendSysMessage(char, "Your leader has disbanded the party.", PARTY_FONT, PARTY_FONT_COLOR);
+		else
+			// Build newparty array
+			for i := 1 to (party.Size())
+				if ( party[i] != kicked_member.serial )
+					newparty.Append(party[i]);
 				endif
 				sleepms(2);
 			endfor
-		endif
 
-	// Kicker is removing someone other than themselves so make sure kicker is the leader
-	// Skip if params[3] is true since script is being called by logoff
-	elseif ( party[1] == kicker.serial && !params[3] )
-		// Send kicked the packet and message
-		packet.SendPacket(kicked);
+			SendPartyMessage(newparty, kicked_member, "has left the party.", 1);
+			
+			// Send the same packet to everyone else, unless it's a 2-person party, then send a different packet
+			foreach memberid in (newparty)
+				member := SystemFindObjectBySerial(memberid, SYSFIND_SEARCH_OFFLINE_MOBILES);
 
-		// Build newparty array and set remaining party member's serials at the end of packet
-		for i := 1 to ( party.Size() )
-			if ( party[i] != kicked.serial )
-				newparty.Append(party[i]);
-				packet.SetInt32(OFFSET_PARTY_REMOVE_PLAYERIDS + ((i - 1) * 4), party[i]);
-			endif
-			sleepms(2);
-		endfor
-
-		// Change remining party size and length
-		packet.SetInt8(OFFSET_PARTY_REMOVE_NEWSIZE, newparty.Size());
-		packet.Set16(OFFSET_PARTY_MSGLEN, packet.GetSize());
-
-		// Notify every other member in the party and send the packet, unless it's a small party
-		foreach member in ( newparty )
-			char := SystemFindObjectBySerial(member);
-
-			if ( char )
-				if ( party.Size() > 2 )
-					packet.SendPacket(char);
-
-					SetObjProperty(char, PARTY_PROP, newparty);
-					SendSysMessage(char, kicked.name+" was kicked from the party.", PARTY_FONT, PARTY_FONT_COLOR);
+				if ( newparty.Size() > 1 )
+					SendRemovePacket(member, kicked_memberid);
+					SetObjProperty(member, PARTY_PROP, newparty);
 				else
-					// Set the kicked players id to char's id, the party size to 0 and resize packet to disband
-					packet.SetInt32(OFFSET_PARTY_REMOVE_PLAYERID, char.serial);
-					packet.SetInt8(OFFSET_PARTY_REMOVE_NEWSIZE, 0);
-					packet.SetSize(11);
-					packet.SendPacket(char);
-
-					EraseObjProperty(char, PARTY_PROP);
-					SendSysMessage(char, kicked.name+" was kicked from the party. Party disbanded.", PARTY_FONT, PARTY_FONT_COLOR);
+					SendRemovePacket(member, member.serial);
+					EraseObjProperty(member, PARTY_PROP);
+					
+					if ( member.connected )
+						SendSysMessage(member, "Party disbanded.");
+					endif
 				endif
+				sleepms(2);
+			endforeach
+			
+			if ( kicked_member.connected )
+				SendSysMessage(kicked_member, "You have been removed from the party.");
 			endif
-			sleepms(2);
-		endforeach
 
-		EraseObjProperty(kicked, PARTY_PROP);
-		SendSysMessage(kicked, "You have been kicked out of the party.", PARTY_FONT, PARTY_FONT_COLOR);
+		endif
 	else
-		SendSysMessage(kicker, "Only the creator can kick others from the party.", PARTY_FONT, PARTY_FONT_COLOR);
+		SendSysMessage(who, "You must be the leader of the party to remove members.");
 	endif
 
 	return 1;
 endprogram
+
+function SendRemovePacket(targ, kickedid, party := array{})
+	if ( !targ.connected )
+		return 0;
+	endif
+
+	// Build the packet
+	var packet := CreatePacket(MSGTYPE_PARTY, MSGLEN_VARIABLE);
+	packet.SetInt16(OFFSET_PARTY_SUBCMD, SUBCMD_PARTY); // Set subcmd to Party
+	packet.SetInt8(OFFSET_PARTY_SUBSUBCMD, 2); // Set subsubcmd to Remove
+	packet.SetInt32(OFFSET_PARTY_REMOVE_PLAYERID, kickedid); // Set player's serial
+	packet.SetInt8(OFFSET_PARTY_REMOVE_NEWSIZE, party.Size()); // Set new party size
+
+	for i := 1 to (party.Size())
+		if ( party[i] != kickedid )
+			packet.SetInt32(OFFSET_PARTY_REMOVE_PLAYERIDS + ((i - 1) * 4), party[i]);
+		endif
+		sleepms(2);
+	endfor
+
+	packet.Set16(OFFSET_PARTY_MSGLEN, packet.GetSize()); // Set packet length
+	packet.SendPacket(targ);
+endfunction

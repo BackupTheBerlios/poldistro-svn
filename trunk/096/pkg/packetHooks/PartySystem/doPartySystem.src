@@ -30,9 +30,9 @@ endprogram
 exported function handlePartyCommand(character, byref packet)
 	var cmd := packet.GetInt8(OFFSET_PARTY_SUBSUBCMD);
 	var param, param2;
-
+	
 	if ( DEBUG )
-		print( "handlePartyCommand - character: " + character.name + "	packet: " + packet);
+		print( "handlePartyCommand - character: " + character.name + "	subcmd: " +  cmd + " packet: " + packet);
 	endif
 
 	case ( cmd )
@@ -40,7 +40,7 @@ exported function handlePartyCommand(character, byref packet)
 			Start_Script("handlePartyAdd", character);
 		SUBSUBCMD_PARTY_REMOVE:
 			param := packet.GetInt32(OFFSET_PARTY_SERIAL);
-			Start_Script("handlePartyRemove", array{character, param});
+			Start_Script("handlePartyRemove", array{character, packet.GetInt32(OFFSET_PARTY_SERIAL)});
 		SUBSUBCMD_PARTY_MSG:
 			param := packet.GetInt32(OFFSET_PARTY_MSG_PLAYERID);
 			param2 := packet.GetUnicodeString(OFFSET_PARTY_MSG_MSG, CInt(packet.GetSize() - OFFSET_PARTY_MSG_MSG) / 2);
@@ -58,7 +58,7 @@ exported function handlePartyCommand(character, byref packet)
 			param := packet.GetInt32(OFFSET_PARTY_SERIAL);
 			Start_Script("handlePartyDecline", array{character, param});
 		default:
-			if (DEBUG)
+			if ( DEBUG )
 				print("handlePartyCommand: unknown command");
 				print("Subsubcmd: "+cmd+" Packet: "+packet);
 			endif
